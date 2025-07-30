@@ -1,0 +1,211 @@
+#!/bin/bash
+# Commit message validation hook
+# Enforces conventional commit format and quality standards
+
+set -e
+
+# Colors
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+YELLOW='\033[1;33m'
+NC='\033[0m'
+
+error() {
+    echo -e "${RED}ERROR: $1${NC}" >&2
+}
+
+warning() {
+    echo -e "${YELLOW}WARNING: $1${NC}" >&2
+}
+
+success() {
+    echo -e "${GREEN}✓ $1${NC}"
+}
+
+# Read commit message
+commit_file="$1"
+commit_msg=$(cat "$commit_file")
+
+# Skip merge commits
+if git rev-parse -q --verify MERGE_HEAD > /dev/null; then
+    exit 0
+fi
+
+# Check commit message format
+check_conventional_format() {
+    # Conventional commit regex pattern
+    # Format: type(scope): description
+    local pattern='^(feat|fix|docs|style|refactor|test|chore|perf|ci|build|revert)(\([a-z][a-z0-9-]*\))?: .{1,72}$'
+    
+    # Get first line
+    local first_line=$(echo "$commit_msg" | head -n1)
+    
+    if ! echo "$first_line" | grep -qE "$pattern"; then
+        error "Commit message does not follow conventional format!"
+        echo
+        echo "Expected format: type(scope): description"
+        echo "  Example: feat(bibmgr): add validation for duplicate keys"
+        echo "  Example: fix: correct path resolution in validators"
+        echo
+        echo "Valid types:"
+        echo "  feat     - New feature"
+        echo "  fix      - Bug fix"
+        echo "  docs     - Documentation changes"
+        echo "  style    - Code style changes (formatting, etc)"
+        echo "  refactor - Code refactoring"
+        echo "  test     - Test additions or changes"
+        echo "  chore    - Maintenance tasks"
+        echo "  perf     - Performance improvements"
+        echo "  ci       - CI/CD changes"
+        echo "  build    - Build system changes"
+        echo "  revert   - Revert previous commit"
+        echo
+        echo "Rules:"
+        echo "  - First line max 72 characters"
+        echo "  - Use present tense ('add' not 'added')"
+        echo "  - Don't capitalize first letter after colon"
+        echo "  - No period at end of subject line"
+        return 1
+    fi
+    
+    # Check line length
+    if [ ${#first_line} -gt 72 ]; then
+        error "First line exceeds 72 characters (${#first_line} chars)"
+        return 1
+    fi
+    
+    # Extract components
+    local type=$(echo "$first_line" | cut -d':' -f1 | cut -d'(' -f1)
+    local description=$(echo "$first_line" | cut -d':' -f2- | sed 's/^ //')
+    
+    # Check description
+    if [ -z "$description" ]; then
+        error "Missing description after colon"
+        return 1
+    fi
+    
+    # Check for capital letter after colon
+    if echo "$description" | grep -qE '^[A-Z]'; then
+        warning "Description should not start with capital letter"
+    fi
+    
+    # Check for period at end
+    if echo "$description" | grep -qE '\.$'; then
+        warning "Description should not end with period"
+    fi
+    
+    # Check for imperative mood (basic check)
+    local bad_words=('added' 'fixed' 'changed' 'updated' 'removed')
+    for word in "${bad_words[@]}"; do
+        if echo "$description" | grep -qiE "^$word\b"; then
+            warning "Use imperative mood: 'add' instead of '$word'"
+        fi
+    done
+}
+
+# Check commit body
+check_commit_body() {
+    local lines=$(echo "$commit_msg" | wc -l)
+    
+    if [ "$lines" -gt 1 ]; then
+        # Check blank line after first line
+        local second_line=$(echo "$commit_msg" | sed -n 2p)
+        if [ -n "$second_line" ]; then
+            error "Second line must be blank"
+            return 1
+        fi
+        
+        # Check body line length
+        local long_lines=$(echo "$commit_msg" | tail -n +3 | grep -E '^.{73,}' | grep -vE '^[[:space:]]*\*|^[[:space:]]*-|^[[:space:]]*[0-9]+\.')
+        if [ -n "$long_lines" ]; then
+            warning "Body contains lines over 72 characters"
+        fi
+    fi
+}
+
+# Check for references
+check_references() {
+    # Check for issue references
+    if echo "$commit_msg" | grep -qE '#[0-9]+'; then
+        success "Issue reference found"
+    fi
+    
+    # Check for breaking changes
+    if echo "$commit_msg" | grep -qE '^BREAKING CHANGE:|^BREAKING-CHANGE:'; then
+        warning "Breaking change detected - ensure this is intentional"
+    fi
+}
+
+# Check specific patterns based on commit type
+check_type_specific() {
+    local type=$(echo "$commit_msg" | head -n1 | cut -d':' -f1 | cut -d'(' -f1)
+    
+    case "$type" in
+        feat)
+            # New features should update documentation
+            if ! git diff --cached --name-only | grep -qE '\.(md|MD)$'; then
+                warning "New feature without documentation updates"
+            fi
+            ;;
+        fix)
+            # Fixes should reference an issue or describe the bug
+            if ! echo "$commit_msg" | grep -qE '#[0-9]+|[Bb]ug|[Ff]ix|[Ii]ssue'; then
+                warning "Fix commit should reference issue or describe bug"
+            fi
+            ;;
+        test)
+            # Test commits should actually modify test files
+            if ! git diff --cached --name-only | grep -qE '(test_|_test\.py|tests/)'; then
+                warning "Test commit doesn't modify test files"
+            fi
+            ;;
+        docs)
+            # Docs commits should only modify documentation
+            if git diff --cached --name-only | grep -qE '\.(py|sh|scm)$'; then
+                warning "Docs commit modifies non-documentation files"
+            fi
+            ;;
+    esac
+}
+
+# Check for quality issues
+check_quality() {
+    # Check for WIP commits
+    if echo "$commit_msg" | grep -qiE '\bWIP\b|work in progress'; then
+        error "WIP commits not allowed - finish the work first"
+        return 1
+    fi
+    
+    # Check minimum length
+    local first_line=$(echo "$commit_msg" | head -n1)
+    if [ ${#first_line} -lt 20 ]; then
+        error "Commit message too short (min 20 characters)"
+        return 1
+    fi
+    
+    # Check for temporary commits
+    if echo "$commit_msg" | grep -qiE '^(tmp|temp|temporary|test commit|asdf|foo|bar)'; then
+        error "Temporary commit messages not allowed"
+        return 1
+    fi
+}
+
+# Main execution
+main() {
+    echo "====================================="
+    echo "📝 Validating commit message..."
+    echo "====================================="
+    
+    check_conventional_format || exit 1
+    check_commit_body || exit 1
+    check_references
+    check_type_specific
+    check_quality || exit 1
+    
+    echo
+    success "Commit message validation passed!"
+    
+    exit 0
+}
+
+main

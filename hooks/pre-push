@@ -1,0 +1,302 @@
+#!/bin/bash
+# Pre-push hook - Final safety check before pushing
+# Ensures remote repository maintains high quality standards
+
+set -e
+
+# Colors
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+YELLOW='\033[1;33m'
+BLUE='\033[0;34m'
+NC='\033[0m'
+
+error() {
+    echo -e "${RED}ERROR: $1${NC}" >&2
+}
+
+warning() {
+    echo -e "${YELLOW}WARNING: $1${NC}" >&2
+}
+
+success() {
+    echo -e "${GREEN}✓ $1${NC}"
+}
+
+info() {
+    echo -e "${BLUE}ℹ $1${NC}"
+}
+
+# Parse push information
+remote="$1"
+url="$2"
+
+# Check if we're pushing to main/master branch
+check_protected_branch() {
+    info "Checking branch protection..."
+    
+    while read local_ref local_sha remote_ref remote_sha; do
+        if [[ "$remote_ref" =~ ^refs/heads/(main|master)$ ]]; then
+            local current_branch=$(git rev-parse --abbrev-ref HEAD)
+            
+            # Ensure we're not pushing directly to main/master
+            if [[ "$current_branch" =~ ^(main|master)$ ]]; then
+                warning "Direct push to $current_branch branch detected"
+                info "Consider using feature branches and pull requests"
+            fi
+            
+            # Extra validation for main branch pushes
+            export MAIN_BRANCH_PUSH=1
+        fi
+    done
+    
+    success "Branch check complete"
+}
+
+# Run comprehensive test suite
+run_tests() {
+    info "Running test suite..."
+    
+    # Check if tests exist
+    if [ -d "tests" ] || find . -name "test_*.py" -o -name "*_test.py" | grep -q .; then
+        if command -v pytest &> /dev/null; then
+            if ! pytest -xvs; then
+                error "Tests failed!"
+                return 1
+            fi
+            success "All tests passed"
+        else
+            warning "pytest not found - skipping tests"
+        fi
+    else
+        warning "No tests found"
+        info "Consider adding tests for better code quality"
+    fi
+}
+
+# Verify all BibTeX files are valid
+verify_bibliography() {
+    info "Verifying bibliography integrity..."
+    
+    if ! python3 -m bibmgr.cli check all; then
+        error "Bibliography validation failed!"
+        info "Run 'python3 -m bibmgr.cli report all' for details"
+        return 1
+    fi
+    
+    # Count entries and check for empty files
+    local total_entries=$(find bibtex -name "*.bib" -exec python3 -c "
+import bibtexparser
+count = 0
+for file in ['{}']:
+    with open(file) as f:
+        db = bibtexparser.load(f)
+        count += len(db.entries)
+print(count)
+" \; | awk '{sum += $1} END {print sum}')
+    
+    if [ "$total_entries" -eq 0 ]; then
+        error "No bibliography entries found!"
+        return 1
+    fi
+    
+    success "Bibliography valid: $total_entries entries"
+}
+
+# Check for uncommitted changes
+check_working_tree() {
+    info "Checking working tree..."
+    
+    if ! git diff-index --quiet HEAD --; then
+        warning "Uncommitted changes in working tree"
+        git status --short
+        echo
+        read -p "Continue with push? (y/N) " -n 1 -r
+        echo
+        if [[ ! $REPLY =~ ^[Yy]$ ]]; then
+            error "Push cancelled"
+            exit 1
+        fi
+    fi
+    
+    success "Working tree check complete"
+}
+
+# Verify changelog is updated
+check_changelog() {
+    info "Checking changelog..."
+    
+    if [ -f "CHANGELOG.md" ]; then
+        # Check if changelog was modified in recent commits
+        local commits_to_push=$(git rev-list @{u}..HEAD --count 2>/dev/null || echo 0)
+        
+        if [ "$commits_to_push" -gt 0 ]; then
+            local changelog_modified=$(git diff @{u}..HEAD --name-only | grep -c "CHANGELOG.md" || true)
+            
+            if [ "$changelog_modified" -eq 0 ]; then
+                warning "CHANGELOG.md not updated in commits being pushed"
+                info "Consider updating CHANGELOG.md for significant changes"
+            else
+                success "CHANGELOG.md updated"
+            fi
+        fi
+    else
+        warning "No CHANGELOG.md found"
+        info "Consider maintaining a changelog: https://keepachangelog.com"
+    fi
+}
+
+# Check code coverage
+check_coverage() {
+    info "Checking code coverage..."
+    
+    if command -v coverage &> /dev/null; then
+        if coverage run -m pytest &> /dev/null; then
+            local coverage_percent=$(coverage report | tail -1 | awk '{print $4}' | sed 's/%//')
+            
+            if [ -n "$coverage_percent" ]; then
+                if (( $(echo "$coverage_percent < 80" | bc -l) )); then
+                    warning "Code coverage below 80%: ${coverage_percent}%"
+                else
+                    success "Code coverage: ${coverage_percent}%"
+                fi
+            fi
+        fi
+    else
+        info "Coverage tool not found - skipping coverage check"
+    fi
+}
+
+# Verify documentation is up to date
+check_documentation() {
+    info "Checking documentation..."
+    
+    # Check if README exists
+    if [ ! -f "README.md" ]; then
+        error "README.md not found!"
+        return 1
+    fi
+    
+    # Check for outdated documentation markers
+    if grep -r "TODO\|FIXME\|XXX" *.md 2>/dev/null | grep -v "TODO.md"; then
+        warning "TODO/FIXME markers found in documentation"
+    fi
+    
+    # Check if documentation mentions current version
+    if [ -f "pyproject.toml" ]; then
+        local version=$(grep -E '^version\s*=' pyproject.toml | cut -d'"' -f2)
+        if [ -n "$version" ] && ! grep -q "$version" README.md; then
+            warning "README.md may not reflect current version: $version"
+        fi
+    fi
+    
+    success "Documentation check complete"
+}
+
+# Security scan
+security_scan() {
+    info "Running security scan..."
+    
+    # Check for hardcoded secrets (basic scan)
+    local secret_patterns=(
+        'password\s*=\s*["\'][^"\']+["\']'
+        'api[_-]?key\s*=\s*["\'][^"\']+["\']'
+        'token\s*=\s*["\'][^"\']+["\']'
+        'secret\s*=\s*["\'][^"\']+["\']'
+    )
+    
+    for pattern in "${secret_patterns[@]}"; do
+        if git grep -iE "$pattern" &> /dev/null; then
+            error "Potential secrets found in codebase!"
+            info "Remove all secrets before pushing"
+            return 1
+        fi
+    done
+    
+    success "Security scan passed"
+}
+
+# Check commit quality
+check_commit_quality() {
+    info "Checking commit quality..."
+    
+    # Get commits to be pushed
+    local commits=$(git rev-list @{u}..HEAD 2>/dev/null || git rev-list HEAD)
+    
+    if [ -z "$commits" ]; then
+        return 0
+    fi
+    
+    # Check for fixup/squash commits
+    if git log @{u}..HEAD --oneline | grep -E '^[a-f0-9]+ (fixup!|squash!)'; then
+        error "Fixup/squash commits found!"
+        info "Run: git rebase -i --autosquash @{u}"
+        return 1
+    fi
+    
+    # Check commit message quality
+    local bad_messages=$(git log @{u}..HEAD --oneline | grep -iE 'wip|temp|test commit|todo' || true)
+    if [ -n "$bad_messages" ]; then
+        error "Poor quality commit messages found:"
+        echo "$bad_messages"
+        return 1
+    fi
+    
+    success "Commit quality OK"
+}
+
+# Final validation summary
+final_summary() {
+    info "Generating push summary..."
+    
+    # Count commits being pushed
+    local commit_count=$(git rev-list @{u}..HEAD --count 2>/dev/null || echo 0)
+    
+    if [ "$commit_count" -gt 0 ]; then
+        echo
+        echo "Push summary:"
+        echo "  Remote: $remote ($url)"
+        echo "  Commits: $commit_count"
+        echo
+        echo "Recent commits:"
+        git log @{u}..HEAD --oneline | head -5
+        
+        if [ "$commit_count" -gt 5 ]; then
+            echo "  ... and $((commit_count - 5)) more"
+        fi
+    fi
+}
+
+# Main execution
+main() {
+    echo "====================================="
+    echo "🚀 Running pre-push validation..."
+    echo "====================================="
+    
+    check_protected_branch
+    check_working_tree || exit 1
+    verify_bibliography || exit 1
+    run_tests || exit 1
+    check_documentation || exit 1
+    check_changelog
+    check_coverage
+    security_scan || exit 1
+    check_commit_quality || exit 1
+    
+    final_summary
+    
+    echo
+    echo "====================================="
+    success "Pre-push validation passed! 🎉"
+    echo "====================================="
+    
+    exit 0
+}
+
+# Skip hook if explicitly requested
+if [ -n "$SKIP_PRE_PUSH" ]; then
+    warning "Pre-push hook skipped (SKIP_PRE_PUSH set)"
+    exit 0
+fi
+
+main

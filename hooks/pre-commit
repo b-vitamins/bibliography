@@ -1,0 +1,322 @@
+#!/bin/bash
+# Comprehensive pre-commit hook for bibliography management system
+# Enforces all quality standards to prevent non-compliant changes
+
+set -e
+
+# Colors for output
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+YELLOW='\033[1;33m'
+NC='\033[0m' # No Color
+
+# Functions for consistent output
+error() {
+    echo -e "${RED}ERROR: $1${NC}" >&2
+}
+
+warning() {
+    echo -e "${YELLOW}WARNING: $1${NC}" >&2
+}
+
+success() {
+    echo -e "${GREEN}✓ $1${NC}"
+}
+
+info() {
+    echo -e "$1"
+}
+
+# Track if we're in a Guix shell
+check_environment() {
+    info "\n🔍 Checking development environment..."
+    
+    if [ -z "$GUIX_ENVIRONMENT" ]; then
+        error "Not in a Guix shell!"
+        info "Please run: guix shell -m manifest.scm"
+        exit 1
+    fi
+    
+    # Verify all required tools
+    local missing_tools=()
+    for tool in python3 ruff pyright; do
+        if ! command -v $tool &> /dev/null; then
+            missing_tools+=($tool)
+        fi
+    done
+    
+    if [ ${#missing_tools[@]} -ne 0 ]; then
+        error "Missing required tools: ${missing_tools[*]}"
+        info "Please ensure manifest.scm includes all dependencies"
+        exit 1
+    fi
+    
+    # Verify Python packages
+    if ! python3 -c "import bibtexparser, click" &> /dev/null; then
+        error "Missing required Python packages"
+        exit 1
+    fi
+    
+    success "Development environment OK"
+}
+
+# Get list of staged files by type
+get_staged_files() {
+    local pattern="$1"
+    git diff --cached --name-only --diff-filter=ACM | grep -E "$pattern" || true
+}
+
+# Check Python code quality
+check_python_quality() {
+    local py_files=($(get_staged_files '\.py$'))
+    
+    if [ ${#py_files[@]} -eq 0 ]; then
+        return 0
+    fi
+    
+    info "\n🐍 Checking Python code quality..."
+    
+    # 1. Format check (don't modify, just check)
+    info "  • Checking code formatting..."
+    if ! ruff format --check "${py_files[@]}" &> /dev/null; then
+        error "Code formatting issues found!"
+        info "Run: ruff format bibmgr/"
+        return 1
+    fi
+    success "Code formatting OK"
+    
+    # 2. Linting
+    info "  • Running linter..."
+    if ! ruff check "${py_files[@]}"; then
+        error "Linting failed!"
+        info "Run: ruff check --fix bibmgr/"
+        return 1
+    fi
+    success "Linting passed"
+    
+    # 3. Type checking
+    info "  • Running type checker..."
+    if ! pyright "${py_files[@]}"; then
+        error "Type checking failed!"
+        info "Fix type errors before committing"
+        return 1
+    fi
+    success "Type checking passed"
+    
+    # 4. Import sorting
+    info "  • Checking import order..."
+    if ! ruff check --select I "${py_files[@]}" &> /dev/null; then
+        error "Import ordering issues found!"
+        info "Run: ruff check --select I --fix bibmgr/"
+        return 1
+    fi
+    success "Import order OK"
+}
+
+# Check BibTeX files
+check_bibtex_files() {
+    local bib_files=($(get_staged_files '\.bib$'))
+    
+    if [ ${#bib_files[@]} -eq 0 ]; then
+        return 0
+    fi
+    
+    info "\n📚 Validating BibTeX files..."
+    
+    # Run comprehensive validation
+    if ! python3 -m bibmgr.cli check all; then
+        error "BibTeX validation failed!"
+        info "Run 'python3 -m bibmgr.cli report all' for details"
+        info "\nThis repository enforces correctness at all times."
+        info "Fix all validation errors before committing."
+        return 1
+    fi
+    success "BibTeX validation passed"
+    
+    # Check for file-level issues
+    for bib_file in "${bib_files[@]}"; do
+        # Check file size (prevent accidental large commits)
+        local size=$(stat -f%z "$bib_file" 2>/dev/null || stat -c%s "$bib_file")
+        if [ "$size" -gt 1048576 ]; then # 1MB
+            warning "Large .bib file: $bib_file ($(numfmt --to=iec $size))"
+        fi
+        
+        # Check for non-ASCII characters
+        if grep -P '[^\x00-\x7F]' "$bib_file" &> /dev/null; then
+            warning "Non-ASCII characters in $bib_file"
+            info "Consider using LaTeX escape sequences"
+        fi
+    done
+}
+
+# Check documentation files
+check_documentation() {
+    local md_files=($(get_staged_files '\.(md|MD)$'))
+    
+    if [ ${#md_files[@]} -eq 0 ]; then
+        return 0
+    fi
+    
+    info "\n📝 Checking documentation..."
+    
+    for md_file in "${md_files[@]}"; do
+        # Check for broken internal links
+        if grep -E '\]\([^)]*\)' "$md_file" | grep -v http | grep -E '\]\([^)]*\.md\)' &> /dev/null; then
+            local linked_files=$(grep -oE '\]\([^)]*\.md\)' "$md_file" | sed 's/](\(.*\))/\1/')
+            for link in $linked_files; do
+                if [ ! -f "$(dirname "$md_file")/$link" ] && [ ! -f "$link" ]; then
+                    warning "Broken link in $md_file: $link"
+                fi
+            done
+        fi
+        
+        # Check line length (warn only)
+        if grep -E '^.{121,}$' "$md_file" &> /dev/null; then
+            warning "Lines over 120 characters in $md_file"
+        fi
+    done
+    success "Documentation check complete"
+}
+
+# Check for sensitive information
+check_secrets() {
+    info "\n🔐 Checking for sensitive information..."
+    
+    local patterns=(
+        'password\s*=\s*["\'][^"\']+["\']'
+        'api[_-]?key\s*=\s*["\'][^"\']+["\']'
+        'token\s*=\s*["\'][^"\']+["\']'
+        'secret\s*=\s*["\'][^"\']+["\']'
+        'BEGIN (RSA|DSA|EC) PRIVATE KEY'
+    )
+    
+    local staged_files=($(git diff --cached --name-only --diff-filter=ACM))
+    
+    for pattern in "${patterns[@]}"; do
+        for file in "${staged_files[@]}"; do
+            if grep -iE "$pattern" "$file" &> /dev/null; then
+                error "Potential secret in $file"
+                info "Remove sensitive information before committing"
+                return 1
+            fi
+        done
+    done
+    success "No secrets detected"
+}
+
+# Check commit size
+check_commit_size() {
+    info "\n📊 Checking commit size..."
+    
+    local total_lines=$(git diff --cached --stat | tail -1 | awk '{print $4 + $6}')
+    
+    if [ -z "$total_lines" ]; then
+        total_lines=0
+    fi
+    
+    if [ "$total_lines" -gt 1000 ]; then
+        warning "Large commit: $total_lines lines changed"
+        info "Consider splitting into smaller, focused commits"
+    fi
+    
+    # Check number of files
+    local file_count=$(git diff --cached --name-only | wc -l)
+    if [ "$file_count" -gt 20 ]; then
+        warning "Many files in commit: $file_count files"
+        info "Consider splitting into smaller, focused commits"
+    fi
+    
+    success "Commit size check complete"
+}
+
+# Check for common issues
+check_common_issues() {
+    info "\n🔧 Checking for common issues..."
+    
+    # Check for debugging code
+    local debug_patterns=(
+        'print\s*\('
+        'console\.log'
+        'debugger'
+        'import pdb'
+        'pdb\.set_trace'
+        'breakpoint\(\)'
+    )
+    
+    local py_files=($(get_staged_files '\.py$'))
+    
+    for pattern in "${debug_patterns[@]}"; do
+        for file in "${py_files[@]}"; do
+            if grep -E "$pattern" "$file" &> /dev/null; then
+                warning "Possible debug code in $file (pattern: $pattern)"
+            fi
+        done
+    done
+    
+    # Check for TODO/FIXME in new code
+    local staged_content=$(git diff --cached)
+    if echo "$staged_content" | grep -E '^\+.*\b(TODO|FIXME|XXX|HACK)\b' &> /dev/null; then
+        warning "New TODO/FIXME comments added"
+        info "Consider creating issues instead of TODO comments"
+    fi
+    
+    success "Common issues check complete"
+}
+
+# Check file permissions
+check_file_permissions() {
+    info "\n🔒 Checking file permissions..."
+    
+    # Check for executable files that shouldn't be
+    local non_exec_patterns='\.py$|\.md$|\.bib$|\.txt$|\.yml$|\.yaml$|\.json$|\.scm$'
+    local files=($(get_staged_files "$non_exec_patterns"))
+    
+    for file in "${files[@]}"; do
+        if [ -x "$file" ]; then
+            error "File should not be executable: $file"
+            info "Run: chmod -x $file"
+            return 1
+        fi
+    done
+    
+    # Check that scripts are executable
+    local exec_patterns='\.sh$'
+    local scripts=($(get_staged_files "$exec_patterns"))
+    
+    for script in "${scripts[@]}"; do
+        if [ ! -x "$script" ]; then
+            error "Script should be executable: $script"
+            info "Run: chmod +x $script"
+            return 1
+        fi
+    done
+    
+    success "File permissions OK"
+}
+
+# Main execution
+main() {
+    echo "====================================="
+    echo "📋 Running pre-commit checks..."
+    echo "====================================="
+    
+    # Run all checks
+    check_environment || exit 1
+    check_python_quality || exit 1
+    check_bibtex_files || exit 1
+    check_documentation || exit 1
+    check_secrets || exit 1
+    check_commit_size || exit 1
+    check_common_issues || exit 1
+    check_file_permissions || exit 1
+    
+    echo
+    echo "====================================="
+    success "All pre-commit checks passed! 🎉"
+    echo "====================================="
+    
+    exit 0
+}
+
+# Run main function
+main

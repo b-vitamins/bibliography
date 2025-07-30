@@ -1,0 +1,128 @@
+#!/bin/bash
+# Post-commit hook - Notifications and maintenance tasks
+# Runs after successful commit
+
+set -e
+
+# Colors
+GREEN='\033[0;32m'
+YELLOW='\033[1;33m'
+BLUE='\033[0;34m'
+NC='\033[0m'
+
+info() {
+    echo -e "${BLUE}ℹ $1${NC}"
+}
+
+success() {
+    echo -e "${GREEN}✓ $1${NC}"
+}
+
+# Get commit info
+commit_sha=$(git rev-parse HEAD)
+commit_msg=$(git log -1 --pretty=%B)
+commit_type=$(echo "$commit_msg" | head -1 | cut -d':' -f1 | cut -d'(' -f1)
+
+# Update statistics
+update_stats() {
+    # Count total entries
+    local total_entries=0
+    if command -v python3 &> /dev/null && [ -d "bibtex" ]; then
+        total_entries=$(find bibtex -name "*.bib" -exec python3 -c "
+import bibtexparser
+count = 0
+import sys
+for file in sys.argv[1:]:
+    try:
+        with open(file) as f:
+            db = bibtexparser.load(f)
+            count += len(db.entries)
+    except:
+        pass
+print(count)
+" {} + 2>/dev/null || echo 0)
+    fi
+    
+    # Log commit stats
+    local stats_file=".git/bibliography-stats.log"
+    echo "$(date -Iseconds)|$commit_sha|$commit_type|$total_entries" >> "$stats_file"
+}
+
+# Check for follow-up tasks
+check_follow_up() {
+    case "$commit_type" in
+        feat)
+            info "New feature committed!"
+            info "Don't forget to:"
+            echo "  - Update documentation if needed"
+            echo "  - Add tests for new functionality"
+            echo "  - Update CHANGELOG.md"
+            ;;
+        fix)
+            info "Bug fix committed!"
+            info "Consider adding a regression test"
+            ;;
+        refactor)
+            info "Refactoring committed!"
+            info "Ensure all tests still pass"
+            ;;
+    esac
+}
+
+# Check repository health
+check_repo_health() {
+    # Check for large files
+    local large_files=$(find . -type f -size +1M -not -path "./.git/*" 2>/dev/null | head -5)
+    if [ -n "$large_files" ]; then
+        echo
+        info "Large files detected (>1MB):"
+        echo "$large_files" | sed 's/^/  /'
+    fi
+    
+    # Check for uncommitted TODO items
+    local todo_count=$(grep -r "TODO\|FIXME" --include="*.py" --include="*.md" 2>/dev/null | wc -l || echo 0)
+    if [ "$todo_count" -gt 10 ]; then
+        info "High number of TODOs in codebase: $todo_count"
+    fi
+}
+
+# Create backup reminder
+backup_reminder() {
+    local last_backup_file=".git/last-backup"
+    local current_time=$(date +%s)
+    
+    if [ -f "$last_backup_file" ]; then
+        local last_backup=$(cat "$last_backup_file")
+        local days_since=$((($current_time - $last_backup) / 86400))
+        
+        if [ "$days_since" -gt 7 ]; then
+            echo
+            info "It's been $days_since days since last backup"
+            info "Consider backing up your bibliography data"
+        fi
+    else
+        echo "$current_time" > "$last_backup_file"
+    fi
+}
+
+# Main execution
+main() {
+    echo
+    success "Commit $commit_sha created successfully!"
+    
+    # Run tasks
+    update_stats
+    check_follow_up
+    check_repo_health
+    backup_reminder
+    
+    # Show quick status
+    echo
+    info "Repository status:"
+    git status --short --branch
+}
+
+# Only run for interactive terminals
+if [ -t 1 ]; then
+    main
+fi

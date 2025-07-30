@@ -1,0 +1,131 @@
+#!/bin/bash
+# Prepare commit message hook
+# Adds context and helps maintain changelog
+
+set -e
+
+commit_file="$1"
+commit_source="$2"
+sha1="$3"
+
+# Skip during merge/rebase
+if [ "$commit_source" = "merge" ] || [ "$commit_source" = "squash" ]; then
+    exit 0
+fi
+
+# Colors
+YELLOW='\033[1;33m'
+BLUE='\033[0;34m'
+NC='\033[0m'
+
+info() {
+    echo -e "${BLUE}ℹ $1${NC}"
+}
+
+# Add issue reference if on feature branch
+add_issue_reference() {
+    local branch=$(git branch --show-current)
+    
+    # Extract issue number from branch name (e.g., feature/123-add-validation)
+    if [[ "$branch" =~ ^[^/]+/([0-9]+)- ]]; then
+        local issue_num="${BASH_REMATCH[1]}"
+        
+        # Check if issue reference already exists
+        if ! grep -q "#$issue_num" "$commit_file"; then
+            # Add issue reference to commit message
+            echo "" >> "$commit_file"
+            echo "Refs: #$issue_num" >> "$commit_file"
+        fi
+    fi
+}
+
+# Add file change summary
+add_change_summary() {
+    # Get staged changes
+    local changes=$(git diff --cached --stat --stat-width=60)
+    
+    if [ -n "$changes" ]; then
+        echo "" >> "$commit_file"
+        echo "# Changes:" >> "$commit_file"
+        echo "$changes" | sed 's/^/# /' >> "$commit_file"
+    fi
+}
+
+# Add scope suggestion based on files changed
+suggest_scope() {
+    local py_files=$(git diff --cached --name-only | grep -c '\.py$' || true)
+    local bib_files=$(git diff --cached --name-only | grep -c '\.bib$' || true)
+    local doc_files=$(git diff --cached --name-only | grep -c '\.md$' || true)
+    local hook_files=$(git diff --cached --name-only | grep -c 'hooks/' || true)
+    
+    echo "# Suggested scopes based on changes:" >> "$commit_file"
+    
+    if [ "$py_files" -gt 0 ]; then
+        echo "#   - bibmgr (Python code changes)" >> "$commit_file"
+    fi
+    
+    if [ "$bib_files" -gt 0 ]; then
+        echo "#   - bibtex (Bibliography data changes)" >> "$commit_file"
+    fi
+    
+    if [ "$doc_files" -gt 0 ]; then
+        echo "#   - docs (Documentation changes)" >> "$commit_file"
+    fi
+    
+    if [ "$hook_files" -gt 0 ]; then
+        echo "#   - hooks (Git hooks changes)" >> "$commit_file"
+    fi
+}
+
+# Check if changelog needs update
+check_changelog_reminder() {
+    # Only for feature/fix commits
+    if [ -z "$commit_source" ]; then
+        echo "" >> "$commit_file"
+        echo "# Remember to update CHANGELOG.md if this is a notable change!" >> "$commit_file"
+        echo "# Follow https://keepachangelog.com format" >> "$commit_file"
+    fi
+}
+
+# Add commit template for empty commits
+add_commit_template() {
+    if [ -s "$commit_file" ]; then
+        return
+    fi
+    
+    cat > "$commit_file" << 'EOF'
+# <type>(<scope>): <subject>
+#
+# <body>
+#
+# <footer>
+
+# Types: feat, fix, docs, style, refactor, test, chore, perf, ci, build, revert
+# Scope: bibmgr, bibtex, hooks, docs, config
+# Subject: imperative mood, max 72 chars
+# Body: explain what and why, not how
+# Footer: breaking changes, issue refs
+
+EOF
+    
+    suggest_scope
+    add_change_summary
+}
+
+# Main execution
+main() {
+    # Only add template for new commits
+    if [ -z "$commit_source" ]; then
+        add_commit_template
+    fi
+    
+    # Always try to add issue reference
+    add_issue_reference
+    
+    # Add changelog reminder for non-template commits
+    if [ -n "$commit_source" ] || [ -s "$commit_file" ]; then
+        check_changelog_reminder
+    fi
+}
+
+main
