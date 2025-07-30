@@ -57,9 +57,99 @@ Phased implementation plan for the bibliography management system. Each phase bu
 - [ ] Create `config/naming_rules.yaml` for PDF naming conventions
 - [ ] Create configuration parser in Python
 
-## Phase 2: Import/Export Utilities
+## Phase 2: Core Data Layer
 
-### 2.1 Import Tools
+### 2.1 Data Models and Abstractions
+- [ ] Create `bibmgr/models.py` enhancements:
+  - Entry manipulation methods (update fields, validate)
+  - Path manipulation utilities
+  - Entry comparison and merging
+- [ ] Create `bibmgr/repository.py`:
+  - Load/save .bib files with preservation of formatting
+  - Transaction support for atomic operations
+  - Change tracking for --dry-run mode
+- [ ] Create `bibmgr/query.py`:
+  - Simple field-based queries
+  - Query builder pattern
+  - Result filtering and sorting
+
+### 2.2 Basic CRUD Operations
+- [ ] Create `bibmgr/operations/add.py`:
+  - Add single entry with validation
+  - Support --dry-run mode
+  - Automatic key generation option
+  - Path validation before commit
+- [ ] Create `bibmgr/operations/remove.py`:
+  - Remove entry and optionally PDF
+  - Support --dry-run mode
+  - Orphan warnings
+- [ ] Create `bibmgr/operations/update.py`:
+  - Update entry fields
+  - Move/rename PDF with path update
+  - Support --dry-run mode
+
+### 2.3 Basic CLI Foundation
+- [ ] Enhance `bibmgr/cli.py`:
+  - `bib add` - Interactive entry creation
+  - `bib remove <key>` - Remove entry
+  - `bib update <key>` - Update entry fields
+  - `bib show <key>` - Display entry details
+  - `bib list [--type TYPE]` - List entries
+  - All commands support --dry-run
+
+## Phase 3: Higher-Level Operations
+
+### 3.1 Enhanced Search and Query
+- [ ] Create `bibmgr/search.py`:
+  - Multi-field search
+  - Boolean operators (AND, OR, NOT)
+  - Fuzzy matching for author names
+  - Search result ranking
+- [ ] Add to CLI:
+  - `bib search <query>` - Full search
+  - `bib find --author "Name"` - Field search
+  - `bib similar <key>` - Find similar entries
+
+### 3.2 Bulk Operations
+- [ ] Create `bibmgr/operations/bulk.py`:
+  - Bulk field updates
+  - Batch validation
+  - Mass renaming with patterns
+- [ ] Add to CLI:
+  - `bib bulk-update --type article --set journal="Nature"`
+  - `bib validate --fix-paths` - Fix common issues
+  - `bib normalize-keys` - Standardize citation keys
+
+### 3.3 Import/Export Foundation
+- [ ] Create `bibmgr/io/bibtex_parser.py`:
+  - Robust BibTeX parsing with error recovery
+  - Format preservation for round-trip editing
+  - Comment and preamble handling
+- [ ] Create `bibmgr/io/formats.py`:
+  - JSON export with schema
+  - CSV export with configurable fields
+  - Simple HTML export
+- [ ] Add to CLI:
+  - `bib import <file.bib>` - Import entries
+  - `bib export --format json` - Export data
+
+### 3.4 Maintenance Tools
+- [ ] Create `bibmgr/maintenance/orphans.py`:
+  - Find PDFs without entries
+  - Find entries without PDFs
+  - Generate actionable reports
+- [ ] Create `bibmgr/maintenance/integrity.py`:
+  - Deep validation beyond mandatory fields
+  - Cross-reference checking
+  - Duplicate content detection (by title similarity)
+- [ ] Add to CLI:
+  - `bib check orphans` - Find mismatches
+  - `bib check integrity` - Deep validation
+  - `bib stats` - Collection statistics
+
+## Phase 4: Import/Export Utilities
+
+### 4.1 Advanced Import Tools
 - [ ] Create `scripts/import/from_pdf_metadata.py`
   - Extract metadata from PDF files
   - Generate BibTeX entries
@@ -73,29 +163,27 @@ Phased implementation plan for the bibliography management system. Each phase bu
   - Generate .bib file
   - Move files to correct locations
 
-### 2.2 Export Tools
-- [ ] Create `scripts/export/to_json.py`
-  - Export for web applications
-  - Include file paths and metadata
-- [ ] Create `scripts/export/to_csv.py`
-  - Tabular format for spreadsheets
-  - Configurable column selection
-- [ ] Create `scripts/export/generate_index.py`
-  - Create HTML index of all entries
-  - Include links to PDFs
+### 4.2 Advanced Export Tools
+- [ ] Create `scripts/export/to_website.py`
+  - Static site generation
+  - Search functionality
+  - PDF viewer integration
+- [ ] Create `scripts/export/to_citations.py`
+  - Format for various citation styles
+  - LaTeX bibliography generation
+  - Word/LibreOffice compatible formats
 
-### 2.3 Quality of Life Scripts
-- [ ] Create `scripts/maintenance/find_orphans.py`
-  - Find PDFs without .bib entries
-  - Find .bib entries without PDFs
-- [ ] Create `scripts/maintenance/generate_stats.py`
-  - Entry count by type
-  - Year distribution
-  - Author frequency
+### 4.3 External Tool Integration
+- [ ] Create `scripts/integrate/zotero_sync.py`
+  - Import from Zotero
+  - Maintain sync state
+- [ ] Create `scripts/integrate/mendeley_import.py`
+  - One-time Mendeley import
+  - Preserve annotations
 
-## Phase 3: Advanced Features
+## Phase 5: Advanced Features
 
-### 3.1 Enhanced Validation
+### 5.1 Enhanced Validation
 - [ ] Add cross-reference validation
   - Verify @inproceedings → @proceedings links
   - Check citation dependencies
@@ -104,63 +192,50 @@ Phased implementation plan for the bibliography management system. Each phase bu
   - File size warnings
   - Duplicate content detection (hash-based)
 
-### 3.2 Search and Query Tools
-- [ ] Create `scripts/search.py`
-  - Full-text search in metadata
-  - RegEx support
-  - Field-specific queries
-  - Output formatting options
+### 5.2 Advanced Search
+- [ ] Full-text PDF search
+  - Index PDF content
+  - Highlight search results
+  - Extract context
 
-### 3.3 Maintenance Automation
-- [ ] Create `scripts/maintenance/backup.sh`
-  - Incremental backups
-  - Compression options
-  - Remote backup support
-- [ ] Create `scripts/maintenance/sync_check.py`
-  - Verify filesystem ↔ .bib consistency
-  - Generate sync report
-  - Auto-fix option for common issues
+### 5.3 Automation and Intelligence
+- [ ] Smart key generation from metadata
+- [ ] Duplicate detection with fuzzy matching
+- [ ] Auto-categorization suggestions
+- [ ] Citation network analysis
 
-### 3.4 Testing Framework
-- [ ] Create comprehensive test suite:
-  - Unit tests for each validator
-  - Integration tests for workflows
-  - Performance tests for large collections
-- [ ] Set up continuous integration (GitHub Actions)
+## Phase 6: User Interfaces
 
-## Phase 4: User Interfaces
+### 6.1 Advanced CLI
+- [ ] Interactive mode with completions
+- [ ] Batch processing from scripts
+- [ ] Pipeline support for Unix tools
+- [ ] Configuration file support
 
-### 4.1 Command-Line Interface
-- [ ] Simple CLI for common operations:
-  ```bash
-  bib add <pdf>         # Add PDF with metadata extraction
-  bib search <query>    # Search entries
-  bib validate          # Check integrity
-  bib export <format>   # Export bibliography
-  ```
-- [ ] Shell completion support
+### 6.2 Web Interface
+- [ ] Local web server for browsing
+- [ ] Advanced search with filters
+- [ ] PDF reader with annotations
+- [ ] Batch operations UI
 
-### 4.2 Local Web Interface
-- [ ] Static HTML generator for browsing
-- [ ] Simple search page
-- [ ] PDF links for reading
+## Phase 7: Workflow Integration
 
-## Phase 5: Personal Workflow Integration
-
-### 5.1 LaTeX Integration
+### 7.1 LaTeX Integration
 - [ ] Direct \cite{} support in documents
 - [ ] Bibliography generation for papers
 - [ ] Custom citation styles
 
-### 5.2 Text Editor Integration
+### 7.2 Editor Integration
 - [ ] Emacs package for browsing/inserting citations
-- [ ] Simple completion for citation keys
+- [ ] VS Code extension
+- [ ] Vim plugin
 - [ ] Quick PDF preview from editor
 
-### 5.3 Personal Notes
-- [ ] Add note field to entries
+### 7.3 Personal Knowledge Management
+- [ ] Note-taking integration
 - [ ] Reading status tracking
-- [ ] Simple tagging system
+- [ ] Tag system with hierarchies
+- [ ] Related papers suggestions
 
 ## Development Approach
 
@@ -192,26 +267,43 @@ These issues remain unfixed to:
 - BibTeX files fixed and committed as demonstration
 
 ### Phase 2 Exit Criteria:
-- Import from PDF metadata functional
-- Export to JSON and CSV working
-- Orphan detection identifies mismatches
-- Bulk import processes directories correctly
+- Data models support all operations
+- Basic CRUD operations work with --dry-run
+- Repository class handles atomic operations
+- Basic CLI commands (add, remove, update, list, show) functional
+- All operations maintain repository correctness
 
 ### Phase 3 Exit Criteria:
-- Full test suite with >80% coverage
-- Cross-reference validation working
-- Search functionality returns accurate results
-- Backup and sync scripts operational
+- Search supports multi-field and boolean queries
+- Bulk operations work reliably
+- Import/export to JSON and CSV functional
+- Orphan detection accurate
+- Basic maintenance tools operational
 
 ### Phase 4 Exit Criteria:
-- CLI tool functional for daily use
-- Static HTML browsing works
-- Search returns accurate results
+- Import from PDF metadata functional
+- DOI import working
+- Static website generation works
+- External tool integration tested
+- Bulk import processes directories correctly
 
 ### Phase 5 Exit Criteria:
+- Full test suite with >80% coverage
+- Cross-reference validation working
+- PDF full-text search functional
+- Automation features reliable
+
+### Phase 6 Exit Criteria:
+- Advanced CLI with completions
+- Web interface functional for daily use
+- Search returns accurate results
+- Batch operations UI working
+
+### Phase 7 Exit Criteria:
 - LaTeX integration working
 - Emacs package functional
 - Personal notes system operational
+- Editor integrations tested
 
 ## Notes
 

@@ -28,7 +28,7 @@ This is a BibTeX-based personal bibliography management system that maintains st
 
 ## Key Files
 - `DESIGN.md`: Complete system architecture and validation rules
-- `ROADMAP.md`: Phased implementation plan (currently in Phase 1)
+- `ROADMAP.md`: Phased implementation plan (currently in Phase 2)
 - `TODO.md`: Current task tracking
 - `bibtex/by-subject/*.bib`: Subject-organized bibliography files
 - `bibtex/by-type/*.bib`: Type-organized bibliography files
@@ -94,21 +94,20 @@ Pattern: `{author}{year}{keyword}` (e.g., `feynman1942principle`)
 
 ### Current Status
 - 194 PDFs organized across entry types (189 misc, 4 techreport, 1 phdthesis)
-- 13 .bib files (3 by-subject, 10 by-type) - **INTENTIONALLY UNCOMMITTED**
-- Phase 1: Building validation framework with --dry-run capabilities
+- 13 .bib files (3 by-subject, 10 by-type) - all committed and validated
+- Phase 1: Complete ✓ - Validation framework and Git hooks operational
+- Phase 2: Active - Building core data layer and CRUD operations
 
-### Test Data (Existing Validation Errors)
-The following errors are **intentionally preserved** as test cases:
-1. **3 duplicate keys**: `illinois2012igmhw[1-3]` between homework/solutions files
-2. **4 missing author fields**: ISO standards in technical-standards.bib
+### Phase History
+- **Phase 1**: Core infrastructure, validation, Git hooks - Complete
+- **Phase 2**: Core data layer, basic CRUD operations - In Progress
+- **Phase 3**: Higher-level operations, search, bulk operations - Next
 
-These errors will be fixed using the developed tools before committing .bib files.
-
-### Implementation Priority
-1. Create validation scripts in `scripts/validate/`
-2. Set up Git pre-commit hooks
-3. Create configuration files in `config/`
-4. Build import/export utilities in Phase 2
+### Implementation Priority (Phase 2)
+1. Enhance data models with manipulation methods
+2. Create repository abstraction for atomic operations
+3. Implement basic CRUD operations with --dry-run support
+4. Extend CLI with add/remove/update/show/list commands
 
 ### Dependencies
 Defined in `manifest.scm`:

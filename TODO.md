@@ -1,11 +1,6 @@
 # Bibliography Management System - TODO
 
-## Phase 1: Core Infrastructure (Current)
-
-### Known Validation Issues (Test Cases)
-- [ ] 3 duplicate keys: illinois2012igmhw[1-3] between homework/solutions
-- [ ] 4 missing author fields in technical-standards.bib (ISO standards)
-- **Note**: These remain unfixed to test tooling during development
+## Phase 1: Core Infrastructure (Complete ✓)
 
 ### 1.1 Repository Setup
 - [x] Create directory structure (bibtex/by-subject, bibtex/by-type)
@@ -21,64 +16,135 @@
 - [x] Implement mandatory field validation (4 errors found ✓)
 - [x] Test on existing 194 PDF references
 - [x] Create validation report generator with detailed context
-- [x] Report commands show issues with full BibTeX context
-- [ ] Add --dry-run mode to all modification operations
-- [ ] Implement fix operations (infrastructure-first, no automation yet)
+- [x] Fix all validation errors (7 total)
+- [x] Commit clean .bib files
 
 ### 1.3 Git Integration
-- [x] Set up pre-commit hook
+- [x] Set up comprehensive Git hooks system
 - [x] Create hooks/install.sh
-- [ ] Test hook prevents invalid commits
-- [ ] Document hook setup in README
+- [x] Test hooks prevent invalid commits
+- [x] Document hooks in README and hooks/README.md
+- [x] Add changelog enforcement
+- [x] Add quality metrics and security scanning
 
-### 1.4 Configuration
-- [x] Embed validation rules in code (MANDATORY_FIELDS)
-- [ ] Create config/naming_rules.yaml
-- [ ] Create Python config parser for naming rules
+### 1.4 Testing
+- [x] Create test suite structure
+- [x] Add validator tests
+- [x] Ensure tests pass in pre-push hook
 
-### 1.5 Final Phase 1 Task
-- [ ] Fix all validation errors using developed tools
-- [ ] Commit clean .bib files as proof of working system
+## Phase 2: Core Data Layer (Current)
 
-**Phase 1 Complete When**: All tools built, validation errors fixed, .bib files committed
+### 2.1 Data Models and Abstractions
+- [ ] Enhance bibmgr/models.py:
+  - [ ] Entry manipulation methods (update fields, validate)
+  - [ ] Path manipulation utilities
+  - [ ] Entry comparison and merging
+- [ ] Create bibmgr/repository.py:
+  - [ ] Load/save .bib files with format preservation
+  - [ ] Transaction support for atomic operations
+  - [ ] Change tracking for --dry-run mode
+- [ ] Create bibmgr/query.py:
+  - [ ] Simple field-based queries
+  - [ ] Query builder pattern
+  - [ ] Result filtering and sorting
 
-## Phase 2: Import/Export (Next)
+### 2.2 Basic CRUD Operations
+- [ ] Create bibmgr/operations/add.py:
+  - [ ] Add single entry with validation
+  - [ ] Support --dry-run mode
+  - [ ] Automatic key generation option
+  - [ ] Path validation before commit
+- [ ] Create bibmgr/operations/remove.py:
+  - [ ] Remove entry and optionally PDF
+  - [ ] Support --dry-run mode
+  - [ ] Orphan warnings
+- [ ] Create bibmgr/operations/update.py:
+  - [ ] Update entry fields
+  - [ ] Move/rename PDF with path update
+  - [ ] Support --dry-run mode
 
-### Prerequisites
-- [ ] Phase 1 complete
-- [ ] All 194 PDFs validated
+### 2.3 Basic CLI Foundation
+- [ ] Enhance bibmgr/cli.py:
+  - [ ] `bib add` - Interactive entry creation
+  - [ ] `bib remove <key>` - Remove entry
+  - [ ] `bib update <key>` - Update entry fields
+  - [ ] `bib show <key>` - Display entry details
+  - [ ] `bib list [--type TYPE]` - List entries
+  - [ ] All commands support --dry-run
 
-### Tasks
-- [ ] Create from_pdf_metadata.py
-- [ ] Create from_doi.py
-- [ ] Create bulk_import.py
-- [ ] Create to_json.py exporter
-- [ ] Create to_csv.py exporter
-- [ ] Create find_orphans.py
-- [ ] Create generate_stats.py
+## Phase 3: Higher-Level Operations (Next)
 
-## Phase 3: Advanced Features (Future)
+### 3.1 Enhanced Search and Query
+- [ ] Create bibmgr/search.py
+- [ ] Add multi-field search
+- [ ] Add boolean operators
+- [ ] Add fuzzy matching
 
-### Prerequisites
-- [ ] Phase 2 complete
-- [ ] Import/export tested
+### 3.2 Bulk Operations
+- [ ] Create bibmgr/operations/bulk.py
+- [ ] Add bulk field updates
+- [ ] Add batch validation
+- [ ] Add mass renaming
 
-### Tasks
-- [ ] Enhanced validation (cross-references)
-- [ ] Search functionality
-- [ ] Test suite with >80% coverage
-- [ ] Backup automation
+### 3.3 Import/Export Foundation
+- [ ] Create bibmgr/io/bibtex_parser.py
+- [ ] Create bibmgr/io/formats.py
+- [ ] Add JSON/CSV export
+- [ ] Add simple HTML export
 
-## Future Phases
+### 3.4 Maintenance Tools
+- [ ] Create bibmgr/maintenance/orphans.py
+- [ ] Create bibmgr/maintenance/integrity.py
+- [ ] Add orphan detection
+- [ ] Add deep validation
 
-### Phase 4: User Interfaces
-- Simple CLI tool
-- Static HTML browsing
+## Phase 4: Import/Export Utilities (Future)
 
-### Phase 5: Personal Integration
-- LaTeX support
-- Emacs package
-- Note-taking
+### 4.1 Advanced Import
+- [ ] PDF metadata extraction
+- [ ] DOI lookup and import
+- [ ] Bulk PDF import
+
+### 4.2 Advanced Export
+- [ ] Static website generation
+- [ ] Citation formatting
+- [ ] LaTeX bibliography generation
+
+## Phase 5: Advanced Features
+
+### 5.1 Enhanced Validation
+- [ ] Cross-reference validation
+- [ ] PDF content validation
+- [ ] Duplicate detection by content
+
+### 5.2 Advanced Search
+- [ ] Full-text PDF search
+- [ ] Search result highlighting
+- [ ] Context extraction
+
+## Phase 6: User Interfaces
+
+### 6.1 Advanced CLI
+- [ ] Interactive mode
+- [ ] Shell completions
+- [ ] Configuration files
+
+### 6.2 Web Interface
+- [ ] Local web server
+- [ ] Advanced search UI
+- [ ] PDF reader integration
+
+## Phase 7: Workflow Integration
+
+### 7.1 LaTeX Integration
+- [ ] Direct \cite{} support
+- [ ] Bibliography generation
+- [ ] Custom citation styles
+
+### 7.2 Editor Integration
+- [ ] Emacs package
+- [ ] VS Code extension
+- [ ] Vim plugin
 
 ## Development Status
 
