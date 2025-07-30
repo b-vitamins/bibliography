@@ -7,6 +7,7 @@
    "python-pytest"       ; Testing framework
    "python-pyyaml"       ; YAML configuration parsing
    "python-click"        ; CLI framework
+   "python-rich"         ; Rich terminal output and formatting
    "python-ruff"         ; Python linter and formatter
    "node-pyright"        ; Type checking
    "python-lsp-server"   ; LSP support for editors

@@ -112,6 +112,7 @@ Pattern: `{author}{year}{keyword}` (e.g., `feynman1942principle`)
 ### Dependencies
 Defined in `manifest.scm`:
 - python3, python-bibtexparser, python-click
+- python-rich for terminal UI and formatting
 - python-ruff for linting and formatting
 - node-pyright for type checking
 - python-lsp-server for editor LSP support
