@@ -1,6 +1,7 @@
 #!/bin/bash
 # Pre-push hook - Final safety check before pushing
 # Ensures remote repository maintains high quality standards
+# BYPASSING THIS HOOK IS STRICTLY PROHIBITED
 
 set -e
 
@@ -126,23 +127,48 @@ check_working_tree() {
 check_changelog() {
     info "Checking changelog..."
     
-    if [ -f "CHANGELOG.md" ]; then
-        # Check if changelog was modified in recent commits
-        local commits_to_push=$(git rev-list @{u}..HEAD --count 2>/dev/null || echo 0)
-        
-        if [ "$commits_to_push" -gt 0 ]; then
-            local changelog_modified=$(git diff @{u}..HEAD --name-only | grep -c "CHANGELOG.md" || true)
-            
-            if [ "$changelog_modified" -eq 0 ]; then
-                warning "CHANGELOG.md not updated in commits being pushed"
-                info "Consider updating CHANGELOG.md for significant changes"
-            else
-                success "CHANGELOG.md updated"
-            fi
-        fi
+    if [ ! -f "CHANGELOG.md" ]; then
+        error "No CHANGELOG.md found!"
+        info "This project requires a changelog: https://keepachangelog.com"
+        return 1
+    fi
+    
+    # Get commits to check (either against upstream or all commits if no upstream)
+    local commits_to_check=""
+    if git rev-parse --verify @{u} &>/dev/null; then
+        commits_to_check="@{u}..HEAD"
     else
-        warning "No CHANGELOG.md found"
-        info "Consider maintaining a changelog: https://keepachangelog.com"
+        # No upstream, check last 10 commits or all if less
+        commits_to_check="HEAD~10..HEAD"
+    fi
+    
+    # Check for feat/fix commits
+    local feat_fix_commits=$(git log $commits_to_check --oneline | grep -E '^[a-f0-9]+ (feat|fix)' || true)
+    
+    if [ -n "$feat_fix_commits" ]; then
+        # We have feat/fix commits, changelog must be updated
+        local changelog_modified=$(git diff $commits_to_check --name-only 2>/dev/null | grep -c "CHANGELOG.md" || echo 0)
+        
+        if [ "$changelog_modified" -eq 0 ]; then
+            error "CHANGELOG.md not updated despite feat/fix commits!"
+            echo
+            echo "The following commits require changelog updates:"
+            echo "$feat_fix_commits"
+            echo
+            info "Update CHANGELOG.md following https://keepachangelog.com format"
+            return 1
+        fi
+        
+        # Verify changelog has Unreleased section
+        if ! grep -q "## \[Unreleased\]" CHANGELOG.md; then
+            error "CHANGELOG.md missing [Unreleased] section"
+            info "Add '## [Unreleased]' section for pending changes"
+            return 1
+        fi
+        
+        success "CHANGELOG.md properly updated"
+    else
+        info "No feat/fix commits found - changelog update not required"
     fi
 }
 
@@ -278,7 +304,7 @@ main() {
     verify_bibliography || exit 1
     run_tests || exit 1
     check_documentation || exit 1
-    check_changelog
+    check_changelog || exit 1
     check_coverage
     security_scan || exit 1
     check_commit_quality || exit 1
@@ -293,10 +319,11 @@ main() {
     exit 0
 }
 
-# Skip hook if explicitly requested
+# Bypassing is STRICTLY PROHIBITED
 if [ -n "$SKIP_PRE_PUSH" ]; then
-    warning "Pre-push hook skipped (SKIP_PRE_PUSH set)"
-    exit 0
+    error "Attempting to bypass pre-push hook is PROHIBITED"
+    info "Fix all issues before pushing"
+    exit 1
 fi
 
 main

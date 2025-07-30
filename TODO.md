@@ -20,13 +20,14 @@
 - [x] Implement duplicate detection (3 errors found ✓)
 - [x] Implement mandatory field validation (4 errors found ✓)
 - [x] Test on existing 194 PDF references
+- [x] Create validation report generator with detailed context
+- [x] Report commands show issues with full BibTeX context
 - [ ] Add --dry-run mode to all modification operations
-- [ ] Create validation report generator
-- [ ] Implement fix operations for common issues
+- [ ] Implement fix operations (infrastructure-first, no automation yet)
 
 ### 1.3 Git Integration
-- [ ] Set up pre-commit hook
-- [ ] Create hooks/install.sh
+- [x] Set up pre-commit hook
+- [x] Create hooks/install.sh
 - [ ] Test hook prevents invalid commits
 - [ ] Document hook setup in README
 

@@ -9,6 +9,9 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - Test with real data (existing issues) before fixing
 - Only commit BibTeX files after all validation passes
 - Use existing validation errors as test cases during development
+- Git hooks enforce this invariant - they will block commits with validation errors
+- Always work within Guix environment: `guix shell -m manifest.scm`
+- **NEVER bypass hooks** - Fix all issues before committing (no --no-verify)
 
 ## Repository Overview
 This is a BibTeX-based personal bibliography management system that maintains strict one-to-one correspondence between PDF files and BibTeX metadata entries. The system is designed for academic reference management with version control (Git) for metadata.
@@ -52,10 +55,20 @@ find bibtex -name "*.bib" -type f
 grep -r "feynman" bibtex/
 ```
 
-### Git Hooks (once installed)
+### Git Hooks
+The repository includes comprehensive Git hooks that enforce quality standards and prevent non-compliant changes. Install them with:
 ```bash
-bash hooks/install.sh  # Install pre-commit validation hooks
+./hooks/install.sh  # Install all quality enforcement hooks
 ```
+
+**Hooks enforce:**
+- **pre-commit**: Code quality (ruff, pyright), BibTeX validation, secrets scanning, file permissions
+- **commit-msg**: Conventional commit format (type(scope): description)
+- **pre-push**: Full test suite, documentation checks, security scan
+- **prepare-commit-msg**: Commit template, scope suggestions, issue references
+- **post-commit**: Statistics, follow-up reminders, repository health
+
+See `hooks/README.md` for detailed documentation.
 
 ## Development Guidelines
 
