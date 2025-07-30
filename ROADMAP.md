@@ -97,93 +97,265 @@ Phased implementation plan for the bibliography management system. Each phase bu
   - `bib list [--type TYPE]` - List entries
   - All commands support --dry-run
 
-## Phase 3: Higher-Level Operations
+## Phase 3: Enhanced Search and Query
 
-### 3.1 Enhanced Search and Query
-- [ ] Create `bibmgr/search.py`:
-  - Multi-field search
+### 3.1 Search Foundation
+- [ ] Create `bibmgr/search/engine.py`:
+  - Search index data structure for fast lookups
+  - Field tokenization and normalization
+  - Result ranking algorithm (TF-IDF or similar)
+  - Cache management for performance
+- [ ] Create `bibmgr/search/query_parser.py`:
+  - Parse natural language queries
+  - Convert to internal query representation
+  - Support quoted phrases and field specifiers
+  - Error handling for malformed queries
+
+### 3.2 Search Capabilities
+- [ ] Create `bibmgr/search/matchers.py`:
+  - Exact field matching
+  - Fuzzy string matching (Levenshtein distance)
+  - Regex pattern matching
+  - Date range matching
+  - Author name variations (Last, First vs First Last)
+- [ ] Create `bibmgr/search/operators.py`:
   - Boolean operators (AND, OR, NOT)
-  - Fuzzy matching for author names
-  - Search result ranking
-- [ ] Add to CLI:
-  - `bib search <query>` - Full search
-  - `bib find --author "Name"` - Field search
-  - `bib similar <key>` - Find similar entries
+  - Parenthetical grouping
+  - Field-specific operators (author:smith)
+  - Wildcard support (smith*)
 
-### 3.2 Bulk Operations
-- [ ] Create `bibmgr/operations/bulk.py`:
-  - Bulk field updates
-  - Batch validation
-  - Mass renaming with patterns
-- [ ] Add to CLI:
-  - `bib bulk-update --type article --set journal="Nature"`
-  - `bib validate --fix-paths` - Fix common issues
-  - `bib normalize-keys` - Standardize citation keys
+### 3.3 Advanced Search Features
+- [ ] Create `bibmgr/search/similarity.py`:
+  - Title similarity using n-grams
+  - Author collaboration detection
+  - Topic clustering by keywords
+  - Duplicate detection algorithms
+- [ ] Create `bibmgr/search/facets.py`:
+  - Year distribution
+  - Author frequency
+  - Entry type breakdown
+  - Journal/venue analysis
 
-### 3.3 Import/Export Foundation
-- [ ] Create `bibmgr/io/bibtex_parser.py`:
-  - Robust BibTeX parsing with error recovery
-  - Format preservation for round-trip editing
-  - Comment and preamble handling
-- [ ] Create `bibmgr/io/formats.py`:
-  - JSON export with schema
-  - CSV export with configurable fields
-  - Simple HTML export
-- [ ] Add to CLI:
-  - `bib import <file.bib>` - Import entries
-  - `bib export --format json` - Export data
+### 3.4 Search CLI Integration
+- [ ] Enhance CLI with search commands:
+  - `bib search "quantum computing"` - Natural language search
+  - `bib search "author:feynman AND year:1965"` - Structured search
+  - `bib find --similar <key>` - Find similar entries
+  - `bib find --duplicates` - Find potential duplicates
+  - `bib find --missing-pdf` - Find entries without files
+  - `bib find --orphan-pdf` - Find PDFs without entries
+- [ ] Search output formats:
+  - Short listing (key, year, author, title)
+  - Full BibTeX entries
+  - JSON for programmatic use
+  - Statistics summary
 
-### 3.4 Maintenance Tools
-- [ ] Create `bibmgr/maintenance/orphans.py`:
-  - Find PDFs without entries
-  - Find entries without PDFs
-  - Generate actionable reports
-- [ ] Create `bibmgr/maintenance/integrity.py`:
-  - Deep validation beyond mandatory fields
-  - Cross-reference checking
-  - Duplicate content detection (by title similarity)
-- [ ] Add to CLI:
-  - `bib check orphans` - Find mismatches
-  - `bib check integrity` - Deep validation
-  - `bib stats` - Collection statistics
+### Exit Criteria
+- Natural language search working across all fields
+- Boolean operators fully functional
+- Fuzzy matching for names and titles
+- Similar entry detection accurate
+- Performance: <100ms for searches on 10k entries
+- All commands support --format option
 
-## Phase 4: Import/Export Utilities
+## Phase 4: Bulk Operations
 
-### 4.1 Advanced Import Tools
-- [ ] Create `scripts/import/from_pdf_metadata.py`
-  - Extract metadata from PDF files
-  - Generate BibTeX entries
-  - Suggest appropriate entry types
-- [ ] Create `scripts/import/from_doi.py`
+### 4.1 Bulk Operation Framework
+- [ ] Create `bibmgr/bulk/engine.py`:
+  - Transaction management for atomic bulk changes
+  - Progress tracking and reporting
+  - Rollback capability for failures
+  - Dry-run preview for all operations
+- [ ] Create `bibmgr/bulk/selectors.py`:
+  - Select by entry type
+  - Select by field value/pattern
+  - Select by date range
+  - Select by file status
+  - Query-based selection from Phase 3
+
+### 4.2 Field Operations
+- [ ] Create `bibmgr/bulk/field_ops.py`:
+  - Add field to multiple entries
+  - Update field values (with patterns)
+  - Remove fields from entries
+  - Rename fields across entries
+  - Field value transformations (uppercase, normalize, etc.)
+- [ ] Create `bibmgr/bulk/validators.py`:
+  - Validate before bulk changes
+  - Check for conflicts
+  - Ensure mandatory fields remain
+  - Preview changes in table format
+
+### 4.3 Key and File Operations
+- [ ] Create `bibmgr/bulk/key_ops.py`:
+  - Rename keys by pattern
+  - Generate keys from metadata
+  - Ensure uniqueness during rename
+  - Update internal references
+- [ ] Create `bibmgr/bulk/file_ops.py`:
+  - Rename PDFs by pattern
+  - Move PDFs to new locations
+  - Update paths in entries
+  - Verify file operations
+
+### 4.4 Bulk CLI Integration
+- [ ] Enhance CLI with bulk commands:
+  - `bib bulk update --type article --set journal="Nature"` - Update field
+  - `bib bulk rename-field --from keywords --to tags` - Rename field
+  - `bib bulk normalize-keys --pattern "{author}{year}{first-word}"` - Standardize keys
+  - `bib bulk move-pdfs --type techreport --to /new/path/` - Relocate files
+  - `bib bulk validate --fix` - Fix common issues in bulk
+  - `bib bulk remove --empty-field abstract` - Remove entries with empty fields
+- [ ] Safety features:
+  - Always require --confirm or interactive confirmation
+  - Show preview of changes before applying
+  - Create automatic backup before bulk operations
+  - Detailed log of all changes made
+
+### Exit Criteria
+- All bulk operations atomic (all or nothing)
+- Dry-run mode shows accurate preview
+- Performance: Process 1000 entries in <5 seconds
+- Automatic rollback on any error
+- Comprehensive change logging
+- Rich terminal UI for preview/confirmation
+
+## Phase 5: Maintenance and Analysis Tools
+
+### 5.1 Integrity Checking
+- [ ] Create `bibmgr/analysis/integrity.py`:
+  - Detect orphaned PDFs (files without entries)
+  - Find orphaned entries (entries without files)
+  - Validate PDF readability
+  - Check for corrupt files
+  - Verify unique citation keys
+  - Cross-reference validation
+- [ ] Create `bibmgr/analysis/quality.py`:
+  - Completeness score per entry
+  - Missing optional fields report
+  - Field consistency checking
+  - Entry type appropriateness
+  - Path convention compliance
+
+### 5.2 Duplicate Detection
+- [ ] Create `bibmgr/analysis/duplicates.py`:
+  - Duplicate key detection (already exists)
+  - Similar title detection (fuzzy matching)
+  - Same PDF detection (file hash)
+  - Author/year/venue collision detection
+  - DOI/ISBN/URL uniqueness
+- [ ] Create `bibmgr/analysis/merge.py`:
+  - Interactive duplicate resolution
+  - Merge entry fields
+  - Choose best values
+  - Update references
+
+### 5.3 Statistics and Reports
+- [ ] Create `bibmgr/analysis/statistics.py`:
+  - Entry count by type
+  - Entries by year distribution
+  - Most prolific authors
+  - Common venues/journals
+  - File size statistics
+  - Growth over time (using git history)
+- [ ] Create `bibmgr/analysis/reports.py`:
+  - Generate markdown reports
+  - Create CSV summaries
+  - Quality metrics dashboard
+  - Missing data report
+  - Actionable fix lists
+
+### 5.4 Maintenance CLI Integration
+- [ ] Enhance CLI with analysis commands:
+  - `bib check integrity --deep` - Comprehensive validation
+  - `bib check orphans --fix` - Find and fix orphans
+  - `bib check duplicates --interactive` - Resolve duplicates
+  - `bib stats` - Quick statistics
+  - `bib stats --detailed` - Full analysis
+  - `bib report quality` - Entry quality report
+  - `bib report missing` - Missing data report
+  - `bib clean` - Interactive cleanup wizard
+- [ ] Automated fixes:
+  - Auto-fix common issues with confirmation
+  - Suggest entry type changes
+  - Recommend field additions
+  - Path normalization
+
+### Exit Criteria
+- All orphan detection accurate
+- Duplicate detection >95% accurate
+- Statistics generation <2 seconds
+- Reports in multiple formats
+- Interactive cleanup tools working
+- Git history analysis functional
+
+## Phase 6: Import and Integration Tools
+
+### 6.1 Bibliography Import
+- [ ] Create `bibmgr/import/bibtex.py`:
+  - Parse external .bib files
+  - Handle non-standard entries
+  - Merge with existing entries
+  - Conflict resolution strategies
+  - Format normalization
+- [ ] Create `bibmgr/import/validators.py`:
+  - Pre-import validation
+  - Check for conflicts
+  - Verify file paths
+  - Suggest corrections
+
+### 6.2 Metadata Extraction
+- [ ] Create `bibmgr/import/pdf_meta.py`:
+  - Extract metadata from PDFs
+  - Parse title, author, year
+  - Detect document type
+  - Extract DOI/ISBN if present
+  - Generate citation key
+- [ ] Create `bibmgr/import/web_meta.py`:
   - Fetch metadata from DOI
-  - Generate complete BibTeX entry
-  - Download PDF if available
-- [ ] Create `scripts/import/bulk_import.py`
+  - Query CrossRef API
+  - Query arXiv API
+  - Parse common academic sites
+  - Handle rate limiting
+
+### 6.3 Batch Import
+- [ ] Create `bibmgr/import/batch.py`:
   - Process directory of PDFs
-  - Generate .bib file
-  - Move files to correct locations
+  - Generate entries from metadata
+  - Interactive review/correction
+  - Move files to proper locations
+  - Create .bib entries
+- [ ] Create `bibmgr/import/organizer.py`:
+  - Organize by entry type
+  - Apply naming conventions
+  - Create directory structure
+  - Update existing entries
 
-### 4.2 Advanced Export Tools
-- [ ] Create `scripts/export/to_website.py`
-  - Static site generation
-  - Search functionality
-  - PDF viewer integration
-- [ ] Create `scripts/export/to_citations.py`
-  - Format for various citation styles
-  - LaTeX bibliography generation
-  - Word/LibreOffice compatible formats
+### 6.4 Import CLI Integration
+- [ ] Enhance CLI with import commands:
+  - `bib import file.bib` - Import bibliography file
+  - `bib import pdf /path/to/file.pdf` - Import single PDF
+  - `bib import dir /path/to/pdfs/` - Batch import directory
+  - `bib import doi 10.1234/...` - Import from DOI
+  - `bib import arxiv 1234.5678` - Import from arXiv
+  - `bib organize --auto` - Auto-organize existing files
+- [ ] Import options:
+  - `--interactive` - Review each import
+  - `--merge-strategy` - How to handle conflicts
+  - `--move-files` - Move PDFs to managed locations
+  - `--dry-run` - Preview import actions
 
-### 4.3 External Tool Integration
-- [ ] Create `scripts/integrate/zotero_sync.py`
-  - Import from Zotero
-  - Maintain sync state
-- [ ] Create `scripts/integrate/mendeley_import.py`
-  - One-time Mendeley import
-  - Preserve annotations
+### Exit Criteria
+- BibTeX import handles all entry types
+- PDF metadata extraction >80% accurate
+- DOI/arXiv import fully functional
+- Batch import processes 100 PDFs smoothly
+- Interactive review UI polished
+- All imports maintain correctness
 
-## Phase 5: Advanced Features
+## Phase 7: Advanced Features
 
-### 5.1 Enhanced Validation
+### 7.1 Enhanced Validation
 - [ ] Add cross-reference validation
   - Verify @inproceedings → @proceedings links
   - Check citation dependencies
@@ -192,50 +364,89 @@ Phased implementation plan for the bibliography management system. Each phase bu
   - File size warnings
   - Duplicate content detection (hash-based)
 
-### 5.2 Advanced Search
-- [ ] Full-text PDF search
-  - Index PDF content
+### 7.2 Full-Text Search
+- [ ] Create `bibmgr/search/fulltext.py`:
+  - Index PDF content using pdftotext
+  - Build searchable index
   - Highlight search results
-  - Extract context
+  - Extract context snippets
+- [ ] Performance optimizations:
+  - Incremental indexing
+  - Cache extracted text
+  - Background indexing
 
-### 5.3 Automation and Intelligence
+### 7.3 Automation and Intelligence
 - [ ] Smart key generation from metadata
 - [ ] Duplicate detection with fuzzy matching
 - [ ] Auto-categorization suggestions
 - [ ] Citation network analysis
+- [ ] Reading recommendations
 
-## Phase 6: User Interfaces
+## Phase 8: User Interfaces
 
-### 6.1 Advanced CLI
+### 8.1 Advanced CLI
 - [ ] Interactive mode with completions
 - [ ] Batch processing from scripts
 - [ ] Pipeline support for Unix tools
 - [ ] Configuration file support
+- [ ] Shell integration (aliases, functions)
 
-### 6.2 Web Interface
+### 8.2 Terminal UI (TUI)
+- [ ] Create `bibmgr/tui/app.py`:
+  - Browse entries in table view
+  - Search with live filtering
+  - Preview entry details
+  - Quick edit capabilities
+  - PDF viewer integration
+
+### 8.3 Web Interface
 - [ ] Local web server for browsing
 - [ ] Advanced search with filters
 - [ ] PDF reader with annotations
 - [ ] Batch operations UI
+- [ ] Statistics dashboard
 
-## Phase 7: Workflow Integration
+## Phase 9: Workflow Integration
 
-### 7.1 LaTeX Integration
+### 9.1 LaTeX Integration
 - [ ] Direct \cite{} support in documents
 - [ ] Bibliography generation for papers
 - [ ] Custom citation styles
+- [ ] Citation completion in editors
 
-### 7.2 Editor Integration
+### 9.2 Editor Integration
 - [ ] Emacs package for browsing/inserting citations
 - [ ] VS Code extension
 - [ ] Vim plugin
 - [ ] Quick PDF preview from editor
+- [ ] Citation insertion helpers
 
-### 7.3 Personal Knowledge Management
+### 9.3 Export Formats
+- [ ] BibTeX export (maintain compatibility)
+- [ ] RIS format for other tools
+- [ ] EndNote XML
+- [ ] CSL JSON for citation processors
+- [ ] Markdown bibliography
+
+## Phase 10: Personal Knowledge Management
+
+### 10.1 Note System
 - [ ] Note-taking integration
 - [ ] Reading status tracking
+- [ ] Highlight extraction from PDFs
+- [ ] Personal annotations
+
+### 10.2 Organization
 - [ ] Tag system with hierarchies
+- [ ] Collections/projects
+- [ ] Reading lists
+- [ ] Citation groups
+
+### 10.3 Discovery
 - [ ] Related papers suggestions
+- [ ] Citation network visualization
+- [ ] Author collaboration graphs
+- [ ] Topic trends over time
 
 ## Development Approach
 
@@ -267,43 +478,67 @@ These issues remain unfixed to:
 - BibTeX files fixed and committed as demonstration
 
 ### Phase 2 Exit Criteria:
-- Data models support all operations
-- Basic CRUD operations work with --dry-run
-- Repository class handles atomic operations
-- Basic CLI commands (add, remove, update, list, show) functional
-- All operations maintain repository correctness
+- Data models support all operations ✓
+- Basic CRUD operations work with --dry-run ✓
+- Repository class handles atomic operations ✓
+- Basic CLI commands (add, remove, update, list, show) functional ✓
+- All operations maintain repository correctness ✓
 
 ### Phase 3 Exit Criteria:
-- Search supports multi-field and boolean queries
-- Bulk operations work reliably
-- Import/export to JSON and CSV functional
-- Orphan detection accurate
-- Basic maintenance tools operational
+- Natural language search working across all fields
+- Boolean operators (AND, OR, NOT) fully functional
+- Fuzzy matching for names and titles implemented
+- Similar entry detection accurate
+- Performance: <100ms for searches on 10k entries
+- All search commands support --format option
 
 ### Phase 4 Exit Criteria:
-- Import from PDF metadata functional
-- DOI import working
-- Static website generation works
-- External tool integration tested
-- Bulk import processes directories correctly
+- All bulk operations atomic (all or nothing)
+- Dry-run mode shows accurate preview
+- Performance: Process 1000 entries in <5 seconds
+- Automatic rollback on any error
+- Comprehensive change logging
+- Rich terminal UI for preview/confirmation
 
 ### Phase 5 Exit Criteria:
+- All orphan detection accurate
+- Duplicate detection >95% accurate
+- Statistics generation <2 seconds
+- Reports in multiple formats
+- Interactive cleanup tools working
+- Git history analysis functional
+
+### Phase 6 Exit Criteria:
+- BibTeX import handles all entry types
+- PDF metadata extraction >80% accurate
+- DOI/arXiv import fully functional
+- Batch import processes 100 PDFs smoothly
+- Interactive review UI polished
+- All imports maintain correctness
+
+### Phase 7 Exit Criteria:
 - Full test suite with >80% coverage
 - Cross-reference validation working
 - PDF full-text search functional
 - Automation features reliable
 
-### Phase 6 Exit Criteria:
+### Phase 8 Exit Criteria:
 - Advanced CLI with completions
-- Web interface functional for daily use
-- Search returns accurate results
+- Terminal UI functional for daily use
+- Web interface returns accurate results
 - Batch operations UI working
 
-### Phase 7 Exit Criteria:
+### Phase 9 Exit Criteria:
 - LaTeX integration working
 - Emacs package functional
+- Export to multiple formats tested
+- Editor integrations operational
+
+### Phase 10 Exit Criteria:
 - Personal notes system operational
-- Editor integrations tested
+- Tag hierarchy working
+- Citation network visualization
+- Discovery features functional
 
 ## Notes
 

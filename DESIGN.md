@@ -53,7 +53,61 @@ Academic reference management system. Supports papers, books, theses, technical 
 
 ## 3. Data Model
 
-### 3.1 BibTeX Entry Types
+### 3.1 Core Abstractions
+
+#### 3.1.1 BibEntry Model
+```python
+@dataclass
+class BibEntry:
+    key: str                    # Unique citation key
+    entry_type: str             # article, book, etc.
+    fields: dict[str, str]      # All BibTeX fields
+    source_file: Path           # Which .bib file contains this entry
+    
+    # Methods for manipulation
+    def update_field(field: str, value: str) -> None
+    def remove_field(field: str) -> None
+    def set_file_path(path: Path) -> None
+    def validate_mandatory_fields() -> list[str]
+    def to_bibtex() -> str
+```
+
+#### 3.1.2 Repository Pattern
+```python
+class Repository:
+    """Central abstraction for all bibliography operations"""
+    
+    # Core CRUD operations
+    def get_entry(key: str) -> BibEntry | None
+    def add_entry(entry: BibEntry, target_file: Path) -> None
+    def remove_entry(key: str) -> BibEntry | None
+    def update_entry(key: str, updates: dict) -> BibEntry | None
+    
+    # Atomic operations with dry-run support
+    def enable_dry_run() -> None
+    def disable_dry_run() -> None
+    def changeset() -> ChangeSet | None
+    
+    # Query support
+    def load_entries() -> list[BibEntry]
+    def get_entries_by_type(type: str) -> list[BibEntry]
+    def get_entries_by_file(file: Path) -> list[BibEntry]
+```
+
+#### 3.1.3 Query Builder Pattern
+```python
+class Query:
+    """Composable query builder for flexible searching"""
+    
+    def where(field: str, value: str, exact: bool = True) -> Query
+    def where_any(search: str) -> Query
+    def where_type(entry_type: str) -> Query
+    def order_by(field: str) -> Query
+    def limit(n: int) -> Query
+    def execute() -> list[BibEntry]
+```
+
+### 3.2 BibTeX Entry Types
 
 | Entry Type | Directory | Description | Mandatory Fields |
 |------------|-----------|-------------|------------------|
@@ -108,7 +162,30 @@ file = {:/home/b/documents/{entry-type}/{filename}.pdf:pdf}
 3. Support regex and field-specific queries
 4. Return BibTeX entries with file paths
 
-### 4.2 Validation Rules
+### 4.2 Advanced Operations
+
+#### 4.2.1 Search Capabilities
+- **Field Search**: Query specific fields with exact or fuzzy matching
+- **Full-text Search**: Search across all fields with ranking
+- **Boolean Logic**: AND, OR, NOT operators for complex queries
+- **Similarity Search**: Find entries similar to a given entry
+- **Regex Support**: Pattern matching in field values
+
+#### 4.2.2 Bulk Operations
+- **Field Updates**: Update fields across multiple entries
+- **Batch Validation**: Validate and fix multiple entries
+- **Key Normalization**: Standardize citation keys by pattern
+- **Type Migration**: Change entry types with field mapping
+- **Orphan Cleanup**: Remove entries without PDFs
+
+#### 4.2.3 Analysis and Reporting
+- **Statistics**: Entry counts by type, year, author
+- **Coverage Reports**: Missing fields, broken paths
+- **Duplicate Detection**: By key, title similarity, or file hash
+- **Citation Graph**: Analyze references between entries
+- **Quality Metrics**: Completeness scores for entries
+
+### 4.3 Validation Rules
 - Every file path must point to existing file
 - Every PDF must have corresponding BibTeX entry
 - Citation keys must be unique

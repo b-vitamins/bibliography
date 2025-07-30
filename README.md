@@ -2,7 +2,7 @@
 
 [![Version](https://img.shields.io/badge/version-0.1.0-blue.svg)](CHANGELOG.md)
 
-Personal bibliography management system with BibTeX metadata and PDF storage. Currently in Phase 2 of development (Core Data Layer).
+Personal bibliography management system with BibTeX metadata and PDF storage. Phase 2 complete - ready for Phase 3 (Enhanced Search and Query).
 
 ## Overview
 
@@ -64,15 +64,30 @@ python3 -m bibmgr.cli report fields      # Missing fields with suggestions
 python3 -m bibmgr.cli report paths       # Missing files with entry details
 ```
 
-### Coming Soon (Phase 2)
+### Basic CRUD Operations
 
 ```bash
-# Basic CRUD operations
-python3 -m bibmgr.cli add              # Interactive entry creation
-python3 -m bibmgr.cli remove <key>     # Remove entry
-python3 -m bibmgr.cli update <key>     # Update entry fields
-python3 -m bibmgr.cli show <key>       # Display entry details
-python3 -m bibmgr.cli list [--type TYPE]  # List entries
+# Add new entries
+python3 -m bibmgr.cli add                    # Interactive entry creation
+python3 -m bibmgr.cli add --type article    # Create specific type
+python3 -m bibmgr.cli add --from-file file.bib  # Import from .bib file
+
+# Remove entries
+python3 -m bibmgr.cli remove <key>          # Remove entry
+python3 -m bibmgr.cli remove <key> --remove-pdf  # Also delete PDF
+
+# Update entries
+python3 -m bibmgr.cli update <key>          # Interactive update
+python3 -m bibmgr.cli update <key> --set field=value  # Direct update
+python3 -m bibmgr.cli update <key> --move-pdf /new/path.pdf  # Move PDF
+
+# View entries
+python3 -m bibmgr.cli show <key>            # Display entry details
+python3 -m bibmgr.cli list                  # List all entries
+python3 -m bibmgr.cli list --type article   # Filter by type
+python3 -m bibmgr.cli list --author smith   # Filter by author
+
+# All commands support --dry-run for safe preview
 ```
 
 ### Searching Bibliography
@@ -158,9 +173,12 @@ python3 -m bibmgr.cli check all
 ### Development Phases
 
 - **Phase 1**: Core Infrastructure ✓ (validation, Git hooks)
-- **Phase 2**: Core Data Layer (in progress - CRUD operations)
-- **Phase 3**: Higher-Level Operations (search, bulk, import/export)
-- **Phase 4+**: Advanced features
+- **Phase 2**: Core Data Layer ✓ (CRUD operations, repository pattern)
+- **Phase 3**: Enhanced Search and Query (current - advanced search capabilities)
+- **Phase 4**: Bulk Operations (batch updates, key normalization)
+- **Phase 5**: Maintenance and Analysis (statistics, quality reports)
+- **Phase 6**: Import and Integration (PDF metadata, DOI import)
+- **Phase 7+**: Advanced features
 
 See [ROADMAP.md](ROADMAP.md) for detailed phase descriptions.
 

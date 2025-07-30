@@ -28,7 +28,7 @@ This is a BibTeX-based personal bibliography management system that maintains st
 
 ## Key Files
 - `DESIGN.md`: Complete system architecture and validation rules
-- `ROADMAP.md`: Phased implementation plan (currently in Phase 2)
+- `ROADMAP.md`: Phased implementation plan (Phase 2 complete, Phase 3 ready)
 - `TODO.md`: Current task tracking
 - `bibtex/by-subject/*.bib`: Subject-organized bibliography files
 - `bibtex/by-type/*.bib`: Type-organized bibliography files
@@ -42,10 +42,28 @@ python3 -m bibmgr.cli check all         # Run all validation checks
 python3 -m bibmgr.cli check paths       # Verify all PDF paths exist
 python3 -m bibmgr.cli check duplicates  # Check for duplicate keys
 python3 -m bibmgr.cli check fields      # Validate required fields
+```
 
-# Fix operations (dry-run by default):
-python3 -m bibmgr.cli fix all           # Fix all issues
-python3 -m bibmgr.cli fix all --no-dry-run  # Apply fixes
+### CRUD Operations
+```bash
+# Add entries
+python3 -m bibmgr.cli add               # Interactive entry creation
+python3 -m bibmgr.cli add --type article --dry-run  # Preview adding article
+python3 -m bibmgr.cli add --from-file refs.bib  # Import from .bib file
+
+# Remove entries
+python3 -m bibmgr.cli remove <key> --dry-run  # Preview removal
+python3 -m bibmgr.cli remove <key> --remove-pdf  # Also delete PDF file
+
+# Update entries
+python3 -m bibmgr.cli update <key>     # Interactive update
+python3 -m bibmgr.cli update <key> --set title="New Title"  # Direct update
+python3 -m bibmgr.cli update <key> --move-pdf /new/path.pdf  # Move PDF
+
+# View entries
+python3 -m bibmgr.cli show <key>       # Display single entry
+python3 -m bibmgr.cli list --type article  # List by type
+python3 -m bibmgr.cli list --author feynman  # Filter by author
 ```
 
 ### Quick Checks
@@ -96,18 +114,30 @@ Pattern: `{author}{year}{keyword}` (e.g., `feynman1942principle`)
 - 194 PDFs organized across entry types (189 misc, 4 techreport, 1 phdthesis)
 - 13 .bib files (3 by-subject, 10 by-type) - all committed and validated
 - Phase 1: Complete ✓ - Validation framework and Git hooks operational
-- Phase 2: Active - Building core data layer and CRUD operations
+- Phase 2: Complete ✓ - Core data layer with CRUD operations implemented
+- Phase 3: Ready - Enhanced search and query capabilities
 
 ### Phase History
 - **Phase 1**: Core infrastructure, validation, Git hooks - Complete
-- **Phase 2**: Core data layer, basic CRUD operations - In Progress
-- **Phase 3**: Higher-level operations, search, bulk operations - Next
+- **Phase 2**: Core data layer, basic CRUD operations - Complete (14 tests passing)
+- **Phase 3**: Enhanced search and query - Ready to begin
+- **Phase 4**: Bulk operations - Next
+- **Phase 5**: Maintenance and analysis tools - Future
+- **Phase 6**: Import and integration tools - Future
 
-### Implementation Priority (Phase 2)
-1. Enhance data models with manipulation methods
-2. Create repository abstraction for atomic operations
-3. Implement basic CRUD operations with --dry-run support
-4. Extend CLI with add/remove/update/show/list commands
+### Implementation Priority (Phase 3)
+1. Build search engine with indexing and ranking
+2. Implement natural language query parser
+3. Add fuzzy matching and similarity detection
+4. Create faceted search capabilities
+5. Integrate advanced search into CLI
+
+### Recent Phase 2 Features
+- BibEntry model with manipulation methods
+- Repository pattern with atomic operations and dry-run
+- Query builder for flexible searching
+- Interactive CRUD operations with rich UI
+- All operations maintain repository correctness
 
 ### Dependencies
 Defined in `manifest.scm`:
