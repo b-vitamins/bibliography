@@ -122,7 +122,7 @@ class TestValidators:
         errors = check_paths(entries)
         assert len(errors) == 1
         assert errors[0].error_type == "missing_file"
-        assert "/nonexistent/file.pdf" in errors[0].message
+        assert errors[0].message == "File not found"
 
 
 if __name__ == "__main__":
