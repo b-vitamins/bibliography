@@ -1,3 +1,13 @@
+[project]
+name = "bibmgr"
+version = "0.1.0"
+description = "Bibliography management system with BibTeX"
+requires-python = ">=3.11"
+dependencies = [
+    "click",
+    "bibtexparser>=1.4.0,<2.0",
+]
+
 [tool.ruff]
 line-length = 88
 target-version = "py311"
