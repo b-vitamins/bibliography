@@ -64,15 +64,24 @@ run_tests() {
     
     # Check if tests exist
     if [ -d "tests" ] || find . -name "test_*.py" -o -name "*_test.py" 2>/dev/null | grep -q .; then
-        if command -v pytest &> /dev/null; then
-            if ! pytest -xvs; then
+        # Use guix shell if manifest exists
+        if [ -f "manifest.scm" ]; then
+            if ! guix shell -m manifest.scm -- python3 -m pytest -xvs; then
                 error "Tests failed!"
                 return 1
             fi
-            success "All tests passed"
         else
-            warning "pytest not found - skipping tests"
+            if command -v pytest &> /dev/null; then
+                if ! pytest -xvs; then
+                    error "Tests failed!"
+                    return 1
+                fi
+            else
+                warning "pytest not found - skipping tests"
+                return 0
+            fi
         fi
+        success "All tests passed"
     else
         warning "No tests found"
         info "Consider adding tests for better code quality"
