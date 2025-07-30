@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - Basic test suite structure with pytest
 - Version badge in README.md
+- Rich library dependency for enhanced terminal UI (Phase 2 preparation)
 
 ### Changed
 - Restructured ROADMAP.md with incremental Phase 2 (Core Data Layer) and Phase 3 (Higher-Level Operations)
