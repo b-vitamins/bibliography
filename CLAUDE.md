@@ -2,6 +2,12 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
+## ⚠️ CRITICAL: USE OF --no-verify IS STRICTLY PROHIBITED ⚠️
+**NEVER use `git commit --no-verify` or any other means to bypass Git hooks.**
+- All validation errors MUST be fixed before committing
+- The repository enforces correctness through Git hooks - bypassing them violates the core invariant
+- If hooks are blocking your commit, FIX THE ISSUES, don't bypass the checks
+
 ## CRITICAL: Correctness Invariant
 **This repository MUST maintain correctness at all times.** This is a hard requirement that applies to the entire lifetime of the project:
 - Never commit invalid or inconsistent data
@@ -11,7 +17,6 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - Use existing validation errors as test cases during development
 - Git hooks enforce this invariant - they will block commits with validation errors
 - Always work within Guix environment: `guix shell -m manifest.scm`
-- **NEVER bypass hooks** - Fix all issues before committing (no --no-verify)
 
 ## Repository Overview
 This is a BibTeX-based personal bibliography management system that maintains strict one-to-one correspondence between PDF files and BibTeX metadata entries. The system is designed for academic reference management with version control (Git) for metadata.

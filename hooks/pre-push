@@ -281,7 +281,7 @@ final_summary() {
     if [ "$commit_count" -gt 0 ]; then
         echo
         echo "Push summary:"
-        echo "  Remote: $remote ($url)"
+        echo "  Remote: $remote (${url})"
         echo "  Commits: $commit_count"
         echo
         echo "Recent commits:"
