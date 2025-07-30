@@ -1,0 +1,119 @@
+#!/bin/bash
+# Pre-rebase hook - Prevents dangerous rebases
+# BYPASSING THIS HOOK IS STRICTLY PROHIBITED
+
+set -e
+
+# Colors
+RED='\033[0;31m'
+YELLOW='\033[1;33m'
+GREEN='\033[0;32m'
+NC='\033[0m'
+
+error() {
+    echo -e "${RED}ERROR: $1${NC}" >&2
+}
+
+warning() {
+    echo -e "${YELLOW}WARNING: $1${NC}" >&2
+}
+
+success() {
+    echo -e "${GREEN}✓ $1${NC}"
+}
+
+# Get rebase parameters
+upstream="$1"
+branch="$2"
+
+# Check if rebasing published branches
+check_published_branch() {
+    local current_branch=$(git branch --show-current)
+    
+    # Prevent rebasing main/master
+    if [[ "$current_branch" =~ ^(main|master)$ ]]; then
+        error "Rebasing $current_branch branch is dangerous!"
+        echo "This can cause problems for other contributors."
+        echo "Consider using merge instead."
+        exit 1
+    fi
+    
+    # Check if branch is pushed to remote
+    if git branch -r --contains HEAD | grep -q "origin/$current_branch"; then
+        warning "This branch has been pushed to remote!"
+        echo "Rebasing published branches can cause issues for others."
+        echo
+        read -p "Are you SURE you want to rebase? (yes/no) " -r
+        if [[ ! $REPLY =~ ^yes$ ]]; then
+            error "Rebase cancelled"
+            exit 1
+        fi
+    fi
+}
+
+# Check for uncommitted changes
+check_working_tree() {
+    if ! git diff-index --quiet HEAD --; then
+        error "Uncommitted changes detected!"
+        echo "Commit or stash changes before rebasing."
+        exit 1
+    fi
+}
+
+# Check for untracked files
+check_untracked() {
+    local untracked=$(git ls-files --others --exclude-standard)
+    if [ -n "$untracked" ]; then
+        warning "Untracked files present:"
+        echo "$untracked" | head -5
+        echo
+        echo "Consider adding to .gitignore or committing them."
+    fi
+}
+
+# Validate bibliography before rebase
+validate_bibliography() {
+    echo "Validating bibliography before rebase..."
+    
+    if command -v python3 &> /dev/null && python3 -c "import bibtexparser" &> /dev/null; then
+        if ! python3 -m bibmgr.cli check all &> /dev/null; then
+            error "Bibliography validation failed!"
+            echo "Fix validation errors before rebasing."
+            echo "Run: python3 -m bibmgr.cli report all"
+            exit 1
+        fi
+        success "Bibliography valid"
+    fi
+}
+
+# Create backup tag
+create_backup() {
+    local backup_tag="backup/pre-rebase-$(date +%Y%m%d-%H%M%S)"
+    git tag "$backup_tag" HEAD
+    success "Created backup tag: $backup_tag"
+    echo "To restore if needed: git reset --hard $backup_tag"
+}
+
+# Main execution
+main() {
+    echo "====================================="
+    echo "🔀 Pre-rebase safety checks..."
+    echo "====================================="
+    echo "NOTE: Bypassing safety checks is PROHIBITED"
+    echo
+    
+    check_working_tree
+    check_published_branch
+    check_untracked
+    validate_bibliography
+    create_backup
+    
+    echo
+    echo "====================================="
+    success "Pre-rebase checks passed"
+    echo "====================================="
+    echo
+    warning "Remember: With great rebase comes great responsibility!"
+}
+
+main

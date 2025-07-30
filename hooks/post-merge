@@ -1,0 +1,118 @@
+#!/bin/bash
+# Post-merge hook - Ensures environment consistency after merges
+# BYPASSING THIS HOOK IS STRICTLY PROHIBITED
+
+set -e
+
+# Colors
+YELLOW='\033[1;33m'
+BLUE='\033[0;34m'
+GREEN='\033[0;32m'
+NC='\033[0m'
+
+info() {
+    echo -e "${BLUE}ℹ $1${NC}"
+}
+
+warning() {
+    echo -e "${YELLOW}WARNING: $1${NC}" >&2
+}
+
+success() {
+    echo -e "${GREEN}✓ $1${NC}"
+}
+
+# Check if manifest.scm was updated
+check_manifest_changes() {
+    if git diff-tree -r --name-only --no-commit-id ORIG_HEAD HEAD | grep -q "manifest.scm"; then
+        echo
+        warning "manifest.scm has been updated!"
+        info "You should exit and re-enter the Guix environment:"
+        echo "  1. Exit current shell: exit"
+        echo "  2. Re-enter: guix shell -m manifest.scm"
+        echo
+    fi
+}
+
+# Check if pyproject.toml was updated
+check_python_deps() {
+    if git diff-tree -r --name-only --no-commit-id ORIG_HEAD HEAD | grep -q "pyproject.toml"; then
+        echo
+        warning "pyproject.toml has been updated!"
+        info "Python dependencies may have changed"
+        echo
+    fi
+}
+
+# Check if hooks were updated
+check_hook_updates() {
+    if git diff-tree -r --name-only --no-commit-id ORIG_HEAD HEAD | grep -q "^hooks/"; then
+        echo
+        warning "Git hooks have been updated!"
+        info "Reinstall hooks to get latest version:"
+        echo "  ./hooks/install.sh"
+        echo
+    fi
+}
+
+# Check for migration needs
+check_migrations() {
+    # Check if bibliography structure changed
+    if git diff-tree -r --name-only --no-commit-id ORIG_HEAD HEAD | grep -q "bibtex/"; then
+        echo
+        info "Bibliography files have been updated"
+        info "Running validation to ensure consistency..."
+        
+        if command -v python3 &> /dev/null && python3 -c "import bibtexparser" &> /dev/null; then
+            if ! python3 -m bibmgr.cli check all &> /dev/null; then
+                warning "Bibliography validation failed after merge!"
+                info "Run: python3 -m bibmgr.cli report all"
+            else
+                success "Bibliography validation passed"
+            fi
+        fi
+    fi
+}
+
+# Check for conflicts in quality metrics
+check_metrics_conflicts() {
+    local metrics_file=".git/quality-metrics/metrics.csv"
+    if [ -f "$metrics_file" ]; then
+        # Check for duplicate timestamps (possible conflict)
+        local duplicates=$(awk -F',' 'NR>1 {print $1}' "$metrics_file" | sort | uniq -d)
+        if [ -n "$duplicates" ]; then
+            warning "Possible conflicts in quality metrics"
+            info "Review: $metrics_file"
+        fi
+    fi
+}
+
+# Main execution
+main() {
+    echo "====================================="
+    echo "🔄 Running post-merge checks..."
+    echo "====================================="
+    
+    check_manifest_changes
+    check_python_deps
+    check_hook_updates
+    check_migrations
+    check_metrics_conflicts
+    
+    echo
+    success "Post-merge checks complete"
+    
+    # Show current branch
+    info "Current branch: $(git branch --show-current)"
+    
+    # Show merge summary
+    local merge_commits=$(git rev-list --count ORIG_HEAD..HEAD 2>/dev/null || echo 0)
+    if [ "$merge_commits" -gt 0 ]; then
+        info "Merged $merge_commits commit(s)"
+    fi
+}
+
+# Only run for non-rebase merges
+if [ -z "$GIT_REFLOG_ACTION" ] || [[ "$GIT_REFLOG_ACTION" != *"rebase"* ]]; then
+    main
+fi

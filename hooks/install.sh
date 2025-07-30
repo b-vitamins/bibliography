@@ -44,6 +44,8 @@ HOOKS=(
     "pre-push"
     "prepare-commit-msg"
     "post-commit"
+    "post-merge"
+    "pre-rebase"
 )
 
 echo "====================================="
@@ -117,9 +119,21 @@ echo "  - Suggests scope based on changes"
 echo "  - Adds issue references from branch names"
 echo
 echo "• post-commit: Maintenance and notifications"
-echo "  - Updates statistics"
+echo "  - Updates quality metrics (CSV tracking)"
+echo "  - Calculates repository quality score"
 echo "  - Provides follow-up reminders"
 echo "  - Checks repository health"
+echo
+echo "• post-merge: Environment consistency after merges"
+echo "  - Alerts to manifest.scm changes"
+echo "  - Validates bibliography after merge"
+echo "  - Checks for hook updates"
+echo
+echo "• pre-rebase: Safety checks before rebasing"
+echo "  - Prevents rebasing main/master"
+echo "  - Warns about published branches"
+echo "  - Creates backup tags"
+echo "  - Validates bibliography integrity"
 
 echo
 echo "====================================="
