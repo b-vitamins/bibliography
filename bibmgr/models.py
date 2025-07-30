@@ -34,15 +34,15 @@ class BibEntry:
     @property
     def file_path(self) -> Path | None:
         """Extract file path from entry if present."""
-        if 'file' not in self.fields:
+        if "file" not in self.fields:
             return None
 
-        file_field = self.fields['file'].strip('{}')
+        file_field = self.fields["file"].strip("{}")
 
         # Handle different BibTeX file formats
-        if file_field.startswith(':') and file_field.endswith(':pdf'):
+        if file_field.startswith(":") and file_field.endswith(":pdf"):
             path_str = file_field[1:-4]
-        elif file_field.endswith(':pdf'):
+        elif file_field.endswith(":pdf"):
             path_str = file_field[:-4]
         else:
             path_str = file_field

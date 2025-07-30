@@ -5,12 +5,13 @@ from pathlib import Path
 
 import click
 
-from .fixers import (
-    apply_fixes,
-    fix_duplicate_keys,
-    fix_missing_fields,
-)
 from .models import BibEntry, ValidationError
+from .report import (
+    generate_full_report,
+    report_duplicate_keys,
+    report_missing_fields,
+    report_missing_files,
+)
 from .validators import (
     check_duplicates,
     check_mandatory_fields,
@@ -33,17 +34,17 @@ def check() -> None:
 
 
 @cli.group()
-def fix() -> None:
-    """Fix validation errors in bibliography files."""
+def report() -> None:
+    """Generate detailed validation reports."""
     pass
 
 
 def find_bib_files(root: Path) -> list[Path]:
     """Find all .bib files in the bibtex directory."""
-    bibtex_dir = root / 'bibtex'
+    bibtex_dir = root / "bibtex"
     if not bibtex_dir.exists():
         return []
-    return sorted(bibtex_dir.rglob('*.bib'))
+    return sorted(bibtex_dir.rglob("*.bib"))
 
 
 def load_all_entries(root: Path) -> list[BibEntry]:
@@ -72,8 +73,12 @@ def print_errors(errors: list[ValidationError], title: str) -> None:
 
 
 @check.command()
-@click.option('--root', type=click.Path(exists=True, path_type=Path),
-              default=Path.cwd(), help='Project root directory')
+@click.option(
+    "--root",
+    type=click.Path(exists=True, path_type=Path),
+    default=Path.cwd(),
+    help="Project root directory",
+)
 def paths(root: Path) -> None:
     """Verify all file paths exist."""
     entries = load_all_entries(root)
@@ -90,8 +95,12 @@ def paths(root: Path) -> None:
 
 
 @check.command()
-@click.option('--root', type=click.Path(exists=True, path_type=Path),
-              default=Path.cwd(), help='Project root directory')
+@click.option(
+    "--root",
+    type=click.Path(exists=True, path_type=Path),
+    default=Path.cwd(),
+    help="Project root directory",
+)
 def duplicates(root: Path) -> None:
     """Check for duplicate keys and file paths."""
     entries = load_all_entries(root)
@@ -108,8 +117,12 @@ def duplicates(root: Path) -> None:
 
 
 @check.command()
-@click.option('--root', type=click.Path(exists=True, path_type=Path),
-              default=Path.cwd(), help='Project root directory')
+@click.option(
+    "--root",
+    type=click.Path(exists=True, path_type=Path),
+    default=Path.cwd(),
+    help="Project root directory",
+)
 def fields(root: Path) -> None:
     """Validate mandatory fields are present."""
     entries = load_all_entries(root)
@@ -126,8 +139,12 @@ def fields(root: Path) -> None:
 
 
 @check.command()
-@click.option('--root', type=click.Path(exists=True, path_type=Path),
-              default=Path.cwd(), help='Project root directory')
+@click.option(
+    "--root",
+    type=click.Path(exists=True, path_type=Path),
+    default=Path.cwd(),
+    help="Project root directory",
+)
 def all(root: Path) -> None:
     """Run all validation checks."""
     entries = load_all_entries(root)
@@ -159,93 +176,57 @@ def all(root: Path) -> None:
         click.echo("\nValidation PASSED: All checks passed")
 
 
-@fix.command('duplicates')
-@click.option('--root', type=click.Path(exists=True, path_type=Path),
-              default=Path.cwd(), help='Project root directory')
-@click.option('--dry-run/--no-dry-run', default=True,
-              help='Show what would be fixed without making changes')
-def fix_duplicates_cmd(root: Path, dry_run: bool) -> None:
-    """Fix duplicate citation keys."""
+@report.command("duplicates")
+@click.option(
+    "--root",
+    type=click.Path(exists=True, path_type=Path),
+    default=Path.cwd(),
+    help="Project root directory",
+)
+def report_duplicates_cmd(root: Path) -> None:
+    """Report duplicate citation keys with full context."""
     entries = load_all_entries(root)
-    fixes = fix_duplicate_keys(entries)
-
-    if not fixes:
-        click.echo("No duplicate keys found to fix")
-        return
-
-    click.echo(f"Found {len(fixes)} duplicate key(s) to fix")
-
-    # Apply fixes
-    counts = apply_fixes(fixes, dry_run=dry_run)
-
-    total_fixed = sum(counts.values())
-    if dry_run:
-        click.echo(f"\nDry run complete. Would fix {total_fixed} issue(s)")
-    else:
-        click.echo(f"\nFixed {total_fixed} issue(s)")
+    click.echo(report_duplicate_keys(entries))
 
 
-@fix.command('fields')
-@click.option('--root', type=click.Path(exists=True, path_type=Path),
-              default=Path.cwd(), help='Project root directory')
-@click.option('--dry-run/--no-dry-run', default=True,
-              help='Show what would be fixed without making changes')
-def fix_fields_cmd(root: Path, dry_run: bool) -> None:
-    """Fix missing mandatory fields."""
+@report.command("fields")
+@click.option(
+    "--root",
+    type=click.Path(exists=True, path_type=Path),
+    default=Path.cwd(),
+    help="Project root directory",
+)
+def report_fields_cmd(root: Path) -> None:
+    """Report missing mandatory fields with entry context."""
     entries = load_all_entries(root)
-    fixes = fix_missing_fields(entries)
-
-    if not fixes:
-        click.echo("No missing fields found to fix")
-        return
-
-    click.echo(f"Found {len(fixes)} missing field(s) to fix")
-
-    # Apply fixes
-    counts = apply_fixes(fixes, dry_run=dry_run)
-
-    total_fixed = sum(counts.values())
-    if dry_run:
-        click.echo(f"\nDry run complete. Would fix {total_fixed} issue(s)")
-    else:
-        click.echo(f"\nFixed {total_fixed} issue(s)")
+    click.echo(report_missing_fields(entries))
 
 
-@fix.command('all')
-@click.option('--root', type=click.Path(exists=True, path_type=Path),
-              default=Path.cwd(), help='Project root directory')
-@click.option('--dry-run/--no-dry-run', default=True,
-              help='Show what would be fixed without making changes')
-def fix_all_cmd(root: Path, dry_run: bool) -> None:
-    """Fix all validation errors."""
+@report.command("paths")
+@click.option(
+    "--root",
+    type=click.Path(exists=True, path_type=Path),
+    default=Path.cwd(),
+    help="Project root directory",
+)
+def report_paths_cmd(root: Path) -> None:
+    """Report missing files with entry context."""
     entries = load_all_entries(root)
-
-    all_fixes = []
-
-    # Collect all fixes
-    dup_fixes = fix_duplicate_keys(entries)
-    if dup_fixes:
-        click.echo(f"Found {len(dup_fixes)} duplicate key(s) to fix")
-        all_fixes.extend(dup_fixes)
-
-    field_fixes = fix_missing_fields(entries)
-    if field_fixes:
-        click.echo(f"Found {len(field_fixes)} missing field(s) to fix")
-        all_fixes.extend(field_fixes)
-
-    if not all_fixes:
-        click.echo("No issues found to fix")
-        return
-
-    # Apply all fixes
-    counts = apply_fixes(all_fixes, dry_run=dry_run)
-
-    total_fixed = sum(counts.values())
-    if dry_run:
-        click.echo(f"\nDry run complete. Would fix {total_fixed} issue(s)")
-    else:
-        click.echo(f"\nFixed {total_fixed} issue(s)")
+    click.echo(report_missing_files(entries))
 
 
-if __name__ == '__main__':
+@report.command("all")
+@click.option(
+    "--root",
+    type=click.Path(exists=True, path_type=Path),
+    default=Path.cwd(),
+    help="Project root directory",
+)
+def report_all_cmd(root: Path) -> None:
+    """Generate comprehensive validation report."""
+    entries = load_all_entries(root)
+    click.echo(generate_full_report(entries))
+
+
+if __name__ == "__main__":
     cli()
