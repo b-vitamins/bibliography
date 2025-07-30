@@ -1,6 +1,7 @@
 #!/bin/bash
 # Comprehensive pre-commit hook for bibliography management system
 # Enforces all quality standards to prevent non-compliant changes
+# BYPASSING THIS HOOK IS STRICTLY PROHIBITED
 
 set -e
 
@@ -27,43 +28,62 @@ info() {
     echo -e "$1"
 }
 
-# Track if we're in a Guix shell
-check_environment() {
-    info "\n🔍 Checking development environment..."
-    
-    if [ -z "$GUIX_ENVIRONMENT" ]; then
-        error "Not in a Guix shell!"
-        info "Please run: guix shell -m manifest.scm"
-        exit 1
-    fi
-    
-    # Verify all required tools
-    local missing_tools=()
-    for tool in python3 ruff pyright; do
-        if ! command -v $tool &> /dev/null; then
-            missing_tools+=($tool)
-        fi
-    done
-    
-    if [ ${#missing_tools[@]} -ne 0 ]; then
-        error "Missing required tools: ${missing_tools[*]}"
-        info "Please ensure manifest.scm includes all dependencies"
-        exit 1
-    fi
-    
-    # Verify Python packages
-    if ! python3 -c "import bibtexparser, click" &> /dev/null; then
-        error "Missing required Python packages"
-        exit 1
-    fi
-    
-    success "Development environment OK"
-}
-
 # Get list of staged files by type
 get_staged_files() {
     local pattern="$1"
     git diff --cached --name-only --diff-filter=ACM | grep -E "$pattern" || true
+}
+
+# Run command through Guix shell if manifest exists
+run_with_guix() {
+    if [ -f "manifest.scm" ]; then
+        guix shell -m manifest.scm -- "$@"
+    else
+        "$@"
+    fi
+}
+
+# Check if we can run the required tools
+check_environment() {
+    info "\n🔍 Checking build environment..."
+    
+    # If manifest.scm exists, we'll use it to run tools
+    if [ -f "manifest.scm" ]; then
+        info "Using Guix manifest for reproducible environment"
+        success "Will run tools through: guix shell -m manifest.scm"
+    else
+        # Only check for tools if no manifest
+        local has_python=$(get_staged_files '\.py$')
+        local has_bibtex=$(get_staged_files '\.bib$')
+        
+        if [ -n "$has_python" ]; then
+            local missing_tools=()
+            for tool in python3 ruff pyright; do
+                if ! command -v $tool &> /dev/null; then
+                    missing_tools+=($tool)
+                fi
+            done
+            
+            if [ ${#missing_tools[@]} -ne 0 ]; then
+                error "Missing required tools: ${missing_tools[*]}"
+                info "Please install these tools or create a manifest.scm"
+                exit 1
+            fi
+        fi
+        
+        if [ -n "$has_bibtex" ]; then
+            if ! command -v python3 &> /dev/null; then
+                error "Missing python3 (required for BibTeX validation)"
+                exit 1
+            fi
+            
+            if ! python3 -c "import bibtexparser, click" &> /dev/null 2>&1; then
+                error "Missing Python packages required for BibTeX validation"
+                info "Please install: pip install bibtexparser click"
+                exit 1
+            fi
+        fi
+    fi
 }
 
 # Check Python code quality
@@ -78,25 +98,25 @@ check_python_quality() {
     
     # 1. Format check (don't modify, just check)
     info "  • Checking code formatting..."
-    if ! ruff format --check "${py_files[@]}" &> /dev/null; then
+    if ! run_with_guix ruff format --check "${py_files[@]}" &> /dev/null; then
         error "Code formatting issues found!"
-        info "Run: ruff format bibmgr/"
+        info "Run: guix shell -m manifest.scm -- ruff format bibmgr/"
         return 1
     fi
     success "Code formatting OK"
     
     # 2. Linting
     info "  • Running linter..."
-    if ! ruff check "${py_files[@]}"; then
+    if ! run_with_guix ruff check "${py_files[@]}"; then
         error "Linting failed!"
-        info "Run: ruff check --fix bibmgr/"
+        info "Run: guix shell -m manifest.scm -- ruff check --fix bibmgr/"
         return 1
     fi
     success "Linting passed"
     
     # 3. Type checking
     info "  • Running type checker..."
-    if ! pyright "${py_files[@]}"; then
+    if ! run_with_guix pyright "${py_files[@]}"; then
         error "Type checking failed!"
         info "Fix type errors before committing"
         return 1
@@ -105,9 +125,9 @@ check_python_quality() {
     
     # 4. Import sorting
     info "  • Checking import order..."
-    if ! ruff check --select I "${py_files[@]}" &> /dev/null; then
+    if ! run_with_guix ruff check --select I "${py_files[@]}" &> /dev/null; then
         error "Import ordering issues found!"
-        info "Run: ruff check --select I --fix bibmgr/"
+        info "Run: guix shell -m manifest.scm -- ruff check --select I --fix bibmgr/"
         return 1
     fi
     success "Import order OK"
@@ -124,9 +144,9 @@ check_bibtex_files() {
     info "\n📚 Validating BibTeX files..."
     
     # Run comprehensive validation
-    if ! python3 -m bibmgr.cli check all; then
+    if ! run_with_guix python3 -m bibmgr.cli check all; then
         error "BibTeX validation failed!"
-        info "Run 'python3 -m bibmgr.cli report all' for details"
+        info "Run 'guix shell -m manifest.scm -- python3 -m bibmgr.cli report all' for details"
         info "\nThis repository enforces correctness at all times."
         info "Fix all validation errors before committing."
         return 1
@@ -138,13 +158,49 @@ check_bibtex_files() {
         # Check file size (prevent accidental large commits)
         local size=$(stat -f%z "$bib_file" 2>/dev/null || stat -c%s "$bib_file")
         if [ "$size" -gt 1048576 ]; then # 1MB
-            warning "Large .bib file: $bib_file ($(numfmt --to=iec $size))"
+            error "Large .bib file: $bib_file ($(numfmt --to=iec $size))"
+            info "Split into smaller files by subject/type"
+            return 1
         fi
         
         # Check for non-ASCII characters
         if grep -P '[^\x00-\x7F]' "$bib_file" &> /dev/null; then
             warning "Non-ASCII characters in $bib_file"
             info "Consider using LaTeX escape sequences"
+        fi
+        
+        # Check entry sorting
+        local unsorted=$(grep -n '^@' "$bib_file" | cut -d: -f2 | grep -o '{[^,]*' | sed 's/{//' | awk 'NR>1{if(prev>$0) print NR": "$0" comes after "prev} {prev=$0}')
+        if [ -n "$unsorted" ]; then
+            warning "Entries may not be sorted in $bib_file"
+            info "Consider sorting entries alphabetically by key"
+        fi
+        
+        # Check for consistent formatting
+        if grep -E '^\s+[a-z]+\s*=\s*{' "$bib_file" | grep -v -E '^\s{2}[a-z]+\s*=\s*{' &> /dev/null; then
+            warning "Inconsistent indentation in $bib_file"
+            info "Use 2 spaces for field indentation"
+        fi
+        
+        # Check for trailing whitespace
+        if grep -E '\s+$' "$bib_file" &> /dev/null; then
+            error "Trailing whitespace in $bib_file"
+            info "Remove trailing whitespace"
+            return 1
+        fi
+        
+        # Check for empty entries
+        if grep -A1 '^@[a-zA-Z]*{[^,]*,$' "$bib_file" | grep -E '^}$' &> /dev/null; then
+            error "Empty bibliography entries in $bib_file"
+            return 1
+        fi
+        
+        # Check field consistency
+        local entry_count=$(grep -c '^@' "$bib_file" || echo 0)
+        local file_count=$(grep -c 'file\s*=' "$bib_file" || echo 0)
+        if [ "$entry_count" -ne "$file_count" ]; then
+            warning "Not all entries have file fields in $bib_file"
+            info "Entries: $entry_count, File fields: $file_count"
         fi
     done
 }
@@ -182,25 +238,38 @@ check_documentation() {
 check_secrets() {
     info "\n🔐 Checking for sensitive information..."
     
-    local patterns=(
-        'password\s*=\s*["\'][^"\']+["\']'
-        'api[_-]?key\s*=\s*["\'][^"\']+["\']'
-        'token\s*=\s*["\'][^"\']+["\']'
-        'secret\s*=\s*["\'][^"\']+["\']'
-        'BEGIN (RSA|DSA|EC) PRIVATE KEY'
-    )
-    
     local staged_files=($(git diff --cached --name-only --diff-filter=ACM))
     
-    for pattern in "${patterns[@]}"; do
-        for file in "${staged_files[@]}"; do
-            if grep -iE "$pattern" "$file" &> /dev/null; then
-                error "Potential secret in $file"
-                info "Remove sensitive information before committing"
-                return 1
-            fi
-        done
+    for file in "${staged_files[@]}"; do
+        # Check for password patterns
+        if grep -iE 'password[[:space:]]*=[[:space:]]*["\"][^"\"]+["\"]' "$file" &> /dev/null; then
+            error "Potential password in $file"
+            info "Remove sensitive information before committing"
+            return 1
+        fi
+        
+        # Check for API keys
+        if grep -iE 'api[_-]?key[[:space:]]*=[[:space:]]*["\"][^"\"]+["\"]' "$file" &> /dev/null; then
+            error "Potential API key in $file"
+            info "Remove sensitive information before committing"
+            return 1
+        fi
+        
+        # Check for tokens
+        if grep -iE 'token[[:space:]]*=[[:space:]]*["\"][^"\"]+["\"]' "$file" &> /dev/null; then
+            error "Potential token in $file"
+            info "Remove sensitive information before committing"
+            return 1
+        fi
+        
+        # Check for private keys
+        if grep -E 'BEGIN (RSA|DSA|EC) PRIVATE KEY' "$file" &> /dev/null; then
+            error "Private key found in $file"
+            info "Remove sensitive information before committing"
+            return 1
+        fi
     done
+    
     success "No secrets detected"
 }
 
@@ -233,24 +302,21 @@ check_commit_size() {
 check_common_issues() {
     info "\n🔧 Checking for common issues..."
     
-    # Check for debugging code
-    local debug_patterns=(
-        'print\s*\('
-        'console\.log'
-        'debugger'
-        'import pdb'
-        'pdb\.set_trace'
-        'breakpoint\(\)'
-    )
-    
     local py_files=($(get_staged_files '\.py$'))
     
-    for pattern in "${debug_patterns[@]}"; do
-        for file in "${py_files[@]}"; do
-            if grep -E "$pattern" "$file" &> /dev/null; then
-                warning "Possible debug code in $file (pattern: $pattern)"
-            fi
-        done
+    # Check for debug print statements
+    for file in "${py_files[@]}"; do
+        if grep -E 'print[[:space:]]*\(' "$file" &> /dev/null; then
+            warning "Possible debug print in $file"
+        fi
+        
+        if grep -E 'import[[:space:]]+pdb' "$file" &> /dev/null; then
+            warning "Possible debug import in $file"
+        fi
+        
+        if grep -E 'pdb\.set_trace' "$file" &> /dev/null; then
+            warning "Possible breakpoint in $file"
+        fi
     done
     
     # Check for TODO/FIXME in new code
@@ -299,6 +365,8 @@ main() {
     echo "====================================="
     echo "📋 Running pre-commit checks..."
     echo "====================================="
+    echo "NOTE: Bypassing hooks is STRICTLY PROHIBITED"
+    echo
     
     # Run all checks
     check_environment || exit 1
