@@ -8,6 +8,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
+- Basic test suite structure with pytest
+- Version badge in README.md
+
+### Fixed
+- Pre-push hook syntax errors and robustness issues
+- README.md now displays current version (0.1.0)
+
+## [0.1.0] - 2025-07-31
+
+### Added
 - Initial bibliography management system infrastructure
 - Python CLI tool (`bibmgr`) with validation and reporting commands
 - Comprehensive Git hooks for quality enforcement
@@ -34,10 +44,3 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 - Reorganized 194 PDFs into type-based directory structure
 - Moved 13 .bib files into bibtex/ directory (by-subject and by-type)
-
-## [0.1.0] - TBD
-
-Initial release with:
-- 194 validated bibliography entries
-- Clean repository with no validation errors
-- Full infrastructure for maintaining correctness

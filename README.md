@@ -1,5 +1,7 @@
 # Bibliography Management System
 
+[![Version](https://img.shields.io/badge/version-0.1.0-blue.svg)](CHANGELOG.md)
+
 Personal bibliography management system with BibTeX metadata and PDF storage.
 
 ## Overview
