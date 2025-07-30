@@ -16,24 +16,40 @@ cd bibliography
 guix shell -m manifest.scm
 
 # Run validation
-./bib check all
+python3 -m bibmgr.cli check all
 ```
 
 ## Usage
 
 ### Validate bibliography
 ```bash
+# Enter Guix environment
+guix shell -m manifest.scm
+
 # Check all validations
-./bib check all
+python3 -m bibmgr.cli check all
 
 # Check file paths only
-./bib check paths
+python3 -m bibmgr.cli check paths
 
 # Check for duplicates
-./bib check duplicates
+python3 -m bibmgr.cli check duplicates
 
 # Check mandatory fields
-./bib check fields
+python3 -m bibmgr.cli check fields
+```
+
+### Fix validation errors
+```bash
+# Fix all issues (dry-run by default)
+python3 -m bibmgr.cli fix all
+
+# Fix specific issues
+python3 -m bibmgr.cli fix duplicates
+python3 -m bibmgr.cli fix fields
+
+# Apply fixes (no dry-run)
+python3 -m bibmgr.cli fix all --no-dry-run
 ```
 
 ### Search entries

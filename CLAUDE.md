@@ -29,10 +29,15 @@ This is a BibTeX-based personal bibliography management system that maintains st
 
 ### Validation
 ```bash
-./bib check all         # Run all validation checks
-./bib check paths       # Verify all PDF paths exist
-./bib check duplicates  # Check for duplicate keys
-./bib check fields      # Validate required fields
+# In Guix shell environment:
+python3 -m bibmgr.cli check all         # Run all validation checks
+python3 -m bibmgr.cli check paths       # Verify all PDF paths exist
+python3 -m bibmgr.cli check duplicates  # Check for duplicate keys
+python3 -m bibmgr.cli check fields      # Validate required fields
+
+# Fix operations (dry-run by default):
+python3 -m bibmgr.cli fix all           # Fix all issues
+python3 -m bibmgr.cli fix all --no-dry-run  # Apply fixes
 ```
 
 ### Quick Checks
