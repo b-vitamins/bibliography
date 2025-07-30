@@ -2,7 +2,7 @@
 
 [![Version](https://img.shields.io/badge/version-0.1.0-blue.svg)](CHANGELOG.md)
 
-Personal bibliography management system with BibTeX metadata and PDF storage.
+Personal bibliography management system with BibTeX metadata and PDF storage. Currently in Phase 2 of development (Core Data Layer).
 
 ## Overview
 
@@ -62,6 +62,17 @@ python3 -m bibmgr.cli report all
 python3 -m bibmgr.cli report duplicates  # Side-by-side duplicate entries
 python3 -m bibmgr.cli report fields      # Missing fields with suggestions
 python3 -m bibmgr.cli report paths       # Missing files with entry details
+```
+
+### Coming Soon (Phase 2)
+
+```bash
+# Basic CRUD operations
+python3 -m bibmgr.cli add              # Interactive entry creation
+python3 -m bibmgr.cli remove <key>     # Remove entry
+python3 -m bibmgr.cli update <key>     # Update entry fields
+python3 -m bibmgr.cli show <key>       # Display entry details
+python3 -m bibmgr.cli list [--type TYPE]  # List entries
 ```
 
 ### Searching Bibliography
@@ -144,6 +155,15 @@ guix shell -m manifest.scm
 python3 -m bibmgr.cli check all
 ```
 
+### Development Phases
+
+- **Phase 1**: Core Infrastructure ✓ (validation, Git hooks)
+- **Phase 2**: Core Data Layer (in progress - CRUD operations)
+- **Phase 3**: Higher-Level Operations (search, bulk, import/export)
+- **Phase 4+**: Advanced features
+
+See [ROADMAP.md](ROADMAP.md) for detailed phase descriptions.
+
 ### Git Workflow
 
 The repository enforces quality through Git hooks:
@@ -207,9 +227,9 @@ python3 -m bibmgr.cli report all
 
 **Hook failures:**
 ```bash
-# Emergency bypass (use sparingly)
-git commit --no-verify
-SKIP_PRE_PUSH=1 git push
+# Bypassing hooks is STRICTLY PROHIBITED
+# Fix all issues before committing
+python3 -m bibmgr.cli report all
 ```
 
 See `hooks/README.md` for detailed troubleshooting.

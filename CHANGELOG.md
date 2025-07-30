@@ -11,6 +11,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Basic test suite structure with pytest
 - Version badge in README.md
 
+### Changed
+- Restructured ROADMAP.md with incremental Phase 2 (Core Data Layer) and Phase 3 (Higher-Level Operations)
+- Updated README.md to show current phase status and upcoming features
+- Removed bypass instructions from README.md - bypassing hooks is strictly prohibited
+
 ### Fixed
 - Pre-push hook syntax errors and robustness issues
 - README.md now displays current version (0.1.0)
