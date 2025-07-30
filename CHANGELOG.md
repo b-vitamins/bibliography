@@ -11,11 +11,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Basic test suite structure with pytest
 - Version badge in README.md
 - Rich library dependency for enhanced terminal UI (Phase 2 preparation)
+- Core data layer (Phase 2):
+  - Enhanced BibEntry model with manipulation methods
+  - Repository class for atomic .bib file operations with dry-run support
+  - Query builder for flexible entry searching and filtering
+  - CRUD operations: add, remove, update with interactive prompts
+  - CLI commands: add, remove, update, show, list
+- Additional model tests for new methods
 
 ### Changed
 - Restructured ROADMAP.md with incremental Phase 2 (Core Data Layer) and Phase 3 (Higher-Level Operations)
 - Updated README.md to show current phase status and upcoming features
 - Removed bypass instructions from README.md - bypassing hooks is strictly prohibited
+- BibEntry dataclass from frozen to mutable to support field updates
 
 ### Fixed
 - Pre-push hook syntax errors and robustness issues
