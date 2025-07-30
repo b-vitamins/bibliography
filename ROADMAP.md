@@ -3,6 +3,12 @@
 ## Overview
 Phased implementation plan for the bibliography management system. Each phase builds upon the previous, ensuring a working system at every stage.
 
+## Core Principles
+1. **Correctness First**: Repository maintains validity at all times
+2. **Test with Real Data**: Use existing BibTeX files with known issues to drive development
+3. **Safe Operations**: All tools support --dry-run mode
+4. **Fix Then Commit**: BibTeX files only committed after all tooling complete and issues resolved
+
 ## Phase 1: Core Infrastructure
 
 ### 1.1 Repository Structure Setup
@@ -156,13 +162,34 @@ Phased implementation plan for the bibliography management system. Each phase bu
 - [ ] Reading status tracking
 - [ ] Simple tagging system
 
+## Development Approach
+
+### Known Issues (Driving Test Cases)
+Current BibTeX files have these validation errors:
+1. **Duplicate Keys** (3): Between coursework-homework.bib and coursework-solutions.bib
+2. **Missing Fields** (4): Technical standards missing author field
+
+These issues remain unfixed to:
+- Test validation tools during development
+- Ensure tools can detect real problems
+- Demonstrate fix capabilities when complete
+
+### Commit Strategy
+1. Infrastructure and tooling committed immediately
+2. BibTeX files remain uncommitted during Phase 1
+3. Final Phase 1 task: Fix all issues and commit clean .bib files
+4. This demonstrates the complete toolchain working correctly
+
 ## Success Metrics
 
 ### Phase 1 Exit Criteria:
-- All path validations pass on existing collection (194 PDFs)
-- Duplicate detection operational
+- All validation tools complete with --dry-run support
+- Tools successfully identify all known issues:
+  - 3 duplicate keys between homework/solutions
+  - 4 technical standards missing author field
 - Git hooks prevent invalid commits
-- Core documentation complete (README, DESIGN)
+- Core documentation complete
+- BibTeX files fixed and committed as demonstration
 
 ### Phase 2 Exit Criteria:
 - Import from PDF metadata functional

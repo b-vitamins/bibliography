@@ -2,6 +2,11 @@
 
 ## Phase 1: Core Infrastructure (Current)
 
+### Known Validation Issues (Test Cases)
+- [ ] 3 duplicate keys: illinois2012igmhw[1-3] between homework/solutions
+- [ ] 4 missing author fields in technical-standards.bib (ISO standards)
+- **Note**: These remain unfixed to test tooling during development
+
 ### 1.1 Repository Setup
 - [x] Create directory structure (bibtex/by-subject, bibtex/by-type)
 - [x] Move refs/*.bib files to bibtex/ organized by type/subject
@@ -11,11 +16,13 @@
 
 ### 1.2 Validation Framework
 - [x] Create unified CLI tool with check subcommands
-- [x] Implement path validation
-- [x] Implement duplicate detection
-- [x] Implement mandatory field validation
-- [ ] Test on existing 194 PDF references
+- [x] Implement path validation (0 errors found)
+- [x] Implement duplicate detection (3 errors found ✓)
+- [x] Implement mandatory field validation (4 errors found ✓)
+- [x] Test on existing 194 PDF references
+- [ ] Add --dry-run mode to all modification operations
 - [ ] Create validation report generator
+- [ ] Implement fix operations for common issues
 
 ### 1.3 Git Integration
 - [ ] Set up pre-commit hook
@@ -28,7 +35,11 @@
 - [ ] Create config/naming_rules.yaml
 - [ ] Create Python config parser for naming rules
 
-**Phase 1 Complete When**: All validations pass, hooks work, documentation exists
+### 1.5 Final Phase 1 Task
+- [ ] Fix all validation errors using developed tools
+- [ ] Commit clean .bib files as proof of working system
+
+**Phase 1 Complete When**: All tools built, validation errors fixed, .bib files committed
 
 ## Phase 2: Import/Export (Next)
 
@@ -67,6 +78,20 @@
 - LaTeX support
 - Emacs package
 - Note-taking
+
+## Development Status
+
+### Working Components
+- `./bib check all` - Identifies all 7 known issues correctly
+- `./bib check paths` - No missing files
+- `./bib check duplicates` - Finds 3 duplicate keys
+- `./bib check fields` - Finds 4 missing fields
+
+### Repository State
+- Infrastructure committed (manifest.scm, pyproject.toml, etc.)
+- Python package committed (bibmgr/)
+- Documentation committed (DESIGN.md, ROADMAP.md, etc.)
+- **BibTeX files uncommitted** - waiting for fix tools
 
 ## Completed
 

@@ -2,6 +2,14 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
+## CRITICAL: Correctness Invariant
+**This repository MUST maintain correctness at all times.** This is a hard requirement that applies to the entire lifetime of the project:
+- Never commit invalid or inconsistent data
+- All tools MUST support --dry-run mode for safe testing
+- Test with real data (existing issues) before fixing
+- Only commit BibTeX files after all validation passes
+- Use existing validation errors as test cases during development
+
 ## Repository Overview
 This is a BibTeX-based personal bibliography management system that maintains strict one-to-one correspondence between PDF files and BibTeX metadata entries. The system is designed for academic reference management with version control (Git) for metadata.
 
@@ -63,8 +71,15 @@ Pattern: `{author}{year}{keyword}` (e.g., `feynman1942principle`)
 
 ### Current Status
 - 194 PDFs organized across entry types (189 misc, 4 techreport, 1 phdthesis)
-- 13 .bib files (3 by-subject, 10 by-type)
-- Phase 1: Building validation framework and Git hooks
+- 13 .bib files (3 by-subject, 10 by-type) - **INTENTIONALLY UNCOMMITTED**
+- Phase 1: Building validation framework with --dry-run capabilities
+
+### Test Data (Existing Validation Errors)
+The following errors are **intentionally preserved** as test cases:
+1. **3 duplicate keys**: `illinois2012igmhw[1-3]` between homework/solutions files
+2. **4 missing author fields**: ISO standards in technical-standards.bib
+
+These errors will be fixed using the developed tools before committing .bib files.
 
 ### Implementation Priority
 1. Create validation scripts in `scripts/validate/`

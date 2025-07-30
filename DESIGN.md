@@ -13,6 +13,8 @@ Academic reference management system. Supports papers, books, theses, technical 
 - **Simplicity**: Plain text files, standard tools
 - **Standards**: BibTeX compatibility
 - **Version Control**: Git for metadata history
+- **Correctness**: Repository maintains validity at all times
+- **Safety**: All operations support --dry-run mode
 
 ## 2. System Architecture
 
@@ -139,7 +141,7 @@ file = {:/home/b/documents/{entry-type}/{filename}.pdf:pdf}
         ├── DESIGN.md
         ├── ROADMAP.md
         ├── TODO.md
-        ├── bibtex/
+        ├── bibtex/           # UNCOMMITTED until validated
         │   ├── by-subject/
         │   │   ├── computational-physics.bib
         │   │   ├── information-theory.bib
@@ -170,44 +172,58 @@ file = {:/home/b/documents/{entry-type}/{filename}.pdf:pdf}
 - By subject: `{subject}.bib` (e.g., `machine-learning.bib`)
 - By type: `{type}.bib` (e.g., `presentations.bib`)
 
-## 6. Future Extensions
+## 6. Operational Safety
 
-### 6.1 Potential Extensions
+### 6.1 Dry Run Mode
+All modification operations MUST support --dry-run:
+- Shows what would be changed without making changes
+- Reports validation errors and proposed fixes
+- Essential for maintaining repository correctness
+
+### 6.2 Commit Strategy
+- BibTeX files remain uncommitted during development
+- Use existing validation errors to test tooling
+- Only commit .bib files after all issues resolved
+- Final commit demonstrates tool effectiveness
+
+## 7. Future Extensions
+
+### 7.1 Potential Extensions
 - **Local Web UI**: Static HTML for browsing
 - **Full-text Search**: grep through PDFs
 - **Import Tools**: DOI and PDF metadata extraction
 - **LaTeX**: Direct \cite{} support
 - **Emacs Integration**: Browse and insert citations
 
-## 7. Data Integrity
+## 8. Data Integrity
 
-### 7.1 Validation
+### 8.1 Validation
 - Git hooks prevent invalid commits
 - Path verification before operations
 - Orphan detection scripts
 
-### 7.2 Backup
+### 8.2 Backup
 - Git for metadata versioning
 - Filesystem backups for PDFs
 - Simple rsync scripts
 
-## 8. Maintenance
+## 9. Maintenance
 
-### 8.1 Regular Tasks
+### 9.1 Regular Tasks
 - Validate all file paths
 - Check for orphaned files
 - Backup verification
 - Citation key uniqueness audit
 
-### 8.2 Troubleshooting
+### 9.2 Troubleshooting
 - **Missing files**: Check git history for moves
 - **Duplicate keys**: Run uniqueness validator
 - **Parse errors**: Validate BibTeX syntax
 - **Sync issues**: Compare filesystem to .bib entries
 
-## 9. Appendices
+## 10. Appendices
 
-### 9.1 Example BibTeX Entry
+### 10.1 Example BibTeX Entry
 ```bibtex
 @phdthesis{feynman1942principle,
   author = {Richard P. Feynman},
@@ -220,7 +236,7 @@ file = {:/home/b/documents/{entry-type}/{filename}.pdf:pdf}
 }
 ```
 
-### 9.2 Validation Script Template
+### 10.2 Validation Script Template
 ```python
 def validate_bibliography():
     """Ensure all file paths in .bib files point to existing files"""
@@ -233,7 +249,7 @@ def validate_bibliography():
                     raise ValidationError(f"Missing: {path}")
 ```
 
-### 9.3 Git Hook Example
+### 10.3 Git Hook Example
 ```bash
 #!/bin/bash
 # .git/hooks/pre-commit
