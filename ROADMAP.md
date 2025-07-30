@@ -100,16 +100,22 @@ Phased implementation plan for the bibliography management system. Each phase bu
 ## Phase 3: Enhanced Search and Query
 
 ### 3.1 Search Foundation
-- [ ] Create `bibmgr/search/engine.py`:
-  - Search index data structure for fast lookups
-  - Field tokenization and normalization
-  - Result ranking algorithm (TF-IDF or similar)
-  - Cache management for performance
-- [ ] Create `bibmgr/search/query_parser.py`:
-  - Parse natural language queries
-  - Convert to internal query representation
-  - Support quoted phrases and field specifiers
-  - Error handling for malformed queries
+- [ ] Create `bibmgr/search/index.py`:
+  - In-memory search index with field weighting
+  - Tokenization with configurable rules
+  - Field weights: key(5.0), title(4.0), author(3.5), keywords(3.0)
+  - Token-to-entry mapping for O(1) lookups
+  - Incremental index updates
+- [ ] Create `bibmgr/search/scorer.py`:
+  - Relevance scoring based on field weights
+  - Match position bonus (earlier matches score higher)
+  - Fuzzy match partial scoring (70% of exact match)
+  - Multi-term aggregation (AND/OR logic)
+- [ ] Create `bibmgr/search/tokenizer.py`:
+  - Smart tokenization (handle punctuation, case)
+  - Author name normalization (Last, First → last first)
+  - Year range expansion (1960s → 1960-1969)
+  - Stopword filtering (optional)
 
 ### 3.2 Search Capabilities
 - [ ] Create `bibmgr/search/matchers.py`:
@@ -137,18 +143,29 @@ Phased implementation plan for the bibliography management system. Each phase bu
   - Journal/venue analysis
 
 ### 3.4 Search CLI Integration
+- [ ] Create `bibmgr/search/display.py`:
+  - Rich-based result formatting
+  - Relevance visualization (bar charts)
+  - Result table with truncation
+  - Detailed view for top results
+  - Facet summaries (year/type distribution)
 - [ ] Enhance CLI with search commands:
   - `bib search "quantum computing"` - Natural language search
-  - `bib search "author:feynman AND year:1965"` - Structured search
+  - `bib search "author:feynman year:1965"` - Field-specific search
+  - `bib search "(quantum OR classical) AND computing"` - Boolean search
+  - `bib search "title:quantum.*computing"` - Regex search
+  - `bib search "author:~feinman"` - Fuzzy matching (~ prefix)
   - `bib find --similar <key>` - Find similar entries
   - `bib find --duplicates` - Find potential duplicates
   - `bib find --missing-pdf` - Find entries without files
   - `bib find --orphan-pdf` - Find PDFs without entries
-- [ ] Search output formats:
-  - Short listing (key, year, author, title)
-  - Full BibTeX entries
-  - JSON for programmatic use
-  - Statistics summary
+- [ ] Search options:
+  - `--limit N` - Limit to N results (default: 20)
+  - `--format FORMAT` - Output format (table, full, keys, json)
+  - `--sort FIELD` - Sort by field instead of relevance
+  - `--facet FIELDS` - Show distribution by fields
+  - `--case-sensitive` - Enable case-sensitive matching
+  - `--highlight` - Highlight matching terms in results
 
 ### Exit Criteria
 - Natural language search working across all fields

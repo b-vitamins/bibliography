@@ -75,16 +75,22 @@
 ## Phase 3: Enhanced Search and Query (Current)
 
 ### 3.1 Search Foundation
-- [ ] Create bibmgr/search/engine.py:
-  - [ ] Search index data structure
-  - [ ] Field tokenization and normalization
-  - [ ] Result ranking algorithm
-  - [ ] Cache management
-- [ ] Create bibmgr/search/query_parser.py:
-  - [ ] Parse natural language queries
-  - [ ] Convert to internal representation
-  - [ ] Support quoted phrases
-  - [ ] Error handling
+- [ ] Create bibmgr/search/index.py:
+  - [ ] SearchIndex class with field weighting
+  - [ ] Token-to-entry mapping structure
+  - [ ] build_index() method for initial indexing
+  - [ ] update_index() for incremental updates
+  - [ ] Field weight configuration
+- [ ] Create bibmgr/search/scorer.py:
+  - [ ] calculate_relevance() with field weights
+  - [ ] Position-based scoring boost
+  - [ ] Fuzzy match scoring (70% weight)
+  - [ ] Multi-term score aggregation
+- [ ] Create bibmgr/search/tokenizer.py:
+  - [ ] tokenize() function with punctuation handling
+  - [ ] normalize_author() for name variations
+  - [ ] expand_year_range() for decade queries
+  - [ ] Optional stopword filtering
 
 ### 3.2 Search Capabilities
 - [ ] Create bibmgr/search/matchers.py:
@@ -110,14 +116,25 @@
   - [ ] Entry type breakdown
   - [ ] Journal/venue analysis
 
-### 3.4 Search CLI Integration
+### 3.4 Search CLI Integration  
+- [ ] Create bibmgr/search/display.py:
+  - [ ] SearchResultDisplay class using Rich
+  - [ ] Relevance bar visualization
+  - [ ] Result table formatting
+  - [ ] Facet summary panels
+  - [ ] Export format handlers
 - [ ] Enhance CLI with search commands:
   - [ ] `bib search "quantum computing"` - Natural language search
-  - [ ] `bib search "author:feynman AND year:1965"` - Structured search
+  - [ ] `bib search "author:feynman year:1965"` - Field-specific search
+  - [ ] `bib search "(quantum OR classical) AND computing"` - Boolean search
+  - [ ] `bib search "author:~feinman"` - Fuzzy matching
   - [ ] `bib find --similar <key>` - Find similar entries
   - [ ] `bib find --duplicates` - Find potential duplicates
   - [ ] `bib find --missing-pdf` - Find entries without files
   - [ ] `bib find --orphan-pdf` - Find PDFs without entries
+- [ ] Add search options:
+  - [ ] --limit, --format, --sort, --facet
+  - [ ] --case-sensitive, --highlight
 
 ## Phase 4: Bulk Operations (Next)
 

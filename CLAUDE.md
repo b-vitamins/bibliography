@@ -132,6 +132,16 @@ Pattern: `{author}{year}{keyword}` (e.g., `feynman1942principle`)
 4. Create faceted search capabilities
 5. Integrate advanced search into CLI
 
+### Search Design (Guix-inspired)
+- **Multi-field search**: Search across name, title, author, abstract, etc.
+- **Relevance scoring**: Weight matches by field importance (key > title > author)
+- **Rich display**: Use Rich library for beautiful, informative results
+- **Natural language**: Simple queries like "quantum computing feynman"
+- **Field-specific**: Support "author:feynman year:1965" syntax
+- **Boolean logic**: AND, OR, NOT operators with parentheses
+- **Fuzzy matching**: Handle typos and name variations
+- **Faceted results**: Show distribution by year, type, author
+
 ### Recent Phase 2 Features
 - BibEntry model with manipulation methods
 - Repository pattern with atomic operations and dry-run
