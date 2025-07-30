@@ -13,7 +13,10 @@ This is a BibTeX-based bibliography management system that maintains strict one-
 - Strict validation preventing invalid data
 - Git hooks enforcing quality standards
 - Type-based PDF organization
-- Detailed error reporting with context
+- CRUD operations with dry-run support
+- Repository pattern for atomic operations
+- Rich terminal UI for interactive operations
+- Coming in Phase 3: Guix-inspired search with relevance scoring
 
 ## Installation
 
@@ -92,6 +95,7 @@ python3 -m bibmgr.cli list --author smith   # Filter by author
 
 ### Searching Bibliography
 
+Current search (using grep):
 ```bash
 # Search by author
 grep -r "author.*Feynman" bibtex/
@@ -101,6 +105,24 @@ grep -ri "quantum" bibtex/
 
 # Find specific entry type
 grep -r "@article" bibtex/
+```
+
+Coming in Phase 3 (Enhanced Search):
+```bash
+# Natural language search
+bib search "quantum computing feynman"
+
+# Field-specific search  
+bib search "author:feynman year:1965"
+
+# Boolean search
+bib search "(quantum OR classical) AND computing"
+
+# Fuzzy matching
+bib search "author:~feinman"  # matches feynman
+
+# Show results with facets
+bib search "physics" --facet year,type
 ```
 
 ### Statistics
@@ -135,7 +157,8 @@ bibliography/
 │   └── README.md        # Hook documentation
 ├── manifest.scm         # Guix package definitions
 ├── pyproject.toml       # Python project config
-├── DESIGN.md           # System architecture
+├── docs/               # Documentation
+│   └── design.md       # System architecture
 ├── ROADMAP.md          # Implementation phases
 ├── CLAUDE.md           # AI assistant guidelines
 └── CHANGELOG.md        # Version history
@@ -180,7 +203,7 @@ python3 -m bibmgr.cli check all
 - **Phase 6**: Import and Integration (PDF metadata, DOI import)
 - **Phase 7+**: Advanced features
 
-See [ROADMAP.md](ROADMAP.md) for detailed phase descriptions.
+See [ROADMAP.md](ROADMAP.md) for detailed phase descriptions and [docs/design.md](docs/design.md) for system architecture.
 
 ### Git Workflow
 

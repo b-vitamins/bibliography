@@ -219,12 +219,12 @@
 ### Repository State
 - Infrastructure committed (manifest.scm, pyproject.toml, etc.)
 - Python package committed (bibmgr/)
-- Documentation committed (DESIGN.md, ROADMAP.md, etc.)
+- Documentation committed (docs/design.md, ROADMAP.md, etc.)
 - **BibTeX files uncommitted** - waiting for fix tools
 
 ## Completed
 
-- [x] System design document (DESIGN.md)
+- [x] System design document (docs/design.md)
 - [x] Implementation roadmap (ROADMAP.md)
 - [x] Reorganized 194 PDFs by BibTeX entry type
 - [x] Updated all .bib file paths

@@ -27,7 +27,7 @@ This is a BibTeX-based personal bibliography management system that maintains st
 - **Entry types**: article, book, booklet, conference, inbook, incollection, inproceedings, manual, mastersthesis, misc, phdthesis, proceedings, techreport, unpublished
 
 ## Key Files
-- `DESIGN.md`: Complete system architecture and validation rules
+- `docs/design.md`: Complete system architecture and validation rules
 - `ROADMAP.md`: Phased implementation plan (Phase 2 complete, Phase 3 ready)
 - `TODO.md`: Current task tracking
 - `bibtex/by-subject/*.bib`: Subject-organized bibliography files
@@ -108,7 +108,7 @@ Pattern: `{author}{year}{keyword}` (e.g., `feynman1942principle`)
 - `@article`: author, title, journal, year
 - `@book`: author/editor, title, publisher, year
 - `@phdthesis`: author, title, school, year
-- See `DESIGN.md` Section 3.1 for complete list
+- See `docs/design.md` Section 3.2 for complete list
 
 ### Current Status
 - 194 PDFs organized across entry types (189 misc, 4 techreport, 1 phdthesis)

@@ -215,10 +215,11 @@ file = {:/home/b/documents/{entry-type}/{filename}.pdf:pdf}
 └── projects/
     └── bibliography/
         ├── .git/
-        ├── DESIGN.md
+        ├── docs/
+        │   └── design.md
         ├── ROADMAP.md
         ├── TODO.md
-        ├── bibtex/           # UNCOMMITTED until validated
+        ├── bibtex/           # Bibliography .bib files
         │   ├── by-subject/
         │   │   ├── computational-physics.bib
         │   │   ├── information-theory.bib
@@ -298,9 +299,95 @@ All modification operations MUST support --dry-run:
 - **Parse errors**: Validate BibTeX syntax
 - **Sync issues**: Compare filesystem to .bib entries
 
-## 10. Appendices
+## 10. Search System Design (Phase 3)
 
-### 10.1 Example BibTeX Entry
+### 10.1 Search Architecture
+
+#### Search Index
+```python
+class SearchIndex:
+    """In-memory search index with field weighting"""
+    
+    def __init__(self):
+        self.entries: dict[str, BibEntry] = {}
+        self.tokens: dict[str, set[str]] = {}  # token -> entry keys
+        self.field_weights = {
+            'key': 5.0,        # Citation key has highest weight
+            'title': 4.0,      # Title is very important
+            'author': 3.5,     # Author names important
+            'keywords': 3.0,   # Keywords if present
+            'year': 2.5,       # Year for temporal search
+            'abstract': 2.0,   # Abstract text
+            'journal': 2.0,    # Journal/venue
+            'note': 1.5,       # Notes field
+            'description': 1.0 # Any other descriptive fields
+        }
+```
+
+#### Query Types
+- **Natural Language**: `bib search "quantum computing feynman"`
+- **Field-Specific**: `bib search "author:feynman year:1965"`
+- **Boolean Logic**: `bib search "(quantum OR classical) AND computing"`
+- **Regex Patterns**: `bib search "title:quantum.*computing"`
+- **Fuzzy Matching**: `bib search "author:~feinman"` (matches feynman)
+
+#### Relevance Scoring
+```python
+def calculate_relevance(entry: BibEntry, query_tokens: list[str]) -> float:
+    """Calculate relevance score for an entry"""
+    score = 0.0
+    
+    for field, weight in self.field_weights.items():
+        field_value = entry.fields.get(field, '')
+        field_tokens = tokenize(field_value)
+        
+        for query_token in query_tokens:
+            if query_token in field_tokens:
+                # Exact match gets full weight
+                score += weight
+            elif fuzzy_match(query_token, field_tokens):
+                # Fuzzy match gets partial weight
+                score += weight * 0.7
+    
+    return score
+```
+
+### 10.2 Rich Display System
+
+The search results use Rich library for beautiful terminal output:
+- **Relevance visualization**: Bar charts showing match quality
+- **Result tables**: Truncated display with key fields
+- **Detailed view**: Syntax-highlighted BibTeX for top results
+- **Facet panels**: Distribution by year, type, author
+
+### 10.3 Search Features
+
+#### Fuzzy Matching
+- Author name variations (Last, First vs First Last)
+- Typo tolerance using Levenshtein distance
+- Partial word matching
+
+#### Faceted Search
+```bash
+bib search "quantum" --facet year,type
+```
+Shows distribution of results by specified fields
+
+#### Similar Entry Detection
+```bash
+bib find --similar feynman1965
+```
+Based on title similarity, author overlap, year proximity
+
+### 10.4 Performance Goals
+- Index 10,000 entries in <1 second
+- Search response <100ms for typical queries
+- Incremental index updates
+- Memory-efficient token storage
+
+## 11. Appendices
+
+### 11.1 Example BibTeX Entry
 ```bibtex
 @phdthesis{feynman1942principle,
   author = {Richard P. Feynman},
@@ -313,7 +400,7 @@ All modification operations MUST support --dry-run:
 }
 ```
 
-### 10.2 Validation Script Template
+### 11.2 Validation Script Template
 ```python
 def validate_bibliography():
     """Ensure all file paths in .bib files point to existing files"""
@@ -326,7 +413,7 @@ def validate_bibliography():
                     raise ValidationError(f"Missing: {path}")
 ```
 
-### 10.3 Git Hook Example
+### 11.3 Git Hook Example
 ```bash
 #!/bin/bash
 # .git/hooks/pre-commit

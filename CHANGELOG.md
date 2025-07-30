@@ -48,7 +48,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Mandatory field validation
 - Detailed reporting with context for manual fixes
 - Guix manifest for reproducible development environment
-- Documentation (DESIGN.md, ROADMAP.md, CLAUDE.md)
+- Documentation (docs/design.md, ROADMAP.md, CLAUDE.md)
 - Automatic tool execution through Guix shell in hooks
 
 ### Fixed
