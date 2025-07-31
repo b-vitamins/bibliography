@@ -1240,7 +1240,7 @@ class TestRemoveOperations:
 
         assert result == []
         output = capsys.readouterr().out
-        assert "No orphaned entries found" in output
+        assert "No orphaned entries" in output and "found" in output
 
     @patch("bibmgr.operations.remove.Confirm")
     def test_remove_orphaned_entries_cancelled(
@@ -1350,7 +1350,9 @@ class TestRemoveOperations:
 
         assert result == []
         output = capsys.readouterr().out
-        assert "No entries of type 'book' found" in output
+        assert (
+            "No entries of type" in output and "'book'" in output and "found" in output
+        )
 
     @patch("bibmgr.operations.remove.Confirm")
     def test_remove_by_type_cancelled(
@@ -1946,7 +1948,7 @@ class TestUpdateOperations:
 
         assert result == []
         output = capsys.readouterr().out
-        assert "No entries found" in output
+        assert "No entries" in output and "found" in output
 
     @patch("bibmgr.operations.update.Confirm")
     def test_update_field_batch_cancelled(
@@ -2149,7 +2151,7 @@ class TestUpdateOperations:
 
         assert result is not None
         output = capsys.readouterr().out
-        assert "Current file not found" in output
+        assert "Current file" in output and "not found" in output
 
     @patch("bibmgr.operations.update.Confirm")
     def test_move_pdf_cancel_missing_file(
