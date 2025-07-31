@@ -1,9 +1,21 @@
 """Pytest configuration and fixtures."""
 
+import re
 import tempfile
 from pathlib import Path
 
 import pytest
+
+
+def strip_ansi(text: str) -> str:
+    """Strip ANSI escape codes from text."""
+    ansi_escape = re.compile(r"\x1b(?:[@-Z\\-_]|\[[0-?]*[ -/]*[@-~])")
+    return ansi_escape.sub("", text)
+
+
+def normalize_whitespace(text: str) -> str:
+    """Normalize whitespace for easier comparison."""
+    return " ".join(text.split())
 
 
 @pytest.fixture

@@ -454,5 +454,8 @@ def list_cmd(
             click.echo(f"{entry.key:30} {year}  {author:30}  {title}")
 
 
+# Search commands will be implemented in Phase 3 with SQLite/FTS5
+
+
 if __name__ == "__main__":
     cli()

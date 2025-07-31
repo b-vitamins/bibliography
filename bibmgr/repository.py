@@ -130,6 +130,10 @@ class Repository:
 
         return all_entries
 
+    def get_all_entries(self) -> list[BibEntry]:
+        """Get all entries from repository (alias for load_entries)."""
+        return self.load_entries()
+
     def _load_file(self, bib_file: Path) -> list[BibEntry]:
         """Load entries from a single .bib file."""
         if not bib_file.exists():

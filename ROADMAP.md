@@ -97,83 +97,85 @@ Phased implementation plan for the bibliography management system. Each phase bu
   - `bib list [--type TYPE]` - List entries
   - All commands support --dry-run
 
-## Phase 3: Enhanced Search and Query
+## Phase 3: SQLite-Based Search System (Guix-style)
 
-### 3.1 Search Foundation
-- [ ] Create `bibmgr/search/index.py`:
-  - In-memory search index with field weighting
-  - Tokenization with configurable rules
-  - Field weights: key(5.0), title(4.0), author(3.5), keywords(3.0)
-  - Token-to-entry mapping for O(1) lookups
+### 3.1 Database Infrastructure
+- [ ] Create `bibmgr/db.py`:
+  - SQLite database initialization with FTS5
+  - Schema creation and migrations
+  - Connection pooling for concurrent access
+  - WAL mode for better performance
+  - Database path configuration (~/.cache/bibmgr/db.sqlite)
+- [ ] Create `bibmgr/scripts/locate.py`:
+  - File-based search (like `guix locate`)
+  - Find entries containing specific files
+  - Pattern matching with glob support
+- [ ] Create `bibmgr/scripts/search.py`:
+  - Main search command implementation
+  - FTS5 query parsing and execution
+  - Result ranking and formatting
+  - Statistics and performance tracking
+
+### 3.2 Indexing System
+- [ ] Create `bibmgr/index.py`:
+  - Initial database population from .bib files
   - Incremental index updates
-- [ ] Create `bibmgr/search/scorer.py`:
-  - Relevance scoring based on field weights
-  - Match position bonus (earlier matches score higher)
-  - Fuzzy match partial scoring (70% of exact match)
-  - Multi-term aggregation (AND/OR logic)
-- [ ] Create `bibmgr/search/tokenizer.py`:
-  - Smart tokenization (handle punctuation, case)
-  - Author name normalization (Last, First → last first)
-  - Year range expansion (1960s → 1960-1969)
-  - Stopword filtering (optional)
+  - Progress reporting during indexing
+  - Batch processing for efficiency
+  - Trigger-based FTS synchronization
+- [ ] Database schema:
+  ```sql
+  CREATE TABLE entries (
+      id INTEGER PRIMARY KEY,
+      key TEXT UNIQUE NOT NULL,
+      entry_type TEXT NOT NULL,
+      source_file TEXT NOT NULL,
+      data TEXT NOT NULL  -- JSON
+  );
+  
+  CREATE VIRTUAL TABLE entries_fts USING fts5(
+      key, title, author, abstract, keywords, journal, year,
+      content=entries, content_rowid=id,
+      tokenize='porter unicode61'
+  );
+  ```
 
-### 3.2 Search Capabilities
-- [ ] Create `bibmgr/search/matchers.py`:
-  - Exact field matching
-  - Fuzzy string matching (Levenshtein distance)
-  - Regex pattern matching
-  - Date range matching
-  - Author name variations (Last, First vs First Last)
-- [ ] Create `bibmgr/search/operators.py`:
+### 3.3 Query System
+- [ ] Create `bibmgr/query.py`:
+  - FTS5 query builder
+  - Field-specific search (author:feynman)
   - Boolean operators (AND, OR, NOT)
-  - Parenthetical grouping
-  - Field-specific operators (author:smith)
-  - Wildcard support (smith*)
+  - Phrase search ("exact phrase")
+  - Wildcard support (quan*)
+  - NEAR operator support
+- [ ] Search features:
+  - Natural language queries
+  - Relevance ranking (BM25)
+  - Snippet extraction
+  - Result highlighting
+  - Faceted search support
 
-### 3.3 Advanced Search Features
-- [ ] Create `bibmgr/search/similarity.py`:
-  - Title similarity using n-grams
-  - Author collaboration detection
-  - Topic clustering by keywords
-  - Duplicate detection algorithms
-- [ ] Create `bibmgr/search/facets.py`:
-  - Year distribution
-  - Author frequency
-  - Entry type breakdown
-  - Journal/venue analysis
-
-### 3.4 Search CLI Integration
-- [ ] Create `bibmgr/search/display.py`:
-  - Rich-based result formatting
-  - Relevance visualization (bar charts)
-  - Result table with truncation
-  - Detailed view for top results
-  - Facet summaries (year/type distribution)
-- [ ] Enhance CLI with search commands:
-  - `bib search "quantum computing"` - Natural language search
-  - `bib search "author:feynman year:1965"` - Field-specific search
-  - `bib search "(quantum OR classical) AND computing"` - Boolean search
-  - `bib search "title:quantum.*computing"` - Regex search
-  - `bib search "author:~feinman"` - Fuzzy matching (~ prefix)
-  - `bib find --similar <key>` - Find similar entries
-  - `bib find --duplicates` - Find potential duplicates
-  - `bib find --missing-pdf` - Find entries without files
-  - `bib find --orphan-pdf` - Find PDFs without entries
+### 3.4 CLI Commands (Guix-style)
+- [ ] Implement search commands:
+  - `bib search PATTERN...` - Search entries
+  - `bib locate FILE` - Find by file path
+  - `bib show KEY` - Display specific entry
+  - `bib index --update` - Update search index
+  - `bib index --clear` - Clear and rebuild
+  - `bib search --stats` - Show index statistics
 - [ ] Search options:
-  - `--limit N` - Limit to N results (default: 20)
-  - `--format FORMAT` - Output format (table, full, keys, json)
-  - `--sort FIELD` - Sort by field instead of relevance
-  - `--facet FIELDS` - Show distribution by fields
-  - `--case-sensitive` - Enable case-sensitive matching
-  - `--highlight` - Highlight matching terms in results
+  - `--limit=N` - Limit results (default: 20)
+  - `--format=FORMAT` - Output format (table, bibtex, json)
+  - `--sort=FIELD` - Sort by field (relevance, year, author)
+  - `--database=FILE` - Custom database location
 
 ### Exit Criteria
-- Natural language search working across all fields
-- Boolean operators fully functional
-- Fuzzy matching for names and titles
-- Similar entry detection accurate
-- Performance: <100ms for searches on 10k entries
-- All commands support --format option
+- SQLite database with FTS5 working
+- Search queries complete in <5ms for 100k entries
+- Index building handles 10k entries/second
+- Boolean and phrase search functional
+- All Guix-style search features implemented
+- Memory usage constant regardless of database size
 
 ## Phase 4: Bulk Operations
 

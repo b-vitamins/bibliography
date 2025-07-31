@@ -72,69 +72,59 @@
   - [x] `bib list [--type TYPE]` - List entries
   - [x] All commands support --dry-run
 
-## Phase 3: Enhanced Search and Query (Current)
+## Phase 3: SQLite-Based Search System (Current)
 
-### 3.1 Search Foundation
-- [ ] Create bibmgr/search/index.py:
-  - [ ] SearchIndex class with field weighting
-  - [ ] Token-to-entry mapping structure
-  - [ ] build_index() method for initial indexing
-  - [ ] update_index() for incremental updates
-  - [ ] Field weight configuration
-- [ ] Create bibmgr/search/scorer.py:
-  - [ ] calculate_relevance() with field weights
-  - [ ] Position-based scoring boost
-  - [ ] Fuzzy match scoring (70% weight)
-  - [ ] Multi-term score aggregation
-- [ ] Create bibmgr/search/tokenizer.py:
-  - [ ] tokenize() function with punctuation handling
-  - [ ] normalize_author() for name variations
-  - [ ] expand_year_range() for decade queries
-  - [ ] Optional stopword filtering
+### 3.1 Database Infrastructure
+- [ ] Create bibmgr/db.py:
+  - [ ] BibliographyDB class with SQLite/FTS5
+  - [ ] Schema creation with entries and entries_fts tables
+  - [ ] Connection pooling and WAL mode
+  - [ ] Database path: ~/.cache/bibmgr/db.sqlite
+  - [ ] Migration support for schema updates
+- [ ] Create bibmgr/scripts/search.py:
+  - [ ] Search command implementation (Guix-style)
+  - [ ] FTS5 query execution
+  - [ ] Result formatting (table, bibtex, json)
+  - [ ] Performance statistics
+- [ ] Create bibmgr/scripts/locate.py:
+  - [ ] File-based search (like `guix locate`)
+  - [ ] Find entries by PDF path
+  - [ ] Glob pattern support
 
-### 3.2 Search Capabilities
-- [ ] Create bibmgr/search/matchers.py:
-  - [ ] Exact field matching
-  - [ ] Fuzzy string matching
-  - [ ] Regex pattern matching
-  - [ ] Date range matching
-- [ ] Create bibmgr/search/operators.py:
+### 3.2 Indexing System
+- [ ] Create bibmgr/index.py:
+  - [ ] Build initial index from .bib files
+  - [ ] Incremental updates for changes
+  - [ ] Progress reporting (like Guix)
+  - [ ] Batch processing (1000 entries at a time)
+  - [ ] JSON serialization of fields
+- [ ] Implement FTS5 triggers:
+  - [ ] After INSERT trigger
+  - [ ] After UPDATE trigger
+  - [ ] After DELETE trigger
+
+### 3.3 Query System
+- [ ] Create bibmgr/query.py:
+  - [ ] FTS5 query builder
+  - [ ] Field-specific search (author:feynman)
   - [ ] Boolean operators (AND, OR, NOT)
-  - [ ] Parenthetical grouping
-  - [ ] Field-specific operators
-  - [ ] Wildcard support
+  - [ ] Phrase search ("exact phrase")
+  - [ ] Wildcard support (quan*)
+  - [ ] NEAR operator
 
-### 3.3 Advanced Search Features
-- [ ] Create bibmgr/search/similarity.py:
-  - [ ] Title similarity using n-grams
-  - [ ] Author collaboration detection
-  - [ ] Topic clustering by keywords
-  - [ ] Duplicate detection algorithms
-- [ ] Create bibmgr/search/facets.py:
-  - [ ] Year distribution
-  - [ ] Author frequency
-  - [ ] Entry type breakdown
-  - [ ] Journal/venue analysis
-
-### 3.4 Search CLI Integration  
-- [ ] Create bibmgr/search/display.py:
-  - [ ] SearchResultDisplay class using Rich
-  - [ ] Relevance bar visualization
-  - [ ] Result table formatting
-  - [ ] Facet summary panels
-  - [ ] Export format handlers
-- [ ] Enhance CLI with search commands:
-  - [ ] `bib search "quantum computing"` - Natural language search
-  - [ ] `bib search "author:feynman year:1965"` - Field-specific search
-  - [ ] `bib search "(quantum OR classical) AND computing"` - Boolean search
-  - [ ] `bib search "author:~feinman"` - Fuzzy matching
-  - [ ] `bib find --similar <key>` - Find similar entries
-  - [ ] `bib find --duplicates` - Find potential duplicates
-  - [ ] `bib find --missing-pdf` - Find entries without files
-  - [ ] `bib find --orphan-pdf` - Find PDFs without entries
-- [ ] Add search options:
-  - [ ] --limit, --format, --sort, --facet
-  - [ ] --case-sensitive, --highlight
+### 3.4 CLI Commands
+- [ ] Implement search commands:
+  - [ ] `bib search PATTERN...` - Search entries
+  - [ ] `bib locate FILE` - Find by file path
+  - [ ] `bib show KEY` - Display specific entry
+  - [ ] `bib index --update` - Update search index
+  - [ ] `bib index --clear` - Clear and rebuild
+  - [ ] `bib search --stats` - Show statistics
+- [ ] Search options:
+  - [ ] --limit=N (default: 20)
+  - [ ] --format=FORMAT (table, bibtex, json)
+  - [ ] --sort=FIELD (relevance, year, author)
+  - [ ] --database=FILE (custom location)
 
 ## Phase 4: Bulk Operations (Next)
 

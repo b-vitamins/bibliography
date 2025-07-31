@@ -2,7 +2,7 @@
 
 [![Version](https://img.shields.io/badge/version-0.1.0-blue.svg)](CHANGELOG.md)
 
-Personal bibliography management system with BibTeX metadata and PDF storage. Phase 2 complete - ready for Phase 3 (Enhanced Search and Query).
+Personal bibliography management system with BibTeX metadata and PDF storage. Phase 2 complete - ready for Phase 3 (SQLite-based search, Guix-style).
 
 ## Overview
 
@@ -16,7 +16,7 @@ This is a BibTeX-based bibliography management system that maintains strict one-
 - CRUD operations with dry-run support
 - Repository pattern for atomic operations
 - Rich terminal UI for interactive operations
-- Coming in Phase 3: Guix-inspired search with relevance scoring
+- Coming in Phase 3: SQLite/FTS5 search system (scales to 100k+ entries)
 
 ## Installation
 
@@ -107,22 +107,25 @@ grep -ri "quantum" bibtex/
 grep -r "@article" bibtex/
 ```
 
-Coming in Phase 3 (Enhanced Search):
+Coming in Phase 3 (SQLite-based Search):
 ```bash
-# Natural language search
-bib search "quantum computing feynman"
+# Natural language search (using FTS5)
+bib search quantum computing
 
 # Field-specific search  
-bib search "author:feynman year:1965"
+bib search author:feynman
 
-# Boolean search
-bib search "(quantum OR classical) AND computing"
+# Boolean search (FTS5 native)
+bib search "quantum AND computing"
 
-# Fuzzy matching
-bib search "author:~feinman"  # matches feynman
+# Wildcard search
+bib search quan*
 
-# Show results with facets
-bib search "physics" --facet year,type
+# Guix-style locate
+bib locate /home/b/documents/misc/thesis-1942-feynman.pdf
+
+# Show index statistics
+bib search --stats
 ```
 
 ### Statistics
@@ -197,7 +200,7 @@ python3 -m bibmgr.cli check all
 
 - **Phase 1**: Core Infrastructure ✓ (validation, Git hooks)
 - **Phase 2**: Core Data Layer ✓ (CRUD operations, repository pattern)
-- **Phase 3**: Enhanced Search and Query (current - advanced search capabilities)
+- **Phase 3**: SQLite-based Search System (current - scalable search with FTS5)
 - **Phase 4**: Bulk Operations (batch updates, key normalization)
 - **Phase 5**: Maintenance and Analysis (statistics, quality reports)
 - **Phase 6**: Import and Integration (PDF metadata, DOI import)

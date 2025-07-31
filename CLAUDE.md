@@ -115,32 +115,48 @@ Pattern: `{author}{year}{keyword}` (e.g., `feynman1942principle`)
 - 13 .bib files (3 by-subject, 10 by-type) - all committed and validated
 - Phase 1: Complete ✓ - Validation framework and Git hooks operational
 - Phase 2: Complete ✓ - Core data layer with CRUD operations implemented
-- Phase 3: Ready - Enhanced search and query capabilities
+- Phase 3: Ready - SQLite-based search system (redesigned for scale)
 
 ### Phase History
 - **Phase 1**: Core infrastructure, validation, Git hooks - Complete
 - **Phase 2**: Core data layer, basic CRUD operations - Complete (14 tests passing)
-- **Phase 3**: Enhanced search and query - Ready to begin
+- **Phase 3**: SQLite-based search system (Guix-style) - Ready to begin
 - **Phase 4**: Bulk operations - Next
 - **Phase 5**: Maintenance and analysis tools - Future
 - **Phase 6**: Import and integration tools - Future
 
-### Implementation Priority (Phase 3)
-1. Build search engine with indexing and ranking
-2. Implement natural language query parser
-3. Add fuzzy matching and similarity detection
-4. Create faceted search capabilities
-5. Integrate advanced search into CLI
+### Implementation Priority (Phase 3 - NEW APPROACH)
+1. Set up SQLite database with FTS5 virtual tables
+2. Build indexing system to populate database from .bib files
+3. Implement Guix-style search commands (search, locate, show)
+4. Add FTS5 query support (boolean, phrase, wildcards)
+5. Optimize for 100k+ entries scale
 
-### Search Design (Guix-inspired)
-- **Multi-field search**: Search across name, title, author, abstract, etc.
-- **Relevance scoring**: Weight matches by field importance (key > title > author)
-- **Rich display**: Use Rich library for beautiful, informative results
-- **Natural language**: Simple queries like "quantum computing feynman"
-- **Field-specific**: Support "author:feynman year:1965" syntax
-- **Boolean logic**: AND, OR, NOT operators with parentheses
-- **Fuzzy matching**: Handle typos and name variations
-- **Faceted results**: Show distribution by year, type, author
+### Search Architecture (SQLite/FTS5)
+- **Database-backed**: SQLite with FTS5 for scalable full-text search
+- **Guix-inspired**: Follow Guix's locate.scm pattern and CLI design
+- **Zero memory overhead**: Database handles paging, no in-memory loading
+- **Fast queries**: <5ms search on 100k entries using indexes
+- **Rich query syntax**: FTS5 supports boolean, phrase, NEAR, wildcards
+- **Incremental updates**: Only reindex changed entries
+- **Persistent index**: Built once, survives restarts
+
+### Database Schema
+```sql
+CREATE TABLE entries (
+    id INTEGER PRIMARY KEY,
+    key TEXT UNIQUE NOT NULL,
+    entry_type TEXT NOT NULL,
+    source_file TEXT NOT NULL,
+    data TEXT NOT NULL  -- JSON
+);
+
+CREATE VIRTUAL TABLE entries_fts USING fts5(
+    key, title, author, abstract, keywords, journal, year,
+    content=entries, content_rowid=id,
+    tokenize='porter unicode61'
+);
+```
 
 ### Recent Phase 2 Features
 - BibEntry model with manipulation methods

@@ -301,89 +301,123 @@ All modification operations MUST support --dry-run:
 
 ## 10. Search System Design (Phase 3)
 
-### 10.1 Search Architecture
+### 10.1 SQLite-Based Architecture
 
-#### Search Index
-```python
-class SearchIndex:
-    """In-memory search index with field weighting"""
-    
-    def __init__(self):
-        self.entries: dict[str, BibEntry] = {}
-        self.tokens: dict[str, set[str]] = {}  # token -> entry keys
-        self.field_weights = {
-            'key': 5.0,        # Citation key has highest weight
-            'title': 4.0,      # Title is very important
-            'author': 3.5,     # Author names important
-            'keywords': 3.0,   # Keywords if present
-            'year': 2.5,       # Year for temporal search
-            'abstract': 2.0,   # Abstract text
-            'journal': 2.0,    # Journal/venue
-            'note': 1.5,       # Notes field
-            'description': 1.0 # Any other descriptive fields
-        }
+Following Guix's approach, we use SQLite with Full-Text Search (FTS5) for scalable, efficient search that can handle 10-100k+ entries.
+
+#### Database Schema
+```sql
+-- Core entries table
+CREATE TABLE entries (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    key TEXT UNIQUE NOT NULL,
+    entry_type TEXT NOT NULL,
+    source_file TEXT NOT NULL,
+    data TEXT NOT NULL  -- JSON serialized fields
+);
+
+-- Full-text search virtual table
+CREATE VIRTUAL TABLE entries_fts USING fts5(
+    key,
+    title,
+    author,
+    abstract,
+    keywords,
+    journal,
+    year,
+    content=entries,
+    content_rowid=id,
+    tokenize='porter unicode61'
+);
+
+-- Indexes for efficient lookups
+CREATE INDEX idx_entries_key ON entries(key);
+CREATE INDEX idx_entries_type ON entries(entry_type);
 ```
 
-#### Query Types
-- **Natural Language**: `bib search "quantum computing feynman"`
-- **Field-Specific**: `bib search "author:feynman year:1965"`
-- **Boolean Logic**: `bib search "(quantum OR classical) AND computing"`
-- **Regex Patterns**: `bib search "title:quantum.*computing"`
-- **Fuzzy Matching**: `bib search "author:~feinman"` (matches feynman)
+#### Search Features (Guix-inspired)
+- **Natural Language**: `bib search quantum computing`
+- **Field-Specific**: `bib search author:feynman`
+- **Boolean Logic**: `bib search "quantum AND computing"`
+- **Wildcards**: `bib search quan*`
+- **Phrase Search**: `bib search "path integral"`
+- **NEAR operator**: `bib search "quantum NEAR/5 computing"`
 
-#### Relevance Scoring
+### 10.2 Command-Line Interface
+
+Following Guix's pattern:
+```bash
+# Basic search
+bib search PATTERN...
+
+# With options
+bib search --limit=20 --sort=relevance PATTERN
+bib search --format=bibtex PATTERN
+bib search --stats PATTERN
+
+# Advanced features
+bib locate FILE           # Find entries containing file
+bib show KEY             # Display specific entry
+bib similar KEY          # Find similar entries
+```
+
+### 10.3 Performance Characteristics
+
+| Operation | Complexity | Time (100k entries) |
+|-----------|------------|-------------------|
+| Initial indexing | O(n) | ~5 seconds |
+| Search query | O(log n) | <5ms |
+| Index update | O(log n) | <10ms |
+| Memory usage | O(1) | ~10MB constant |
+
+### 10.4 Implementation Details
+
+#### Search Module Structure (Guix-style)
+```
+bibmgr/scripts/
+├── search.py       # CLI command implementation
+├── locate.py       # File-based search
+└── show.py         # Entry display
+
+bibmgr/
+├── db.py          # Database operations
+├── index.py       # Indexing operations
+└── query.py       # Query parsing and execution
+```
+
+#### Database Operations
 ```python
-def calculate_relevance(entry: BibEntry, query_tokens: list[str]) -> float:
-    """Calculate relevance score for an entry"""
-    score = 0.0
+class BibliographyDB:
+    """SQLite database for bibliography entries"""
     
-    for field, weight in self.field_weights.items():
-        field_value = entry.fields.get(field, '')
-        field_tokens = tokenize(field_value)
+    def __init__(self, db_path: Path):
+        self.db_path = db_path
+        self._init_schema()
+    
+    def index_entries(self, entries: list[BibEntry]) -> None:
+        """Build/rebuild search index from entries"""
         
-        for query_token in query_tokens:
-            if query_token in field_tokens:
-                # Exact match gets full weight
-                score += weight
-            elif fuzzy_match(query_token, field_tokens):
-                # Fuzzy match gets partial weight
-                score += weight * 0.7
-    
-    return score
+    def search(self, pattern: str, limit: int = 20) -> list[SearchResult]:
+        """Search using FTS5 MATCH operator"""
+        
+    def update_entry(self, entry: BibEntry) -> None:
+        """Incremental index update"""
 ```
 
-### 10.2 Rich Display System
+### 10.5 Search Algorithm
 
-The search results use Rich library for beautiful terminal output:
-- **Relevance visualization**: Bar charts showing match quality
-- **Result tables**: Truncated display with key fields
-- **Detailed view**: Syntax-highlighted BibTeX for top results
-- **Facet panels**: Distribution by year, type, author
+Using SQLite FTS5's built-in capabilities:
+1. **Tokenization**: Porter stemmer with Unicode support
+2. **Ranking**: BM25 algorithm (built into FTS5)
+3. **Query parsing**: FTS5 handles boolean operators natively
+4. **Optimization**: Database query planner optimizes automatically
 
-### 10.3 Search Features
+### 10.6 Future Extensions
 
-#### Fuzzy Matching
-- Author name variations (Last, First vs First Last)
-- Typo tolerance using Levenshtein distance
-- Partial word matching
-
-#### Faceted Search
-```bash
-bib search "quantum" --facet year,type
-```
-Shows distribution of results by specified fields
-
-#### Similar Entry Detection
-```bash
-bib find --similar feynman1965
-```
-Based on title similarity, author overlap, year proximity
-
-### 10.4 Performance Goals
-- Index 10,000 entries in <1 second
-- Search response <100ms for typical queries
-- Incremental index updates
-- Memory-efficient token storage
+- **Faceted search**: GROUP BY queries for filtering
+- **Snippets**: FTS5 snippet() function for context
+- **Spell correction**: FTS5 spellfix1 extension
+- **Citation graph**: Additional tables for references
 
 ## 11. Appendices
 

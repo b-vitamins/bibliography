@@ -12,5 +12,6 @@
    "python-ruff"         ; Python linter and formatter
    "node-pyright"        ; Type checking
    "python-lsp-server"   ; LSP support for editors
+   "sqlite"              ; SQLite database with FTS5 support
    "ripgrep"             ; Fast file searching
    "coreutils"))
