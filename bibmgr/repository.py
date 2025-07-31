@@ -90,11 +90,16 @@ class Repository:
 
     def __init__(self, root_path: Path) -> None:
         """Initialize repository with root path."""
-        self.root_path = root_path
-        self.bibtex_path = root_path / "bibtex"
+        self.root_path = Path(root_path)
+        self.bibtex_path = self.root_path / "bibtex"
         self._entries_cache: dict[Path, list[BibEntry]] = {}
         self._changeset: ChangeSet | None = None
         self._dry_run = False
+
+    @property
+    def root(self) -> Path:
+        """Get root path (alias for root_path for backward compatibility)."""
+        return self.root_path
 
     def enable_dry_run(self) -> None:
         """Enable dry-run mode - changes are tracked but not applied."""
@@ -111,6 +116,16 @@ class Repository:
         """Get current changeset (only in dry-run mode)."""
         return self._changeset
 
+    @property
+    def is_dry_run(self) -> bool:
+        """Check if repository is in dry-run mode."""
+        return self._dry_run
+
+    @property
+    def entries_cache(self) -> dict[Path, list[BibEntry]]:
+        """Get entries cache (for testing)."""
+        return self._entries_cache
+
     def load_entries(self, force_reload: bool = False) -> list[BibEntry]:
         """Load all entries from .bib files."""
         if not force_reload and self._entries_cache:
@@ -124,7 +139,7 @@ class Repository:
         all_entries = []
 
         for bib_file in self.bibtex_path.rglob("*.bib"):
-            entries = self._load_file(bib_file)
+            entries = self.load_file(bib_file)
             self._entries_cache[bib_file] = entries
             all_entries.extend(entries)
 
@@ -134,7 +149,7 @@ class Repository:
         """Get all entries from repository (alias for load_entries)."""
         return self.load_entries()
 
-    def _load_file(self, bib_file: Path) -> list[BibEntry]:
+    def load_file(self, bib_file: Path) -> list[BibEntry]:
         """Load entries from a single .bib file."""
         if not bib_file.exists():
             return []
@@ -199,7 +214,9 @@ class Repository:
         bib_entries = []
         for entry in entries:
             bib_entry = {"ENTRYTYPE": entry.entry_type, "ID": entry.key}
-            bib_entry.update(entry.fields)
+            # Filter out None values
+            filtered_fields = {k: v for k, v in entry.fields.items() if v is not None}
+            bib_entry.update(filtered_fields)
             bib_entries.append(bib_entry)
 
         # Create BibTeX database
@@ -240,15 +257,25 @@ class Repository:
         """Add a new entry to the repository."""
         if target_file is None:
             # Determine target file based on entry type
-            target_file = self.bibtex_path / "by-type" / f"{entry.entry_type}.bib"
+            target_file = self.find_target_file(entry.entry_type)
+
+        # Ensure target directory exists
+        target_file.parent.mkdir(parents=True, exist_ok=True)
 
         # Load existing entries from target file
-        existing = self._entries_cache.get(target_file, [])
+        existing = self.get_entries_by_file(target_file)
 
-        # Check for duplicate key
-        if any(e.key == entry.key for e in existing):
-            msg = f"Entry with key '{entry.key}' already exists"
+        # Check for duplicate key across entire repository
+        existing_entry = self.get_entry(entry.key)
+        if existing_entry:
+            msg = (
+                f"Entry with key '{entry.key}' already exists in "
+                f"{existing_entry.source_file}"
+            )
             raise ValueError(msg)
+
+        # Update entry's source file
+        entry.source_file = target_file
 
         # Add new entry
         updated = existing + [entry]
@@ -334,5 +361,40 @@ class Repository:
     def get_entries_by_file(self, bib_file: Path) -> list[BibEntry]:
         """Get all entries from a specific .bib file."""
         if bib_file not in self._entries_cache:
-            self._load_file(bib_file)
+            entries = self.load_file(bib_file)
+            self._entries_cache[bib_file] = entries
         return self._entries_cache.get(bib_file, [])
+
+    def load_entries_from_file(self, bib_file: Path) -> list[BibEntry]:
+        """Load entries from a specific .bib file.
+
+        This is an alias for get_entries_by_file for backward compatibility.
+
+        Args:
+            bib_file: Path to .bib file
+
+        Returns:
+            List of entries in that file
+        """
+        return self.get_entries_by_file(bib_file)
+
+    def find_target_file(self, entry_type: str) -> Path:
+        """Find the appropriate target file for an entry type."""
+        by_type_dir = self.bibtex_path / "by-type"
+        return by_type_dir / f"{entry_type}.bib"
+
+    def get_stats(self) -> dict[str, int]:
+        """Get repository statistics."""
+        entries = self.load_entries()
+        stats = {
+            "total_entries": len(entries),
+            "total_files": len(self._entries_cache),
+        }
+
+        # Count by type
+        type_counts: dict[str, int] = {}
+        for entry in entries:
+            type_counts[entry.entry_type] = type_counts.get(entry.entry_type, 0) + 1
+
+        stats.update(type_counts)
+        return stats

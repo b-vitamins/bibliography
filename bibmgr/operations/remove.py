@@ -23,7 +23,10 @@ def display_entry(entry: BibEntry) -> None:
     # Sort fields for display
     for field, value in sorted(entry.fields.items()):
         # Truncate long values
-        display_value = value if len(value) <= 60 else value[:57] + "..."
+        if value is not None:
+            display_value = value if len(value) <= 60 else value[:57] + "..."
+        else:
+            display_value = "[None]"
         table.add_row(field, display_value)
 
     console.print(table)
@@ -179,8 +182,10 @@ def remove_by_type(
         table.add_column("Author/Editor")
 
         for entry in entries[:10]:  # Show first 10
-            title = entry.fields.get("title", "")[:40]
-            author = entry.fields.get("author", entry.fields.get("editor", ""))[:30]
+            title_field = entry.fields.get("title", "")
+            title = title_field[:40] if title_field else ""
+            author_field = entry.fields.get("author") or entry.fields.get("editor", "")
+            author = author_field[:30] if author_field else ""
             table.add_row(entry.key, title, author)
 
         if len(entries) > 10:

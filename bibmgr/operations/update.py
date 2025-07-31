@@ -28,8 +28,16 @@ def display_changes(old_entry: BibEntry, new_entry: BibEntry) -> None:
 
         if old_val != new_val:
             # Truncate long values
-            old_display = old_val if len(old_val) <= 30 else old_val[:27] + "..."
-            new_display = new_val if len(new_val) <= 30 else new_val[:27] + "..."
+            old_display = (
+                old_val
+                if old_val and len(old_val) <= 30
+                else (old_val[:27] + "..." if old_val else "")
+            )
+            new_display = (
+                new_val
+                if new_val and len(new_val) <= 30
+                else (new_val[:27] + "..." if new_val else "")
+            )
 
             if not old_val:
                 old_display = "[not set]"
@@ -81,12 +89,12 @@ def update_entry(
             # Show current fields
             for field, value in sorted(entry.fields.items()):
                 # Special handling for long values
-                if len(value) > 60:
+                if value and len(value) > 60:
                     console.print(f"\n{field}:")
                     console.print(f"  [dim]{value[:80]}...[/dim]")
                     new_value = Prompt.ask("New value", default="[keep]")
                 else:
-                    new_value = Prompt.ask(f"{field}", default=value)
+                    new_value = Prompt.ask(f"{field}", default=value or "")
 
                 if new_value == "[keep]":
                     continue  # Keep current value
@@ -190,7 +198,8 @@ def update_field_batch(
         table.add_column("Title")
 
         for entry in matches[:10]:  # Show first 10
-            title = entry.fields.get("title", "")[:40]
+            title_field = entry.fields.get("title", "")
+            title = title_field[:40] if title_field else ""
             table.add_row(entry.key, entry.entry_type, title)
 
         if len(matches) > 10:

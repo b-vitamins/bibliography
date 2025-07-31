@@ -28,7 +28,7 @@ class BibEntry:
 
     key: str
     entry_type: str
-    fields: dict[str, str]
+    fields: dict[str, str | None]
     source_file: Path
 
     @property
@@ -37,7 +37,10 @@ class BibEntry:
         if "file" not in self.fields:
             return None
 
-        file_field = self.fields["file"].strip("{}")
+        file_field_value = self.fields["file"]
+        if file_field_value is None:
+            return None
+        file_field = file_field_value.strip("{}")
 
         # Handle different BibTeX file formats
         if file_field.startswith(":") and file_field.endswith(":pdf"):
@@ -49,7 +52,7 @@ class BibEntry:
 
         return Path(path_str) if path_str else None
 
-    def update_field(self, field: str, value: str) -> None:
+    def update_field(self, field: str, value: str | None) -> None:
         """Update a single field value."""
         self.fields[field] = value
 
@@ -87,7 +90,9 @@ class BibEntry:
 
         for field, value in sorted_fields:
             # Ensure values are properly formatted
-            if not value.startswith("{") or not value.endswith("}"):
+            if value is not None and (
+                not value.startswith("{") or not value.endswith("}")
+            ):
                 value = f"{{{value}}}"
             lines.append(f"  {field} = {value},")
 
