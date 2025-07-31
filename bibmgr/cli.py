@@ -4,11 +4,11 @@ import sys
 from pathlib import Path
 
 import click
+from rich.console import Console
 
 from .models import BibEntry, ValidationError
 from .operations import add_entry, add_from_file, remove_entry, update_entry
 from .operations import move_pdf as move_pdf_operation
-from .query import QueryBuilder
 from .report import (
     generate_full_report,
     report_duplicate_keys,
@@ -349,34 +349,6 @@ def update_cmd(
     sys.exit(0 if entry else 1)
 
 
-@cli.command("show")
-@click.argument("key")
-@click.option(
-    "--root",
-    type=click.Path(exists=True, path_type=Path),
-    default=Path.cwd(),
-    help="Project root directory",
-)
-def show_cmd(key: str, root: Path) -> None:
-    """Show details of a bibliography entry."""
-    repo = Repository(root)
-    entry = repo.get_entry(key)
-
-    if not entry:
-        click.echo(f"Error: Entry '{key}' not found", err=True)
-        sys.exit(1)
-
-    # Display entry
-    click.echo(f"\n{entry.to_bibtex()}\n")
-
-    # Check if PDF exists
-    if entry.file_path:
-        if entry.file_path.exists():
-            click.echo(f"PDF: {entry.file_path} ✓")
-        else:
-            click.echo(f"PDF: {entry.file_path} ✗ (missing)")
-
-
 @cli.command("list")
 @click.option("--type", "-t", help="Filter by entry type")
 @click.option("--author", "-a", help="Filter by author")
@@ -409,26 +381,28 @@ def list_cmd(
     repo = Repository(root)
     entries = repo.load_entries()
 
-    # Build query
-    qb = QueryBuilder(entries)
-    query = qb.all()
+    # Filter entries
+    results = entries.copy()
 
     if type:
-        query = query.where_type(type)
+        results = [e for e in results if e.entry_type == type]
     if author:
-        query = query.where("author", author, exact=False)
+        results = [
+            e
+            for e in results
+            if author.lower() in (e.fields.get("author") or "").lower()
+        ]
     if year:
-        query = query.where("year", str(year))
+        results = [e for e in results if e.fields.get("year") == str(year)]
     if search:
-        query = query.where_any(search)
-    if limit:
-        query = query.limit(limit)
+        results = [e for e in results if search.lower() in str(e).lower()]
 
     # Sort by key
-    query = query.order_by_key()
+    results.sort(key=lambda e: e.key)
 
-    # Execute query
-    results = query.execute()
+    # Apply limit
+    if limit:
+        results = results[:limit]
 
     if not results:
         click.echo("No entries found")
@@ -446,15 +420,257 @@ def list_cmd(
     else:  # short format
         click.echo(f"Found {len(results)} entries:\n")
         for entry in results:
-            title = entry.fields.get("title", "No title")[:60]
-            author = entry.fields.get(
-                "author", entry.fields.get("editor", "No author")
+            title = (entry.fields.get("title") or "No title")[:60]
+            author = (
+                entry.fields.get("author") or entry.fields.get("editor") or "No author"
             )[:30]
             year = entry.fields.get("year", "????")
             click.echo(f"{entry.key:30} {year}  {author:30}  {title}")
 
 
-# Search commands will be implemented in Phase 3 with SQLite/FTS5
+@cli.command("search")
+@click.argument("patterns", nargs=-1, required=True)
+@click.option("--limit", "-n", type=int, default=20, help="Maximum results")
+@click.option(
+    "--format",
+    "-f",
+    type=click.Choice(["table", "bibtex", "json", "keys"]),
+    default="table",
+    help="Output format",
+)
+@click.option(
+    "--sort",
+    "-s",
+    type=click.Choice(["relevance", "year", "author", "title"]),
+    default="relevance",
+    help="Sort order",
+)
+@click.option("--stats", is_flag=True, help="Show search statistics")
+@click.option(
+    "--database",
+    type=click.Path(path_type=Path),
+    help="Custom database path",
+)
+def search_cmd(
+    patterns: tuple[str, ...],
+    limit: int,
+    format: str,
+    sort: str,
+    stats: bool,
+    database: Path | None,
+) -> None:
+    """Search bibliography using FTS5 full-text search.
+
+    Examples:
+
+        # Natural language search
+        bib search quantum computing
+
+        # Field-specific search
+        bib search author:feynman
+
+        # Boolean operators
+        bib search "quantum AND computing"
+
+        # Wildcards
+        bib search quan*
+
+        # Phrase search
+        bib search "path integral"
+    """
+    from .scripts.search import search_command
+
+    search_command(list(patterns), limit, format, sort, stats, database)
+
+
+@cli.command("locate")
+@click.argument("pattern")
+@click.option("--glob", is_flag=True, help="Use glob pattern matching")
+@click.option("--basename", is_flag=True, help="Search only file basenames")
+@click.option(
+    "--format",
+    "-f",
+    type=click.Choice(["table", "paths", "keys"]),
+    default="table",
+    help="Output format",
+)
+@click.option(
+    "--database",
+    type=click.Path(path_type=Path),
+    help="Custom database path",
+)
+def locate_cmd(
+    pattern: str,
+    glob: bool,
+    basename: bool,
+    format: str,
+    database: Path | None,
+) -> None:
+    """Locate entries by file path (like 'guix locate').
+
+    Examples:
+
+        # Find entries containing specific file
+        bib locate thesis-1942-feynman.pdf
+
+        # Find by directory
+        bib locate /home/b/documents/misc/
+
+        # Use glob patterns
+        bib locate --glob "*.pdf"
+
+        # Search only basenames
+        bib locate --basename quantum.pdf
+    """
+    from .scripts.locate import locate_command
+
+    locate_command(pattern, glob, basename, format, database)
+
+
+@cli.command("show")
+@click.argument("key")
+@click.option(
+    "--database",
+    type=click.Path(path_type=Path),
+    help="Custom database path",
+)
+def show_cmd(key: str, database: Path | None) -> None:
+    """Show specific entry by citation key.
+
+    Examples:
+
+        # Display entry details
+        bib show feynman1942principle
+
+        # Show with custom database
+        bib show --database /path/to/db.sqlite key123
+    """
+    from .scripts.search import show_command
+
+    show_command(key, database)
+
+
+@cli.group()
+def index() -> None:
+    """Manage search index."""
+    pass
+
+
+@index.command("build")
+@click.option("--clear", is_flag=True, help="Clear existing index")
+@click.option("--quiet", "-q", is_flag=True, help="Suppress progress output")
+@click.option(
+    "--database",
+    type=click.Path(path_type=Path),
+    help="Custom database path",
+)
+@click.option(
+    "--root",
+    type=click.Path(exists=True, path_type=Path),
+    default=Path.cwd(),
+    help="Project root directory",
+)
+def index_build_cmd(
+    clear: bool, quiet: bool, database: Path | None, root: Path
+) -> None:
+    """Build search index from .bib files."""
+    from .index import create_index_builder
+
+    repo = Repository(root)
+    builder = create_index_builder(repo, database)
+
+    builder.build_index(clear_existing=clear, show_progress=not quiet)
+
+
+@index.command("update")
+@click.option(
+    "--files",
+    "-f",
+    multiple=True,
+    type=click.Path(exists=True, path_type=Path),
+    help="Specific files to update",
+)
+@click.option(
+    "--database",
+    type=click.Path(path_type=Path),
+    help="Custom database path",
+)
+@click.option(
+    "--root",
+    type=click.Path(exists=True, path_type=Path),
+    default=Path.cwd(),
+    help="Project root directory",
+)
+def index_update_cmd(
+    files: tuple[Path, ...], database: Path | None, root: Path
+) -> None:
+    """Update search index for specific files or detect changes."""
+    from .index import create_index_builder
+
+    repo = Repository(root)
+    builder = create_index_builder(repo, database)
+
+    if files:
+        builder.update_index(list(files))
+    else:
+        builder.update_index()
+
+
+@index.command("status")
+@click.option(
+    "--database",
+    type=click.Path(path_type=Path),
+    help="Custom database path",
+)
+@click.option(
+    "--root",
+    type=click.Path(exists=True, path_type=Path),
+    default=Path.cwd(),
+    help="Project root directory",
+)
+def index_status_cmd(database: Path | None, root: Path) -> None:
+    """Show index status and statistics."""
+    from .index import create_index_builder
+
+    repo = Repository(root)
+    builder = create_index_builder(repo, database)
+
+    status = builder.get_index_status()
+
+    console = Console()
+    console.print("[bold]Search Index Status[/bold]\n")
+
+    # Index status
+    if status["up_to_date"]:
+        console.print("✅ Index is up to date")
+    else:
+        console.print("⚠️  Index needs updating")
+
+    console.print(f"Database entries: {status['db_entries']:,}")
+    console.print(f"Repository entries: {status['repo_entries']:,}")
+    console.print(f"Database size: {status['db_size_mb']:.1f} MB")
+    console.print(f"FTS entries: {status['fts_entries']:,}\n")
+
+    # Entries by type
+    by_type = status.get("by_type")
+    if by_type and isinstance(by_type, dict):
+        console.print("[bold]Entries by type:[/bold]")
+        for entry_type, count in sorted(by_type.items()):
+            console.print(f"  {entry_type:15} {count:6,}")
+        console.print()
+
+
+@cli.command("stats")
+@click.option(
+    "--database",
+    type=click.Path(path_type=Path),
+    help="Custom database path",
+)
+def stats_cmd(database: Path | None) -> None:
+    """Show database statistics."""
+    from .scripts.search import stats_command
+
+    stats_command(database)
 
 
 if __name__ == "__main__":
