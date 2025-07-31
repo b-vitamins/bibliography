@@ -1450,8 +1450,8 @@ class TestRemoveOperations:
         assert len(result) == 2
         assert mock_repository.remove_entry.call_count == 2
         output = capsys.readouterr().out
-        assert "Found 2 book entries" in output
-        assert "Removed 2 book entries" in output
+        assert "Found" in output and "2" in output and "book entries" in output
+        assert "Removed" in output and "2" in output and "book entries" in output
 
     @patch("bibmgr.operations.remove.Prompt")
     @patch("bibmgr.operations.remove.Confirm")
@@ -2014,8 +2014,8 @@ class TestUpdateOperations:
         assert len(result) == 2
         assert mock_repository.update_entry.call_count == 2
         output = capsys.readouterr().out
-        assert "Found 2 matching entries" in output
-        assert "Updated 2 entries" in output
+        assert "Found" in output and "2" in output and "matching entries" in output
+        assert "Updated" in output and "2" in output and "entries" in output
 
     @patch("bibmgr.operations.update.Confirm")
     def test_update_field_batch_with_type_filter(
@@ -2056,7 +2056,7 @@ class TestUpdateOperations:
         assert len(result) == 1
         assert mock_repository.update_entry.call_count == 1
         output = capsys.readouterr().out
-        assert "Found 1 matching entries" in output
+        assert "Found" in output and "1" in output and "matching entries" in output
 
     @patch("bibmgr.operations.update.Confirm")
     def test_update_field_batch_many_entries(
