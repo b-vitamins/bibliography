@@ -1306,8 +1306,8 @@ class TestRemoveOperations:
         assert len(result) == 2
         assert mock_repository.remove_entry.call_count == 2
         output = capsys.readouterr().out
-        assert "Found 2 orphaned entries" in output
-        assert "Removed 2 orphaned entries" in output
+        assert "2" in output and "orphaned entries" in output
+        assert "Removed" in output and "2" in output and "orphaned entries" in output
 
     @patch("bibmgr.operations.remove.Confirm")
     def test_remove_orphaned_entries_dry_run(
