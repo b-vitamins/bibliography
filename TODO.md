@@ -72,59 +72,59 @@
   - [x] `bib list [--type TYPE]` - List entries
   - [x] All commands support --dry-run
 
-## Phase 3: SQLite-Based Search System (Current)
+## Phase 3: SQLite-Based Search System (Complete ✓)
 
 ### 3.1 Database Infrastructure
-- [ ] Create bibmgr/db.py:
-  - [ ] BibliographyDB class with SQLite/FTS5
-  - [ ] Schema creation with entries and entries_fts tables
-  - [ ] Connection pooling and WAL mode
-  - [ ] Database path: ~/.cache/bibmgr/db.sqlite
-  - [ ] Migration support for schema updates
-- [ ] Create bibmgr/scripts/search.py:
-  - [ ] Search command implementation (Guix-style)
-  - [ ] FTS5 query execution
-  - [ ] Result formatting (table, bibtex, json)
-  - [ ] Performance statistics
-- [ ] Create bibmgr/scripts/locate.py:
-  - [ ] File-based search (like `guix locate`)
-  - [ ] Find entries by PDF path
-  - [ ] Glob pattern support
+- [x] Create bibmgr/db.py:
+  - [x] BibliographyDB class with SQLite/FTS5
+  - [x] Schema creation with entries and entries_fts tables
+  - [x] Connection pooling and WAL mode
+  - [x] Database path: ~/.cache/bibmgr/db.sqlite
+  - [x] Migration support for schema updates
+- [x] Create bibmgr/scripts/search.py:
+  - [x] Search command implementation (Guix-style)
+  - [x] FTS5 query execution
+  - [x] Result formatting (table, bibtex, json)
+  - [x] Performance statistics
+- [x] Create bibmgr/scripts/locate.py:
+  - [x] File-based search (like `guix locate`)
+  - [x] Find entries by PDF path
+  - [x] Glob pattern support
 
 ### 3.2 Indexing System
-- [ ] Create bibmgr/index.py:
-  - [ ] Build initial index from .bib files
-  - [ ] Incremental updates for changes
-  - [ ] Progress reporting (like Guix)
-  - [ ] Batch processing (1000 entries at a time)
-  - [ ] JSON serialization of fields
-- [ ] Implement FTS5 triggers:
-  - [ ] After INSERT trigger
-  - [ ] After UPDATE trigger
-  - [ ] After DELETE trigger
+- [x] Create bibmgr/index.py:
+  - [x] Build initial index from .bib files
+  - [x] Incremental updates for changes
+  - [x] Progress reporting (like Guix)
+  - [x] Batch processing (1000 entries at a time)
+  - [x] JSON serialization of fields
+- [x] Implement FTS5 triggers:
+  - [x] After INSERT trigger
+  - [x] After UPDATE trigger
+  - [x] After DELETE trigger
 
 ### 3.3 Query System
-- [ ] Create bibmgr/query.py:
-  - [ ] FTS5 query builder
-  - [ ] Field-specific search (author:feynman)
-  - [ ] Boolean operators (AND, OR, NOT)
-  - [ ] Phrase search ("exact phrase")
-  - [ ] Wildcard support (quan*)
-  - [ ] NEAR operator
+- [x] Enhanced bibmgr/query.py:
+  - [x] FTS5 query builder
+  - [x] Field-specific search (author:feynman)
+  - [x] Boolean operators (AND, OR, NOT)
+  - [x] Phrase search ("exact phrase")
+  - [x] Wildcard support (quan*)
+  - [x] NEAR operator
 
 ### 3.4 CLI Commands
-- [ ] Implement search commands:
-  - [ ] `bib search PATTERN...` - Search entries
-  - [ ] `bib locate FILE` - Find by file path
-  - [ ] `bib show KEY` - Display specific entry
-  - [ ] `bib index --update` - Update search index
-  - [ ] `bib index --clear` - Clear and rebuild
-  - [ ] `bib search --stats` - Show statistics
-- [ ] Search options:
-  - [ ] --limit=N (default: 20)
-  - [ ] --format=FORMAT (table, bibtex, json)
-  - [ ] --sort=FIELD (relevance, year, author)
-  - [ ] --database=FILE (custom location)
+- [x] Implement search commands:
+  - [x] `bib search PATTERN...` - Search entries
+  - [x] `bib locate FILE` - Find by file path
+  - [x] `bib show KEY` - Display specific entry
+  - [x] `bib index --update` - Update search index
+  - [x] `bib index --clear` - Clear and rebuild
+  - [x] `bib search --stats` - Show statistics
+- [x] Search options:
+  - [x] --limit=N (default: 20)
+  - [x] --format=FORMAT (table, bibtex, json)
+  - [x] --sort=FIELD (relevance, year, author)
+  - [x] --database=FILE (custom location)
 
 ## Phase 4: Bulk Operations (Next)
 
@@ -201,16 +201,20 @@
 ## Development Status
 
 ### Working Components
-- `./bib check all` - Identifies all 7 known issues correctly
-- `./bib check paths` - No missing files
-- `./bib check duplicates` - Finds 3 duplicate keys
-- `./bib check fields` - Finds 4 missing fields
+- Phase 1 ✓: Complete validation framework with Git hooks
+- Phase 2 ✓: Full CRUD operations with 423 tests passing (90%+ coverage)
+- Phase 3 ✓: SQLite-based search system with FTS5
+  - `python3 -m bibmgr.cli search quantum computing` - Natural language search
+  - `python3 -m bibmgr.cli locate file.pdf` - File-based search (Guix-style)
+  - `python3 -m bibmgr.cli index build` - Search index management
+  - `python3 -m bibmgr.cli stats` - Database statistics
 
 ### Repository State
 - Infrastructure committed (manifest.scm, pyproject.toml, etc.)
-- Python package committed (bibmgr/)
+- Python package committed (bibmgr/) with comprehensive test suite
 - Documentation committed (docs/design.md, ROADMAP.md, etc.)
-- **BibTeX files uncommitted** - waiting for fix tools
+- Phase 3 search implementation committed
+- BibTeX files committed and validated (0 validation errors)
 
 ## Completed
 

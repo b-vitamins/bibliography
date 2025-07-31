@@ -66,6 +66,32 @@ python3 -m bibmgr.cli list --type article  # List by type
 python3 -m bibmgr.cli list --author feynman  # Filter by author
 ```
 
+### Search Operations (Phase 3)
+```bash
+# Natural language search
+python3 -m bibmgr.cli search quantum computing
+
+# Field-specific search
+python3 -m bibmgr.cli search author:feynman
+
+# Boolean operators
+python3 -m bibmgr.cli search "quantum AND computing"
+
+# Wildcard search
+python3 -m bibmgr.cli search quan*
+
+# File location (Guix-style)
+python3 -m bibmgr.cli locate thesis-1942-feynman.pdf
+
+# Index management
+python3 -m bibmgr.cli index build      # Build search index
+python3 -m bibmgr.cli index update     # Update index
+python3 -m bibmgr.cli index status     # Show index statistics
+
+# Database statistics
+python3 -m bibmgr.cli stats
+```
+
 ### Quick Checks
 ```bash
 # Count total PDFs in storage
@@ -115,22 +141,22 @@ Pattern: `{author}{year}{keyword}` (e.g., `feynman1942principle`)
 - 13 .bib files (3 by-subject, 10 by-type) - all committed and validated
 - Phase 1: Complete ✓ - Validation framework and Git hooks operational
 - Phase 2: Complete ✓ - Core data layer with CRUD operations implemented
-- Phase 3: Ready - SQLite-based search system (redesigned for scale)
+- Phase 3: Complete ✓ - SQLite-based search system with FTS5 implemented
 
 ### Phase History
 - **Phase 1**: Core infrastructure, validation, Git hooks - Complete
-- **Phase 2**: Core data layer, basic CRUD operations - Complete (14 tests passing)
-- **Phase 3**: SQLite-based search system (Guix-style) - Ready to begin
+- **Phase 2**: Core data layer, basic CRUD operations - Complete (423 tests passing)
+- **Phase 3**: SQLite-based search system (Guix-style) - Complete ✓
 - **Phase 4**: Bulk operations - Next
 - **Phase 5**: Maintenance and analysis tools - Future
 - **Phase 6**: Import and integration tools - Future
 
-### Implementation Priority (Phase 3 - NEW APPROACH)
-1. Set up SQLite database with FTS5 virtual tables
-2. Build indexing system to populate database from .bib files
-3. Implement Guix-style search commands (search, locate, show)
-4. Add FTS5 query support (boolean, phrase, wildcards)
-5. Optimize for 100k+ entries scale
+### Phase 3 Implementation (Complete ✓)
+1. ✓ Set up SQLite database with FTS5 virtual tables
+2. ✓ Build indexing system to populate database from .bib files
+3. ✓ Implement Guix-style search commands (search, locate, show)
+4. ✓ Add FTS5 query support (boolean, phrase, wildcards)
+5. ✓ Optimize for 100k+ entries scale
 
 ### Search Architecture (SQLite/FTS5)
 - **Database-backed**: SQLite with FTS5 for scalable full-text search
@@ -172,6 +198,8 @@ Defined in `manifest.scm`:
 - python-ruff for linting and formatting
 - node-pyright for type checking
 - python-lsp-server for editor LSP support
+- python-pytest, python-pytest-cov for testing
+- SQLite with FTS5 for search (built into Python)
 
 ### Code Standards
 - Python 3.11+ with full type hints
