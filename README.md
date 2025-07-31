@@ -1,6 +1,6 @@
 # Bibliography Management System
 
-[![Version](https://img.shields.io/badge/version-0.1.0-blue.svg)](CHANGELOG.md)
+[![Version](https://img.shields.io/badge/version-0.2.0-blue.svg)](CHANGELOG.md)
 
 Personal bibliography management system with BibTeX metadata and PDF storage. Phase 3 complete - SQLite-based search system with FTS5 ready for production use.
 
