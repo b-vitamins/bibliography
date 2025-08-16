@@ -1,6 +1,6 @@
 # bibliography
 
-Personal bibliography management system for academic references.
+Personal bibliography collection.
 
 ## Setup
 
