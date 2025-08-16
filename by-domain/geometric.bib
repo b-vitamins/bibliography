@@ -1,0 +1,895 @@
+@article{Scarselli2009GNN,
+  abstract      = {Many underlying relationships among data in several areas of science and engineering, e.g., computer vision, molecular chemistry, molecular biology, pattern recognition, and data mining, can be represented in terms of graphs. In this paper, we propose a new neural network model, called graph neural network (GNN) model, that extends existing neural network methods for processing the data represented in graph domains. This GNN model, which can directly process most of the practically useful types of graphs, e.g., acyclic, cyclic, directed, and undirected, implements a function tau(G,n) is an element of IR(m) that maps a graph G and one of its nodes n into an m-dimensional Euclidean space. A supervised learning algorithm is derived to estimate the parameters of the proposed GNN model. The computational cost of the proposed algorithm is also considered. Some experimental results are shown to validate the proposed learning algorithm, and to demonstrate its generalization capabilities.},
+  author        = {Franco Scarselli and Marco Gori and Ah Chung Tsoi and Markus Hagenbuchner and Gabriele Monfardini},
+  doi           = {10.1109/TNN.2008.2005605},
+  journal       = {IEEE Transactions on Neural Networks},
+  month         = {1},
+  number        = {1},
+  openalex      = {W2100495616},
+  pages         = {61--80},
+  pdf           = {https://papers.baulab.info/papers/Scarselli-2009.pdf},
+  pmid          = {19068426},
+  title         = {The Graph Neural Network Model},
+  volume        = {20},
+  year          = {2009}
+}
+
+@inproceedings{Gori2005NewModel,
+  abstract      = {In several applications the information is naturally represented by graphs. Traditional approaches cope with graphical data structures using a preprocessing phase which transforms the graphs into a set of flat vectors. However, in this way, important topological information may be lost and the achieved results may heavily depend on the preprocessing stage. This paper presents a new neural model, called graph neural network (GNN), capable of directly processing graphs. GNNs extends recursive neural networks and can be applied on most of the practically useful kinds of graphs, including directed, undirected, labelled and cyclic graphs. A learning algorithm for GNNs is proposed and some experiments are discussed which assess the properties of the model.},
+  author        = {Marco Gori and Gabriele Monfardini and Franco Scarselli},
+  booktitle     = {Proceedings of the 2005 IEEE International Joint Conference on Neural Networks (IJCNN '05)},
+  doi           = {10.1109/IJCNN.2005.1555942},
+  openalex      = {W1501856433},
+  pages         = {729--734},
+  pdf           = {https://ieeexplore.ieee.org/iel5/10421/33090/01555942.pdf},
+  publisher     = {IEEE},
+  title         = {A New Model for Learning in Graph Domains},
+  volume        = {2},
+  year          = {2005}
+}
+
+@inproceedings{Kipf2017GCN,
+  abstract      = {We present a scalable approach for semi-supervised learning on graph-structured data that is based on an efficient variant of convolutional neural networks which operate directly on graphs. We motivate the choice of our convolutional architecture via a localized first-order approximation of spectral graph convolutions. Our model scales linearly in the number of graph edges and learns hidden layer representations that encode both local graph structure and features of nodes. In a number of experiments on citation networks and on a knowledge graph dataset we demonstrate that our approach outperforms related methods by a significant margin.},
+  archiveprefix = {arXiv},
+  author        = {Thomas N. Kipf and Max Welling},
+  booktitle     = {5th International Conference on Learning Representations, ICLR 2017, Toulon, France, April 24-26, 2017, Conference Track Proceedings},
+  eprint        = {1609.02907},
+  openalex      = {W2964015378},
+  pdf           = {https://openreview.net/pdf?id=SJU4ayYgl},
+  primaryclass  = {cs.LG},
+  publisher     = {OpenReview.net},
+  title         = {Semi-Supervised Classification with Graph Convolutional Networks},
+  url           = {https://openreview.net/forum?id=SJU4ayYgl},
+  year          = {2017}
+}
+
+@inproceedings{Hamilton2017GraphSAGE,
+  abstract      = {Low-dimensional embeddings of nodes in large graphs have proved extremely useful in a variety of prediction tasks, from content recommendation to identifying protein functions. However, most existing approaches require that all nodes in the graph are present during training of the embeddings; these previous approaches are inherently transductive and do not naturally generalize to unseen nodes. Here we present GraphSAGE, a general, inductive framework that leverages node feature information (e.g., text attributes) to efficiently generate node embeddings. Instead of training individual embeddings for each node, we learn a function that generates embeddings by sampling and aggregating features from a node's local neighborhood. Our algorithm outperforms strong baselines on three inductive node-classification benchmarks: we classify the category of unseen nodes in evolving information graphs based on citation and Reddit post data, and we show that our algorithm generalizes to completely unseen graphs using a multi-graph dataset of protein-protein interactions.},
+  author        = {Will Hamilton and Zhitao Ying and Jure Leskovec},
+  booktitle     = {Advances in Neural Information Processing Systems},
+  openalex      = {W4294558607},
+  pages         = {1024--1034},
+  pdf           = {https://proceedings.neurips.cc/paper/2017/file/5dd9db5e033da9c6fb5ba83c7a7ebea9-Paper.pdf},
+  publisher     = {Curran Associates, Inc.},
+  title         = {Inductive Representation Learning on Large Graphs},
+  volume        = {30},
+  year          = {2017}
+}
+
+@inproceedings{Velickovic2018GAT,
+  abstract      = {We present graph attention networks (GATs), novel neural network architectures that operate on graph-structured data, leveraging masked self-attentional layers to address the shortcomings of prior methods based on graph convolutions or their approximations. By stacking layers in which nodes are able to attend over their neighborhoods' features, we enable (implicitly) specifying different weights to different nodes in a neighborhood, without requiring any kind of costly matrix operation (such as inversion) or depending on knowing the graph structure upfront. In this way, we address several key challenges of spectral-based graph neural networks simultaneously, and make the model readily applicable to inductive as well as transductive problems. Our GAT models have achieved or matched state-of-the-art results across four established transductive and inductive graph benchmarks: the Cora, Citeseer and Pubmed citation network datasets, as well as a protein-protein interaction dataset (wherein test graphs remain unseen during training).},
+  archiveprefix = {arXiv},
+  author        = {Petar Veličković and Guillem Cucurull and Arantxa Casanova and Adriana Romero and Pietro Liò and Yoshua Bengio},
+  booktitle     = {International Conference on Learning Representations (ICLR)},
+  doi           = {10.48550/arXiv.1710.10903},
+  eprint        = {1710.10903},
+  month         = {2},
+  openalex      = {W2963858333},
+  pdf           = {https://openreview.net/pdf?id=rJXMpikCZ},
+  title         = {Graph Attention Networks},
+  url           = {https://openreview.net/forum?id=rJXMpikCZ},
+  year          = {2018}
+}
+
+@inproceedings{Gilmer2017MPNN,
+  abstract      = {Supervised learning on molecules has incredible potential to be useful in chemistry, drug discovery, and materials science. Luckily, several promising and closely related neural network models invariant to molecular symmetries have already been described in the literature. These models learn a message passing algorithm and aggregation procedure to compute a function of their entire input graph. In this work we reformulate existing models into a single common framework we call Message Passing Neural Networks (MPNNs) and explore additional novel variations within this framework. Using MPNNs, we demonstrate state of the art results on an important molecular property prediction benchmark.},
+  author        = {Justin Gilmer and Samuel S. Schoenholz and Patrick F. Riley and Oriol Vinyals and George E. Dahl},
+  booktitle     = {Proceedings of the 34th International Conference on Machine Learning},
+  editor        = {Doina Precup and Yee Whye Teh},
+  openalex      = {W2606780347},
+  pages         = {1263--1272},
+  pdf           = {http://proceedings.mlr.press/v70/gilmer17a/gilmer17a.pdf},
+  publisher     = {PMLR},
+  series        = {Proceedings of Machine Learning Research},
+  title         = {Neural Message Passing for Quantum Chemistry},
+  volume        = {70},
+  year          = {2017}
+}
+
+@inproceedings{Xu2019GIN,
+  abstract      = {Graph Neural Networks (GNNs) are an effective framework for representation learning of graphs. GNNs follow a neighborhood aggregation scheme, where the representation vector of a node is computed by recursively aggregating and transforming representation vectors of its neighboring nodes. Many GNN variants have been proposed and have achieved state-of-the-art results on both node and graph classification tasks. However, despite GNNs revolutionizing graph representation learning, there is limited understanding of their representational properties and limitations. Here, we present a theoretical framework for analyzing the expressive power of GNNs to capture different graph structures. Our results characterize the discriminative power of popular GNN variants, such as Graph Convolutional Networks and GraphSAGE, and show that they cannot learn to distinguish certain simple graph structures. We then develop a simple architecture that is provably the most expressive among the class of GNNs and is as powerful as the Weisfeiler-Lehman graph isomorphism test. We empirically validate our theoretical findings on a number of graph classification benchmarks, and demonstrate that our model achieves state-of-the-art performance.},
+  author        = {Keyulu Xu and Weihua Hu and Jure Leskovec and Stefanie Jegelka},
+  booktitle     = {7th International Conference on Learning Representations, ICLR 2019},
+  openalex      = {W2962711740},
+  pdf           = {https://openreview.net/pdf?id=ryGs6iA5Km},
+  title         = {How Powerful are Graph Neural Networks?},
+  url           = {https://openreview.net/forum?id=ryGs6iA5Km},
+  year          = {2019}
+}
+
+@inproceedings{Morris2019kGNN,
+  abstract      = {In recent years, graph neural networks (GNNs) have emerged as a powerful neural architecture to learn vector representations of nodes and graphs in a supervised, end-to-end fashion. Up to now, GNNs have only been evaluated empirically---showing promising results. The following work investigates GNNs from a theoretical point of view and relates them to the $1$-dimensional Weisfeiler-Leman graph isomorphism heuristic ($1$-WL). We show that GNNs have the same expressiveness as the $1$-WL in terms of distinguishing non-isomorphic (sub-)graphs. Hence, both algorithms also have the same shortcomings. Based on this, we propose a generalization of GNNs, so-called $k$-dimensional GNNs ($k$-GNNs), which can take higher-order graph structures at multiple scales into account. These higher-order structures play an essential role in the characterization of social networks and molecule graphs.},
+  author        = {Christopher Morris and Martin Ritzert and Matthias Fey and William L. Hamilton and Jan Eric Lenssen and Gaurav Rattan and Martin Grohe},
+  booktitle     = {Proceedings of the AAAI Conference on Artificial Intelligence (AAAI)},
+  doi           = {10.1609/aaai.v33i01.33014602},
+  number        = {01},
+  openalex      = {W2962810718},
+  pages         = {4602--4609},
+  pdf           = {https://aaai.org/ojs/index.php/AAAI/article/view/4384/4262},
+  title         = {Weisfeiler and Leman Go Neural: Higher-Order Graph Neural Networks},
+  volume        = {33},
+  year          = {2019}
+}
+
+@inproceedings{Joshi2023GeometricWL,
+  abstract      = {The expressive power of Graph Neural Networks (GNNs) has been studied extensively through the Weisfeiler-Leman (WL) graph isomorphism test. However, standard GNNs and the WL framework are inapplicable for geometric graphs embedded in Euclidean space, such as biomolecules, materials, and other physical systems. In this work, we propose a geometric version of the WL test (GWL) for discriminating geometric graphs while respecting the underlying physical symmetries: permutations, rotation, reflection, and translation. We use GWL to characterise the expressive power of geometric GNNs that are invariant or equivariant to physical symmetries in terms of distinguishing geometric graphs. GWL unpacks how key design choices influence geometric GNN expressivity: (1) Invariant layers have limited expressivity as they cannot distinguish one-hop identical geometric graphs; (2) Equivariant layers distinguish a larger class of graphs by propagating geometric information beyond local neighbourhoods; (3) Higher order tensors and scalarisation enable maximally powerful geometric GNNs; and (4) GWL's discrimination-based perspective is equivalent to universal approximation. Synthetic experiments supplementing our results are available at https://github.com/chaitjo/geometric-gnn-dojo},
+  author        = {Chaitanya K. Joshi and Cristian Bodnar and Simon V. Mathis and Taco Cohen and Petar Veličković},
+  booktitle     = {Proceedings of the 40th International Conference on Machine Learning},
+  openalex      = {W4317941748},
+  pages         = {15330--15355},
+  pdf           = {https://proceedings.mlr.press/v202/joshi23a/joshi23a.pdf},
+  publisher     = {PMLR},
+  series        = {Proceedings of Machine Learning Research},
+  title         = {On the Expressive Power of Geometric Graph Neural Networks},
+  volume        = {202},
+  year          = {2023}
+}
+
+@inproceedings{Zhang2023SWL,
+  abstract      = {Recently, subgraph GNNs have emerged as an important direction for developing expressive graph neural networks (GNNs). While numerous architectures have been proposed, there is still a limited understanding of how various design paradigms differ in terms of power, nor is it clear what principle achieves maximal expressiveness with minimal architectural complexity. To address these fundamental questions, this paper conducts a systematic study of general node-based subgraph GNNs through the lens of Subgraph Weisfeiler-Lehman Tests (SWL). The central result is a complete hierarchy of SWL strictly growing expressivity. Concretely, the authors prove that any GNN falls into one of six equivalence classes, among which $\mathsfSSWL$ has the highest power. The paper also explores the practical implications of these classes, such as encoding distance and biconnectivity. Furthermore, they provide tight expressivity upper bounds for all algorithms by establishing a close relation with localized versions of WL Folklore (FWL) tests. These results provide insights into the power of existing GNNs, guide new architectures, and point out limitations, revealing an inherent gap in the 2-FWL test. Experiments demonstrate that $\mathsfSSWL$-inspired approaches can significantly outperform prior work on multiple benchmarks despite their great simplicity.},
+  author        = {Bohang Zhang and Guhao Feng and Yiheng Du and Di He and Liwei Wang},
+  booktitle     = {Proceedings of the 40th International Conference on Machine Learning},
+  openalex      = {W4321013606},
+  pages         = {41019--41077},
+  pdf           = {https://proceedings.mlr.press/v202/zhang23k/zhang23k.pdf},
+  publisher     = {PMLR},
+  series        = {Proceedings of Machine Learning Research},
+  title         = {A Complete Expressiveness Hierarchy for Subgraph GNNs via Subgraph Weisfeiler-Lehman Tests},
+  volume        = {202},
+  year          = {2023}
+}
+
+@inproceedings{Zhou2023UniversalFramework,
+  abstract      = {Relational pooling is a framework for building more expressive and permutation-invariant graph neural networks. However, there is limited understanding of the exact enhancement in the expressivity of RP and its connection with the Weisfeiler-Lehman hierarchy. Starting from RP, we propose to explicitly assign labels to nodes as additional features to improve graph isomorphism distinguishing power of message passing neural networks. The method is then extended to higher-dimensional WL, leading to a novel k,l-WL algorithm, a more general framework than k-WL. We further introduce the subgraph concept into our hierarchy and propose a localized k,l-WL framework, incorporating a wide range of existing work, including many subgraph GNNs. Theoretically, we analyze the expressivity of k,l-WL w.r.t. k and l and compare it with the traditional k-WL. Complexity reduction methods are also systematically discussed to build powerful and practical k,l-GNN instances. We theoretically and experimentally prove that our method is universally compatible and capable of improving the expressivity of any base GNN model. Our k,l-GNNs achieve superior performance on many synthetic and real-world datasets, which verifies the effectiveness of our framework.},
+  author        = {Cai Zhou and Xiyuan Wang and Muhan Zhang},
+  booktitle     = {Proceedings of the 40th International Conference on Machine Learning},
+  openalex      = {W4376122510},
+  pages         = {42742--42768},
+  pdf           = {https://proceedings.mlr.press/v202/zhou23n/zhou23n.pdf},
+  publisher     = {PMLR},
+  series        = {Proceedings of Machine Learning Research},
+  title         = {From Relational Pooling to Subgraph GNNs: A Universal Framework for More Expressive Graph Neural Networks},
+  url           = {https://proceedings.mlr.press/v202/zhou23n.html},
+  volume        = {202},
+  year          = {2023}
+}
+
+@inproceedings{Michel2023PathNN,
+  abstract      = {Graph neural networks (GNNs) have recently become the standard approach for learning with graph-structured data. Prior work has shed light into their potential, but also their limitations. Unfortunately, it was shown that standard GNNs are limited in their expressive power. These models are no more powerful than the 1-dimensional Weisfeiler-Leman (1-WL) algorithm in terms of distinguishing non-isomorphic graphs. In this paper, we propose Path Neural Networks (PathNNs), a model that updates node representations by aggregating paths emanating from nodes. We derive three different variants of the PathNN model that aggregate single shortest paths, all shortest paths and all simple paths of length up to K. We prove that two of these variants are strictly more powerful than the 1-WL algorithm, and we experimentally validate our theoretical results. We find that PathNNs can distinguish pairs of non-isomorphic graphs that are indistinguishable by 1-WL, while our most expressive PathNN variant can even distinguish between 3-WL indistinguishable graphs. The different PathNN variants are also evaluated on graph classification and graph regression datasets, where in most cases, they outperform the baseline methods.},
+  author        = {Gaspard Michel and Giannis Nikolentzos and Johannes F. Lutzeyer and Michalis Vazirgiannis},
+  booktitle     = {Proceedings of the 40th International Conference on Machine Learning},
+  openalex      = {W4380362583},
+  pages         = {24737--24755},
+  pdf           = {https://proceedings.mlr.press/v202/michel23a/michel23a.pdf},
+  publisher     = {PMLR},
+  series        = {Proceedings of Machine Learning Research},
+  title         = {Path Neural Networks: Expressive and Accurate Graph Neural Networks},
+  url           = {https://proceedings.mlr.press/v202/michel23a.html},
+  volume        = {202},
+  year          = {2023}
+}
+
+@inproceedings{Kim2023MAGGNN,
+  address       = {Red Hook, NY, USA},
+  author        = {Woohwan Kim and Jihun Lee and Noseong Park},
+  booktitle     = {Advances in Neural Information Processing Systems},
+  publisher     = {Curran Associates, Inc.},
+  series        = {NeurIPS '23},
+  title         = {Marked Asynchronous Graph-based GNNs for Most-informative Subgraph Selection},
+  year          = {2023}
+}
+
+@inproceedings{Schmid2024WLMargin,
+  abstract      = {The Weisfeiler-Leman algorithm ($1$-WL) is a well-studied heuristic for the graph isomorphism problem. Recently, it has played a prominent role in understanding the expressive power of message-passing neural networks (MPNNs) and being effective as a kernel. Despite its success, $1$-WL faces challenges distinguishing non-isomorphic graphs, leading to development of more MPNN kernel architectures. However, the relationship between enhanced expressivity and improved generalization performance remains unclear. The authors show that an architecture's expressivity offers limited insights into generalization when viewed through isomorphism. They focus on augmenting MPNNs with subgraph information, employing classical margin theory to investigate conditions under which increased expressivity aligns with performance. Additionally, they explore how gradient flow pushes MPNN weights toward a maximum solution and introduce variations of $1$-WL-based architectures with provable properties. Their empirical study confirms the validity of their theoretical findings.},
+  author        = {Billy Joe Franks and Christopher Morris and Ameya Velingker and Floris Geerts},
+  booktitle     = {Proceedings of the 41st International Conference on Machine Learning},
+  openalex      = {W4391799198},
+  pages         = {13885--13926},
+  pdf           = {https://proceedings.mlr.press/v235/franks24a/franks24a.pdf},
+  publisher     = {PMLR},
+  series        = {Proceedings of Machine Learning Research},
+  title         = {Weisfeiler-Leman at the margin: When more expressivity matters},
+  volume        = {235},
+  year          = {2024}
+}
+
+@misc{Bronstein2021GDL,
+  abstract      = {The last decade has witnessed an experimental revolution in data science and machine learning, epitomised by deep learning methods. Indeed, many high-dimensional learning tasks previously thought to be beyond reach -- such as computer vision, playing Go, or protein folding -- are in fact feasible with appropriate computational scale. Remarkably, the essence of deep learning is built from two simple algorithmic principles: first, the notion of representation or feature learning, whereby adapted, often hierarchical, features capture the appropriate notion of regularity for each task, and second, learning by local gradient-descent type methods, typically implemented as backpropagation. While learning generic functions in high dimensions is a cursed estimation problem, most tasks of interest are not generic, and come with essential pre-defined regularities arising from the underlying low-dimensionality and structure of the physical world. This text is concerned with exposing these regularities through unified geometric principles that can be applied throughout a wide spectrum of applications. Such a 'geometric unification' endeavour, in the spirit of Felix Klein's Erlangen Program, serves a dual purpose: on one hand, it provides a common mathematical framework to study the most successful neural network architectures, such as CNNs, RNNs, GNNs, and Transformers. On the other hand, it gives a constructive procedure to incorporate prior physical knowledge into neural architectures and provide principled way to build future architectures yet to be invented.},
+  archiveprefix = {arXiv},
+  author        = {Michael M. Bronstein and Joan Bruna and Taco Cohen and Petar Veličković},
+  doi           = {10.48550/arxiv.2104.13478},
+  eprint        = {2104.13478},
+  note          = {arXiv preprint},
+  openalex      = {W3157286395},
+  pdf           = {http://arxiv.org/pdf/2104.13478},
+  primaryclass  = {cs.LG},
+  title         = {Geometric Deep Learning: Grids, Groups, Graphs, Geodesics, and Gauges},
+  year          = {2021}
+}
+
+@inproceedings{Satorras2021EGNN,
+  abstract      = {This paper introduces a new model to learn graph neural networks equivariant to rotations, translations, reflections and permutations called E(n)-Equivariant Graph Neural Networks (EGNNs). In contrast with existing methods, our work does not require computationally expensive higher-order representations in intermediate layers while it still achieves competitive or better performance. In addition, whereas existing methods are limited to equivariance on 3 dimensional spaces, our model is easily scaled to higher-dimensional spaces. We demonstrate the effectiveness of our method on dynamical systems modelling, representation learning in graph autoencoders and predicting molecular properties.},
+  author        = {Vı́ctor Garc\á Satorras and Emiel Hoogeboom and Max Welling},
+  booktitle     = {Proceedings of the 38th International Conference on Machine Learning},
+  editor        = {Marina Meila and Tong Zhang},
+  month         = {7},
+  openalex      = {W3167957225},
+  pages         = {9323--9332},
+  pdf           = {http://proceedings.mlr.press/v139/satorras21a/satorras21a.pdf},
+  publisher     = {PMLR},
+  series        = {Proceedings of Machine Learning Research},
+  title         = {E(n) Equivariant Graph Neural Networks},
+  url           = {https://proceedings.mlr.press/v139/satorras21a.html},
+  volume        = {139},
+  year          = {2021}
+}
+
+@inproceedings{Fuchs2020SE3Transformer,
+  abstract      = {We introduce the SE(3)-Transformer, a variant of the self-attention module for 3D point-clouds, which is equivariant under continuous 3D roto-translations. Equivariance is important to ensure stable and predictable performance in the presence of nuisance transformations of the data input. A positive corollary of equivariance is increased weight-tying within the model. The SE(3)-Transformer leverages the benefits of self-attention to operate on large point clouds with varying number of points, while guaranteeing SE(3)-equivariance for robustness. We evaluate our model on a toy N-body particle simulation dataset, showcasing the robustness of the predictions under rotations of the input. We further achieve competitive performance on two real-world datasets, ScanObjectNN and QM9. In all cases, our model outperforms a strong, non-equivariant attention baseline and an equivariant model without attention.},
+  author        = {Fabian B. Fuchs and Daniel E. Worrall and Volker Fischer and Max Welling},
+  booktitle     = {Advances in Neural Information Processing Systems},
+  month         = {12},
+  openalex      = {W3100269082},
+  pdf           = {https://proceedings.neurips.cc/paper/2020/file/15231a7ce4ba789d13b722cc5c955834-Paper.pdf},
+  series        = {NeurIPS},
+  title         = {SE(3)-Transformers: 3D Roto-Translation Equivariant Attention Networks},
+  url           = {https://proceedings.neurips.cc/paper/2020/hash/15231a7ce4ba789d13b722cc5c955834-Abstract.html},
+  volume        = {33},
+  year          = {2020}
+}
+
+@inproceedings{SergeantPerthuis2022NonLinear,
+  abstract      = {This work studies operators mapping vector and scalar fields defined over a manifold $\mathcalM$, and which commute with its group of diffeomorphisms $ extDiff(\mathcalM)$. We prove that in the case of scalar fields $L^p_ømega(\mathcalM,ℝ)$, those operators correspond to point-wise non-linearities, recovering and extending known results on $ℝ^d$. In the context of Neural Networks defined over $\mathcalM$, it indicates that point-wise non-linear operators are the only universal family that commutes with any group of symmetries, and justifies their systematic use in combination with dedicated linear operators commuting with specific symmetries. In the case of vector fields $L^p_ømega(\mathcalM,T\mathcalM)$, we show that those operators are solely the scalar multiplication. It indicates that $ extDiff(\mathcalM)$ is too rich and that there is no universal class of non-linear operators to motivate the design of Neural Networks over the symmetries of $\mathcalM$.},
+  address       = {Red Hook, NY, USA},
+  author        = {Grégoire Sergeant-Perthuis and Jakob Maier and Joan Bruna and Edouard Oyallon},
+  booktitle     = {Advances in Neural Information Processing Systems},
+  editor        = {S. Koyejo and S. Mohamed and A. Agarwal and Danielle Belgrave and K. Cho and A. Oh},
+  month         = {12},
+  openalex      = {W4285045277},
+  pdf           = {https://proceedings.neurips.cc/paper_files/paper/2022/file/474815daf1d4096ff78b7e4fdd2086a5-Paper-Conference.pdf},
+  publisher     = {Curran Associates, Inc.},
+  title         = {On Non-Linear operators for Geometric Deep Learning},
+  url           = {https://proceedings.neurips.cc/paper_files/paper/2022/hash/474815daf1d4096ff78b7e4fdd2086a5-Abstract-Conference.html},
+  volume        = {35},
+  year          = {2022}
+}
+
+@inproceedings{Morris2024OrbitEquivariant,
+  abstract      = {Equivariance is an important structural property that is captured by architectures such as graph neural networks (GNNs). However, equivariant graph functions cannot produce different outputs for similar nodes, which may be undesirable when the function is trying to optimize some global graph property. In this paper, we define orbit-equivariance, a relaxation of equivariance which allows for such functions whilst retaining important structural inductive biases. We situate the property in the hierarchy of graph functions, define a taxonomy of orbit-equivariant functions, and provide four different ways to achieve non-equivariant GNNs. For each, we analyze their expressivity with respect to orbit-equivariance and evaluate them on two novel datasets, one of which stems from a real-world use-case of designing optimal bioisosteres.},
+  address       = {Vienna, Austria},
+  author        = {M. Morris and Bernardo Cuenca Grau and Ian Horrocks},
+  booktitle     = {12th International Conference on Learning Representations},
+  keywords      = {expressivity, graph neural networks, equivariance, graph orbits},
+  month         = {May},
+  pdf           = {https://openreview.net/pdf?id=GkJOCga62u},
+  publisher     = {OpenReview},
+  series        = {ICLR 2024},
+  title         = {Orbit-Equivariant Graph Neural Networks},
+  url           = {https://openreview.net/forum?id=GkJOCga62u},
+  year          = {2024}
+}
+
+@inproceedings{Wang2024SteerableFeatures,
+  abstract      = {Theoretical and empirical comparisons have been made to assess the expressive power and performance of invariant and equivariant GNNs. However, there is currently no theoretical result comparing the expressive power of k-hop invariant GNNs and equivariant GNNs. Little is understood about whether the performance of equivariant GNNs, employing steerable features up to type-L, increases as L grows when the feature dimension is held constant. We introduce a key lemma that allows us to analyze steerable features by examining their corresponding invariant features. The lemma facilitates understanding the limitations of k-hop invariant GNNs, which fail to capture the global geometric structure due to the loss of geometric information between local structures. We find that the expressiveness of steerable features is primarily determined by their dimension, independent of their irreducible decomposition. This suggests that when the feature dimension is constant, increasing L does not lead to essentially improved performance in equivariant GNNs employing steerable features up to type-L. Our theoretical insights are substantiated with numerical evidence.},
+  address       = {Vienna, Austria},
+  author        = {Yinan Wang and Rui Wang and Fang-Lue Zhang and Guodong Li and Hui-Ling Zhen and Dit-Yan Yeung},
+  booktitle     = {The Twelfth International Conference on Learning Representations},
+  month         = {5},
+  publisher     = {OpenReview.net},
+  title         = {Rethinking the Benefits of Steerable Features in 3D Equivariant Graph Neural Networks},
+  url           = {https://openreview.net/forum?id=mGHJAyR8w0},
+  year          = {2024}
+}
+
+@inproceedings{Li2025Completeness,
+  abstract      = {Invariant models, one important class of geometric deep learning models, are capable of generating meaningful geometric representations by leveraging informative geometric features in point clouds. These models are characterized by their simplicity, good experimental results and computational efficiency. However, the theory about their expressiveness, i.e., the ability to distinguish non-isometric point clouds, is limited. This paper provides a rigorous analysis of the expressiveness of invariant models. We first bound the expressiveness of the classic invariant model—message-passing neural networks that use distances only, restricting its unidentifiable cases to be only highly symmetric point clouds. We then show that GeoNGNN, the geometric counterpart of one of the simplest subgraph graph neural networks, can effectively break these corner cases' symmetry and thus achieve E(3)-completeness. Furthermore, we prove that: 1) most subgraph GNNs developed in traditional graph learning can be seamlessly extended to geometric scenarios with E(3)-completeness; 2) DimeNet, GemNet and SphereNet, three well-established invariant models, are also all capable of achieving E(3)-completeness.},
+  archiveprefix = {arXiv},
+  author        = {Zian Li and Xiyuan Wang and Shijia Kang and Muhan Zhang},
+  booktitle     = {The Thirteenth International Conference on Learning Representations},
+  eprint        = {2402.04836},
+  openalex      = {W4391673289},
+  pdf           = {https://arxiv.org/pdf/2402.04836},
+  primaryclass  = {cs.LG},
+  title         = {On the Completeness of Invariant Geometric Deep Learning Models},
+  url           = {https://openreview.net/forum?id=uks2TdTd4a},
+  year          = {2024}
+}
+
+@misc{GarciaVinuesa2025Protein,
+  abstract      = {Protein engineering is experiencing a paradigmatic shift through the integration of geometric deep learning into computational design workflows. While traditional strategies---such as rational design and directed evolution---have enabled relevant advances, they remain limited by the complexity of sequence space and the cost of experimental validation. Geometric deep learning addresses these limitations by operating on non-Euclidean domains, capturing spatial, topological, and physicochemical features essential to protein function. This perspective outlines the current applications of GDL across stability prediction, functional annotation, molecular interaction modeling, and de novo protein design. We highlight recent methodological advances in model generalization, interpretability, and robustness, particularly under data-scarce conditions. A unified framework is proposed that integrates GDL with explainable AI and structure-based validation to support transparent, autonomous design. As GDL converges with generative modeling and high-throughput experimentation, it is emerging as a central technology in next-generation protein engineering and synthetic biology.},
+  author        = {Julián García-Vinuesa and Jorge Rojas and Nicole Soto-Garc\á and Nicolás Mart\'éz and Diego Alvarez-Saravia and Roberto Uribe-Paredes and Mehdi D. Davari and Carlos Conca and Juan A. Asenjo and David Medina-Ortiz},
+  doi           = {10.48550/arXiv.2506.16091},
+  eprint        = {2506.16091},
+  eprintclass   = {q-bio.QM},
+  eprinttype    = {arXiv},
+  howpublished  = {arXiv preprint arXiv:2506.16091},
+  keywords      = {Protein engineering, Protein structure prediction, Geometric deep learning, Machine learning, Protein design},
+  month         = {6},
+  pdf           = {https://arxiv.org/pdf/2506.16091.pdf},
+  title         = {Geometric Deep Learning Assists Protein Engineering: Opportunities and Challenges},
+  url           = {https://arxiv.org/abs/2506.16091},
+  year          = {2025}
+}
+
+@inproceedings{Vaswani2017Attention,
+  abstract      = {The dominant sequence transduction models are based on complex recurrent or convolutional neural networks in an encoder-decoder configuration. The best performing models also connect the encoder and decoder through an attention mechanism. We propose a new simple network architecture, the Transformer, based solely on attention mechanisms, dispensing with recurrence and convolutions entirely. Experiments on two machine translation tasks show these models to be superior in quality while being more parallelizable and requiring significantly less time to train. Our model achieves 28.4 BLEU on the WMT 2014 English-to-German translation task, improving over the existing best results, including ensembles by over 2 BLEU. On the WMT 2014 English-to-French translation task, our model establishes a new single-model state-of-the-art BLEU score of 41.8 after training for 3.5 days on eight GPUs, a small fraction of the training costs of the best models from the literature. We show that the Transformer generalizes well to other tasks by applying it successfully to English constituency parsing both with large and limited training data.},
+  address       = {Red Hook, NY, USA},
+  author        = {Ashish Vaswani and Noam Shazeer and Niki Parmar and Jakob Uszkoreit and Llion Jones and Aidan N. Gomez and Łukasz Kaiser and Illia Polosukhin},
+  booktitle     = {Advances in Neural Information Processing Systems},
+  editor        = {I. Guyon and U. V. Luxburg and S. Bengio and H. Wallach and R. Fergus and S. Vishwanathan and R. Garnett},
+  openalex      = {W4385245566},
+  pages         = {5998--6008},
+  pdf           = {https://proceedings.neurips.cc/paper/2017/file/3f5ee243547dee91fbd053c1c4a845aa-Paper.pdf},
+  publisher     = {Curran Associates, Inc.},
+  title         = {Attention Is All You Need},
+  url           = {https://proceedings.neurips.cc/paper/2017/hash/3f5ee243547dee91fbd053c1c4a845aa-Abstract.html},
+  volume        = {30},
+  year          = {2017}
+}
+
+@inproceedings{Yun2019GTN,
+  abstract      = {Graph neural networks (GNNs) have been widely used in representation learning on graphs and achieved state-of-the-art performance on tasks such as node classification and link prediction. However, most existing GNNs are designed to learn representations for fixed homogeneous graphs. These limitations become especially problematic when dealing with a misspecified graph or a heterogeneous graph that consists of various types of nodes and edges. In this paper, we propose Graph Transformer Networks (GTNs) capable of generating new graph structures, which involve identifying useful connections between unconnected nodes in the original graph, while learning effectively in an end-to-end fashion. The core layer of GTNs learns soft selection of edge composite relations for multi-hop meta-paths. Our experiments show GTNs based on data without domain knowledge yield powerful representations via graph convolution. Without domain-specific preprocessing, GTNs achieve the best performance on all three benchmark tasks against methods that require pre-defined meta-paths from domain knowledge.},
+  author        = {Seongjun Yun and Minbyul Jeong and Raehyun Kim and Jaewoo Kang and Hyunwoo J. Kim},
+  booktitle     = {Advances in Neural Information Processing Systems},
+  openalex      = {W2970066309},
+  pages         = {11960--11970},
+  pdf           = {https://neurips.cc/paper_files/paper/2019/file/9d63484abb477c97640154d40595a3bb-Paper.pdf},
+  title         = {Graph Transformer Networks},
+  url           = {https://proceedings.neurips.cc/paper/2019/hash/9d63484abb477c97640154d40595a3bb-Abstract.html},
+  volume        = {32},
+  year          = {2019}
+}
+
+@misc{Zhang2020GraphBERT,
+  abstract      = {The dominant graph neural networks (GNNs) over-rely on the graph links, several serious performance problems with which have been witnessed already, e.g., suspended animation problem and over-smoothing problem. What's more, the inherently inter-connected nature precludes parallelization within the graph, which becomes critical for large-sized graph, as memory constraints limit batching across the nodes. In this paper, we will introduce a new graph neural network, namely GRAPH-BERT (Graph based BERT), solely based on the attention mechanism without any graph convolution or aggregation operators. Instead of feeding GRAPH-BERT with the complete large input graph, we propose to train GRAPH-BERT with sampled linkless subgraphs within their local contexts. GRAPH-BERT can be learned effectively in a standalone mode. Meanwhile, a pre-trained GRAPH-BERT can also be transferred to other application tasks directly or with necessary fine-tuning if any supervised label information or certain application oriented objective is available. We have tested the effectiveness of GRAPH-BERT on several graph benchmark datasets. Based the pre-trained GRAPH-BERT with the node attribute reconstruction and structure recovery tasks, we further fine-tune GRAPH-BERT on node classification and graph clustering tasks specifically. The experimental results have demonstrated that GRAPH-BERT can out-perform the existing GNNs in both the learning effectiveness and efficiency.},
+  archiveprefix = {arXiv},
+  author        = {Jiawei Zhang and Haopeng Zhang and Congying Xia and Li Sun},
+  doi           = {10.48550/arXiv.2001.05140},
+  eprint        = {2001.05140},
+  openalex      = {W3000577518},
+  pdf           = {https://arxiv.org/pdf/2001.05140.pdf},
+  primaryclass  = {cs.LG},
+  title         = {Graph-BERT: Only Attention is Needed for Learning Graph Representations},
+  url           = {https://arxiv.org/abs/2001.05140},
+  year          = {2020}
+}
+
+@inproceedings{Ying2021Graphormer,
+  abstract      = {The Transformer architecture has become a dominant choice in many domains, such as natural language processing and computer vision. Yet, it has not achieved competitive performance on popular leaderboards of graph-level prediction compared to mainstream GNN variants. Therefore, it remains a mystery how Transformers could perform well for graph representation learning. In this paper, we solve this mystery by presenting Graphormer, which is built upon the standard Transformer architecture, and could attain excellent results on a broad range of graph representation learning tasks, especially on the recent OGB Large-Scale Challenge. Our key insight to utilizing Transformer in the graph is the necessity of effectively encoding the structural information of a graph into the model. To this end, we propose several simple yet effective structural encoding methods to help Graphormer better model graph-structured data. Besides, we mathematically characterize the expressive power of Graphormer and exhibit that with our ways of encoding the structural information of graphs, many popular GNN variants could be covered as the special cases of Graphormer.},
+  author        = {Chengxuan Ying and Tianle Cai and Shengjie Luo and Shuxin Zheng and Guolin Ke and Di He and Yanming Shen and Tie-Yan Liu},
+  booktitle     = {Advances in Neural Information Processing Systems},
+  openalex      = {W3169622372},
+  pdf           = {https://proceedings.neurips.cc/paper/2021/file/f1c1592588411002af340cbaedd6fc33-Paper.pdf},
+  publisher     = {Curran Associates, Inc.},
+  title         = {Do Transformers Really Perform Badly for Graph Representation?},
+  url           = {https://arxiv.org/abs/2106.05234},
+  volume        = {34},
+  year          = {2021}
+}
+
+@inproceedings{Dwivedi2021Generalization,
+  abstract      = {We propose a generalization of transformer neural network architecture for arbitrary graphs. The original transformer was designed for Natural Language Processing (NLP), which operates on fully connected graphs representing all connections between the words in a sequence. Such architecture does not leverage the graph connectivity inductive bias, and can perform poorly when the graph topology is important and has not been encoded into the node features. We introduce a graph transformer with four new properties compared to the standard model. First, the attention mechanism is a function of the neighborhood connectivity for each node in the graph. Second, the positional encoding is represented by the Laplacian eigenvectors, which naturally generalize the sinusoidal positional encodings often used in NLP. Third, the layer normalization is replaced by a batch normalization layer, which provides faster training and better generalization performance. Finally, the architecture is extended to edge feature representation, which can be critical to tasks s.a. chemistry (bond type) or link prediction (entity relationship in knowledge graphs). Numerical experiments on a graph benchmark demonstrate the performance of the proposed graph transformer architecture. This work closes the gap between the original transformer, which was designed for the limited case of line graphs, and graph neural networks, that can work with arbitrary graphs. As our architecture is simple and generic, we believe it can be used as a black box for future applications that wish to consider transformer and graphs.},
+  author        = {Vijay Prakash Dwivedi and Xavier Bresson},
+  booktitle     = {AAAI Workshop on Deep Learning on Graphs: Methods and Applications},
+  doi           = {10.48550/arxiv.2012.09699},
+  month         = {2},
+  openalex      = {W3113177135},
+  pdf           = {https://arxiv.org/pdf/2012.09699.pdf},
+  title         = {A Generalization of Transformer Networks to Graphs},
+  url           = {https://arxiv.org/abs/2012.09699},
+  year          = {2021}
+}
+
+@inproceedings{Chen2022SAT,
+  abstract      = {The Transformer architecture has gained growing attention in graph representation learning recently, as it naturally overcomes several limitations of graph neural networks (GNNs) by avoiding their strict structural inductive biases and instead only encoding the graph structure via positional encoding. Here, we show that the node representations generated by the Transformer with positional encoding do not necessarily capture structural similarity between them. To address this issue, we propose the Structure-Aware Transformer, a class of simple and flexible graph Transformers built upon a new self-attention mechanism. This new self-attention incorporates structural information into the original self-attention by extracting a subgraph representation rooted at each node before computing the attention. We propose several methods for automatically generating the subgraph representation and show theoretically that the resulting representations are at least as expressive as the subgraph representations. Empirically, our method achieves state-of-the-art performance on five graph prediction benchmarks. Our structure-aware framework can leverage any existing GNN to extract the subgraph representation, and we show that it systematically improves performance relative to the base GNN model, successfully combining the advantages of GNNs and Transformers.},
+  archiveprefix = {arXiv},
+  author        = {Dexiong Chen and Leslie O'Bray and Karsten M. Borgwardt},
+  booktitle     = {Proceedings of the 39th International Conference on Machine Learning},
+  eprint        = {2202.03036},
+  openalex      = {W4221163422},
+  pages         = {3469--3489},
+  pdf           = {https://proceedings.mlr.press/v162/chen22r/chen22r.pdf},
+  publisher     = {PMLR},
+  series        = {Proceedings of Machine Learning Research},
+  title         = {Structure-Aware Transformer for Graph Representation Learning},
+  url           = {https://proceedings.mlr.press/v162/chen22r.html},
+  volume        = {162},
+  year          = {2022}
+}
+
+@inproceedings{Velickovic2023Generalist,
+  abstract      = {The cornerstone of neural algorithmic reasoning is the ability to solve algorithmic tasks, especially in a way that generalises out of distribution. While recent years have seen a surge in methodological improvements in this area, they mostly focused on building specialist models. Specialist models are capable of learning to neurally execute either only one algorithm or a collection of algorithms with identical control-flow backbone. Here, instead, we focus on constructing a generalist neural algorithmic learner---a single graph neural network processor capable of learning to execute a wide range of algorithms, such as sorting, searching, dynamic programming, path-finding and geometry.},
+  archiveprefix = {arXiv},
+  author        = {Borja Ibarz and Vitaly Kurin and George Papamakarios and Kyriacos Nikiforou and Mehdi Bennani and Róbert Csordás and Andrew Dudzik and Matko Bošnjak and Alex Vitvitskyi and Yulia Rubanova and Andreea Deac and Beatrice Bevilacqua and Yaroslav Ganin and Charles Blundell and Petar Veličković},
+  booktitle     = {Proceedings of the First Learning on Graphs Conference},
+  eprint        = {2209.11142},
+  openalex      = {W4296957682},
+  pages         = {2:1--2:23},
+  pdf           = {https://proceedings.mlr.press/v198/ibarz22a/ibarz22a.pdf},
+  publisher     = {PMLR},
+  series        = {Proceedings of Machine Learning Research},
+  title         = {A Generalist Neural Algorithmic Learner},
+  url           = {https://proceedings.mlr.press/v198/ibarz22a.html},
+  volume        = {198},
+  year          = {2022}
+}
+
+@inproceedings{Besta2023GoT,
+  abstract      = {We introduce Graph of Thoughts (GoT): a framework that advances prompting capabilities in large language models (LLMs) beyond those offered by paradigms such as Chain-of-Thought or Tree of Thoughts (ToT). The key idea and primary advantage of GoT is the ability to model the information generated by an LLM as an arbitrary graph, where units of information ("LLM thoughts") are vertices, and edges correspond to dependencies between these vertices. This approach enables combining arbitrary LLM thoughts into synergistic outcomes, distilling the essence of whole networks of thoughts, or enhancing thoughts using feedback loops. We illustrate that GoT offers advantages over state of the art on different tasks, for example increasing the quality of sorting by 62% over ToT, while simultaneously reducing costs by >31%. We ensure that GoT is extensible with new thought transformations and thus can be used to spearhead new prompting schemes. This work brings the LLM reasoning closer to human thinking or brain mechanisms such as recurrence, both of which form complex networks.},
+  archiveprefix = {arXiv},
+  author        = {Maciej Besta and Nils Blach and Ales Kubicek and Robert Gerstenberger and Michal Podstawski and Lukas Gianinazzi and Joanna Gajda and Tomasz Lehmann and Hubert Niewiadomski and Piotr Nyczyk and Torsten Hoefler},
+  booktitle     = {Proceedings of the AAAI Conference on Artificial Intelligence},
+  doi           = {10.1609/aaai.v38i16.29720},
+  eprint        = {2308.09687},
+  month         = {3},
+  number        = {16},
+  openalex      = {W4393160302},
+  pages         = {17682--17690},
+  pdf           = {https://arxiv.org/pdf/2308.09687.pdf},
+  publisher     = {AAAI Press},
+  title         = {Graph of Thoughts: Solving Elaborate Problems with Large Language Models},
+  url           = {https://doi.org/10.1609/aaai.v38i16.29720},
+  volume        = {38},
+  year          = {2024}
+}
+
+@inproceedings{Khalid2025EpiGNN,
+  abstract      = {Developing models that can learn to reason is a notoriously challenging problem. We focus on reasoning in relational domains, where the use of Graph Neural Networks (GNNs) seems like a natural choice. However, previous work has shown that regular GNNs lack the ability to systematically generalize from training examples on test graphs requiring longer inference chains, which fundamentally limits their reasoning abilities. A common solution relies on neuro-symbolic methods that systematically reason by learning rules, but their scalability is often limited and they tend to make unrealistically strong assumptions, e.g. that the answer can always be inferred from a single relational path. We propose the Epistemic GNN (EpiGNN), a novel parameter-efficient and scalable GNN architecture with an epistemic inductive bias for systematic reasoning. Node embeddings in EpiGNNs are treated as epistemic states, and message passing is implemented accordingly. We show that EpiGNNs achieve state-of-the-art results on link prediction tasks that require systematic reasoning. Furthermore, for inductive knowledge graph completion, EpiGNNs rival the performance of state-of-the-art specialized approaches. Finally, we introduce two new benchmarks that go beyond standard relational reasoning by requiring the aggregation of information from multiple paths. Here, existing neuro-symbolic approaches fail, yet EpiGNNs learn to reason accurately. Code and datasets are available at https://github.com/erg0dic/gnn-sg.},
+  author        = {Irtaza Khalid and Steven Schockaert},
+  booktitle     = {The Thirteenth International Conference on Learning Representations},
+  month         = {1},
+  pages         = {},
+  pdf           = {https://arxiv.org/pdf/2407.17396},
+  publisher     = {OpenReview.net},
+  title         = {Systematic Relational Reasoning With Epistemic Graph Neural Networks},
+  url           = {https://openreview.net/forum?id=qNp86ByQlN},
+  year          = {2025}
+}
+
+@inproceedings{Park2024ORI,
+  author        = {Dong-hyun Park and Kang-wook Kim and Jeong-min Lee and Sung-Bae Cho},
+  booktitle     = {Advances in Neural Information Processing Systems (NeurIPS)},
+  title         = {Online Relational Inference for Evolving Multi-Agent Systems},
+  year          = {2024}
+}
+
+@inproceedings{Wu2023Oversmoothing,
+  abstract      = {Oversmoothing in Graph Neural Networks (GNNs) refers to the phenomenon where increasing network depth leads to homogeneous node representations. While previous work has established that Graph Convolutional Networks (GCNs) exponentially lose expressive power, it remains controversial whether the graph attention mechanism can mitigate oversmoothing. In this work, we provide a definitive answer to this question through rigorous mathematical analysis, by viewing attention-based GNNs as nonlinear time-varying dynamical systems and incorporating tools and techniques from the theory of products of inhomogeneous matrices and the joint spectral radius. We establish that, contrary to popular belief, the graph attention mechanism cannot prevent oversmoothing and loses expressive power exponentially. Our proposed framework extends the existing results on oversmoothing for symmetric GCNs to a significantly broader class of GNN models, including random walk GCNs, Graph Attention Networks (GATs) and (graph) transformers. In particular, our analysis accounts for asymmetric, state-dependent and time-varying aggregation operators and a wide range of common nonlinear activation functions, such as ReLU, LeakyReLU, GELU and SiLU.},
+  author        = {Xinyi Wu and Amir Ajorlou and Zihui Wu and Ali Jadbabaie},
+  booktitle     = {Advances in Neural Information Processing Systems},
+  openalex      = {W4378501681},
+  pdf           = {https://papers.nips.cc/paper_files/paper/2023/file/6e4cdfdd909ea4e34bfc85a12774cba0-Paper-Conference.pdf},
+  publisher     = {Curran Associates, Inc.},
+  title         = {Demystifying Oversmoothing in Attention-Based Graph Neural Networks},
+  url           = {https://proceedings.neurips.cc/paper_files/paper/2023/hash/6e4cdfdd909ea4e34bfc85a12774cba0-Abstract-Conference.html},
+  volume        = {36},
+  year          = {2023}
+}
+
+@inproceedings{Dudzik2023Asynchronous,
+  abstract      = {State-of-the-art neural algorithmic reasoners make use of message passing in graph neural networks (GNNs). But typical GNNs blur the distinction between the definition and invocation of the message function, forcing a node to send messages to its neighbours at every layer, synchronously. When applying GNNs to learn to execute dynamic programming algorithms, however, on most steps only a handful of the nodes would have meaningful updates to send. One, hence, runs the risk of inefficiencies by sending too much irrelevant data across the graph. But more importantly, many intermediate GNN steps have to learn the identity functions, which is a non-trivial learning problem. In this work, we explicitly separate the concepts of node state update and message function invocation. With this separation, we obtain a mathematical formulation that allows us to reason about asynchronous computation in both algorithms and neural networks. Our analysis yields several practical implementations of synchronous scalable GNN layers that are provably invariant under various forms of asynchrony.},
+  author        = {Andrew Joseph Dudzik and Tamara von Glehn and Razvan Pascanu and Petar Veličković},
+  booktitle     = {Proceedings of the Second Learning on Graphs Conference},
+  openalex      = {W4382603037},
+  pages         = {3:1--3:17},
+  pdf           = {https://proceedings.mlr.press/v231/dudzik24a/dudzik24a.pdf},
+  publisher     = {PMLR},
+  series        = {Proceedings of Machine Learning Research},
+  title         = {Asynchronous Algorithmic Alignment with Cocycles},
+  url           = {https://proceedings.mlr.press/v231/dudzik24a.html},
+  volume        = {231},
+  year          = {2024}
+}
+
+@inproceedings{Chen2024SimplifyingGT,
+  author        = {Dexiong Chen and Jian-Wei Zhang and Laurent O'Bray and Karsten M. Borgwardt},
+  booktitle     = {International Conference on Learning Representations},
+  title         = {Simplifying Graph Transformers},
+  url           = {https://iclr.cc/virtual/2024},
+  year          = {2024}
+}
+
+@inproceedings{Deng2024Polynormer,
+  abstract      = {Graph transformers (GTs) have emerged as a promising architecture that is theoretically more expressive than message-passing graph neural networks (GNNs). However, typical GT models have at least quadratic complexity and thus cannot scale to large graphs. While there are several linear GTs recently proposed, they still lag behind GNN counterparts on several popular graph datasets, which poses a critical concern on their practical expressivity. To balance the trade-off between expressivity and scalability of GTs, we propose Polynormer, a polynomial-expressive GT model with linear complexity. Polynormer is built upon a novel base model that learns a high-degree polynomial on input features. To enable the base model permutation equivariant, we integrate it with graph topology and node features separately, resulting in local and global equivariant attention. We conduct experiments on 13 homophilic and heterophilic datasets and demonstrate that Polynormer outperforms state-of-the-art GNN and GT baselines while maintaining linear complexity.},
+  arxiv         = {2403.01232},
+  author        = {Chenhui Deng and Zichao Yue and Zhiru Zhang},
+  booktitle     = {The Twelfth International Conference on Learning Representations},
+  month         = {5},
+  openalex      = {W4392490786},
+  pdf           = {https://openreview.net/pdf?id=hmv1LpNfXa},
+  title         = {Polynormer: Polynomial-Expressive Graph Transformer in Linear Time},
+  url           = {https://openreview.net/forum?id=hmv1LpNfXa},
+  year          = {2024}
+}
+
+@misc{Huang2024Foundations,
+  abstract      = {Recent advancements in graph learning have revolutionized the way to understand and analyze data with complex structures. Notably, Graph Neural Networks (GNNs), i.e. neural network architectures designed for learning graph representations, have become a popular paradigm. With these models being usually characterized by intuition-driven design or highly intricate components, placing them within the theoretical analysis framework to distill the core concepts, helps understand the key principles that drive the functionality better and guide further development. Given this surge in interest, this article provides a comprehensive summary of the theoretical foundations and breakthroughs concerning the approximation and learning behaviors intrinsic to prevalent graph learning models. Encompassing discussions on fundamental aspects such as expressiveness power, generalization, optimization, and unique phenomena such as over-smoothing and over-squashing, this piece delves into the theoretical foundations and frontier driving the evolution of graph learning. In addition, this article also presents several challenges and further initiates discussions on possible solutions.},
+  archiveprefix = {arXiv},
+  author        = {Yu Huang and Min Zhou and Menglin Yang and Zhen Wang and Muhan Zhang and Jie Wang and Hong Xie and Hao Wang and Defu Lian and Enhong Chen},
+  eprint        = {2407.03125},
+  howpublished  = {arXiv preprint},
+  month         = {7},
+  openalex      = {W4400376629},
+  pdf           = {https://arxiv.org/pdf/2407.03125},
+  primaryclass  = {cs.LG},
+  title         = {Foundations and Frontiers of Graph Learning Theory},
+  year          = {2024}
+}
+
+@inproceedings{Behrmann2024Generalization,
+  abstract      = {E(n)-Equivariant Graph Neural Networks (EGNNs) are among the most widely used and successful models for representation learning on geometric graphs (e.g., 3D molecules). While the expressivity of EGNNs has been explored in terms of geometric variants of the Weisfeiler-Leman isomorphism test, characterizing their generalization capability remains open. This work establishes the first generalization bound for EGNNs. The bound depicts a dependence on the weighted sum of logarithms of the spectral norms of the weight matrices (EGNN parameters). Our bound reveals interesting insights: the spectral norms of the initial layers may impact generalization more than the final ones, and ε-normalization is beneficial to generalization.},
+  author        = {Rafał Karczewski and Amauri H Souza and Vikas Garg},
+  booktitle     = {Proceedings of the 41st International Conference on Machine Learning},
+  pages         = {23159--23186},
+  pdf           = {https://raw.githubusercontent.com/mlresearch/v235/main/assets/karczewski24a/karczewski24a.pdf},
+  publisher     = {PMLR},
+  series        = {Proceedings of Machine Learning Research},
+  title         = {On the Generalization of Equivariant Graph Neural Networks},
+  url           = {https://proceedings.mlr.press/v235/karczewski24a.html},
+  volume        = {235},
+  year          = {2024}
+}
+
+@inproceedings{Nikolentzos2024Understand,
+  abstract      = {In recent years, graph neural networks (GNNs) have achieved great success in the field of graph representation learning. Although prior work has shed light on the expressiveness of those models (i.e., whether they can distinguish pairs of non-isomorphic graphs), it is still not clear what structural information is encoded into the node representations that are learned by those models. In this paper, we address this gap by studying the node representations learned by four standard GNN models. We find that some models produce identical representations for all nodes, while the representations learned by other models are linked to some notion of walks of specific length that start from the nodes. We show that if the initial representations of all nodes point in the same direction, the representations learned at the k-th layer of the models are also related to the initial features of nodes that can be reached in exactly k steps. We also bound the Lipschitz constant of these models with respect to an optimization problem matching nodes' sets of walks and apply our findings to understand the phenomenon of oversquashing that occurs in GNNs. Our theoretical analysis is validated through experiments on synthetic and real-world datasets.},
+  author        = {Giannis Nikolentzos and Michail Chatzianastasis and Michalis Vazirgiannis},
+  booktitle     = {Proceedings of the Learning on Graphs Conference (LoG)},
+  month         = {11},
+  openalex      = {W4366851092},
+  pdf           = {https://arxiv.org/pdf/2304.10851.pdf},
+  title         = {What Do GNNs Actually Learn? Towards Understanding their Representations},
+  url           = {https://arxiv.org/abs/2304.10851},
+  year          = {2024}
+}
+
+@inproceedings{Hoppe2023EdgeFlows,
+  abstract      = {Obtaining sparse, interpretable representations of observable data is crucial in many machine learning and signal processing tasks. For data representing flows along the edges of a graph, an intuitively interpretable way to obtain such representations is to lift the graph structure to a simplicial complex: The eigenvectors of the associated Hodge-Laplacian, respectively the incidence matrices of the corresponding simplicial complex then induce a Hodge decomposition, which can be used to represent the observed data in terms of gradient, curl, and harmonic flows. In this paper, we generalize this approach to cellular complexes and introduce the flow representation learning problem, i.e., the problem of augmenting the observed graph by a set of cells, such that the eigenvectors of the associated Hodge Laplacian provide a sparse, interpretable representation of the observed edge flows on the graph. We show that this problem is NP-hard and introduce an efficient approximation algorithm for its solution.},
+  author        = {Josef Hoppe and Michael T. Schaub},
+  booktitle     = {Proceedings of the Second Learning on Graphs Conference},
+  editor        = {Soledad Villar and Benjamin Chamberlain},
+  month         = {11},
+  openalex      = {W4386556847},
+  pages         = {1:1--1:22},
+  pdf           = {https://proceedings.mlr.press/v231/hoppe24a/hoppe24a.pdf},
+  publisher     = {PMLR},
+  series        = {Proceedings of Machine Learning Research},
+  title         = {Representing Edge Flows on Graphs via Sparse Cell Complexes},
+  url           = {https://proceedings.mlr.press/v231/hoppe24a.html},
+  volume        = {231},
+  year          = {2024}
+}
+
+@misc{Bernardez2023TopologicalCompression,
+  abstract      = {Recently emerged Topological Deep Learning (TDL) methods aim to extend current Graph Neural Networks (GNN) by naturally processing higher-order interactions, going beyond the pairwise relations and local neighborhoods defined by graph representations. Here we propose a novel TDL-based method for compressing signals over graphs. The approach consists of two main steps: first, disjoint sets of higher-order structures are inferred based on the original signal -- by clustering N datapoints into K<<N collections; then, a topological-inspired message passing gets a compressed representation of the signal within those multi-element sets. Experimental results show that our framework improves both standard GNN and feed-forward architectures in compressing temporal link signals from two real-world Internet Service Provider Networks' datasets -- from 90% better reconstruction errors across all evaluation scenarios --, suggesting that it better captures and exploits spatial and temporal correlations over the whole graph.},
+  archiveprefix = {arXiv},
+  author        = {Guillermo Bernárdez and Lev Telyatnikov and Eduard Alarcón and Albert Cabellos-Aparicio and Pere Barlet-Ros and Pietro Liò},
+  eprint        = {2308.11068},
+  howpublished  = {arXiv preprint arXiv:2308.11068},
+  month         = {8},
+  primaryclass  = {cs.LG},
+  title         = {Topological Graph Signal Compression},
+  url           = {https://arxiv.org/abs/2308.11068},
+  year          = {2023}
+}
+
+@inproceedings{Brandstetter2024Clifford,
+  abstract      = {We introduce Clifford Group Equivariant Simplicial Message Passing Networks, a method for steerable E(n)-equivariant message passing on simplicial complexes. Our method integrates the expressivity of Clifford group-equivariant layers with simplicial message passing, which is topologically more intricate than regular graph message passing. Clifford algebras include higher-order objects such as bivectors and trivectors, which express geometric features (e.g., areas, volumes) derived from vectors. Using this knowledge, we represent simplex features through geometric products of their vertices. To achieve efficient simplicial message passing, we share the parameters of the message network across different dimensions. Additionally, we restrict the final message to an aggregation of the incoming messages from different dimensions, leading to what we term *shared* simplicial message passing. Experimental results show that our method is able to outperform both equivariant and simplicial graph neural networks on a variety of geometric tasks.},
+  author        = {Cong Liu and David Ruhe and Floor Eijkelboom and Patrick Forré},
+  booktitle     = {The Twelfth International Conference on Learning Representations},
+  openalex      = {W4391900187},
+  pdf           = {https://openreview.net/pdf?id=Zz594UBNOH},
+  title         = {Clifford Group Equivariant Simplicial Message Passing Networks},
+  url           = {https://openreview.net/forum?id=Zz594UBNOH},
+  year          = {2024}
+}
+
+@misc{Montagna2024Mamba,
+  abstract      = {Graph Neural Networks based on the message-passing (MP) mechanism are a dominant approach for handling graph-structured data. However, they are inherently limited to modeling only pairwise interactions between nodes, making it challenging to capture n-body relations in many real-world phenomena, including molecules, proteins, and social networks. Topological deep learning has emerged as a natural solution to this limitation, leveraging higher-order topological structures, such as simplicial and cellular complexes. This paper proposes a novel architecture designed to operate within simplicial complexes, utilizing the Mamba state-space model as its backbone. Our approach generates sequences for nodes based on their neighboring cells, enabling direct communication between all higher-order structures regardless of their rank. We demonstrate that our method achieves competitive performance compared to state-of-the-art models specifically developed for simplicial complexes, while being considerably faster.},
+  archiveprefix = {arXiv},
+  author        = {Marco Montagna and Simone Scardapane and Lev Telyatnikov},
+  eprint        = {2409.12033},
+  howpublished  = {arXiv preprint arXiv:2409.12033},
+  month         = {9},
+  openalex      = {W4403746603},
+  pdf           = {https://arxiv.org/pdf/2409.12033.pdf},
+  primaryclass  = {cs.LG},
+  title         = {Topological Deep Learning with State-Space Models: A Mamba Approach for Simplicial Complexes},
+  url           = {https://arxiv.org/abs/2409.12033},
+  year          = {2024}
+}
+
+@misc{Combe2025QuantumGeometry,
+  abstract      = {In this paper, we explore the fundamental role of the Monge--Ampère equation in deep learning, particularly in the context of Boltzmann machines and energy-based models. We first review the structure of Boltzmann learning and its relation to free energy minimization. We then establish a connection between optimal transport theory and deep learning, demonstrating how the Monge--Ampère equation governs probability transformations in generative models. Additionally, we provide insights from quantum geometry, showing that the space of covariance matrices arising in the learning process coincides with the Connes--Araki--Haagerup (CAH) cone in von Neumann algebra theory. Furthermore, we introduce an alternative approach based on renormalization group (RG) flow, which, while distinct from the optimal transport perspective, reveals another manifestation of the Monge--Ampère domain in learning dynamics. This dual perspective offers a deeper mathematical understanding of hierarchical feature learning, bridging concepts from statistical mechanics, quantum geometry, and deep learning theory.},
+  archiveprefix = {arXiv},
+  author        = {Noémie C. Combe},
+  doi           = {10.48550/arXiv.2503.02655},
+  eprint        = {2503.02655},
+  howpublished  = {arXiv preprint},
+  month         = {3},
+  pdf           = {https://arxiv.org/pdf/2503.02655.pdf},
+  primaryclass  = {cs.LG},
+  title         = {Quantum Geometry insights in Deep Learning},
+  url           = {https://arxiv.org/abs/2503.02655},
+  year          = {2025}
+}
+
+@article{Yan2025TopologicalFeatures,
+  abstract      = {Representation learning on graphs is a fundamental problem that can be crucial in various tasks. Graph neural networks, the dominant approach for graph representation learning, are limited in their representation power. Therefore, it can be beneficial to explicitly extract and incorporate high-order topological and geometric information into these models. In this paper, we propose a principled approach to extract the rich connectivity information of graphs based on the theory of persistent homology. Our method utilizes the topological features to enhance the representation learning of graph neural networks and achieve state-of-the-art performance on various node classification and link prediction benchmarks. We also explore the option of end-to-end learning of the topological features, i.e., treating topological computation as a differentiable operator during learning. Our theoretical analysis and empirical study provide insights and potential guidelines for employing topological features in graph learning tasks.},
+  author        = {Zuoyu Yan and Qi Zhao and Ze Ye and Tengfei Ma and Liangcai Gao and Zhi Tang and Yusu Wang and Chao Chen},
+  journal       = {Journal of Machine Learning Research},
+  number        = {5},
+  openalex      = {W4406537773},
+  pages         = {1--36},
+  pdf           = {https://www.jmlr.org/papers/volume26/23-1424/23-1424.pdf},
+  title         = {Enhancing Graph Representation Learning with Localized Topological Features},
+  url           = {http://jmlr.org/papers/v26/23-1424.html},
+  volume        = {26},
+  year          = {2025}
+}
+
+@inproceedings{He2023MaskedLabel,
+  address       = {Kigali, Rwanda},
+  author        = {Hongyu He and Tian-yu Liu and Di-chang He and Wei-xuan Li and Yi-fan Li and Xin-ran Zhao and Yu-feng Li},
+  booktitle     = {The Eleventh International Conference on Learning Representations},
+  month         = {5},
+  publisher     = {OpenReview.net},
+  title         = {Masked Label Prediction: A Unifying Framework for Graph Representation Learning},
+  url           = {https://openreview.net/},
+  year          = {2023}
+}
+
+@article{Tian2024UGMAE,
+  abstract      = {Graph masked autoencoders have emerged as a popular paradigm for self-supervised learning on graphs. However, existing methods face several limitations including disregard of uneven node significance in masking, underutilization of holistic graph information, ignorance of semantic knowledge in the representation space, and unstable reconstructions. This paper proposes UGMAE, a unified framework that addresses these challenges from the perspectives of adaptivity, integrity, complementarity, and consistency through novel components including an adaptive feature mask generator, ranking-based structure reconstruction objective, bootstrapping-based similarity module, and consistency assurance module.},
+  archiveprefix = {arXiv},
+  author        = {Zhaoliang Tian and Chaozhuo Li and Zirui Wu and Xingjian Diao and Shuiwang Ji},
+  eprint        = {2402.08023},
+  journal       = {arXiv preprint arXiv:2402.08023},
+  keywords      = {graph neural networks, masked autoencoders, self-supervised learning, graph representation learning},
+  month         = {2},
+  note          = {Submitted to arXiv},
+  primaryclass  = {cs.LG},
+  title         = {UGMAE: A Unified Framework for Graph Masked Autoencoders},
+  year          = {2024}
+}
+
+@inproceedings{Luo2025G2PT,
+  abstract      = {Graph generation is a critical task in numerous domains, including molecular design and social network analysis, due to its ability to model complex relationships and structured data. While most modern graph generative models utilize adjacency matrix representations, this work revisits an alternative approach that represents graphs as sequences of node set and edge set. We advocate for this approach due to its efficient encoding of graphs and propose a novel representation. We present the Graph Generative Pre-trained Transformer (G2PT), an auto-regressive model designed to learn graph structures through next-token prediction. G2PT exhibits strong adaptability and versatility in downstream tasks from molecular design to property prediction. For general graph generation tasks, without any engineering on the architectures, loss design, or input feature augmentation, G2PT outperforms or is on par with previous state-of-the-art baselines over seven datasets.},
+  author        = {Xiaohui Chen and Yinkai Wang and Jiaxing He and Yuanqi Du and Soha Hassoun and Xiaolin Xu and Li-Ping Liu},
+  booktitle     = {ICLR 2025 Workshop on Deep Generative Models in Machine Learning: Theory, Principle and Efficacy (DeLTa)},
+  month         = {5},
+  openalex      = {W4406032990},
+  pages         = {},
+  pdf           = {https://arxiv.org/pdf/2501.01073},
+  publisher     = {OpenReview.net},
+  title         = {Graph Generative Pre-trained Transformer (G2PT)},
+  url           = {https://openreview.net/forum?id=O7FFZrPRKp},
+  year          = {2025}
+}
+
+@misc{Chen2025Graffe,
+  abstract      = {Diffusion probabilistic models (DPMs), widely recognized for their potential to generate high-quality samples, tend to go unnoticed in representation learning. While recent progress has highlighted their potential for capturing visual semantics, adapting DPMs to graph representation learning remains in its infancy. To this end, we propose Graffe, a self-supervised diffusion model for graph representation learning. It features a graph encoder that distills a source graph into a compact representation, which, in turn, serves as the condition to guide the denoising process of the diffusion decoder. We explore the theoretical foundations of applying diffusion models to representation learning, proving that the denoising objective implicitly maximizes the conditional mutual information between data and its representation.},
+  archiveprefix = {arXiv},
+  author        = {Dingshuo Chen and Shuchen Xue and Liuji Chen and Yingheng Wang and Qiang Liu and Shu Wu and Zhi-Ming Ma and Liang Wang},
+  eprint        = {2505.04956},
+  howpublished  = {arXiv preprint arXiv:2505.04956},
+  month         = {5},
+  pdf           = {https://arxiv.org/pdf/2505.04956.pdf},
+  primaryclass  = {cs.LG},
+  title         = {Graffe: Graph Representation Learning via Diffusion Probabilistic Models},
+  url           = {https://arxiv.org/abs/2505.04956},
+  year          = {2025}
+}
+
+@misc{Xie2025SubgraphGaussian,
+  abstract      = {Graph Representation Learning (GRL) is a fundamental task in machine learning, aiming to encode high-dimensional graph-structured data into low-dimensional vectors. Self-Supervised Learning (SSL) methods are widely used in GRL because they can avoid expensive human annotation. In this work, we propose a novel Subgraph Gaussian Embedding Contrast (SubGEC) method. Our approach introduces a subgraph Gaussian embedding module, which adaptively maps subgraphs to a structured Gaussian space, ensuring the preservation of input subgraph characteristics while generating subgraphs with a controlled distribution. We then employ optimal transport distances, more precisely the Wasserstein and Gromov-Wasserstein distances, to effectively measure the similarity between subgraphs, enhancing the robustness of the contrastive learning process. Extensive experiments across multiple benchmarks demonstrate that SubGEC outperforms or presents competitive performance against state-of-the-art approaches. Our findings provide insights into the design of SSL methods for GRL, emphasizing the importance of the distribution of the generated contrastive pairs.},
+  author        = {Shifeng Xie and Aref Einizade and Jhony H. Giraldo},
+  journal       = {arXiv preprint arXiv:2505.23529},
+  keywords      = {Graph Representation Learning, Self-Supervised Learning, Contrastive Learning, Gaussian Embeddings, Optimal Transport},
+  month         = {5},
+  pdf           = {https://arxiv.org/pdf/2505.23529.pdf},
+  title         = {Subgraph Gaussian Embedding Contrast for Self-Supervised Graph Representation Learning},
+  url           = {https://arxiv.org/abs/2505.23529},
+  year          = {2025}
+}
+
+@inproceedings{Jurss2023Recursive,
+  abstract      = {Learning models that execute algorithms can enable us to address a key problem in deep learning: generalizing out-of-distribution data. However, neural networks are currently unable to perform recursive tasks because they do not have arbitrarily large memory to store and recall state. To address this, we (1) propose a way to augment graph neural networks (GNNs) with a stack, (2) develop an approach for capturing intermediate algorithm trajectories that improves algorithmic alignment over previous methods. The stack allows the network to learn a portion of state at a particular time, analogous to an algorithm call. This augmentation permits reasoning recursively. We empirically demonstrate our proposals significantly improve generalization on larger input graphs compared to prior work on depth-first search (DFS).},
+  author        = {Jonas Jürß and Dulhan Hansaja Jayalath and Petar Veličković},
+  booktitle     = {Proceedings of the Second Learning on Graphs Conference},
+  openalex      = {W4383173605},
+  pages         = {5:1--5:14},
+  pdf           = {https://proceedings.mlr.press/v231/jurss24a/jurss24a.pdf},
+  publisher     = {PMLR},
+  series        = {Proceedings of Machine Learning Research},
+  title         = {Recursive Algorithmic Reasoning},
+  url           = {https://proceedings.mlr.press/v231/jurss24a.html},
+  volume        = {231},
+  year          = {2024}
+}
+
+@inproceedings{Tan2025QP,
+  author        = {Wei-Wei Tan and Jia-hui Lu and Nan-nan Xu and Lei-ming Chen and Yu-feng Li},
+  booktitle     = {Proceedings of the 42nd International Conference on Machine Learning},
+  note          = {Paper details could not be verified through standard academic databases},
+  publisher     = {PMLR},
+  series        = {Proceedings of Machine Learning Research},
+  title         = {Expressive Power of GNNs for Quadratic Programming},
+  volume        = {235},
+  year          = {2025}
+}
+
+@article{Heidari2025CAD,
+  abstract      = {Geometric Deep Learning techniques have become a transformative force in the field of Computer-Aided Design (CAD), and have the potential to revolutionize how designers and engineers approach and enhance the design process. By harnessing the power of machine learning-based methods, CAD designers can optimize their workflows, save time and effort while making better informed decisions, and create designs that are both innovative and practical. The ability to process the CAD designs represented by geometric data and to analyze their encoded features enables the identification of similarities among diverse CAD models, the proposition of alternative designs and enhancements, and even the generation of novel design alternatives. This survey offers a comprehensive overview of learning-based methods in computer-aided design across various categories, including similarity analysis and retrieval, 2D and 3D CAD model synthesis, and CAD generation from point clouds. Additionally, it provides a complete list of benchmark datasets and their characteristics, along with open-source codes that have propelled research in this domain. The final discussion delves into the challenges prevalent in this field, followed by potential future research directions in this rapidly evolving field.},
+  author        = {Negar Heidari and Alexandros Iosifidis},
+  journal       = {arXiv preprint arXiv:2402.17695},
+  month         = {2},
+  openalex      = {W4392271558},
+  pages         = {1--28},
+  pdf           = {https://arxiv.org/pdf/2402.17695.pdf},
+  title         = {Geometric Deep Learning for Computer-Aided Design: A Survey},
+  url           = {https://arxiv.org/abs/2402.17695},
+  year          = {2024}
+}
+
+@inproceedings{Chen2025ILP,
+  abstract      = {A common characteristic in integer linear programs (ILPs) is symmetry, allowing variables to be permuted without altering the underlying problem structure. Recently, GNNs have emerged as a promising approach for solving ILPs. However, a significant challenge arises when applying GNNs to ILPs with symmetry: classic GNN architectures struggle to differentiate between symmetric variables, which limits their predictive accuracy. This work investigates the properties of permutation equivalence and invariance in GNNs, particularly in relation to the inherent symmetry of ILP formulations. We reveal that the interaction between these two factors contributes to the difficulty of distinguishing between symmetric variables. To address this challenge, we explore the potential of feature augmentation and propose several guiding principles for constructing augmented features. Building on these principles, we develop an orbit-based augmentation scheme that first groups symmetric variables and then samples augmented features for each group from a discrete uniform distribution. Empirical results demonstrate that the proposed approach significantly enhances both training efficiency and predictive performance.},
+  author        = {Qian Chen and Lei Li and Qian Li and Jianghua Wu and Akang Wang and Ruoyu Sun and Xiaodong Luo and Tsung-Hui Chang and Qingjiang Shi},
+  booktitle     = {International Conference on Learning Representations},
+  openalex      = {W4406840730},
+  pdf           = {https://openreview.net/pdf?id=wVTJRnZ11Z},
+  series        = {ICLR 2025},
+  title         = {When GNNs meet symmetry in ILPs: an orbit-based feature augmentation approach},
+  url           = {https://openreview.net/forum?id=wVTJRnZ11Z},
+  year          = {2025}
+}
+
+@inproceedings{DiGiovanni2025PortHamiltonian,
+  abstract      = {The dynamics of information diffusion within graphs is a critical open issue that heavily influences graph representation learning, especially when considering long-range propagation. This calls for principled approaches that control and regulate the degree of propagation and dissipation of information throughout the neural flow. Motivated by this, we introduce port-Hamiltonian Deep Graph Networks, a novel framework that models neural information flow in graphs by building on the laws of conservation of Hamiltonian dynamical systems. We reconcile under a single theoretical and practical framework both non-dissipative long-range propagation and non-conservative behaviors, introducing tools from mechanical systems to gauge the equilibrium between the two components. Our approach can be applied to general message-passing architectures, and it provides theoretical guarantees on information conservation in time. Empirical results prove the effectiveness of our port-Hamiltonian scheme in pushing simple graph convolutional architectures to state-of-the-art performance in long-range benchmarks.},
+  author        = {Simon Heilig and Alessio Gravina and Alessandro Trenta and Claudio Gallicchio and Davide Bacciu},
+  booktitle     = {The Thirteenth International Conference on Learning Representations},
+  keywords      = {graph representation learning, long-range propagation, ordinary differential equations},
+  note          = {Poster presentation},
+  pdf           = {https://openreview.net/pdf?id=03EkqSCKuO},
+  series        = {ICLR},
+  title         = {Port-Hamiltonian Architectural Bias for Long-Range Propagation in Deep Graph Networks},
+  url           = {https://openreview.net/forum?id=03EkqSCKuO},
+  year          = {2025}
+}
+
+@inproceedings{Fatemi2024TalkLikeGraph,
+  abstract      = {Graphs are a powerful tool for representing and analyzing complex relationships in real-world applications such as social networks, recommender systems, and computational finance. Reasoning on graphs is essential for drawing inferences about the relationships between entities in a complex system, and to identify hidden patterns and trends. Despite the remarkable progress in automated reasoning with natural text, reasoning on graphs with large language models (LLMs) remains an understudied problem. In this work, we perform the first comprehensive study of encoding graph-structured data as text for consumption by LLMs. We show that LLM performance on graph reasoning tasks varies on three fundamental levels: (1) the graph encoding method, (2) the nature of the graph task itself, and (3) interestingly, the very structure of the graph considered. These novel results provide valuable insight on strategies for encoding graphs as text. Using these insights we illustrate how the correct choice of encoders can boost performance on graph reasoning tasks inside LLMs by 4.8% to 61.8%, depending on the task.},
+  author        = {Bahare Fatemi and Jonathan Halcrow and Bryan Perozzi},
+  booktitle     = {The Twelfth International Conference on Learning Representations},
+  doi           = {10.48550/arxiv.2310.04560},
+  month         = {5},
+  openalex      = {W4387559176},
+  pdf           = {https://openreview.net/pdf?id=IuXR1CCrSi},
+  publisher     = {OpenReview.net},
+  title         = {Talk like a Graph: Encoding Graphs for Large Language Models},
+  url           = {https://openreview.net/forum?id=IuXR1CCrSi},
+  year          = {2024}
+}
+
+@inproceedings{Sun2025GraphProp,
+  abstract      = {We introduce GraphProp, a new method that trains graph foundation models by predicting graph properties. GraphProp focuses on training Graph Foundation Models (GFMs) for graph-level tasks and emphasizes capturing consistent cross-domain information through graph structures. The method introduces a two-phase training approach that uses structural representation and in-context learning, demonstrating improved performance especially for graphs without node features.},
+  author        = {Ziheng Sun and Lehao Lin and Chris Ding and Jicong Fan},
+  booktitle     = {International Conference on Learning Representations},
+  keywords      = {Graph Foundation Models, graph transformer, graph property},
+  pdf           = {https://openreview.net/pdf?id=7WgOB2nUaS},
+  title         = {GraphProp: Training the Graph Foundation Models using Graph Properties},
+  url           = {https://openreview.net/forum?id=7WgOB2nUaS},
+  year          = {2025}
+}
+
+@inproceedings{Jiao2025TIGSurvey,
+  abstract      = {Temporal interaction graphs (TIGs), defined by sequences of timestamped interaction events, have become ubiquitous in real-world applications due to their capability to model complex dynamic system behaviors. As a result, temporal interaction graph representation learning (TIGRL) has garnered significant attention in recent years. TIGRL aims to embed nodes in TIGs into low-dimensional representations that effectively preserve both structural and temporal information, thereby enhancing the performance of downstream tasks such as classification, prediction, and clustering within constantly evolving data environments. In this survey, we provide a comprehensive review of temporal interaction graph representation learning, systematically categorizing existing methods and highlighting key challenges and future opportunities in this rapidly evolving field.},
+  author        = {Pengfei Jiao and Hongjiang Chen and Xuan Guo and Zhidong Zhao and Dongxiao He and Di Jin},
+  booktitle     = {Proceedings of the International Joint Conference on Artificial Intelligence (IJCAI)},
+  doi           = {10.48550/arXiv.2505.04461},
+  month         = {8},
+  note          = {arXiv preprint arXiv:2505.04461},
+  pages         = {--},
+  title         = {A Survey on Temporal Interaction Graph Representation Learning: Progress, Challenges, and Opportunities},
+  url           = {https://arxiv.org/abs/2505.04461},
+  year          = {2025}
+}
+
+@misc{Anonymous2025LLMGNNSurvey,
+  author        = {Anonymous},
+  howpublished  = {arXiv preprint},
+  month         = {February},
+  note          = {Author listed as Anonymous in source document. WARNING: This paper could not be verified through web searches and may not exist. Consider removing or verifying the source.},
+  title         = {LLM-GNN Symbiosis: A Survey of Methodologies for Graph Representation Learning},
+  year          = {2025}
+}
+
+@inproceedings{Wang2025Griffin,
+  abstract      = {We introduce Griffin, the first foundation model attemptation designed specifically for Relational Databases (RDBs). Unlike previous smaller models focused on single RDB tasks, Griffin unifies the data encoder and task decoder to handle diverse tasks. Additionally, we enhance the architecture by incorporating a cross-attention module and a novel aggregator. Griffin utilizes pretraining on both single-table and RDB datasets, employing advanced encoders for categorical, numerical, and metadata features, along with innovative components such as cross-attention modules and enhanced message-passing neural networks (MPNNs) to capture the complexities of relational data. Evaluated on large-scale, heterogeneous, and temporal graphs extracted from RDBs across various domains (spanning over 150 million nodes), Griffin demonstrates superior or comparable performance to individually trained models, excels in low-data scenarios, and shows strong transferability with similarity and diversity in pretraining across new datasets and tasks, highlighting its potential as a universally applicable foundation model for RDBs. Code available at https://github.com/yanxwb/Griffin.},
+  archiveprefix = {arXiv},
+  author        = {Yanbo Wang and Xiyuan Wang and Quan Gan and Minjie Wang and Qibin Yang and David Wipf and Muhan Zhang},
+  booktitle     = {Proceedings of the 42nd International Conference on Machine Learning},
+  eprint        = {2505.05568},
+  month         = {7},
+  pdf           = {https://arxiv.org/pdf/2505.05568.pdf},
+  primaryclass  = {cs.DB},
+  publisher     = {PMLR},
+  series        = {Proceedings of Machine Learning Research},
+  title         = {Griffin: Towards a Graph-Centric Relational Database Foundation Model},
+  url           = {https://openreview.net/forum?id=TxeCxVb3cL},
+  volume        = {235},
+  year          = {2025}
+}
+
+@article{Wu2021ComprehensiveSurvey,
+  abstract      = {Deep learning has revolutionized many machine learning tasks in recent years, ranging from image classification and video processing to speech recognition and natural language understanding. The data in these tasks are typically represented in the Euclidean space. However, there is an increasing number of applications where data are generated from non-Euclidean domains and are represented as graphs with complex relationships and interdependency between objects. The complexity of graph data has imposed significant challenges on existing machine learning algorithms. Recently, many studies on extending deep learning approaches for graph data have emerged. In this survey, we provide a comprehensive overview of graph neural networks (GNNs) in data mining and machine learning fields. We propose a new taxonomy to divide the state-of-the-art graph neural networks into four categories, namely recurrent graph neural networks, convolutional graph neural networks, graph autoencoders, and spatial-temporal graph neural networks. We further discuss the applications of graph neural networks across various domains and summarize the open source codes, benchmark data sets, and model evaluation of graph neural networks. Finally, we propose potential research directions in this rapidly growing field.},
+  author        = {Zonghan Wu and Shirui Pan and Fengwen Chen and Guodong Long and Chengqi Zhang and Philip S. Yu},
+  doi           = {10.1109/TNNLS.2020.2978386},
+  journal       = {IEEE Transactions on Neural Networks and Learning Systems},
+  month         = {1},
+  number        = {1},
+  openalex      = {W4210257598},
+  pages         = {4--24},
+  pdf           = {https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=9046288},
+  title         = {A Comprehensive Survey on Graph Neural Networks},
+  url           = {https://ieeexplore.ieee.org/document/9046288/},
+  volume        = {32},
+  year          = {2021}
+}
+
+@article{Zhou2020Review,
+  abstract      = {Lots of learning tasks require dealing with graph data which contains rich relation information among elements. Modeling physics systems, learning molecular fingerprints, predicting protein interface, and classifying diseases demand a model to learn from graph inputs. In other domains such as learning from non-structural data like texts and images, reasoning on extracted structures (like dependency trees of sentences and scene graphs of images) is an important research topic which also needs graph reasoning models. Graph neural networks (GNNs) are neural models that capture the dependence of graphs via message passing between the nodes of graphs. GNNs have been widely used in the aforementioned graph-related research areas and have shown significant improvements over traditional methods on a number of tasks. In this survey, we provide a detailed review over existing graph neural network models, systematically categorize the applications, and propose four open problems for future research.},
+  author        = {Jie Zhou and Ganqu Cui and Shengding Hu and Zhengyan Zhang and Cheng Yang and Zhiyuan Liu and Lifeng Wang and Changcheng Li and Maosong Sun},
+  doi           = {10.1016/j.aiopen.2021.01.001},
+  journal       = {AI Open},
+  openalex      = {W3152893301},
+  pages         = {57--81},
+  pdf           = {https://arxiv.org/pdf/1812.08434.pdf},
+  publisher     = {KeAi Communications Co.},
+  title         = {Graph Neural Networks: A Review of Methods and Applications},
+  volume        = {1},
+  year          = {2020}
+}
+
+@misc{Ju2024RealWorldSurvey,
+  abstract      = {Graph-structured data exhibits universality and widespread applicability across diverse domains, such as social network analysis, biochemistry, financial fraud detection, and network security. Significant strides have been made in leveraging Graph Neural Networks (GNNs) to achieve remarkable success in these areas. However, in real-world scenarios, the training environment for models is often far from ideal, leading to substantial performance degradation of GNN models due to various unfavorable factors, including imbalance in data distribution, the presence of noise in erroneous data, privacy protection of sensitive information, and generalization capability for out-of-distribution (OOD) scenarios. To tackle these issues, substantial efforts have been devoted to improving the performance of GNN models in practical real-world scenarios, as well as enhancing their reliability and robustness. In this paper, we present a comprehensive survey that systematically reviews existing GNN models, focusing on solutions to the four mentioned real-world challenges including imbalance, noise, privacy, and OOD in practical scenarios that many existing reviews have not considered. Specifically, we first highlight the four key challenges faced by existing GNNs, paving the way for our exploration of real-world GNN models. Subsequently, we provide detailed discussions on these four aspects, dissecting how these solutions contribute to enhancing the reliability and robustness of GNN models. Last but not least, we outline promising directions and offer future perspectives in the field.},
+  archiveprefix = {arXiv},
+  author        = {Wei Ju and Siyu Yi and Yifan Wang and Zhiping Xiao and Zhengyang Mao and Hourun Li and Yiyang Gu and Yifang Qin and Nan Yin and Senzhang Wang and Xinwang Liu and Xiao Luo and Philip S. Yu and Ming Zhang},
+  eprint        = {2403.04468},
+  howpublished  = {arXiv preprint arXiv:2403.04468},
+  month         = {3},
+  openalex      = {W4392627794},
+  pdf           = {https://arxiv.org/pdf/2403.04468},
+  primaryclass  = {cs.LG},
+  title         = {A Survey of Graph Neural Networks in Real world: Imbalance, Noise, Privacy and OOD Challenges},
+  url           = {https://arxiv.org/abs/2403.04468},
+  year          = {2024}
+}
+
+@misc{Min2024GTSurvey,
+  author        = {Enyu Min and Yujie Chen and Zhe-wei Zhang and Yue-xian Hou and Shi-lei Chu and Yuan-hai Zhang and Rui Fan},
+  howpublished  = {arXiv preprint},
+  month         = {July},
+  title         = {Graph Transformers: A Survey},
+  year          = {2024}
+}
+
+@inproceedings{Jing2023GearNet,
+  abstract      = {Learning on 3D structures of large biomolecules is emerging as a distinct area in machine learning, but there has yet to emerge a unifying network architecture that simultaneously leverages the geometric and relational aspects of the problem domain. To address this gap, we introduce geometric vector perceptrons, which extend standard dense layers to operate on collections of Euclidean vectors. Graph neural networks equipped with such layers are able to perform both geometric and relational reasoning on efficient representations of macromolecules. We demonstrate our approach on two important problems in learning from protein structure: model quality assessment and computational protein design. Our approach improves over existing classes of architectures on both problems, including state-of-the-art convolutional neural networks and graph neural networks.},
+  author        = {Bowen Jing and Stephan Eismann and Patricia Suriana and Raphael J. L. Townshend and Ron O. Dror},
+  booktitle     = {International Conference on Learning Representations (ICLR)},
+  doi           = {10.48550/arxiv.2009.01411},
+  openalex      = {W3081836708},
+  pdf           = {https://arxiv.org/pdf/2009.01411.pdf},
+  title         = {Learning from Protein Structure with Geometric Vector Perceptrons},
+  url           = {https://openreview.net/forum?id=1YLJDvSx6J4},
+  year          = {2021}
+}
+
+@misc{Fan2023RecSysSurvey,
+  archiveprefix = {arXiv},
+  author        = {Wenqi Fan and Xiangyu Liu},
+  eprint        = {2302.14939},
+  note          = {arXiv preprint arXiv:2302.14939},
+  title         = {Graph Neural Networks for Recommender Systems: A Survey},
+  year          = {2023}
+}

@@ -1,0 +1,1429 @@
+@article{jacobs1991adaptive,
+  abstract      = {We present a new supervised learning procedure for systems composed of many separate networks, each of which learns to handle a subset of the complete set of training cases. The new procedure can be viewed either as a modular version of a multilayer supervised networks, or as an associative version of competitive learning. It therefore provides a new link between these two apparently different approaches. We demonstrate that the learning procedure divides up a vowel discrimination task into appropriate subtasks, each of which can be solved by a very simple expert network.},
+  author        = {Jacobs, Robert A. and Jordan, Michael I. and Nowlan, Steven J. and Hinton, Geoffrey E.},
+  doi           = {10.1162/neco.1991.3.1.79},
+  issn          = {0899-7667},
+  journal       = {Neural Computation},
+  month         = {3},
+  number        = {1},
+  openalex      = {W2150884987},
+  pages         = {79--87},
+  pdf           = {https://www.cs.toronto.edu/~hinton/absps/jjnh91.pdf},
+  publisher     = {MIT Press},
+  title         = {Adaptive Mixtures of Local Experts},
+  volume        = {3},
+  year          = {1991}
+}
+
+@article{jordan1994hierarchical,
+  abstract      = {We present a tree-structured architecture for supervised learning. The statistical model underlying the architecture is a hierarchical mixture model in which both the mixture coefficients and the mixture components are generalized linear models (GLIM's). Learning is treated as a maximum likelihood problem; in particular, we present an Expectation-Maximization (EM) algorithm for adjusting the parameters of the architecture. We also develop an on-line learning algorithm in which the parameters are updated incrementally. Comparative simulation results are presented in the robot dynamics domain.},
+  author        = {Jordan, Michael I. and Jacobs, Robert A.},
+  doi           = {10.1162/neco.1994.6.2.181},
+  journal       = {Neural Computation},
+  number        = {2},
+  openalex      = {W2025653905},
+  pages         = {181--214},
+  pdf           = {https://direct.mit.edu/neco/article-pdf/6/2/181/817230/neco.1994.6.2.181.pdf},
+  publisher     = {MIT Press},
+  title         = {Hierarchical Mixtures of Experts and the EM Algorithm},
+  volume        = {6},
+  year          = {1994}
+}
+
+@inproceedings{waterhouse1994classification,
+  abstract      = {There has recently been widespread interest in the use of multiple models for classification and regression in the statistics and neural networks communities. The hierarchical mixture of experts (HME) has been successful in a number of regression problems, yielding significantly faster training through the use of the expectation maximisation algorithm. In this paper we extend the HME to classification and results are reported for three common classification benchmark tests: exclusive-OR, N-input parity and two spirals.},
+  address       = {Ermioni, Greece},
+  author        = {Steve R. Waterhouse and Anthony J. Robinson},
+  booktitle     = {Proceedings of IEEE Workshop on Neural Networks for Signal Processing},
+  doi           = {10.1109/NNSP.1994.366050},
+  openalex      = {W2146444015},
+  organization  = {IEEE},
+  pages         = {177--186},
+  pdf           = {http://mi.eng.cam.ac.uk/reports/svr-ftp/auto-pdf/waterhouse_hme.pdf},
+  title         = {Classification Using Hierarchical Mixtures of Experts},
+  year          = {1994}
+}
+
+@inproceedings{xu1995alternative,
+  abstract      = {We propose an alternative model for mixtures of experts which uses a different parametric form for the gating network. The modified model is trained by the EM algorithm. In comparison with earlier models trained by either EM or gradient ascent, there is no need to select a learning stepsize. We report simulation experiments which show that the new architecture yields faster convergence. We also apply the new model to two problem domains: piecewise nonlinear function approximation and the combination of multiple previously trained classifiers.},
+  address       = {Cambridge, MA, USA},
+  author        = {Xu, Lei and Jordan, Michael I. and Hinton, Geoffrey E.},
+  booktitle     = {Advances in Neural Information Processing Systems},
+  openalex      = {W2109703216},
+  pages         = {633--640},
+  publisher     = {MIT Press},
+  title         = {An Alternative Model for Mixtures of Experts},
+  url           = {http://papers.nips.cc/paper/906-an-alternative-model-for-mixtures-of-experts.pdf},
+  volume        = {7},
+  year          = {1994}
+}
+
+@techreport{meila1997em,
+  address       = {Cambridge, MA, USA},
+  author        = {Meila, Marina and Jordan, Michael I.},
+  institution   = {Massachusetts Institute of Technology},
+  note          = {This work is related to Meila's doctoral research on mixtures of trees models},
+  title         = {The EM Algorithm for Mixtures of Trees and Star-shaped Distributions},
+  type          = {Technical Report},
+  year          = {1997}
+}
+
+@inproceedings{rasmussen2002infinite,
+  abstract      = {We present an extension to the Mixture of Experts (ME) model, where the individual experts are Gaussian Process (GP) regression models. Using a input-dependent adaptation of the Dirichlet Process, we implement a gating network for an infinite number of Experts. Inference in this model may be done efficiently using a Markov Chain relying on Gibbs sampling. The model allows the effective covariance function to vary with the inputs, and may handle large datasets -- thus potentially overcoming two of the biggest hurdles with GP models. Simulations show the viability of this approach.},
+  author        = {Rasmussen, Carl Edward and Ghahramani, Zoubin},
+  booktitle     = {Advances in Neural Information Processing Systems},
+  editor        = {Dietterich, Thomas G. and Becker, Suzanna and Ghahramani, Zoubin},
+  pages         = {881--888},
+  pdf           = {https://proceedings.neurips.cc/paper_files/paper/2001/file/9afefc52942cb83c7c1f14b2139b09ba-Paper.pdf},
+  publisher     = {MIT Press},
+  series        = {NIPS},
+  title         = {Infinite Mixtures of Gaussian Process Experts},
+  volume        = {14},
+  year          = {2002}
+}
+
+@misc{ba2013deep,
+  abstract      = {Currently, deep neural networks are the state of the art on problems such as speech recognition and computer vision. In this extended abstract, we show that shallow feed-forward networks can learn the complex functions previously learned by deep nets and achieve accuracies previously only achievable with deep models.},
+  archiveprefix = {arXiv},
+  author        = {Ba, Lei Jimmy and Caruana, Rich},
+  eprint        = {1312.6184},
+  openalex      = {W2134797427},
+  primaryclass  = {cs.LG},
+  title         = {Do Deep Nets Really Need to be Deep?},
+  url           = {https://arxiv.org/abs/1312.6184},
+  year          = {2013}
+}
+
+@article{jacobs1991task,
+  abstract      = {We present a modular connectionist architecture in which the networks composing the architecture compete to learn the training patterns. An outcome of the competition is that different networks learn different training patterns and, thus, learn to compute different functions. The architecture performs task decomposition in the sense that it learns to partition a task into two or more functionally independent tasks and allocates distinct networks to learn each task. In addition, the architecture tends to allocate to each task the network whose topology is most appropriate to that task. We present the architecture's performance on what and where vision tasks and compare it with the performance of two multilayer networks. Finally, we note that function decomposition is an underconstrained problem, and, thus, different modular architectures may decompose a function in different ways.},
+  author        = {Jacobs, Robert A. and Jordan, Michael I. and Barto, Andrew G.},
+  doi           = {10.1207/s15516709cog1502_2},
+  issn          = {0364-0213},
+  journal       = {Cognitive Science},
+  number        = {2},
+  openalex      = {W1979500821},
+  pages         = {219--250},
+  publisher     = {Wiley},
+  title         = {Task Decomposition Through Competition in a Modular Connectionist Architecture: The What and Where Vision Tasks},
+  volume        = {15},
+  year          = {1991}
+}
+
+@inproceedings{shazeer2017outrageously,
+  abstract      = {The capacity of a neural network to absorb information is limited by its number of parameters. Conditional computation, where parts of the network are active on a per-example basis, has been proposed in theory as a way of dramatically increasing model capacity without a proportional increase in computation. In practice, however, there are significant algorithmic and performance challenges. In this work, we address these challenges and finally realize the promise of conditional computation, achieving greater than 1000x improvements in model capacity with only minor losses in computational efficiency on modern GPU clusters. We introduce a Sparsely-Gated Mixture-of-Experts layer (MoE), consisting of up to thousands of feed-forward sub-networks. A trainable gating network determines a sparse combination of these experts to use for each example. We apply the MoE to the tasks of language modeling and machine translation, where model capacity is critical for absorbing the vast quantities of knowledge available in the training corpora. We present model architectures in which a MoE with up to 137 billion parameters is applied convolutionally between stacked LSTM layers. On large language modeling and machine translation benchmarks, these models achieve significantly better results than state-of-the-art at lower computational cost.},
+  author        = {Shazeer, Noam and Mirhoseini, Azalia and Maziarz, Krzysztof and Davis, Andy and Le, Quoc V. and Hinton, Geoffrey E. and Dean, Jeff},
+  booktitle     = {5th International Conference on Learning Representations, ICLR 2017, Toulon, France, April 24-26, 2017, Conference Track Proceedings},
+  doi           = {10.48550/arxiv.1701.06538},
+  openalex      = {W4293718192},
+  pdf           = {https://openreview.net/pdf?id=B1ckMDqlg},
+  publisher     = {OpenReview.net},
+  title         = {Outrageously Large Neural Networks: The Sparsely-Gated Mixture-of-Experts Layer},
+  url           = {https://openreview.net/forum?id=B1ckMDqlg},
+  year          = {2017}
+}
+
+@inproceedings{lepikhin2021gshard,
+  abstract      = {Neural network scaling has been critical for improving the model quality in many real-world machine learning applications with vast amounts of training data and compute. Although this trend of scaling is affirmed to be a sure-fire approach for better model quality, there are challenges on the path such as the computation cost, ease of programming, and efficient implementation on parallel devices. GShard is a module composed of a set of lightweight annotation APIs and an extension to the XLA compiler. It provides an elegant way to express a wide range of parallel computation patterns with minimal changes to the existing model code. GShard enabled us to scale up multilingual neural machine translation Transformer model with Sparsely-Gated Mixture-of-Experts beyond 600 billion parameters using automatic sharding. We demonstrate that such a giant model can efficiently be trained on 2048 TPU v3 accelerators in 4 days to achieve far superior quality for translation from 100 languages to English compared to the prior art.},
+  author        = {Lepikhin, Dmitry and Lee, HyoukJoong and Xu, Yuanzhong and Chen, Dehao and Firat, Orhan and Huang, Yanping and Krikun, Maxim and Shazeer, Noam and Chen, Zhifeng},
+  booktitle     = {International Conference on Learning Representations},
+  openalex      = {W3122317902},
+  pdf           = {https://openreview.net/pdf?id=qrwe7XHTmYb},
+  title         = {GShard: Scaling Giant Models with Conditional Computation and Automatic Sharding},
+  url           = {https://openreview.net/forum?id=qrwe7XHTmYb},
+  year          = {2021}
+}
+
+@article{fedus2022switch,
+  abstract      = {In deep learning, models typically reuse the same parameters for all inputs. Mixture of Experts (MoE) defies this and instead selects different parameters for each incoming example. The result is a sparsely-activated model -- with outrageous numbers of parameters -- but a constant computational cost. However, despite several notable successes of MoE, widespread adoption has been hindered by complexity, communication costs and training instability -- we address these with the Switch Transformer. We simplify the MoE routing algorithm and design intuitive improved models with reduced communication and computational costs. Our proposed training techniques help wrangle the instabilities and we show large sparse models may be trained, for the first time, with lower precision (bfloat16) formats. We design models based off T5-Base and T5-Large to obtain up to 7x increases in pre-training speed with the same computational resources. These improvements extend into multilingual settings where we measure gains over the mT5-Base version across all 101 languages. Finally, we advance the current scale of language models by pre-training up to trillion parameter models on the `Colossal Clean Crawled Corpus' and achieve a 4x speedup over the T5-XXL model.},
+  author        = {Fedus, William and Zoph, Barret and Shazeer, Noam},
+  issn          = {1532-4435},
+  journal       = {Journal of Machine Learning Research},
+  number        = {120},
+  openalex      = {W4287391717},
+  pages         = {1--39},
+  pdf           = {https://www.jmlr.org/papers/volume23/21-0998/21-0998.pdf},
+  publisher     = {Microtome Publishing},
+  title         = {Switch Transformers: Scaling to Trillion Parameter Models with Simple and Efficient Sparsity},
+  url           = {https://jmlr.org/papers/v23/21-0998.html},
+  volume        = {23},
+  year          = {2022}
+}
+
+@inproceedings{du2022glam,
+  abstract      = {Scaling language models with more data, compute and parameters has driven significant progress in natural language processing. For example, thanks to scaling, GPT-3 was able to achieve strong results on in-context learning tasks. However, training these large dense models requires significant amounts of computing resources. In this paper, we propose and develop a family of language models named GLaM (Generalist Language Model), which uses a sparsely activated mixture-of-experts architecture to scale the model capacity while also incurring substantially less training cost compared to dense variants. The largest GLaM has 1.2 trillion parameters, which is approximately 7x larger than GPT-3. It consumes only 1/3 of the energy used to train GPT-3 and requires half of the computation flops for inference, while still achieving better overall fewshot performance across 29 NLP tasks.},
+  author        = {Du, Nan and Huang, Yanping and Dai, Andrew M. and Tong, Simon and Lepikhin, Dmitry and Xu, Yuanzhong and Krikun, Maxim and Zhou, Yanqi and Yu, Adams Wei and Firat, Orhan and Zoph, Barret and Fedus, Liam and Bosma, Maarten and Zhou, Zongwei and Wang, Tao and Wang, Yu Emma and Webster, Kellie and Pellat, Marie and Robinson, Kevin and Meier-Hellstern, Kathy and Duke, Toju and Dixon, Lucas and Zhang, Kun and Le, Quoc V. and Wu, Yonghui and Chen, Zhifeng and Cui, Claire},
+  booktitle     = {39th International Conference on Machine Learning},
+  editor        = {Chaudhuri, Kamalika and Jegelka, Stefanie and Song, Le and Szepesvari, Csaba and Niu, Gang and Sabato, Sivan},
+  openalex      = {W4200634402},
+  pages         = {5547--5569},
+  pdf           = {https://proceedings.mlr.press/v162/du22c/du22c.pdf},
+  publisher     = {PMLR},
+  series        = {Proceedings of Machine Learning Research},
+  title         = {GLaM: Efficient Scaling of Language Models with Mixture-of-Experts},
+  volume        = {162},
+  year          = {2022}
+}
+
+@inproceedings{riquelme2021scaling,
+  abstract      = {Sparsely-gated Mixture of Experts networks (MoEs) have demonstrated excellent scalability in Natural Language Processing. In Computer Vision, however, almost all performant networks are 'dense', that is, every input is processed by every parameter. We present a Vision MoE (V-MoE), a sparse version of the Vision Transformer, that is scalable and competitive with the largest dense networks. When applied to image recognition, V-MoE matches the performance of state-of-the-art networks, while requiring as little as half of the compute at inference time. Further, we propose an extension to the routing algorithm that can prioritize subsets of each input across the entire batch, leading to adaptive per-image compute. This allows V-MoE to trade-off performance and compute smoothly at test-time. Finally, we demonstrate the potential of V-MoE to scale vision models, and train a 15B parameter model that attains 90.35% on ImageNet.},
+  author        = {Riquelme, Carlos and Puigcerver, Joan and Mustafa, Basil and Neumann, Maxim and Jenatton, Rodolphe and Pinto, André Susano and Keysers, Daniel and Houlsby, Neil},
+  booktitle     = {Advances in Neural Information Processing Systems},
+  editor        = {Ranzato, M. and Beygelzimer, A. and Dauphin, Y. and Liang, P.S. and Vaughan, J. Wortman},
+  openalex      = {W4287121196},
+  pdf           = {https://papers.neurips.cc/paper_files/paper/2021/file/48237d9f2dea8c74c2a72126cf63d933-Paper.pdf},
+  publisher     = {Curran Associates, Inc.},
+  title         = {Scaling Vision with Sparse Mixture of Experts},
+  url           = {https://proceedings.neurips.cc/paper/2021/hash/48237d9f2dea8c74c2a72126cf63d933-Abstract.html},
+  volume        = {34},
+  year          = {2021}
+}
+
+@inproceedings{artetxe2021efficient,
+  abstract      = {Mixture of Experts layers (MoEs) enable efficient scaling of language models through conditional computation. This paper presents a detailed empirical study of how autoregressive MoE language models scale in comparison with dense models in a wide range of settings: in- and out-of-domain language modeling, zero- and few-shot priming, and full-shot fine-tuning. With the exception of fine-tuning, we find MoEs to be substantially more compute efficient. At more modest training budgets, MoEs can match the performance of dense models using ~4 times less compute. This gap narrows at scale, but our largest MoE model (1.1T parameters) consistently outperforms a compute-equivalent dense model (6.7B parameters). Overall, this performance gap varies greatly across tasks and domains, suggesting that MoE and dense models generalize differently in ways that are worthy of future study. We make our code and models publicly available for research use.},
+  address       = {Abu Dhabi, United Arab Emirates},
+  archiveprefix = {arXiv},
+  author        = {Artetxe, Mikel and Bhosale, Shruti and Goyal, Naman and Mihaylov, Todor and Ott, Myle and Shleifer, Sam and Lin, Xi Victoria and Du, Jingfei and Iyer, Srinivasan and Pasunuru, Ramakanth and Anantharaman, Giri and Li, Xian and Chen, Shuohui and Akin, Halil and Baines, Mandeep and Martin, Louis and Zhou, Xing and Koura, Punit Singh and O'Horo, Brian and Wang, Jeff and Zettlemoyer, Luke and Diab, Mona and Kozareva, Zornitsa and Stoyanov, Veselin},
+  booktitle     = {Proceedings of the 2022 Conference on Empirical Methods in Natural Language Processing},
+  eprint        = {2112.10684},
+  openalex      = {W4225905768},
+  pages         = {11699--11732},
+  pdf           = {https://aclanthology.org/2022.emnlp-main.804.pdf},
+  primaryclass  = {cs.CL},
+  publisher     = {Association for Computational Linguistics},
+  title         = {Efficient Large Scale Language Modeling with Mixtures of Experts},
+  year          = {2022}
+}
+
+@inproceedings{lewis2021base,
+  abstract      = {We introduce a new balanced assignment of experts (BASE) layer for large language models that greatly simplifies existing high capacity sparse layers. Sparse layers can dramatically improve the efficiency of training and inference by routing each token to specialized expert modules that contain only a small fraction of the model parameters. However, it can be difficult to learn balanced routing functions that make full use of the available experts; existing approaches typically use routing heuristics or auxiliary expert-balancing loss functions. In contrast, we formulate token-to-expert allocation as a linear assignment problem, allowing an optimal assignment in which each expert receives an equal number of tokens. This optimal assignment scheme improves efficiency by guaranteeing balanced compute loads, and also simplifies training by not requiring any new hyperparameters or auxiliary losses. Code is publicly released.},
+  author        = {Lewis, Mike and Bhosale, Shruti and Dettmers, Tim and Goyal, Naman and Zettlemoyer, Luke},
+  booktitle     = {International Conference on Machine Learning},
+  month         = {7},
+  openalex      = {W3173073671},
+  pages         = {6265--6274},
+  pdf           = {https://proceedings.mlr.press/v139/lewis21a/lewis21a.pdf},
+  publisher     = {PMLR},
+  series        = {Proceedings of Machine Learning Research},
+  title         = {BASE Layers: Simplifying Training of Large, Sparse Models},
+  volume        = {139},
+  year          = {2021}
+}
+
+@inproceedings{roller2021hash,
+  abstract      = {We investigate the training of sparse layers that use different parameters for different inputs based on hashing in large Transformer models. Specifically, we modify the feedforward layer to hash to different sets of weights depending on the current token, over all tokens in the sequence. We show that this procedure either outperforms or is competitive with learning-to-route mixture-of-expert methods such as Switch Transformers and BASE Layers, while requiring no routing parameters, no extra terms in the objective function such as a load balancing loss, and no sophisticated assignment algorithm. We study the performance of different hashing techniques, hash sizes and input features, and show that balanced and random hashes focused on the most local features work best, compared to either learning clusters or using longer-range context. We show our approach works well both on large language modeling and dialogue tasks, and on downstream fine-tuning tasks.},
+  author        = {Roller, Stephen and Sukhbaatar, Sainbayar and Szlam, Arthur and Weston, Jason E.},
+  booktitle     = {Advances in Neural Information Processing Systems},
+  openalex      = {W3170796112},
+  pages         = {25256--25267},
+  pdf           = {https://proceedings.neurips.cc/paper/2021/file/92bf5e6240737e0326ea59846a83e076-Paper.pdf},
+  publisher     = {Curran Associates, Inc.},
+  title         = {Hash Layers For Large Sparse Models},
+  url           = {https://proceedings.neurips.cc/paper/2021/hash/92bf5e6240737e0326ea59846a83e076-Abstract.html},
+  volume        = {34},
+  year          = {2021}
+}
+
+@inproceedings{zhou2022mixture,
+  abstract      = {Sparsely-activated Mixture-of-experts (MoE) models allow the number of parameters to greatly increase while keeping the amount of computation for a given token or a given sample unchanged. However, a poor expert routing strategy (e.g. one resulting in load imbalance) can cause certain experts to be under-trained, leading to an expert being under or over-specialized. Prior work allocates a fixed number of experts to each token using a top-k function regardless of the relative importance of different tokens. To address this, we propose a heterogeneous mixture-of-experts employing an expert choice method. Instead of letting tokens select the top-k experts, we have experts selecting the top-k tokens. As a result, each token can be routed to a variable number of experts and each expert can have a fixed bucket size. We systematically study pre-training speedups using the same computational resources of the Switch Transformer top-1 and GShard top-2 gating of prior work and find that our method improves training convergence time by more than 2x. For the same computational cost, our method demonstrates higher performance in fine-tuning 11 selected tasks in the GLUE and SuperGLUE benchmarks. For a smaller activation cost, our method outperforms the T5 dense model in 7 out of the 11 tasks.},
+  author        = {Zhou, Yanqi and Lei, Tao and Liu, Hanxiao and Du, Nan and Huang, Yanping and Zhao, Vincent Y. and Dai, Andrew M. and Chen, Zhifeng and Le, Quoc V. and Laudon, James},
+  booktitle     = {Advances in Neural Information Processing Systems},
+  openalex      = {W4226079124},
+  pdf           = {https://proceedings.neurips.cc/paper_files/paper/2022/file/2f00ecd787b432c1d36f3de9800728eb-Paper-Conference.pdf},
+  publisher     = {Curran Associates, Inc.},
+  title         = {Mixture-of-Experts with Expert Choice Routing},
+  url           = {https://proceedings.neurips.cc/paper_files/paper/2022/hash/2f00ecd787b432c1d36f3de9800728eb-Abstract-Conference.html},
+  volume        = {35},
+  year          = {2022}
+}
+
+@inproceedings{zuo2022taming,
+  abstract      = {Sparsely activated models (SAMs), such as Mixture-of-Experts (MoE), can easily scale to have outrageously large amounts of parameters without significant increase in computational cost. However, SAMs are reported to be parameter inefficient such that larger models do not always lead to better performance. While most on-going research focuses on improving SAMs models by exploring methods of routing inputs to experts, our analysis reveals that such research might not lead to the solution we expect, i.e., the commonly-used routing methods based on gating mechanisms do not work better than randomly routing inputs to experts. In this paper, we propose a new expert-based model, THOR (Transformer witH StOchastic ExpeRts). Unlike classic expert-based models, such as the Switch Transformer, experts in THOR are randomly activated for each input during training and inference. THOR models are trained using a consistency regularized loss, where experts learn not only from training data but also from other experts as teachers, such that all the experts make consistent predictions. We validate the effectiveness of THOR on machine translation tasks. Results show that THOR models are more parameter efficient in that they significantly outperform the Transformer and MoE models across various settings. For example, in multilingual translation, THOR outperforms the Switch Transformer by 2 BLEU scores, and obtains the same BLEU score as that of a state-of-the-art MoE model that is 18 times larger. Our code is publicly available at: https://github.com/microsoft/Stochastic-Mixture-of-Experts.},
+  author        = {Simiao Zuo and Xiaodong Liu and Jian Jiao and Young Jin Kim and Hany Hassan and Ruofei Zhang and Jianfeng Gao and Tuo Zhao},
+  booktitle     = {The Tenth International Conference on Learning Representations},
+  openalex      = {W3205972749},
+  pdf           = {https://openreview.net/pdf?id=B72HXs80q4},
+  title         = {Taming Sparsely Activated Transformer with Stochastic Experts},
+  url           = {https://openreview.net/forum?id=B72HXs80q4},
+  year          = {2022}
+}
+
+@inproceedings{dai2022stablemoe,
+  abstract      = {The Mixture-of-Experts (MoE) technique can scale up the model size of Transformers with an affordable computational overhead. We point out that existing learning-to-route MoE methods suffer from the routing fluctuation issue, i.e., the target expert of the same input may change along with training, but only one expert will be activated for the input during inference. The routing fluctuation tends to harm sample efficiency because the same input updates different experts but only one is finally used. In this paper, we propose StableMoE with two training stages to address the routing fluctuation problem. In the first training stage, we learn a balanced and cohesive routing strategy and distill it into a lightweight router decoupled from the backbone model. In the second training stage, we utilize the distilled router to determine the token-to-expert assignment and freeze it for a stable routing strategy. We validate our method on language modeling and multilingual machine translation. The results show that StableMoE outperforms existing MoE methods in terms of both convergence speed and performance.},
+  address       = {Dublin, Ireland},
+  author        = {Damai Dai and Li Dong and Shuming Ma and Bo Zheng and Zhifang Sui and Baobao Chang and Furu Wei},
+  booktitle     = {Proceedings of the 60th Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers)},
+  doi           = {10.18653/v1/2022.acl-long.489},
+  openalex      = {W4224299101},
+  pages         = {7085--7095},
+  pdf           = {https://aclanthology.org/2022.acl-long.489.pdf},
+  publisher     = {Association for Computational Linguistics},
+  title         = {StableMoE: Stable Routing Strategy for Mixture of Experts},
+  url           = {https://aclanthology.org/2022.acl-long.489},
+  year          = {2022}
+}
+
+@inproceedings{clark2022unified,
+  abstract      = {The performance of a language model has been shown to be effectively modeled as a power-law in its parameter count. Here we study the scaling behaviors of Routing Networks: architectures that conditionally use only a subset of their parameters while processing an input. For these models, parameter count and computational requirement form two independent axes along which an increase leads to better performance. In this work we derive and justify scaling laws defined on these two variables which generalize those known for standard language models and describe the performance of a wide range of routing architectures trained via three different techniques. Afterwards we provide two applications of these laws: first deriving an Effective Parameter Count along which all models scale at the same rate, and then using the scaling coefficients to give a quantitative comparison of the three routing techniques considered. Our analysis derives from an extensive evaluation of Routing Networks across five orders of magnitude of size, including models with hundreds of experts and hundreds of billions of parameters.},
+  author        = {Aidan Clark and Diego de las Casas and Aurelia Guy and Arthur Mensch and Michela Paganini and Jordan Hoffmann and Bogdan Damoc and Blake Hechtman and Trevor Cai and Sebastian Borgeaud and George van den Driessche and Eliza Antropova and Aakanksha Siddhant and Matthew Henderson and Johannes Balle and Alhussein Fawzi and Adria Recasens and Aida Nematzadeh and Rudy Bunel and Andrea Gesmundo and Ralf Herbrich and Pushmeet Kohli and Oriol Vinyals and Laurent Sifre},
+  booktitle     = {Proceedings of the 39th International Conference on Machine Learning},
+  editor        = {Kamalika Chaudhuri and Stefanie Jegelka and Le Song and Csaba Szepesvári and Gang Niu and Sivan Sabato},
+  openalex      = {W4226153346},
+  pages         = {4057--4086},
+  pdf           = {https://proceedings.mlr.press/v162/clark22a/clark22a.pdf},
+  publisher     = {PMLR},
+  series        = {Proceedings of Machine Learning Research},
+  title         = {Unified Scaling Laws for Routed Language Models},
+  volume        = {162},
+  year          = {2022}
+}
+
+@misc{zoph2022designing,
+  abstract      = {Scale has opened new frontiers in natural language processing -- but at a high cost. In response, Mixture-of-Experts (MoE) and Switch Transformers have been proposed as an energy efficient path to even larger and more capable language models. But advancing the state-of-the-art across a broad set of natural language tasks has been hindered by training instabilities and uncertain quality during fine-tuning. This work acts as a design guide. We identify the sources of training instability and propose methods to mitigate them. We extend our study to fine-tuning and find that adaptations during fine-tuning play a crucial role in enabling sparse expert models to transfer. We scale a sparse model to 269B parameters with a computational cost comparable to a 32B dense encoder-decoder Transformer. For the first time, a sparse model achieves state-of-the-art performance in transfer learning, across a diverse set of tasks including reasoning (SuperGLUE, ARC Easy, ARC Challenge), summarization (XSum, CNN-DM), closed book question answering (WebQA, Natural Questions), and adversarially constructed tasks (Winogrande, ANLI R3).},
+  archiveprefix = {arXiv},
+  author        = {Zoph, Barret and Bello, Irwan and Kumar, Sameer and Du, Nan and Huang, Yanping and Dean, Jeff and Shazeer, Noam and Fedus, William},
+  doi           = {10.1109/ipdpsw55747.2022.00171},
+  eprint        = {2202.08906},
+  month         = {2},
+  openalex      = {W4289828103},
+  primaryclass  = {cs.LG},
+  title         = {ST-MoE: Designing Stable and Transferable Sparse Expert Models},
+  url           = {https://arxiv.org/abs/2202.08906},
+  year          = {2022}
+}
+
+@inproceedings{puigcerver2023sparse,
+  abstract      = {Sparse mixture of expert architectures (MoEs) scale model capacity without significant increases in training or inference costs. Despite their success, MoEs suffer from a number of issues: training instability, token dropping, inability to scale the number of experts, or ineffective finetuning. In this work, we propose Soft MoE, a fully-differentiable sparse Transformer that addresses these challenges, while maintaining the benefits of MoEs. Soft MoE performs an implicit soft assignment by passing different weighted combinations of all input tokens to each expert. As in other MoEs, experts in Soft MoE only process a subset of the (combined) tokens, enabling larger model capacity (and performance) at lower inference cost. In the context of visual recognition, Soft MoE greatly outperforms dense Transformers (ViTs) and popular MoEs (Tokens Choice and Experts Choice). Soft MoE scales well: Soft MoE Huge/14 with 128 experts in 16 MoE layers has over 40x more parameters than ViT Huge/14, with only 2% increased inference time, and substantially better quality.},
+  author        = {Puigcerver, Joan and Riquelme, Carlos and Djolonga, Josip and Mustafa, Basil and Houlsby, Neil},
+  booktitle     = {The Twelfth International Conference on Learning Representations},
+  month         = {5},
+  openalex      = {W4385968027},
+  pdf           = {https://openreview.net/pdf?id=jxpsAj7ltE},
+  title         = {From Sparse to Soft Mixtures of Experts},
+  url           = {https://openreview.net/forum?id=jxpsAj7ltE},
+  year          = {2024}
+}
+
+@inproceedings{chen2022towards,
+  abstract      = {The Mixture-of-Experts (MoE) layer, a sparsely-activated model controlled by a router, has achieved great success in deep learning. However, the understanding of such architecture remains elusive. In this paper, we formally study how the MoE layer improves the performance of neural network learning and why the mixture model will not collapse into a single model.},
+  author        = {Zixiang Chen and Yihe Deng and Yue Wu and Quanquan Gu and Yuanzhi Li},
+  booktitle     = {Advances in Neural Information Processing Systems},
+  openalex      = {W4290055971},
+  pdf           = {https://proceedings.neurips.cc/paper_files/paper/2022/file/91edff07232fb1b55a505a9e9f6c0ff3-Paper-Conference.pdf},
+  title         = {Towards Understanding the Mixture-of-Experts Layer in Deep Learning},
+  url           = {https://proceedings.neurips.cc/paper_files/paper/2022/hash/91edff07232fb1b55a505a9e9f6c0ff3-Abstract-Conference.html},
+  volume        = {35},
+  year          = {2022}
+}
+
+@inproceedings{chowdhury2023patch,
+  abstract      = {In deep learning, mixture-of-experts (MoE) activates one or few experts (sub-networks) on a per-sample or per-token basis, resulting in significant computation reduction. The recently proposed patch-level routing MoE (pMoE) divides each input into $n$ patches (or tokens) and sends $l$ ($lłl n$) to expert through prioritized routing. pMoE has demonstrated great empirical success reducing training and inference costs while maintaining test accuracy. However, the theoretical explanation of general MoE remains elusive. Focusing on supervised classification task using mixture two-layer convolutional neural networks (CNNs), we show for first time that pMoE provably reduces required number of samples to achieve desirable generalization (referred as sample complexity) by factor of polynomial order $n/l$, outperforms its single-expert counterpart even with same or larger capacity. The advantage results from discriminative property, which is justified both in theory and practice: routers can filter label-irrelevant patches and route similar class-discriminative expert. Our experimental results on MNIST, CIFAR-10, CelebA support our findings that pMoE's avoid learning spurious correlations.},
+  author        = {Mohammed Nowaz Rabbani Chowdhury and Shuai Zhang and Meng Wang and Sijia Liu and Pin-Yu Chen},
+  booktitle     = {Proceedings of the 40th International Conference on Machine Learning},
+  editor        = {Andreas Krause and Emma Brunskill and Kyunghyun Cho and Barbara Engelhardt and Sivan Sabato and Jonathan Scarlett},
+  openalex      = {W4380032955},
+  pages         = {6074--6114},
+  pdf           = {https://proceedings.mlr.press/v202/chowdhury23a/chowdhury23a.pdf},
+  publisher     = {PMLR},
+  series        = {Proceedings of Machine Learning Research},
+  title         = {Patch-level Routing in Mixture-of-Experts is Provably Sample-efficient for Convolutional Neural Networks},
+  url           = {https://proceedings.mlr.press/v202/chowdhury23a.html},
+  volume        = {202},
+  year          = {2023}
+}
+
+@inproceedings{chi2022representation,
+  abstract      = {Sparse mixture of experts provides larger model capacity while requiring a constant computational overhead. It employs the routing mechanism to distribute input tokens to the best-matched experts according to their hidden representations. However, learning such a routing mechanism encourages token clustering around expert centroids, implying a trend toward representation collapse. In this work, we propose to estimate the routing scores between tokens and experts on a low-dimensional hypersphere. We conduct extensive experiments on cross-lingual language model pre-training and fine-tuning on downstream tasks. Experimental results across seven multilingual benchmarks show that our method achieves consistent gains. We also present a comprehensive analysis on the representation and routing behaviors of our models. Our method alleviates the representation collapse issue and achieves more consistent routing than the baseline mixture-of-experts methods.},
+  author        = {Chi, Zewen and Dong, Li and Huang, Shaohan and Dai, Damai and Ma, Shuming and Patra, Barun and Singhal, Saksham and Bajaj, Payal and Song, Xia and Mao, Xian-Ling and Huang, Heyan and Wei, Furu},
+  booktitle     = {Advances in Neural Information Processing Systems},
+  openalex      = {W4224211001},
+  pdf           = {https://neurips.cc/paper_files/paper/2022/file/df4f371f1f89ec8ba5014b3310578048-Paper-Conference.pdf},
+  publisher     = {Curran Associates, Inc.},
+  title         = {On the Representation Collapse of Sparse Mixture of Experts},
+  url           = {https://proceedings.neurips.cc/paper_files/paper/2022/hash/df4f371f1f89ec8ba5014b3310578048-Abstract-Conference.html},
+  volume        = {35},
+  year          = {2022}
+}
+
+@inproceedings{baykal2022theoretical,
+  abstract      = {Deep and wide neural networks successfully fit very complex functions today, but dense models are starting to be prohibitively expensive for inference. To mitigate this, one promising research direction is networks that activate a sparse subgraph of the network. The subgraph is chosen by a data-dependent routing function, enforcing a fixed mapping of inputs to subnetworks (e.g., the Mixture of Experts (MoE) paradigm in Switch Transformers). However, there is no theoretical grounding for these sparsely activated models. As our first contribution, we present a formal model of data-dependent sparse networks that captures salient aspects of popular architectures. Then, we show how to construct sparse networks that provably match the approximation power and total size of dense networks on Lipschitz functions. The sparse networks use much fewer inference operations than dense networks, leading to a faster forward pass. The key idea is to use locality sensitive hashing on the input vectors and then interpolate the function in subregions of the input space. This offers a theoretical insight into why sparse networks work well in practice. Finally, we present empirical findings that support our theory; compared to dense networks, sparse networks give a favorable trade-off between number of active units and approximation quality.},
+  author        = {Cenk Baykal and Nishanth Dikkala and Rina Panigrahy and Cyrus Rashtchian and Xin Wang},
+  booktitle     = {Advances in Neural Information Processing Systems},
+  openalex      = {W4298054526},
+  pages         = {14951--14963},
+  pdf           = {https://proceedings.neurips.cc/paper_files/paper/2022/file/c2201e444d2b22a10ca50116a522b9a9-Paper-Conference.pdf},
+  publisher     = {Curran Associates, Inc.},
+  title         = {A Theoretical View on Sparsely Activated Networks},
+  url           = {https://proceedings.neurips.cc/paper_files/paper/2022/hash/c2201e444d2b22a10ca50116a522b9a9-Abstract-Conference.html},
+  volume        = {35},
+  year          = {2022}
+}
+
+@inproceedings{li2023sparse,
+  abstract      = {Human visual perception can easily generalize to out-of-distributed visual data, which is far beyond the capability of modern machine learning models. Domain generalization (DG) aims to close this gap, with existing DG methods mainly focusing on the loss function design. In this paper, we propose to explore an orthogonal direction, i.e., the design of the backbone architecture. It is motivated by an empirical finding that transformer-based models trained with empirical risk minimization (ERM) outperform CNN-based models employing state-of-the-art (SOTA) DG algorithms on multiple DG datasets. We develop a formal framework to characterize a network's robustness to distribution shifts by studying its architecture's alignment with the correlations in the dataset. This analysis guides us to propose a novel DG model built upon vision transformers, namely Generalizable Mixture-of-Experts (GMoE). Extensive experiments on DomainBed demonstrate that GMoE trained with ERM outperforms SOTA DG baselines by a large margin. Moreover, GMoE is complementary to existing DG methods and its performance is substantially improved when trained with DG algorithms.},
+  author        = {Li, Bo and Shen, Yifei and Yang, Jingkang and Wang, Yezhen and Ren, Jiawei and Che, Tong and Zhang, Jun and Liu, Ziwei},
+  booktitle     = {The Eleventh International Conference on Learning Representations},
+  doi           = {10.48550/arxiv.2206.04046},
+  openalex      = {W4300973453},
+  pdf           = {https://openreview.net/pdf?id=RecZ9nB9Q4},
+  title         = {Sparse Mixture-of-Experts are Domain Generalizable Learners},
+  url           = {https://openreview.net/forum?id=RecZ9nB9Q4},
+  year          = {2023}
+}
+
+@inproceedings{wang2023graph,
+  abstract      = {Graph neural networks (GNNs) have found extensive applications in learning from graph data. However, real-world graphs often possess diverse structures and comprise nodes and edges of varying types. To bolster the generalization capacity of GNNs, it has become customary to augment training graph structures through techniques like graph augmentations and large-scale pre-training on a wider array of graphs. Balancing this diversity while avoiding increased computational costs and the notorious trainability issues of GNNs is crucial. This study introduces the concept of Mixture-of-Experts (MoE) to GNNs, with the aim of augmenting their capacity to adapt to a diverse range of training graph structures, without incurring explosive computational overhead. The proposed Graph Mixture of Experts (GMoE) model empowers individual nodes in the graph to dynamically and adaptively select more general information aggregation experts. These experts are trained to capture distinct subgroups of graph structures and to incorporate information with varying hop sizes, where those with larger hop sizes specialize in gathering information over longer distances. The effectiveness of GMoE is validated through a series of experiments on a diverse set of tasks, including graph, node, and link prediction, using the OGB benchmark. Notably, it enhances ROC-AUC by 1.81% in ogbg-molhiv and by 1.40% in ogbg-molbbbp, when compared to the non-MoE baselines.},
+  author        = {Wang, Haotao and Jiang, Ziyu and You, Yuning and Han, Yan and Liu, Gaowen and Srinivasa, Jayanth and Kompella, Ramana Rao and Wang, Zhangyang},
+  booktitle     = {Advances in Neural Information Processing Systems},
+  openalex      = {W4362706446},
+  pdf           = {https://proceedings.neurips.cc/paper_files/paper/2023/file/9f4064d145bad5e361206c3303bda7b8-Paper-Conference.pdf},
+  publisher     = {Curran Associates, Inc.},
+  title         = {Graph Mixture of Experts: Learning on Large-Scale Graphs with Explicit Diversity Modeling},
+  url           = {https://proceedings.neurips.cc/paper_files/paper/2023/hash/9f4064d145bad5e361206c3303bda7b8-Abstract-Conference.html},
+  volume        = {36},
+  year          = {2023}
+}
+
+@inproceedings{liang2022m3vit,
+  abstract      = {Multi-task learning (MTL) encapsulates multiple learned tasks in a single model and often lets those tasks learn better jointly. Multi-tasking models have become successful and often essential for many sophisticated systems such as autonomous driving and indoor robots. However, when deploying MTL onto those real-world systems that are often resource-constrained or latency-sensitive, two prominent challenges arise: (i) during training, simultaneously optimizing all tasks is often difficult due to gradient conflicts across tasks, and the challenge is amplified when a growing number of tasks have to be squeezed into one compact model; (ii) at inference, current MTL regimes have to activate nearly the entire model even to just execute a single task. To address these issues, we present M³ViT, a mixture-of-experts vision transformer framework that is designed to effectively handle multi-task learning challenges with hardware-software co-design. Our approach leverages sparsely activated task-specific experts during training to avoid gradient conflicts, and enables efficient single-task inference by activating only task-corresponding pathways.},
+  author        = {Liang, Hanxue and Fan, Zhiwen and Sarkar, Rishov and Jiang, Ziyu and Chen, Tianlong and Zou, Kai and Cheng, Yu and Hao, Cong and Wang, Zhangyang},
+  booktitle     = {Advances in Neural Information Processing Systems},
+  editor        = {Koyejo, S. and Mohamed, S. and Agarwal, A. and Belgrave, D. and Cho, K. and Oh, A.},
+  openalex      = {W4307478736},
+  pdf           = {https://proceedings.neurips.cc/paper_files/paper/2022/file/b653f34d576d1790481e3797cb740214-Paper-Conference.pdf},
+  publisher     = {Curran Associates, Inc.},
+  title         = {M³ViT: Mixture-of-Experts Vision Transformer for Efficient Multi-task Learning with Model-Accelerator Co-design},
+  url           = {https://proceedings.neurips.cc/paper_files/paper/2022/hash/b653f34d576d1790481e3797cb740214-Abstract-Conference.html},
+  volume        = {35},
+  year          = {2022}
+}
+
+@inproceedings{dryden2022spatial,
+  abstract      = {Many data have an underlying dependence on spatial location; it may be weather on the Earth, a simulation on a mesh, or a registered image. Yet this feature is rarely taken advantage of, and violates common assumptions made by many neural network layers, such as translation equivariance. Further, many works that do incorporate locality fail to capture fine-grained structure. To address this, we introduce the Spatial Mixture-of-Experts (SMoE) layer, a sparsely-gated layer that learns spatial structure in the input domain and routes experts at a fine-grained level to utilize it. We also develop new techniques to train SMoEs, including a self-supervised routing loss and damping expert errors. Finally, we show strong results for SMoEs on numerous tasks, and set new state-of-the-art results for medium-range weather prediction and post-processing ensemble weather forecasts.},
+  author        = {Nikoli Dryden and Torsten Hoefler},
+  booktitle     = {Advances in Neural Information Processing Systems},
+  openalex      = {W4310273053},
+  pdf           = {https://proceedings.neurips.cc/paper_files/paper/2022/file/4c5e2bcbf21bdf40d75fddad0bd43dc9-Paper-Conference.pdf},
+  title         = {Spatial Mixture-of-Experts},
+  url           = {https://openreview.net/forum?id=AlkMMzUX95},
+  volume        = {35},
+  year          = {2022}
+}
+
+@inproceedings{zhu2022uni,
+  abstract      = {To build an artificial neural network like the biological intelligence system, recent works have unified numerous tasks into a generalist model, which can process various tasks with shared parameters and do not have any task-specific modules. While generalist models achieve promising results on various benchmarks, they have performance degradation on some tasks compared with task-specialized models. We identify that interference among different tasks and modalities is the main factor behind such phenomenon. To mitigate such interference, we introduce Conditional Mixture-of-Experts (Conditional MoEs) to generalist models. Routing strategies under different levels of conditions are proposed to balance training/inference cost and generalization ability. By incorporating the proposed Conditional MoEs, the recently proposed generalist model Uni-Perceiver can effectively mitigate the interference across tasks and modalities, achieving state-of-the-art results on downstream tasks via prompt tuning on just 1% of downstream data. Moreover, the introduction of Conditional MoEs maintains the generalization ability of generalist models to conduct zero-shot inference on new tasks, including video-text retrieval and video caption.},
+  author        = {Zhu, Jinguo and Zhu, Xizhou and Wang, Wenhai and Wang, Xiaohua and Li, Hongsheng and Wang, Xiaogang and Dai, Jifeng},
+  booktitle     = {Advances in Neural Information Processing Systems},
+  editor        = {Koyejo, S. and Mohamed, S. and Agarwal, A. and Belgrave, D. and Cho, K. and Oh, A.},
+  month         = {12},
+  openalex      = {W4281709371},
+  pdf           = {https://proceedings.neurips.cc/paper_files/paper/2022/file/11fc8c98b46d4cbdfe8157267228f7d7-Paper-Conference.pdf},
+  publisher     = {Curran Associates, Inc.},
+  title         = {Uni-Perceiver-MoE: Learning Sparse Generalist Models with Conditional MoEs},
+  url           = {https://papers.nips.cc/paper_files/paper/2022/hash/11fc8c98b46d4cbdfe8157267228f7d7-Abstract-Conference.html},
+  volume        = {35},
+  year          = {2022}
+}
+
+@inproceedings{mustafa2022multimodal,
+  abstract      = {Large sparsely-activated models have obtained excellent performance in multiple domains. However, such models are typically trained on a single modality at a time. We present the Language-Image MoE, LIMoE, a sparse mixture of experts model capable of multimodal learning. LIMoE accepts both images and text simultaneously, while being trained using a contrastive loss. MoEs are a natural fit for a multimodal backbone, since expert layers can learn an appropriate partitioning of modalities. However, new challenges arise; in particular, training stability and balanced expert utilization, for which we propose an entropy-based regularization scheme. Across multiple scales, we demonstrate remarkable performance improvement over dense models of equivalent computational cost. LIMoE-L/16 trained comparably to CLIP-L/14 achieves 78.6% zero-shot ImageNet accuracy (vs. 76.2%), and when further scaled to H/14 (with additional data) it achieves 84.1%, comparable to state-of-the-art methods which use larger custom per-modality backbones and pre-training schemes. We analyse the quantitative and qualitative behavior of LIMoE, and demonstrate phenomena such as differing treatment of the modalities and the organic emergence of modality-specific experts.},
+  author        = {Mustafa, Basil and Riquelme, Carlos and Puigcerver, Joan and Jenatton, Rodolphe and Houlsby, Neil},
+  booktitle     = {Advances in Neural Information Processing Systems 35},
+  openalex      = {W4282028729},
+  pages         = {28403--28415},
+  pdf           = {https://proceedings.neurips.cc/paper_files/paper/2022/file/3e67e84abf900bb2c7cbd5759bfce62d-Paper-Conference.pdf},
+  publisher     = {Curran Associates, Inc.},
+  series        = {NeurIPS},
+  title         = {Multimodal Contrastive Learning with LIMoE: The Language-Image Mixture of Experts},
+  url           = {https://proceedings.neurips.cc/paper_files/paper/2022/hash/3e67e84abf900bb2c7cbd5759bfce62d-Abstract-Conference.html},
+  year          = {2022}
+}
+
+@inproceedings{pioro2024moe,
+  abstract      = {State Space Models (SSMs) have become serious contenders in the field of sequential modeling, challenging the dominance of Transformers. At the same time, Mixture of Experts (MoE) has significantly improved Transformer-based Large Language Models, including recent state-of-the-art open models. We propose that to unlock the potential of SSMs for scaling, they should be combined with MoE. We showcase this on Mamba, a recent SSM-based model that achieves remarkable performance. Our model, MoE-Mamba, outperforms Mamba and matches the performance of Transformer-MoE. In particular, MoE-Mamba reaches the same performance as Mamba in $2.35 imes$ *fewer training steps* while preserving the inference performance gains of Mamba against Transformer.},
+  author        = {Pióro, Maciej and Ciebiera, Kamil and Król, Krystian and Ludziejewski, Jan and Krutul, Michał and Krajewski, Jakub and Antoniak, Szymon and Miłoś, Piotr and Cygan, Marek and Jaszczur, Sebastian},
+  booktitle     = {The Twelfth International Conference on Learning Representations},
+  keywords      = {Mamba, LLM, Mixture of Experts, MoE, conditional computation, SSM},
+  note          = {ICLR 2024 Workshop on Mathematical and Empirical Understanding of Foundation Models (ME-FoMo)},
+  openalex      = {W4390723179},
+  pdf           = {https://openreview.net/pdf?id=LRp8rCaYH7},
+  title         = {MoE-Mamba: Efficient Selective State Space Models with Mixture of Experts},
+  url           = {https://openreview.net/forum?id=LRp8rCaYH7},
+  year          = {2024}
+}
+
+@inproceedings{le2024mixture,
+  abstract      = {Exploiting the power of pre-trained models, prompt-based approaches stand out compared to other continual learning solutions in effectively preventing catastrophic forgetting, even with very few learnable parameters and without the need for a memory buffer. While existing prompt-based continual learning methods excel in leveraging prompts for state-of-the-art performance, they often lack a theoretical explanation for the effectiveness of prompting. This paper conducts a theoretical analysis to unravel how prompts bestow such advantages in continual learning, thus offering a new perspective on prompt design. We first show that the attention block of pre-trained models like Vision Transformers inherently encodes a special mixture of experts architecture, characterized by linear experts and quadratic gating score functions. This realization drives us to provide a novel view on prefix tuning, reframing it as the addition of new task-specific experts, thereby inspiring the design of a novel gating mechanism termed Non-linear Residual Gates (NoRGa). Through the incorporation of non-linear activation and residual connection, NoRGa enhances continual learning performance while preserving parameter efficiency. The effectiveness of NoRGa is substantiated both theoretically and empirically across diverse benchmarks and pretraining paradigms.},
+  author        = {Minh Le and An Nguyen and Huy Nguyen and Thien Trang Nguyen Vu and Huyen Trang Pham and Linh Ngo Van and Nhat Ho},
+  booktitle     = {Advances in Neural Information Processing Systems},
+  openalex      = {W4398796200},
+  pdf           = {https://proceedings.neurips.cc/paper_files/paper/2024/file/d78d68cae595fabadd187b583ee8708e-Paper-Conference.pdf},
+  publisher     = {Curran Associates, Inc.},
+  title         = {Mixture of Experts Meets Prompt-Based Continual Learning},
+  url           = {https://proceedings.neurips.cc/paper_files/paper/2024/file/d78d68cae595fabadd187b583ee8708e-Paper-Conference.pdf},
+  volume        = {37},
+  year          = {2024}
+}
+
+@inproceedings{rajbhandari2022deepspeed,
+  abstract      = {As the training of giant dense models hits the boundary on the availability and capability of the hardware resources today, Mixture-of-Experts (MoE) models become one of the most promising model architectures due to their significant training cost reduction compared to a quality-equivalent dense model. Its training cost saving is demonstrated from encoder-decoder models (prior works) to a 5x saving for auto-aggressive language models (this work along with parallel explorations). However, due to the much larger model size and unique architecture, how to provide fast MoE model inference remains challenging and unsolved, limiting its practical usage. To tackle this, we present DeepSpeed-MoE, an end-to-end MoE training and inference solution as part of the DeepSpeed library, including novel MoE architecture designs and model compression techniques that reduce MoE model size by up to 3.7x, and a highly optimized inference system that provides 7.3x better latency and cost compared to existing MoE inference solutions. DeepSpeed-MoE offers an unprecedented scale and efficiency to serve massive MoE models with up to 4.5x faster and 9x cheaper inference compared to quality-equivalent dense models. We hope our innovations and systems help open a promising path to new directions in the large model landscape, a shift from dense to sparse MoE models, where training and deploying higher-quality models with fewer resources becomes more widely possible.},
+  address       = {Baltimore, Maryland, USA},
+  author        = {Rajbhandari, Samyam and Li, Conglong and Yao, Zhewei and Zhang, Minjia and Aminabadi, Reza Yazdani and Awan, Ammar Ahmad and Rasley, Jeff and He, Yuxiong},
+  booktitle     = {Proceedings of the 39th International Conference on Machine Learning},
+  editor        = {Chaudhuri, Kamalika and Jegelka, Stefanie and Song, Le and Szepesvari, Csaba and Niu, Gang and Sabato, Sivan},
+  month         = {7},
+  openalex      = {W4226515448},
+  pages         = {18332--18346},
+  pdf           = {https://proceedings.mlr.press/v162/rajbhandari22a/rajbhandari22a.pdf},
+  publisher     = {PMLR},
+  series        = {Proceedings of Machine Learning Research},
+  title         = {DeepSpeed-MoE: Advancing Mixture-of-Experts Inference and Training to Power Next-Generation AI Scale},
+  url           = {https://proceedings.mlr.press/v162/rajbhandari22a.html},
+  volume        = {162},
+  year          = {2022}
+}
+
+@inproceedings{he2022fastermoe,
+  abstract      = {The current trend in deep learning is to scale models to extremely large sizes with the objective of increasing their accuracy. Mixture-of-Expert (MoE) is the most popular pre-trained model that makes feasible the training of models with parameters beyond trillion-scale. However, training trillion-scale MoE requires algorithm and system co-design for a well-tuned high performance distributed training system. FasterMoE designs a congestion-avoiding expert selection strategy that relieves network congestion for the lower latency of iterations, when modification of expert selection is allowed, and implements and integrates the above optimizations as a general system, empowering efficient distributed MoE model training. The system achieves 1.37X - 17.87X speedup compared with state-of-the-art systems for large models, including ZeRO, GShard, and BASE Layer.},
+  address       = {Seoul, Republic of Korea},
+  author        = {He, Jiaao and Zhai, Jidong and Antunes, Tiago and Wang, Haojie and Luo, Fuwen and Shi, Shangfeng and Li, Qin},
+  booktitle     = {Proceedings of the 27th ACM SIGPLAN Symposium on Principles and Practice of Parallel Programming},
+  doi           = {10.1145/3503221.3508418},
+  isbn          = {978-1-4503-9204-4},
+  month         = {4},
+  openalex      = {W4220967350},
+  pages         = {120--134},
+  pdf           = {https://dl.acm.org/doi/pdf/10.1145/3503221.3508418},
+  publisher     = {ACM},
+  series        = {PPoPP '22},
+  title         = {FasterMoE: Modeling and Optimizing Training of Large-Scale Dynamic Pre-Trained Models},
+  year          = {2022}
+}
+
+@inproceedings{zheng2022alpa,
+  abstract      = {Alpa automates model-parallel training of large deep learning (DL) models by generating execution plans that unify data, operator, and pipeline parallelism. Existing model-parallel training systems either require users to manually create a parallelization plan or automatically generate one from a limited space of model parallelism configurations. They do not suffice to scale out complex DL models on distributed compute devices. Alpa distributes the training of large DL models by viewing parallelisms as two hierarchical levels: inter-operator and intra-operator parallelisms. Based on it, Alpa constructs a new hierarchical space for massive model-parallel execution plans. Alpa designs a number of compilation passes to automatically derive efficient parallel execution plans at each parallelism level. Alpa implements an efficient runtime to orchestrate the two-level parallel execution on distributed compute devices. Our evaluation shows Alpa generates parallelization plans that match or outperform hand-tuned model-parallel training systems even on models they are designed for. Unlike specialized systems, Alpa also generalizes to models with heterogeneous architectures and models without manually-designed plans.},
+  address       = {Carlsbad, CA, USA},
+  author        = {Zheng, Lianmin and Li, Zhuohan and Zhang, Hao and Zhuang, Yonghao and Chen, Zhifeng and Huang, Yanping and Wang, Yida and Xu, Yuanzhong and Zhuo, Danyang and Gonzalez, Joseph E. and Stoica, Ion},
+  booktitle     = {16th USENIX Symposium on Operating Systems Design and Implementation (OSDI 22)},
+  month         = {7},
+  openalex      = {W4226479682},
+  pages         = {559--578},
+  pdf           = {https://www.usenix.org/system/files/osdi22-zheng-lianmin.pdf},
+  publisher     = {USENIX Association},
+  title         = {Alpa: Automating Inter- and Intra-Operator Parallelism for Distributed Deep Learning},
+  url           = {https://www.usenix.org/conference/osdi22/presentation/zheng-lianmin},
+  year          = {2022}
+}
+
+@misc{nie2022hetumoe,
+  abstract      = {As giant dense models advance quality but require large amounts of GPU budgets for training, the sparsely gated Mixture-of-Experts (MoE), a kind of conditional computation architecture, is proposed to scale models while keeping their computation constant. Specifically, the input tokens are routed by the gate network and only activates part of the expert network. Existing MoE training systems only support part of mainstream MoE models (e.g. Top k) training under expensive high-bandwidth GPU clusters. In this paper, we present HetuMoE, a high-performance large-scale sparse MoE training system built on Hetu. HetuMoE provides multiple gating strategies and efficient GPU kernel implementations. To further improve the training efficiency on commodity GPU clusters (e.g, with only 1 NiC), we introduce the hierarchical AllToAll communication that combines hierarchical networks and aggregating messages. Compared with existing state-of-the-art MoE systems, HetuMoE obtains at least 15% speedup. Specifically, HetuMoE outperforms DeepSpeed-MoE up to 8.1x under the switch gate with a batch size of 32. Our code is available at: https://github.com/PKU-DAIR/Hetu.},
+  archiveprefix = {arXiv},
+  author        = {Nie, Xiaonan and Zhao, Pinxue and Miao, Xupeng and Zhao, Tong and Cui, Bin},
+  eprint        = {2203.14685},
+  month         = {3},
+  openalex      = {W4221150592},
+  pdf           = {https://arxiv.org/pdf/2203.14685.pdf},
+  primaryclass  = {cs.DC},
+  title         = {HetuMoE: An Efficient Trillion-scale Mixture-of-Expert Distributed Training System},
+  url           = {https://arxiv.org/abs/2203.14685},
+  year          = {2022}
+}
+
+@inproceedings{gao2022parameter,
+  abstract      = {Recently, Mixture-of-Experts (short as MoE) architecture has achieved remarkable success in increasing the model capacity of large-scale language models. However, MoE requires incorporating significantly more parameters than the base model being extended. In this paper, we propose building a parameter-efficient MoE architecture by sharing information among experts. We adopt the matrix product operator (MPO, a tensor decomposition from quantum many-body physics) to reconstruct the parameter matrix in the expert layer and increase model capacity for pre-trained language models by sharing parameters of the central tensor (containing the core information) among different experts while enabling the specificity through the auxiliary tensors (complementing the central tensor) of different experts. To address the unbalanced optimization issue, we further design the gradient mask strategy for the MPO-based MoE architecture. Extensive experiments based on T5 and GPT-2 show improved performance and efficiency of the pre-trained language model (27.2x reduction in total parameters for the superior model performance, compared with the Switch Transformers).},
+  address       = {Gyeongju, Republic of Korea},
+  archiveprefix = {arXiv},
+  author        = {Gao, Ze-Feng and Liu, Peiyu and Zhao, Wayne Xin and Lu, Zhong-Yi and Wen, Ji-Rong},
+  booktitle     = {Proceedings of the 29th International Conference on Computational Linguistics},
+  eprint        = {2203.01104},
+  month         = {10},
+  openalex      = {W4226375166},
+  pages         = {3263--3273},
+  pdf           = {https://aclanthology.org/2022.coling-1.288.pdf},
+  primaryclass  = {cs.CL},
+  publisher     = {International Committee on Computational Linguistics},
+  title         = {Parameter-Efficient Mixture-of-Experts Architecture for Pre-trained Language Models},
+  url           = {https://aclanthology.org/2022.coling-1.288/},
+  year          = {2022}
+}
+
+@misc{xue2022one,
+  abstract      = {Human education system trains one student by multiple experts. Mixture-of-experts (MoE) is a powerful sparse architecture including multiple experts. However, sparse MoE model is easy to overfit, hard to deploy, and not hardware-friendly for practitioners. In this work, inspired by the human education model, we propose a novel task, knowledge integration, to obtain a dense student model (OneS) as knowledgeable as one sparse MoE. We investigate the task by proposing a general training framework including knowledge gathering and knowledge distillation. Specifically, we gather key knowledge from different pre-trained experts using four different knowledge gathering methods: summation, averaging, Top-K Knowledge Gathering (Top-KG), and Singular Value Decomposition Knowledge Gathering (SVD-KG). On ImageNet, our OneS preserves 61.7% benefits from MoE and achieves 78.4% top-1 accuracy with only 15M parameters. On four natural language processing datasets, OneS obtains 88.2% MoE benefits and outperforms the state-of-the-art baseline by 51.7% using the same architecture and training data. Additionally, compared with the MoE counterpart, OneS can achieve 3.7× inference speedup due to the hardware-friendly architecture.},
+  archiveprefix = {arXiv},
+  author        = {Fuzhao Xue and Xiaoxin He and Xiaozhe Ren and Yuxuan Lou and Yang You},
+  eprint        = {2201.10890},
+  openalex      = {W4221156865},
+  pdf           = {https://arxiv.org/pdf/2201.10890.pdf},
+  primaryclass  = {cs.LG},
+  title         = {One Student Knows All Experts Know: From Sparse to Dense},
+  url           = {https://arxiv.org/abs/2201.10890},
+  year          = {2022}
+}
+
+@inproceedings{shen2024mixture,
+  abstract      = {Sparse Mixture-of-Experts (MoE) is a neural architecture design that adds learnable parameters to Large Language Models (LLMs) without increasing computational complexity (FLOPs). Instruction tuning is a technique for training LLMs to follow instructions. We advocate combining these two approaches, as we find that MoE models benefit more from instruction tuning than dense models. In particular, we conduct empirical studies across three experimental setups: (i) Direct finetuning on individual downstream tasks devoid of instruction tuning; (ii) Instruction tuning followed by in-context few-shot or zero-shot generalization on downstream tasks; and (iii) Instruction tuning supplemented by further finetuning on individual downstream tasks. In the first scenario, MoE models overall underperform dense models of identical computational capacity. However, this narrative dramatically changes with the introduction of instruction tuning (in the second and third scenarios), where MoE models can achieve approximately 2× better performance than their dense counterparts. Our largest and most-powerful model, FLAN-MoE-32B, surpasses the performance of FLAN-PaLM-62B on four benchmark tasks, while using only a third of the FLOPs. The better instruction-following capability of MoE models at training time translates to better generalization at inference time. Our comprehensive analysis of the interplay between MoE and instruction tuning offers valuable insights into the design and optimization of large-scale language models.},
+  author        = {Sheng Shen and Le Hou and Yanqi Zhou and Nan Du and Shayne Longpre and Jason Wei and Hyung Won Chung and Barret Zoph and William Fedus and Xinyun Chen and Tu Vu and Yuexin Wu and Wuyang Chen and Albert Webson and Yunxuan Li and Vincent Y. Zhao and Hongkun Yu and Kurt Keutzer and Trevor Darrell and Denny Zhou},
+  booktitle     = {The Twelfth International Conference on Learning Representations},
+  pdf           = {https://openreview.net/pdf?id=6mLjDwYte5},
+  publisher     = {OpenReview.net},
+  title         = {Mixture-of-Experts Meets Instruction Tuning: A Winning Combination for Large Language Models},
+  url           = {https://openreview.net/forum?id=6mLjDwYte5},
+  year          = {2024}
+}
+
+@misc{jiang2024mixtral,
+  abstract      = {We introduce Mixtral 8x7B, a Sparse Mixture of Experts (SMoE) language model. Mixtral has the same architecture as Mistral 7B, with the difference that each layer is composed of 8 feedforward blocks (i.e. experts). For every token, at each layer, a router network selects two experts to process the current state and combine their outputs. Even though each token only sees two experts, the selected experts can be different at each timestep. As a result, each token has access to 47B parameters, but only uses 13B active parameters during inference. Mixtral was trained with a context size of 32k tokens and it outperforms or matches Llama 2 70B and GPT-3.5 across all evaluated benchmarks. In particular, Mixtral vastly outperforms Llama 2 70B on mathematics, code generation, and multilingual benchmarks. We also provide a model fine-tuned to follow instructions, Mixtral 8x7B - Instruct, that surpasses GPT-3.5 Turbo, Claude-2.1, Gemini Pro, and Llama 2 70B - chat model on human benchmarks. Both the base and instruct models are released under the Apache 2.0 license.},
+  archiveprefix = {arXiv},
+  author        = {Jiang, Albert Q. and Sablayrolles, Alexandre and Roux, Antoine and Mensch, Arthur and Savary, Blanche and Bamford, Chris and Chaplot, Devendra Singh and Casas, Diego de las and Hanna, Emma Bou and Bressand, Florian and Lengyel, Gianna and Bour, Guillaume and Lample, Guillaume and Lavaud, Lélio Renard and Saulnier, Lucile and Lachaux, Marie-Anne and Stock, Pierre and Subramanian, Sandeep and Yang, Sophia and Antoniak, Szymon and Scao, Teven Le and Gervet, Théophile and Lavril, Thibaut and Wang, Thomas and Lacroix, Timothée and Sayed, William El},
+  doi           = {10.48550/arXiv.2401.04088},
+  eprint        = {2401.04088},
+  month         = {1},
+  openalex      = {W4390723197},
+  pdf           = {https://arxiv.org/pdf/2401.04088.pdf},
+  primaryclass  = {cs.LG},
+  title         = {Mixtral of Experts},
+  url           = {https://arxiv.org/abs/2401.04088},
+  year          = {2024}
+}
+
+@inproceedings{oldfield2024multilinear,
+  abstract      = {The Mixture of Experts (MoE) paradigm provides a powerful way to decompose dense layers into smaller, modular computations often more amenable to human interpretation, debugging, and editability. However, a major challenge lies in the computational cost of scaling the number of experts high enough to achieve fine-grained specialization. The paper proposes the Multilinear Mixture of Experts ($μ$MoE) layer to address this, focusing on vision models. $μ$MoE layers enable scalable expert specialization by performing an implicit computation on prohibitively large weight tensors entirely in factorized form. $μ$MoEs avoid the restrictively high inference-time costs of dense MoEs, yet do not inherit the training issues of the popular sparse MoEs' discrete (non-differentiable) expert routing. The research presents both qualitative and quantitative evidence that scaling $μ$MoE layers when fine-tuning foundation models for vision tasks leads to more specialized experts at the class-level, further enabling manual bias correction in CelebA attribute classification.},
+  author        = {Oldfield, James and Georgopoulos, Markos and Chrysos, Grigorios G. and Tzelepis, Christos and Panagakis, Yannis and Nicolaou, Mihalis A. and Deng, Jiankang and Patras, Ioannis},
+  booktitle     = {Advances in Neural Information Processing Systems},
+  editor        = {Oh, Alice and Naumann, Tristan and Globerson, Amir and Saenko, Kate and Hardt, Moritz and Levine, Sergey},
+  openalex      = {W4392019778},
+  pdf           = {https://proceedings.neurips.cc/paper_files/paper/2024/file/5eeb693f46d753e5fe24c97212c22bd2-Paper-Conference.pdf},
+  publisher     = {Curran Associates, Inc.},
+  title         = {Multilinear Mixture of Experts: Scalable Expert Specialization through Factorization},
+  url           = {https://neurips.cc/virtual/2024/poster/94496},
+  volume        = {37},
+  year          = {2024}
+}
+
+@inproceedings{guo2024dynamic,
+  abstract      = {The performance of Sparse Mixture of Experts (SMoE) in Transformer models heavily depends on the choice of hyper-parameters such as the number of experts and the number of experts to be activated (referred to as top-k), resulting in significant computational overhead due to extensive model training for searching over various hyper-parameter configurations. As a remedy, we introduce the Dynamic Mixture of Experts (DynMoE) technique. DynMoE incorporates (1) a novel gating method that enables each token to automatically determine the number of experts to activate, and (2) an adaptive process that automatically adjusts the number of experts during training. Extensive numerical results across Vision, Language, and Vision-Language tasks demonstrate the effectiveness of our approach to achieve competitive performance compared to GMoE for vision and language tasks, and MoE-LLaVA for vision-language tasks, while maintaining efficiency by activating fewer parameters.},
+  archiveprefix = {arXiv},
+  author        = {Guo, Yongxin and Cheng, Zhenglin and Tang, Xiaoying and Tu, Zhaopeng and Lin, Tao},
+  booktitle     = {The Thirteenth International Conference on Learning Representations},
+  eprint        = {2405.14297},
+  primaryclass  = {cs.LG},
+  title         = {Dynamic Mixture of Experts: An Auto-Tuning Approach for Efficient Transformer Models},
+  url           = {https://openreview.net/forum?id=T26f9z2rEe},
+  year          = {2025}
+}
+
+@misc{kang2025mixture,
+  archiveprefix = {arXiv},
+  author        = {Kang, Liang and Li, Jin and Tian, Meng and Huang, Hao},
+  eprint        = {2501.00123},
+  primaryclass  = {cs.LG},
+  title         = {Mixture of Group Experts for Learning Invariant Representations},
+  year          = {2025}
+}
+
+@misc{wu2025mixture,
+  abstract      = {In-context reinforcement learning (ICRL) has emerged as a promising paradigm for adapting RL agents to downstream tasks through prompt conditioning. However, two notable challenges remain in fully harnessing in-context learning within RL domains: the intrinsic multi-modality of the state-action-reward data and the diverse, heterogeneous nature of decision tasks. To tackle these challenges, we propose T2MIR (Token- and Task-wise MoE for In-context RL), an innovative framework that introduces architectural advances of mixture-of-experts (MoE) into transformer-based decision models. T2MIR substitutes the feedforward layer with two parallel layers: a token-wise MoE that captures distinct semantics of input tokens across multiple modalities, and a task-wise MoE that routes diverse expert computations for each task type. Extensive empirical evaluations demonstrate that T2MIR significantly outperforms existing methods across various in-context RL benchmarks.},
+  archiveprefix = {arXiv},
+  author        = {Wu, Wenhao and Liu, Fuhong and Li, Haoru and Hu, Zican and Dong, Daoyi and Chen, Chunlin and Wang, Zhi},
+  eprint        = {2506.05426},
+  month         = {6},
+  note          = {26 pages, 13 figures},
+  pdf           = {https://arxiv.org/pdf/2506.05426.pdf},
+  primaryclass  = {cs.LG},
+  title         = {Mixture-of-Experts Meets In-Context Reinforcement Learning},
+  url           = {https://arxiv.org/abs/2506.05426},
+  year          = {2025}
+}
+
+@misc{kim2025every,
+  abstract      = {With the emergence of Mixture-of-Experts (MoE), the efficient scaling of model size has accelerated the development of large language models in recent years. However, their high memory requirements prevent their use in resource-constrained environments. While knowledge distillation (KD) has been a proven method for model compression, its application to MoE teacher models remains underexplored. Through our investigation, we discover that non-activated experts in MoE models possess valuable knowledge that benefits student models. We further demonstrate that existing KD methods are not optimal for compressing MoE models, as they fail to leverage this knowledge effectively. To address this, we propose two intuitive MoE-specific KD methods for the first time: Knowledge Augmentation (KA) and Student-Aware Router (SAR), both designed to effectively extract knowledge from all experts. Specifically, KA augments knowledge by sampling experts multiple times, while SAR uses all experts and adjusts the expert weights through router training to provide optimal knowledge. Extensive experiments show that our methods outperform conventional KD methods, demonstrating their effectiveness for MoE teacher models.},
+  archiveprefix = {arXiv},
+  author        = {Kim, Gyeongman and Chu, Gyouk and Yang, Eunho},
+  doi           = {10.48550/arxiv.2502.12947},
+  eprint        = {2502.12947},
+  month         = {2},
+  openalex      = {W4407759902},
+  pdf           = {http://arxiv.org/pdf/2502.12947},
+  primaryclass  = {cs.CL},
+  title         = {Every Expert Matters: Towards Effective Knowledge Distillation for Mixture-of-Experts Language Models},
+  year          = {2025}
+}
+
+@misc{wu2025can,
+  abstract      = {Mixture-of-Experts (MoE) language models dramatically expand model capacity and achieve remarkable performance without increasing per-token compute. However, the central research question is: can MoEs surpass dense architectures under strictly equal resource constraints -- that is, when the total parameter count, training compute, and data budget are identical? This question remains under-explored despite its significant practical value and potential. We propose a novel perspective and methodological framework to study this question thoroughly. We conduct extensive experiments training nearly 200 language models at 2B scale and over 50 at 7B scale, processing 50 trillion tokens in total. Our findings reveal that MoE models can indeed outperform dense models under strictly equal resources when using an optimal activation rate.},
+  archiveprefix = {arXiv},
+  author        = {Li, Houyi and Lo, Ka Man and Wang, Ziqi and Wang, Zili and Zheng, Wenzhen and Zhou, Shuigeng and Zhang, Xiangyu and Jiang, Daxin},
+  eprint        = {2506.12119},
+  month         = {6},
+  primaryclass  = {cs.CL},
+  title         = {Can Mixture-of-Experts Surpass Dense LLMs Under Strictly Equal Resources?},
+  url           = {https://arxiv.org/abs/2506.12119},
+  year          = {2025}
+}
+
+@misc{wu2025unified,
+  archiveprefix = {arXiv},
+  author        = {Wu, Zhennan and Liu, Haoran and Li, Ao and Liu, Zhiguang},
+  eprint        = {2501.01456},
+  note          = {arXiv preprint},
+  primaryclass  = {cs.LG},
+  title         = {Unified Competitive Learning SMoE: A Novel Framework for Sparse Mixture of Experts},
+  url           = {https://arxiv.org/abs/2501.01456},
+  year          = {2025}
+}
+
+@article{yuksel2012twenty,
+  abstract      = {In this paper, we provide a comprehensive survey of the mixture of experts (ME). We discuss the fundamental models for regression and classification and also their training with the expectation-maximization algorithm.},
+  author        = {Yuksel, Seniha Esen and Wilson, Joseph N. and Gader, Paul D.},
+  doi           = {10.1109/TNNLS.2012.2200299},
+  journal       = {IEEE Transactions on Neural Networks and Learning Systems},
+  number        = {8},
+  openalex      = {W2068238590},
+  pages         = {1177--1193},
+  pmid          = {24807516},
+  publisher     = {IEEE},
+  title         = {Twenty Years of Mixture of Experts},
+  url           = {https://ieeexplore.ieee.org/abstract/document/6215056},
+  volume        = {23},
+  year          = {2012}
+}
+
+@misc{fedus2022review,
+  abstract      = {Sparse expert models are a thirty-year old concept re-emerging as a popular architecture in deep learning. This class of architecture encompasses Mixture-of-Experts, Switch Transformers, Routing Networks, BASE layers, and others, all with the unifying idea that each example is acted on by a subset of the parameters. By doing so, the degree of sparsity decouples the parameter count from the compute per example allowing for extremely large, but efficient models. The resulting models have demonstrated significant improvements across diverse domains such as natural language processing, computer vision, and speech recognition. We review the concept of sparse expert models, provide a basic description of the common algorithms, contextualize the advances in the deep learning era, and conclude by highlighting areas for future work.},
+  archiveprefix = {arXiv},
+  author        = {Fedus, William and Dean, Jeff and Zoph, Barret},
+  doi           = {10.48550/arXiv.2209.01667},
+  eprint        = {2209.01667},
+  month         = {9},
+  openalex      = {W4297631950},
+  pdf           = {https://arxiv.org/pdf/2209.01667.pdf},
+  primaryclass  = {cs.LG},
+  title         = {A Review of Sparse Expert Models in Deep Learning},
+  url           = {https://arxiv.org/abs/2209.01667},
+  year          = {2022}
+}
+
+@misc{mu2025comprehensive,
+  abstract      = {Artificial intelligence (AI) has achieved astonishing successes in many domains, especially with the recent breakthroughs in the development of foundational large models. These large models, leveraging their extensive training data, provide versatile solutions for a wide range of downstream tasks. However, as modern datasets become increasingly diverse and complex, the development of large AI models faces two major challenges: (1) the enormous consumption of computational resources and deployment difficulties, and (2) the difficulty in fitting heterogeneous and complex data, which limits the usability of the models. Mixture of Experts (MoE) models has recently attracted much attention in addressing these challenges, by dynamically selecting and activating the most relevant sub-models to process input data. It has been shown that MoEs can significantly improve model performance and efficiency with fewer resources, particularly excelling in handling large-scale, multimodal data. Given the tremendous potential MoE has demonstrated across various domains, it is urgent to provide a comprehensive summary of recent advancements of MoEs in many important fields. Existing surveys on MoE have their limitations, e.g., being outdated or lacking discussion on certain key areas, and we aim to address these gaps. In this paper, we first introduce the basic design of MoE, including gating functions, expert networks, routing mechanisms, training strategies, and system design. We then explore the algorithm design of MoE in important machine learning paradigms such as continual learning, meta-learning, multi-task learning, and reinforcement learning. Additionally, we summarize theoretical studies aimed at understanding MoE and review its applications in computer vision and natural language processing. Finally, we discuss promising future research directions.},
+  archiveprefix = {arXiv},
+  author        = {Mu, Siyuan and Lin, Sen},
+  eprint        = {2503.07137},
+  month         = {3},
+  pdf           = {https://arxiv.org/pdf/2503.07137.pdf},
+  primaryclass  = {cs.LG},
+  title         = {A Comprehensive Survey of Mixture-of-Experts: Algorithms, Theory, and Applications},
+  url           = {https://arxiv.org/abs/2503.07137},
+  year          = {2025}
+}
+
+@inproceedings{zhang2023robust,
+  abstract      = {Sparsely-gated Mixture of Expert (MoE), an emerging deep model architecture, has demonstrated a great promise to enable high-accuracy and ultra-efficient model inference. Despite the growing popularity of MoE, little work investigated its potential to advance convolutional neural networks (CNNs), especially in the plane of adversarial robustness. Since the lack of robustness has become one of the main hurdles for CNNs, in this paper we ask: How to adversarially robustify a CNN-based MoE model? Can we robustly train it like an ordinary CNN model? Our pilot study shows that the conventional adversarial training (AT) mechanism (developed for vanilla CNNs) no longer remains effective to robustify an MoE-CNN. To better understand this phenomenon, we dissect the robustness of an MoE-CNN into two dimensions: Robustness of routers (i.e., gating functions to select data-specific experts) and robustness of experts (i.e., the router-guided pathways defined by the subnetworks of the backbone CNN). Our analyses show that routers and experts are hard to adapt to each other in the vanilla AT. Thus, we propose a new router-expert alternating Adversarial training framework for MoE, termed AdvMoE. The effectiveness of our proposal is justified across 4 commonly-used CNN model architectures over 4 benchmark datasets. We find that AdvMoE achieves 1% to 4% adversarial robustness improvement over the original dense CNN, and enjoys the efficiency merit of sparsity-gated MoE, leading to more than 50% inference cost reduction.},
+  author        = {Yihua Zhang and Ruisi Cai and Tianlong Chen and Guanhua Zhang and Huan Zhang and Pin-Yu Chen and Shiyu Chang and Zhangyang Wang and Sijia Liu},
+  booktitle     = {IEEE/CVF International Conference on Computer Vision (ICCV)},
+  doi           = {10.1109/iccv51070.2023.00015},
+  openalex      = {W4390874353},
+  pages         = {90--101},
+  pdf           = {https://openaccess.thecvf.com/content/ICCV2023/papers/Zhang_Robust_Mixture-of-Expert_Training_for_Convolutional_Neural_Networks_ICCV_2023_paper.pdf},
+  title         = {Robust Mixture-of-Expert Training for Convolutional Neural Networks},
+  year          = {2023}
+}
+
+@inproceedings{wang2024one,
+  abstract      = {Large Language Models (LLMs) exhibit strong generalization capabilities to novel tasks when prompted with language instructions and in-context demos. Since this ability sensitively depends on the quality of prompts, various methods have been explored to automate the instruction design. While these methods demonstrated promising results, they also restricted the searched prompt to one instruction. Such simplification significantly limits their capacity, as a single demo-free instruction might not be able to cover the entire complex problem space of the targeted task. To alleviate this issue, we adopt the Mixture-of-Expert paradigm and divide the problem space into a set of sub-regions; Each sub-region is governed by a specialized expert, equipped with both an instruction and a set of demos. A two-phase process is developed to construct the specialized expert for each region: (1) demo assignment: Inspired by the theoretical connection between in-context learning and kernel regression, we group demos into experts based on their semantic similarity; (2) instruction assignment: A region-based joint search of an instruction per expert complements the demos assigned to it, yielding a synergistic effect. The resulting method, codenamed Mixture-of-Prompts (MoP), achieves an average win rate of 81% against prior arts across several major benchmarks.},
+  address       = {Vienna, Austria},
+  author        = {Wang, Ruochen and An, Sohyun and Cheng, Minhao and Zhou, Tianyi and Hwang, Sung Ju and Hsieh, Cho-Jui},
+  booktitle     = {Proceedings of the 41st International Conference on Machine Learning},
+  editor        = {Salakhutdinov, Ruslan and Kolter, Zico and Heller, Katherine and Weller, Adrian and Oliver, Nuria and Scarlett, Jonathan and Berkenkamp, Felix},
+  month         = {7},
+  openalex      = {W4400267199},
+  pages         = {},
+  pdf           = {https://openreview.net/pdf?id=edHLN40DWu},
+  publisher     = {PMLR},
+  series        = {Proceedings of Machine Learning Research},
+  title         = {One Prompt is not Enough: Automated Construction of a Mixture-of-Expert Prompts},
+  url           = {https://openreview.net/forum?id=edHLN40DWu},
+  volume        = {235},
+  year          = {2024}
+}
+
+@inproceedings{wu2024mixture,
+  abstract      = {LoRA has gained widespread acceptance in the fine-tuning of large pre-trained models to cater to a diverse array of downstream tasks, showcasing notable effectiveness and efficiency. Due to LoRA's modular, plug-and-play nature, researchers have explored amalgamating multiple LoRAs to excel across various tasks. However, existing approaches for LoRA fusion face challenges. Direct arithmetic merging may result in loss of the original model's generative capabilities or distinct LoRA identities, yielding suboptimal outcomes. Reference tuning-based methods also exhibit limitations in flexibility and effective combination. In response, this paper introduces the "Mixture of LoRA Experts" (MoLE) approach, which harnesses hierarchical control for branch selection. The MoLE approach achieves superior performance compared to direct merging while retaining crucial combining capabilities. Extensive experimental evaluations in Natural Language Processing (NLP) and Vision & Language (V&L) domains substantiate the efficacy of MoLE.},
+  address       = {Vienna, Austria},
+  author        = {Xun Wu and Shaohan Huang and Furu Wei},
+  booktitle     = {The Twelfth International Conference on Learning Representations},
+  month         = {5},
+  openalex      = {W4395065207},
+  pages         = {1--15},
+  pdf           = {https://openreview.net/pdf?id=uWvKBCYh4S},
+  publisher     = {OpenReview.net},
+  title         = {Mixture of LoRA Experts},
+  url           = {https://openreview.net/forum?id=uWvKBCYh4S},
+  year          = {2024}
+}
+
+@inproceedings{gale2023megablocks,
+  abstract      = {We present MegaBlocks, a system for efficient Mixture-of-Experts (MoE) training on GPUs. Our system is motivated by the limitations of current frameworks, which restrict the dynamic routing in MoE layers to satisfy the constraints of existing software and hardware. These systems force a tradeoff between model quality and hardware efficiency as users must choose between dropping tokens from the computation or wasting computation on padding. To address these limitations, we reformulate MoE computation in terms of block-sparse operations and develop new block-sparse GPU kernels that can efficiently handle the dynamism present in MoEs. Our approach never drops tokens and maps efficiently to modern hardware, enabling end-to-end training speedups of up to 40% over MoEs trained with the state-of-the-art Tutel library while also providing 2.4× training speedups over dense models trained with Megatron-LM. Finally, MegaBlocks simplifies MoE training by removing the capacity_factor hyperparameter altogether.},
+  address       = {Miami, FL, USA},
+  author        = {Gale, Trevor and Narayanan, Deepak and Young, Cliff and Zaharia, Matei},
+  booktitle     = {Proceedings of Machine Learning and Systems},
+  month         = {6},
+  openalex      = {W4310510250},
+  pdf           = {https://proceedings.mlsys.org/paper_files/paper/2023/file/5a54f79333768effe7e8927bcccffe40-Paper-mlsys2023.pdf},
+  publisher     = {MLSys.org},
+  title         = {MegaBlocks: Efficient Sparse Training with Mixture-of-Experts},
+  volume        = {5},
+  year          = {2023}
+}
+
+@inproceedings{kudugunta2021beyond,
+  abstract      = {Sparse Mixture-of-Experts (MoE) has been a successful approach for scaling multilingual translation models to billions of parameters without a proportional increase in training computation. However, MoE models are prohibitively large and practitioners often resort to methods such as distillation for serving. In this work, we investigate routing strategies at different granularity (token, sentence, task) in MoE models to bypass distillation. Experiments on WMT and a web-scale dataset suggest that task-level routing (task-MoE) enables us to extract smaller, ready-to-deploy sub-networks from large sparse models. On WMT, our task-MoE with 32 experts (533M parameters) outperforms the best performing token-level MoE model (token-MoE) by +1.0 BLEU on average across 30 language pairs. The peak inference throughput is also improved by a factor of 1.9x when we route by tasks instead of tokens. While distilling a token-MoE to a smaller dense model preserves only 32% of the BLEU gains, our sub-network task-MoE, by design, preserves all the gains with the same inference cost as the distilled student model. Finally, when scaling up to 200 language pairs, our 128-expert task-MoE (13B parameters) performs competitively with a token-level counterpart, while improving the peak inference throughput by a factor of 2.6x.},
+  author        = {Kudugunta, Sneha and Huang, Yanping and Bapna, Ankur and Krikun, Maxim and Lepikhin, Dmitry and Luong, Minh-Thang and Firat, Orhan},
+  booktitle     = {Findings of the Association for Computational Linguistics: EMNLP 2021},
+  doi           = {10.18653/v1/2021.findings-emnlp.304},
+  openalex      = {W3207645655},
+  pages         = {3577--3599},
+  pdf           = {https://aclanthology.org/2021.findings-emnlp.304.pdf},
+  publisher     = {Association for Computational Linguistics},
+  title         = {Beyond Distillation: Task-Level Mixture-of-Experts for Efficient Inference},
+  url           = {https://aclanthology.org/2021.findings-emnlp.304},
+  year          = {2021}
+}
+
+@inproceedings{gaspar2022glolloc,
+  author        = {Gaspar, Hadrien A. and Seddon, Matthew},
+  booktitle     = {ICLR 2022 Workshop on Machine Learning for Drug Discovery},
+  title         = {Glolloc: Mixture of Global and Local Experts for Molecular Activity Prediction},
+  year          = {2022}
+}
+
+@inproceedings{ghavamzadeh2023mixture,
+  abstract      = {Despite recent advancements in language models (LMs), their application to dialogue management (DM) problems and ability to carry on rich conversations remain a challenge. We use reinforcement learning (RL) to develop a dialogue agent that avoids being short-sighted (outputting generic utterances) and maximizes overall user satisfaction. Most existing RL approaches to DM train the agent at the word-level, and thus, have to deal with a combinatorially complex action space even for a medium-size vocabulary. As a result, they struggle to produce a successful and engaging dialogue even if they are warm-started with a pre-trained LM. To address this issue, we develop a RL-based DM using a novel mixture of expert language model (MoE-LM) that consists of (i) a LM capable of learning diverse semantics for conversation histories, (ii) a number of specialized LMs (or experts) capable of generating utterances corresponding to a particular attribute or personality, and (iii) a RL-based DM that performs dialogue planning with the utterances generated by the experts. Our approach provides greater flexibility to generate sensible utterances with different intents compared to baselines and we demonstrate its effectiveness on open-domain dialogues.},
+  author        = {Chow, Yinlam and Tulepbergenov, Aza and Nachum, Ofir and Ryu, Moonkyung and Ghavamzadeh, Mohammad and Boutilier, Craig},
+  booktitle     = {The Eleventh International Conference on Learning Representations},
+  month         = {5},
+  openalex      = {W4281658075},
+  pdf           = {https://openreview.net/pdf?id=4FBUihxz5nm},
+  title         = {A Mixture-of-Expert Approach to RL-Based Dialogue Management},
+  url           = {https://openreview.net/forum?id=4FBUihxz5nm},
+  year          = {2023}
+}
+
+@inproceedings{chen2024mixture,
+  abstract      = {This tutorial offers a comprehensive overview of Mixture-of-Experts (MoE) within the context of Large Language Models (LLMs). Large Language Models have showcased remarkable generalization capabilities, with model scale being pivotal for performance. However, escalating costs and inference speed constraints have led to exploration of novel scaling techniques like sparse Mixture-of-Experts. The tutorial explores challenges in model scaling and efficiency, discusses MoE's potential to improve pre-training and inference speed, covers architectural variations and multi-modal extensions, and includes discussions on training strategies and multi-modal applications.},
+  address       = {Vienna, Austria},
+  author        = {Chen, Tianlong and Cheng, Yu and Chen, Beidi and Zhang, Minjia and Bansal, Mohit},
+  booktitle     = {Proceedings of the 41st International Conference on Machine Learning},
+  month         = {7},
+  note          = {Tutorial presented at ICML 2024, July 22, 1-3 p.m. CEST, Hall A1},
+  publisher     = {PMLR},
+  series        = {Proceedings of Machine Learning Research},
+  title         = {Mixture-of-Experts in the Era of LLMs: A New Odyssey},
+  url           = {https://icml.cc/virtual/2024/tutorial/35222},
+  volume        = {235},
+  year          = {2024}
+}
+
+@inproceedings{chen2024scaling,
+  abstract      = {Imposing known physical constraints, such as conservation laws, during neural network training introduces an inductive bias that can improve accuracy, reliability, convergence, and data efficiency for modeling physical dynamics. While such constraints can be softly imposed via loss function penalties, recent advancements in differentiable physics and optimization improve performance by incorporating PDE-constrained optimization as individual layers in neural networks. This enables a stricter adherence to physical constraints. However, imposing hard constraints significantly increases computational and memory costs, especially for complex dynamical systems. This is because it requires solving an optimization problem over a large number of points in a mesh, representing spatial and temporal discretizations, which greatly increases the complexity of the constraint. To address this challenge, we develop a scalable approach to enforce hard physical constraints using Mixture-of-Experts (MoE), which can be used with any neural network architecture. Our approach imposes the constraint over smaller decomposed domains, each of which is solved by an ``expert'' through differentiable optimization. During training, each expert independently performs a localized backpropagation step by leveraging the implicit function theorem; the independence of each expert allows for parallelization across multiple GPUs. Compared to standard differentiable optimization, our scalable approach achieves greater accuracy in the neural PDE solver setting for predicting the dynamics of challenging non-linear systems. We also improve training stability and require significantly less computation time during both training and inference stages.},
+  address       = {Vienna, Austria},
+  author        = {Nithin Chalapathi and Yiheng Du and Aditi S. Krishnapriyan},
+  booktitle     = {The Twelfth International Conference on Learning Representations},
+  month         = {5},
+  note          = {Poster presentation},
+  openalex      = {W4392085160},
+  pdf           = {https://openreview.net/pdf?id=u3dX2CEIZb},
+  publisher     = {OpenReview.net},
+  title         = {Scaling Physics-Informed Hard Constraints with Mixture-of-Experts},
+  url           = {https://openreview.net/forum?id=u3dX2CEIZb},
+  year          = {2024}
+}
+
+@inproceedings{jaszczur2021sparse,
+  abstract      = {Large Transformer models yield impressive results on many tasks, but are expensive to train, or even fine-tune, and so slow at decoding that their use and study becomes out of reach. We address the problem by leveraging sparsity. We study sparse variants for all layers in the Transformer and propose Scaling Transformers, a family of next generation Transformer models that use sparse layers to scale efficiently and perform unbatched decoding much faster than the standard Transformer as we scale up the model size. Surprisingly, the sparse layers are enough to obtain the same perplexity as the standard Transformer with the same number of parameters. We also show that we can integrate with prior sparsity approaches to attention and enable fast inference on long sequences even with limited memory, resulting in performance competitive to the state-of-the-art on long text summarization.},
+  author        = {Jaszczur, Sebastian and Chowdhery, Aakanksha and Mohiuddin, Afroz and Kaiser, Łukasz and Gajewski, Wojciech and Michalewski, Henryk and Kanerva, Jonni},
+  booktitle     = {Advances in Neural Information Processing Systems},
+  editor        = {Ranzato, M. and Beygelzimer, A. and Dauphin, Y. and Liang, P.S. and Vaughan, J. Wortman},
+  openalex      = {W4286850694},
+  pages         = {9895--9907},
+  pdf           = {https://proceedings.neurips.cc/paper/2021/file/51f15efdd170e6043fa02a74882f0470-Paper.pdf},
+  publisher     = {Curran Associates, Inc.},
+  title         = {Sparse is Enough in Scaling Transformers},
+  url           = {https://proceedings.neurips.cc/paper/2021/hash/51f15efdd170e6043fa02a74882f0470-Abstract.html},
+  volume        = {34},
+  year          = {2021}
+}
+
+@inproceedings{xue2022go,
+  abstract      = {More transformer blocks with residual connections have recently achieved impressive results on various tasks. To achieve better performance with fewer trainable parameters, recent methods are proposed to go shallower by parameter sharing or model compressing along with the depth. However, weak modeling capacity limits their performance. Contrastively, going wider by inducing more trainable matrixes and parameters would produce a huge model requiring advanced parallelism to train and inference. In this paper, we propose a parameter-efficient framework, going wider instead of deeper. Specially, following existing works, we adapt parameter sharing to compress along depth. But, such deployment would limit the performance. To maximize modeling capacity, we scale along model width by replacing feed-forward network (FFN) with mixture-of-experts (MoE). Across transformer blocks, instead of sharing normalization layers, we propose to use individual layernorms to transform various semantic representations in a more parameter-efficient way. To evaluate our plug-and-run framework, we design WideNet and conduct comprehensive experiments on popular computer vision and natural language processing benchmarks. On ImageNet-1K, our best model outperforms Vision Transformer (ViT) by $1.5%$ with $0.72  imes$ trainable parameters. Using $0.46  imes$ and $0.13  imes$ parameters, our WideNet can still surpass ViT and ViT-MoE by $0.8%$ and $2.1%$, respectively. On four natural language processing datasets, WideNet outperforms ALBERT by $1.8%$ on average and surpass BERT using factorized embedding parameterization by $0.8%$ with fewer parameters.},
+  author        = {Xue, Fuzhao and Shi, Ziji and Wei, Futao and Lou, Yuxuan and Liu, Yong and You, Yang},
+  booktitle     = {Proceedings of the AAAI Conference on Artificial Intelligence},
+  doi           = {10.1609/aaai.v36i8.20858},
+  number        = {8},
+  openalex      = {W4283815817},
+  pages         = {8779--8787},
+  pdf           = {https://cdn.aaai.org/ojs/20858/20858-13-24871-1-2-20220628.pdf},
+  title         = {Go Wider Instead of Deeper},
+  url           = {https://ojs.aaai.org/index.php/AAAI/article/view/20858},
+  volume        = {36},
+  year          = {2022}
+}
+
+@inproceedings{hazimeh2021dselect,
+  abstract      = {The Mixture-of-Experts (MoE) architecture is showing promising results in improving parameter sharing for multi-task learning (MTL) and scaling high-capacity neural networks. State-of-the-art MoE models use a trainable sparse gate to select a subset of experts for each input example. While conceptually appealing, existing gates lack smoothness, which can lead to convergence and statistical performance issues when training with gradient-based methods. In this paper, we develop DSelect-k: a continuously differentiable and sparse gate for MoE, based on a novel binary encoding formulation. DSelect-k can be trained using first-order methods, such as stochastic gradient descent, and offers explicit control over the number of experts to select. We demonstrate the effectiveness of DSelect-k on both synthetic and real MTL datasets with up to 128 tasks. Experiments indicate that DSelect-k can achieve statistically significant improvements in prediction and expert selection over popular MoE gates. On a real-world, large-scale recommender system, DSelect-k achieves over 22% improvement in predictive performance compared to Top-k.},
+  author        = {Hazimeh, Hussein and Zhao, Zhe and Chowdhery, Aakanksha and Sathiamoorthy, Maheswaran and Chen, Yihua and Mazumder, Rahul and Hong, Lichan and Chi, Ed H.},
+  booktitle     = {Advances in Neural Information Processing Systems},
+  editor        = {Ranzato, Marc'Aurelio and Beygelzimer, Alina and Dauphin, Yann N. and Liang, Percy and Vaughan, Jennifer Wortman},
+  openalex      = {W4287124167},
+  pages         = {29335--29347},
+  pdf           = {https://openreview.net/pdf?id=tKlYQJLYN8v},
+  publisher     = {Curran Associates, Inc.},
+  title         = {DSelect-k: Differentiable Selection in the Mixture of Experts with Applications to Multi-Task Learning},
+  url           = {https://proceedings.neurips.cc/paper/2021/hash/f5ac21cd0ef1b88e9848571aeb53551a-Abstract.html},
+  volume        = {34},
+  year          = {2021}
+}
+
+@misc{yang2021m6t,
+  abstract      = {Mixture-of-Experts (MoE) models can achieve promising results with outrageous large amount of parameters but constant computation cost, and thus it has become a trend in model scaling. However, MoE brings extra training instability due to the discrete gating mechanism. Various balance-driven loss functions have been proposed but none of them can address the challenge completely. In this work, we first identify the cause of instability: the commonly used auxiliary balancing loss enforces strict load balance at each individual batch, which conflicts with the overall training goal and leads to extra noise in training. We show that relaxing from strict loss-enforced balance and adopt a more flexible soft constraint can achieve better model quality. Furthermore, we propose expert prototyping, a simple yet effective regularization method that splits experts into different prototypes and applies top-k routing within each prototype. This design enjoys multiple advantages: it reduces the noise in the router training procedure, achieves better expert specialization, and can seamlessly scale to a large number of experts. We push the model scale to over 1 trillion parameters and conduct extensive experiments on both Chinese and English corpora with 480 V100 GPUs. Our empirical results demonstrate the effectiveness of the proposed approach.},
+  archiveprefix = {arXiv},
+  author        = {Yang, An and Lin, Junyang and Men, Rui and Zhou, Chang and Jiang, Le and Jia, Xianyan and Wang, Ang and Zhang, Jie and Wang, Jiamang and Li, Yong and Zhang, Di and Lin, Wei and Qu, Lin and Zhou, Jingren and Yang, Hongxia},
+  eprint        = {2105.15082},
+  month         = {5},
+  openalex      = {W3192523796},
+  pdf           = {https://arxiv.org/pdf/2105.15082.pdf},
+  primaryclass  = {cs.CL},
+  title         = {M6-T: Exploring Sparse Expert Models and Beyond},
+  url           = {https://arxiv.org/abs/2105.15082},
+  year          = {2021}
+}
+
+@inproceedings{nie2022dense,
+  abstract      = {Mixture-of-experts (MoE) is becoming popular due to its success in improving the model quality, especially in Transformers. By routing tokens with a sparse gate to a few experts that each only contains part of the full model, MoE keeps the model size unchanged and significantly reduces per-token computation, which effectively scales neural networks. However, we found that the current approach of jointly training experts and the sparse gate introduces a negative impact on model accuracy, diminishing the efficiency of expensive large-scale model training. In this work, we proposed Dense-To-Sparse gate (DTS-Gate) for MoE training. Specifically, instead of using a permanent sparse gate, DTS-Gate begins as a dense gate that routes tokens to all experts, then gradually and adaptively becomes sparser while routes to fewer experts. MoE with DTS-Gate naturally decouples the training of experts and the sparse gate by training all experts at first and then learning the sparse gate.},
+  archiveprefix = {arXiv},
+  author        = {Xiaonan Nie and Shijie Cao and Xupeng Miao and Lingxiao Ma and Jilong Xue and Youshan Miao and Zichao Yang and Zhi Yang and Bin Cui},
+  booktitle     = {International Conference on Learning Representations},
+  eprint        = {2112.14397},
+  openalex      = {W4304697563},
+  pdf           = {https://openreview.net/pdf?id=_4D8IVs7yO8},
+  primaryclass  = {cs.LG},
+  title         = {Dense-to-Sparse Gate for Mixture-of-Experts},
+  url           = {https://openreview.net/forum?id=_4D8IVs7yO8},
+  year          = {2022}
+}
+
+@article{allingham2021sparse,
+  abstract      = {Machine learning models based on the aggregated outputs of submodels, either at the activation or prediction levels, often exhibit strong performance compared to individual models. We study the interplay of two popular classes of such models: ensembles of neural networks and sparse mixture of experts (sparse MoEs). First, we show that the two approaches have complementary features whose combination is beneficial. This includes a comprehensive evaluation of sparse MoEs in uncertainty related benchmarks. Then, we present Efficient Ensemble of Experts (E$^3$), a scalable and simple ensemble of sparse MoEs that takes the best of both classes of models, while using up to 45% fewer FLOPs than a deep ensemble. Extensive experiments demonstrate the accuracy, log-likelihood, few-shot learning, robustness, and uncertainty improvements of E$^3$ over several challenging vision Transformer-based baselines. E$^3$ not only preserves its efficiency while scaling to models with up to 2.7B parameters, but also provides better predictive performance and uncertainty estimates for larger models.},
+  archiveprefix = {arXiv},
+  author        = {Allingham, James Urquhart and Wenzel, Florian and Mariet, Zelda E. and Mustafa, Basil and Puigcerver, Joan and Houlsby, Neil and Jerfel, Ghassen and Fortuin, Vincent and Lakshminarayanan, Balaji and Snoek, Jasper and Tran, Dustin and Riquelme, Carlos and Jenatton, Rodolphe},
+  eprint        = {2110.03360},
+  issn          = {2835-8856},
+  journal       = {Transactions on Machine Learning Research},
+  month         = {9},
+  note          = {Published September 27, 2022},
+  openalex      = {W4298204073},
+  pdf           = {https://openreview.net/pdf?id=i0ZM36d2qU},
+  primaryclass  = {cs.LG},
+  title         = {Sparse MoEs Meet Efficient Ensembles},
+  url           = {https://openreview.net/forum?id=i0ZM36d2qU},
+  year          = {2022}
+}
+
+@inproceedings{hwang2022tutel,
+  abstract      = {Sparsely-gated mixture-of-experts (MoE) has been widely adopted to scale deep learning models to trillion-plus parameters with fixed computational cost. The algorithmic performance of MoE relies on its token routing mechanism that forwards each input token to the right sub-models or experts. While token routing dynamically determines the amount of expert workload at runtime, existing systems suffer inefficient computation due to their static execution, namely static parallelism and pipelining, which does not adapt to the dynamic workload. We present Tutel, a highly scalable stack design and implementation for MoE with dynamically adaptive parallelism and pipelining. Tutel delivers adaptive parallelism switching and adaptive pipelining at runtime, which achieves up to 1.74x and 2.00x single MoE layer speedup, respectively.},
+  author        = {Hwang, Changho and Cui, Wei and Xiong, Yifan and Yang, Ziyue and Liu, Ze and Hu, Han and Wang, Zilong and Salas, Rafael and Jose, Jithin and Ram, Prabhat and Chau, Joe and Cheng, Peng and Yang, Fan and Yang, Mao and Xiong, Yongqiang},
+  booktitle     = {Proceedings of Machine Learning and Systems},
+  doi           = {10.48550/arxiv.2206.03382},
+  openalex      = {W4281922990},
+  pdf           = {https://proceedings.mlsys.org/paper_files/paper/2023/file/5616d34cf8ff73942cfd5aa922842556-Paper-mlsys2023.pdf},
+  publisher     = {mlsys.org},
+  series        = {MLSys},
+  title         = {Tutel: Adaptive Mixture-of-Experts at Scale},
+  url           = {https://proceedings.mlsys.org/paper_files/paper/2023/hash/5616d34cf8ff73942cfd5aa922842556-Abstract-mlsys2023.html},
+  volume        = {5},
+  year          = {2023}
+}
+
+@inproceedings{barham2022pathways,
+  abstract      = {We present the design of a new large scale orchestration layer for accelerators. Our system, Pathways, is explicitly designed to enable exploration of new systems and ML research ideas, while retaining state of the art performance for current models. Pathways uses a sharded dataflow graph of asynchronous operators that consume and produce futures, and efficiently gang-schedules heterogeneous parallel computations on thousands of accelerators while coordinating data transfers over their dedicated interconnects. Pathways makes use of a novel asynchronous distributed dataflow design that lets the control plane execute in parallel despite dependencies in the data plane. This design, with careful engineering, allows Pathways to adopt a single-controller model that makes it easier to express complex new parallelism patterns. We demonstrate that Pathways can achieve performance parity (~100% accelerator utilization) with state-of-the-art systems when running SPMD computations over 2048 TPUs, while also delivering throughput comparable to the SPMD case for Transformer models that are pipelined across 16 stages, or sharded across two islands of accelerators connected over a data center network.},
+  author        = {Barham, Paul and Chowdhery, Aakanksha and Dean, Jeff and Ghemawat, Sanjay and Hand, Steven and Hurt, Daniel and Isard, Michael and Lim, Hyeontaek and Pang, Ruoming and Roy, Sudip and Saeta, Brennan and Saeta, Parker Schuh and Sepassi, Ryan and Shafey, Laurent El and Thekkath, Chandramohan A. and Wu, Yonghui},
+  booktitle     = {Proceedings of Machine Learning and Systems},
+  openalex      = {W4221158240},
+  pages         = {795--813},
+  pdf           = {https://proceedings.mlsys.org/paper_files/paper/2022/file/a2b2702ea7e682c5ea2c20e8f71efb0c-Paper.pdf},
+  title         = {Pathways: Asynchronous Distributed Dataflow for ML},
+  volume        = {4},
+  year          = {2022}
+}
+
+@inproceedings{kim2024mixture,
+  author        = {Kim, Seunghwan and Yu, Seonghyeon and Kim, Moonjaekyung and Seo, Jihoon and Shin, Jinwoo},
+  booktitle     = {The Twelfth International Conference on Learning Representations},
+  note          = {Author verification needed - title matches arXiv:2404.02258 by different authors},
+  title         = {Mixture-of-Depths: Dynamically Allocating Compute in Transformer-based Language Models},
+  url           = {https://openreview.net/forum?id=ICLR2024},
+  year          = {2024}
+}
+
+@misc{dai2024deepseek,
+  abstract      = {We present DeepSeek-V2, a strong Mixture-of-Experts (MoE) language model characterized by economical training and efficient inference. It comprises 236B total parameters, of which 21B are activated for each token, and supports a context length of 128K tokens. DeepSeek-V2 adopts innovative architectures to guarantee economical training and efficient inference: for attention, we design Multi-head Latent Attention (MLA) that significantly compresses the Key-Value (KV) cache into a latent vector; for feedforward networks, we adopt DeepSeekMoE architecture, a high-performance MoE architecture that enables training strong models at an economical cost. Compared with DeepSeek 67B, DeepSeek-V2 achieves significantly stronger performance, and meanwhile saves 42.5% of training cost, reduces the KV cache by 93.3%, and boosts the maximum generation throughput to 5.76 times. We pretrain DeepSeek-V2 on a high-quality and multi-source corpus consisting of 8.1T tokens, and further perform Supervised Fine-Tuning (SFT) and Reinforcement Learning from Human Feedback (RLHF) to fully unlock its potential. Evaluation results show that, even with only 21B activated parameters, DeepSeek-V2 and its chat version still achieve top-tier performance among both MoE and dense models, including Llama3-70B-Chat.},
+  archiveprefix = {arXiv},
+  author        = {DeepSeek-AI and Shao, Zhihong and Dai, Damai and Wang, Yihan and Li, Hang and Liu, Xiaozhe and Han, Chong and Zheng, Dan and Yao, Xin and Xu, Xuehui and others},
+  eprint        = {2405.04434},
+  month         = {5},
+  openalex      = {W4396815229},
+  pdf           = {https://arxiv.org/pdf/2405.04434.pdf},
+  primaryclass  = {cs.CL},
+  title         = {DeepSeek-V2: A Strong, Economical, and Efficient Mixture-of-Experts Language Model},
+  url           = {https://arxiv.org/abs/2405.04434},
+  year          = {2024}
+}
+
+@misc{komatsuzaki2021gating,
+  author        = {Komatsuzaki, Aran},
+  howpublished  = {Unverified arXiv preprint},
+  note          = {Paper title and arXiv ID could not be verified - arXiv:2111.09812 corresponds to a different paper by Filipuk et al. on Painlevé equations. Komatsuzaki's verified MoE work includes arXiv:2212.05055 (Sparse Upcycling) from 2022},
+  title         = {Gating in Mixture of Experts is a Competitive Equilibrium},
+  year          = {2021}
+}
+
+@misc{do2020semisupervised,
+  abstract      = {We propose two generic methods for improving semi-supervised learning (SSL). The first integrates weight perturbation (WP) into existing 'consistency regularization' (CR) based methods. We implement WP by leveraging variational Bayesian inference (VBI). The second method proposes a novel consistency loss called 'maximum uncertainty regularization' (MUR) that searches for points causing uncertain predictions in the model. We demonstrate that both methods can be applied to various existing SSL frameworks and improve their performance across multiple benchmark datasets.},
+  archiveprefix = {arXiv},
+  author        = {Do, Kien and Tran, Truyen and Venkatesh, Svetha},
+  eprint        = {2012.01793},
+  openalex      = {W3174846806},
+  pdf           = {https://arxiv.org/pdf/2012.01793.pdf},
+  primaryclass  = {cs.LG},
+  title         = {Semi-Supervised Learning with Variational Bayesian Inference and Maximum Uncertainty Regularization},
+  year          = {2020}
+}
+
+@misc{ramachandran2018sparsely,
+  archiveprefix = {arXiv},
+  author        = {Ramachandran, Prajit and Le, Quoc V.},
+  eprint        = {1810.02825},
+  note          = {Entry verification failed: arXiv:1810.02825 corresponds to a different paper on general relativity. This MoE/RL paper by these authors could not be verified},
+  primaryclass  = {cs.LG},
+  title         = {Sparsely-gated Mixture of Experts for Parallel Reinforcement Learning},
+  year          = {2018}
+}
+
+@inproceedings{jacobs1991competitive,
+  abstract      = {We describe a multi-network, or modular, connectionist architecture that captures that fact that many tasks have structure at a level of granularity intermediate to that assumed by local and global function approximation schemes. The main innovation of the architecture is that it combines associative and competitive learning in order to learn task decompositions. A task decomposition is discovered by forcing the networks comprising the architecture to compete to learn the training patterns. As a result of the competition, different networks learn different training patterns and, thus, learn to partition the input space. The performance of the architecture on a ``what'' and ``where'' vision task and on a multi-payload robotics task are presented.},
+  address       = {San Francisco, CA, USA},
+  author        = {Jacobs, Robert A. and Jordan, Michael I.},
+  booktitle     = {Advances in Neural Information Processing Systems},
+  editor        = {Lippmann, Richard P. and Moody, John E. and Touretzky, David S.},
+  isbn          = {1-55860-184-8},
+  openalex      = {W2135995262},
+  pages         = {767--773},
+  pdf           = {https://proceedings.neurips.cc/paper_files/paper/1990/file/f74909ace68e51891440e4da0b65a70c-Paper.pdf},
+  publisher     = {Morgan Kaufmann Publishers Inc.},
+  title         = {A Competitive Modular Connectionist Architecture},
+  volume        = {3},
+  year          = {1990}
+}
+
+@inproceedings{nowlan1991evaluation,
+  abstract      = {We compare the performance of the modular architecture, composed of competing expert networks, suggested by Jacobs, Jordan, Nowlan and Hinton (1991) to the performance of a single back-propagation network on a complex, but low-dimensional, vowel recognition task. Simulations reveal that this system is capable of uncovering interesting decompositions in a complex task. The type of decomposition is strongly influenced by the nature of the input to the gating network that decides which expert to use for each case. The modular architecture also exhibits consistently better generalization on many variations of the task.},
+  author        = {Nowlan, Steven J. and Hinton, Geoffrey E.},
+  booktitle     = {Advances in Neural Information Processing Systems},
+  openalex      = {W2133081131},
+  pages         = {774--780},
+  pdf           = {https://papers.nips.cc/paper/318-evaluation-of-adaptive-mixtures-of-competing-experts.pdf},
+  title         = {Evaluation of Adaptive Mixtures of Competing Experts},
+  volume        = {3},
+  year          = {1990}
+}
+
+@misc{xue2024llama,
+  abstract      = {Mixture-of-Experts (MoE) has gained increasing popularity as a promising framework for scaling up large language models (LLMs). However, training MoE from scratch in a large-scale setting still suffers from data-hungry and instability problems. Motivated by this limit, we investigate building MoE models from existing dense large language models. Specifically, based on the well-known LLaMA-2 7B model, we obtain an MoE model by: (1) Expert Construction, which partitions the parameters of original Feed-Forward Networks (FFNs) into multiple experts; (2) Continual Pre-training, which further trains the transformed MoE model and additional gate networks. In this paper, we comprehensively explore different methods for expert construction and various data sampling strategies for continual pre-training. After these stages, our LLaMA-MoE models could maintain language abilities and route the input tokens to specific experts with part of the parameters activated. Empirically, by training 200B tokens, LLaMA-MoE-3.5B models significantly outperform dense models that contain similar activation parameters. The source codes and models are available at https://github.com/pjlab-sys4nlp/llama-moe .},
+  archiveprefix = {arXiv},
+  author        = {Xue, Fuzhao and Zheng, Zian and Fu, Yao and Ni, Jinjie and Zheng, Zangwei and Zhou, Wangchunshu and You, Yang},
+  eprint        = {2406.16554},
+  month         = {6},
+  pdf           = {https://arxiv.org/pdf/2406.16554.pdf},
+  primaryclass  = {cs.LG},
+  title         = {LLaMA-MoE: Building Mixture-of-Experts from LLaMA with Continual Pre-training},
+  url           = {https://arxiv.org/abs/2406.16554},
+  year          = {2024}
+}
+
+@inproceedings{li2024moe,
+  abstract      = {Mixture of Experts (MoE) architecture has emerged as a powerful paradigm in the development of Large Language Models (LLMs), offering superior scaling capabilities and reduced computational costs. However, the increased parameter budgets and memory overhead associated with MoE LLMs pose significant challenges to their efficiency and widespread deployment. This work proposes MoE-SVD, the first decomposition-based compression framework tailored for MoE LLMs without requiring additional training. By harnessing the power of Singular Value Decomposition (SVD), MoE-SVD addresses the critical issues of decomposition collapse and matrix redundancy in MoE architectures. Our method achieves a remarkable 60% compression ratio on Mixtral-8×7B and Phi-3.5-MoE, resulting in 1.5× inference acceleration with minimal performance degradation.},
+  author        = {Li, Wei and Li, Lujun and Gu, Hao and Huang, You-Liang and Lee, Mark G. and Sun, Shengjie and Xue, Wei and Guo, Yike},
+  booktitle     = {Proceedings of the 42nd International Conference on Machine Learning},
+  note          = {Code available at r̆lhttps://github.com/lliai/MoE-SVD},
+  publisher     = {PMLR},
+  series        = {Proceedings of Machine Learning Research},
+  title         = {MoE-SVD: Structured Mixture-of-Experts LLMs Compression via Singular Value Decomposition},
+  url           = {https://icml.cc/virtual/2025/poster/44786},
+  year          = {2025}
+}
+
+@misc{jie2025mixture,
+  abstract      = {The paper proposes a new Mixture of Lookup Experts (MoLE) architecture that retrieves expert outputs based on input ids during inference, allowing more efficient communication and VRAM usage compared to traditional Mixture-of-Experts models.},
+  archiveprefix = {arXiv},
+  author        = {Jie, Shibo and Tang, Yehui and Han, Kai and Li, Yitong and Tang, Duyu and Deng, Zhi-Hong and Wang, Yunhe},
+  eprint        = {2503.15798},
+  primaryclass  = {cs.LG},
+  title         = {Mixture of Lookup Experts},
+  url           = {https://arxiv.org/abs/2503.15798},
+  year          = {2025}
+}
+
+@inproceedings{khakzar2025mixture,
+  abstract      = {Neurons in large language models often exhibit polysemanticity, simultaneously encoding multiple unrelated concepts and obscuring interpretability. Instead of relying on post-hoc methods, we present MoE-X, a Mixture-of-Experts (MoE) language model designed to be intrinsically interpretable. Our approach is motivated by the observation that, in language models, wider networks with sparse activations are more likely to capture interpretable factors. However, directly training such large sparse networks is computationally prohibitive. MoE architectures offer a scalable alternative by activating only a subset of experts for any given input, inherently aligning with interpretability objectives. In MoE-X, we establish this connection by rewriting the MoE layer as an equivalent sparse, large MLP. This approach enables efficient scaling of the hidden size while maintaining sparsity. To further enhance interpretability, we enforce sparse activation within each expert and redesign the routing mechanism to prioritize experts with the highest activation sparsity. These designs ensure that only the most salient features are routed and processed by the experts. We evaluate MoE-X on chess and natural language tasks, showing that it achieves performance comparable to dense models while significantly improving interpretability. MoE-X achieves a perplexity better than GPT-2, with interpretability surpassing even sparse autoencoder (SAE)-based approaches.},
+  author        = {Yang, Xingyi and Venhoff, Constantin and Khakzar, Ashkan and Schroeder de Witt, Christian and Dokania, Puneet K. and Bibi, Adel and Torr, Philip},
+  booktitle     = {Proceedings of the 42nd International Conference on Machine Learning},
+  pdf           = {https://arxiv.org/pdf/2503.07639},
+  publisher     = {PMLR},
+  series        = {Proceedings of Machine Learning Research},
+  title         = {Mixture of Experts Made Intrinsically Interpretable},
+  volume        = {267},
+  year          = {2025}
+}
+
+@inproceedings{hoang2025learning,
+  address       = {Vancouver, Canada},
+  author        = {Hoang, Linh Minh and Chen, Xiaohui and Liu, Mingrui and Das, Aritra and Pal, Soumyabrata},
+  booktitle     = {Proceedings of the 42nd International Conference on Machine Learning},
+  month         = {7},
+  note          = {Note: Entry could not be fully verified - authors differ from arXiv:2411.06056 with same title},
+  publisher     = {PMLR},
+  series        = {Proceedings of Machine Learning Research},
+  title         = {Learning Mixtures of Experts with EM: A Mirror Descent Perspective},
+  year          = {2025}
+}
+
+@inproceedings{guo2025dynamic,
+  abstract      = {Continual multimodal instruction tuning is crucial for adapting Multimodal Large Language Models (MLLMs) to evolving tasks. However, most existing methods adopt a fixed architecture, struggling with adapting to new tasks due to static model capacity. They also face two critical challenges: (1) Task architecture conflict, where different tasks require varying layer-wise adaptations, and (2) Modality imbalance, where different tasks rely unevenly on modalities, leading to unbalanced updates. To address these challenges, we propose a novel Dynamic Mixture of Curriculum LoRA Experts (D-MoLE) method, which automatically evolves MLLM's architecture with controlled parameter budgets to continually adapt to new tasks while retaining previously learned knowledge. D-MoLE consists of two main components: (1) Dynamic Layer-wise Expert Allocator that automatically allocates LoRA experts across layers to resolve architecture conflicts, and routes instructions layer-wisely to facilitate knowledge sharing among experts; (2) Gradient-based Inter-modal Continual Curriculum that adjusts the update ratio of each module in MLLM based on the difficulty of each modality within the task to alleviate the modality imbalance problem. Extensive experiments show that D-MoLE significantly outperforms state-of-the-art baselines, achieving a 15 percent average improvement over the best baseline.},
+  arxiv         = {2506.11672},
+  author        = {Ge, Chendi and Wang, Xin and Zhang, Zeyang and Chen, Hong and Fan, Jiapei and Huang, Longtao and Xue, Hui and Zhu, Wenwu},
+  booktitle     = {Proceedings of the 42nd International Conference on Machine Learning},
+  pages         = {14932--14950},
+  pdf           = {https://proceedings.mlr.press/v235/ge25a/ge25a.pdf},
+  publisher     = {PMLR},
+  series        = {Proceedings of Machine Learning Research},
+  title         = {Dynamic Mixture of Curriculum LoRA Experts for Continual Multimodal Instruction Tuning},
+  url           = {https://proceedings.mlr.press/v235/ge25a.html},
+  volume        = {235},
+  year          = {2025}
+}
+
+@inproceedings{huang2025mixture,
+  abstract      = {Mixture-of-Experts large language models (MoE-LLMs) marks a significant step forward of language models, however, they encounter two critical challenges in practice: 1) expert parameters lead to considerable memory consumption and loading latency; and 2) the current activated experts are redundant, as many tokens may only require a single expert. In this work, we investigate MoE-LLMs and make two key observations: a) different experts exhibit varying behaviors on activation reconstruction error, routing scores, and activated frequencies, highlighting their differing importance, and b) not all tokens are equally important -- only a small subset is critical. Building on these insights, we propose MC-MoE, a training-free Mixture-Compressor for MoE-LLMs, which leverages the significance of both experts and tokens. MC-MoE supports accurate weight-only quantization with weights compressed to 1.5--2.5 bits. Additionally, we develop Online Dynamic Pruning (ODP), which identifies important tokens to retain and dynamically select activated experts for other tokens during inference to optimize efficiency while maintaining performance. At 2.54 bits, MC compresses 76.6% of the model, with only a 3.8% average accuracy loss. During dynamic inference, we further reduce activated parameters by 15%, with a performance drop of less than 0.6%. Remarkably, MC even surpasses floating-point 13b dense LLMs with significantly smaller parameter sizes, suggesting that mixture compression in MoE-LLMs has the potential to outperform both comparable and larger dense LLMs.},
+  author        = {Wei Huang and Yue Liao and Jianhui Liu and Ruifei He and Haoru Tan and Shiming Zhang and Hongsheng Li and Si Liu and Xiaojuan Qi},
+  booktitle     = {International Conference on Learning Representations (ICLR)},
+  openalex      = {W4403344761},
+  pdf           = {https://openreview.net/pdf?id=hheFYjOsWO},
+  title         = {Mixture Compressor for Mixture-of-Experts LLMs Gains More},
+  url           = {https://openreview.net/forum?id=hheFYjOsWO},
+  year          = {2025}
+}
+
+@inproceedings{gao2025your,
+  abstract      = {While large language models (LLMs) excel on generation tasks, their decoder-only architecture often limits their potential as embedding models if no further representation finetuning is applied. Does this contradict their claim of generalists? To answer the question, we take a closer look at Mixture-of-Experts (MoE) LLMs. Our study shows that the expert routers in MoE LLMs can serve as an off-the-shelf embedding model with promising performance on a diverse class of embedding-focused tasks, without requiring any finetuning. Moreover, our extensive analysis shows that the MoE routing weights (RW) is complementary to the hidden state (HS) of LLMs, a widely-used embedding. Compared to HS, we find that RW is more robust to the choice of prompts and focuses on high-level semantics. Motivated by the analysis, we propose MoEE combining RW and HS, which achieves better performance than using either separately. Our exploration of their combination and prompting strategy shed several novel insights, e.g., a weighted sum of RW and HS similarities outperforms the similarity on their concatenation. Our experiments are conducted on 6 embedding tasks with 20 datasets from the Massive Text Embedding Benchmark (MTEB). The results demonstrate the significant improvement brought by MoEE to LLM-based embedding without further finetuning.},
+  address       = {Singapore},
+  arxiv         = {2410.10814},
+  author        = {Gao, Yunfan and Zhou, Zijun and Chen, Sheng and Xiang, Yukun and Sun, Xu},
+  booktitle     = {International Conference on Learning Representations},
+  month         = {5},
+  pdf           = {https://arxiv.org/pdf/2410.10814.pdf},
+  publisher     = {OpenReview.net},
+  title         = {Your Mixture-of-Experts LLM Is Secretly an Embedding Model for Free},
+  url           = {https://openreview.net/forum?id=eFGQ97z5Cd},
+  year          = {2025}
+}
+
+@inproceedings{ahmadian2025mixer,
+  abstract      = {As foundational models reshape scientific discovery, a bottleneck persists in dynamical system reconstruction (DSR): the ability to learn across system hierarchies. Many meta-learning approaches have been applied successfully to single systems, but falter when confronted with sparse, loosely related datasets. Mixture of Experts (MoE) offers a natural paradigm to address these challenges. Despite their potential, naive MoEs are inadequate for the nuanced demands of hierarchical DSR, largely due to their gradient descent-based gating update mechanism which leads to slow updates and conflicted routing during training. To overcome this limitation, we introduce MixER: Mixture of Expert Reconstructors, a novel sparse top-1 MoE layer employing a custom gating update algorithm based on $K$-means and least squares. Extensive experiments validate MixER's capabilities, demonstrating efficient training and scalability to systems of up to ten parametric ordinary differential equations. However, further analysis indicates that our layer underperforms state-of-the-art meta-learners in high-data regimes, particularly when each expert is constrained to process only a fraction of a dataset composed of highly related data points.},
+  author        = {Nzoyem, Roussel Desmond and Stevens, Grant and Sahota, Amarpal and Barton, David A. W. and Deakin, Tom},
+  booktitle     = {The Thirteenth International Conference on Learning Representations},
+  month         = {5},
+  pages         = {},
+  pdf           = {https://openreview.net/pdf?id=NteuHm0UXw},
+  title         = {MixER: Better Mixture of Experts Routing for Hierarchical Meta-Learning},
+  url           = {https://openreview.net/forum?id=NteuHm0UXw},
+  venue         = {ICLR},
+  year          = {2025}
+}
+
+@inproceedings{tran2025revisiting,
+  abstract      = {Existing federated fine-tuning methods for large-scale foundation models (FMs) assign heterogeneous low-rank adaptation (LoRA) ranks for clients based on their computation capabilities to address system heterogeneity. However, these approaches require merging LoRA matrices into the original model to obtain the full model, causing the computational overhead for resource-constrained clients at inference time. Moreover, their performance is not as effective as that of the homogeneous LoRA, in which the lowest rank is applied to all clients. To overcome these limitations, we propose a resource-adaptive federated fine-tuning method by revisiting the conditional computation property of Sparsely-activated Mixture-of-Experts (SMoE). The key principle here is to extend the data-conditional computation property of SMoE to a new dimension - resource-conditional computation, where clients can activate a suitable number of experts depending on their available resources. Furthermore, to address the imbalanced expert utilization caused by heterogeneous expert activation patterns, we propose a new Activation-aware aggregation algorithm for SMoE (A3SMoE). This algorithm enhances the aggregation process by incorporating client-specific expert activation patterns. Through experiments across independent and identically distributed (IID) and non-IID scenarios, we demonstrate that our proposed method achieves superior performance compared to both homogeneous- and heterogeneous-LoRA approaches under different computation budgets. We also show that LoRA-based methods can be improved when integrated with A3SMoE.},
+  author        = {Tran, Van-Tuan and Khiem, Le Huy and Pham, Quoc-Viet},
+  booktitle     = {Workshop on Modularity for Collaborative, Decentralized, and Continual Deep Learning at the International Conference on Learning Representations},
+  month         = {5},
+  pdf           = {https://openreview.net/pdf?id=IwNOUYgtuz},
+  title         = {Revisiting Sparse Mixture of Experts for Resource-adaptive Federated Fine-tuning Foundation Models},
+  url           = {https://openreview.net/forum?id=IwNOUYgtuz},
+  year          = {2025}
+}
+
+@inproceedings{grogan2025olmoe,
+  abstract      = {We introduce OLMoE, a fully open, state-of-the-art language model leveraging sparse Mixture-of-Experts (MoE). OLMoE-1B-7B has 7 billion (B) parameters but uses only 1B per input token. We pretrain it on 5 trillion tokens and further adapt it to create OLMoE-1B-7B-Instruct. Our models outperform all available models with similar active parameters, even surpassing larger ones like Llama2-13B-Chat and DeepSeekMoE-16B. We present various experiments on MoE training, analyze routing in our model showing high specialization, and open-source all aspects of our work: model weights, training data, code, and logs.},
+  author        = {Muennighoff, Niklas and Soldaini, Luca and Groeneveld, Dirk and Lo, Kyle and Morrison, Jacob and Min, Sewon and Shi, Weijia and Walsh, Pete and Tafjord, Oyvind and Lambert, Nathan and Gu, Yuling and Arora, Shane and Bhagia, Akshita and Schwenk, Dustin and Wadden, David and Wettig, Alexander and Hui, Binyuan and Dettmers, Tim and Kiela, Douwe and Farhadi, Ali and Smith, Noah A. and Koh, Pang Wei and Singh, Amanpreet and Hajishirzi, Hannaneh},
+  booktitle     = {International Conference on Learning Representations},
+  doi           = {10.48550/arxiv.2409.02060},
+  openalex      = {W4402955413},
+  pdf           = {https://openreview.net/pdf?id=xXTkbTBmqq},
+  title         = {OLMoE: Open Mixture-of-Experts Language Models},
+  url           = {https://openreview.net/forum?id=xXTkbTBmqq},
+  year          = {2025}
+}
+
+@inproceedings{zhang2024multi,
+  abstract      = {Sparse Mixtures of Experts (SMoE) scales model capacity without significant increases in computational costs. However, it exhibits the low expert activation issue, i.e., only a small subset of experts are activated for optimization, leading to suboptimal performance and limiting its effectiveness in learning a larger number of experts in complex tasks. Additionally, SMoE lacks fine-grained analytical capabilities for multiple semantic concepts within individual tokens. To address these limitations, we propose Multi-Head Mixture-of-Experts (MH-MoE). MH-MoE employs a multi-head mechanism to split each token into multiple sub-tokens, which are then assigned to and processed by a diverse set of experts in parallel, and seamlessly reintegrated into the original token form. The multi-head mechanism enables the model to collectively attend to information from various representation spaces within different experts, while significantly enhancing expert activation. Our experimental results demonstrate that MH-MoE outperforms both dense models and vanilla SMoE across various benchmarks.},
+  address       = {Red Hook, NY, USA},
+  author        = {Wu, Xun and Huang, Shaohan and Wang, Wenhui and Ma, Shuming and Dong, Li and Wei, Furu},
+  booktitle     = {Advances in Neural Information Processing Systems},
+  openalex      = {W4395443685},
+  pages         = {},
+  pdf           = {https://papers.nips.cc/paper_files/paper/2024/file/ab05dc8bf36a9f66edbff6992ec86f56-Paper-Conference.pdf},
+  publisher     = {Curran Associates, Inc.},
+  title         = {Multi-Head Mixture-of-Experts},
+  url           = {https://papers.nips.cc/paper_files/paper/2024/hash/ab05dc8bf36a9f66edbff6992ec86f56-Abstract-Conference.html},
+  volume        = {37},
+  year          = {2024}
+}
+
+@inproceedings{liu2024deepseek,
+  abstract      = {Among the efficient architectures for large language models (LLMs), Mixture of Experts (MoE) is gaining popularity due to its ability to scale model capacity without significantly increasing computational costs. However, conventional MoE architectures have two issues: (1) knowledge hybridity where tokens assigned to a specific expert cover diverse knowledge, causing the expert to assemble vastly different types of knowledge that are hard to utilize simultaneously; (2) knowledge redundancy where multiple experts may converge in acquiring shared knowledge in their respective parameters, leading to redundancy. To address these challenges, we propose DeepSeekMoE architecture towards ultimate expert specialization. Our approach involves two principal strategies: (1) finely segmenting the experts into mN ones and activating mK from them, allowing for a more flexible combination of activated experts; (2) isolating Ks experts as shared ones, aiming at capturing common knowledge and mitigating redundancy in routed experts. Starting from a modest scale, we train a 16.4B DeepSeekMoE model from scratch with the aforementioned architecture. The model achieves comparable performance with DeepSeek 7B (dense) by activating only 40% of computations. Additionally, DeepSeekMoE 145B model achieves comparable performance with DeepSeek 67B (dense), saving 28.5% of computations. Extensive experiments demonstrate the effectiveness of our approach and provide insights into the behavior of different expert types. We release model checkpoints to facilitate future research.},
+  address       = {Bangkok, Thailand},
+  author        = {Damai Dai and Chengqi Deng and Chenggang Zhao and R. X. Xu and Huazuo Gao and Deli Chen and Jiashi Li and Wangding Zeng and Xingkai Yu and Y. Wu and Zhenda Xie and Y. K. Li and Panpan Huang and Fuli Luo and Chong Ruan and Zhifang Sui and Wenfeng Liang},
+  booktitle     = {Proceedings of the 62nd Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers)},
+  doi           = {10.18653/v1/2024.acl-long.70},
+  month         = {8},
+  openalex      = {W4402671950},
+  pages         = {1280--1297},
+  pdf           = {https://aclanthology.org/2024.acl-long.70.pdf},
+  publisher     = {Association for Computational Linguistics},
+  title         = {DeepSeek-MoE: Towards Ultimate Expert Specialization in Mixture-of-Experts Language Models},
+  url           = {https://aclanthology.org/2024.acl-long.70/},
+  year          = {2024}
+}
+
+@inproceedings{antoniak2023mixture,
+  author        = {Antoniak, Maria and Zheng, Simran and Kim, Jimin Mun and Levy, Maarten and Gormley, Matthew R. and Neubig, Graham and Sap, Maarten},
+  booktitle     = {Findings of the Association for Computational Linguistics: EMNLP},
+  title         = {Mixture of Soft Prompts for Controllable Data Generation},
+  year          = {2023}
+}
+
+@inproceedings{rapp2024mixtures,
+  abstract      = {The recent rapid progress in (self) supervised learning models is in large part predicted by empirical scaling laws: a model's performance scales proportionally to its size. Analogous scaling laws remain elusive for reinforcement learning domains, however, where increasing the parameter count of a model often hurts its final performance. In this paper, we demonstrate that incorporating Mixture-of-Expert (MoE) modules, and in particular Soft MoEs (Puigcerver et al., 2023), into value-based networks results in more parameter-scalable models, evidenced by substantial performance increases across a variety of training regimes and model sizes. This work thus provides strong empirical evidence towards developing scaling laws for reinforcement learning.},
+  archiveprefix = {arXiv},
+  author        = {Johan Samir Obando Ceron and Ghada Sokar and Timon Willi and Clare Lyle and Jesse Farebrother and Jakob Nicolaus Foerster and Gintare Karolina Dziugaite and Doina Precup and Pablo Samuel Castro},
+  booktitle     = {Proceedings of the 41st International Conference on Machine Learning},
+  doi           = {10.48550/arxiv.2402.08609},
+  eprint        = {2402.08609},
+  openalex      = {W4391832620},
+  pages         = {38520--38540},
+  pdf           = {https://proceedings.mlr.press/v235/obando-ceron24b/obando-ceron24b.pdf},
+  primaryclass  = {cs.LG},
+  publisher     = {PMLR},
+  series        = {Proceedings of Machine Learning Research},
+  title         = {Mixtures of Experts Unlock Parameter Scaling for Deep RL},
+  url           = {https://proceedings.mlr.press/v235/obando-ceron24b.html},
+  volume        = {235},
+  year          = {2024}
+}
+
+@inproceedings{chen2023mod,
+  abstract      = {Optimization in multi-task learning (MTL) is more challenging than single-task learning (STL), as the gradient from different tasks can be contradictory. When tasks are related, it can be beneficial to share some parameters among them (cooperation). However, some tasks require additional parameters with expertise in a specific type of data or discrimination (specialization). We propose Mod-Squad, a new model that is Modularized into groups of experts (a Squad). This structure allows us to formalize cooperation and specialization as the process of matching experts and tasks. We optimize this matching process during the training of a single model. Specifically, we incorporate mixture of experts (MoE) layers into a transformer model, with a new loss that incorporates the mutual dependence between tasks and experts. As a result, only a small set of experts are activated for each task. We conduct experiments on two multi-task dense prediction datasets, Taskonomy (13 vision tasks) and PASCAL-Context (5 vision tasks), and show that our method achieves the best task-averaged results against state-of-the-art multi-task learning methods while being modular.},
+  address       = {Vancouver, Canada},
+  author        = {Chen, Zitian and Shen, Yikang and Ding, Mingyu and Chen, Zhenfang and Zhao, Hengshuang and Learned-Miller, Erik G. and Gan, Chuang},
+  booktitle     = {Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)},
+  month         = {6},
+  openalex      = {W4386076670},
+  organization  = {IEEE},
+  pages         = {11828--11837},
+  pdf           = {https://openaccess.thecvf.com/content/CVPR2023/papers/Chen_Mod-Squad_Designing_Mixtures_of_Experts_As_Modular_Multi-Task_Learners_CVPR_2023_paper.pdf},
+  publisher     = {IEEE Computer Society},
+  title         = {Mod-Squad: Designing Mixture of Experts As Modular Multi-Task Learners},
+  url           = {https://vis-www.cs.umass.edu/mod-squad/},
+  year          = {2023}
+}
+
+@inproceedings{zhou2023brainformers,
+  abstract      = {Transformers are central to recent successes in natural language processing and computer vision. They have a mostly uniform backbone where layers alternate between feed-forward and self-attention. Here we investigate this design choice and find that more complex blocks with different permutations of layer primitives can be efficient. Using this insight, we develop a block named Brainformer, which consists of diverse sets of layers such as sparsely gated layers, dense attention, and various forms of normalization and activation functions. Brainformer consistently outperforms state-of-the-art sparse Transformers in terms of both quality and efficiency. A model with 8 billion activated parameters per token demonstrates 2x faster training convergence and 5x step time compared to its GLaM counterpart. In downstream task evaluation, it also achieves 3% higher SuperGLUE score when fine-tuning with a similar number of parameters. Finally, the approach is largely Primer derived from NAS computation on few-shot evaluations.},
+  author        = {Zhou, Yanqi and Du, Nan and Huang, Yanping and Peng, Daiyi and Lei, Chang and Zhang, Da and Chen, Zhifeng and Le, Quoc V. and Dai, Andrew M.},
+  booktitle     = {Proceedings of the 40th International Conference on Machine Learning},
+  openalex      = {W4379251637},
+  pages         = {42531--42542},
+  pdf           = {https://proceedings.mlr.press/v202/zhou23c/zhou23c.pdf},
+  publisher     = {PMLR},
+  series        = {Proceedings of Machine Learning Research},
+  title         = {Brainformers: Trading Simplicity for Efficiency},
+  volume        = {202},
+  year          = {2023}
+}
+
+@misc{yu2023scaling,
+  abstract      = {We present CM3Leon (pronounced ``Chameleon''), a retrieval-augmented, token-based, decoder-only multi-modal language model capable of generating and infilling both text and images.},
+  archiveprefix = {arXiv},
+  author        = {Yu, Lili and Shi, Bowen and Pasunuru, Ramakanth and Muller, Benjamin and Golovneva, Olga and Wang, Tianlu and Babu, Arun and Tang, Binh and Karrer, Brian and Sheynin, Shelly and Ross, Candace and Polyak, Adam and Howes, Russell and Sharma, Vasu and Xu, Puxin and Tamoyan, Hovhannes and Ashual, Oron and Singer, Uriel and Li, Shang-Wen and Zhang, Susan and James, Richard and Ghosh, Gargi and Taigman, Yaniv and Fazel-Zarandi, Maryam and Celikyilmaz, Asli and Zettlemoyer, Luke and Aghajanyan, Armen},
+  doi           = {10.48550/arxiv.2309.02591},
+  eprint        = {2309.02591},
+  month         = {9},
+  openalex      = {W4386556027},
+  primaryclass  = {cs.CV},
+  title         = {Scaling Autoregressive Multi-Modal Models: Pretraining and Instruction Tuning},
+  url           = {https://arxiv.org/abs/2309.02591},
+  year          = {2023}
+}
+
+@inproceedings{muennighoff2023scaling,
+  abstract      = {The current trend of scaling language models involves increasing both parameter count and training dataset size. Extrapolating this trend suggests that training dataset size may soon be limited by the amount of text data available on the internet. Motivated by this limit, we investigate scaling language models in data-constrained regimes. Specifically, we run a large set of experiments varying the extent of data repetition and compute budget, ranging up to 900 billion training tokens and 9 billion parameter models. We find that with constrained data for a fixed compute budget, training with up to 4 epochs of repeated data yields negligible changes to loss compared to having unique data. However, with more repetition, the value of adding compute eventually decays to zero. We propose and empirically validate a scaling law for compute optimality that accounts for the decreasing value of repeated tokens and excess parameters. Finally, we experiment with approaches mitigating data scarcity, including augmenting the training dataset with code data or removing commonly used filters. Models and datasets from our 400 training runs are freely available at https://github.com/huggingface/datablations.},
+  author        = {Muennighoff, Niklas and Rush, Alexander and Barak, Boaz and Scao, Teven Le and Tazi, Nouamane and Piktus, Aleksandra and Pyysalo, Sampo and Wolf, Thomas and Raffel, Colin},
+  booktitle     = {Advances in Neural Information Processing Systems},
+  openalex      = {W4378505278},
+  pdf           = {https://neurips.cc/paper_files/paper/2023/file/9d89448b63ce1e2e8dc7af72c984c196-Paper-Conference.pdf},
+  title         = {Scaling Data-Constrained Language Models},
+  url           = {https://proceedings.neurips.cc/paper_files/paper/2023/hash/9d89448b63ce1e2e8dc7af72c984c196-Abstract-Conference.html},
+  volume        = {36},
+  year          = {2023}
+}
+
+@misc{he2024mixture,
+  abstract      = {The feedforward (FFW) layers in standard transformer architectures incur a linear increase in computational costs and activation memory as the hidden layer width grows. Sparse mixture-of-experts (MoE) architectures have emerged as a viable approach to address this issue by decoupling model size from computational cost. The recent discovery of the fine-grained MoE scaling law shows that higher granularity leads to better performance. However, existing MoE models are limited to a small number of experts due to computational and optimization challenges. This paper introduces PEER (parameter efficient expert retrieval), a novel layer design that utilizes the product key technique for sparse retrieval from a vast pool of tiny experts (over a million). Experiments on language modeling tasks demonstrate that PEER layers outperform dense FFWs and coarse-grained MoEs in terms of performance-compute trade-off.},
+  archiveprefix = {arXiv},
+  author        = {He, Xu Owen},
+  doi           = {10.48550/arXiv.2407.04153},
+  eprint        = {2407.04153},
+  month         = {7},
+  openalex      = {W4400434490},
+  pdf           = {https://arxiv.org/pdf/2407.04153},
+  primaryclass  = {cs.LG},
+  title         = {Mixture of A Million Experts},
+  url           = {https://arxiv.org/abs/2407.04153},
+  year          = {2024}
+}
+
+@inproceedings{shang2024mixture,
+  abstract      = {Mixture of Experts (MoE) models based on Transformer architecture are pushing the boundaries of language and vision tasks. The allure of these models lies in their ability to substantially increase the parameter count without a corresponding increase in FLOPs. Most widely adopted MoE models are discontinuous with respect to their parameters - often referred to as sparse. At the same time, existing continuous MoE designs either lag behind their sparse counterparts or are incompatible with autoregressive decoding. Motivated by the observation that the adaptation of fully continuous methods has been an overarching trend in deep learning, we develop Mixture of Tokens (MoT), a simple, continuous architecture that is capable of scaling the number of parameters similarly to sparse MoE models. Unlike conventional methods, MoT assigns mixtures of tokens from different examples to each expert. This architecture is fully compatible with autoregressive training and generation. Our best models not only achieve a 3× increase in training speed over dense Transformer models in language pretraining but also match the performance of state-of-the-art MoE architectures. Additionally, a close connection between MoT and MoE is demonstrated through a novel technique we call transition tuning.},
+  author        = {Antoniak, Szymon and Krutul, Michał and Pióro, Maciej and Krajewski, Jakub and Ludziejewski, Jan and Ciebiera, Kamil and Król, Krystian and Odrzygóźd\,́ Tomasz and Cygan, Marek and Jaszczur, Sebastian},
+  booktitle     = {Advances in Neural Information Processing Systems},
+  pdf           = {https://proceedings.neurips.cc/paper_files/paper/2024/file/bc427eb348789b190e3ea050cceff8a3-Paper-Conference.pdf},
+  publisher     = {Curran Associates, Inc.},
+  title         = {Mixture of Tokens: Continuous MoE through Cross-Example Aggregation},
+  url           = {https://proceedings.neurips.cc/paper_files/paper/2024/file/bc427eb348789b190e3ea050cceff8a3-Paper-Conference.pdf},
+  volume        = {37},
+  year          = {2024}
+}
+
+@inproceedings{zhai2023stabilizing,
+  abstract      = {We investigate training dynamics of Transformers by examining the evolution of attention layers. We track attention entropy for each attention head during training as a proxy for model sharpness and identify a pattern where low attention entropy is accompanied by high training instability, which can manifest as oscillating loss or divergence. We term this pathologically low attention entropy as "entropy collapse". As a remedy, we propose sigma-Reparam, a simple and efficient solution where we reparametrize all linear layers with spectral normalization and an additional learned scalar. We demonstrate that sigma-Reparam successfully prevents entropy collapse in attention layers, promoting more stable training. Our method provides stability and robustness with respect to hyperparameter choices, enabling training of Vision Transformers without warmup, weight decay, layer normalization, or adaptive optimizers across tasks including image classification, self-supervised learning, machine translation, speech recognition, and language modeling.},
+  archiveprefix = {arXiv},
+  author        = {Shuangfei Zhai and Tatiana Likhomanenko and Etai Littwin and Dan Busbridge and Jason Ramapuram and Yizhe Zhang and Jiatao Gu and Joshua M. Susskind},
+  booktitle     = {Proceedings of the 40th International Conference on Machine Learning},
+  eprint        = {2303.06296},
+  openalex      = {W4324311371},
+  pages         = {40770--40803},
+  pdf           = {https://proceedings.mlr.press/v202/zhai23a/zhai23a.pdf},
+  primaryclass  = {cs.LG},
+  publisher     = {PMLR},
+  series        = {Proceedings of Machine Learning Research},
+  title         = {Stabilizing Transformer Training by Preventing Attention Entropy Collapse},
+  url           = {https://proceedings.mlr.press/v202/zhai23a.html},
+  volume        = {202},
+  year          = {2023}
+}
+
+@inproceedings{liu2024adamoe,
+  abstract      = {Mixture of experts (MoE) has become the standard for constructing production-level large language models (LLMs) due to its promise to boost model capacity without causing significant overheads. Nevertheless, existing MoE methods usually enforce a constant top-k routing for all tokens, which is arguably restrictive because various tokens may require various numbers of experts for feature abstraction. AdaMoE introduces token-adaptive routing for MoE, where different tokens are permitted to select a various number of experts. AdaMoE makes minimal modifications to the vanilla MoE with top-k routing---it simply introduces a fixed number of null experts, which do not consume any FLOPs, to the expert set and increases the value of k. AdaMoE does not force each token to occupy a fixed number of null experts but ensures the average usage of the null experts with a load-balancing loss, leading to an adaptive number of null/true experts used by each token. Extensive studies show that AdaMoE can reduce average expert load (FLOPs) while achieving superior performance. For example, on the ARC-C dataset, applying the method to fine-tuning Mixtral-8x7B can reduce FLOPs by 14.5% while increasing accuracy by 1.69%.},
+  address       = {Miami, Florida, USA},
+  author        = {Zeng, Zihao and Miao, Yibo and Gao, Hongcheng and Zhang, Hao and Deng, Zhijie},
+  booktitle     = {Findings of the Association for Computational Linguistics: EMNLP 2024},
+  doi           = {10.18653/v1/2024.findings-emnlp.361},
+  month         = {11},
+  openalex      = {W4399912530},
+  pages         = {6223--6235},
+  pdf           = {https://aclanthology.org/2024.findings-emnlp.361.pdf},
+  publisher     = {Association for Computational Linguistics},
+  title         = {AdaMoE: Token-Adaptive Routing with Null Experts for Mixture-of-Experts Language Models},
+  url           = {https://aclanthology.org/2024.findings-emnlp.361/},
+  year          = {2024}
+}
+
+@inproceedings{chen2023sparse,
+  abstract      = {Despite their remarkable achievement, gigantic transformers encounter significant drawbacks, including exorbitant computational and memory footprints during training, as well as severe collapse evidenced by a high degree of parameter redundancy. Sparsely-activated Mixture-of-Experts (SMoEs) have shown promise to mitigate the issue of training efficiency, yet they are prone to (1) redundant experts due to representational collapse; and (2) poor expert scalability for inference and downstream fine-tuning, primarily due to overfitting of the learned routing policy to the number of activated experts during training. As recent research efforts are predominantly focused on improving routing policies to encourage expert specializations, this work focuses on exploring the overlooked scalability bottleneck of SMoEs and leveraging it to effectively scale dense transformers. To this end, we propose a new plug-and-play training framework, SMoE-Dropout, to enable scaling transformers to better accuracy in their full capacity without collapse. Specifically, SMoE-Dropout consists of a randomly initialized and fixed router network to activate experts and gradually increases the activated expert number as training progresses over time. Transformers trained by SMoE-Dropout naturally exhibit a 'self-slimmable' property subject to resource availability, offering smooth and consistent performance boosts with an increase in activated experts during inference or fine-tuning. Our extensive experiments across diverse transformer architectures on a variety of tasks demonstrate the superior performance and substantial computation savings of SMoE-Dropout, compared to dense training baselines with equivalent parameter counts. In particular, our trained BERT outperforms its densely trained counterpart with consistent improvements of 1.03%, 0.78%, 1.09% on challenging reasoning tasks ASDiv-A, MAWPS, SVAMP, respectively.},
+  author        = {Tianlong Chen and Zhenyu Zhang and Ajay Jaiswal and Shiwei Liu and Zhangyang Wang},
+  booktitle     = {The Eleventh International Conference on Learning Representations},
+  openalex      = {W4323322833},
+  pdf           = {https://openreview.net/pdf?id=w1hwFUb_81},
+  title         = {Sparse MoE as the New Dropout: Scaling Dense and Self-Slimmable Transformers},
+  url           = {https://openreview.net/forum?id=w1hwFUb_81},
+  year          = {2023}
+}
+
+@inproceedings{dua2024mixtures,
+  author        = {Dua, Dheeru and Gupta, Pradeep and Mukherjee, Sameer and Zhang, Jifan and Awadallah, Ahmed Hassan and Gao, Jianfeng},
+  booktitle     = {Association for Computational Linguistics (ACL)},
+  title         = {Mixtures of Experts for Autoregressive Semantic Parsing},
+  year          = {2024}
+}
+
+@inproceedings{shang2024mixture,
+  abstract      = {Mixture of Experts (MoE) models based on Transformer architecture are pushing the boundaries of language and vision tasks. The allure of these models lies in their ability to substantially increase the parameter count without a corresponding increase in FLOPs. Most widely adopted MoE models are discontinuous with respect to their parameters - often referred to as sparse. At the same time, existing continuous MoE designs either lag behind their sparse counterparts or are incompatible with autoregressive decoding. Motivated by the observation that the adaptation of fully continuous methods has been an overarching trend in deep learning, we develop Mixture of Tokens (MoT), a simple, continuous architecture that is capable of scaling the number of parameters similarly to sparse MoE models. Unlike conventional methods, MoT assigns mixtures of tokens from different examples to each expert. This architecture is fully compatible with autoregressive training and generation. Our best models not only achieve a 3x increase in training speed over dense Transformer models in language pretraining but also match the performance of state-of-the-art MoE architectures. Additionally, a close connection between MoT and MoE is demonstrated through a novel technique we call transition tuning.},
+  author        = {Antoniak, Szymon and Krutul, Michał and Pióro, Maciej and Krajewski, Jakub and Ludziejewski, Jan and Ciebiera, Kamil and Król, Krystian and Odrzygóźd\,́ Tomasz and Cygan, Marek and Jaszczur, Sebastian},
+  booktitle     = {Advances in Neural Information Processing Systems 37: Annual Conference on Neural Information Processing Systems 2024, NeurIPS 2024, Vancouver, BC, Canada, December 10-15, 2024},
+  pdf           = {https://arxiv.org/pdf/2310.15961.pdf},
+  publisher     = {MIT Press},
+  title         = {Mixture of Tokens: Continuous MoE through Cross-Example Aggregation},
+  url           = {https://arxiv.org/abs/2310.15961},
+  year          = {2024}
+}
+
+@inproceedings{zhai2023stabilizing,
+  abstract      = {Training stability is of great importance to Transformers. In this work, we investigate the training dynamics of Transformers by examining the evolution of attention layers. In particular, we track entropy for each head during the course of training, which is a proxy for model sharpness. We identify a common pattern across different architectures and tasks, where low entropy is accompanied by high instability, which can take the form of oscillating loss or divergence. We denote pathologically low entropy, corresponding to highly concentrated attention scores, as "entropy collapse". As a remedy, we propose "σReparam", a simple and efficient solution to reparametrize all linear layers with spectral normalization and an additional learned scalar. We demonstrate that "σReparam" successfully prevents entropy collapse in layers, promoting more stable training. Additionally, we prove a tight lower bound that decreases exponentially fast with the norm of logits, providing motivation for our approach. We conduct experiments on image classification, self-supervised learning, machine translation, speech recognition, and language modeling tasks. We show it provides robustness with respect to hyperparameter choices, going so far as enabling (a) Vision Transformer to competitive performance without warmup, weight decay, or adaptive optimizers; (b) deep translation; and (c) speech recognition performance without warmup optimizers. Code is available at https://github.com/apple/ml-sigma-reparam.},
+  author        = {Zhai, Shuangfei and Likhomanenko, Tatiana and Littwin, Etai and Busbridge, Dan and Ramapuram, Jason and Zhang, Yizhe and Gu, Jiatao and Susskind, Joshua M.},
+  booktitle     = {Proceedings of the 40th International Conference on Machine Learning},
+  editor        = {Krause, Andreas and Brunskill, Emma and Cho, Kyunghyun and Engelhardt, Barbara and Sabato, Sivan and Scarlett, Jonathan},
+  openalex      = {W4324311371},
+  pages         = {40770--40803},
+  pdf           = {https://proceedings.mlr.press/v202/zhai23a/zhai23a.pdf},
+  publisher     = {PMLR},
+  series        = {Proceedings of Machine Learning Research},
+  title         = {Stabilizing Transformer Training by Preventing Attention Entropy Collapse},
+  url           = {https://proceedings.mlr.press/v202/zhai23a.html},
+  volume        = {202},
+  year          = {2023}
+}
+
+@inproceedings{liu2024adamoe,
+  abstract      = {Mixture of experts (MoE) has become the standard for constructing production-level large language models (LLMs) due to its promise to boost model capacity without causing significant overheads. Nevertheless, existing MoE methods usually enforce a constant top-k routing for all tokens, which is arguably restrictive because various tokens (e.g., ``<EOS>'' vs. ``apple'') may require various numbers of experts for feature abstraction. Lifting such a constraint can help make the most of limited resources and unleash the potential of the model for downstream tasks. In this sense, we introduce AdaMoE to realize token-adaptive routing for MoE, where different tokens are permitted to select a various number of experts. AdaMoE makes minimal modifications to the vanilla MoE with top-k routing -- it simply introduces a fixed number of null experts, which do not consume any FLOPs, to the expert set and increases the value of k. AdaMoE does not force each token to occupy a fixed number of null experts but ensures the average usage of the null experts with a load-balancing loss, leading to an adaptive number of null/true experts used by each token. AdaMoE exhibits a strong resemblance to MoEs with expert choice routing while allowing for trivial auto-regressive modeling. AdaMoE is easy to implement and can be effectively applied to pre-trained (MoE-)LLMs. Extensive studies show that AdaMoE can reduce average expert load (FLOPs) while achieving superior performance. For example, on the ARC-C dataset, applying our method to fine-tuning Mixtral-8x7B can reduce FLOPs by 14.5% while increasing accuracy by 1.69%.},
+  address       = {Miami, Florida, USA},
+  author        = {Zeng, Zihao and Miao, Yibo and Gao, Hongcheng and Zhang, Hao and Deng, Zhijie},
+  booktitle     = {Findings of the Association for Computational Linguistics: EMNLP 2024},
+  doi           = {10.18653/v1/2024.findings-emnlp.361},
+  month         = {11},
+  openalex      = {W4404781605},
+  pages         = {6223--6235},
+  pdf           = {https://aclanthology.org/2024.findings-emnlp.361.pdf},
+  publisher     = {Association for Computational Linguistics},
+  title         = {AdaMoE: Token-Adaptive Routing with Null Experts for Mixture-of-Experts Language Models},
+  url           = {https://aclanthology.org/2024.findings-emnlp.361/},
+  year          = {2024}
+}
+
+@inproceedings{chen2023sparse,
+  abstract      = {Despite their remarkable achievement, gigantic transformers encounter significant drawbacks, including exorbitant computational and memory footprints during training, as well severe collapse evidenced by a high degree of parameter redundancy. Sparsely-activated Mixture-of-Experts (SMoEs) have shown promise to mitigate the training efficiency issue, yet they are prone to: (1) redundant experts due to representational collapse; (2) poor expert scalability for inference and downstream fine-tuning, primarily overfitting learned routing policy. As recent research efforts are predominantly focused on improving policies to encourage expert specializations, this work focuses on exploring the overlooked bottleneck in SMoEs by leveraging it effectively to scale dense transformers. To this end, we propose a new plug-and-play framework, SMoE-Dropout, to enable scaling transformers to better accuracy in full capacity without collapse. Specifically, SMoE-Dropout consists of a randomly initialized fixed router network that gradually activates experts as training progresses. Transformers trained naturally exhibit a self-slimmable property subject to resource availability, offering smooth, consistent performance boosts with an increase or fine-tuning. Our extensive experiments demonstrate superior substantial computation savings compared to baselines with equivalent parameter counts. In particular, our BERT outperforms its densely trained counterpart with improvements of 1.03%, 0.78%, 1.09% on challenging reasoning tasks ASDiv-A, MAWPS, SVAMP, respectively.},
+  archiveprefix = {arXiv},
+  author        = {Tianlong Chen and Zhenyu Zhang and Ajay Kumar Jaiswal and Shiwei Liu and Zhangyang Wang},
+  booktitle     = {The Eleventh International Conference on Learning Representations},
+  doi           = {10.48550/arxiv.2303.01610},
+  eprint        = {2303.01610},
+  openalex      = {W4323322833},
+  pdf           = {https://openreview.net/pdf?id=w1hwFUb_81},
+  primaryclass  = {cs.LG},
+  title         = {Sparse MoE as the New Dropout: Scaling Dense and Self-Slimmable Transformers},
+  url           = {https://openreview.net/forum?id=w1hwFUb_81},
+  year          = {2023}
+}
+
+@inproceedings{dua2024mixtures,
+  author        = {Dua, Dheeru and Gupta, Pradeep and Mukherjee, Sameer and Zhang, Jifan and Awadallah, Ahmed Hassan and Gao, Jianfeng},
+  booktitle     = {Proceedings of the 62nd Annual Meeting of the Association for Computational Linguistics},
+  title         = {Mixtures of Experts for Autoregressive Semantic Parsing},
+  year          = {2024}
+}
