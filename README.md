@@ -10,7 +10,7 @@ A comprehensive BibTeX bibliography management system with automated enrichment 
 git clone <repository-url>
 cd bibliography
 
-# Enter Guix environment
+# IMPORTANT: Always use Guix shell for all Python commands
 guix shell -m manifest.scm
 
 # Install git hooks (commit validation, tracking export)
@@ -21,6 +21,11 @@ python3 scripts/import-tracking.py
 
 # Verify setup
 python3 scripts/enrichment-status.py
+```
+
+**⚠️ CRITICAL: All Python scripts require the Guix environment. Always run:**
+```bash
+guix shell -m manifest.scm -- python3 scripts/script-name.py
 ```
 
 ### Daily Usage Patterns
@@ -220,18 +225,18 @@ Follow these patterns:
 
 **Verify BibTeX syntax:**
 ```bash
-python3 scripts/verify-bib.py file.bib
+guix shell -m manifest.scm -- python3 scripts/verify-bib.py file.bib
 ```
 
 **Clean BibTeX files:**
 ```bash
-python3 scripts/clean-bib.py --in-place file.bib
+guix shell -m manifest.scm -- python3 scripts/clean-bib.py --in-place file.bib
 ```
 
 **Count entries:**
 ```bash
-python3 scripts/count-entries.py file.bib
-python3 scripts/count-entries.py file.bib --enrichment-stats
+guix shell -m manifest.scm -- python3 scripts/count-entries.py file.bib
+guix shell -m manifest.scm -- python3 scripts/count-entries.py file.bib --enrichment-stats
 ```
 
 ### Enrichment Tracking
@@ -239,55 +244,55 @@ python3 scripts/count-entries.py file.bib --enrichment-stats
 **Check enrichment status:**
 ```bash
 # Overall status
-python3 scripts/enrichment-status.py
+guix shell -m manifest.scm -- python3 scripts/enrichment-status.py
 
 # Specific file
-python3 scripts/enrichment-status.py by-domain/llm.bib
+guix shell -m manifest.scm -- python3 scripts/enrichment-status.py by-domain/llm.bib
 
 # Find retry candidates
-python3 scripts/enrichment-status.py --retry-candidates
+guix shell -m manifest.scm -- python3 scripts/enrichment-status.py --retry-candidates
 
 # JSON output for automation
-python3 scripts/enrichment-status.py --json
+guix shell -m manifest.scm -- python3 scripts/enrichment-status.py --json
 ```
 
 **Import/Export tracking data:**
 ```bash
 # Import on fresh clone
-python3 scripts/import-tracking.py
+guix shell -m manifest.scm -- python3 scripts/import-tracking.py
 
 # Manual export (automatic on commit)
-python3 scripts/export-tracking.py
+guix shell -m manifest.scm -- python3 scripts/export-tracking.py
 ```
 
 ### Entry Management
 
 **Prepare single entry for enrichment:**
 ```bash
-python3 scripts/prepare-entry.py target.bib new-entry.bib
+guix shell -m manifest.scm -- python3 scripts/prepare-entry.py target.bib new-entry.bib
 ```
 
 **Finalize enriched entry:**
 ```bash
-python3 scripts/finalize-entry.py target.bib enriched-entry.bib
+guix shell -m manifest.scm -- python3 scripts/finalize-entry.py target.bib enriched-entry.bib
 ```
 
 **Analyze file for batch enrichment:**
 ```bash
-python3 scripts/analyze-enrichment.py file.bib
+guix shell -m manifest.scm -- python3 scripts/analyze-enrichment.py file.bib
 ```
 
 ### Utilities
 
 **Extract individual entries:**
 ```bash
-python3 scripts/extract-entries.py file.bib
+guix shell -m manifest.scm -- python3 scripts/extract-entries.py file.bib
 # Creates tmp/filename/entry-N.bib files
 ```
 
 **Compare BibTeX files:**
 ```bash
-python3 scripts/compare-bib-files.py original.bib modified.bib
+guix shell -m manifest.scm -- python3 scripts/compare-bib-files.py original.bib modified.bib
 ```
 
 ## Troubleshooting
@@ -295,25 +300,25 @@ python3 scripts/compare-bib-files.py original.bib modified.bib
 ### Missing Enrichment History
 ```bash
 # If enrichment history is missing after fresh clone
-python3 scripts/import-tracking.py
+guix shell -m manifest.scm -- python3 scripts/import-tracking.py
 ```
 
 ### Corrupted BibTeX Files
 ```bash
 # Validate and report issues
-python3 scripts/verify-bib.py problematic.bib
+guix shell -m manifest.scm -- python3 scripts/verify-bib.py problematic.bib
 
 # Clean with backup
-python3 scripts/clean-bib.py --in-place problematic.bib
+guix shell -m manifest.scm -- python3 scripts/clean-bib.py --in-place problematic.bib
 ```
 
 ### Failed Enrichments
 ```bash
 # See what failed
-python3 scripts/enrichment-status.py --retry-candidates
+guix shell -m manifest.scm -- python3 scripts/enrichment-status.py --retry-candidates
 
 # Check specific file
-python3 scripts/enrichment-status.py by-domain/llm.bib
+guix shell -m manifest.scm -- python3 scripts/enrichment-status.py by-domain/llm.bib
 ```
 
 ## Tips for Working with Claude

@@ -24,14 +24,14 @@ This is a personal bibliography management system storing BibTeX entries organiz
 
 ### Workflow A: Single Entry Addition
 ```
-1. User: python3 scripts/prepare-entry.py target.bib "@article{...}"
+1. User: guix shell -m manifest.scm -- python3 scripts/prepare-entry.py target.bib "@article{...}"
 2. Claude: Task(subagent_type: "bibtex-entry-enricher", prompt: "Please enrich the BibTeX entry in the file: tmp/pending-enrichment/entry.bib")
-3. User: python3 scripts/finalize-entry.py target.bib tmp/pending-enrichment/entry.bib
+3. User: guix shell -m manifest.scm -- python3 scripts/finalize-entry.py target.bib tmp/pending-enrichment/entry.bib
 ```
 
 ### Workflow B: Batch File Enrichment
 ```
-1. User: python3 scripts/analyze-enrichment.py file.bib
+1. User: guix shell -m manifest.scm -- python3 scripts/analyze-enrichment.py file.bib
    Output: "15 unenriched entries found, prepared in 1 batch: tmp/file/batch-1.json"
 2. Claude: Process batch files listed in JSON (parallel enrichment of up to 20 entries)
 3. User: Reassemble using sequential loop method (see File Assembly section)
@@ -43,60 +43,65 @@ This is a personal bibliography management system storing BibTeX entries organiz
 ### New Streamlined Commands
 ```bash
 # Prepare entry for enrichment
-python3 scripts/prepare-entry.py target.bib "@article{key2024, ...}"
+guix shell -m manifest.scm -- python3 scripts/prepare-entry.py target.bib "@article{key2024, ...}"
 
 # Finalize enriched entry
-python3 scripts/finalize-entry.py target.bib tmp/pending-enrichment/entry.bib
+guix shell -m manifest.scm -- python3 scripts/finalize-entry.py target.bib tmp/pending-enrichment/entry.bib
 
 # Analyze file for batch enrichment
-python3 scripts/analyze-enrichment.py file.bib
+guix shell -m manifest.scm -- python3 scripts/analyze-enrichment.py file.bib
 
 # Count with enrichment statistics
-python3 scripts/count-entries.py --enrichment-stats file.bib
+guix shell -m manifest.scm -- python3 scripts/count-entries.py --enrichment-stats file.bib
 ```
 
 ### Core Commands
 ```bash
 # Verify BibTeX syntax
-python3 scripts/verify-bib.py by-domain/*.bib
+guix shell -m manifest.scm -- python3 scripts/verify-bib.py by-domain/*.bib
 
 # Clean BibTeX files
-python3 scripts/clean-bib.py --in-place by-domain/transformers.bib
+guix shell -m manifest.scm -- python3 scripts/clean-bib.py --in-place by-domain/transformers.bib
 
 # Count entries (simple)
-python3 scripts/count-entries.py by-domain/llm.bib
+guix shell -m manifest.scm -- python3 scripts/count-entries.py by-domain/llm.bib
 
 # Extract individual entries
-python3 scripts/extract-entries.py by-domain/transformers.bib
+guix shell -m manifest.scm -- python3 scripts/extract-entries.py by-domain/transformers.bib
 
 # Compare BibTeX files
-python3 scripts/compare-bib-files.py original.bib enriched.bib
+guix shell -m manifest.scm -- python3 scripts/compare-bib-files.py original.bib enriched.bib
 ```
 
 ### Enrichment Tracking Commands
 
 **Important**: On fresh clone, run:
-1. `python3 scripts/install-hooks.py` to install git hooks
-2. `python3 scripts/import-tracking.py` to restore enrichment history
+1. `guix shell -m manifest.scm -- python3 scripts/install-hooks.py` to install git hooks
+2. `guix shell -m manifest.scm -- python3 scripts/import-tracking.py` to restore enrichment history
+
+**CRITICAL**: All Python scripts require Guix environment. Always use:
+```bash
+guix shell -m manifest.scm -- python3 scripts/script-name.py
+```
 
 ```bash
 # Initialize tracking from version-controlled export (fresh clone)
-python3 scripts/import-tracking.py tracking.json
+guix shell -m manifest.scm -- python3 scripts/import-tracking.py tracking.json
 
 # Check enrichment history
-python3 scripts/enrichment-status.py [file.bib]
+guix shell -m manifest.scm -- python3 scripts/enrichment-status.py [file.bib]
 
 # Find failed entries to retry
-python3 scripts/enrichment-status.py --retry-candidates
+guix shell -m manifest.scm -- python3 scripts/enrichment-status.py --retry-candidates
 
 # Get JSON output for automation
-python3 scripts/enrichment-status.py --json
+guix shell -m manifest.scm -- python3 scripts/enrichment-status.py --json
 
 # Manual export (automatic on git commit)
-python3 scripts/export-tracking.py
+guix shell -m manifest.scm -- python3 scripts/export-tracking.py
 
 # Manual tracking (normally automatic)
-python3 scripts/track-enrichment.py file.bib entry_key success W123456789
+guix shell -m manifest.scm -- python3 scripts/track-enrichment.py file.bib entry_key success W123456789
 ```
 
 ## Enrichment Tracking System

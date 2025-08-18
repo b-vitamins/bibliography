@@ -4,7 +4,7 @@
 # Check if database exists
 if [ -f "bibliography.db" ]; then
     echo "Exporting enrichment tracking data..."
-    python3 scripts/export-tracking.py tracking.json
+    guix shell -m manifest.scm -- python3 scripts/export-tracking.py tracking.json
     
     # Note: tracking.json updated but not auto-added to avoid timestamp-only commits
     # Add manually if enrichment data changed: git add tracking.json
