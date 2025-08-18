@@ -24,6 +24,7 @@
   number        = {1},
   openalex      = {W2078626246},
   pages         = {53--58},
+  pdf           = {http://www.vision.jhu.edu/teaching/learning/deeplearning19/assets/Baldi_Hornik-89.pdf},
   title         = {Neural Networks and Principal Component Analysis: Learning from Examples Without Local Minima},
   url           = {https://www.sciencedirect.com/science/article/abs/pii/0893608089900142},
   volume        = {2},
@@ -63,7 +64,7 @@
   year          = {1996}
 }
 
-@article{kramer1991autoassociative,
+@article{kramer1992autoassociative,
   abstract      = {Autoassociative neural networks are feedforward nets trained to produce an approximation of the identity mapping between network inputs and outputs using backpropagation or similar learning procedures. The key feature of an autoassociative network is a dimensional bottleneck between input and output. Compression of information by the bottleneck results in the acquisition of a correlation model of the input data, useful for performing a variety of data screening tasks. The network reduces measurement noise by mapping inputs into the space of the correlation model, and the residuals of this mapping can be used to detect sensor failures. Values for missing and faulty sensors can be estimated using the network. A related approach, robust autoassociative networks, filter both random noise and gross errors in data resulting from faulty sensors. These networks replace with a single forward pass the conventional multiple-step procedure of data rectification, gross error detection, failure identification and sensor value replacement estimation. Autoassociative networks can be used to preprocess data so that sensor-based calculations can be performed correctly even in the presence of large sensor biases and failures.},
   author        = {Mark A. Kramer},
   doi           = {10.1016/0098-1354(92)80051-a},
@@ -153,7 +154,7 @@
   month         = {4},
   note          = {TLDR: A paradigm-shifting paper that introduced the Variational Autoencoder (VAE), a principled framework for combining the representational power of neural networks with the statistical rigor of variational inference. It introduced the reparameterization trick, enabling the training of powerful generative models with backpropagation.},
   openalex      = {W1959608418},
-  pdf           = {http://arxiv.org/pdf/1312.6114},
+  pdf           = {https://openreview.net/pdf?id=33X9fd2-9FyZd},
   title         = {Auto-Encoding Variational Bayes},
   url           = {http://arxiv.org/abs/1312.6114},
   year          = {2014}
@@ -256,7 +257,7 @@
   booktitle     = {Proceedings of the 29th International Conference on Machine Learning},
   note          = {TLDR: This work proposes a method to turn a trained Contractive Autoencoder into a generative model. It defines a stochastic sampling procedure that leverages the learned manifold structure captured by the CAE's contractive penalty, allowing for efficient sampling that mixes well between data modes.},
   openalex      = {W2950320139},
-  pdf           = {https://arxiv.org/pdf/1206.6434.pdf},
+  pdf           = {https://proceedings.mlr.press/v2012/rifai12a/rifai12a.pdf},
   publisher     = {ICML.cc},
   series        = {ICML'12},
   title         = {A Generative Process for Sampling Contractive Auto-Encoders},
@@ -317,6 +318,7 @@
   note          = {TLDR: These influential lecture notes provided one of the clearest and most widely circulated formulations of the sparse autoencoder. They detailed the use of a KL-divergence penalty to enforce sparsity and provided the full backpropagation derivations, serving as the de facto introduction to the topic for a generation of students and practitioners. Part of CS294A Lecture Notes.},
   number        = {CS294A},
   pages         = {1--19},
+  pdf           = {http://nlp.stanford.edu/~socherr/sparseAutoencoder_2011new.pdf},
   title         = {Sparse Autoencoder},
   type          = {Lecture Notes},
   url           = {https://web.stanford.edu/class/cs294a/sparseAutoencoder_2011new.pdf},
@@ -373,7 +375,7 @@
   booktitle     = {International Conference on Learning Representations},
   note          = {TLDR: This paper introduces the k-sparse autoencoder, which enforces sparsity directly by allowing only the top-k largest hidden unit activations to be non-zero. This avoids the need to tune a sparsity penalty coefficient and prevents the feature shrinkage bias associated with L1 regularization.},
   openalex      = {W1853900790},
-  pdf           = {https://arxiv.org/pdf/1312.5663.pdf},
+  pdf           = {https://openreview.net/pdf?id=QDm4QXNOsuQVE},
   title         = {k-Sparse Autoencoders},
   url           = {https://openreview.net/forum?id=QDm4QXNOsuQVE},
   year          = {2014}
@@ -385,7 +387,7 @@
   booktitle     = {1st International Conference on Learning Representations, ICLR 2013, Scottsdale, AZ, USA, May 2-4, 2013, Conference Track Proceedings},
   month         = {5},
   openalex      = {W2963623200},
-  pdf           = {https://arxiv.org/abs/1301.3775},
+  pdf           = {https://openreview.net/pdf?id=aJh-lFL2dFJ21},
   title         = {Discriminative Recurrent Sparse Auto-Encoders},
   url           = {https://openreview.net/forum?id=aJh-lFL2dFJ21},
   year          = {2013}
@@ -552,7 +554,7 @@
   note          = {TLDR: This was a pioneering work in applying VAEs to natural language generation. It combines an RNN-based autoencoder with the VAE framework to learn a continuous latent space for sentences, demonstrating smooth interpolation and sentence generation capabilities, while also highlighting the "KL vanishing" problem.},
   openalex      = {W2963223306},
   pages         = {10--21},
-  pdf           = {https://arxiv.org/pdf/1511.06349.pdf},
+  pdf           = {https://aclanthology.org/K16-1002.pdf},
   publisher     = {Association for Computational Linguistics},
   title         = {Generating Sentences from a Continuous Space},
   url           = {https://aclanthology.org/K16-1002/},
@@ -599,6 +601,7 @@
   number        = {8},
   openalex      = {W2163922914},
   pages         = {1798--1828},
+  pdf           = {https://arxiv.org/pdf/1206.5538},
   title         = {Representation Learning: A Review and New Perspectives},
   volume        = {35},
   year          = {2013}
@@ -628,7 +631,7 @@
   booktitle     = {NIPS Workshop on Bayesian Deep Learning},
   eprint        = {1611.07308},
   month         = {12},
-  pdf           = {https://arxiv.org/pdf/1611.07308},
+  pdf           = {http://bayesiandeeplearning.org/2016/papers/BDL_16.pdf},
   primaryclass  = {stat.ML},
   title         = {Variational Graph Auto-Encoders},
   url           = {https://arxiv.org/abs/1611.07308},
@@ -645,6 +648,7 @@
   number        = {7553},
   openalex      = {W2919115771},
   pages         = {436--444},
+  pdf           = {https://www.cs.toronto.edu/~hinton/absps/NatureDeepReview.pdf},
   title         = {Deep Learning},
   volume        = {521},
   year          = {2015}
@@ -766,7 +770,7 @@
   booktitle     = {International Conference on Learning Representations},
   note          = {TLDR: A concurrent and influential work to MAE, BEiT proposes a masked image modeling task analogous to BERT. It first tokenizes the image into discrete visual tokens using a dVAE, then masks some tokens and trains a Transformer to predict the original visual tokens of the masked patches.},
   openalex      = {W3170863103},
-  pdf           = {https://arxiv.org/pdf/2106.08254.pdf},
+  pdf           = {https://openreview.net/pdf?id=p-BhZSz59o4},
   title         = {BEiT: BERT Pre-Training of Image Transformers},
   url           = {https://openreview.net/forum?id=p-BhZSz59o4},
   year          = {2022}
@@ -1026,13 +1030,17 @@
   year          = {2025}
 }
 
-@misc{bricken2024sparse,
+@misc{cunningham2023sparse,
   abstract      = {This work explores the use of sparse autoencoders to identify interpretable features in language models, addressing the challenge of superposition where neural networks represent more features than they have neurons. The approach provides a scalable and unsupervised method for extracting monosemantic features from the internal activations of language models, contributing to mechanistic interpretability research.},
-  author        = {Trenton Bricken and Adly Templeton and Tom Conerly and others},
-  note          = {TLDR: A foundational paper in the modern resurgence of SAEs for interpretability. It demonstrates that training a very large, sparse autoencoder on the internal activations of a language model can uncover thousands of interpretable, monosemantic features, providing a scalable method to resolve superposition. Note: This entry may refer to unpublished or internal Anthropic research related to sparse autoencoders work by these authors.},
+  archiveprefix = {arXiv},
+  author        = {Hoagy Cunningham and Aidan Ewart and Logan Riggs and Robert Huben and Lee Sharkey},
+  eprint        = {2309.08600},
+  note          = {TLDR: A foundational paper in the modern resurgence of SAEs for interpretability. It demonstrates that training a very large, sparse autoencoder on the internal activations of a language model can uncover thousands of interpretable, monosemantic features, providing a scalable method to resolve superposition.},
+  pdf           = {https://openreview.net/pdf?id=F76bwRSLeK},
+  primaryclass  = {cs.LG},
   title         = {Sparse Autoencoders Find Highly Interpretable Features in Language Models},
-  url           = {https://transformer-circuits.pub},
-  year          = {2024}
+  url           = {https://arxiv.org/abs/2309.08600},
+  year          = {2023}
 }
 
 @techreport{gao2024scaling,
@@ -1072,6 +1080,7 @@
   month         = {1},
   note          = {Result of a 2-week research sprint project during Neel Nanda's MATS stream. Demonstrates that SAEs applied to attention layer outputs learn sparse, interpretable features with 82% of non-dead features being interpretable.},
   openalex      = {W4400065290},
+  pdf           = {https://arxiv.org/pdf/2406.17759.pdf},
   title         = {Sparse Autoencoders Work on Attention Layer Outputs},
   url           = {https://www.alignmentforum.org/posts/DtdzGwFh9dCfsekZZ/sparse-autoencoders-work-on-attention-layer-outputs},
   year          = {2024}
@@ -1128,6 +1137,7 @@
   booktitle     = {Advances in Neural Information Processing Systems},
   note          = {Workshop: Attributing Model Behavior at Scale (ATTRIB)},
   pages         = {TBD},
+  pdf           = {https://arxiv.org/pdf/2411.18895},
   publisher     = {Curran Associates Inc.},
   series        = {NeurIPS '24},
   title         = {Evaluating Sparse Autoencoders on Targeted Concept Removal Tasks},
@@ -1318,7 +1328,7 @@
   year          = {2024}
 }
 
-@inproceedings{huang20223dlinker,
+@inproceedings{huang2022threedlinker,
   abstract      = {Deep learning has achieved tremendous success in designing novel chemical compounds with desirable pharmaceutical properties. In this work, we focus on a new type of drug design problem -- generating a small "linker" to physically attach two independent molecules with their distinct functions. The main computational challenges include: 1) the generation of linkers is conditional on the two given molecules, in contrast to generating full molecules from scratch in previous works; 2) linkers heavily depend on the anchor atoms of the two molecules to be connected, which are not known beforehand; 3) 3D structures and orientations of the molecules need to be considered to avoid atom clashes, for which equivariance to E(3) group are necessary. To address these problems, we propose a conditional generative model, named 3DLinker, which is able to predict anchor atoms and jointly generate linker graphs and their 3D structures based on an E(3) equivariant graph variational autoencoder. So far as we know, there are no previous models that could achieve this task. We compare our model with multiple conditional generative models modified from other molecular design tasks and find that our model has a significantly higher rate in recovering molecular graphs, and more importantly, accurately predicting the 3D coordinates of all the atoms.},
   author        = {Yinan Huang and Xingang Peng and Jianzhu Ma and Muhan Zhang},
   booktitle     = {39th International Conference on Machine Learning},
