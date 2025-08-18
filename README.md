@@ -13,6 +13,9 @@ cd bibliography
 # Enter Guix environment
 guix shell -m manifest.scm
 
+# Install git hooks (commit validation, tracking export)
+python3 scripts/install-hooks.py
+
 # Restore enrichment history from version control
 python3 scripts/import-tracking.py
 

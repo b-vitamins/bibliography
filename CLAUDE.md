@@ -75,7 +75,9 @@ python3 scripts/compare-bib-files.py original.bib enriched.bib
 
 ### Enrichment Tracking Commands
 
-**Important**: On fresh clone, run `python3 scripts/import-tracking.py` to restore enrichment history.
+**Important**: On fresh clone, run:
+1. `python3 scripts/install-hooks.py` to install git hooks
+2. `python3 scripts/import-tracking.py` to restore enrichment history
 
 ```bash
 # Initialize tracking from version-controlled export (fresh clone)
@@ -111,6 +113,22 @@ This hybrid approach provides:
 - Version-controlled history via JSON exports
 - Seamless synchronization across machines
 - Complete audit trail of enrichment attempts
+
+## Git Hooks System
+
+Version-controlled git hooks ensure consistent workflow across machines:
+
+- **hooks/pre-commit**: Automatically exports tracking database on every commit
+- **hooks/commit-msg**: Validates commit message format and enforces standards
+- **scripts/install-hooks.py**: Installs hooks from version-controlled location
+
+### Setup:
+```bash
+# Install hooks after fresh clone
+python3 scripts/install-hooks.py
+```
+
+Hooks are stored in `hooks/` directory and copied to `.git/hooks/` during installation.
 
 ## Repository Structure
 
