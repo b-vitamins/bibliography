@@ -1,0 +1,17 @@
+{
+  "export_version": "1.0",
+  "export_timestamp": "2025-08-18T22:07:12.360846",
+  "database_path": "bibliography.db",
+  "total_entries": 1,
+  "enrichment_log": [
+    {
+      "file_path": "by-domain/llm.bib",
+      "entry_key": "test2024testing",
+      "timestamp": "2025-08-18 15:12:18",
+      "status": "success",
+      "openalex_id": "W4391234567",
+      "error_message": null,
+      "enrichment_version": "1.0"
+    }
+  ]
+}

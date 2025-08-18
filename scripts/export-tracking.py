@@ -15,7 +15,7 @@ from typing import Any
 
 
 def export_database(
-    db_path: str = "bibliography.db", output_file: str = "enrichment-tracking.json"
+    db_path: str = "bibliography.db", output_file: str = "tracking.json"
 ) -> bool:
     """Export all enrichment data to JSON format."""
 
@@ -79,7 +79,7 @@ def export_database(
 
 
 def main() -> None:
-    output_file = sys.argv[1] if len(sys.argv) > 1 else "enrichment-tracking.json"
+    output_file = sys.argv[1] if len(sys.argv) > 1 else "tracking.json"
     success = export_database(output_file=output_file)
     sys.exit(0 if success else 1)
 

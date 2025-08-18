@@ -14,7 +14,7 @@ from typing import Any
 
 
 def import_database(
-    input_file: str = "enrichment-tracking.json", db_path: str = "bibliography.db"
+    input_file: str = "tracking.json", db_path: str = "bibliography.db"
 ) -> bool:
     """Import enrichment data from JSON export."""
 
@@ -107,7 +107,7 @@ def import_database(
 
 
 def main() -> None:
-    input_file = sys.argv[1] if len(sys.argv) > 1 else "enrichment-tracking.json"
+    input_file = sys.argv[1] if len(sys.argv) > 1 else "tracking.json"
     success = import_database(input_file=input_file)
     sys.exit(0 if success else 1)
 
