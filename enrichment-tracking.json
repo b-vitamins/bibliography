@@ -1,0 +1,35 @@
+{
+  "export_version": "1.0",
+  "export_timestamp": "2025-08-18T20:05:44.315006",
+  "database_path": "bibliography.db",
+  "total_entries": 3,
+  "enrichment_log": [
+    {
+      "file_path": "by-domain/ssm.bib",
+      "entry_key": "test-entry-1",
+      "timestamp": "2025-08-18 13:37:27",
+      "status": "success",
+      "openalex_id": "W123456789",
+      "error_message": null,
+      "enrichment_version": "1.0"
+    },
+    {
+      "file_path": "by-domain/ssm.bib",
+      "entry_key": "test-entry-2",
+      "timestamp": "2025-08-18 13:37:36",
+      "status": "failed",
+      "openalex_id": "",
+      "error_message": "No results found in OpenAlex",
+      "enrichment_version": "1.0"
+    },
+    {
+      "file_path": "/tmp/test-tracking.bib",
+      "entry_key": "tracked2024",
+      "timestamp": "2025-08-18 13:39:41",
+      "status": "success",
+      "openalex_id": "W987654321",
+      "error_message": null,
+      "enrichment_version": "1.0"
+    }
+  ]
+}
