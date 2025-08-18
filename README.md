@@ -103,7 +103,7 @@ bibliography/
 │   └── courses/      # Course materials
 ├── meta/             # Working files and tests
 ├── scripts/          # Python utilities
-├── enrichment-tracking.json  # Version-controlled enrichment history
+├── tracking.json  # Version-controlled enrichment history
 └── CLAUDE.md         # Technical reference for Claude
 ```
 

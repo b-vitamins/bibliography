@@ -79,7 +79,7 @@ python3 scripts/compare-bib-files.py original.bib enriched.bib
 
 ```bash
 # Initialize tracking from version-controlled export (fresh clone)
-python3 scripts/import-tracking.py enrichment-tracking.json
+python3 scripts/import-tracking.py tracking.json
 
 # Check enrichment history
 python3 scripts/enrichment-status.py [file.bib]
@@ -102,7 +102,7 @@ python3 scripts/track-enrichment.py file.bib entry_key success W123456789
 The repository uses SQLite for local enrichment tracking with automatic export/import:
 
 - **Local database**: `bibliography.db` (not version controlled)
-- **Export file**: `enrichment-tracking.json` (version controlled) 
+- **Export file**: `tracking.json` (version controlled) 
 - **Pre-commit hook**: Automatically exports database on every commit
 - **Fresh clone**: Run `python3 scripts/import-tracking.py` to restore history
 
