@@ -1,7 +1,44 @@
 {
   "export_version": "1.0",
-  "export_timestamp": "2025-08-18T22:13:20.497100",
+  "export_timestamp": "2025-08-18T22:41:36.907240",
   "database_path": "bibliography.db",
-  "total_entries": 0,
-  "enrichment_log": []
+  "total_entries": 4,
+  "enrichment_log": [
+    {
+      "file_path": "by-format/references/whitepapers.bib",
+      "entry_key": "anthropic2024claude3",
+      "timestamp": "2025-08-18 16:53:55",
+      "status": "success",
+      "openalex_id": null,
+      "error_message": null,
+      "enrichment_version": "1.0"
+    },
+    {
+      "file_path": "by-format/references/whitepapers.bib",
+      "entry_key": "anthropic2024claude35sonnet",
+      "timestamp": "2025-08-18 16:53:55",
+      "status": "success",
+      "openalex_id": null,
+      "error_message": null,
+      "enrichment_version": "1.0"
+    },
+    {
+      "file_path": "by-format/references/whitepapers.bib",
+      "entry_key": "anthropic2024claude35haiku",
+      "timestamp": "2025-08-18 16:53:55",
+      "status": "success",
+      "openalex_id": null,
+      "error_message": null,
+      "enrichment_version": "1.0"
+    },
+    {
+      "file_path": "by-format/references/whitepapers.bib",
+      "entry_key": "anthropic2025claude41",
+      "timestamp": "2025-08-18 16:53:55",
+      "status": "success",
+      "openalex_id": null,
+      "error_message": null,
+      "enrichment_version": "1.0"
+    }
+  ]
 }
