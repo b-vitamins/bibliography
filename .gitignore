@@ -327,3 +327,29 @@ TSWLatexianTemp*
 
 # Claude Code configuration
 .claude/
+
+# Temporary directories and files for BibTeX processing
+tmp/
+*.bib.enriched
+*.bib.backup
+*.bib.clean
+
+# Enrichment tracking database
+bibliography.db
+
+# Git hooks (local configuration)
+.git/hooks/
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+
+# Test files
+test-*.bib
+meta/test-*.bib
+
+# Editor files
+*~
+.*.swp
+.*.swo
