@@ -4,8 +4,9 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Quick Decision Tree
 
+- **Enriching entire file?** → Run `enrich-bibliography.py file.bib --backup` (ONE COMMAND!)
 - **Adding a new paper?** → Run `prepare-entry.py` → I'll enrich → Run `finalize-entry.py`
-- **Enriching existing file?** → Run `analyze-enrichment.py` → I'll process batches → Reassemble with sequential loop
+- **Manual batch enrichment?** → Run `analyze-enrichment.py` → I'll process batches → Reassemble with sequential loop
 - **Quick check?** → Run `verify-bib.py` or `count-entries.py --enrichment-stats`
 - **Finding a paper?** → Use `grep -i "title\|author" file.bib`
 
@@ -22,6 +23,26 @@ This is a personal bibliography management system storing BibTeX entries organiz
 
 ## Streamlined Workflows
 
+### Workflow AUTOMATED: Complete File Enrichment (NEW!)
+```
+guix shell -m manifest.scm -- python3 scripts/enrich-bibliography.py file.bib --backup
+```
+This single command:
+1. Analyzes the file for unenriched entries
+2. Creates batches and processes them (handles ENRICHMENT_REQUIRED markers)
+3. Reassembles the enriched file
+4. Validates the results
+5. Replaces the original (with backup)
+6. Handles all errors with automatic rollback
+
+Options:
+- `--backup`: Create timestamped backup (recommended)
+- `--validate-only`: Just validate without enriching
+- `--retry-failed`: Include previously failed entries
+- `--dry-run`: Preview what would be done
+- `--batch-size N`: Custom batch size (default: 20)
+- `--verbose`: Detailed debug output
+
 ### Workflow A: Single Entry Addition
 ```
 1. User: guix shell -m manifest.scm -- python3 scripts/prepare-entry.py target.bib "@article{...}"
@@ -35,6 +56,33 @@ This is a personal bibliography management system storing BibTeX entries organiz
    Output: "15 unenriched entries found, prepared in 1 batch: tmp/file/batch-1.json"
 2. Claude: Process batch files listed in JSON (parallel enrichment of up to 20 entries)
 3. User: Reassemble using sequential loop method (see File Assembly section)
+4. User: guix shell -m manifest.scm -- python3 scripts/track-batch-enrichment.py file.bib tmp/file/
+```
+
+### Workflow C: Automated Single Entry Enrichment with Tracking
+```
+1. User: guix shell -m manifest.scm -- python3 scripts/enrich-entry-with-tracking.py target.bib entry_key
+   Output: Instructions for manual agent invocation and temporary file path
+2. Claude: Task(subagent_type: "bibtex-entry-enricher", prompt: "Please enrich the BibTeX entry in the file: /tmp/enrich_entry_key_xyz.bib")
+3. Script automatically tracks result in database
+```
+
+### Workflow D: Automated Batch Enrichment with Tracking
+```
+1. User: guix shell -m manifest.scm -- python3 scripts/analyze-enrichment.py file.bib
+   Output: Batch JSON files in tmp/file/
+2. User: guix shell -m manifest.scm -- python3 scripts/batch-enrich-with-tracking.py tmp/file/batch-1.json
+3. Claude: For each entry marked "ENRICHMENT_REQUIRED", run bibtex-entry-enricher
+4. Script automatically tracks all results and provides summary
+```
+
+### Workflow E: Post-Enrichment Validation
+```
+1. User: guix shell -m manifest.scm -- python3 scripts/validate-enrichment.py file.bib
+   Output: Detailed validation report with pass/warning/fail status
+2. Review warnings and failures
+3. Re-enrich failed entries if needed
+4. Use in CI/CD: Script exits with code 1 if any failures found
 ```
 
 
@@ -53,6 +101,30 @@ guix shell -m manifest.scm -- python3 scripts/analyze-enrichment.py file.bib
 
 # Count with enrichment statistics
 guix shell -m manifest.scm -- python3 scripts/count-entries.py --enrichment-stats file.bib
+
+# Validate enriched entries quality
+guix shell -m manifest.scm -- python3 scripts/validate-enrichment.py file.bib [entry_key]
+
+# Track enrichment after batch processing
+guix shell -m manifest.scm -- python3 scripts/track-batch-enrichment.py file.bib tmp/file/
+
+# Enrich single entry with automatic tracking
+guix shell -m manifest.scm -- python3 scripts/enrich-entry-with-tracking.py target.bib entry_key
+
+# Process batch with automatic tracking
+guix shell -m manifest.scm -- python3 scripts/batch-enrich-with-tracking.py tmp/file/batch-1.json
+```
+
+### NEW: One-Command Enrichment
+```bash
+# Enrich entire BibTeX file with automatic workflow
+guix shell -m manifest.scm -- python3 scripts/enrich-bibliography.py by-domain/llm.bib --backup
+
+# Preview what would be enriched
+guix shell -m manifest.scm -- python3 scripts/enrich-bibliography.py by-domain/transformers.bib --dry-run
+
+# Validate existing file
+guix shell -m manifest.scm -- python3 scripts/enrich-bibliography.py by-format/references/papers.bib --validate-only
 ```
 
 ### Core Commands
@@ -102,6 +174,12 @@ guix shell -m manifest.scm -- python3 scripts/export-tracking.py
 
 # Manual tracking (normally automatic)
 guix shell -m manifest.scm -- python3 scripts/track-enrichment.py file.bib entry_key success W123456789
+
+# Retry failed enrichments
+guix shell -m manifest.scm -- python3 scripts/retry-failed-enrichments.py
+guix shell -m manifest.scm -- python3 scripts/retry-failed-enrichments.py --older-than 7
+guix shell -m manifest.scm -- python3 scripts/retry-failed-enrichments.py --file file.bib
+guix shell -m manifest.scm -- python3 scripts/retry-failed-enrichments.py --dry-run
 ```
 
 ## Enrichment Tracking System
