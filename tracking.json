@@ -1,8 +1,8 @@
 {
   "export_version": "1.0",
-  "export_timestamp": "2025-08-18T22:41:36.907240",
+  "export_timestamp": "2025-08-19T08:09:19.013254",
   "database_path": "bibliography.db",
-  "total_entries": 4,
+  "total_entries": 58,
   "enrichment_log": [
     {
       "file_path": "by-format/references/whitepapers.bib",
@@ -37,6 +37,492 @@
       "timestamp": "2025-08-18 16:53:55",
       "status": "success",
       "openalex_id": null,
+      "error_message": null,
+      "enrichment_version": "1.0"
+    },
+    {
+      "file_path": "by-format/references/whitepapers.bib",
+      "entry_key": "nakamoto2008bitcoin",
+      "timestamp": "2025-08-18 22:38:24",
+      "status": "success",
+      "openalex_id": "W4248175462",
+      "error_message": null,
+      "enrichment_version": "1.0"
+    },
+    {
+      "file_path": "by-format/references/whitepapers.bib",
+      "entry_key": "anthropic2024claude3",
+      "timestamp": "2025-08-18 22:43:42",
+      "status": "success",
+      "openalex_id": null,
+      "error_message": null,
+      "enrichment_version": "1.0"
+    },
+    {
+      "file_path": "by-format/references/whitepapers.bib",
+      "entry_key": "chang2006bigtable",
+      "timestamp": "2025-08-18 22:43:42",
+      "status": "success",
+      "openalex_id": "W2624304035",
+      "error_message": null,
+      "enrichment_version": "1.0"
+    },
+    {
+      "file_path": "by-format/references/whitepapers.bib",
+      "entry_key": "kreps2011kafka",
+      "timestamp": "2025-08-18 22:43:42",
+      "status": "success",
+      "openalex_id": null,
+      "error_message": null,
+      "enrichment_version": "1.0"
+    },
+    {
+      "file_path": "by-format/references/whitepapers.bib",
+      "entry_key": "lamport2001paxos",
+      "timestamp": "2025-08-18 22:43:42",
+      "status": "success",
+      "openalex_id": "W2182688186",
+      "error_message": null,
+      "enrichment_version": "1.0"
+    },
+    {
+      "file_path": "by-format/references/whitepapers.bib",
+      "entry_key": "openai2024gpt4",
+      "timestamp": "2025-08-18 22:43:42",
+      "status": "success",
+      "openalex_id": null,
+      "error_message": null,
+      "enrichment_version": "1.0"
+    },
+    {
+      "file_path": "by-format/references/whitepapers.bib",
+      "entry_key": "openai2024gpt4vision",
+      "timestamp": "2025-08-18 22:43:42",
+      "status": "success",
+      "openalex_id": null,
+      "error_message": null,
+      "enrichment_version": "1.0"
+    },
+    {
+      "file_path": "by-format/references/whitepapers.bib",
+      "entry_key": "openai2024gpt4o",
+      "timestamp": "2025-08-18 22:43:42",
+      "status": "success",
+      "openalex_id": "W4404330874",
+      "error_message": null,
+      "enrichment_version": "1.0"
+    },
+    {
+      "file_path": "by-format/references/whitepapers.bib",
+      "entry_key": "openai2025gpt45",
+      "timestamp": "2025-08-18 22:43:42",
+      "status": "success",
+      "openalex_id": null,
+      "error_message": null,
+      "enrichment_version": "1.0"
+    },
+    {
+      "file_path": "by-format/references/whitepapers.bib",
+      "entry_key": "openai2025gpt5",
+      "timestamp": "2025-08-18 22:43:42",
+      "status": "failed",
+      "openalex_id": null,
+      "error_message": null,
+      "enrichment_version": "1.0"
+    },
+    {
+      "file_path": "by-format/references/whitepapers.bib",
+      "entry_key": "corbett2012spanner",
+      "timestamp": "2025-08-18 22:43:42",
+      "status": "success",
+      "openalex_id": "W2013409485",
+      "error_message": null,
+      "enrichment_version": "1.0"
+    },
+    {
+      "file_path": "by-format/references/whitepapers.bib",
+      "entry_key": "lakshman2010cassandra",
+      "timestamp": "2025-08-18 22:43:42",
+      "status": "success",
+      "openalex_id": "W2132693424",
+      "error_message": null,
+      "enrichment_version": "1.0"
+    },
+    {
+      "file_path": "by-format/references/whitepapers.bib",
+      "entry_key": "anthropic2024claude35sonnet",
+      "timestamp": "2025-08-18 22:43:42",
+      "status": "success",
+      "openalex_id": null,
+      "error_message": null,
+      "enrichment_version": "1.0"
+    },
+    {
+      "file_path": "by-format/references/whitepapers.bib",
+      "entry_key": "dwork2006differential",
+      "timestamp": "2025-08-18 22:43:42",
+      "status": "success",
+      "openalex_id": null,
+      "error_message": null,
+      "enrichment_version": "1.0"
+    },
+    {
+      "file_path": "by-format/references/whitepapers.bib",
+      "entry_key": "fielding2000rest",
+      "timestamp": "2025-08-18 22:43:42",
+      "status": "success",
+      "openalex_id": null,
+      "error_message": null,
+      "enrichment_version": "1.0"
+    },
+    {
+      "file_path": "by-format/references/whitepapers.bib",
+      "entry_key": "ongaro2014raft",
+      "timestamp": "2025-08-18 22:43:43",
+      "status": "success",
+      "openalex_id": "W2156580773",
+      "error_message": null,
+      "enrichment_version": "1.0"
+    },
+    {
+      "file_path": "by-format/references/whitepapers.bib",
+      "entry_key": "burrows2006chubby",
+      "timestamp": "2025-08-18 22:43:43",
+      "status": "success",
+      "openalex_id": "W1992479210",
+      "error_message": null,
+      "enrichment_version": "1.0"
+    },
+    {
+      "file_path": "by-format/references/whitepapers.bib",
+      "entry_key": "hunt2010zookeeper",
+      "timestamp": "2025-08-18 22:43:43",
+      "status": "success",
+      "openalex_id": "W192446467",
+      "error_message": null,
+      "enrichment_version": "1.0"
+    },
+    {
+      "file_path": "by-format/references/whitepapers.bib",
+      "entry_key": "meta2024llama3",
+      "timestamp": "2025-08-18 22:43:43",
+      "status": "success",
+      "openalex_id": null,
+      "error_message": null,
+      "enrichment_version": "1.0"
+    },
+    {
+      "file_path": "by-format/references/whitepapers.bib",
+      "entry_key": "jiang2024mixtral",
+      "timestamp": "2025-08-18 22:43:43",
+      "status": "success",
+      "openalex_id": "W4390723197",
+      "error_message": null,
+      "enrichment_version": "1.0"
+    },
+    {
+      "file_path": "by-format/references/whitepapers.bib",
+      "entry_key": "gemini2024gemini15",
+      "timestamp": "2025-08-18 22:43:43",
+      "status": "success",
+      "openalex_id": "W4392679398",
+      "error_message": null,
+      "enrichment_version": "1.0"
+    },
+    {
+      "file_path": "by-format/references/whitepapers.bib",
+      "entry_key": "anthropic2024claude3",
+      "timestamp": "2025-08-18 22:43:43",
+      "status": "failed",
+      "openalex_id": null,
+      "error_message": null,
+      "enrichment_version": "1.0"
+    },
+    {
+      "file_path": "by-format/references/whitepapers.bib",
+      "entry_key": "openai2023gpt4",
+      "timestamp": "2025-08-18 22:43:43",
+      "status": "success",
+      "openalex_id": "W4327810158",
+      "error_message": null,
+      "enrichment_version": "1.0"
+    },
+    {
+      "file_path": "by-format/references/whitepapers.bib",
+      "entry_key": "anthropic2024claude35haiku",
+      "timestamp": "2025-08-18 22:43:43",
+      "status": "success",
+      "openalex_id": null,
+      "error_message": null,
+      "enrichment_version": "1.0"
+    },
+    {
+      "file_path": "by-format/references/whitepapers.bib",
+      "entry_key": "touvron2023llama",
+      "timestamp": "2025-08-18 22:43:43",
+      "status": "success",
+      "openalex_id": "W4322718191",
+      "error_message": null,
+      "enrichment_version": "1.0"
+    },
+    {
+      "file_path": "by-format/references/whitepapers.bib",
+      "entry_key": "touvron2023llama2",
+      "timestamp": "2025-08-18 22:43:43",
+      "status": "success",
+      "openalex_id": "W4384918448",
+      "error_message": null,
+      "enrichment_version": "1.0"
+    },
+    {
+      "file_path": "by-format/references/whitepapers.bib",
+      "entry_key": "jiang2023mistral",
+      "timestamp": "2025-08-18 22:43:43",
+      "status": "success",
+      "openalex_id": "W4387561528",
+      "error_message": null,
+      "enrichment_version": "1.0"
+    },
+    {
+      "file_path": "by-format/references/whitepapers.bib",
+      "entry_key": "gemini2023gemini",
+      "timestamp": "2025-08-18 22:43:43",
+      "status": "success",
+      "openalex_id": "W4390041933",
+      "error_message": null,
+      "enrichment_version": "1.0"
+    },
+    {
+      "file_path": "by-format/references/whitepapers.bib",
+      "entry_key": "openai2022whisper",
+      "timestamp": "2025-08-18 22:43:43",
+      "status": "success",
+      "openalex_id": "W4311000453",
+      "error_message": null,
+      "enrichment_version": "1.0"
+    },
+    {
+      "file_path": "by-format/references/whitepapers.bib",
+      "entry_key": "openai2022chatgpt",
+      "timestamp": "2025-08-18 22:43:43",
+      "status": "success",
+      "openalex_id": null,
+      "error_message": null,
+      "enrichment_version": "1.0"
+    },
+    {
+      "file_path": "by-format/references/whitepapers.bib",
+      "entry_key": "openai2021dalle",
+      "timestamp": "2025-08-18 22:43:43",
+      "status": "success",
+      "openalex_id": null,
+      "error_message": null,
+      "enrichment_version": "1.0"
+    },
+    {
+      "file_path": "by-format/references/whitepapers.bib",
+      "entry_key": "ramesh2022dalle2",
+      "timestamp": "2025-08-18 22:43:43",
+      "status": "success",
+      "openalex_id": "W4283159404",
+      "error_message": null,
+      "enrichment_version": "1.0"
+    },
+    {
+      "file_path": "by-format/references/whitepapers.bib",
+      "entry_key": "betker2023dalle3",
+      "timestamp": "2025-08-18 22:43:43",
+      "status": "success",
+      "openalex_id": null,
+      "error_message": null,
+      "enrichment_version": "1.0"
+    },
+    {
+      "file_path": "by-format/references/whitepapers.bib",
+      "entry_key": "deepmind2022chinchilla",
+      "timestamp": "2025-08-18 22:43:43",
+      "status": "success",
+      "openalex_id": "W4220764020",
+      "error_message": null,
+      "enrichment_version": "1.0"
+    },
+    {
+      "file_path": "by-format/references/whitepapers.bib",
+      "entry_key": "anthropic2025claude41",
+      "timestamp": "2025-08-18 22:43:43",
+      "status": "success",
+      "openalex_id": null,
+      "error_message": null,
+      "enrichment_version": "1.0"
+    },
+    {
+      "file_path": "by-format/references/whitepapers.bib",
+      "entry_key": "deepmind2021gopher",
+      "timestamp": "2025-08-18 22:43:43",
+      "status": "success",
+      "openalex_id": "W4226146865",
+      "error_message": null,
+      "enrichment_version": "1.0"
+    },
+    {
+      "file_path": "by-format/references/whitepapers.bib",
+      "entry_key": "chowdhery2022palm",
+      "timestamp": "2025-08-18 22:43:43",
+      "status": "success",
+      "openalex_id": "W4224308101",
+      "error_message": null,
+      "enrichment_version": "1.0"
+    },
+    {
+      "file_path": "by-format/references/whitepapers.bib",
+      "entry_key": "anil2023palm2",
+      "timestamp": "2025-08-18 22:43:44",
+      "status": "success",
+      "openalex_id": "W4377121468",
+      "error_message": null,
+      "enrichment_version": "1.0"
+    },
+    {
+      "file_path": "by-format/references/whitepapers.bib",
+      "entry_key": "bai2022constitutional",
+      "timestamp": "2025-08-18 22:43:44",
+      "status": "success",
+      "openalex_id": "W4311991106",
+      "error_message": null,
+      "enrichment_version": "1.0"
+    },
+    {
+      "file_path": "by-format/references/whitepapers.bib",
+      "entry_key": "google2025gemini25",
+      "timestamp": "2025-08-18 22:43:44",
+      "status": "success",
+      "openalex_id": null,
+      "error_message": null,
+      "enrichment_version": "1.0"
+    },
+    {
+      "file_path": "by-format/references/whitepapers.bib",
+      "entry_key": "google2025gemini25pro",
+      "timestamp": "2025-08-18 22:43:44",
+      "status": "success",
+      "openalex_id": null,
+      "error_message": null,
+      "enrichment_version": "1.0"
+    },
+    {
+      "file_path": "by-format/references/whitepapers.bib",
+      "entry_key": "google2025gemini25flash",
+      "timestamp": "2025-08-18 22:43:44",
+      "status": "success",
+      "openalex_id": null,
+      "error_message": null,
+      "enrichment_version": "1.0"
+    },
+    {
+      "file_path": "by-format/references/whitepapers.bib",
+      "entry_key": "meta2025llama4",
+      "timestamp": "2025-08-18 22:43:44",
+      "status": "failed",
+      "openalex_id": null,
+      "error_message": null,
+      "enrichment_version": "1.0"
+    },
+    {
+      "file_path": "by-format/references/whitepapers.bib",
+      "entry_key": "meta2025llama4scout",
+      "timestamp": "2025-08-18 22:43:44",
+      "status": "success",
+      "openalex_id": null,
+      "error_message": null,
+      "enrichment_version": "1.0"
+    },
+    {
+      "file_path": "by-format/references/whitepapers.bib",
+      "entry_key": "meta2025llama4maverick",
+      "timestamp": "2025-08-18 22:43:44",
+      "status": "success",
+      "openalex_id": null,
+      "error_message": null,
+      "enrichment_version": "1.0"
+    },
+    {
+      "file_path": "by-format/references/whitepapers.bib",
+      "entry_key": "nakamoto2008bitcoin",
+      "timestamp": "2025-08-18 22:43:44",
+      "status": "success",
+      "openalex_id": "W4248175462",
+      "error_message": null,
+      "enrichment_version": "1.0"
+    },
+    {
+      "file_path": "by-format/references/whitepapers.bib",
+      "entry_key": "mistral2025magistral",
+      "timestamp": "2025-08-18 22:43:44",
+      "status": "success",
+      "openalex_id": null,
+      "error_message": null,
+      "enrichment_version": "1.0"
+    },
+    {
+      "file_path": "by-format/references/whitepapers.bib",
+      "entry_key": "mistral2025medium3",
+      "timestamp": "2025-08-18 22:43:44",
+      "status": "success",
+      "openalex_id": null,
+      "error_message": null,
+      "enrichment_version": "1.0"
+    },
+    {
+      "file_path": "by-format/references/whitepapers.bib",
+      "entry_key": "openai2025o3",
+      "timestamp": "2025-08-18 22:43:44",
+      "status": "success",
+      "openalex_id": null,
+      "error_message": null,
+      "enrichment_version": "1.0"
+    },
+    {
+      "file_path": "by-format/references/whitepapers.bib",
+      "entry_key": "deepseek2025v3",
+      "timestamp": "2025-08-18 22:43:44",
+      "status": "success",
+      "openalex_id": "W4405903187",
+      "error_message": null,
+      "enrichment_version": "1.0"
+    },
+    {
+      "file_path": "by-format/references/whitepapers.bib",
+      "entry_key": "dean2004mapreduce",
+      "timestamp": "2025-08-18 22:43:44",
+      "status": "success",
+      "openalex_id": null,
+      "error_message": null,
+      "enrichment_version": "1.0"
+    },
+    {
+      "file_path": "by-format/references/whitepapers.bib",
+      "entry_key": "buterin2014ethereum",
+      "timestamp": "2025-08-18 22:43:44",
+      "status": "success",
+      "openalex_id": null,
+      "error_message": null,
+      "enrichment_version": "1.0"
+    },
+    {
+      "file_path": "by-format/references/whitepapers.bib",
+      "entry_key": "ghemawat2003gfs",
+      "timestamp": "2025-08-18 22:43:44",
+      "status": "success",
+      "openalex_id": "W2119565742",
+      "error_message": null,
+      "enrichment_version": "1.0"
+    },
+    {
+      "file_path": "by-format/references/whitepapers.bib",
+      "entry_key": "decandia2007dynamo",
+      "timestamp": "2025-08-18 22:43:44",
+      "status": "success",
+      "openalex_id": "W3215028506",
       "error_message": null,
       "enrichment_version": "1.0"
     }
