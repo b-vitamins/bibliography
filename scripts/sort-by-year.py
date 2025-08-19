@@ -3,7 +3,7 @@
 Sort BibTeX entries by year in descending order (newest first).
 Processes one or more .bib files to ensure entries are ordered from latest to oldest.
 
-Usage: 
+Usage:
     sort-by-year.py file.bib [file2.bib ...]
     sort-by-year.py --in-place file.bib
     sort-by-year.py --all
@@ -39,53 +39,55 @@ def process_file(filepath: Path, in_place: bool = False) -> bool:
     try:
         with open(filepath, "r", encoding="utf-8") as f:
             content = f.read()
-        
+
         # Parse BibTeX
         parser = bibtexparser.bparser.BibTexParser()
-        parser.ignore_nonstandard_types = False
-        parser.homogenize_fields = False
+        parser.ignore_nonstandard_types = False  # type: ignore
+        parser.homogenize_fields = False  # type: ignore
         bib_db = bibtexparser.loads(content, parser)
-        
+
         if not bib_db.entries:
             print(f"✓ {filepath}: No entries to sort", file=sys.stderr)
             return True
-        
+
         # Check if already sorted
         original_years = [get_entry_year(e) for e in bib_db.entries]
         sorted_years = sorted(original_years, reverse=True)
-        
+
         if original_years == sorted_years:
             print(f"✓ {filepath}: Already sorted (newest first)")
             return True
-        
+
         # Sort entries
         sorted_entries = sort_entries_by_year(bib_db.entries)
         bib_db.entries = sorted_entries
-        
+
         # Write output
         writer = BibTexWriter()
         writer.indent = "  "
-        writer.order_entries_by = None  # Preserve our sort order
+        writer.order_entries_by = None  # type: ignore  # Preserve our sort order
         writer.align_values = False
         output = bibtexparser.dumps(bib_db, writer)
-        
+
         if in_place:
             # Create backup
             backup_path = filepath.with_suffix(".bib.backup")
             with open(backup_path, "w", encoding="utf-8") as f:
                 f.write(content)
-            
+
             # Write sorted content
             with open(filepath, "w", encoding="utf-8") as f:
                 f.write(output)
-            
-            print(f"✓ {filepath}: Sorted {len(bib_db.entries)} entries (backup: {backup_path})")
+
+            print(
+                f"✓ {filepath}: Sorted {len(bib_db.entries)} entries (backup: {backup_path})"
+            )
         else:
             # Output to stdout
             print(output, end="")
-        
+
         return True
-        
+
     except FileNotFoundError:
         print(f"✗ {filepath}: File not found", file=sys.stderr)
         return False
@@ -95,9 +97,18 @@ def process_file(filepath: Path, in_place: bool = False) -> bool:
 
 
 def find_all_bib_files() -> list[Path]:
-    """Find all .bib files in by-domain/ and by-format/ directories."""
+    """Find all .bib files in the bibliography directories."""
     bib_files = []
-    for base_dir in ["by-domain", "by-format"]:
+    for base_dir in [
+        "books",
+        "conferences",
+        "courses",
+        "curated",
+        "journals",
+        "presentations",
+        "references",
+        "theses",
+    ]:
         if Path(base_dir).exists():
             bib_files.extend(Path(base_dir).rglob("*.bib"))
     return sorted(bib_files)
@@ -107,45 +118,42 @@ def main():
     parser = argparse.ArgumentParser(
         description="Sort BibTeX entries by year (newest first)"
     )
+    parser.add_argument("files", nargs="*", help="BibTeX files to sort")
     parser.add_argument(
-        "files", 
-        nargs="*", 
-        help="BibTeX files to sort"
-    )
-    parser.add_argument(
-        "--in-place", "-i",
+        "--in-place",
+        "-i",
         action="store_true",
-        help="Modify files in place (creates .backup files)"
+        help="Modify files in place (creates .backup files)",
     )
     parser.add_argument(
         "--all",
         action="store_true",
-        help="Process all .bib files in by-domain/ and by-format/"
+        help="Process all .bib files in bibliography directories",
     )
     parser.add_argument(
         "--check",
         action="store_true",
-        help="Check if files are sorted without modifying"
+        help="Check if files are sorted without modifying",
     )
-    
+
     args = parser.parse_args()
-    
+
     # Determine which files to process
     if args.all:
         files = find_all_bib_files()
         if not files:
-            print("No .bib files found in by-domain/ or by-format/", file=sys.stderr)
+            print("No .bib files found in bibliography directories", file=sys.stderr)
             sys.exit(1)
     elif args.files:
         files = [Path(f) for f in args.files]
     else:
         parser.print_help()
         sys.exit(1)
-    
+
     # Process files
     success_count = 0
     total_count = len(files)
-    
+
     for filepath in files:
         if args.check:
             # Just check if sorted
@@ -153,13 +161,13 @@ def main():
                 with open(filepath, "r", encoding="utf-8") as f:
                     content = f.read()
                 parser = bibtexparser.bparser.BibTexParser()
-                parser.ignore_nonstandard_types = False
-                parser.homogenize_fields = False
+                parser.ignore_nonstandard_types = False  # type: ignore
+                parser.homogenize_fields = False  # type: ignore
                 bib_db = bibtexparser.loads(content, parser)
-                
+
                 original_years = [get_entry_year(e) for e in bib_db.entries]
                 sorted_years = sorted(original_years, reverse=True)
-                
+
                 if original_years == sorted_years:
                     print(f"✓ {filepath}: Sorted")
                     success_count += 1
@@ -170,11 +178,11 @@ def main():
         else:
             if process_file(filepath, args.in_place):
                 success_count += 1
-    
+
     # Summary for multiple files
     if total_count > 1 and args.in_place:
         print(f"\nProcessed {success_count}/{total_count} files successfully")
-    
+
     # Exit with error if any files failed
     sys.exit(0 if success_count == total_count else 1)
 

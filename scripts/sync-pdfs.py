@@ -106,7 +106,9 @@ def verify_pdf(file_path: Path | str) -> Tuple[bool, str]:
         return False, f"Verification error: {e}"
 
 
-def download_pdf(url: str, target_path: Path, timeout: int = 30, max_retries: int = 3) -> bool:
+def download_pdf(
+    url: str, target_path: Path, timeout: int = 30, max_retries: int = 3
+) -> bool:
     """Download a PDF from URL to target path with retries and verification."""
     headers = {
         "User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
@@ -220,7 +222,7 @@ def download_pdf(url: str, target_path: Path, timeout: int = 30, max_retries: in
         except Exception as e:
             print(f"  ERROR: {e} (attempt {attempt + 1}/{max_retries})")
             # Clean up temp file if it exists
-            temp_path_var = locals().get('temp_path')
+            temp_path_var = locals().get("temp_path")
             if temp_path_var is not None and os.path.exists(temp_path_var):
                 os.unlink(temp_path_var)
 
@@ -228,7 +230,9 @@ def download_pdf(url: str, target_path: Path, timeout: int = 30, max_retries: in
     return False
 
 
-def fix_existing_file(entry: dict[str, Any], current_path: str, file_type: str) -> Optional[str]:
+def fix_existing_file(
+    entry: dict[str, Any], current_path: str, file_type: str
+) -> Optional[str]:
     """Fix an existing file entry (rename if needed, verify it exists)."""
     current_path_obj = Path(current_path)
     target_path = get_target_path(entry)
@@ -248,7 +252,9 @@ def fix_existing_file(entry: dict[str, Any], current_path: str, file_type: str) 
     return str(current_path_obj)
 
 
-def process_entry(entry: dict[str, Any], download: bool = True, fix_existing: bool = True) -> bool:
+def process_entry(
+    entry: dict[str, Any], download: bool = True, fix_existing: bool = True
+) -> bool:
     """Process a single BibTeX entry."""
     bibkey = entry.get("ID", "unknown")
     entry_type = entry.get("ENTRYTYPE", "misc")
@@ -291,7 +297,12 @@ def process_entry(entry: dict[str, Any], download: bool = True, fix_existing: bo
     return modified
 
 
-def process_file(bib_file: str, download: bool = True, fix_existing: bool = True, dry_run: bool = False) -> None:
+def process_file(
+    bib_file: str,
+    download: bool = True,
+    fix_existing: bool = True,
+    dry_run: bool = False,
+) -> None:
     """Process a BibTeX file."""
     print(f"Processing {bib_file}...")
 
@@ -380,7 +391,7 @@ Examples:
   %(prog)s --dry-run file.bib
   
   # Process all files in a directory
-  %(prog)s by-domain/*.bib
+  %(prog)s curated/*.bib
         """,
     )
 

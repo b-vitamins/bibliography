@@ -579,7 +579,11 @@ def print_top_files(n: int = 5, sort_by: str = "coverage") -> None:
         print(f"{file_name:<35} {total:>8} {exists:>8} {missing:>8} {coverage:>9.1f}%")
 
 
-def print_summary(stats: Dict[str, Union[int, float]], actions: Optional[Dict[str, List[Tuple[Any, ...]]]], detailed: bool = False) -> None:
+def print_summary(
+    stats: Dict[str, Union[int, float]],
+    actions: Optional[Dict[str, List[Tuple[Any, ...]]]],
+    detailed: bool = False,
+) -> None:
     """Print summary report."""
     print("\n" + "=" * 70)
     print("BIJECTION ANALYSIS SUMMARY")
@@ -685,7 +689,7 @@ def main() -> None:
         epilog="""
 Examples:
   # Full update and analysis
-  %(prog)s --update "by-*/*.bib"
+  %(prog)s --update "*/*.bib"
   
   # Quick check (uses cached data)
   %(prog)s --check

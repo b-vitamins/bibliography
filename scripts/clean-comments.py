@@ -22,27 +22,27 @@ def clean_file(filepath: Path, in_place: bool = False) -> bool:
     try:
         with open(filepath, "r", encoding="utf-8") as f:
             content = f.read()
-        
+
         # Parse BibTeX
         parser = bibtexparser.bparser.BibTexParser()
-        parser.ignore_nonstandard_types = False
-        parser.homogenize_fields = False
+        parser.ignore_nonstandard_types = False  # type: ignore
+        parser.homogenize_fields = False  # type: ignore
         bib_db = bibtexparser.loads(content, parser)
-        
+
         # Count original entries and comments
         original_count = len(bib_db.entries)
         comment_count = len(bib_db.comments)
-        
+
         # Clear all comments (both @comment entries and inline comments)
         bib_db.comments = []
-        
+
         # Write clean output
         writer = BibTexWriter()
         writer.indent = "  "
-        writer.order_entries_by = None  # Preserve existing order
+        writer.order_entries_by = None  # type: ignore  # Preserve existing order
         writer.align_values = False
         output = bibtexparser.dumps(bib_db, writer)
-        
+
         if in_place:
             # Only modify if there were comments to remove
             if comment_count > 0:
@@ -50,20 +50,22 @@ def clean_file(filepath: Path, in_place: bool = False) -> bool:
                 backup_path = filepath.with_suffix(".bib.backup")
                 with open(backup_path, "w", encoding="utf-8") as f:
                     f.write(content)
-                
+
                 # Write clean content
                 with open(filepath, "w", encoding="utf-8") as f:
                     f.write(output)
-                
-                print(f"✓ {filepath}: Removed {comment_count} comments, kept {original_count} entries (backup: {backup_path})")
+
+                print(
+                    f"✓ {filepath}: Removed {comment_count} comments, kept {original_count} entries (backup: {backup_path})"
+                )
             else:
                 print(f"✓ {filepath}: No comments found, file unchanged")
         else:
             # Output to stdout
             print(output, end="")
-        
+
         return True
-        
+
     except FileNotFoundError:
         print(f"✗ {filepath}: File not found", file=sys.stderr)
         return False
@@ -73,9 +75,18 @@ def clean_file(filepath: Path, in_place: bool = False) -> bool:
 
 
 def find_all_bib_files() -> list[Path]:
-    """Find all .bib files in by-domain/ and by-format/ directories."""
+    """Find all .bib files in the bibliography directories."""
     bib_files = []
-    for base_dir in ["by-domain", "by-format"]:
+    for base_dir in [
+        "books",
+        "conferences",
+        "courses",
+        "curated",
+        "journals",
+        "presentations",
+        "references",
+        "theses",
+    ]:
         if Path(base_dir).exists():
             bib_files.extend(Path(base_dir).rglob("*.bib"))
     return sorted(bib_files)
@@ -85,48 +96,45 @@ def main():
     parser = argparse.ArgumentParser(
         description="Remove all @comment entries and inline comments from BibTeX files"
     )
+    parser.add_argument("files", nargs="*", help="BibTeX files to clean")
     parser.add_argument(
-        "files", 
-        nargs="*", 
-        help="BibTeX files to clean"
-    )
-    parser.add_argument(
-        "--in-place", "-i",
+        "--in-place",
+        "-i",
         action="store_true",
-        help="Modify files in place (creates .backup files)"
+        help="Modify files in place (creates .backup files)",
     )
     parser.add_argument(
         "--all",
         action="store_true",
-        help="Process all .bib files in by-domain/ and by-format/"
+        help="Process all .bib files in bibliography directories",
     )
-    
+
     args = parser.parse_args()
-    
+
     # Determine which files to process
     if args.all:
         files = find_all_bib_files()
         if not files:
-            print("No .bib files found in by-domain/ or by-format/", file=sys.stderr)
+            print("No .bib files found in bibliography directories", file=sys.stderr)
             sys.exit(1)
     elif args.files:
         files = [Path(f) for f in args.files]
     else:
         parser.print_help()
         sys.exit(1)
-    
+
     # Process files
     success_count = 0
     total_count = len(files)
-    
+
     for filepath in files:
         if clean_file(filepath, args.in_place):
             success_count += 1
-    
+
     # Summary for multiple files
     if total_count > 1 and args.in_place:
         print(f"\nProcessed {success_count}/{total_count} files successfully")
-    
+
     # Exit with error if any files failed
     sys.exit(0 if success_count == total_count else 1)
 
