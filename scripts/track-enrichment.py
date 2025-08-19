@@ -18,7 +18,7 @@ def log_enrichment(
     openalex_id: str | None = None,
     error_msg: str | None = None,
 ) -> None:
-    """Log an enrichment attempt to the database."""
+    """Log an enrichment attempt to the database with atomic transaction."""
     # Skip temporary files outside the repository
     path_obj = Path(file_path)
     if path_obj.is_absolute() and not path_obj.is_relative_to(Path.cwd()):
@@ -42,6 +42,9 @@ def log_enrichment(
     cursor = conn.cursor()
 
     try:
+        # Start transaction explicitly
+        conn.execute("BEGIN TRANSACTION")
+
         cursor.execute(
             """
             INSERT INTO enrichment_log
@@ -51,14 +54,20 @@ def log_enrichment(
             (file_path, entry_key, status, openalex_id, error_msg),
         )
 
+        # Commit only if everything succeeded
         conn.commit()
         print(f"✓ Logged {status} for {entry_key} in {file_path}")
 
     except sqlite3.IntegrityError:
+        # Rollback transaction
+        conn.rollback()
         # Entry already logged for this timestamp (within same second)
         print(f"⚠ Entry already logged recently: {entry_key}")
     except Exception as e:
+        # Rollback transaction on any error
+        conn.rollback()
         print(f"✗ Error logging enrichment: {e}", file=sys.stderr)
+        print(f"✗ Transaction rolled back - database unchanged", file=sys.stderr)
         sys.exit(1)
     finally:
         conn.close()

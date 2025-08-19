@@ -47,6 +47,9 @@ def import_database(
         conn = sqlite3.connect(db_path)
         cursor = conn.cursor()
 
+        # Start transaction explicitly for atomic import
+        conn.execute("BEGIN TRANSACTION")
+
         # Import entries
         imported: int = 0
         skipped: int = 0
@@ -79,7 +82,10 @@ def import_database(
                 print(
                     f"Warning: Failed to import entry {entry_key}: {e}", file=sys.stderr
                 )
+                # Don't abort entire import for single entry failure
+                continue
 
+        # Commit only if all entries processed successfully
         conn.commit()
 
         print(f"✓ Import complete: {imported} new records, {skipped} already existed")
@@ -99,7 +105,11 @@ def import_database(
         print(f"Error parsing import file: {e}", file=sys.stderr)
         return False
     except Exception as e:
+        # Rollback transaction on any unexpected error
+        if conn is not None:
+            conn.rollback()
         print(f"Error importing data: {e}", file=sys.stderr)
+        print(f"✗ Transaction rolled back - database unchanged", file=sys.stderr)
         return False
     finally:
         if conn is not None:

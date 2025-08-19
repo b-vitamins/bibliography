@@ -124,10 +124,33 @@ def create_batches(
     return batches
 
 
+def init_database_if_needed(db_path: str = "bibliography.db") -> None:
+    """Initialize database if it doesn't exist."""
+    if not Path(db_path).exists():
+        print(f"Database not found, initializing {db_path}...")
+        # Call init-tracking-db.py script
+        script_path = Path(__file__).parent / "init-tracking-db.py"
+        try:
+            result = subprocess.run(
+                ["python3", str(script_path), db_path],
+                capture_output=True,
+                text=True,
+                check=True
+            )
+            if result.stdout:
+                print(result.stdout.strip())
+        except subprocess.CalledProcessError as e:
+            print(f"Failed to initialize database: {e.stderr}", file=sys.stderr)
+            sys.exit(1)
+
+
 def main() -> None:
     if len(sys.argv) != 2:
         print("Usage: analyze-enrichment.py file.bib", file=sys.stderr)
         sys.exit(1)
+
+    # Ensure database exists before proceeding
+    init_database_if_needed()
 
     filepath = Path(sys.argv[1])
 
