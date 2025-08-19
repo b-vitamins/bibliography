@@ -1,4 +1,4 @@
-@inproceedings{chen2025generative,
+@inproceedings{chen2025spatiotemporal,
   author = {Chen, Michael and Cranmer, Kyle and Ho, Shirley},
   booktitle = {International Conference on Machine Learning (ICML)},
   note = {Proposes a new class of continuous flows for spatiotemporal data (e.g., fluid dynamics) where the dynamics are defined in a Lagrangian frame of reference, naturally capturing the movement of particles over time.},
@@ -180,7 +180,7 @@
   year = {2024}
 }
 
-@misc{chen2024flow_tutorial,
+@misc{chen2024flowmatching,
   abstract = {Flow matching is a simple yet effective generative modeling paradigm that has found widespread adoption in diverse domains and large-scale applications. At its core, flow matching follows a simple blueprint: regress onto conditional velocities that generate single data examples, and the result is a model that generates the full distribution. This tutorial provides a comprehensive yet self-contained introduction to flow matching, beginning with the continuous Euclidean setting, and covering extensions to non-Euclidean geometries, generalizations to discrete domains and arbitrary Markov processes, post-training and fine-tuning methodologies for improved inference and conditioning, and applications ranging from image and video generation to molecule generation and language modeling},
   author = {Chen, Ricky T. Q. and Lipman, Yaron and Ben-Hamu, Heli},
   booktitle = {NeurIPS 2024 Tutorial},
@@ -343,7 +343,7 @@
   year = {2023}
 }
 
-@inproceedings{gao2023q,
+@inproceedings{gao2023qflow,
   abstract = {Studying the dynamics of open quantum systems can enable breakthroughs both in fundamental physics and applications to quantum engineering and quantum computation. Since the density matrix $h̊o$, which is the fundamental description for the dynamics of such systems, is high-dimensional, customized deep generative neural networks have been instrumental in modeling $\o̊$. However, the complex-valued nature and normalization constraints of $\r$̊, as well as its complicated dynamics, prohibit a seamless connection between open quantum systems and the recent advances in deep generative modeling. Here we lift that limitation by utilizing a reformulation of open quantum system dynamics to a partial differential equation (PDE) for a corresponding probability distribution $Q$, the Husimi Q function. Thus, we model the Q function seamlessly with off-the-shelf deep generative models such as normalizing flows. Additionally, we develop novel methods for learning normalizing flow evolution governed by high-dimensional PDEs based on the Euler method and the application of the time-dependent variational principle. We name the resulting approach $Q$-$Flow$ and demonstrate the scalability and efficiency of Q-Flow on open quantum system simulations, including the dissipative harmonic oscillator and the dissipative bosonic model. Q-Flow is superior to conventional PDE solvers and state-of-the-art physics-informed neural network solvers, especially in high-dimensional systems.},
   author = {Owen M. Dugan and Peter Y. Lu and Rumen Dangovski and Di Luo and Marin Soljačić},
   booktitle = {Proceedings of the 40th International Conference on Machine Learning},
@@ -557,7 +557,7 @@
   year = {2022}
 }
 
-@inproceedings{luo2022pd,
+@inproceedings{luo2022pdflow,
   abstract = {Point cloud denoising aims to restore clean point clouds from raw observations corrupted by noise and outliers while preserving the fine-grained details. We present a novel deep learning-based denoising model, that incorporates normalizing flows and noise disentanglement techniques to achieve high denoising accuracy.},
   author = {Aihua Mao and Zihui Du and Yu-Hui Wen and Jun Xuan and Yong-Jin Liu},
   booktitle = {Computer Vision -- ECCV 2022: 17th European Conference, Tel Aviv, Israel, October 23--27, 2022, Proceedings, Part III},
@@ -746,7 +746,7 @@
   year = {2021}
 }
 
-@inproceedings{onken2021ot,
+@inproceedings{onken2021otflow,
   abstract = {A normalizing flow is an invertible mapping between an arbitrary probability distribution and a standard normal distribution; it can be used for density estimation and statistical inference. Computing the flow follows the change of variables formula and thus requires invertibility of the mapping and an efficient way to compute the determinant of its Jacobian. To satisfy these requirements, normalizing flows typically consist of carefully chosen components. Continuous normalizing flows (CNFs) are mappings obtained by solving a neural ordinary differential equation (ODE). The neural ODE's dynamics can be chosen almost arbitrarily while ensuring invertibility. Moreover, the log-determinant of the flow's Jacobian can be obtained by integrating the trace of the dynamics' Jacobian along the flow. Our proposed OT-Flow approach tackles two critical computational challenges that limit a more widespread use of CNFs. First, OT-Flow leverages optimal transport (OT) theory to regularize the CNF and enforce straight trajectories that are easier to integrate. Second, OT-Flow features exact trace computation with time complexity equal to trace estimators used in existing CNFs. On five high-dimensional density estimation and generative modeling tasks, OT-Flow performs competitively to state-of-the-art CNFs while on average requiring one-fourth of the number of weights with an 8x speedup in training time and 24x speedup in inference.},
   author = {Derek Onken and Samy Wu Fung and Xingjian Li and Lars Ruthotto},
   booktitle = {Proceedings of the AAAI Conference on Artificial Intelligence},

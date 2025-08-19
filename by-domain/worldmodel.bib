@@ -1,4 +1,4 @@
-@inproceedings{LazaroGredilla2025Improving,
+@inproceedings{lazarogredilla2025improving,
   abstract = {We present three improvements to the standard model-based RL paradigm based on transformers: (a) 'Dyna with warmup', which trains the policy on real and imaginary data, but only starts using imaginary data after the world model has been sufficiently trained; (b) ŉearest neighbor tokenizer' for image patches, which improves upon previous tokenization schemes, which are needed when using a transformer world model (TWM), by ensuring the code words are static after creation, thus providing a constant target for TWM learning; and (c) 'block teacher forcing', which allows the TWM to reason jointly about the future tokens of the next timestep, instead of generating them sequentially. We then show that our method significantly improves upon prior methods in various environments. We mostly focus on the challenging Craftax-classic benchmark, where our method achieves a reward of 69.66% after only 1M environment steps, significantly outperforming DreamerV3, which achieves 53.2%, and exceeding human performance of 65.0% for the first time. We also show preliminary results on Craftax-full, MinAtar, and three different two-player games, to illustrate the generality of the approach.},
   author = {Antoine Dedieu and Joseph Ortiz and Xinghua Lou and Carter Wendelken and Wolfgang Lehrach and J. Swaroop Guntupalli and Miguel Lázaro-Gredilla and Kevin Patrick Murphy},
   booktitle = {Proceedings of the 42nd International Conference on Machine Learning},
@@ -12,7 +12,7 @@
   year = {2025}
 }
 
-@inproceedings{Wang2025RLVR,
+@inproceedings{wang2025rlvr,
   abstract = {Learning a latent dynamics model provides a task-agnostic representation of an agent's understanding of its environment. Leveraging this knowledge for model-based reinforcement learning holds the potential to improve sample efficiency over model-free methods by learning from imagined rollouts. Furthermore, because the latent space serves as input to behavior models, the informative representations learned by the world model facilitate efficient learning of desired skills. Most existing methods rely on holistic representations of the environment's state. In contrast, humans reason about objects and their interactions, predicting how actions will affect specific parts of their surroundings. Inspired by this, we propose Slot-Attention for Object-centric Latent Dynamics (SOLD), a novel model-based RL algorithm that learns object-centric dynamics models in an unsupervised manner from pixel inputs. We demonstrate that the structured latent space not only improves model interpretability but also provides a valuable input space for behavior models to reason over. Our results show that SOLD outperforms DreamerV3 and TD-MPC2 -- state-of-the-art model-based RL algorithms -- across a range of benchmark robotic environments that require relational reasoning and manipulation capabilities.},
   address = {Vienna, Austria},
   archiveprefix = {arXiv},
@@ -32,7 +32,7 @@
   year = {2025}
 }
 
-@inproceedings{Burchi2025Learning,
+@inproceedings{burchi2025learning,
   abstract = {The DreamerV3 algorithm recently obtained remarkable performance across diverse environment domains by learning an accurate world model based on Recurrent Neural Networks (RNNs). Following the success of model-based reinforcement learning algorithms and the rapid adoption of the Transformer architecture for its superior training efficiency and favorable scaling properties, recent works such as STORM have proposed replacing RNN-based world models with Transformer-based world models using masked self-attention. However, despite the improved training efficiency of these methods, their impact on performance remains limited compared to the Dreamer algorithm, struggling to learn competitive Transformer-based world models. In this work, we show that the next state prediction objective adopted in previous approaches is insufficient to fully exploit the representation capabilities of Transformers. We propose to extend world model predictions to longer time horizons by introducing TWISTER (Transformer-based World model wIth contraSTivE Representations), a world model using action-conditioned Contrastive Predictive Coding to learn high-level temporal feature representations and improve the agent performance. TWISTER achieves a human-normalized mean score of 162% on the Atari 100k benchmark, setting a new record among state-of-the-art methods that do not employ look-ahead search. We release our code at https://github.com/burchim/TWISTER.},
   archiveprefix = {arXiv},
   author = {Maxime Burchi and Radu Timofte},
@@ -46,7 +46,7 @@
   year = {2025}
 }
 
-@inproceedings{Niu2025Habi,
+@inproceedings{niu2025habi,
   abstract = {Diffusion models have shown great promise in decision-making, demonstrating the ability to model complex action distributions and generate high-quality trajectories. However, the slow inference speeds of diffusion models significantly limit their potential for broader real-world applications, especially in scenarios requiring real-time decision-making. Here, we introduce Habi, a general framework that transforms powerful but slow diffusion planning models into fast decision-making models, which mimics the cognitive process in the brain that costly goal-directed behavior gradually transitions to efficient habitual behavior with repetitive practice. Specifically, Habi leverages knowledge distillation to transform a diffusion planner into a fast neural network policy, where a variational Bayesian approach is used to modulate the knowledge transfer process based on the uncertainty estimates. Even using a laptop CPU, the habitized model can achieve an average 800+ Hz decision-making frequency (faster than previous diffusion planners by orders of magnitude) on the standard offline reinforcement learning benchmarks D4RL, while maintaining comparable or even higher performance compared to its corresponding diffusion planner. The generality of the approach is further validated by its successful application to different diffusion planners (e.g., Diffuser, Decision Diffuser) across multiple domains (e.g., robotics, game-playing). Our work represents a significant step towards making diffusion-based decision-making practical for real-time applications.},
   author = {Haofei Lu and Yifei Shen and Dongsheng Li and Junliang Xing and Dongqi Han},
   booktitle = {International Conference on Learning Representations},
@@ -59,7 +59,7 @@
   year = {2025}
 }
 
-@misc{Lu2025What,
+@misc{lu2025what,
   abstract = {Diffusion models have recently shown significant potential in solving decision-making problems, particularly in generating behavior plans -- also known as diffusion planning. While numerous studies have demonstrated the impressive performance of diffusion planning, the mechanisms behind the key components of a good diffusion planner remain unclear and the design choices are highly inconsistent in existing studies. In this work, we address this issue through systematic empirical experiments on diffusion planning in an offline reinforcement learning (RL) setting, providing practical insights into the essential components of diffusion planning. We trained and evaluated over 6,000 diffusion models, identifying the critical components such as guided sampling, network architecture, action generation and planning strategy. We revealed that some design choices opposite to the common practice in previous work in diffusion planning actually lead to better performance, e.g., unconditional sampling with selection can be better than guided sampling and Transformer outperforms U-Net as denoising network. Based on these insights, we suggest a simple yet strong diffusion planning baseline that achieves state-of-the-art results on standard offline RL benchmarks.},
   archiveprefix = {arXiv},
   author = {Haofei Lu and Dongqi Han and Yifei Shen and Dongsheng Li},
@@ -73,7 +73,7 @@
   year = {2025}
 }
 
-@inproceedings{Lee2025GEM,
+@inproceedings{lee2025gem,
   abstract = {We present GEM, a Generalizable Ego-Vision Multimodal world model that predicts future frames using a reference frame, sparse features, human pose, and ego-trajectories. It enables control over ego motion, object dynamics, and human poses. The model generates paired RGB and depth outputs for richer spatial understanding and introduces autoregressive noise schedules for stable long-horizon generations. GEM is trained on over 4000 hours of multimodal data across domains like autonomous driving, human activities, and drone flights.},
   address = {Seattle, WA, USA},
   author = {Mariam Hassan and Sebastian Stapf and Ahmad Rahimi and Pedro M B Rezende and Yasaman Haghighi and David Brüggemann and Isinsu Katircioglu and Lin Zhang and Xiaoran Chen and Suman Saha and Marco Cannici and Elie Aljalbout and Botao Ye and Xi Wang and Aram Davtyan and Mathieu Salzmann and Davide Scaramuzza and Marc Pollefeys and Paolo Favaro and Alexandre Alahi},
@@ -88,7 +88,7 @@
   year = {2025}
 }
 
-@inproceedings{Zhang2025UniScene,
+@inproceedings{zhang2025uniscene,
   abstract = {Generating high-fidelity, controllable, and annotated training data is critical for autonomous driving. Existing methods typically generate a single data form directly from a coarse scene layout, which not only fails to output rich data forms required for diverse downstream tasks but also struggles to model the direct layout-to-data distribution. In this paper, we introduce UniScene, the first unified framework for generating three key data forms - semantic occupancy, video, and LiDAR - in driving scenes. UniScene employs a progressive generation process that decomposes the complex task of scene generation into two hierarchical steps: (a) first generating semantic occupancy from a customized scene layout as a meta scene representation rich in both semantic and geometric information, and then (b) conditioned on occupancy, generating video and LiDAR data, respectively, with two novel transfer strategies of Gaussian-based Joint Rendering and Prior-guided Sparse Modeling. This occupancy-centric approach reduces the generation burden, especially for intricate scenes, while providing detailed intermediate representations for the subsequent generation stages. Extensive experiments demonstrate that UniScene outperforms previous SOTAs in the occupancy, video, and LiDAR generation, which also indeed benefits downstream driving tasks.},
   author = {Bohan Li and Jiazhe Guo and Hongsi Liu and Yingshuang Zou and Yikang Ding and Xiwu Chen and Hu Zhu and Feiyang Tan and Chi Zhang and Tiancai Wang and Shuchang Zhou and Li Zhang and Xiaojuan Qi and Hao Zhao and Mu Yang and Wenjun Zeng and Xin Jin},
   booktitle = {Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)},
@@ -100,7 +100,7 @@
   year = {2025}
 }
 
-@inproceedings{Yu2025PanSim,
+@inproceedings{yu2025pansim,
   author = {Yu, Zehao and Wang, Yue and Wang, Yian and others},
   booktitle = {Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)},
   note = {A world model for autonomous driving that performs panoptic segmentation (identifying both ``things'' and ``stuff'') within its generated simulations. This provides a richer, more detailed understanding of the scene, which is crucial for safe planning.},
@@ -108,7 +108,7 @@
   year = {2025}
 }
 
-@article{Hansen2025World,
+@article{hansen2025world,
   author = {Hansen, Nicklas and Thattai, Govind and Sukhatme, Gaurav S. and others},
   journal = {Science Robotics},
   note = {Projected/hypothetical paper representing potential future work on applying large pre-trained foundation world models to diverse real-world robotic manipulation and locomotion tasks, demonstrating progress toward generalist robotic agents},
@@ -116,7 +116,7 @@
   year = {2025}
 }
 
-@inproceedings{Mosbach2024SOLD,
+@inproceedings{mosbach2024sold,
   abstract = {Learning a latent dynamics model provides a task-agnostic representation of an agent's understanding of its environment. Leveraging this knowledge for model-based reinforcement learning (RL) holds the potential to improve sample efficiency over model-free methods by learning from imagined rollouts. Furthermore, because the latent space serves as input to behavior models, the informative representations learned by the world model facilitate efficient learning of desired skills. Most existing methods rely on holistic representations of the environment's state. In contrast, humans reason about objects and their interactions, predicting how actions will affect specific parts of their surroundings. Inspired by this, we propose Slot-Attention for Object-centric Latent Dynamics (SOLD), a novel model-based RL algorithm that learns object-centric dynamics models in an unsupervised manner from pixel inputs. We demonstrate that the structured latent space not only improves model interpretability but also provides a valuable input space for behavior models to reason over. Our results show that SOLD outperforms DreamerV3 and TD-MPC2 - state-of-the-art model-based RL algorithms - across a range of benchmark robotic environments that require relational reasoning and manipulation capabilities. Videos are available at https://slot-latent-dynamics.github.io/.},
   address = {Munich, Germany},
   author = {Mosbach, Malte and Ewertz, Jan Niklas and Villar-Corrales, Angel and Behnke, Sven},
@@ -134,7 +134,7 @@
   year = {2024}
 }
 
-@inproceedings{Wang2024DriveDreamer,
+@inproceedings{wang2024drivedreamer,
   abstract = {World models, especially in autonomous driving, are trending and drawing extensive attention due to their capacity for comprehending driving environments. The established world model holds immense potential for the generation of high-quality driving videos, and driving policies for safe maneuvering. However, significant challenges persist in the existing works, limiting their real-world applicability. In this paper, we introduce DriveDreamer, the first world model to emerge from real-world driving scenarios. Harnessing the power of diffusion models, we meticulously construct representations of driving environments to tackle the intricate challenge of world modeling in driving scenes. DriveDreamer utilizes a two-stage training pipeline consisting of a structural world model and a generative world model. Initially, DriveDreamer acquires a comprehensive understanding of structured traffic constraints. Subsequently, it develops the ability to anticipate future states. The proposed framework excels in generating controllable driving videos that align with text prompts while adhering to structural traffic constraints. Additionally, DriveDreamer enables interaction with driving scenes, providing different future driving videos based on distinct driving maneuvers. We conducted extensive experiments on the challenging nuScenes dataset, and the results affirm that our approach enables precise, controllable video generation while maintaining structural fidelity.},
   address = {Cham},
   author = {Xiaofeng Wang and Zheng Zhu and Guan Huang and Xinze Chen and Jiagang Zhu and Jiwen Lu},
@@ -152,7 +152,7 @@
   year = {2024}
 }
 
-@inproceedings{Bruce2024Genie,
+@inproceedings{bruce2024genie,
   abstract = {We introduce Genie, the first generative interactive environment trained in an unsupervised manner from unlabelled Internet videos. The model can be prompted to generate endless variety of action-controllable virtual worlds described through text, synthetic images, photographs, and even sketches. At 11B parameters, Genie is considered a foundation world model. It is comprised of a spatiotemporal video tokenizer, autoregressive dynamics model, and simple scalable latent action that enables users to act on generated environments on a frame-by-frame basis despite training without any ground-truth labels or other domain-specific requirements typically found in literature. Further, the resulting learned space facilitates agents to imitate behaviors from unseen videos, opening a path for generalist future.},
   author = {Jake Bruce and Michael D. Dennis and Ashley Edwards and Jack Parker-Holder and Yuge Shi and Edward Hughes and Matthew Lai and Aditi Mavalankar and Richie Steigerwald and Chris Apps and Yusuf Aytar and Sarah Maria Elisabeth Bechtle and Feryal Behbahani and Stephanie C. Y. Chan and Nicolas Heess and Lucy Gonzalez and Simon Osindero and Sherjil Ozair and Scott Reed and Jingwei Zhang and Konrad Zolna and Jeff Clune and Nando de Freitas and Satinder Singh and Tim Rocktäschel},
   booktitle = {Proceedings of the 41st International Conference on Machine Learning},
@@ -166,7 +166,7 @@
   year = {2024}
 }
 
-@misc{Liu2024World,
+@misc{liu2024world,
   abstract = {Enabling long-context understanding remains a key challenge in scaling existing sequence models -- a crucial component in developing generally intelligent models that can process and operate over long temporal horizons that potentially consist of millions of tokens. In this paper, we aim to address these challenges by providing a comprehensive exploration of the full development process for producing 1M context language models and video-language models, setting new benchmarks in language retrieval and new capabilities in long video understanding. We detail our long context data curation process, progressive context extension from 4K to 1M tokens, and present an efficient open-source implementation for scalable training on long sequences. Additionally, we open-source a family of 7B parameter models capable of processing long text documents and videos exceeding 1M tokens.},
   archiveprefix = {arXiv},
   author = {Liu, Hao and Yan, Wilson and Zaharia, Matei and Abbeel, Pieter},
@@ -182,7 +182,7 @@
   year = {2024}
 }
 
-@misc{Burchi2024MuDreamer,
+@misc{burchi2024mudreamer,
   abstract = {The DreamerV3 agent recently demonstrated state-of-the-art performance across diverse domains by learning powerful world models using a pixel reconstruction loss. However, this approach necessitates modeling unnecessary information and can cause the agent to fail to perceive crucial task-solving elements when visual distractions are present. In response, we present MuDreamer, a robust reinforcement learning agent that learns a predictive world model without reconstructing input signals. Instead of pixel reconstruction, MuDreamer learns hidden representations by predicting the environment value function and previously selected actions, using batch normalization to prevent learning collapse. Key contributions include learning a world model without reconstruction loss, demonstrating stronger robustness to visual distractions, achieving comparable performance to DreamerV3 on benchmarks like the DeepMind Visual Control Suite and Atari100k, and benefiting from faster training by avoiding decoder network training. The method was evaluated on visual control tasks, showing it can distinguish relevant details from unnecessary background information, especially when task-critical elements are small or obscured.},
   archiveprefix = {arXiv},
   author = {Burchi, Maxime and Timofte, Radu},
@@ -197,7 +197,7 @@
   year = {2024}
 }
 
-@article{Zhou2024DINO,
+@article{zhou2024dino,
   abstract = {The ability to predict future outcomes given control actions is fundamental for physical reasoning. However, such predictive models, often called world models, have proven challenging to learn and are typically developed for task-specific solutions with online policy learning. We argue that the true potential of world models lies in their ability to reason and plan across diverse problems using only passive data. We specifically require world models to have three properties: 1) be trainable on offline, pre-collected trajectories, 2) support test-time behavior optimization, and 3) facilitate task-agnostic reasoning. To realize this, we present DINO World Model (DINO-WM), a method to model visual dynamics without reconstructing the visual world. DINO-WM leverages spatial patch features pre-trained with DINOv2, enabling it to learn from offline behavioral trajectories by predicting future patch features. This design allows DINO-WM to achieve observational goals through action sequence optimization, facilitating task-agnostic behavior planning by treating desired goal patch features as prediction targets. We evaluate DINO-WM across various domains, including maze navigation, tabletop pushing, and particle manipulation. Our experiments demonstrate that DINO-WM can generate zero-shot behavioral solutions at test time without relying on expert demonstrations, reward modeling, or pre-learned inverse models. Notably, DINO-WM exhibits strong generalization capabilities, adapting to diverse task families such as arbitrarily configured mazes, push manipulation with varied object shapes, and multi-particle scenarios.},
   author = {Gaoyue Zhou and Hengkai Pan and Yann LeCun and Lerrel Pinto},
   journal = {arXiv preprint arXiv:2411.04983},
@@ -210,7 +210,7 @@
   year = {2024}
 }
 
-@inproceedings{Yang2024QVPO,
+@inproceedings{yang2024qvpo,
   abstract = {Diffusion models have garnered widespread attention in Reinforcement Learning (RL) for their powerful expressiveness and multimodality. It has been verified that utilizing diffusion policies can significantly improve the performance of RL algorithms in continuous control tasks by overcoming the limitations of unimodal policies, such as Gaussian policies, and providing the agent with enhanced exploration capabilities. However, existing works mainly focus on the application of diffusion policies in offline RL, while their incorporation into online RL is less investigated. The training objective of the diffusion model, known as the variational lower bound, cannot be optimized directly in online RL due to the unavailability of 'good' actions. This leads to difficulties in conducting diffusion policy improvement. To overcome this, we propose a novel model-free diffusion-based online RL algorithm, Q-weighted Variational Policy Optimization (QVPO). Specifically, we introduce the Q-weighted variational loss, which can be proved to be a tight lower bound of the policy objective in online RL under certain conditions. To fulfill these conditions, the Q-weight transformation functions are introduced for general scenarios. Additionally, to further enhance the exploration capability of the diffusion policy, we design a special entropy regularization term. We also develop an efficient behavior policy to enhance sample efficiency by reducing the variance of the diffusion policy during online interactions. Consequently, the QVPO algorithm leverages the exploration capabilities and multimodality of diffusion policies, preventing the RL agent from converging to a sub-optimal policy. To verify the effectiveness of QVPO, we conduct comprehensive experiments on MuJoCo benchmarks. The final results demonstrate that QVPO achieves state-of-the-art performance on both cumulative reward and sample efficiency.},
   author = {Shutong Ding and Ke Hu and Zhenhao Zhang and Kan Ren and Weinan Zhang and Jingyi Yu and Jingya Wang and Ye Shi},
   booktitle = {Advances in Neural Information Processing Systems},
@@ -224,7 +224,7 @@
   year = {2024}
 }
 
-@inproceedings{Laskin2024ViP,
+@inproceedings{laskin2024vip,
   abstract = {Proposes a visual pre-training method specifically designed for model-based reinforcement learning. By pre-training the visual encoder on a large dataset of videos, the agent can learn a new task much more quickly, as it only needs to fine-tune the dynamics model on top of the powerful pre-trained features.},
   author = {Laskin, Michael and Liu, Hao and Yan, Wilson and others},
   booktitle = {International Conference on Learning Representations},
@@ -234,7 +234,7 @@
   year = {2024}
 }
 
-@inproceedings{Ramanauskas2024Learning,
+@inproceedings{ramanauskas2024learning,
   author = {Ramanauskas, Karolis and Rakićevi\,́ Nemanja and Guez, Arthur and others},
   booktitle = {International Conference on Machine Learning (ICML)},
   note = {This work focuses on learning world models that are not just for a single agent but can serve as general-purpose simulators for multiple tasks and agents. It explores techniques for improving the physical realism and generalization of the learned simulator.},
@@ -242,7 +242,7 @@
   year = {2024}
 }
 
-@inproceedings{Wang2024DrivingIntoFuture,
+@inproceedings{wang2024drivingintofuture,
   abstract = {In autonomous driving, predicting future events in advance and evaluating the foreseeable risks empowers autonomous vehicles to plan their actions, enhancing safety and efficiency on the road. This paper introduces Drive-WM, the first driving world model compatible with existing end-to-end planning models. Through a joint spatial-temporal modeling facilitated by view factorization, Drive-WM is the first to generate high-fidelity multiview videos in driving scenes. Building on its powerful generation ability, we showcase the potential of applying the world model for safe driving planning for the first time. Particularly, Drive-WM enables driving into multiple futures based on distinct driving maneuvers and determines the optimal trajectory according to the image-based rewards. Evaluation on real-world driving datasets verifies that our method could generate high-quality consistent and controllable multiview videos, opening up possibilities for real-world simulations and safe planning.},
   author = {Yuqi Wang and Jiawei He and Lue Fan and Hongxin Li and Yuntao Chen and Zhaoxiang Zhang},
   booktitle = {Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)},
@@ -256,7 +256,7 @@
   year = {2024}
 }
 
-@inproceedings{Lin2024Learning,
+@inproceedings{lin2024learning,
   abstract = {To interact with humans in the world, agents need to understand the diverse types of language that people use, relate them to the visual world and act based on them. While current agents learn to execute simple language instructions from task rewards, we aim to build agents that leverage diverse language that conveys general knowledge, describes the state of the world, provides interactive feedback, and more. Our key idea is that language helps agents predict the future: what will be observed, how the world will behave, and which situations will be rewarded. This perspective unifies language understanding with future prediction as a powerful self-supervised learning objective. We present Dynalang, an agent that learns a multimodal world model that predicts future text and image representations and learns imagined model rollouts. Unlike traditional agents that use language only to predict actions, Dynalang acquires rich language understanding by using past language also to predict language, video, and rewards. In addition to learning from online interaction in an environment, Dynalang can be pretrained on datasets of text, video, or both without actions or rewards. From using hints in grid worlds to navigating photorealistic scans of homes, Dynalang utilizes diverse types of language improve task performance, including environment descriptions, game rules, and instructions.},
   author = {Jessy Lin and Yuqing Du and Olivia Watkins and Danijar Hafner and Pieter Abbeel and Dan Klein and Anca D. Dragan},
   booktitle = {Proceedings of the 41st International Conference on Machine Learning},
@@ -270,7 +270,7 @@
   year = {2024}
 }
 
-@inproceedings{Zhou2024SPRINT,
+@inproceedings{zhou2024sprint,
   address = {Vienna, Austria},
   author = {Yuxiang Zhou and Weizhe Chen and Jingkang Wang and others},
   booktitle = {Proceedings of the 41st International Conference on Machine Learning},
@@ -284,7 +284,7 @@
   year = {2024}
 }
 
-@inproceedings{Li2024CDreamer,
+@inproceedings{li2024cdreamer,
   author = {Li, Sirui and Zhang, Ruotong and Zhou, Fan and others},
   booktitle = {International Conference on Learning Representations (ICLR)},
   note = {Proposes to incorporate causal reasoning into the Dreamer framework. By learning a causal graph of the latent variables, the world model can make more robust and generalizable predictions, especially when facing interventions or distribution shifts.},
@@ -292,7 +292,7 @@
   year = {2024}
 }
 
-@article{Hafner2023Mastering,
+@article{hafner2023mastering,
   abstract = {Developing a general algorithm that learns to solve tasks across a wide range of applications has been a fundamental challenge in artificial intelligence. Although current reinforcement learning algorithms can be readily applied to tasks similar to what they have been developed for, configuring them for new application domains requires significant human expertise and experimentation. We present DreamerV3, a general algorithm that outperforms specialized methods across over 150 diverse tasks, with a single configuration. Dreamer learns a model of the environment and improves its behavior by imagining future scenarios. Robustness techniques based on normalization, balancing, and transformations enable stable learning across domains. Applied out of the box, Dreamer is the first algorithm to collect diamonds in Minecraft from scratch without human data or curricula. This achievement has been posed as a significant challenge in artificial intelligence that requires exploring farsighted strategies from pixels and sparse rewards in an open world. Our work allows solving challenging control problems without extensive experimentation, making reinforcement learning broadly applicable.},
   author = {Danijar Hafner and Jurgis Pašukonis and Jimmy Ba and Timothy Lillicrap},
   doi = {10.48550/arXiv.2301.04104},
@@ -306,7 +306,7 @@
   year = {2023}
 }
 
-@inproceedings{Micheli2023Transformers,
+@inproceedings{micheli2023transformers,
   abstract = {Deep reinforcement learning agents are notoriously sample inefficient, which considerably limits their application to real-world problems. Recently, many model-based methods have been designed to address this issue, with learning in the imagination of a world model being one of the most prominent approaches. However, while virtually unlimited interaction with a simulated environment sounds appealing, the world model has to be accurate over extended periods of time. Motivated by the success of Transformers in sequence modeling tasks, we introduce IRIS, a data-efficient agent that learns in a world model composed of a discrete autoencoder and an autoregressive Transformer. With the equivalent of only two hours of gameplay in the Atari 100k benchmark, IRIS achieves a mean human normalized score of 1.046, and outperforms humans on 10 out of 26 games, setting a new state of the art for methods without lookahead search. To foster future research on Transformers and world models for sample-efficient reinforcement learning, we release our code and models at https://github.com/eloialonso/iris.},
   author = {Vincent Micheli and Eloi Alonso and François Fleuret},
   booktitle = {The Eleventh International Conference on Learning Representations},
@@ -319,7 +319,7 @@
   year = {2023}
 }
 
-@inproceedings{Zhou2023Planning,
+@inproceedings{zhou2023planning,
   abstract = {Existing large language model-based code generation pipelines typically use beam search or sampling algorithms during the decoding process. Although the programs they generate achieve high token-matching-based scores, they often fail to compile or generate incorrect outputs. The main reason is that conventional Transformer decoding algorithms may not be the best choice for code generation. In this work, we propose a novel Transformer decoding algorithm, Planning-Guided Transformer Decoding (PG-TD), that uses a planning algorithm to do lookahead search and guide the Transformer to generate better programs. Specifically, instead of simply optimizing the likelihood of the generated sequences, the Transformer makes use of a planner to generate candidate programs and test them on public test cases. The Transformer can therefore make more informed decisions and generate tokens that will eventually lead to higher-quality programs. We also design a mechanism that shares information between the Transformer and the planner to make our algorithm computationally efficient. We empirically evaluate our framework with several large language models as backbones on public coding challenge benchmarks, showing that 1) it can generate programs that consistently achieve higher performance compared with competing baseline methods; 2) it enables controllable code generation, such as concise codes and highly-commented codes by optimizing modified objective.},
   author = {Shun Zhang and Zhenfang Chen and Yikang Shen and Mingyu Ding and Joshua B. Tenenbaum and Chuang Gan},
   booktitle = {International Conference on Learning Representations},
@@ -331,7 +331,7 @@
   year = {2023}
 }
 
-@inproceedings{Meng2023Contextualized,
+@inproceedings{meng2023contextualized,
   abstract = {Unsupervised pre-training methods utilizing large and diverse datasets have achieved tremendous success across a range of domains. Recent work has investigated such unsupervised pre-training methods for model-based reinforcement learning (MBRL) but is limited to domain-specific or simulated data. In this paper, we study the problem of pre-training world models with abundant in-the-wild videos for efficient learning of downstream visual control tasks. However, in-the-wild videos are complicated with various contextual factors, such as intricate backgrounds and textured appearance, which precludes a world model from extracting shared world knowledge to generalize better. To tackle this issue, we introduce Contextualized World Models (ContextWM) that explicitly separate context and dynamics modeling to overcome the complexity and diversity of in-the-wild videos and facilitate knowledge transfer between distinct scenes. Specifically, a contextualized extension of the latent dynamics model is elaborately realized by incorporating a context encoder to retain contextual information and empower the image decoder, which encourages the latent dynamics model to concentrate on essential temporal variations. Our experiments show that in-the-wild video pre-training equipped with ContextWM can significantly improve the sample efficiency of MBRL in various domains, including robotic manipulation, locomotion, and autonomous driving.},
   author = {Jialong Wu and Haoyu Ma and Chaoyi Deng and Mingsheng Long},
   booktitle = {Advances in Neural Information Processing Systems},
@@ -345,7 +345,7 @@
   year = {2023}
 }
 
-@inproceedings{He2023Diffusion,
+@inproceedings{he2023diffusion,
   abstract = {Diffusion models have demonstrated highly-expressive generative capabilities in vision and NLP. Recent studies in reinforcement learning (RL) have shown that diffusion models are also powerful in modeling complex policies or trajectories in offline datasets. However, these works have been limited to single-task settings where a generalist agent capable of addressing multi-task predicaments is absent. In this paper, we aim to investigate the effectiveness of a single diffusion model in modeling large-scale multi-task offline data, which can be challenging due to diverse and multimodal data distribution. Specifically, we propose Multi-Task Diffusion Model (MTDiff), a diffusion-based method that incorporates Transformer backbones and prompt learning for generative planning and data synthesis in multi-task offline settings. MTDiff leverages vast amounts of knowledge available in multi-task data and performs implicit knowledge sharing among tasks. For generative planning, we find MTDiff outperforms state-of-the-art algorithms across 50 tasks on Meta-World and 8 maps on Maze2D. For data synthesis, MTDiff generates high-quality data for testing tasks given a single demonstration as a prompt, which enhances the low-quality datasets for even unseen tasks.},
   author = {Haoran He and Chenjia Bai and Kang Xu and Zhuoran Yang and Weinan Zhang and Dong Wang and Bin Zhao and Xuelong Li},
   booktitle = {Advances in Neural Information Processing Systems},
@@ -360,7 +360,7 @@
   year = {2023}
 }
 
-@inproceedings{Maji2023UniMASK,
+@inproceedings{maji2023unimask,
   author = {Maji, Jiachen and Zhang, Peng-Fei and Jiang, Yuhang and others},
   booktitle = {Advances in Neural Information Processing Systems (NeurIPS)},
   note = {Proposes a unified, mask-based training objective for world models. This allows the same model to perform diverse predictive tasks, such as forward dynamics, inverse dynamics, and reaching goals, by masking different parts of the input sequence.},
@@ -368,7 +368,7 @@
   year = {2023}
 }
 
-@inproceedings{Zhang2024STORM,
+@inproceedings{zhang2024storm,
   abstract = {Recently, model-based reinforcement learning algorithms have demonstrated remarkable efficacy in visual input environments. These approaches begin by constructing a parameterized simulation world model of the real environment through self-supervised learning. By leveraging imagination, an agent's policy is enhanced without constraints on sampling from the environment. The performance of these methods heavily relies on sequence modeling and generation capabilities. However, perfectly accurate modeling of complex, unknown environments is nearly impossible. Discrepancies between reality may cause an agent to pursue virtual goals, resulting in subpar performance. Introducing random noise has been proven beneficial. In this work, we introduce STORM (Stochastic Transformer-based wORld Model), an efficient architecture that combines strong Transformers with the stochastic nature of variational autoencoders. STORM achieves a mean human performance of 126.7% on the Atari 100k benchmark, setting a new record among state-of-the-art methods that do not employ lookahead search techniques. Moreover, training requires only 1.85 hours of real-time interaction experience on a single NVIDIA GeForce RTX 3090 graphics card, showcasing improved efficiency compared to previous methodologies.},
   author = {Weipu Zhang and Gang Wang and Jian Sun and Yetian Yuan and Gao Huang},
   booktitle = {Advances in Neural Information Processing Systems 36 (NeurIPS 2023)},
@@ -381,7 +381,7 @@
   year = {2023}
 }
 
-@article{Moerland2023Survey,
+@article{moerland2023survey,
   abstract = {Sequential decision making, commonly formalized as Markov Decision Process (MDP) optimization, is an important challenge in artificial intelligence. Two key approaches to this problem are reinforcement learning (RL) and planning. This survey is an integration of both fields, better known as model-based reinforcement learning. Model-based RL has two main steps. First, we systematically cover approaches to dynamics model learning, including challenges like dealing with stochasticity, uncertainty, partial observability, and temporal abstraction. Second, we present a systematic categorization of planning-learning integration, including aspects like: where to start planning, what budgets to allocate to planning and real data collection, how to plan, and how to integrate planning in the learning and acting loop. After these two sections, we also discuss implicit model-based RL as an end-to-end alternative for model learning and planning, and we cover the potential benefits of model-based RL. Along the way, the survey also draws connections to several related RL fields, like hierarchical RL and transfer learning. Altogether, the survey presents a broad conceptual overview of the combination of planning and learning for MDP optimization.},
   author = {Moerland, Thomas M. and Broekens, Joost and Plaat, Aske and Jonker, Catholijn M.},
   doi = {10.1561/2200000086},
@@ -397,7 +397,7 @@
   year = {2023}
 }
 
-@inproceedings{Ajay2023Conditional,
+@inproceedings{ajay2023conditional,
   abstract = {Recent improvements in conditional generative modeling have made it possible to generate high-quality images from language descriptions alone. We investigate whether these methods can directly address the problem of sequential decision-making. We view decision-making not through the lens of reinforcement learning (RL), but rather through conditional generative modeling. To our surprise, we find that our formulation leads to policies that can outperform existing offline RL approaches across standard benchmarks. By modeling a policy as a return-conditional diffusion model, we illustrate how we may circumvent the need for dynamic programming and subsequently eliminate many of the complexities that come with traditional offline RL. We further demonstrate the advantages of modeling policies as conditional diffusion models by considering two other conditioning variables: constraints and skills. Conditioning on a single constraint or skill during training leads to behaviors at test-time that can satisfy several constraints together or demonstrate a composition of skills. Our results illustrate that conditional generative modeling is a powerful tool for decision-making.},
   address = {Kigali, Rwanda},
   author = {Anurag Ajay and Yilun Du and Abhi Gupta and Joshua B. Tenenbaum and Tommi S. Jaakkola and Pulkit Agrawal},
@@ -413,7 +413,7 @@
   year = {2023}
 }
 
-@inproceedings{Chu2023Empirical,
+@inproceedings{chu2023empirical,
   address = {Kigali, Rwanda},
   author = {Chu, Bodi and Ding, Zihan and Wang, Zhaoran and others},
   booktitle = {Proceedings of the Eleventh International Conference on Learning Representations},
@@ -425,7 +425,7 @@
   year = {2023}
 }
 
-@inproceedings{Sun2023Visual,
+@inproceedings{sun2023visual,
   author = {Jiankai Sun and Bolei Zhou},
   booktitle = {Proceedings of the 7th Conference on Robot Learning},
   note = {This work proposes using a score-based diffusion model to learn the dynamics of a visual environment. The learned score function is then used for planning, demonstrating a novel way to apply diffusion models to model-based control.},
@@ -436,7 +436,7 @@
   year = {2023}
 }
 
-@inproceedings{Du2023Learning,
+@inproceedings{du2023learning,
   abstract = {A goal of artificial intelligence is to construct an agent that can solve a wide variety of tasks. Recent progress in text-guided image synthesis has yielded models with an impressive ability to generate complex novel images, exhibiting combinatorial generalization across domains. Motivated by this success, we investigate whether such tools can be used to construct more general-purpose agents. Specifically, we cast the sequential decision making problem as a text-conditioned video generation problem, where, given a text-encoded specification of a desired goal, a planner synthesizes a set of future frames depicting its planned actions in the future, after which control actions are extracted from the generated video. By leveraging text as the underlying goal specification, we are able to naturally and combinatorially generalize to novel goals. The proposed policy-as-video formulation can further represent environments with different state and action spaces in a unified space of images, which, for example, enables learning and generalization across a variety of robot manipulation tasks. Finally, by leveraging pretrained language embeddings and widely available videos from the internet, the approach enables knowledge transfer through predicting highly realistic video plans for real robots.},
   author = {Yilun Du and Mengjiao Yang and Bo Dai and Hanjun Dai and Ofir Nachum and Joshua B. Tenenbaum and Dale Schuurmans and Pieter Abbeel},
   booktitle = {Advances in Neural Information Processing Systems},
@@ -449,7 +449,7 @@
   year = {2023}
 }
 
-@inproceedings{Hansen2022Temporal,
+@inproceedings{hansen2022temporal,
   abstract = {Data-driven model predictive control has two key advantages over model-free methods: a potential for improved sample efficiency through model learning, and better performance as computational budget for planning increases. However, it is both costly to plan over long horizons and challenging to obtain an accurate model of the environment. In this work, we combine the strengths of model-free and model-based methods: we use a learned task-oriented latent dynamics model for local trajectory optimization over a short horizon, and use a learned terminal value function to estimate long-term return, both of which are learned jointly by temporal difference learning. Our method, TD-MPC, achieves superior sample efficiency and asymptotic performance over prior work on both state and image-based continuous control tasks from DMControl and Meta-World.},
   author = {Nicklas Hansen and Xiaolong Wang and Hao Su},
   booktitle = {Proceedings of the 39th International Conference on Machine Learning},
@@ -464,7 +464,7 @@
   year = {2022}
 }
 
-@inproceedings{Janner2022Planning,
+@inproceedings{janner2022planning,
   abstract = {Model-based reinforcement learning methods often use learning only for the purpose of recovering an approximate dynamics model, offloading the rest of the decision-making work to classical trajectory optimizers. While conceptually simple, this combination has a number of empirical shortcomings, suggesting that learned models may not be well-suited to standard trajectory optimization. In this paper, we consider what it would look like to fold as much of the trajectory optimization pipeline as possible into the modeling problem, such that sampling from the model and planning with it become nearly identical. The core of our technical approach lies in a diffusion probabilistic model that plans by iteratively denoising trajectories. We show how classifier-guided sampling and image inpainting can be reinterpreted as coherent planning strategies, explore the unusual and useful properties of diffusion-based planning methods, and demonstrate the effectiveness of our framework in control settings that emphasize long-horizon decision-making and test-time flexibility.},
   author = {Janner, Michael and Du, Yilun and Tenenbaum, Joshua B. and Levine, Sergey},
   booktitle = {Proceedings of the 39th International Conference on Machine Learning},
@@ -480,7 +480,7 @@
   year = {2022}
 }
 
-@article{Chen2022TransDreamer,
+@article{chen2022transdreamer,
   abstract = {The Dreamer agent provides various benefits of Model-Based Reinforcement Learning (MBRL) such as sample efficiency, reusable knowledge, and safe planning. However, its world model and policy networks inherit the limitations of recurrent neural networks and thus an important question is how an MBRL framework can benefit from the recent advances of transformers and what the challenges are in doing so. In this paper, we propose a transformer-based MBRL agent, called TransDreamer. We first introduce the Transformer State-Space Model, a world model that leverages a transformer for dynamics predictions. We then share this world model with a transformer-based policy network and obtain stability in training a transformer-based RL agent. In experiments, we apply the proposed model to 2D visual RL and 3D first-person visual RL tasks both requiring long-range memory access for memory-based reasoning. We show that the proposed model outperforms Dreamer in these complex tasks.},
   author = {Chang Chen and Yi-Fu Wu and Jaesik Yoon and Sungjin Ahn},
   doi = {10.48550/arxiv.2202.09481},
@@ -494,7 +494,7 @@
   year = {2022}
 }
 
-@inproceedings{Liu2022Provably,
+@inproceedings{liu2022provably,
   abstract = {We study reinforcement learning (RL) in settings where observations are high-dimensional, but where an RL agent has access to abstract knowledge about the structure of the state space, as is the case, for example, when a robot is tasked to go to a specific room in a building using observations from its own camera, while having access to the floor plan. We formalize this setting as transfer reinforcement learning from an abstract simulator, which we assume is deterministic (such as a simple model of moving around the floor plan), but which is only required to capture the target domain's latent-state dynamics approximately up to unknown (bounded) perturbations (to account for environment stochasticity). Crucially, we assume no prior knowledge about the structure of observations in the target domain except that they can be used to identify the latent states (but the decoding map is unknown). Under these assumptions, we present an algorithm, called TASID, that learns a robust policy in the target domain, with sample complexity that is polynomial in the horizon, and independent of the number of states, which is not possible without access to some prior knowledge.},
   author = {Yao Liu and Dipendra Misra and Miroslav Dudík and Robert E. Schapire},
   booktitle = {Advances in Neural Information Processing Systems},
@@ -509,7 +509,7 @@
   year = {2022}
 }
 
-@inproceedings{Kostrikov2022Offline,
+@inproceedings{kostrikov2022offline,
   abstract = {Offline reinforcement learning requires reconciling two conflicting aims: learning a policy that improves over the behavior policy that collected the dataset, while at the same time minimizing the deviation from the behavior policy so as to avoid errors due to distributional shift. This tradeoff is critical, because most current offline reinforcement learning methods need to query the value of unseen actions during training to improve the policy, and therefore need to either constrain these actions to be in-distribution, or else regularize their values. We propose a new offline RL method that never needs to evaluate actions outside of the dataset, but still enables the learned policy to improve substantially over the best behavior in the data through generalization. The main insight in our work is that, instead of evaluating unseen actions from the latest policy, we can approximate the policy improvement step implicitly by treating the state value function as a random variable, with randomness determined by the action (while still integrating over the dynamics to avoid excessive optimism), and then taking a state conditional upper expectile of this random variable to estimate the value of the best actions in that state. This leverages the generalization capacity of the function approximator to estimate the value of the best available action at a given state without ever directly querying a Q-function with this unseen action. Our algorithm alternates between fitting this upper expectile value function and backing it up into a Q-function, without any explicit policy. Then, we extract the policy via advantage-weighted behavioral cloning, which also avoids querying out-of-sample actions. We dub our method Implicit Q-learning (IQL). IQL is easy to implement, computationally efficient, and only requires fitting an additional critic with an asymmetric L2 loss. IQL demonstrates the state-of-the-art performance on D4RL, a standard benchmark for offline reinforcement learning. We also demonstrate that IQL achieves strong performance fine-tuning using online interaction after offline initialization.},
   author = {Ilya Kostrikov and Ashvin Nair and Sergey Levine},
   booktitle = {International Conference on Learning Representations},
@@ -523,7 +523,7 @@
   year = {2022}
 }
 
-@inproceedings{Baker2022Video,
+@inproceedings{baker2022video,
   abstract = {Pretraining on noisy, internet-scale datasets has been heavily studied as a technique for training models with broad, general capabilities for text, images, and other modalities. However, for many sequential decision domains such as robotics, video games, and computer use, publicly available data does not contain the labels required to train behavioral priors in the same way. We extend the internet-scale pretraining paradigm to sequential decision domains through semi-supervised imitation learning wherein agents learn to act by watching online unlabeled videos. Specifically, we show that with a small amount of labeled data we can train an inverse dynamics model accurate enough to label a huge unlabeled source of online data -- here, online videos of people playing Minecraft -- from which we can then train a general behavioral prior. Despite using the native human interface (mouse and keyboard at 20Hz), we show that this behavioral prior has nontrivial zero-shot capabilities and that it can be fine-tuned, with both imitation learning and reinforcement learning, to hard-exploration tasks that are impossible to learn from scratch via reinforcement learning. For many tasks our models exhibit human-level performance, and we are the first to report computer agents that can craft diamond tools, which can take proficient humans upwards of 20 minutes (24,000 environment actions) of gameplay to accomplish.},
   archiveprefix = {arXiv},
   author = {Baker, Bowen and Akkaya, Ilge and Zhokhov, Peter and Huizinga, Joost and Tang, Jie and Ecoffet, Adrien and Houghton, Brandon and Sampedro, Raul and Clune, Jeff},
@@ -540,7 +540,7 @@
   year = {2022}
 }
 
-@article{Wu2022DayDreamer,
+@article{wu2022daydreamer,
   abstract = {To solve tasks in complex environments, robots need to learn from experience. Deep reinforcement learning is a common approach to robot learning but requires a large amount of trial and error to learn, limiting its deployment in the physical world. We explore how robots can use the Dreamer algorithm to learn directly in the real world. Specifically, we apply Dreamer to 4 different robots to learn to walk, stand up, and navigate without using simulators. The experiments show that Dreamer can learn tasks on robots with as few as 2 hours of interaction, outperforming model-free methods.},
   author = {Philipp Wu and Alejandro Escontrela and Danijar Hafner and Ken Goldberg and Pieter Abbeel},
   journal = {arXiv preprint arXiv:2206.14176},
@@ -551,7 +551,7 @@
   year = {2022}
 }
 
-@inproceedings{Yarats2021Image,
+@inproceedings{yarats2021image,
   abstract = {We propose a simple data augmentation technique that can be applied to standard model-free reinforcement learning algorithms, enabling robust learning directly from pixels without the need for auxiliary losses or pre-training. The approach leverages input perturbations commonly used in computer vision tasks to regularize the value function. Existing model-free approaches, such as Soft Actor-Critic (SAC), are not able to train deep networks effectively from image pixels. However, the addition of our augmentation method dramatically improves SAC's performance, enabling it to reach state-of-the-art performance on the DeepMind control suite, surpassing model-based (Dreamer, PlaNet, and SLAC) methods and recently proposed contrastive learning (CURL). Our approach can be combined with any model-free reinforcement learning algorithm, requiring only minor modifications. An implementation can be found at https://sites.google.com/view/data-regularized-q.},
   address = {Virtual Event},
   author = {Denis Yarats and Ilya Kostrikov and Rob Fergus},
@@ -567,7 +567,7 @@
   year = {2021}
 }
 
-@inproceedings{Hafner2021Mastering,
+@inproceedings{hafner2021mastering,
   abstract = {Intelligent agents need to generalize from past experience to achieve goals in complex environments. World models facilitate such generalization and allow learning behaviors by imagined outcomes to increase sample-efficiency. While world image inputs has recently become feasible for some tasks, modeling Atari games accurately enough to derive successful behaviors remained an open challenge for many years. We introduce DreamerV2, a reinforcement learning agent that learns purely from predictions in the compact latent space of a powerful model. The model uses discrete representations and is trained separately from the policy. DreamerV2 constitutes the first agent that achieves human-level performance on 55 benchmark tasks by learning inside the world model. With the same computational budget and wall-clock time, Dreamer V2 reaches 200M frames, surpasses the final top single-GPU IQN Rainbow. It is also applicable with continuous actions, where it accurately solves a humanoid robot stand-up walking using only pixel inputs.},
   author = {Danijar Hafner and Timothy Lillicrap and Mohammad Norouzi and Jimmy Ba},
   booktitle = {International Conference on Learning Representations},
@@ -579,7 +579,7 @@
   year = {2021}
 }
 
-@inproceedings{Hubert2021Learning,
+@inproceedings{hubert2021learning,
   abstract = {Many important real-world problems have action spaces that are high-dimensional, continuous or both, making full enumeration of all possible actions infeasible. Instead, only small subsets of actions can be sampled for the purpose of policy evaluation and improvement. In this paper, we propose a general framework to reason in a principled way about policy evaluation and improvement over such sampled action subsets. This sample-based policy iteration framework can in principle be applied to any reinforcement learning algorithm based upon policy iteration. Concretely, we propose Sampled MuZero, an extension of the MuZero algorithm that is able to learn in domains with arbitrarily complex action spaces by planning over sampled actions. We demonstrate this approach on the classical board game of Go and on two continuous control benchmark domains: DeepMind Control Suite and Real-World RL Suite.},
   author = {Thomas Hubert and Julian Schrittwieser and Ioannis Antonoglou and Mohammadamin Barekatain and Simon Schmitt and David Silver},
   booktitle = {Proceedings of the 38th International Conference on Machine Learning},
@@ -596,7 +596,7 @@
   year = {2021}
 }
 
-@inproceedings{Chen2021Decision,
+@inproceedings{chen2021decision,
   abstract = {We introduce a framework that abstracts Reinforcement Learning (RL) as a sequence modeling problem. This allows us to draw upon the simplicity and scalability of the Transformer architecture, and associated advances in language modeling such as GPT-x and BERT. In particular, we present Decision Transformer, an architecture that casts the problem of RL as conditional sequence modeling. Unlike prior approaches to RL that fit value functions or compute policy gradients, Decision Transformer simply outputs the optimal actions by leveraging a causally masked Transformer. By conditioning an autoregressive model on the desired return (reward), past states, and actions, our Decision Transformer model can generate future actions that achieve the desired return. Despite its simplicity, Decision Transformer matches or exceeds the performance of state-of-the-art model-free offline RL baselines on Atari, OpenAI Gym, and Key-to-Door tasks.},
   author = {Lili Chen and Kevin Lu and Aravind Rajeswaran and Kimin Lee and Aditya Grover and Michael Laskin and Pieter Abbeel and Aravind Srinivas and Igor Mordatch},
   booktitle = {Advances in Neural Information Processing Systems},
@@ -612,7 +612,7 @@
   year = {2021}
 }
 
-@inproceedings{Perolat2021From,
+@inproceedings{perolat2021from,
   abstract = {In this paper we investigate the Follow the Regularized Leader dynamics in sequential imperfect information games (IIG). We generalize existing results of Poincaré recurrence from normal-form games to zero-sum two-player imperfect information games and other sequential game settings. We then investigate how adapting the reward (by adding a regularization term) of the game can give strong convergence guarantees in monotone games. We continue by showing how this reward adaptation technique can be leveraged to build algorithms that converge exactly to the Nash equilibrium. Finally, we show how these insights can be directly used to build state-of-the-art model-free algorithms for zero-sum two-player Imperfect Information Games (IIG).},
   author = {Julien Perolat and Remi Munos and Jean-Baptiste Lespiau and Shayegan Omidshafiei and Mark Rowland and Pedro A. Ortega and Neil Burch and Thomas Anthony and David Balduzzi and Bart De Vylder and Georgios Piliouras and Marc Lanctot and Karl Tuyls},
   booktitle = {Proceedings of the 38th International Conference on Machine Learning},
@@ -626,7 +626,7 @@
   year = {2021}
 }
 
-@inproceedings{Mendonca2021Learning,
+@inproceedings{mendonca2021learning,
   abstract = {This work tackles meta-RL by learning a structured world model that can quickly adapt to new tasks. The model learns a shared representation of dynamics while allowing for task-specific modifications, enabling rapid adaptation.},
   address = {London, UK},
   author = {Mendonca, Russell and Gupta, Abhishek and Abbeel, Pieter and Levine, Sergey},
@@ -640,7 +640,7 @@
   year = {2021}
 }
 
-@inproceedings{Kaiser2020Model,
+@inproceedings{kaiser2020model,
   abstract = {Model-free reinforcement learning (RL) can be used to learn effective policies for complex tasks, such as Atari games, even from image observations. However, this typically requires very large amounts of interaction -- substantially more, in fact, than a human would need to learn the same games. In this paper, we explore how video prediction models can similarly enable agents to solve Atari games with fewer interactions than model-free methods. We describe Simulated Policy Learning (SimPLe), a complete model-based deep RL algorithm based on video prediction models and present a comparison of several model architectures, including a novel architecture that yields the best results in our setting. Our experiments evaluate SimPLe on a range of Atari games in low data regime of 100k interactions between the agent and the environment, which corresponds to two hours of real-time play. We show that SimPLe outperforms state-of-the-art model-free algorithms on 26 games by a median factor of 2.5x in sample efficiency, and is competitive with state-of-the-art model-based algorithms. We analyze the contributions of the model architecture and the policy learning algorithm to these results.},
   author = {Kaiser, Łukasz and Babaeizadeh, Mohammad and Miłos, Piotr and Osi\ŉski, Błażej and Campbell, Roy H. and Czechowski, Konrad and Erhan, Dumitru and Finn, Chelsea and Kozakowski, Piotr and Levine, Sergey and Mohiuddin, Afroz and Sepassi, Ryan and Tucker, George and Michalewski, Henryk},
   booktitle = {8th International Conference on Learning Representations},
@@ -652,7 +652,7 @@
   year = {2020}
 }
 
-@article{Schrittwieser2020Mastering,
+@article{schrittwieser2020mastering,
   abstract = {Constructing agents with planning capabilities has long been one of the main challenges in the pursuit of artificial intelligence. Tree-based planning methods have enjoyed huge success in challenging domains, such as chess and Go, where a perfect simulator is available. However, in real-world problems, the dynamics governing the environment are often complex and unknown. Here we present the MuZero algorithm, which, by combining a tree-based search with a learned model, achieves superhuman performance in a range of challenging and visually complex domains, without any knowledge of their underlying dynamics. The MuZero algorithm learns an iterable model that produces predictions relevant to planning: the action-selection policy, the value function and the reward. When evaluated on 57 different Atari games—the canonical video game environment for testing artificial intelligence techniques, in which model-based planning approaches have historically struggled—the MuZero algorithm achieved state-of-the-art performance. When evaluated on Go, chess and shogi—canonical environments for high-performance planning—the MuZero algorithm matched, without any knowledge of the game dynamics, the superhuman performance of the AlphaZero algorithm that was supplied with the rules of the game.},
   author = {Julian Schrittwieser and Ioannis Antonoglou and Thomas Hubert and Karen Simonyan and Laurent Sifre and Simon Schmitt and Arthur Guez and Edward Lockhart and Demis Hassabis and Thore Graepel and Timothy Lillicrap and David Silver},
   doi = {10.1038/s41586-020-03051-4},
@@ -669,7 +669,7 @@
   year = {2020}
 }
 
-@inproceedings{Lee2019Stochastic,
+@inproceedings{lee2019stochastic,
   abstract = {Deep reinforcement learning (RL) algorithms can use high-capacity deep networks to learn directly from image observations. However, these high-dimensional observation spaces present challenges, as the policy must solve two problems: representation and task learning. In this work, the authors tackle these problems separately by explicitly creating latent representations that accelerate learning from images. They propose the Stochastic Latent Actor-Critic (SLAC) algorithm: a sample-efficient, high-performing RL algorithm for complex continuous control tasks with image inputs. SLAC provides a novel, principled approach unifying sequential models into a single method. It creates compact latent representations and then performs learning in the model's learned space. The experimental evaluation demonstrates that their method outperforms both model-free and model-based alternatives in terms of final performance and sample efficiency across a range of difficult image-based tasks.},
   author = {Lee, Alex X. and Nagabandi, Anusha and Abbeel, Pieter and Levine, Sergey},
   booktitle = {Advances in Neural Information Processing Systems},
@@ -682,7 +682,7 @@
   year = {2020}
 }
 
-@inproceedings{Hafner2020Dream,
+@inproceedings{hafner2020dream,
   abstract = {Learned world models summarize an agent's experience to facilitate learning complex behaviors. While learning world models from high-dimensional sensory inputs is becoming feasible through deep learning, there are many potential ways for deriving behaviors from them. We present Dreamer, a reinforcement learning agent that solves long-horizon tasks from images purely by latent imagination. We efficiently learn behaviors by propagating analytic gradients of learned state values back through trajectories imagined in the compact state space of a learned world model. On 20 challenging visual control tasks, Dreamer exceeds existing approaches in data-efficiency, computation time, and final performance.},
   author = {Danijar Hafner and Timothy Lillicrap and Jimmy Ba and Mohammad Norouzi},
   booktitle = {International Conference on Learning Representations},
@@ -696,7 +696,7 @@
   year = {2020}
 }
 
-@inproceedings{Kidambi2020MOReL,
+@inproceedings{kidambi2020morel,
   abstract = {In offline reinforcement learning (RL), the goal is to learn a highly rewarding policy based solely on a dataset of historical interactions with the environment. The ability to train RL policies offline can greatly expand the applicability of RL, its data efficiency, and its experimental velocity. Prior work in offline RL has been confined almost exclusively to model-free RL approaches. In this work, we present MOReL, an algorithmic framework for model-based offline RL. This framework consists of two steps: (a) learning a pessimistic MDP (P-MDP) using the offline dataset; and (b) learning a near-optimal policy in this P-MDP. The learned P-MDP has the property that for any policy, the performance in the real environment is approximately lower-bounded by the performance in the P-MDP. This enables it to serve as a good surrogate for purposes of policy evaluation and learning, and overcome common pitfalls of model-based RL like model exploitation. Theoretically, we show that MOReL is minimax optimal (up to log factors) for offline RL. Through experiments, we show that MOReL matches or exceeds state-of-the-art results in widely studied offline RL benchmarks. Moreover, the modular design of MOReL enables future advances in its components (e.g. generative modeling, uncertainty estimation, planning etc.) to directly translate into advances for offline RL.},
   author = {Kidambi, Rahul and Rajeswaran, Aravind and Netrapalli, Praneeth and Joachims, Thorsten},
   booktitle = {Advances in Neural Information Processing Systems},
@@ -710,7 +710,7 @@
   year = {2020}
 }
 
-@inproceedings{Winder2020Planning,
+@inproceedings{winder2020planning,
   abstract = {We introduce an algorithm for model-based hierarchical reinforcement learning to acquire self-contained transition and reward models suitable for probabilistic planning at multiple levels of abstraction. By representing subtasks symbolically using a new formal structure, the lifted abstract Markov decision process (L-AMDP), PALM learns models that are independent and modular. Through our experiments, we show how PALM integrates planning and execution, facilitating a rapid and efficient learning of abstract, hierarchical models.},
   author = {John Winder and Stephanie Milani and Matthew Landen and Erebus Oh and Shane Parr and Shawn Squire and Marie desJardins and Cynthia Matuszek},
   booktitle = {Proceedings of the AAAI Conference on Artificial Intelligence},
@@ -725,7 +725,7 @@
   year = {2020}
 }
 
-@inproceedings{Bear2020Learning,
+@inproceedings{bear2020learning,
   abstract = {Humans demonstrate remarkable abilities to predict physical events in complex scenes. However, state-of-the-art machine learning models struggle when faced with scenarios that require an understanding of physics. Here we introduce Physical Scene Graphs (PSGs), a method for representing scenes as hierarchical graphs, with nodes in the hierarchy corresponding intuitively to object parts at different scales, and edges to physical connections between parts. Bound to each node is a vector of latent attributes that intuitively represent object properties such as surface shape and texture. We develop PSGNet, a network architecture that learns to extract PSGs by reconstructing scenes through a PSG-structured bottleneck. PSGNet augments standard CNNs by including: recurrent feedback connections to combine low and high-level image information; graph pooling and vectorization operations that convert spatially-uniform feature maps into object-centric graph structures; and perceptual grouping principles to encourage the identification of meaningful scene elements. We show that PSGNet outperforms alternative self-supervised scene representation algorithms at scene segmentation tasks, especially on complex real-world images, and generalizes well to unseen object types and scene arrangements. PSGNet is also able learn from physical motion, enhancing scene estimates even for static images.},
   author = {Bear, Daniel and Fan, Chaofei and Mrowca, Damian and Li, Yunzhu and Alter, Seth and Nayebi, Aran and Schwartz, Jeremy and Fei-Fei, Li F. and Wu, Jiajun and Tenenbaum, Joshua B. and Yamins, Daniel L.},
   booktitle = {Advances in Neural Information Processing Systems},
@@ -740,7 +740,7 @@
   year = {2020}
 }
 
-@inproceedings{Hafner2019Learning,
+@inproceedings{hafner2019learning,
   abstract = {Planning has been very successful for control tasks with known environment dynamics. To leverage planning in unknown environments, the agent needs to learn dynamics from interactions with the world. However, learning models that are accurate enough is a long-standing challenge, especially in image-based domains. We propose Deep Planning Network (PlaNet), a purely model-based agent that learns the environment dynamics from images and chooses actions through fast online planning in latent space. To achieve high performance, the model must accurately predict rewards ahead multiple time steps. Our approach uses a latent dynamics model with both deterministic and stochastic transition components. Moreover, we propose a multi-step variational inference objective that we term latent overshooting. Using only pixel observations, our agent solves continuous control tasks with contact dynamics, partial observability, and sparse rewards, which exceed the difficulty of tasks previously solved by learned models. PlaNet uses substantially fewer episodes than previous model-based and model-free methods to reach final performance that is close to and sometimes higher than strong model-free algorithms.},
   author = {Danijar Hafner and Timothy Lillicrap and Ian Fischer and Ruben Villegas and David Ha and Honglak Lee and James Davidson},
   booktitle = {Proceedings of the 36th International Conference on Machine Learning},
@@ -757,7 +757,7 @@
   year = {2019}
 }
 
-@inproceedings{Zhang2019Solar,
+@inproceedings{zhang2019solar,
   abstract = {Model-based reinforcement learning (RL) has proven to be a data efficient approach for learning control tasks but is difficult to utilize in domains with complex observations such as images. We present a method for learning representations that are suitable for iterative model-based policy improvement, even when the underlying dynamical system has complex dynamics and image observations. We demonstrate that these representations enable a model-based RL method based on the linear-quadratic regulator (LQR) to be applied effectively for systems with image observations and achieve good performance across a variety of tasks.},
   author = {Zhang, Marvin and Vikram, Sharad and Smith, Laura and Abbeel, Pieter and Johnson, Matthew and Levine, Sergey},
   booktitle = {Proceedings of the 36th International Conference on Machine Learning},
@@ -774,7 +774,7 @@
   year = {2019}
 }
 
-@inproceedings{Janner2019When,
+@inproceedings{janner2019when,
   abstract = {Designing effective model-based reinforcement learning algorithms is difficult because the ease of data generation must be weighed against the bias of model-generated data. In this paper, we study the role of model usage in policy optimization both theoretically and empirically. We first formulate and analyze a model-based reinforcement learning algorithm with a guarantee of monotonic improvement at each step. In practice, this analysis is overly pessimistic and suggests that real off-policy data is always preferable to model-generated on-policy data, but we show that an empirical estimate of model generalization can be incorporated into such analysis to justify model usage. Motivated by this analysis, we then demonstrate that a simple procedure of using short model-generated rollouts branched from real data has the benefits of more complicated model-based algorithms without the usual pitfalls. In particular, this approach surpasses the sample efficiency of prior model-based methods, matches the asymptotic performance of the best model-free algorithms, and scales to horizons that cause other model-based methods to fail entirely.},
   author = {Janner, Michael and Fu, Justin and Zhang, Marvin and Levine, Sergey},
   booktitle = {Advances in Neural Information Processing Systems 32},
@@ -787,7 +787,7 @@
   year = {2019}
 }
 
-@inproceedings{Ghosh2019Learning,
+@inproceedings{ghosh2019learning,
   abstract = {Representation learning is a central challenge across machine learning areas. In reinforcement learning, effective and functional representations have the potential to tremendously accelerate progress and solve more challenging problems. Most prior work has focused on generative approaches that capture underlying factors of variation in observation space in a disentangled or well-ordered manner. In this paper, we instead aim to learn functionally salient representations: those important for decision making -- 'actionable.' These representations are aware of environment dynamics, capturing only elements necessary for downstream tasks. We show how these can be useful to improve exploration in sparse reward problems, enable long horizon hierarchical policies.},
   author = {Dibya Ghosh and Abhishek Gupta and Sergey Levine},
   booktitle = {International Conference on Learning Representations},
@@ -799,7 +799,7 @@
   year = {2019}
 }
 
-@inproceedings{Freeman2019Learning,
+@inproceedings{freeman2019learning,
   abstract = {Much of model-based reinforcement learning involves a model of an agent's world, and training an agent to leverage this model to perform a task more efficiently. While these models are demonstrably useful for agents, every naturally occurring world---which we are aware---arose as a byproduct of competing evolutionary pressures for survival, not minimization of a supervised forward-predictive loss via gradient descent. In this work, we introduce observational dropout, where we limit the agent's ability to observe the real environment during training. We show that an agent trained in this manner can learn to model its world without an explicit supervised loss. As a side effect of optimizing for expected reward, the agent learns a world model to fill in the observation gaps during reinforcement learning. We show that the world model learned in this manner exhibits similar properties to but also some important differences from models learned via supervised learning. Agents trained with observational dropout learn to model only the relevant aspects of the environment, ignore irrelevant information, and can often outperform agents trained with perfect observations.},
   address = {Red Hook, NY, USA},
   author = {Freeman, C. Daniel and Metz, Luke and Ha, David},
@@ -815,7 +815,7 @@
   year = {2019}
 }
 
-@inproceedings{Ha2018World,
+@inproceedings{ha2018world,
   abstract = {A generative recurrent neural network is quickly trained in an unsupervised manner to model popular reinforcement learning environments through compressed spatio-temporal representations. The world model's extracted features are fed into compact and simple policies trained by evolution, achieving state of the art results in various environments. We also train our agent entirely inside of an environment generated by its own internal world model, and transfer this policy back into the actual environment.},
   author = {David Ha and Jürgen Schmidhuber},
   booktitle = {Advances in Neural Information Processing Systems 31 (NeurIPS 2018)},
@@ -829,7 +829,7 @@
   year = {2018}
 }
 
-@inproceedings{Chua2018Deep,
+@inproceedings{chua2018deep,
   abstract = {Model-based reinforcement learning (RL) algorithms can attain excellent sample efficiency, but often lag behind the best model-free algorithms in terms of asymptotic performance. This is especially true with high-capacity parametric function approximators, such as deep networks. In this paper, we study how to bridge this gap, by employing uncertainty-aware dynamics models. We propose a new algorithm called probabilistic ensembles with trajectory sampling (PETS) that combines uncertainty-aware deep network dynamics models with sampling-based uncertainty propagation. Our comparison to state-of-the-art model-based and model-free deep RL algorithms shows that our approach matches the asymptotic performance of model-free algorithms on several challenging benchmark tasks, while requiring significantly fewer samples (e.g., 8 and 125 times fewer samples than Soft Actor Critic and Proximal Policy Optimization respectively on the half-cheetah task).},
   author = {Kurtland Chua and Roberto Calandra and Rowan McAllister and Sergey Levine},
   booktitle = {Advances in Neural Information Processing Systems 31},
@@ -842,7 +842,7 @@
   year = {2018}
 }
 
-@inproceedings{Feinberg2018Model,
+@inproceedings{feinberg2018model,
   abstract = {Recent model-free reinforcement learning algorithms have proposed incorporating learned dynamics models as a source of additional data with the intention of reducing sample complexity. Such methods hold the promise of incorporating imagined data coupled with a notion of model uncertainty to accelerate the learning of continuous control tasks. Unfortunately, they rely on heuristics that limit usage of the dynamics model. In this paper, we propose model-based value expansion, which controls for uncertainty in the model by only allowing imagination to fixed depth. By enabling wider use of learned dynamics models within a model-free reinforcement learning algorithm, we improve value estimation, which, in turn, reduces the sample complexity of learning.},
   address = {Stockholm, Sweden},
   author = {Vladimir Feinberg and Alvin Wan and Ion Stoica and Michael I. Jordan and Joseph E. Gonzalez and Sergey Levine},
@@ -859,7 +859,7 @@
   year = {2018}
 }
 
-@inproceedings{Buckman2018Sample,
+@inproceedings{buckman2018sample,
   abstract = {There is growing interest in combining model-free and model-based approaches in reinforcement learning with the goal of achieving high performance algorithms with low sample complexity. Model-based approaches offer the promise of sample efficiency, but have typically been limited by the accuracy of the dynamics model. Model-free approaches have better asymptotic performance, but are sample inefficient. In this work, we propose Stochastic Ensemble Value Expansion (STEVE), a novel model-based technique that addresses model accuracy by dynamically interpolating between model rollouts of various horizon lengths for each individual example. The technique ensures the model is only utilized when doing so does not introduce significant errors. We show that STEVE outperforms model-free baselines on challenging continuous control benchmarks with an order-of-magnitude increase in sample efficiency, and in contrast to previous model-based approaches, performance does not degrade in complex environments.},
   author = {Jacob Buckman and Danijar Hafner and George Tucker and Eugene Brevdo and Honglak Lee},
   booktitle = {Advances in Neural Information Processing Systems},
@@ -873,7 +873,7 @@
   year = {2018}
 }
 
-@article{Buesing2019Learning,
+@article{buesing2019learning,
   abstract = {A key challenge in model-based reinforcement learning (RL) is to synthesize computationally efficient and accurate environment models. We show that carefully designed generative models that learn and operate on compact state representations, so-called state-space models, substantially reduce the computational costs for predicting outcomes of sequences of actions. Extensive experiments establish that state-space models accurately capture the dynamics of Atari games from the Arcade Learning Environment from raw pixels. Agents which query these models for decision making outperform strong model-free baselines on the game MSPACMAN, demonstrating the potential of using learned environment models for planning.},
   author = {Lars Buesing and Théophane Weber and Sébastien Racanière and S. M. Ali Eslami and Danilo Rezende and David P. Reichert and Fabio Viola and Frederic Besse and Karol Gregor and Demis Hassabis and Daan Wierstra},
   journal = {arXiv preprint arXiv:1802.03006},
@@ -886,7 +886,7 @@
   year = {2018}
 }
 
-@inproceedings{Parisotto2018Neural,
+@inproceedings{parisotto2018neural,
   abstract = {A critical component to enabling intelligent reasoning in partially observable environments is memory. Despite this importance, Deep Reinforcement Learning (DRL) agents have so far used relatively simple memory architectures, with the main methods to overcome partial observability being either a temporal convolution over the past k frames or an LSTM layer. The main limitation of existing architectures is that they are limited to only remembering information from the last k frames. In this paper, we develop a memory system with an adaptable write operator that is customized to the sorts of 3D environments that DRL agents typically interact with. This architecture, called the Neural Map, uses a spatially structured 2D memory image to learn to store arbitrary information about the environment over long time lags. We demonstrate empirically that the Neural Map surpasses previous DRL memories on a set of challenging 2D and 3D maze environments and show that it is capable of generalizing to environments that were not seen during training.},
   author = {Emilio Parisotto and Ruslan Salakhutdinov},
   booktitle = {International Conference on Learning Representations},
@@ -898,7 +898,7 @@
   year = {2018}
 }
 
-@inproceedings{Clavera2018Model,
+@inproceedings{clavera2018model,
   abstract = {Model-based reinforcement learning approaches carry the promise of being data efficient. However, due to challenges in learning dynamics models that sufficiently match the real-world dynamics, they struggle to achieve the same asymptotic performance as model-free methods. We propose Model-Based Meta-Policy-Optimization (MB-MPO), an approach that foregoes the strong reliance on accurate learned dynamics models. Using an ensemble of learned dynamic models, MB-MPO meta-learns a policy that can quickly adapt to any model in the ensemble with one policy gradient step. This steers the meta-policy towards internalizing consistent dynamics predictions among the ensemble while shifting the burden of behaving optimally w.r.t. the model discrepancies towards the adaptation step. Our experiments show that MB-MPO is more robust to model imperfections than previous model-based approaches. Finally, we demonstrate that our approach is able to match the asymptotic performance of model-free methods while requiring significantly less experience.},
   author = {Ignasi Clavera and Jonas Rothfuss and John Schulman and Yasuhiro Fujita and Tamim Asfour and Pieter Abbeel},
   booktitle = {Proceedings of The 2nd Conference on Robot Learning},
@@ -913,7 +913,7 @@
   year = {2018}
 }
 
-@inproceedings{Xu2018Learning,
+@inproceedings{xu2018learning,
   abstract = {The performance of off-policy learning, including deep Q-learning and deep deterministic policy gradient (DDPG), critically depends on the choice of the exploration policy. Existing exploration methods are mostly based on adding noise to the on-going actor policy and can only explore local regions close to what the actor policy dictates. In this work, we develop a simple meta-policy gradient algorithm that allows us to adaptively learn the exploration policy in DDPG. Our algorithm allows us to train flexible exploration behaviors that are independent of the actor policy, yielding a global exploration that significantly speeds up the learning process. With an extensive study, we show that our method significantly improves the sample-efficiency of DDPG on a variety of reinforcement learning continuous control tasks.},
   address = {Stockholm, Sweden},
   author = {Tianbing Xu and Qiang Liu and Liang Zhao and Jian Peng},
@@ -931,7 +931,7 @@
   year = {2018}
 }
 
-@inproceedings{Ha2018Recurrent,
+@inproceedings{ha2018recurrent,
   abstract = {A generative recurrent neural network is quickly trained in an unsupervised manner to model popular reinforcement learning environments through compressed spatio-temporal representations. The world model's extracted features are fed into compact and simple policies trained by evolution, achieving state of the art results in various environments. We also train our agent entirely inside of an environment generated by its own internal world model, and transfer this policy back into the actual environment.},
   author = {Ha, David and Schmidhuber, Jürgen},
   booktitle = {Advances in Neural Information Processing Systems},
@@ -945,7 +945,7 @@
   year = {2018}
 }
 
-@inproceedings{Adebola2018Learning,
+@inproceedings{adebola2018learning,
   author = {Adebola, Simeon and stra, Zilong and others},
   booktitle = {Conference on Robot Learning (CoRL)},
   note = {This work tackles one-shot learning for robotics. While not a traditional world model, it highlights the need for models that can generalize from very little data, a key motivation for model-based approaches.},
@@ -953,7 +953,7 @@
   year = {2018}
 }
 
-@inproceedings{Weber2017Imagination,
+@inproceedings{weber2017imagination,
   abstract = {We introduce Imagination-Augmented Agents (I2As), a novel architecture for deep reinforcement learning combining model-free and model-based aspects. In contrast to most existing model-based reinforcement learning and planning methods, which prescribe how a model should be used to arrive at a policy, I2As learn to interpret predictions from a learned environment model to construct implicit plans in arbitrary ways, by using the predictions as additional context in deep policy networks. I2As show improved data efficiency, performance, and robustness to model misspecification compared to several baselines.},
   author = {Sebastien Racaniere and Theophane Weber and David Reichert and Lars Buesing and Arthur Guez and Danilo Jimenez Rezende and Adria Puigdomenech Badia and Oriol Vinyals and Nicolas Heess and Yujia Li and Razvan Pascanu and Peter Battaglia and Demis Hassabis and David Silver and Daan Wierstra},
   booktitle = {Advances in Neural Information Processing Systems},
@@ -969,7 +969,7 @@
   year = {2017}
 }
 
-@article{Silver2017MasteringGo,
+@article{silver2017masteringgo,
   abstract = {A long-standing goal of artificial intelligence is an algorithm that learns, tabula rasa, superhuman proficiency in challenging domains. Recently, AlphaGo became the first program to defeat a world champion in the game of Go. However, for machine learning research, Go is a poor model system---professional human expertise in Go is vast, variegated and intractable. Here we introduce an algorithm based solely on reinforcement learning, without human data, guidance or domain knowledge beyond game rules. AlphaGo becomes its own teacher: a neural network is trained to predict AlphaGo's own move selections and also the winner of AlphaGo's games. This neural network improves the strength of the tree search, leading to higher quality move selection and stronger self-play in the next iteration.},
   author = {Silver, David and Schrittwieser, Julian and Simonyan, Karen and Antonoglou, Ioannis and Huang, Aja and Guez, Arthur and Hubert, Thomas and Baker, Lucas and Lai, Matthew and Bolton, Adrian and Chen, Yutian and Lillicrap, Timothy and Hui, Fan and Sifre, Laurent and van den Driessche, George and Graepel, Thore and Hassabis, Demis},
   doi = {10.1038/nature24270},
@@ -985,7 +985,7 @@
   year = {2017}
 }
 
-@inproceedings{Denil2017Learning,
+@inproceedings{denil2017learning,
   abstract = {When encountering novel objects, humans are able to infer a wide range of physical properties such as mass, friction and deformability by interacting with them in a goal driven way. This process of active interaction is in the same spirit as a scientist performing experiments to discover hidden facts. Recent advances in artificial intelligence have yielded machines that can achieve superhuman performance in Go, Atari, natural language processing, and complex control problems; however, it is not clear that these systems can rival the scientific intuition of even a young child. In this work we introduce a basic set of tasks that require agents to estimate properties such as mass and cohesion of objects in an interactive simulated environment where they can manipulate the objects and observe the consequences. We found that state of art deep reinforcement learning methods can learn to perform the experiments necessary to discover such hidden properties. By systematically manipulating the problem difficulty and the cost incurred by the agent for performing experiments, we found that agents learn different strategies that balance the cost of gathering information against the cost of making mistakes in different situations.},
   author = {Misha Denil and Pulkit Agrawal and Tejas D. Kulkarni and Tom Erez and Peter Battaglia and Nando de Freitas},
   booktitle = {5th International Conference on Learning Representations, ICLR 2017, Toulon, France, April 24-26, 2017, Conference Track Proceedings},
@@ -998,7 +998,7 @@
   year = {2017}
 }
 
-@inproceedings{Finn2017Deep,
+@inproceedings{finn2017deep,
   abstract = {A key challenge in scaling up robot learning to many skills and environments is removing the need for human supervision, so that robots can collect their own data and improve their own performance without being limited by the cost of requesting human feedback. Model-based reinforcement learning holds the promise of enabling an agent to learn to predict the effects of its actions, which could provide flexible predictive models for a wide range of tasks and environments, without detailed human supervision. We develop a method for combining deep action-conditioned video prediction models with model-predictive control that uses entirely unlabeled training data. Our approach does not require a calibrated camera, an instrumented training set-up, nor precise sensing and actuation. We show that our method enables a real robot to perform nonprehensile manipulation -- pushing objects -- and can handle novel objects not seen during training.},
   address = {Singapore},
   author = {Chelsea Finn and Sergey Levine},
@@ -1014,7 +1014,7 @@
   year = {2017}
 }
 
-@inproceedings{Lillicrap2016Continuous,
+@inproceedings{lillicrap2016continuous,
   abstract = {We adapt the ideas underlying the success of Deep Q-Learning to the continuous action domain. We present an actor-critic, model-free algorithm based on the deterministic policy gradient that can operate over continuous action spaces. Using the same learning algorithm, network architecture and hyper-parameters, our algorithm robustly solves more than 20 simulated physics tasks, including classic problems such as cartpole swing-up, dexterous manipulation, legged locomotion and car driving. Our algorithm is able to find policies whose performance is competitive with those found by a planning algorithm with full access to the dynamics of the domain and its derivatives. We further demonstrate that for many of the tasks the algorithm can learn policies end-to-end: directly from raw pixel inputs.},
   address = {San Juan, Puerto Rico},
   author = {Timothy P. Lillicrap and Jonathan J. Hunt and Alexander Pritzel and Nicolas Heess and Tom Erez and Yuval Tassa and David Silver and Daan Wierstra},
@@ -1029,7 +1029,7 @@
   year = {2016}
 }
 
-@inproceedings{Gu2016Continuous,
+@inproceedings{gu2016continuous,
   abstract = {Model-free reinforcement learning has been successfully applied to a range of challenging problems, and has recently been extended to handle large neural network policies and value functions. However, sample complexity remains a major practical problem, particularly for physical systems. In this work, we explore techniques for improving the efficiency of model-free RL by using learned models. We present two complementary techniques for improving the efficiency of deep reinforcement learning algorithms. First, we derive a continuous variant of the Q-learning algorithm called Normalized Advantage Functions (NAF), as an alternative to the more commonly used policy gradient and actor-critic methods. NAF representation allows us to apply Q-learning with experience replay to continuous tasks, and substantially improves performance on a set of simulated robotic control tasks. Second, we propose using a learned dynamics model to generate synthetic data to accelerate model-free learning algorithms. We show that both of these techniques are complementary, and demonstrate their effectiveness on a range of continuous control problems.},
   author = {Shixiang Gu and Timothy Lillicrap and Ilya Sutskever and Sergey Levine},
   booktitle = {Proceedings of the 33rd International Conference on Machine Learning},
@@ -1044,7 +1044,7 @@
   year = {2016}
 }
 
-@inproceedings{Andreas2016Learning,
+@inproceedings{andreas2016learning,
   abstract = {We describe a question answering model that applies to both images and structured knowledge bases. The model uses natural language strings to automatically assemble neural networks from a collection of composable modules. Parameters for these modules are learned jointly with network-assembly parameters via reinforcement learning, with only (world, question, answer) triples as supervision. Our approach, which we term a dynamic neural model network, achieves state-of-the-art results on benchmark datasets in both visual and structured domains.},
   address = {San Diego, California},
   author = {Andreas, Jacob and Rohrbach, Marcus and Darrell, Trevor and Klein, Dan},
@@ -1061,7 +1061,7 @@
   year = {2016}
 }
 
-@inproceedings{Tamar2016Value,
+@inproceedings{tamar2016value,
   abstract = {We introduce the value iteration network (VIN): a fully differentiable neural network with a 'planning module' embedded within. VINs can learn to plan, and are suitable for predicting outcomes that involve planning-based reasoning, such as policies for reinforcement learning. Key to our approach is a novel differentiable approximation of the value-iteration algorithm, which can be represented as a convolutional neural network, and trained end-to-end using standard backpropagation. We evaluate VIN based policies on discrete and continuous path-planning domains, and on a natural-language based search task. We show that by learning an explicit planning computation, VIN policies generalize better to new, unseen domains.},
   author = {Tamar, Aviv and Wu, Yi and Thomas, Garrett and Levine, Sergey and Abbeel, Pieter},
   booktitle = {Advances in Neural Information Processing Systems},
@@ -1075,7 +1075,7 @@
   year = {2016}
 }
 
-@misc{Kulkarni2016Learning,
+@misc{kulkarni2016learning,
   abstract = {This work presents an approach for learning to plan with subgoal primitives in hierarchical reinforcement learning. The method focuses on learning goal-conditioned policies that can effectively decompose complex tasks into manageable subgoals, enabling more efficient planning and execution in environments with sparse rewards.},
   author = {Kulkarni, Tejas D. and Narasimhan, Karthik R. and Saeedi, Ardavan and Tenenbaum, Joshua B.},
   howpublished = {Unpublished manuscript},
@@ -1085,7 +1085,7 @@
   year = {2016}
 }
 
-@article{Mnih2015Human,
+@article{mnih2015human,
   abstract = {The theory of reinforcement learning provides a normative account of how an agent may optimize its control of an environment. To use reinforcement learning successfully in situations approaching real-world complexity, however, agents are confronted with a difficult task: they must derive efficient representations of the environment from high-dimensional sensory inputs, and use these to generalize past experience to new situations. Remarkably, humans and other animals seem to solve this problem through a harmonious combination of reinforcement learning and hierarchical sensory processing systems, the former evidenced by a wealth of neural data revealing notable parallels between the phasic signals emitted by dopaminergic neurons and temporal difference reinforcement learning algorithms. While reinforcement learning agents have achieved some successes in a variety of domains, their applicability has previously been limited to domains in which useful features can be handcrafted, or to domains with fully observed, low-dimensional state spaces. Here we use recent advances in training deep neural networks to develop a novel artificial agent, termed a deep Q-network, that can learn successful policies directly from high-dimensional sensory inputs using end-to-end reinforcement learning. We tested this agent on the challenging domain of classic Atari 2600 games. We demonstrate that the deep Q-network agent, receiving only the pixels and the game score as inputs, was able to surpass the performance of all previous algorithms and achieve a level comparable to that of a professional human games tester across 49 games, using the same algorithm, network architecture and hyperparameters.},
   author = {Volodymyr Mnih and Koray Kavukcuoglu and David Silver and Andrei A. Rusu and Joel Veness and Marc G. Bellemare and Alex Graves and Martin Riedmiller and Andreas Fidjeland and Georg Ostrovski and Stig Petersen and Charles Beattie and Amir Sadik and Ioannis Antonoglou and Helen King and Dharshan Kumaran and Daan Wierstra and Shane Legg and Demis Hassabis},
   doi = {10.1038/nature14236},
@@ -1100,7 +1100,7 @@
   year = {2015}
 }
 
-@misc{Schmidhuber2015Learning,
+@misc{schmidhuber2015learning,
   abstract = {This paper addresses the general problem of reinforcement learning (RL) in partially observable environments. In 2013, our large RL recurrent neural networks (RNNs) learned from scratch to drive simulated cars from high-dimensional video input. However, real brains are more powerful in many ways. In particular, they learn a predictive model of their initially unknown environment, and somehow use it for abstract (e.g., hierarchical) planning and reasoning. Guided by algorithmic information theory, we describe RNN-based AIs (RNNAIs) designed to do the same. Such an RNNAI can be trained on never-ending sequences of tasks, some of them provided by the user, others invented by the RNNAI itself in a curious, playful fashion, to improve its RNN-based world model. Unlike our previous model-building RNN-based RL machines dating back to 1990, the RNNAI learns to actively query its model for abstract reasoning and planning and decision making, essentially 'learning to think.' The basic ideas of this report can be applied to many other cases where one RNN-like system exploits the algorithmic information content of another. They are taken from a grant proposal submitted in Fall 2014, and also explain concepts such as 'mirror neurons.' Experimental results will be described in separate papers.},
   archiveprefix = {arXiv},
   author = {Schmidhuber, Jürgen},
@@ -1115,7 +1115,7 @@
   year = {2015}
 }
 
-@inproceedings{Schulman2015Trust,
+@inproceedings{schulman2015trust,
   abstract = {In this article, we describe a method for optimizing control policies, with guaranteed monotonic improvement. By making several approximations to the theoretically-justified scheme, we develop a practical algorithm, called Trust Region Policy Optimization (TRPO). This algorithm is effective for optimizing large nonlinear policies such as neural networks. Our experiments demonstrate its robust performance on a wide variety of tasks: learning simulated robotic swimming, hopping, and walking gaits; and playing Atari games using images of the screen as input. Despite its approximations that deviate from the theory, TRPO tends to give monotonic improvement, with little tuning of hyperparameters.},
   address = {Lille, France},
   author = {John Schulman and Sergey Levine and Philipp Moritz and Michael I. Jordan and Pieter Abbeel},
@@ -1133,7 +1133,7 @@
   year = {2015}
 }
 
-@inproceedings{Oh2015Action,
+@inproceedings{oh2015action,
   abstract = {Motivated by vision-based reinforcement learning (RL) problems, in particular Atari games from the recent benchmark Arcade Learning Environment (ALE), we consider spatio-temporal prediction problems where future (image-)frames are dependent on control variables or actions as well as previous frames. While not composed of natural scenes, frames are high-dimensional in size, can involve tens of objects with one or more objects being controlled by the actions directly and many other objects being influenced indirectly, can involve entry and departure of objects, and can involve deep partial observability. We propose and evaluate two deep neural network architectures that consist of encoding, action-conditional transformation, and decoding layers based on convolutional neural networks and recurrent neural networks. Experimental results show that our proposed architectures are able to generate visually-realistic frames that are also useful for over approximately 100-step futures in some games. To the best of our knowledge, this paper is the first to make and evaluate long-term predictions on high-dimensional video conditioned by control inputs.},
   author = {Oh, Junhyuk and Guo, Xiaoxiao and Lee, Honglak and Lewis, Richard L. and Singh, Satinder},
   booktitle = {Advances in Neural Information Processing Systems},
@@ -1150,7 +1150,7 @@
   year = {2015}
 }
 
-@inproceedings{Wang2015Unsupervised,
+@inproceedings{wang2015unsupervised,
   abstract = {Is strong supervision necessary for learning a good visual representation? Do we really need millions of semantically-labeled images to train a Convolutional Neural Network (CNN)? In this paper, we present a simple yet surprisingly powerful approach for unsupervised learning of CNN. Specifically, we use hundreds of thousands of unlabeled videos from the web to learn visual representations. Our key idea is that visual tracking provides the supervision. That is, two patches connected by a track should have similar visual representation in deep feature space since they probably belong to the same object or object part. We design a Siamese-triplet network with a ranking loss function to train this CNN representation. Without using a single image from ImageNet, just using 100K unlabeled videos and the VOC 2012 dataset, we train an ensemble of unsupervised networks that achieves 52% mAP (no bounding box regression). This performance comes tantalizingly close to its ImageNet-supervised counterpart, an ensemble which achieves a mAP of 54.4%. We also show that our unsupervised network can perform competitively in other tasks such as surface-normal estimation.},
   author = {Xiaolong Wang and Abhinav Gupta},
   booktitle = {2015 IEEE International Conference on Computer Vision (ICCV)},
@@ -1164,7 +1164,7 @@
   year = {2015}
 }
 
-@inproceedings{Rezende2015Variational,
+@inproceedings{rezende2015variational,
   abstract = {The choice of approximate posterior distribution is one of the core problems in variational inference. Most applications employ simple families of approximations in order to allow for efficient inference, focusing on mean-field or other structured approximations. This restriction has a significant impact on the quality of inferences made using these methods. We introduce a new approach for specifying flexible, arbitrarily complex and scalable distributions. Our distributions are constructed through normalizing flow, whereby an initial density is transformed into a more complex distribution by applying a sequence of invertible transformations until a desired level of complexity is attained. We use this view of flows to develop categories of finite and infinitesimal approaches, provide a unified approach to constructing rich posteriors. We demonstrate that the theoretical advantages of having posteriors better match the true posterior, combined with scalability and amortized approaches, provides a clear improvement in performance and applicability.},
   address = {Lille, France},
   author = {Danilo Rezende and Shakir Mohamed},
@@ -1181,7 +1181,7 @@
   year = {2015}
 }
 
-@inproceedings{Levine2013Guided,
+@inproceedings{levine2013guided,
   abstract = {Direct policy search can effectively scale to high-dimensional systems, but complex policies with hundreds of parameters often present a challenge for such methods, requiring numerous samples and often falling into poor local optima. We present a guided policy search algorithm that uses trajectory optimization to direct policy learning and avoid poor local optima. We show how differential dynamic programming can be used to generate suitable guiding samples, and describe a regularized importance sampled policy optimization that incorporates these samples into the policy search. We evaluate the method by learning neural network controllers for planar swimming, hopping, and walking, as well as simulated 3D humanoid running.},
   address = {Atlanta, Georgia, USA},
   author = {Sergey Levine and Vladlen Koltun},
@@ -1200,7 +1200,7 @@
   year = {2013}
 }
 
-@inproceedings{Deisenroth2011PILCO,
+@inproceedings{deisenroth2011pilco,
   abstract = {In this paper, we introduce PILCO, a practical, data-efficient model-based policy search method. PILCO reduces model bias, one of the key problems of model-based reinforcement learning, in a principled way. By learning a probabilistic dynamics model and explicitly incorporating model uncertainty into long-term planning, PILCO can cope with very little data and facilitates learning from scratch in only a few trials. Policy evaluation is performed in closed form using state-of-the-art approximate inference. Furthermore, policy gradients are computed analytically for policy improvement. We report unprecedented learning efficiency on challenging and high-dimensional control tasks.},
   address = {Bellevue, Washington, USA},
   author = {Marc Peter Deisenroth and Carl Edward Rasmussen},
@@ -1214,7 +1214,7 @@
   year = {2011}
 }
 
-@inproceedings{Knox2011Generalization,
+@inproceedings{knox2011generalization,
   author = {Knox, W. Bradley and Stone, Peter},
   booktitle = {Proceedings of the International Conference on Autonomous Agents and Multiagent Systems (AAMAS)},
   note = {This paper addresses the problem of generalization in RL. While not strictly model-based, its exploration of how to make learned policies robust is relevant to the challenge of transferring policies trained in a world model to the real environment.},
@@ -1222,7 +1222,7 @@
   year = {2011}
 }
 
-@inproceedings{Deisenroth2011Learning,
+@inproceedings{deisenroth2011learning,
   abstract = {We address the problem of learning to control a low-cost off-the-shelf robotic manipulator for a stacking task. The manipulator is inaccurate and provides no pose feedback. For learning a controller in the work space of a Kinect-style depth camera, we use a model-based reinforcement learning technique. Our method allows the robot to learn closed-loop policies for a manipulation task in only a handful of trials from scratch, making it suitable for applications where data collection is expensive or time-consuming. This work demonstrates the practical applicability of data-efficient reinforcement learning to real robotic systems with limited sensing capabilities.},
   address = {Los Angeles, CA, USA},
   author = {Deisenroth, Marc P. and Rasmussen, Carl E. and Fox, Dieter},
@@ -1239,7 +1239,7 @@
   year = {2011}
 }
 
-@inproceedings{Geramifard2011Model,
+@inproceedings{geramifard2011model,
   address = {Bellevue, Washington, USA},
   author = {Geramifard, Alborz and Doshi-Velez, Finale and Fukumizu, Kenji and Konidaris, George},
   booktitle = {Proceedings of the 28th International Conference on Machine Learning (ICML)},
@@ -1250,7 +1250,7 @@
   year = {2011}
 }
 
-@inproceedings{Niekum2011Bayesian,
+@inproceedings{niekum2011bayesian,
   address = {Frankfurt am Main, Germany},
   author = {Scott Niekum and Andrew G. Barto},
   booktitle = {Proceedings of the 1st IEEE International Conference on Development and Learning and on Epigenetic Robotics (ICDL-EpiRob)},
@@ -1261,7 +1261,7 @@
   year = {2011}
 }
 
-@inproceedings{vanHasselt2009Reinforcement,
+@inproceedings{vanhasselt2009reinforcement,
   abstract = {This paper presents a theoretical and empirical analysis of Expected Sarsa, a variation on Sarsa, the classic on-policy temporal-difference method for model-free reinforcement learning. Expected Sarsa exploits knowledge about stochasticity in the behavior policy to perform updates with lower variance, which allows for higher learning rates and thus faster learning. We prove convergence under certain conditions and demonstrate empirically that Expected Sarsa can substantially outperform Q-learning on a variety of tasks.},
   author = {van Seijen, Harm and van Hasselt, Hado and Whiteson, Shimon and Wiering, Marco A.},
   booktitle = {IEEE Symposium on Adaptive Dynamic Programming and Reinforcement Learning},
@@ -1274,7 +1274,7 @@
   year = {2009}
 }
 
-@inproceedings{Diuk2008Object,
+@inproceedings{diuk2008object,
   abstract = {Rich representations in reinforcement learning have been studied for the purpose of enabling generalization and making learning feasible in large state spaces. We introduce Object-Oriented MDPs (OO-MDPs), a representation based on objects and their interactions, which is a natural way of modeling environments and offers important generalization opportunities. We introduce a learning algorithm for deterministic OO-MDPs and prove a polynomial bound on its sample complexity. We illustrate the performance gains of our representation and algorithm in the well-known Taxi domain, plus a real-life videogame.},
   address = {New York, NY, USA},
   author = {Carlos Diuk and Andre Cohen and Michael L. Littman},
@@ -1290,7 +1290,7 @@
   year = {2008}
 }
 
-@inproceedings{Peters2008Policy,
+@inproceedings{peters2008policy,
   abstract = {Many motor skills in humanoid robotics can be learned using parametrized motor primitives as done in imitation learning. However, most interesting motor learning problems are high-dimensional reinforcement learning problems often beyond the reach of current methods. In this paper, we extend previous work on policy learning from the immediate reward case to episodic reinforcement learning. We show that this results into a general, common framework also connected to policy gradient methods and yielding a novel algorithm. The resulting algorithm is an EM-inspired algorithm applicable in complex motor learning tasks that assumes a form of exploration that is particularly well-suited for dynamic motor primitives. We compare this algorithm to alternative parametrized policy search methods and show that it outperforms previous methods. We apply it in the context of motor learning and show that it can learn a complex Ball-in-a-Cup task using a real Barrett WAM robot arm.},
   address = {Red Hook, NY, USA},
   author = {Jens Kober and Jan R. Peters},
@@ -1304,7 +1304,7 @@
   year = {2008}
 }
 
-@article{Szita2006Learning,
+@article{szita2006learning,
   abstract = {The cross-entropy method is an efficient and general optimization algorithm. However, its applicability in reinforcement learning (RL) seems to be limited because it often converges to suboptimal policies. We apply noise for preventing early convergence of the cross-entropy method, using Tetris, a computer game, for demonstration. The resulting policy outperforms previous RL algorithms by almost two orders of magnitude.},
   author = {Szita, István and Lőrincz, András},
   doi = {10.1162/neco.2006.18.12.2936},
@@ -1319,7 +1319,7 @@
   year = {2006}
 }
 
-@inproceedings{Riedmiller2005Neural,
+@inproceedings{riedmiller2005neural,
   abstract = {This paper introduces NFQ, an algorithm for efficient and effective training of a Q-value function represented by a multi-layer perceptron. Based on the principle of storing and reusing transition experiences, a model-free, neural network based Reinforcement Learning method is proposed. The method is evaluated on three benchmark problems. It is shown empirically, that reasonably few interactions with the plant are needed to generate control policies of high quality.},
   address = {Berlin, Heidelberg},
   author = {Martin Riedmiller},
@@ -1336,7 +1336,7 @@
   year = {2005}
 }
 
-@book{Sutton1998Introduction,
+@book{sutton1998introduction,
   abstract = {Reinforcement learning, one of the most active research areas in artificial intelligence, is a computational approach to learning whereby an agent tries to maximize the total amount of reward it receives while interacting with a complex, uncertain environment. In Reinforcement Learning, Richard Sutton and Andrew Barto provide a clear and simple account of the field's key ideas and algorithms. This book is the bible of reinforcement learning, and generations of reinforcement learning researchers grew up and were inspired by this foundational text.},
   address = {Cambridge, MA},
   author = {Sutton, Richard S. and Barto, Andrew G.},
@@ -1351,7 +1351,7 @@
   year = {1998}
 }
 
-@article{Sutton1991Reinforcement,
+@article{sutton1991reinforcement,
   abstract = {Dyna is an AI architecture that integrates learning, planning, and reactive execution. Learning methods are used in Dyna both for compiling planning results and for updating a model of the effects of the agent's actions on the world. Planning is incremental and can use the probabilistic and oft-times incorrect world models generated by learning processes. Execution is fully reactive in the sense that no planning intervenes between perception and action. Dyna relies on machine learning methods for learning from examples---these are among the basic building blocks making up the architecture---yet is not tied to any particular method. This paper briefly introduces Dyna and discusses its strengths and weaknesses with respect to other architectures.},
   author = {Sutton, Richard S.},
   doi = {10.1145/122344.122377},
@@ -1367,7 +1367,7 @@
   year = {1991}
 }
 
-@article{Sutton1991Dyna,
+@article{sutton1991dyna,
   abstract = {Dyna is an AI architecture that integrates learning, planning, and reactive execution. Learning methods are used for compiling planning results and updating a model of the agent's actions on the world. Planning can use probabilistic, often incorrect world models generated by learning processes. Execution fully senses and acts without intervention between perception and action. The architecture relies on machine learning from examples, which are basic building blocks, yet not tied to any particular method. The paper briefly introduces and discusses its strengths and weaknesses with respect to other architectures.},
   author = {Sutton, Richard S.},
   doi = {10.1145/122344.122377},
@@ -1384,7 +1384,7 @@
   year = {1991}
 }
 
-@inproceedings{Sutton1990Integrated,
+@inproceedings{sutton1990integrated,
   abstract = {This paper extends previous work with Dyna, a class of architectures for intelligent systems based on approximating dynamic programming methods. Dyna architectures integrate trial-and-error (reinforcement) learning and execution-time planning into a single process operating alternately on the world and on a learned model of the world. The paper presents two Dyna architectures: the Dyna-PI architecture based on dynamic programming's policy iteration method, and the Dyna-Q architecture based on Watkins's Q-learning. Using a navigation task, results are shown for a simple Dyna-PI system that simultaneously learns by trial and error, learns a world model, and plans optimal routes using the evolving world model.},
   address = {San Mateo, CA},
   author = {Sutton, Richard S.},
@@ -1401,7 +1401,7 @@
   year = {1990}
 }
 
-@techreport{Schmidhuber1990Making,
+@techreport{schmidhuber1990making,
   abstract = {This prescient work proposes using two recurrent neural networks, a "world model" and a "controller," for reinforcement learning and planning. It introduces the core architectural separation that defines modern world models and pioneers concepts like artificial curiosity. The framework explores using RNNs to develop internal models to reason about the future, establishing a unifying approach for building RNN-based general problem solvers that can learn a world model of their environment and reason about future states using this model.},
   address = {Munich, Germany},
   author = {Schmidhuber, Jürgen},

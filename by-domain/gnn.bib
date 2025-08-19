@@ -167,7 +167,7 @@
   year = {2025}
 }
 
-@misc{Zeng2025SubgraphNodeClassification,
+@misc{zeng2025subgraphnodeclassification,
   abstract = {Previous studies have demonstrated the strong performance of Graph Neural Networks (GNNs) in node classification. However, most existing GNNs adopt a node-centric perspective and rely on global message passing, leading to high computational and memory costs that hinder scalability. To mitigate these challenges, subgraph-based methods have been introduced, leveraging local subgraphs as approximations of full computational trees. While this approach improves efficiency, it often suffers from performance degradation due to the loss of global contextual information, limiting its effectiveness compared to global GNNs. To address this trade-off between scalability and classification accuracy, we reformulate the node classification task as a subgraph classification problem and propose SubGND (Subgraph GNN for NoDe). This framework introduces a differentiated zero-padding strategy and an Ego-Alter subgraph representation method to resolve label conflicts while incorporating an Adaptive Feature Scaling Mechanism to dynamically adjust feature contributions based on dataset-specific dependencies. Experimental results on six benchmark datasets demonstrate that SubGND achieves performance comparable to or surpassing global message-passing GNNs, particularly in heterophilic settings, highlighting its effectiveness and scalability as a promising solution for node classification.},
   archiveprefix = {arXiv},
   author = {Qian Zeng and Xin Lin and Jingyi Gao and Yang Yu},
@@ -180,7 +180,7 @@
   year = {2025}
 }
 
-@misc{Chen2025BoundedCycles,
+@misc{chen2025boundedcycles,
   abstract = {Graph neural networks (GNNs) have been widely used in graph-related contexts. It is known that the separation power of GNNs is equivalent to Weisfeiler-Lehman (WL) test; hence, GNNs are imperfect at identifying all non-isomorphic graphs, which severely limits their expressive power. This work investigates $k$-hop subgraph aggregate information from neighbors with distances up to $k$ and incorporate structure. We prove that under appropriate assumptions, GNNs can approximate any permutation-invariant/equivariant continuous function over graphs without cycles length greater than $2k+1$ within error tolerance. We also provide an extension and numerical experiments on established benchmarks and novel architectures validate our theory relationship between aggregation distance and cycle size.},
   archiveprefix = {arXiv},
   author = {Ziang Chen and Qiao Zhang and Runzhong Wang},
@@ -194,7 +194,7 @@
   year = {2025}
 }
 
-@inproceedings{Shen2025ZeroShot,
+@inproceedings{shen2025zeroshot,
   abstract = {There are no known graph machine learning methods that can zero-shot generalize across attributed graphs with very different node attribute domains and consistently outperform methods that ignore node attributes. For instance, no method can significantly outperform structure-only predictions in zero-shot link prediction by pretraining on online appliance store datasets (with node attributes such as brand, model, capacity, dimension, has ice maker, energy rating for refrigerators) and zero-shot at test on an electronics store dataset for smartphones (with attributes such as processor type, display type, storage, and battery capacity). In this work, we leverage concepts in statistical theory to design STAGE, a universally applicable approach for encoding node attributes in any GNN that facilitates such generalization. Empirically, we show that STAGE outperforms its natural baselines and can accurately make predictions when presented with completely new feature domains.},
   address = {Vancouver, Canada},
   author = {Yangyi Shen and Jincheng Zhou and Beatrice Bevilacqua and Joshua Robinson and Charilaos Kanatsoulis and Jure Leskovec and Bruno Ribeiro},
@@ -207,7 +207,7 @@
   year = {2025}
 }
 
-@misc{Nguyen2025RankBased,
+@misc{nguyen2025rankbased,
   abstract = {Oversmoothing is a fundamental challenge in graph neural networks (GNNs): as the number of layers increases, node embeddings become increasingly similar, and model performance drops sharply. Traditionally, oversmoothing has been quantified using metrics that measure the similarity of neighbouring node features, such as the Dirichlet energy. While these metrics are related to oversmoothing, we argue they have critical limitations and fail to reliably capture oversmoothing in realistic scenarios. For instance, they provide meaningful insights only for very deep networks and under somewhat strict conditions on the norm of network weights and feature representations. As an alternative, we propose measuring oversmoothing by examining the numerical or effective rank of the feature representations. We provide theoretical support for this approach, demonstrating that the numerical rank of feature representations converges to one for a broad family of nonlinear activation functions under the assumption of nonnegative trained weights. To the best of our knowledge, this is the first result that proves the occurrence of oversmoothing in the nonlinear setting without assumptions on the boundedness of the weight matrices. Along with the theoretical findings, we provide extensive numerical evaluation across diverse graph architectures. Our results show that rank-based metrics consistently capture oversmoothing, whereas energy-based metrics often fail. Notably, we reveal that a significant drop in the rank aligns closely with performance degradation, even in scenarios where energy metrics remain unchanged.},
   archiveprefix = {arXiv},
   author = {Kaicheng Zhang and Piero Deidda and Desmond J. Higham and Francesco Tudisco},
@@ -219,7 +219,7 @@
   year = {2025}
 }
 
-@misc{Arroyo2025VanishingGradients,
+@misc{arroyo2025vanishinggradients,
   abstract = {Graph Neural Networks (GNNs) are models that leverage the graph structure to transmit information between nodes, typically through the message-passing operation. While widely successful, this approach is well known to suffer from the over-smoothing and over-squashing phenomena, which result in representational collapse as the number of layers increases and insensitivity to the information contained at distant and poorly connected nodes, respectively. In this paper, we present a unified view of these problems through the lens of vanishing gradients, using ideas from linear control theory for our analysis. We propose an interpretation of GNNs as recurrent models and empirically demonstrate that a simple state-space formulation of a GNN effectively alleviates over-smoothing and over-squashing at no extra trainable parameter cost. Further, we show theoretically and empirically that (i) GNNs are by design prone to extreme gradient vanishing even after a few layers; (ii) Over-smoothing is directly related to the mechanism causing vanishing gradients; (iii) Over-squashing is most easily alleviated by a combination of graph rewiring and vanishing gradient mitigation. We believe our work will help bridge the gap between the recurrent and graph neural network literature and will unlock the design of new deep and performant GNNs.},
   archiveprefix = {arXiv},
   author = {Álvaro Arroyo and Alessio Gravina and Benjamin Gutteridge and Federico Barbero and Claudio Gallicchio and Xiaowen Dong and Michael Bronstein and Pierre Vandergheynst},
@@ -233,7 +233,7 @@
   year = {2025}
 }
 
-@inproceedings{Eliasof2025DynamicalSystems,
+@inproceedings{eliasof2025dynamicalsystems,
   abstract = {A common problem in Message-Passing Neural Networks is oversquashing -- the limited ability to facilitate effective information flow between distant nodes. Oversquashing is attributed to the exponential decay in information transmission as node distances increase. This paper introduces a novel perspective to address oversquashing, leveraging dynamical systems properties of global and local non-dissipativity, that enable the maintenance of a constant information flow rate. We present SWAN, a uniquely parameterized GNN model with antisymmetry both in space and weight domains, as a means to obtain non-dissipativity. Our theoretical analysis asserts that by implementing these properties, SWAN offers an enhanced ability to transmit information over extended distances. Empirical evaluations on synthetic and real-world benchmarks that emphasize long-range interactions validate the theoretical understanding of SWAN, and its ability to mitigate oversquashing.},
   author = {Alessio Gravina and Moshe Eliasof and Claudio Gallicchio and Davide Bacciu and Carola-Bibiane Schönlieb},
   booktitle = {Proceedings of the AAAI Conference on Artificial Intelligence},
@@ -248,14 +248,14 @@
   year = {2025}
 }
 
-@inproceedings{Verma2025PointLevel,
+@inproceedings{verma2025pointlevel,
   author = {Yogeshwar Verma and Vineet Garg},
   booktitle = {Proceedings of the International Conference on Machine Learning (ICML)},
   title = {Point-Level Topological Representation Learning on Point Clouds},
   year = {2025}
 }
 
-@misc{Wei2025ManifoldTDL,
+@misc{wei2025manifoldtdl,
   abstract = {Recently, topological deep learning (TDL), which integrates algebraic topology with deep neural networks, has achieved tremendous success in processing point-cloud data, emerging as a promising paradigm in data science. However, TDL has not been developed for data on differentiable manifolds, including images, due to the challenges posed by differential topology. This work addresses this challenge by introducing manifold topological deep learning (MTDL) for the first time. In this novel framework, original images are represented as smooth manifolds with vector fields that are decomposed into three orthogonal components based on Hodge theory. The Hodge Laplacian theory is employed to decompose the vector field into three orthogonal components: curl-free, divergence-free, and harmonic parts. MTDL integrates the discrete Hodge theory from differential topology, the Transformer encoder architecture, and convolutional operations, providing a novel framework for extending TDL to differentiable manifold data. The performance of MTDL was evaluated using the MedMNIST v2 benchmark database, which comprises 717,287 biomedical images from eleven 2D and six 3D datasets. MTDL significantly outperforms other competing methods, establishing MTDL as an efficient framework for TDL on differentiable manifold data.},
   archiveprefix = {arXiv},
   author = {Xiang Liu and Zhe Su and Yongyi Shi and Yiying Tong and Ge Wang and Guo-Wei Wei},
@@ -721,7 +721,7 @@
   year = {2024}
 }
 
-@inproceedings{Jogl2024IsExpressivityEssential,
+@inproceedings{jogl2024isexpressivityessential,
   abstract = {Motivated by the large amount of research on the expressivity of GNNs, we study the impact of expressivity on the predictive performance of GNNs. By performing knowledge distillation from highly expressive teacher GNNs to less expressive student GNNs, we demonstrate that knowledge distillation reduces the predictive performance gap between teachers and students significantly.},
   author = {Fabian Jogl and Pascal Welke and Thomas Gärtner},
   booktitle = {NeurIPS 2024 Workshop on Scientific Methods for Understanding Deep Learning},
@@ -732,7 +732,7 @@
   year = {2024}
 }
 
-@inproceedings{Piquenot2024G2N2,
+@inproceedings{piquenot2024g2n2,
   abstract = {This paper introduces a framework for formally establishing a connection between a portion of an algebraic language and a Graph Neural Network (GNN). The framework leverages Context-Free Grammars (CFG) to organize algebraic operations into generative rules that can be translated into a GNN layer model. As CFGs derived directly from a language tend to contain redundancies in their rules and variables, we present a grammar reduction scheme. By applying this strategy, we define a CFG that conforms to the third-order Weisfeiler-Lehman (3-WL) test using the matricial language MATLANG. From this 3-WL CFG, we derive a GNN model, named G$^2$N$^2$, which is provably 3-WL compliant. Through various experiments, we demonstrate the superior efficiency of G$^2$N$^2$ compared to other 3-WL GNNs across numerous downstream tasks.},
   arxiv = {2303.01590},
   author = {Jason Piquenot and Aldo Moscatelli and Maxime Bérar and Pierre Héroux and Romain Raveaux and Jean-Yves Ramel and Sébastien Adam},
@@ -746,7 +746,7 @@
   year = {2024}
 }
 
-@inproceedings{Graziani2024PathBased,
+@inproceedings{graziani2024pathbased,
   abstract = {We systematically investigate the expressive power of path-based graph neural networks. While it has been shown that path-based graph neural networks can achieve strong empirical results, an investigation into their expressive power is lacking. We propose PATH-WL, a general class of color refinement algorithms based on paths and shortest path distance information. PATH-WL is incomparable to a wide range of expressive graph neural networks, can count cycles, and achieves strong empirical results on the notoriously difficult family of strongly regular graphs. Our theoretical results indicate that PATH-WL forms a new hierarchy of highly expressive graph neural networks.},
   author = {Caterina Graziani and Tamara Drucks and Fabian Jogl and Monica Bianchini and Franco Scarselli and Thomas Gärtner},
   booktitle = {Proceedings of the 41st International Conference on Machine Learning},
@@ -760,7 +760,7 @@
   year = {2024}
 }
 
-@inproceedings{Pellizzoni2024NodeIndividualized,
+@inproceedings{pellizzoni2024nodeindividualized,
   abstract = {Graph neural networks (GNNs) employing message passing for graph classification are inherently limited by the expressive power of the Weisfeiler-Leman (WL) test for graph isomorphism. Node individualization schemes, which assign unique identifiers to nodes (e.g., by adding random noise to features), are a common approach for achieving universal expressiveness. However, the ability of GNNs endowed with individualization schemes to generalize beyond the training data is still an open question. To address this question, this paper presents a theoretical analysis of the sample complexity of such GNNs from a statistical learning perspective, employing Vapnik--Chervonenkis (VC) dimension and covering methods.},
   address = {Red Hook, NY, USA},
   author = {Paolo Pellizzoni and Till Hendrik Schulz and Dexiong Chen and Karsten M. Borgwardt},
@@ -775,7 +775,7 @@
   year = {2024}
 }
 
-@inproceedings{Zhang2024HomomorphismExpressivity,
+@inproceedings{zhang2024homomorphismexpressivity,
   abstract = {Designing expressive Graph Neural Networks (GNNs) is a fundamental topic in the graph learning community. So far, GNN expressiveness has been primarily assessed via the Weisfeiler-Lehman (WL) hierarchy. However, such an expressivity measure has notable limitations: it is inherently coarse, qualitative, and may not well reflect practical requirements (e.g., the ability to encode substructures). In this paper, we introduce a unified framework for quantitatively studying the expressiveness of GNN architectures, addressing all the above limitations. Specifically, we identify a fundamental expressivity measure termed homomorphism expressivity, which quantifies the ability of GNN models to count graphs under homomorphism. Homomorphism expressivity offers a complete and practical assessment tool: the completeness enables direct expressivity comparisons between GNN models, while the practicality allows for understanding concrete GNN abilities such as subgraph counting. By examining four classes of prominent GNNs as case studies, we derive simple, unified, and elegant descriptions of their homomorphism expressivity for both invariant and equivariant settings. Our results provide novel insights into a series of previous work, unify the landscape of different subareas in the community, and settle several open questions. Empirically, extensive experiments on both synthetic and real-world tasks verify our theory, showing that the practical performance of GNN models aligns well with the proposed metric.},
   author = {Bohang Zhang and Jingchu Gai and Yiheng Du and Qiwei Ye and Di He and Liwei Wang},
   booktitle = {Proceedings of the Twelfth International Conference on Learning Representations},
@@ -790,7 +790,7 @@
   year = {2024}
 }
 
-@inproceedings{Wang2024EmpiricalStudy,
+@inproceedings{wang2024empiricalstudy,
   abstract = {Research on the theoretical expressiveness of Graph Neural Networks (GNNs) has developed rapidly, and many methods have been proposed to enhance the expressiveness. However, most methods do not have a uniform expressiveness measure except for a few that strictly follow the k-dimensional Weisfeiler-Lehman (k-WL) test hierarchy, leading to difficulties in quantitatively comparing their expressiveness. Previous research attempted to use datasets for measurement but faced problems with difficulty (any model surpassing 1-WL has nearly 100% accuracy), granularity (cannot compare models between 1-WL and 3-WL), and scale (only a few essentially different graphs). In this paper, we study the "realized expressive power"---the practical expressive power that a practical model instance can achieve. We conduct a thorough experimental study to measure the realized expressiveness using a novel expressiveness dataset called BREC. The BREC dataset poses greater difficulty (with graphs up to 4-WL-indistinguishable), finer granularity (enabling comparison of models between 1-WL and 3-WL), and larger scale (consisting of 800 1-WL-indistinguishable graphs that are non-isomorphic to each other). We synthetically test 23 models with higher-than-1-WL expressiveness on BREC. Our experiment gives the first thorough measurement of the realized expressiveness of those state-of-the-art beyond-1-WL GNN models and reveals the gap between theoretical and realized expressiveness.},
   author = {Yanbo Wang and Muhan Zhang},
   booktitle = {Proceedings of the 41st International Conference on Machine Learning},
@@ -805,7 +805,7 @@
   year = {2024}
 }
 
-@inproceedings{Jin2024HomomorphismCounts,
+@inproceedings{jin2024homomorphismcounts,
   abstract = {A large body of work has investigated the properties of graph neural networks and identified several limitations, particularly pertaining to their expressive power. Their inability to count certain patterns (e.g., cycles) in a graph lies at the heart of such limitations, since many functions to be learned rely on the ability of counting such patterns. Two prominent paradigms aim to address this limitation by enriching the graph features with subgraph or homomorphism pattern counts. In this work, we show that both of these approaches are sub-optimal in a certain sense and argue for a more fine-grained approach, which incorporates the homomorphism counts of all structures in the ``basis'' of the target pattern. This yields strictly more expressive architectures without incurring any additional overhead in terms of computational complexity compared to existing approaches. We prove a series of theoretical results on node-level and graph-level motif parameters and empirically validate them on standard benchmark datasets.},
   author = {Emily Jin and Michael M. Bronstein and Ismail Ilkan Ceylan and Matthias Lanzinger},
   booktitle = {Proceedings of the 41st International Conference on Machine Learning},
@@ -820,7 +820,7 @@
   year = {2024}
 }
 
-@inproceedings{Morris2024Margin,
+@inproceedings{morris2024margin,
   abstract = {The Weisfeiler--Leman algorithm (1-WL) is a well-studied heuristic for the graph isomorphism problem. Recently, the algorithm has played a prominent role in understanding the expressive power of message-passing graph neural networks (MPNNs) and being effective as a graph kernel. Despite its success, the 1-WL faces challenges in distinguishing non-isomorphic graphs, leading to the development of more expressive MPNN and kernel architectures. However, the relationship between enhanced expressivity and improved generalization performance remains unclear. Here, we show that an architecture's expressivity offers limited insights into its generalization performance when viewed through graph isomorphism. Moreover, we focus on augmenting 1-WL and MPNNs with subgraph information and employ classical margin theory to investigate the conditions under which an architecture's increased expressivity aligns with improved generalization performance. In addition, we introduce variations of expressive 1-WL-based kernel and MPNN architectures with provable generalization properties. Our empirical study confirms the validity of our theoretical findings.},
   author = {Billy Joe Franks and Christopher Morris and Ameya Velingker and Floris Geerts},
   booktitle = {Proceedings of the 41st International Conference on Machine Learning},
@@ -834,7 +834,7 @@
   year = {2024}
 }
 
-@inproceedings{Zhang2024SpectralInvariant,
+@inproceedings{zhang2024spectralinvariant,
   abstract = {Incorporating spectral information to enhance Graph Neural Networks (GNNs) has shown promising results but raises a fundamental challenge due to the inherent ambiguity of eigenvectors. Various architectures have been proposed to address this ambiguity, referred to as spectral invariant architectures. Notable examples include GNNs and Graph Transformers that use spectral distances, spectral projection matrices, or other invariant spectral features. However, the potential expressive power of these spectral invariant architectures remains largely unclear. The goal of this work is to gain a deep theoretical understanding of the expressive power obtainable when using spectral features. We first introduce a unified message-passing framework for designing spectral invariant GNNs, called Eigenspace Projection GNN (EPNN). A comprehensive analysis shows that EPNN essentially unifies all prior spectral invariant architectures, in that they are either strictly less expressive or equivalent to EPNN. A fine-grained expressiveness hierarchy among different architectures is also established. On the other hand, we prove that EPNN itself is bounded by a recently proposed class of Subgraph GNNs, implying that all these spectral invariant architectures are strictly less expressive than 3-WL. Finally, we discuss whether using spectral features can gain additional expressiveness when combined with more expressive GNNs.},
   address = {Vienna, Austria},
   author = {Bohang Zhang and Lingxiao Zhao and Haggai Maron},
@@ -850,7 +850,7 @@
   year = {2024}
 }
 
-@inproceedings{BarShalom2024Subgraphormer,
+@inproceedings{barshalom2024subgraphormer,
   abstract = {In the realm of Graph Neural Networks (GNNs), two exciting research directions have recently emerged: Subgraph GNNs and Graph Transformers. In this paper, we propose an architecture that integrates both approaches, dubbed Subgraphormer, which combines the enhanced expressive power, message-passing mechanisms, and aggregation schemes from Subgraph GNNs with attention and positional encodings, arguably the most important components in Graph Transformers. Our method is based on an intriguing new connection we reveal between Subgraph GNNs and product graphs, suggesting that Subgraph GNNs can be formulated as Message Passing Neural Networks (MPNNs) operating on a product of the graph with itself. We use this formulation to design our architecture: first, we devise an attention mechanism based on the connectivity of the product graph. Following this, we propose a novel and efficient positional encoding scheme for Subgraph GNNs, which we derive as a positional encoding for the product graph. Our experimental results demonstrate significant performance improvements over both Subgraph GNNs and Graph Transformers on a wide range of datasets.},
   address = {Vienna, Austria},
   author = {Guy Bar-Shalom and Beatrice Bevilacqua and Haggai Maron},
@@ -867,7 +867,7 @@
   year = {2024}
 }
 
-@inproceedings{Bevilacqua2024EfficientSubgraph,
+@inproceedings{bevilacqua2024efficientsubgraph,
   abstract = {Subgraph GNNs are provably expressive neural architectures that learn graph representations from sets of subgraphs. Unfortunately, their applicability is hampered by the computational complexity associated with performing message passing on many subgraphs. In this paper, we consider the problem of learning to select a small subset of the large set of possible subgraphs in a data-driven fashion. We first motivate the problem by proving that there are families of WL-indistinguishable graphs for which there exist efficient subgraph selection policies: small subsets of subgraphs that can already identify all the graphs within the family. We then propose a new approach, called POLICY-LEARN, that learns how to select subgraphs in an iterative manner. We prove that, unlike popular random policies and prior work addressing the same problem, our architecture is able to learn the efficient policies mentioned above. Experimental results demonstrate that POLICY-LEARN outperforms existing baselines across a wide range of datasets.},
   archiveprefix = {arXiv},
   author = {Beatrice Bevilacqua and Moshe Eliasof and Eli A. Meirom and Bruno Ribeiro and Haggai Maron},
@@ -882,7 +882,7 @@
   year = {2024}
 }
 
-@inproceedings{BarShalom2024FlexibleFramework,
+@inproceedings{barshalom2024flexibleframework,
   abstract = {Subgraph GNNs enhance message-passing GNNs expressivity by representing graphs as sets of subgraphs, demonstrating impressive performance across various tasks. However, their scalability is hindered by the need to process large numbers of subgraphs. While previous approaches attempted to generate smaller subsets of subgraphs through random or learnable sampling, these methods often yielded suboptimal selections or were limited to small subset sizes, ultimately compromising their effectiveness. This paper introduces a new Subgraph GNN framework to address these issues. Our approach diverges from most previous methods by associating subgraphs with node clusters rather than with individual nodes. We show that the resulting collection of subgraphs can be viewed as the product of coarsened and original graphs, unveiling a new connectivity structure on which we perform generalized message passing. Crucially, controlling the coarsening function enables meaningful selection of any number of subgraphs. In addition, we reveal novel permutation symmetries in the resulting node feature tensor, characterize associated linear equivariant layers, and integrate them into our Subgraph GNN. We also introduce novel node marking strategies and provide a theoretical analysis of their expressive power and other key aspects of our approach. Extensive experiments on multiple graph learning benchmarks demonstrate that our method is significantly more flexible than previous approaches, as it can seamlessly handle any number of subgraphs, while consistently outperforming baseline approaches.},
   author = {Guy Bar-Shalom and Yam Eitan and Fabrizio Frasca and Haggai Maron},
   booktitle = {Advances in Neural Information Processing Systems},
@@ -894,7 +894,7 @@
   year = {2024}
 }
 
-@inproceedings{Morris2024OrbitEquivariant,
+@inproceedings{morris2024orbitequivariant,
   abstract = {Equivariance is an important structural property that is captured by architectures such as graph neural networks (GNNs). However, equivariant graph functions cannot produce different outputs for similar nodes, which may be undesirable when the function is trying to optimize some global graph property. In this paper, we define orbit-equivariance, a relaxation of equivariance which allows for such functions whilst retaining important structural inductive biases.},
   address = {Vienna, Austria},
   author = {Matthew Morris and Bernardo Cuenca Grau and Ian Horrocks},
@@ -907,7 +907,7 @@
   year = {2024}
 }
 
-@inproceedings{Liu2024Clifford,
+@inproceedings{liu2024clifford,
   abstract = {We introduce Clifford Group Equivariant Simplicial Message Passing Networks, a method for steerable E(n)-equivariant message passing on simplicial complexes. Our method integrates the expressivity of Clifford group-equivariant layers with simplicial message passing, which is topologically more intricate than regular graph message passing. Clifford algebras include higher-order objects such as bivectors and trivectors, which express geometric features (e.g., areas, volumes) derived from vectors. Using this knowledge, we represent simplex features through geometric products of their vertices. To achieve efficient simplicial message passing, we share the parameters of the message network across different dimensions. Additionally, we restrict the final message to an aggregation of the incoming messages from different dimensions, leading to what we term shared simplicial message passing. Experimental results show that our method is able to outperform both equivariant and simplicial graph neural networks on a variety of geometric tasks.},
   author = {Cong Liu and David Ruhe and Floor Eijkelboom and Patrick Forré},
   booktitle = {Proceedings of the International Conference on Learning Representations (ICLR)},
@@ -919,7 +919,7 @@
   year = {2024}
 }
 
-@inproceedings{Luo2024SteerableFeatures,
+@inproceedings{luo2024steerablefeatures,
   author = {Siyu Luo and Andrew Gordon Wilson},
   booktitle = {The Twelfth International Conference on Learning Representations},
   publisher = {OpenReview.net},
@@ -928,7 +928,7 @@
   year = {2024}
 }
 
-@inproceedings{Hordan2024WLEuclidean,
+@inproceedings{hordan2024wleuclidean,
   abstract = {The $k$-Weisfeiler-Leman ($k$-WL) graph isomorphism test hierarchy is commonly used to assess the expressive power of graph neural networks (GNNs). Recently, GNNs whose expressive power is equivalent to the 2-WL test were proven to be universal on weighted graphs which encode 3D point cloud data, yet this result is limited to invariant continuous functions on point clouds. We extend this result in three ways: 1) We show that PPGN can simulate 2-WL uniformly on all point clouds with low complexity. 2) We show that 2-WL tests can be extended to point clouds which include both positions and velocities, a scenario often encountered in applications. 3) We provide a general framework for proving equivariant universality and leverage it to prove that a simple modification of this invariant PPGN architecture can be used to obtain a universal equivariant architecture that can approximate all continuous equivariant functions uniformly. Building on these results, we develop the WeLNet architecture. Our theoretical results are complemented by experiments showing that WeLNet sets new state-of-the-art results on the N-Body dynamics task and the GEOM-QM9 molecular conformation generation task.},
   author = {Snir Hordan and Tal Amir and Nadav Dym},
   booktitle = {Proceedings of the 41st International Conference on Machine Learning},
@@ -942,7 +942,7 @@
   year = {2024}
 }
 
-@inproceedings{Navon2024WeightSpaceAlignment,
+@inproceedings{navon2024weightspacealignment,
   abstract = {Permutation symmetries of deep networks make basic operations like model merging and similarity estimation challenging. In many cases, aligning the weights of the networks, i.e., finding optimal permutations between their weights, is necessary. Unfortunately, weight alignment is an NP-hard problem. Prior research has mainly focused on solving relaxed versions of the alignment problem, leading to either time-consuming methods or sub-optimal solutions. To accelerate the alignment process and improve its quality, we propose a novel framework aimed at learning to solve the weight alignment problem, which we name Deep-Align. To that end, we first prove that weight alignment adheres to two fundamental symmetries and then, propose a deep architecture that respects these symmetries. Notably, our framework does not require any labeled data. We provide a theoretical analysis of our approach and evaluate Deep-Align on several types of network architectures and learning setups. Our experimental results indicate that a feed-forward pass with Deep-Align produces better or equivalent alignments compared to those produced by current optimization algorithms. Additionally, our alignments can be used as an effective initialization for other methods, leading to improved solutions with a significant speedup in convergence.},
   address = {Vienna, Austria},
   author = {Aviv Navon and Aviv Shamsian and Ethan Fetaya and Gal Chechik and Nadav Dym and Haggai Maron},
@@ -957,7 +957,7 @@
   year = {2024}
 }
 
-@inproceedings{Zhang2025TRIX,
+@inproceedings{zhang2025trix,
   abstract = {Fully inductive knowledge graph models can be trained on multiple domains and subsequently perform zero-shot knowledge graph completion (KGC) in new unseen domains. This is an important capability towards the goal of having foundation models for knowledge graphs. TRIX introduces a more expressive and capable fully inductive model, which not only yields strictly more expressive triplet embeddings (head entity, relation, tail entity) compared to state-of-the-art methods, but also introduces a new capability: directly handling both entity and relation prediction tasks in inductive settings.},
   author = {Yucheng Zhang and Beatrice Bevilacqua and Mikhail Galkin and Bruno Ribeiro},
   booktitle = {Proceedings of the Third Learning on Graphs Conference},
@@ -970,14 +970,14 @@
   year = {2024}
 }
 
-@misc{Kim2024StationaryPerspective,
+@misc{kim2024stationaryperspective,
   author = {Daehyun Kim and Jinyoung Kim},
   note = {Manuscript},
   title = {Oversmoothing in GNNs: A Stationary Perspective},
   year = {2024}
 }
 
-@inproceedings{Attali2024Delaunay,
+@inproceedings{attali2024delaunay,
   abstract = {GNNs rely on the exchange of messages to distribute information along the edges of the graph. This approach makes the efficiency of architectures highly dependent on the specific structure of the input graph. Certain graph topologies lead to inefficient information propagation, resulting in a phenomenon known as over-squashing. While the majority of existing methods address over-squashing by rewiring the input graph, our novel approach involves constructing a graph directly from features using Delaunay Triangulation. We posit that the topological properties of the resulting graph prove advantageous for mitigate oversmoothing and over-squashing. Our extensive experimentation demonstrates that our method consistently outperforms established graph rewiring methods.},
   address = {Vienna, Austria},
   author = {Hugo Attali and Davide Buscaldi and Nathalie Pernelle},
@@ -993,7 +993,7 @@
   year = {2024}
 }
 
-@inproceedings{Pei2024MultiTrack,
+@inproceedings{pei2024multitrack,
   abstract = {The advancement toward deeper graph neural networks is currently obscured by two inherent issues in message passing, \emphoversmoothing and \emphoversquashing. We identify the root cause of these issues as information loss due to \emphheterophily mixing in aggregation, where messages of diverse category semantics are mixed. We propose a novel multi-track graph convolutional network to address oversmoothing and oversquashing effectively. Our basic idea is intuitive: if messages are separated and independently propagated according to their category semantics, heterophilic mixing can be prevented. Consequently, we present a novel multi-track message passing scheme capable of preventing heterophilic mixing, enhancing long-distance information flow, and improving separation condition. Empirical validations show that our model achieved state-of-the-art performance on several graph datasets and effectively tackled oversmoothing and oversquashing, setting a new benchmark of $86.4$% accuracy on Cora.},
   author = {Hongbin Pei and Yu Li and Huiqi Deng and Jingxin Hai and Pinghui Wang and Jie Ma and Jing Tao and Yuheng Xiong and Xiaohong Guan},
   booktitle = {Proceedings of the 41st International Conference on Machine Learning},
@@ -1008,7 +1008,7 @@
   year = {2024}
 }
 
-@inproceedings{Jamadandi2024SpectralPruning,
+@inproceedings{jamadandi2024spectralpruning,
   abstract = {Message Passing Graph Neural Networks are known to suffer from two problems that are sometimes believed to be diametrically opposed: over-squashing and over-smoothing. The former results from topological bottlenecks that hamper the information flow from distant nodes and are mitigated by spectral gap maximization, primarily, by means of edge additions. However, such additions often promote over-smoothing that renders nodes of different classes less distinguishable. Inspired by the Braess phenomenon, we argue that deleting edges can address over-squashing and over-smoothing simultaneously. This insight explains how edge deletions can improve generalization, thus connecting spectral gap optimization to a seemingly disconnected objective of reducing computational resources by pruning graphs for lottery tickets. To this end, we propose a more effective spectral gap optimization framework to add or delete edges and demonstrate its effectiveness on large heterophilic datasets.},
   author = {Adarsh Jamadandi and Celia Rubio-Madrigal and Rebekka Burkholz},
   booktitle = {Advances in Neural Information Processing Systems 37},
@@ -1021,7 +1021,7 @@
   year = {2024}
 }
 
-@inproceedings{Papamarkou2024Position,
+@inproceedings{papamarkou2024position,
   abstract = {Topological deep learning (TDL) is a rapidly evolving field that uses topological features to understand and design deep learning models. This paper posits that TDL is the new frontier for relational learning. TDL may complement graph representation learning and geometric deep learning by incorporating topological concepts, and can thus provide a natural choice for various machine learning settings. The paper discusses open problems in TDL, ranging from practical benefits to theoretical foundations, outlining potential solutions and future research opportunities for each problem. The paper serves as an invitation to the scientific community to actively participate in TDL research to unlock the potential of this emerging field.},
   author = {Theodore Papamarkou and Tolga Birdal and Michael M. Bronstein and Gunnar E. Carlsson and Justin Curry and Yue Gao and Mustafa Hajij and Roland Kwitt and Pietro Lio and Paolo Di Lorenzo and Vasileios Maroulas and Nina Miolane and Farzana Nasrin and Karthikeyan Natesan Ramamurthy and Bastian Rieck and Simone Scardapane and Michael T. Schaub and Petar Veličković and Bei Wang and Yusu Wang and Guowei Wei and Ghada Zamzmi},
   booktitle = {Proceedings of the 41st International Conference on Machine Learning},
@@ -1035,7 +1035,7 @@
   year = {2024}
 }
 
-@inproceedings{Verma2024TopNets,
+@inproceedings{verma2024topnets,
   abstract = {Topological Neural Networks (TNNs) incorporate higher-order relational information beyond pairwise interactions, enabling richer representations than Graph Neural Networks (GNNs). Concurrently, topological descriptors based on persistent homology (PH) are being increasingly employed to augment the GNNs. We investigate the benefits of integrating these two paradigms. Specifically, we introduce TopNets as a broad framework that subsumes and unifies various methods in the intersection of GNNs/TNNs and PH such as (generalizations of) RePEcHINE and TOGL. TopNets can also be readily adapted to handle (symmetries in) geometric complexes, extending the scope of TNNs and PH to spatial settings. Theoretically, we show that PH descriptors can provably enhance the expressivity of simplicial message-passing networks. Empirically, (continuous and $E(n)$-equivariant extensions of) TopNets achieve strong performance across diverse tasks, including antibody design, molecular dynamics simulation, and drug property prediction.},
   author = {Yogeshwar Verma and Amauri H. Souza and Vikas Garg},
   booktitle = {Proceedings of the 41st International Conference on Machine Learning},
@@ -1051,7 +1051,7 @@
   year = {2024}
 }
 
-@inproceedings{Alain2024GaussianProcesses,
+@inproceedings{alain2024gaussianprocesses,
   abstract = {In recent years, there has been considerable interest in developing machine learning models on graphs to account for topological inductive biases. In particular, recent attention has been given to Gaussian processes on such structures since they can additionally account for uncertainty. However, graphs are limited to modelling relations between two vertices. In this paper, we go beyond this dyadic setting and consider polyadic relations that include interactions between vertices, edges and one of their generalisations, known as cells. Specifically, we propose Gaussian processes on cellular complexes, a generalisation of graphs that captures interactions between these higher-order cells.},
   author = {Mathieu Alain and So Takao and Brooks Paige and Marc Peter Deisenroth},
   booktitle = {Proceedings of the 41st International Conference on Machine Learning},
@@ -1065,7 +1065,7 @@
   year = {2024}
 }
 
-@inproceedings{Huang2024UniversalPolynomial,
+@inproceedings{huang2024universalpolynomial,
   abstract = {Spectral Graph Neural Networks (GNNs), alternatively known as graph filters, have gained increasing prevalence for heterophily graphs. However, polynomials in the majority of these filters are predefined and remain fixed across different graphs, failing to accommodate the varying degrees of heterophily. We demystify the intrinsic correlation between the spectral property of desired polynomial bases and the heterophily degrees via thorough theoretical analyses. Subsequently, we develop a novel adaptive heterophily basis wherein the basis vectors mutually form angles reflecting the heterophily degree of the graph. By incorporating this heterophily basis with the homophily basis, we establish a universal polynomial basis UniBasis. We then integrate UniBasis into the polynomial filter-based graph neural network, dubbed UniFilter. Comprehensive experiments demonstrate the superior performance of our UniFilter over both the spatial-domain and spectral-domain baselines. Notably, UniFilter achieves substantial performance gains on heterophily graphs and effectively addresses the over-smoothing and over-squashing challenges that plague many existing methods.},
   author = {Keke Huang and Yu Guang Wang and Ming Li and Pietro Liò},
   booktitle = {Proceedings of the 41st International Conference on Machine Learning},
@@ -1080,7 +1080,7 @@
   year = {2024}
 }
 
-@inproceedings{Bamberger2024ExtendingTDL,
+@inproceedings{bamberger2024extendingtdl,
   author = {Lewin Bamberger and Cristian Bodnar and Francesco Di Giovanni and Christopher Morris and James Tönshoff},
   booktitle = {The Twelfth International Conference on Learning Representations},
   month = {5},
@@ -1093,7 +1093,7 @@
   year = {2024}
 }
 
-@inproceedings{Bernardez2024ICMLChallenge,
+@inproceedings{bernardez2024icmlchallenge,
   abstract = {This paper describes the 2nd edition of the ICML Topological Deep Learning Challenge hosted within the ICML 2024 ELLIS Workshop on Geometry-grounded Representation Learning and Generative Modeling (GRaM). The challenge focused on the problem of representing data in different discrete topological domains in order to bridge the gap between Topological Deep Learning (TDL) and other types of structured datasets. Specifically, participants were asked to design and implement topological liftings, i.e. mappings between different data structures and topological domains like hypergraphs, or simplicial/cell/combinatorial complexes. The challenge received 52 submissions satisfying all the requirements from 31 different teams with a total of 57 participants. The main purpose of this challenge is to foster new research and knowledge about effective mappings between different topological domains and data structures, helping to expand the current scope and impact of TDL to a much broader range of contexts.},
   author = {Guillermo Bernárdez and Lev Telyatnikov and Marco Montagna and Federica Baccini and Mathilde Papillon and Miquel Ferriol-Galmés and Mustafa Hajij and Theodore Papamarkou and Maria Sofia Bucarelli and Olga Zaghen and Johan Mathe and Audun Myers and Scott Mahan and Hansen Lillemark and Sharvaree Vadgama and Erik Bekkers and Tim Doster and Tegan Emerson and Henry Kvinge and Katrina Agate and Nesreen K. Ahmed and Pengfei Bai and Michael Banf and Claudio Battiloro and Maxim Beketov and Paul Bogdan and Martin Carrasco and Andrea Cavallo and Yun Young Choi and George Dasoulas and Matouš Elphick and Giordan Escalona and Dominik Filipiak and Halley Fritze and Thomas Gebhart and Manel Gil-Sorribes and Salvish Goomanee and Victor Guallar and Liliya Imasheva and Andrei Irimia and Hongwei Jin and Graham Johnson and Nikos Kanakaris and Boshko Koloski and Veljko Kovač and Manuel Lecha and Minho Lee and Pierrick Leroy and Theodore Long and German Magai and Alvaro Martinez and Marissa Masden and Sebastian Mežnar and Bertran Miquel-Oliver and Alexis Molina and Alexander Nikitin and Marco Nurisso and Matt Piekenbrock and Yu Qin and Patryk Rygiel and Alessandro Salatiello and Max Schattauer and Pavel Snopov and Julian Suk and Valentina Sánchez and Mauricio Tec and Francesco Vaccarino and Jonas Verhellen and Frederic Wantiez and Alexander Weers and Patrik Zajec and Blaž Škrlj and Nina Miolane},
   booktitle = {Proceedings of the Geometry-grounded Representation Learning and Generative Modeling Workshop (GRaM)},
@@ -1251,7 +1251,7 @@
   year = {2023}
 }
 
-@inproceedings{Zhang2023Biconnectivity,
+@inproceedings{zhang2023biconnectivity,
   abstract = {Designing expressive Graph Neural Networks (GNNs) is a central topic in learning graph-structured data. While numerous approaches have been proposed to improve GNNs with respect to the Weisfeiler-Lehman (WL) test, for most of them, there is still a lack of deep understanding of what additional power they can systematically and provably gain. In this paper, we take a fundamentally different perspective to study the expressive power of GNNs beyond the WL test. Specifically, we introduce a novel class of expressivity metrics via graph biconnectivity and highlight their importance in both theory and practice. As biconnectivity can be easily calculated using simple algorithms that have linear computational costs, it is natural to expect that popular GNNs can learn it easily as well. However, after a thorough review of prior GNN architectures, we surprisingly find that most of them are not expressive for any of these metrics. The only exception is the ESAN framework (Bevilacqua et al., 2022), for which we give a theoretical justification of its power. We proceed to introduce a principled and more efficient approach, called the Generalized Distance Weisfeiler-Lehman (GD-WL), which is provably expressive for all biconnectivity metrics. Practically, we show GD-WL can be implemented by a Transformer-like architecture that preserves expressiveness and enjoys full parallelizability. A set of experiments on both synthetic and real datasets demonstrates that our approach can consistently outperform prior GNN architectures.},
   author = {Bohang Zhang and Shengjie Luo and Liwei Wang and Di He},
   booktitle = {The Eleventh International Conference on Learning Representations},
@@ -1261,7 +1261,7 @@
   year = {2023}
 }
 
-@inproceedings{Puny2023EquivariantFeatures,
+@inproceedings{puny2023equivariantfeatures,
   abstract = {Graph Neural Networks (GNN) are inherently limited in their expressive power. Recent seminal works introduced the Weisfeiler-Lehman (WL) hierarchy as a measure of expressive power. Although this hierarchy has propelled significant advances in GNN analysis and architecture developments, it suffers from several significant limitations. This paper introduces an alternative expressive power hierarchy based on the ability of GNNs to calculate equivariant polynomials of a certain degree. As a first step, we provide a full characterization of all equivariant graph polynomials by introducing a concrete basis, significantly generalizing previous results. Second, we propose algorithmic tools for evaluating the expressiveness of GNNs using tensor contraction sequences, and calculate the expressive power of popular GNNs. Finally, we enhance the expressivity of common GNN architectures by adding polynomial features or additional operations / aggregations inspired by our theory. These enhanced GNNs demonstrate state-of-the-art results in experiments across multiple graph learning benchmarks.},
   author = {Omri Puny and Derek Lim and Bobak T. Kiani and Haggai Maron and Yaron Lipman},
   booktitle = {Proceedings of the 40th International Conference on Machine Learning},
@@ -1276,7 +1276,7 @@
   year = {2023}
 }
 
-@article{Bouritsas2022SubgraphIsomorphism,
+@article{bouritsas2022subgraphisomorphism,
   abstract = {While Graph Neural Networks (GNNs) have achieved remarkable results in various applications, recent studies exposed important shortcomings in their ability to capture the underlying graph structure. It has been shown that the expressive power of standard GNNs is bounded by the Weisfeiler-Leman (WL) graph isomorphism test, which limits their ability to detect and count substructures. The authors propose 'Graph Substructure Networks' (GSN), a topologically-aware message passing scheme based on substructure encoding. They theoretically analyze the architecture, showing it is strictly more expressive than WL and provides conditions for universality. Importantly, the method retains attractive properties like locality and linear complexity, while being able to disambiguate even hard isomorphism instances. The researchers perform extensive experimental evaluations across classification and regression tasks, obtaining state-of-the-art results in diverse real-world settings including molecular graphs and social networks.},
   author = {Giorgos Bouritsas and Fabrizio Frasca and Stefanos Zafeiriou and Michael M. Bronstein},
   doi = {10.1109/TPAMI.2022.3154319},
@@ -1291,7 +1291,7 @@
   year = {2023}
 }
 
-@inproceedings{Zhang2023SWL,
+@inproceedings{zhang2023swl,
   abstract = {Recently, subgraph GNNs have emerged as an important direction for developing expressive graph neural networks (GNNs). While numerous architectures have been proposed, so far there is still a limited understanding of how various design paradigms differ in terms of expressive power, nor is it clear what design principle achieves maximal expressiveness with minimal architectural complexity. To address these fundamental questions, this paper conducts a systematic study of general node-based subgraph GNNs through the lens of Subgraph Weisfeiler-Lehman Tests (SWL). Our central result is to build a complete hierarchy of SWL with strictly growing expressivity. Concretely, we prove that any node-based subgraph GNN falls into one of the six SWL equivalence classes, among which $\mathsfSSWL$ achieves the maximal expressive power. We also study how these equivalence classes differ in terms of their practical expressiveness such as encoding graph distance and biconnectivity. Furthermore, we give a tight expressivity upper bound of all SWL algorithms by establishing a close relation with localized versions of WL and Folklore WL (FWL) tests. Our results provide insights into the power of existing subgraph GNNs, guide the design of new architectures, and point out their limitations by revealing an inherent gap with the 2-FWL test. Finally, experiments demonstrate that $\mathsfSSWL$-inspired subgraph GNNs can significantly outperform prior architectures on multiple benchmarks despite great simplicity.},
   author = {Bohang Zhang and Guhao Feng and Yiheng Du and Di He and Liwei Wang},
   booktitle = {Proceedings of the 40th International Conference on Machine Learning},
@@ -1305,7 +1305,7 @@
   year = {2023}
 }
 
-@inproceedings{Dimitrov2023PlanE,
+@inproceedings{dimitrov2023plane,
   abstract = {Graph neural networks are prominent models for representation learning over graphs, where the idea is to iteratively compute representations of nodes of an input graph through a series of transformations. Yet, current graph neural networks are limited in their expressive power: it is well-known that standard graph neural networks cannot distinguish pairs of non-isomorphic graphs in certain cases. The key to the success of graph neural networks is the use of different node representations, which aggregate information from the local neighborhoods of nodes. The goal of this work is to design architectures for efficiently learning complete invariants of planar graphs. Motivated by the classical planar graph isomorphism algorithm of Hopcroft and Tarjan, we propose PlanE as a framework for planar representation learning. PlanE includes architectures which can learn complete invariants over planar graphs while remaining practically scalable.},
   author = {Radoslav Dimitrov and Zeyang Zhao and Ralph Abboud and İsmail \̇lkan Ceylan},
   booktitle = {Advances in Neural Information Processing Systems},
@@ -1317,7 +1317,7 @@
   year = {2023}
 }
 
-@inproceedings{Jogl2023Simulation,
+@inproceedings{jogl2023simulation,
   abstract = {We systematically investigate graph transformations that enable standard message passing to simulate state-of-the-art graph neural networks (GNNs) without loss of expressivity. Using these, many state-of-the-art GNNs can be implemented with message passing operations from standard libraries, eliminating many sources of implementation issues and allowing for better code optimization. We distinguish between weak and strong simulation: weak simulation achieves the same expressivity only after several message passing steps while strong simulation achieves this after every message passing step. Our contribution leads to a direct way to translate common operations of non-standard GNNs to graph transformations that allow for strong or weak simulation. Our empirical evaluation shows competitive predictive performance of message passing on transformed graphs for various molecular benchmark datasets, in several cases surpassing the original GNNs.},
   author = {Fabian Jogl and Maximilian Thiessen and Thomas Gärtner},
   booktitle = {Advances in Neural Information Processing Systems},
@@ -1330,7 +1330,7 @@
   year = {2023}
 }
 
-@inproceedings{Boker2024FineGrained,
+@inproceedings{boker2024finegrained,
   abstract = {Numerous recent works have analyzed the expressive power of message-passing graph neural networks (MPNNs), primarily utilizing combinatorial techniques such as the $1$-dimensional Weisfeiler-Leman test ($1$-WL) for the graph isomorphism problem. However, the graph isomorphism objective is inherently binary, not giving insights into the degree of similarity between two given graphs. This work resolves this issue by considering continuous extensions of both $1$-WL and MPNNs to graphons. Concretely, we show that the continuous variant of $1$-WL delivers an accurate topological characterization of the expressive power of MPNNs on graphons, revealing which graphs these networks can distinguish and the level of difficulty in separating them. We identify the finest topology where MPNNs separate points and prove a universal approximation theorem. Consequently, we provide a theoretical framework for graph and graphon similarity combining various topological variants of classical characterizations of the $1$-WL. In particular, we characterize the expressive power of MPNNs in terms of the tree distance, which is a graph distance based on the concept of fractional isomorphisms, and substructure counts via tree homomorphisms, showing that these concepts have the same expressive power as the $1$-WL and MPNNs on graphons. Empirically, we validate our theoretical findings by showing that randomly initialized MPNNs, without training, exhibit competitive performance compared to their trained counterparts. Moreover, we evaluate different MPNN architectures based on their ability to preserve graph distances, highlighting the significance of our continuous $1$-WL test in understanding MPNNs' expressivity.},
   author = {Jan Böker and Ron Levie and Ningyuan Huang and Soledad Villar and Christopher Morris},
   booktitle = {Advances in Neural Information Processing Systems},
@@ -1344,7 +1344,7 @@
   year = {2023}
 }
 
-@inproceedings{Liao2022GeneralFramework,
+@inproceedings{liao2022generalframework,
   abstract = {Reductive Lie Groups, such as the orthogonal groups, the Lorentz group, or the unitary groups, play essential roles across scientific fields as diverse as high energy physics, quantum mechanics, quantum chromodynamics, molecular dynamics, computer vision, and imaging. In this paper, we present a general Equivariant Neural Network architecture capable of respecting the symmetries of the finite-dimensional representations of any reductive Lie Group G. Our approach generalizes the successful ACE and MACE architectures for atomistic point clouds to any data equivariant to a reductive Lie group action. We also introduce the lie-nn software library, which provides all the necessary tools to develop and implement such general G-equivariant neural networks. It implements routines for the reduction of generic tensor products of representations into irreducible representations, making it easy to apply our architecture to a wide range of problems and groups. The generality and performance of our approach are demonstrated by applying it to the tasks of top quark decay tagging (Lorentz group) and shape recognition (orthogonal group).},
   author = {Ilyes Batatia and Mario Geiger and Jose Munoz and Tess Smidt and Lior Silberman and Christoph Ortner},
   booktitle = {Advances in Neural Information Processing Systems},
@@ -1358,7 +1358,7 @@
   year = {2023}
 }
 
-@inproceedings{Joshi2023GeometricExpressivePower,
+@inproceedings{joshi2023geometricexpressivepower,
   abstract = {The expressive power of Graph Neural Networks (GNNs) has been studied extensively through the Weisfeiler-Leman (WL) graph isomorphism test. However, standard GNNs and the WL framework are inapplicable for geometric graphs embedded in Euclidean space, such as biomolecules, materials, and other physical systems. In this work, we propose a geometric version of the WL test (GWL) for discriminating geometric graphs while respecting the underlying physical symmetries: permutations, rotation, reflection, and translation. We use GWL to characterise the expressive power of geometric GNNs that are invariant or equivariant to physical symmetries in terms of distinguishing geometric graphs. GWL unpacks how key design choices influence geometric GNN expressivity: (1) Invariant layers have limited expressivity as they cannot distinguish one-hop identical geometric graphs; (2) Equivariant layers distinguish a larger class of graphs by propagating geometric information beyond local neighbourhoods; (3) Higher order tensors and scalarisation enable maximally powerful geometric GNNs; and (4) GWL's discrimination-based perspective is equivalent to universal approximation. Synthetic experiments supplementing our results are available at r̆lhttps://github.com/chaitjo/geometric-gnn-dojo},
   author = {Chaitanya K. Joshi and Cristian Bodnar and Simon V. Mathis and Taco Cohen and Pietro Liò},
   booktitle = {Proceedings of the 40th International Conference on Machine Learning},
@@ -1373,7 +1373,7 @@
   year = {2023}
 }
 
-@article{Chen2023ProteinModelQuality,
+@article{chen2023proteinmodelquality,
   abstract = {Quality assessment (QA) of predicted protein tertiary structure models plays an important role in ranking and using them. With the recent development of deep learning end-to-end prediction techniques for generating highly confident tertiary structures, it is important to explore corresponding QA strategies since these models have better quality and different properties than traditional methods. We develop EnQA, a novel graph-based 3D-equivariant neural network method that is equivariant to rotation and translation of 3D objects to estimate the accuracy of protein structures. EnQA achieves state-of-the-art performance on protein structural models predicted by both traditional protein structure prediction methods and AlphaFold2, performing even better than the model QA scores provided by AlphaFold2 itself. The source code is available at https://github.com/BioinfoMachineLearning/EnQA.},
   author = {Chen Chen and Xiao Chen and Alex Morehead and Tianqi Wu and Jianlin Cheng},
   doi = {10.1093/bioinformatics/btad030},
@@ -1390,7 +1390,7 @@
   year = {2023}
 }
 
-@misc{Rusch2023SurveyOversmoothing,
+@misc{rusch2023surveyoversmoothing,
   abstract = {Node features of graph neural networks (GNNs) tend to become more similar with the increase of the network depth. This effect is known as over-smoothing, which we axiomatically define as the exponential convergence of suitable similarity measures on the node features. Our definition unifies previous approaches and gives rise to new quantitative measures of over-smoothing. Moreover, we empirically demonstrate this behavior for several over-smoothing measures on different graphs (small-, medium-, and large-scale). We also review several approaches for mitigating over-smoothing and empirically test their effectiveness on real-world graph datasets. Through illustrative examples, we demonstrate that mitigating over-smoothing is a necessary but not sufficient condition for building deep GNNs that are expressive on a wide range of graph learning tasks. Finally, we extend our definition of over-smoothing to the rapidly emerging field of continuous-time GNNs.},
   archiveprefix = {arXiv},
   author = {T. Konstantin Rusch and Michael M. Bronstein and Siddhartha Mishra},
@@ -1405,14 +1405,14 @@
   year = {2023}
 }
 
-@inproceedings{Wang2023DoGATsLearn,
+@inproceedings{wang2023dogatslearn,
   author = {Kaituo Wang and Xingyi Zhang and Zhaoliang Huang and Wenzheng Huang and Liwei Wang},
   booktitle = {Proceedings of the International Conference on Learning Representations (ICLR)},
   title = {Do GATs really learn structural information?},
   year = {2023}
 }
 
-@inproceedings{Black2023EffectiveResistance,
+@inproceedings{black2023effectiveresistance,
   abstract = {Message passing graph neural networks (GNNs) are a popular learning architectures for graph-structured data. However, one problem GNNs experience is oversquashing, where a GNN has difficulty sending information between distant nodes. In this paper, we continue this line of work by analyzing oversquashing through the lens of the effective resistance between nodes in the input graph. Effective resistance intuitively captures the "strength" of connection between two nodes by paths in the graph, and has a rich literature spanning many areas of graph theory. We propose to use total effective resistance as a bound of the total amount of oversquashing in a graph and provide theoretical justification for its use. We further develop an algorithm to identify edges to be added to an input graph to minimize the total effective resistance, thereby alleviating oversquashing. We provide empirical evidence of the effectiveness of our total effective resistance based rewiring strategies for improving the performance of GNNs.},
   author = {Mitchell Black and Zhengchao Wan and Amir Nayyeri and Yusu Wang},
   booktitle = {Proceedings of the 40th International Conference on Machine Learning},
@@ -1426,7 +1426,7 @@
   year = {2023}
 }
 
-@inproceedings{DiGiovanni2023ImpactWidthDepth,
+@inproceedings{digiovanni2023impactwidthdepth,
   abstract = {Message Passing Neural Networks (MPNNs) are instances of Graph Neural Networks that leverage the graph to send messages over the edges. This inductive bias leads to a phenomenon known as over-squashing, where a node feature is insensitive to information contained at distant nodes. Despite recent methods introduced to mitigate this issue, an understanding of the causes for over-squashing and of possible solutions are lacking. In this theoretical work, we prove that: (i) Neural network width can mitigate over-squashing, but at the cost of making the whole network more sensitive; (ii) Conversely, depth cannot help mitigate over-squashing: increasing the number of layers leads to over-squashing being dominated by vanishing gradients; (iii) The graph topology plays the greatest role, since over-squashing occurs between nodes at high commute time. Our analysis provides a unified framework to study different recent methods introduced to cope with over-squashing and serves as a justification for a class of methods that fall under graph rewiring.},
   address = {Honolulu, Hawaii, USA},
   author = {Francesco Di Giovanni and Lorenzo Giusti and Federico Barbero and Giulia Luise and Pietro Liò and Michael M. Bronstein},
@@ -1444,7 +1444,7 @@
   year = {2023}
 }
 
-@inproceedings{Nguyen2023RevisitingOllivier,
+@inproceedings{nguyen2023revisitingollivier,
   abstract = {Graph Neural Networks (GNNs) had been demonstrated to be inherently susceptible to the problems of over-smoothing and over-squashing. These issues prohibit the ability of GNNs to model complex graph interactions by limiting their effectiveness in taking into account distant information. Our study reveals the key connection between the local graph geometry and the occurrence of both of these issues, thereby providing a unified framework for studying them at a local scale using the Ollivier-Ricci curvature. Specifically, we demonstrate that over-smoothing is linked to positive graph curvature while over-squashing is linked to negative graph curvature. Based on our theory, we propose the Batch Ollivier-Ricci Flow, a novel rewiring algorithm capable of simultaneously addressing both over-smoothing and over-squashing.},
   author = {Khang Nguyen and Nong Minh Hieu and Vinh Duc Nguyen and Nhat Ho and Stanley Osher and Tan Minh Nguyen},
   booktitle = {Proceedings of the 40th International Conference on Machine Learning},
@@ -1459,7 +1459,7 @@
   year = {2023}
 }
 
-@misc{Papillon2023SurveyTNN,
+@misc{papillon2023surveytnn,
   abstract = {The natural world is full of complex systems characterized by intricate relations between their components: from social interactions between individuals in a social network to electrostatic interactions between atoms in a protein. Topological Deep Learning (TDL) provides a comprehensive framework to process and extract knowledge from data associated with these systems, such as predicting the social community to which an individual belongs or predicting whether a protein can be a reasonable target for drug development. TDL has demonstrated theoretical and practical advantages that hold the promise of breaking ground in the applied sciences and beyond. However, the rapid growth of the TDL literature for relational systems has also led to a lack of unification in notation and language across message-passing Topological Neural Network (TNN) architectures. This presents a real obstacle for building upon existing works and for deploying message-passing TNNs to new real-world problems. To address this issue, we provide an accessible introduction to TDL for relational systems, and compare the recently published message-passing TNNs using a unified mathematical and graphical notation. Through an intuitive and critical review of the emerging field of TDL, we extract valuable insights into current challenges and exciting opportunities for future development.},
   archiveprefix = {arXiv},
   author = {Mathilde Papillon and Sophia Sanborn and Mustafa Hajij and Nina Miolane},
@@ -1474,7 +1474,7 @@
   year = {2023}
 }
 
-@inproceedings{Eijkelboom2023EquivariantSimplicial,
+@inproceedings{eijkelboom2023equivariantsimplicial,
   abstract = {This paper presents E$(n)$ Equivariant Message Passing Simplicial Networks (EMPSNs), a novel approach to learning on geometric graphs and point clouds that is equivariant to rotations, translations, reflections. EMPSNs can learn high-dimensional simplex features, use the increase of information from higher-dimensional simplices, and simultaneously generalize Graph Neural Networks topologically.},
   author = {Floor Eijkelboom and Rob Hesselink and Erik J. Bekkers},
   booktitle = {Proceedings of the 40th International Conference on Machine Learning},
@@ -1489,7 +1489,7 @@
   year = {2023}
 }
 
-@inproceedings{Bamberger2023Blindspots,
+@inproceedings{bamberger2023blindspots,
   author = {Lewin Bamberger and James Tönshoff and Thomas Gärtner},
   booktitle = {Proceedings of the International Conference on Machine Learning (ICML)},
   title = {Topological Blindspots in GNNs: The Role of Symmetries and Covering Maps},
@@ -1683,7 +1683,7 @@
   year = {2022}
 }
 
-@inproceedings{Geerts2022TensorHierarchy,
+@inproceedings{geerts2022tensorhierarchy,
   abstract = {Characterizing the separation power of graph neural networks (GNNs) provides an understanding of their limitations for graph learning tasks. Results regarding separation power are, however, usually geared at specific GNN architectures, and tools for understanding arbitrary GNN architectures are generally lacking. We provide an elegant way to easily obtain bounds on the separation power of GNNs in terms of the Weisfeiler-Leman (WL) tests, which have become the yardstick to measure the separation power of GNNs. The crux is to view GNNs as expressions in a procedural tensor language describing the computations in the layers of the GNNs. Then, by a simple analysis of the obtained expressions, in terms of the number of indexes and the nesting depth of summations, bounds on the separation power in terms of the WL-tests readily follow. Loosely speaking, if tensor language expressions use k+1 indices, then their separation power is bounded by k-WL. We use tensor language to define Higher-Order Message-Passing Neural Networks (or k-MPNNs), a natural extension of MPNNs. Furthermore, the tensor language point of view allows for the derivation of universality results for classes of GNNs in a natural way. We believe that the approach provides a toolbox with which GNN architecture designers can analyze the separation power of their GNNs, without needing to know the intricacies of the WL-tests.},
   author = {Floris Geerts and Juan L. Reutter},
   booktitle = {International Conference on Learning Representations},
@@ -1695,7 +1695,7 @@
   year = {2022}
 }
 
-@inproceedings{Zhao2022ProgressivelyExpressive,
+@inproceedings{zhao2022progressivelyexpressive,
   abstract = {Message passing neural networks (MPNNs) have become a dominant flavor of graph neural networks (GNNs) in recent years. Yet, MPNNs come with notable limitations; namely, they are at most as powerful as the 1-dimensional Weisfeiler-Leman (1-WL) test in distinguishing graphs in a graph isomorphism testing framework. To this end, researchers have drawn inspiration from the k-WL hierarchy to develop more expressive GNNs. However, current k-WL-equivalent GNNs are not practical for even small values of k, as k-WL becomes combinatorially more complex as k grows. At the same time, several works have found great empirical success in graph learning tasks without highly expressive models, implying that chasing expressiveness with a coarse-grained ruler of expressivity like k-WL is often unneeded in practical tasks. To truly understand the expressiveness-complexity tradeoff, one desires a more fine-grained ruler, which can more gradually increase expressiveness. Our work puts forth such a proposal: Namely, we first propose the (k, c)(<=)-SETWL hierarchy with greatly reduced complexity from k-WL, achieved by moving from k-tuples of nodes to sets with <=k nodes defined over <=c connected components in the induced original graph. We show favorable theoretical results for this model in relation to k-WL, and concretize it via (k, c)(<=)-SETGNN, which is as expressive as (k, c)(<=)-SETWL. Our model is practical and progressively-expressive, increasing in power with k and c. We demonstrate effectiveness on several benchmark datasets, achieving several state-of-the-art results with runtime and memory usage applicable to practical graphs. We open source our implementation at https://github.com/LingxiaoShawn/KCSetGNN.},
   author = {Lingxiao Zhao and Neil Shah and Leman Akoglu},
   booktitle = {Advances in Neural Information Processing Systems},
@@ -1709,7 +1709,7 @@
   year = {2022}
 }
 
-@inproceedings{Bevilacqua2022ESAN,
+@inproceedings{bevilacqua2022esan,
   abstract = {Message-passing neural networks (MPNNs) are the leading architecture for deep learning on graph-structured data, in large part due to their simplicity and scalability. Unfortunately, it was shown that these architectures are limited in their expressive power. This paper proposes a novel framework called Equivariant Subgraph Aggregation Networks (ESAN) to address this issue. Our main observation is that while two graphs may not be distinguishable by an MPNN, they often contain distinguishable subgraphs. Thus, we propose to represent each graph as a set of subgraphs derived by some predefined policy, and to process it using a suitable equivariant architecture. We develop novel variants of the 1-dimensional Weisfeiler-Leman (1-WL) test for graph isomorphism, and prove lower bounds on the expressiveness of ESAN in terms of these new WL variants. We further prove that our approach increases the expressive power of both MPNNs and more expressive architectures. Moreover, we provide theoretical results that describe how design choices such as the subgraph selection policy and equivariant neural architecture affect our architecture's expressive power. To deal with the increased computational cost, we propose a subgraph sampling scheme, which can be viewed as a stochastic version of our framework. A comprehensive set of experiments on real and synthetic datasets demonstrates that our framework improves the expressive power and overall performance of popular GNN architectures.},
   archiveprefix = {arXiv},
   author = {Beatrice Bevilacqua and Fabrizio Frasca and Derek Lim and Balasubramaniam Srinivasan and Chen Cai and Gopinath Balamurugan and Michael M. Bronstein and Haggai Maron},
@@ -1724,7 +1724,7 @@
   year = {2022}
 }
 
-@inproceedings{Frasca2022SubgraphSymmetries,
+@inproceedings{frasca2022subgraphsymmetries,
   abstract = {Subgraph GNNs are a recent class of expressive Graph Neural Networks (GNNs) which model graphs as collections of subgraphs. So far, the design space of possible Subgraph GNN architectures as well as their basic theoretical properties are still largely unexplored. In this paper, we study the most prominent form of subgraph methods, which employs node-based subgraph selection policies such as ego-networks or node marking and deletion. We address two central questions: (1) What is the upper-bound of the expressive power of these methods? and (2) What is the family of equivariant message passing layers on these sets of subgraphs?. Our first step in answering these questions is a novel symmetry analysis which shows that modelling the symmetries of node-based subgraph collections requires a significantly smaller symmetry group than the one adopted in previous works. This analysis is then used to establish a link between Subgraph GNNs and Invariant Graph Networks (IGNs). We answer the questions above by first bounding the expressive power of subgraph methods by 3-WL, and then proposing a general family of message-passing layers for subgraph methods that generalises all previous node-based Subgraph GNNs. Finally, we design a novel Subgraph GNN dubbed SUN, which theoretically unifies previous architectures while providing better empirical performance on multiple benchmarks.},
   author = {Fabrizio Frasca and Beatrice Bevilacqua and Michael M. Bronstein and Haggai Maron},
   booktitle = {Advances in Neural Information Processing Systems},
@@ -1738,7 +1738,7 @@
   year = {2022}
 }
 
-@inproceedings{Qian2022KHop,
+@inproceedings{qian2022khop,
   abstract = {The most popular design paradigm for Graph Neural Networks (GNNs) is 1-hop message passing---aggregating information from 1-hop neighbors repeatedly. However, the expressive power of 1-hop message passing is bounded by the Weisfeiler-Lehman (1-WL) test. Recently, researchers extended 1-hop message passing to $K$-hop message passing by aggregating information from $K$-hop neighbors of nodes simultaneously. However, there is no work on analyzing the expressive power of $K$-hop message passing. In this work, we theoretically characterize the expressive power of $K$-hop message passing. Specifically, we first formally differentiate two different kernels of $K$-hop message passing which are often misused in previous works. We then characterize the expressive power of $K$-hop message passing by showing that it is more powerful than 1-WL and can distinguish almost all regular graphs. Despite the higher expressive power, we show that $K$-hop message passing still cannot distinguish some simple regular graphs and its expressive power is bounded by 3-WL. To further enhance its expressive power, we introduce a KP-GNN framework, which improves $K$-hop message passing by leveraging the peripheral subgraph information in each hop. We show that KP-GNN can distinguish many distance regular graphs which could not be distinguished by previous distance encoding or 3-WL methods. Experimental results verify the expressive power and effectiveness of KP-GNN. KP-GNN achieves competitive results across all benchmark datasets.},
   author = {Jiarui Feng and Yixin Chen and Fuhai Li and Anindya Sarkar and Muhan Zhang},
   booktitle = {Advances in Neural Information Processing Systems},
@@ -1751,7 +1751,7 @@
   year = {2022}
 }
 
-@inproceedings{Morris2023SpeqNets,
+@inproceedings{morris2023speqnets,
   abstract = {While (message-passing) graph neural networks have clear limitations in approximating permutation-equivariant functions over graphs or general relational data, more expressive, higher-order graph neural networks do not scale to large graphs. They either operate on $k$-order tensors or consider all $k$-node subgraphs, implying an exponential dependence on $k$ in memory requirements, and do not adapt to the sparsity of the graph. By introducing new heuristics for the graph isomorphism problem, we devise a class of universal, permutation-equivariant graph networks, which, unlike previous architectures, offer a fine-grained control between expressivity and scalability and adapt to the sparsity of the graph. These architectures lead to vastly reduced computation times compared to standard higher-order graph networks in the supervised node- and graph-level classification and regression regime while significantly improving over standard graph neural network and graph kernel architectures in terms of predictive performance.},
   arxiv = {2203.13913},
   author = {Christopher Morris and Gaurav Rattan and Sandra Kiefer and Siamak Ravanbakhsh},
@@ -1767,7 +1767,7 @@
   year = {2022}
 }
 
-@article{Batzner2022E3Equivariant,
+@article{batzner2022e3equivariant,
   abstract = {Constructing fast and accurate force fields from ab-initio calculations is a long-standing challenge in computational chemistry and materials science. This work presents Neural Equivariant Interatomic Potentials (NequIP), an E(3)-equivariant neural network approach for learning interatomic potentials from ab-initio calculations for molecular dynamics simulations. While most contemporary symmetry-aware models use invariant convolutions and only act on scalars, NequIP employs E(3)-equivariant convolutions for interactions of geometric tensors, resulting in a more information-rich and faithful representation of atomic environments. The method achieves state-of-the-art accuracy on a challenging and diverse set of molecules and materials while exhibiting remarkable data efficiency. NequIP outperforms existing models with up to three orders of magnitude fewer training data, challenging the widely held belief that deep neural networks require massive training sets. The high data efficiency of the method allows for the construction of accurate potentials using high-order quantum chemical level of theory as reference and enables high-fidelity molecular dynamics simulations over long time scales.},
   author = {Simon Batzner and Albert Musaelian and Lixin Sun and Mario Geiger and Jonathan P. Mailoa and Mordechai Kornbluth and Nicola Molinari and Tess E. Smidt and Boris Kozinsky},
   doi = {10.1038/s41467-022-29939-5},
@@ -1783,7 +1783,7 @@
   year = {2022}
 }
 
-@inproceedings{Puny2023FrameAveraging,
+@inproceedings{puny2023frameaveraging,
   abstract = {Many machine learning tasks involve learning functions that are known to be invariant or equivariant to certain symmetries of the input data. However, it is often challenging to design neural network architectures that respect these symmetries while being expressive and computationally efficient. For example, Euclidean motion invariant/equivariant graph or point cloud neural networks. We introduce Frame Averaging (FA), a general purpose and systematic framework for adapting known (backbone) architectures to become invariant or equivariant to new symmetry types. Our framework builds on the well known group averaging operator that guarantees invariance or equivariance but is intractable. In contrast, we observe that for many important classes of symmetries, this operator can be replaced with an averaging operator over a small subset of the group elements, called a frame. We show that averaging over a frame guarantees exact invariance or equivariance while often being much simpler to compute than averaging over the entire group. Furthermore, we prove that FA-based models have maximal expressive power in a broad setting and in general preserve the expressive power of their backbone architectures. Using frame averaging, we propose a new class of universal Graph Neural Networks (GNNs), universal Euclidean motion invariant point cloud networks, and Euclidean motion invariant Message Passing (MP) GNNs. We demonstrate the practical effectiveness of FA on several applications including point cloud normal estimation, beyond $2$-WL graph separation, and $n$-body dynamics prediction, achieving state-of-the-art results in all of these benchmarks.},
   author = {Omri Puny and Matan Atzmon and Heli Ben-Hamu and Ishan Misra and Aditya Grover and Edward J. Smith and Yaron Lipman},
   booktitle = {Proceedings of the International Conference on Learning Representations (ICLR)},
@@ -1794,7 +1794,7 @@
   year = {2022}
 }
 
-@inproceedings{DiGiovanni2023HowAttentive,
+@inproceedings{digiovanni2023howattentive,
   abstract = {Graph Attention Networks (GATs) are one of the most popular GNN architectures and are considered as the state-of-the-art architecture for representation learning with graphs. In GAT, every node attends to its neighbors given its own representation as the query. However, in this paper we show that GAT computes a very limited kind of attention: the ranking of the attention scores is unconditioned on the query node. We formally define this restricted kind of attention as static attention and distinguish it from a strictly more expressive dynamic attention. Because GATs use a static attention mechanism, there are simple graph problems that GAT cannot express: in a controlled problem, we show that static attention hinders GAT from even fitting the training data. To remove this limitation, we introduce a simple fix by modifying the order of operations and propose GATv2: a dynamic graph attention variant that is strictly more expressive than GAT. We perform an extensive evaluation and show that GATv2 outperforms GAT across 11 OGB and other benchmarks while we match their parametric costs.},
   author = {Shaked Brody and Uri Alon and Eran Yahav},
   booktitle = {Proceedings of the 10th International Conference on Learning Representations (ICLR)},
@@ -1807,7 +1807,7 @@
   year = {2022}
 }
 
-@inproceedings{Topping2022Curvature,
+@inproceedings{topping2022curvature,
   abstract = {Most graph neural networks (GNNs) use the message passing paradigm, in which node features are propagated on the input graph. Recent works pointed to the distortion of information flowing from distant nodes as a factor limiting the efficiency of message passing for tasks relying on long-distance interactions. This phenomenon, referred to as 'over-squashing', has been heuristically attributed to graph bottlenecks where the number of $k$-hop neighbors grows rapidly with $k$. We provide a precise description of the over-squashing phenomenon in GNNs and analyze how it arises from bottlenecks in the graph. For this purpose, we introduce a new edge-based combinatorial curvature and prove that negatively curved edges are responsible for the over-squashing issue. We also propose and experimentally test a curvature-based graph rewiring method to alleviate the over-squashing.},
   author = {Jake Topping and Francesco Di Giovanni and Benjamin Paul Chamberlain and Xiaowen Dong and Michael M. Bronstein},
   booktitle = {International Conference on Learning Representations},
@@ -1818,7 +1818,7 @@
   year = {2022}
 }
 
-@article{Roost2022SimplicialGNN,
+@article{roost2022simplicialgnn,
   author = {Hannes Roost and Thomas M. Roddenberry and Santiago Segarra},
   journal = {IEEE Transactions on Signal Processing},
   pages = {4619--4631},
@@ -1827,7 +1827,7 @@
   year = {2022}
 }
 
-@inproceedings{Bodnar2022SheafDiffusion,
+@inproceedings{bodnar2022sheafdiffusion,
   abstract = {Cellular sheaves equip graphs with a 'geometrical' structure by assigning vector spaces and linear maps to nodes and edges. Graph Neural Networks (GNNs) implicitly assume a graph with a trivial underlying sheaf. This choice is reflected in the structure of the graph Laplacian operator, the properties of the associated diffusion equation, and the characteristics of the convolutional models that discretise this equation. In this paper, we use cellular sheaf theory to show that the underlying geometry of the graph is deeply linked with the performance of GNNs in heterophilic settings and their oversmoothing behaviour. By considering a hierarchy of increasingly general sheaves, we study how the ability of the sheaf diffusion process to achieve linear separation of the classes in the infinite time limit expands. At the same time, we prove that when the sheaf is non-trivial, discretised parametric diffusion processes have greater control than GNNs over their asymptotic behaviour. On the practical side, we study how sheaves can be learned from data. The resulting sheaf diffusion models have many desirable properties that address the limitations of classical graph diffusion equations (and corresponding GNN models) and obtain competitive results in heterophilic settings. Overall, our work provides new connections between GNNs and algebraic topology and would be of interest to both fields.},
   author = {Cristian Bodnar and Francesco Di Giovanni and Benjamin Paul Chamberlain and Pietro Liò and Michael M. Bronstein},
   booktitle = {Advances in Neural Information Processing Systems},
@@ -1840,7 +1840,7 @@
   year = {2022}
 }
 
-@inproceedings{Goh2022SimplicialAttention,
+@inproceedings{goh2022simplicialattention,
   abstract = {Graph representation learning methods have mostly been limited to the modelling of node-wise interactions. Recently, there has been an increased interest in understanding how higher-order structures can be utilised to further enhance the learning abilities of graph neural networks (GNNs) in combinatorial spaces. Simplicial Neural Networks (SNNs) naturally model interactions by performing message passing on simplicial complexes, higher-order generalisations of graphs. Nonetheless, the literature has mostly focused on convolutional approaches for SNNs, building off local aggregation operations. In this work, we propose Simplicial Attention Networks (SAT), a new type of simplicial network that dynamically weighs the interactions between neighbouring simplicies and can readily adapt to novel structures. Additionally, we propose a signed attention mechanism that makes SAT orientation equivariant, a desirable property for models operating on (co)chain complexes. We demonstrate that SAT outperforms existent convolutional SNNs and GNNs in two image and trajectory classification tasks.},
   archiveprefix = {arXiv},
   author = {Christopher Wei Jin Goh and Cristian Bodnar and Pietro Liò},
@@ -1855,7 +1855,7 @@
   year = {2022}
 }
 
-@misc{Giusti2022SimplicialAttention,
+@misc{giusti2022simplicialattention,
   abstract = {The aim of this work is to introduce simplicial attention networks (SANs), i.e., novel neural architectures that operate on data defined on simplicial complexes leveraging masked self-attentional layers. Hinging on formal arguments from topological signal processing, we introduce a proper self-attention mechanism able to process data components at different layers (e.g., nodes, edges, triangles, and so on), while learning how to weight both upper and lower neighborhoods of the given topological domain in a totally task-oriented fashion. The proposed SANs generalize most of the current architectures available for processing data defined on simplicial complexes.},
   archiveprefix = {arXiv},
   author = {Lorenzo Giusti and Claudio Battiloro and Paolo Di Lorenzo and Stefania Sardellitti and Sergio Barbarossa},
@@ -1868,7 +1868,7 @@
   year = {2022}
 }
 
-@misc{Hajij2023TopologicalDL,
+@misc{hajij2023topologicaldl,
   abstract = {Topological deep learning is a rapidly growing field that pertains to the development of deep learning models for data supported on topological domains such as simplicial complexes, cell complexes, and hypergraphs, which generalize many domains encountered in scientific computations. In this paper, we present a unifying deep learning framework built upon a richer data structure that includes widely adopted topological domains. Specifically, we first introduce combinatorial complexes, a novel type of topological domain that can be seen as generalizations of graphs that maintain certain desirable properties. In addition, combinatorial complexes permit the construction of hierarchical higher-order relations, analogous to those found in simplicial and cell complexes. Thus, combinatorial complexes generalize and combine useful traits of both hypergraphs and cell complexes, which have emerged as two promising abstractions that facilitate the generalization of graph neural networks to topological spaces. Second, building upon combinatorial complexes and their rich combinatorial and algebraic structure, we develop a general class of message-passing combinatorial complex neural networks (CCNNs), focusing primarily on attention-based CCNNs. We characterize permutation and orientation equivariances of CCNNs, and discuss pooling and unpooling operations within CCNNs in detail. Third, we evaluate the performance of CCNNs on tasks related to mesh shape analysis and graph learning. Our experiments demonstrate that CCNNs have competitive performance as compared to state-of-the-art deep learning models specifically tailored to the same tasks.},
   archiveprefix = {arXiv},
   author = {Mustafa Hajij and Ghada Zamzmi and Theodore Papamarkou and Nina Miolane and Aldo Guzmán-Sáenz and Karthikeyan Natesan Ramamurthy and Tolga Birdal and Tamal K. Dey and Soham Mukherjee and Shreyas N. Samaga and Neal Livesay and Robin Walters and Paul Rosen and Michael T. Schaub},
@@ -1881,7 +1881,7 @@
   year = {2022}
 }
 
-@inproceedings{Rampasek2022GraphGPS,
+@inproceedings{rampasek2022graphgps,
   abstract = {We propose a recipe on how to build a general, powerful, scalable (GPS) Graph Transformer with linear complexity and state-of-the-art results on a diverse set of benchmarks. Graph Transformers (GTs) have gained popularity in the field of graph representation learning with a variety of recent publications but they lack a common foundation about what constitutes a good positional or structural encoding, and what differentiates them. In this paper, we summarize the different types of encodings with a clearer definition and categorize them as being local, global or relative. Further, GTs are constrained to small graphs with a few hundred nodes, and we show how to scale them to thousands of nodes. Our GPS recipe consists of choosing 3 main ingredients: (i) positional/structural encoding, (ii) local message-passing mechanism, and (iii) global attention mechanism. We ablate recent Graph Transformer variants and show that the most important design choice is to use a hybrid approach that combines the local inductive bias of MPNNs with the global connectivity of attention. Empirically, on 16 benchmarks, GPS achieves significantly better results compared to previous Graph Transformer variants (2nd best on average), and is competitive with the state-of-the-art in each respective domain: graph-level tasks, node classification, and link prediction.},
   author = {Ladislav Rampášek and Michael Galkin and Vijay Prakash Dwivedi and Anh Tuan Luu and Guy Wolf and Dominique Beaini},
   booktitle = {Advances in Neural Information Processing Systems},
@@ -2017,7 +2017,7 @@
   year = {2021}
 }
 
-@inproceedings{satorras2021en,
+@inproceedings{satorras2021equivariant,
   abstract = {This paper introduces a generative model equivariant to Euclidean symmetries: E(n) Equivariant Normalizing Flows (E-NFs). To construct E-NFs, we take the discriminative E(n) graph neural networks and integrate them as a differential equation to obtain an invertible equivariant function: a continuous-time normalizing flow. We demonstrate that E-NFs considerably outperform baselines and existing methods from the literature on particle systems such as DW4 and LJ13, and on molecules from QM9 in terms of log-likelihood. To the best of our knowledge, this is the first likelihood-based deep generative model that generates molecules in 3D.},
   author = {Satorras, Victor Garcia and Hoogeboom, Emiel and Fuchs, Fabian B. and Posner, Ingmar and Welling, Max},
   booktitle = {Advances in Neural Information Processing Systems},
@@ -2034,7 +2034,7 @@
   year = {2021}
 }
 
-@inproceedings{satorras2021n,
+@inproceedings{satorras2021egnn,
   abstract = {This paper introduces a new model to learn graph neural networks equivariant to rotations, translations, reflections and permutations called E(n)-Equivariant Graph Neural Networks (EGNNs). In contrast with existing methods, our work does not require computationally expensive higher-order representations in intermediate layers while it still achieves competitive or better performance. In addition, whereas existing methods are limited to equivariance on 3 dimensional spaces, our model is easily scaled to higher-dimensional spaces. We demonstrate the effectiveness of our method on dynamical systems modelling, representation learning in graph autoencoders and predicting molecular properties.},
   author = {Satorras, Victor Garcia and Hoogeboom, Emiel and Welling, Max},
   booktitle = {Proceedings of the 38th International Conference on Machine Learning},
@@ -2115,7 +2115,7 @@
   year = {2021}
 }
 
-@article{Wu2020Survey,
+@article{wu2020survey,
   abstract = {Deep learning has revolutionized many machine learning tasks in recent years, ranging from image classification and video processing to speech recognition and natural language understanding. The data in these tasks are typically represented in the Euclidean space. However, there is an increasing number of applications where data are generated from non-Euclidean domains and are represented as graphs with complex relationships and interdependency between objects. The complexity of graph data has imposed significant challenges on existing machine learning algorithms. Recently, many studies on extending deep learning approaches for graph data have emerged. In this survey, we provide a comprehensive overview of graph neural networks (GNNs) in data mining and machine learning fields. We propose a new taxonomy to divide the state-of-the-art graph neural networks into four categories, namely recurrent graph neural networks, convolutional graph neural networks, graph autoencoders, and spatial-temporal graph neural networks. We further discuss the applications of graph neural networks across various domains and summarize the open source codes, benchmark data sets, and model evaluation of graph neural networks. Finally, we propose potential research directions in this rapidly growing field.},
   author = {Zonghan Wu and Shirui Pan and Fengwen Chen and Guodong Long and Chengqi Zhang and Philip S. Yu},
   doi = {10.1109/TNNLS.2020.2978386},
@@ -2130,7 +2130,7 @@
   year = {2021}
 }
 
-@inproceedings{Sato2021RandomFeatures,
+@inproceedings{sato2021randomfeatures,
   abstract = {Graph neural networks (GNNs) are powerful machine learning models for various graph learning tasks. Recently, the limitations of the expressive power of various GNN models have been revealed. For example, GNNs cannot distinguish some non-isomorphic graphs and they cannot learn efficient graph algorithms. In this paper, we demonstrate that GNNs become powerful just by adding a random feature to each node. We prove that the random features enable GNNs to learn almost optimal polynomial-time approximation algorithms for the minimum dominating set problem and maximum matching problem in terms of approximation ratios. The main advantage of our method is that it can be combined with off-the-shelf GNN models with slight modifications. Through experiments, we show that the addition of random features enables GNNs to solve various problems that normal GNNs, including the graph convolutional networks (GCNs) and graph isomorphism networks (GINs), cannot solve.},
   author = {Ryoma Sato and Makoto Yamada and Hisashi Kashima},
   booktitle = {Proceedings of the 2021 SIAM International Conference on Data Mining (SDM)},
@@ -2142,7 +2142,7 @@
   year = {2021}
 }
 
-@inproceedings{Abboud2021RandomInit,
+@inproceedings{abboud2021randominit,
   abstract = {Graph neural networks (GNNs) are effective models for representation learning on relational data. However, standard GNNs are limited in their expressive power, as they cannot distinguish graphs beyond the capability of the Weisfeiler-Leman graph isomorphism heuristic. In order to break this expressiveness barrier, GNNs have been enhanced with random node initialization (RNI), where the idea is to train and run the models with randomized initial node features. In this work, we analyze the expressive power of GNNs with RNI, and prove that these models are universal, a first such result for GNNs not relying on computationally demanding higher-order properties. This universality result holds even with partially randomized initial node features, and preserves the invariance properties of GNNs in expectation. We then empirically analyze the effect of RNI on GNNs, based on carefully constructed datasets. Our empirical findings support the superior performance of GNNs with RNI over standard GNNs.},
   author = {Ralph Abboud and İsmail \̇lkan Ceylan and Martin Grohe and Thomas Lukasiewicz},
   booktitle = {Proceedings of the Thirtieth International Joint Conference on Artificial Intelligence},
@@ -2156,7 +2156,7 @@
   year = {2021}
 }
 
-@inproceedings{Balcilar2021SpectralExpressivity,
+@inproceedings{balcilar2021spectralexpressivity,
   abstract = {In the recent literature of Graph Neural Networks (GNN), the expressive power of models has been studied through their capability to distinguish if two given graphs are isomorphic or not. Since the graph isomorphism problem is NP-intermediate, and Weisfeiler-Lehman (WL) test can give sufficient but not enough evidence in polynomial time, the theoretical power of GNNs is usually evaluated by the equivalence of WL-test order, followed by an empirical analysis of the models on some reference inductive and transductive datasets. However, such analysis does not account the signal processing pipeline, whose capability is generally evaluated in the spectral domain. In this paper, we argue that a spectral analysis of GNNs behavior can provide a complementary point of view to go one step further in the understanding of GNNs.},
   address = {Vienna, Austria},
   author = {Muhammet Balcilar and Guillaume Renton and Pierre Héroux and Benoit Gaüzère and Sébastien Adam and Paul Honeine},
@@ -2170,7 +2170,7 @@
   year = {2021}
 }
 
-@inproceedings{Azizian2021InvariantEquivariant,
+@inproceedings{azizian2021invariantequivariant,
   abstract = {Various classes of Graph Neural Networks (GNN) have been proposed and shown to be successful in a wide range of applications with graph structured data. In this paper, we propose a theoretical framework able to compare the expressive power of these GNN architectures. We prove the first approximation guarantees for practical GNNs, paving the way for a better understanding of their generalization. The theoretical results are proved for invariant GNNs computing a graph embedding (permutation of the nodes of the input graph does not affect the output) and equivariant GNNs computing an embedding of the nodes (permutation of the input permutes the output). We show that Folklore Graph Neural Networks (FGNN), which are tensor based GNNs augmented with matrix multiplication are the most expressive architectures proposed so far for a given tensor order. We illustrate our results on the Quadratic Assignment Problem (a NP-Hard combinatorial problem) by showing that FGNNs are able to learn how to solve the problem, leading to much better average performances than existing algorithms (based on spectral, SDP or other GNNs architectures).},
   author = {Waïss Azizian and Marc Lelarge},
   booktitle = {International Conference on Learning Representations},
@@ -2181,7 +2181,7 @@
   year = {2021}
 }
 
-@inproceedings{Satorras2021EGNN,
+@inproceedings{satorras2021egnn,
   abstract = {This paper introduces a new model to learn graph neural networks equivariant to rotations, translations, reflections and permutations called E(n)-Equivariant Graph Neural Networks (EGNNs). In contrast with existing methods, our work does not require computationally expensive higher-order representations in intermediate layers while it still achieves competitive or better performance. In addition, whereas existing methods are limited to equivariance on 3 dimensional spaces, our model is easily scaled to higher-dimensional spaces.},
   author = {V\íctor Garcia Satorras and Emiel Hoogeboom and Max Welling},
   booktitle = {Proceedings of the 38th International Conference on Machine Learning},
@@ -2195,7 +2195,7 @@
   year = {2021}
 }
 
-@inproceedings{Alon2021Bottleneck,
+@inproceedings{alon2021bottleneck,
   abstract = {Since the proposal of the graph neural network (GNN) by Gori et al. (2005) and Scarselli et al. (2008), one of the major problems in training GNNs was their struggle to propagate information between distant nodes in the graph. We propose a new explanation for this problem: GNNs are susceptible to a bottleneck when aggregating messages across a long path. This bottleneck causes the over-squashing of exponentially growing information into fixed-size vectors. As a result, GNNs fail to propagate messages originating from distant nodes and perform poorly when the prediction task depends on long-range interaction. In this paper, we highlight the inherent problem of over-squashing in GNNs: we demonstrate that the bottleneck hinders popular GNNs from fitting long-range signals in the training data; we further show that GNNs that absorb incoming edges equally, such as GCN and GIN, are more susceptible to over-squashing than GAT and GGNN; finally, we show that prior work, which extensively tuned GNN models of long-range problems, suffers from over-squashing, and that breaking the bottleneck improves their state-of-the-art results without any tuning or additional weights.},
   author = {Uri Alon and Eran Yahav},
   booktitle = {ICLR 2021},
@@ -2207,7 +2207,7 @@
   year = {2021}
 }
 
-@inproceedings{Bodnar2021MPSN,
+@inproceedings{bodnar2021mpsn,
   abstract = {The pairwise interaction paradigm of graph machine learning has predominantly governed the modelling of relational systems. However, graphs alone cannot capture the multi-level interactions present in many complex systems and the expressive power of such schemes was proven to be limited. To overcome these limitations, we propose Message Passing Simplicial Networks (MPSNs), a class of models that perform message passing on simplicial complexes (SCs). To theoretically analyse the expressivity of our model we introduce a Simplicial Weisfeiler-Lehman (SWL) colouring procedure for distinguishing non-isomorphic SCs and show that SWL and MPSNs are strictly more powerful than the WL test and not less powerful than the 3-WL test. We empirically support our theoretical claims by showing that MPSNs can distinguish challenging strongly regular graphs for which GNNs fail and, when equipped with orientation equivariant layers, they can improve classification accuracy in oriented SCs compared to a GNN baseline.},
   author = {Cristian Bodnar and Fabrizio Frasca and Yu Guang Wang and Nina Otter and Guido F. Montúfar and Pietro Liò and Michael M. Bronstein},
   booktitle = {Proceedings of the 38th International Conference on Machine Learning},
@@ -2223,7 +2223,7 @@
   year = {2021}
 }
 
-@inproceedings{Bodnar2021CWN,
+@inproceedings{bodnar2021cwn,
   abstract = {Graph Neural Networks (GNNs) are limited in their expressive power, struggle with long-range interactions and lack a principled way to model higher-order structures. These problems can be attributed to the strong coupling between the computational graph and the input graph structure. The recently proposed Message Passing Simplicial Networks naturally decouple these elements by performing message passing on the clique complex of the graph. Nevertheless, these models can be severely constrained by the rigid combinatorial structure of Simplicial Complexes (SCs). In this work, we extend recent theoretical results on SCs to regular Cell Complexes, topological objects that flexibly subsume SCs and graphs. The resulting methods, which we collectively call CW Networks (CWNs), are strictly more powerful than the WL test and not less powerful than the 3-WL test. In particular, we demonstrate the effectiveness of one such scheme, based on rings, when applied to molecular graph problems. Our model achieves state-of-the-art results on a variety of molecular datasets.},
   address = {Red Hook, NY, USA},
   author = {Cristian Bodnar and Fabrizio Frasca and Nina Otter and Yu Guang Wang and Pietro Liò and Guido F. Montúfar and Michael Bronstein},
@@ -2239,7 +2239,7 @@
   year = {2021}
 }
 
-@inproceedings{Dwivedi2021GraphTransformer,
+@inproceedings{dwivedi2021graphtransformer,
   abstract = {We propose a generalization of transformer neural network architecture for arbitrary graphs. The original transformer was designed for Natural Language Processing (NLP), which operates on fully connected graphs representing all connections between the words in a sequence. Such architecture does not leverage the graph connectivity inductive bias, and can perform poorly when the graph topology is important and has not been encoded into the node features. We introduce a graph transformer with four new properties compared to the standard model. First, the attention mechanism is a function of the neighborhood connectivity for each node in the graph. Second, the positional encoding is represented by the Laplacian eigenvectors, which naturally generalize the sinusoidal positional encodings often used in NLP. Third, the layer normalization is replaced by a batch normalization layer, which provides faster training and better generalization performance. Finally, the architecture is extended to edge feature representation, which can be critical to tasks s.a. chemistry (bond type) or link prediction (entity relationship in knowledge graphs). Numerical experiments on benchmark demonstrate the performance of the proposed graph transformer architecture. This work closes the gap between the original transformer, which was designed for the limited case of line graphs, and graph neural networks, that can work with arbitrary graphs. As our architecture is simple and generic, we believe it can be used as a black box for future applications that wish to consider transformer and graphs.},
   author = {Vijay Prakash Dwivedi and Xavier Bresson},
   booktitle = {AAAI Workshop on Deep Learning on Graphs: Methods and Applications (DLG-AAAI'21)},
@@ -2341,7 +2341,7 @@
   year = {2020}
 }
 
-@inproceedings{Morris2020PowerfulRelational,
+@inproceedings{morris2020powerfulrelational,
   address = {Santiago de Compostela, Spain},
   author = {Christopher Morris and Gaurav Rattan and Petra Mutzel},
   booktitle = {ECAI 2020 - 24th European Conference on Artificial Intelligence},
@@ -2354,7 +2354,7 @@
   year = {2020}
 }
 
-@inproceedings{Alsentzer2020SUBGNN,
+@inproceedings{alsentzer2020subgnn,
   abstract = {Deep learning methods for graphs achieve remarkable performance on many node-level and graph-level prediction tasks. However, despite the proliferation of the methods and their success, prevailing Graph Neural Networks (GNNs) neglect subgraphs, rendering subgraph prediction tasks challenging to tackle in many impactful applications. Further, subgraph prediction tasks present several unique challenges: subgraphs can have non-trivial internal topology, but also carry a notion of position and external connectivity information relative to the underlying graph in which they exist. Here, we introduce SubGNN, a subgraph neural network to learn disentangled subgraph representations. We propose a novel subgraph routing mechanism that propagates neural messages between the subgraph's components and randomly sampled anchor patches from the underlying graph, yielding highly accurate subgraph representations. SubGNN specifies three channels, each designed to capture a distinct aspect of subgraph topology, and we provide empirical evidence that the channels encode their intended properties. We design a series of new synthetic and real-world subgraph datasets. Empirical results for subgraph classification on eight datasets show that SubGNN achieves considerable performance gains, outperforming strong baseline methods, including node-level and graph-level GNNs, by 19.8% over the strongest baseline. SubGNN performs exceptionally well on challenging biomedical datasets where subgraphs have complex topology and even comprise multiple disconnected components.},
   author = {Emily Alsentzer and Samuel G. Finlayson and Michelle M. Li and Marinka Zitnik},
   booktitle = {Advances in Neural Information Processing Systems},
@@ -2368,7 +2368,7 @@
   year = {2020}
 }
 
-@inproceedings{Fuchs2020SE3Transformers,
+@inproceedings{fuchs2020se3transformers,
   abstract = {We introduce the SE(3)-Transformer, a variant of the self-attention module for 3D point-clouds, which is equivariant under continuous 3D roto-translations. Equivariance is important for achieving stable and predictable performance for 3D tasks. The SE(3)-Transformer leverages the benefits of self-attention to operate on large point clouds and graphs with varying numbers of points, while guaranteeing SE(3)-equivariance for robustness. We evaluate our method on N-body particle simulation, ScanObjectNN, and QM9 datasets.},
   author = {Fabian B. Fuchs and Daniel E. Worrall and Volker Fischer and Max Welling},
   booktitle = {Advances in Neural Information Processing Systems},
@@ -2383,7 +2383,7 @@
   year = {2020}
 }
 
-@inproceedings{Oono2020ExponentialLoss,
+@inproceedings{oono2020exponentialloss,
   abstract = {Graph Neural Networks (graph NNs) are a promising deep learning approach for analyzing graph-structured data. However, it is known that they do not improve (or sometimes worsen) their predictive performance as we pile up many layers and add non-lineality. To tackle this problem, we investigate the expressive power of graph NNs via their asymptotic behaviors as the layer size tends to infinity. Our strategy is to generalize the forward propagation of a Graph Convolutional Network (GCN), which is a popular graph NN variant, as a specific dynamical system. In the case of a GCN, we show that when its weights satisfy the conditions determined by the spectra of the (augmented) normalized Laplacian, its output exponentially approaches the set of signals that carry information of the connected components and node degrees only for distinguishing nodes. Our theory enables us to relate the expressive power of GCNs with the topological information of the underlying graphs inherent in the graph spectra. To demonstrate this, we characterize the asymptotic behavior of GCNs on the Erdős – Rényi graph. We show that when the Erdős – Rényi graph is sufficiently dense and large, a broad range of GCNs on it suffers from the "information loss" in the limit of infinite layers with high probability. Based on the theory, we provide a principled guideline for weight normalization of graph NNs. We experimentally confirm that the proposed weight scaling enhances the predictive performance of GCNs in real data.},
   author = {Kenta Oono and Taiji Suzuki},
   booktitle = {Proceedings of the 8th International Conference on Learning Representations},
@@ -2395,7 +2395,7 @@
   year = {2020}
 }
 
-@misc{Cai2020NoteOnExpressivePower,
+@misc{cai2020noteonexpressivepower,
   abstract = {Graph Neural Networks (GNNs) have achieved a lot of success on graph-structured data. However, it is observed that the performance of graph neural networks does not improve as the number of layers increases. This effect, known as over-smoothing, has been analyzed mostly in linear cases. In this paper, we build upon previous results to further analyze the over-smoothing effect in the general graph neural network architecture. We show that when the weight matrix satisfies the conditions determined by the spectrum of augmented normalized Laplacian, the Dirichlet energy of embeddings will converge to zero, resulting in the loss of discriminative power.},
   archiveprefix = {arXiv},
   author = {Chen Cai and Yusu Wang},
@@ -2409,7 +2409,7 @@
   year = {2020}
 }
 
-@inproceedings{Ebli2020SimplicialNN,
+@inproceedings{ebli2020simplicialnn,
   abstract = {We present simplicial neural networks (SNNs), a generalization of graph neural networks to data that live on a class of topological spaces called simplicial complexes. These are natural multi-dimensional extensions of graphs that encode not only pairwise relationships but also higher-order interactions between vertices - allowing us to consider richer data, including vector fields and $n$-fold collaboration networks.},
   archiveprefix = {arXiv},
   author = {Stefania Ebli and Michaël Defferrard and Gard Spreemann},
@@ -2424,7 +2424,7 @@
   year = {2020}
 }
 
-@inproceedings{Hajij2020CellComplex,
+@inproceedings{hajij2020cellcomplex,
   abstract = {Cell complexes are topological spaces constructed from simple blocks called cells. They generalize graphs, simplicial complexes, and polyhedral complexes that form important domains for practical applications. They also provide a combinatorial formalism that allows the inclusion of complicated relationships of restrictive structures such as graphs and meshes. In this paper, we propose Cell Complexes Neural Networks (CXNs), a general, combinatorial and unifying construction for performing neural network-type computations on cell complexes. We introduce an inter-cellular message passing scheme on cell complexes that takes the topology of the underlying space into account and generalizes message passing scheme to graphs. Not only do we detail the neural network construction, but we prove its approximation universality for a large class of problems. Finally, we demonstrate the effectiveness of the proposed method on a variety of tasks including node, link, and cell classification problems.},
   archiveprefix = {arXiv},
   author = {Mustafa Hajij and Kyle Istvan and Ghada Zamzmi},
@@ -2471,7 +2471,7 @@
   year = {2019}
 }
 
-@inproceedings{Wu2019SGC,
+@inproceedings{wu2019sgc,
   abstract = {Graph Convolutional Networks (GCNs) and their variants have experienced significant attention and have become the de facto methods for learning graph representations. GCNs derive inspiration primarily from recent deep learning approaches, and as a result, may inherit unnecessary complexity and redundant computation. In this paper, we reduce this excess complexity through successively removing nonlinearities and collapsing weight matrices between consecutive layers. We theoretically analyze the resulting linear model and show that it corresponds to a fixed low-pass filter followed by a linear classifier. Notably, our experimental evaluation demonstrates that these simplifications do not negatively impact accuracy in many downstream applications. Moreover, the resulting model scales to larger datasets, is naturally interpretable, and yields up to two orders of magnitude speedup over FastGCN.},
   author = {Felix Wu and Tianyi Zhang and Amauri H. Souza and Christopher Fifty and Tao Yu and Kilian Q. Weinberger},
   booktitle = {Proceedings of the 36th International Conference on Machine Learning},
@@ -2487,7 +2487,7 @@
   year = {2019}
 }
 
-@inproceedings{Xu2019GIN,
+@inproceedings{xu2019gin,
   abstract = {Graph Neural Networks (GNNs) are an effective framework for representation learning of graphs. GNNs follow a neighborhood aggregation scheme, where the representation vector of a node is computed by recursively aggregating and transforming representation vectors of its neighboring nodes. Many GNN variants have been proposed and have achieved state-of-the-art results on both node and graph classification tasks. However, despite GNNs revolutionizing graph representation learning, there is limited understanding of their representational properties and limitations. Here, we present a theoretical framework for analyzing the expressive power of GNNs to capture different graph structures. Our results characterize the discriminative power of popular GNN variants, such as Graph Convolutional Networks and GraphSAGE, and show that they cannot learn to distinguish certain simple graph structures. We then develop a simple architecture that is provably the most expressive among the class of GNNs and is as powerful as the Weisfeiler-Lehman graph isomorphism test. We empirically validate our theoretical findings on a number of graph classification benchmarks, and demonstrate that our model achieves state-of-the-art performance.},
   author = {Keyulu Xu and Weihua Hu and Jure Leskovec and Stefanie Jegelka},
   booktitle = {7th International Conference on Learning Representations, ICLR 2019},
@@ -2498,7 +2498,7 @@
   year = {2019}
 }
 
-@inproceedings{Morris2019kGNN,
+@inproceedings{morris2019kgnn,
   abstract = {In recent years, graph neural networks (GNNs) have emerged as a powerful neural architecture to learn vector representations of nodes and graphs in a supervised, end-to-end fashion. Up to now, GNNs have only been evaluated empirically -- showing promising results. The following work investigates GNNs from a theoretical point of view and relates them to the $1$-dimensional Weisfeiler-Leman graph isomorphism heuristic ($1$-WL). We show that GNNs have the same expressiveness as the $1$-WL in terms of distinguishing non-isomorphic (sub-)graphs. Hence, both algorithms also have the same shortcomings. Based on this, we propose a generalization of GNNs, so-called $k$-dimensional GNNs ($k$-GNNs), which can take higher-order graph structures at multiple scales into account. These higher-order structures play an essential role in the characterization of social networks and molecule graphs. Our experimental evaluation confirms our theoretical findings as well as confirms that higher-order information is useful in the task of graph classification and regression.},
   author = {Christopher Morris and Martin Ritzert and Matthias Fey and William L. Hamilton and Jan Eric Lenssen and Gaurav Rattan and Martin Grohe},
   booktitle = {Proceedings of the AAAI Conference on Artificial Intelligence},
@@ -2513,7 +2513,7 @@
   year = {2019}
 }
 
-@inproceedings{Maron2019Powerful,
+@inproceedings{maron2019powerful,
   abstract = {Recently, the Weisfeiler-Lehman (WL) graph isomorphism test was used to measure the expressive power of graph neural networks (GNN). It was shown that the popular message passing GNN cannot distinguish between graphs that are indistinguishable by the 1-WL test (Morris et al. 2018; Xu et al. 2019). Unfortunately, many simple instances of graphs are indistinguishable by the 1-WL test. In search for more expressive graph learning models we build upon the recent k-order invariant and equivariant graph neural networks (Maron et al. 2019a,b) and present two results: First, we show that such k-order networks can distinguish between non-isomorphic graphs as good as the k-WL tests, which are provably stronger than the 1-WL test for k>2. This makes these models strictly stronger than message passing models. Unfortunately, the higher expressiveness of these models comes with a computational cost of processing high order tensors. Second, setting our goal at building a provably stronger, simple and scalable model we show that a reduced 2-order network containing just scaled identity operator, augmented with a single quadratic operation (matrix multiplication) has a provable 3-WL expressive power. Differently put, we suggest a simple model that interleaves applications of standard Multilayer-Perceptron (MLP) applied to the feature dimension and matrix multiplication. We validate this model by presenting state of the art results on popular graph classification and regression tasks. To the best of our knowledge, this is the first practical invariant/equivariant model with guaranteed 3-WL expressiveness, strictly stronger than message passing models.},
   address = {Red Hook, NY, USA},
   author = {Haggai Maron and Heli Ben-Hamu and Hadar Serviansky and Yaron Lipman},
@@ -2527,7 +2527,7 @@
   year = {2019}
 }
 
-@inproceedings{Frankle2019LotteryTicket,
+@inproceedings{frankle2019lotteryticket,
   abstract = {Neural network pruning techniques can reduce the parameter counts of trained networks by over 90%, decreasing storage requirements and improving computational performance of inference without compromising accuracy. However, contemporary experience is that the sparse architectures produced by pruning are difficult to train from the start, which would similarly improve training performance. We find that a standard pruning technique naturally uncovers subnetworks whose initializations made them capable of training effectively. Based on these results, we articulate the ``lottery ticket hypothesis:'' dense, randomly-initialized, feed-forward networks contain subnetworks (``winning tickets'') that---when trained in isolation---reach test accuracy comparable to the original network in a similar number of iterations. The winning tickets we find have won the initialization lottery: their connections have initial weights that make training particularly effective.},
   author = {Jonathan Frankle and Michael Carbin},
   booktitle = {Proceedings of the 7th International Conference on Learning Representations},
@@ -2553,7 +2553,7 @@
   year = {2018}
 }
 
-@inproceedings{Velickovic2018GAT,
+@inproceedings{velickovic2018gat,
   abstract = {We present graph attention networks (GATs), novel neural network architectures that operate on graph-structured data, leveraging masked self-attentional layers to address the shortcomings of prior methods based on graph convolutions or their approximations. By stacking layers in which nodes are able to attend over their neighborhoods' features, we enable (implicitly) specifying different weights to different nodes in a neighborhood, without requiring any kind of costly matrix operation (such as inversion) or depending on knowing the graph structure upfront. In this way, we address several key challenges of spectral-based graph neural networks simultaneously, and make our model readily applicable to inductive as well as transductive problems. Our GAT models have achieved or matched state-of-the-art results across four established transductive and inductive graph benchmarks: the Cora, Citeseer and Pubmed citation network datasets, as well as a protein-protein interaction dataset (wherein test graphs remain unseen during training).},
   author = {Petar Veličković and Guillem Cucurull and Arantxa Casanova and Adriana Romero and Pietro Liò and Yoshua Bengio},
   booktitle = {6th International Conference on Learning Representations, ICLR 2018, Vancouver, BC, Canada, April 30 - May 3, 2018, Conference Track Proceedings},
@@ -2565,7 +2565,7 @@
   year = {2018}
 }
 
-@inproceedings{Chen2018FastGCN,
+@inproceedings{chen2018fastgcn,
   abstract = {The graph convolutional networks (GCN) recently proposed by Kipf and Welling are an effective graph model for semi-supervised learning. This model, however, was originally designed to be learned with the presence of both training and test data. Moreover, the recursive neighborhood expansion across layers poses time and memory challenges for training with large, dense graphs. To relax the requirement of simultaneous availability of test data, we interpret graph convolutions as integral transforms of embedding functions under probability measures. Such an interpretation allows for the use of Monte Carlo approaches to consistently estimate the integrals, which in turn leads to a batched training scheme as we propose in this work---FastGCN. Enhanced with importance sampling, FastGCN not only is efficient for training but also generalizes well for inference. We show a comprehensive set of experiments to demonstrate its effectiveness compared with GCN and related models. In particular, training is orders of magnitude more efficient while predictions remain comparably accurate.},
   author = {Jie Chen and Tengfei Ma and Cao Xiao},
   booktitle = {International Conference on Learning Representations},
@@ -2577,7 +2577,7 @@
   year = {2018}
 }
 
-@misc{Thomas2018TensorField,
+@misc{thomas2018tensorfield,
   abstract = {We introduce tensor field neural networks, which are locally equivariant to 3D rotations, translations, and permutations of points at every layer. 3D rotation equivariance removes the need for data augmentation to identify features in arbitrary orientations. The networks use filters built from spherical harmonics; due to the mathematical consequences of this filter choice, each layer accepts as input (and guarantees as output) scalars, vectors, and higher-order tensors, in the geometric sense of these terms. We demonstrate the capabilities of tensor field networks with tasks in geometry, physics, and chemistry.},
   archiveprefix = {arXiv},
   author = {Nathaniel Thomas and Tess Smidt and Steven Kearnes and Lusann Yang and Li Li and Kai Kohlhoff and Patrick Riley},
@@ -2592,7 +2592,7 @@
   year = {2018}
 }
 
-@inproceedings{Kondor2018ClebschGordan,
+@inproceedings{kondor2018clebschgordan,
   abstract = {We build on the recent work of Cohen et al. that has achieved state-of-the-art results for learning spherical images in a rotation invariant way by using ideas from group representation theory and noncommutative harmonic analysis. We propose a generalization of this work that generally exhibits improved performance, but from an implementation point of view is actually simpler. An unusual feature of the proposed architecture is that it uses the Clebsch-Gordan transform as its only source of nonlinearity, thus avoiding repeated forward and backward Fourier transforms.},
   author = {Risi Kondor and Zhen Lin and Shubhendu Trivedi},
   booktitle = {Advances in Neural Information Processing Systems 31},
@@ -2604,7 +2604,7 @@
   year = {2018}
 }
 
-@inproceedings{Li2018DeeperInsights,
+@inproceedings{li2018deeperinsights,
   abstract = {Many interesting problems in machine learning are being revisited with new deep learning tools. For graph-based semi-supervised learning, a recent important development is graph convolutional networks (GCNs), which nicely integrate local vertex features and graph topology in the convolutional layers. Although GCNs are able to achieve or exceed state-of-the-art performance in a number of benchmarks, their mechanisms are not clear and they still require a considerable amount of labeled data for validation and model selection. In this paper, we develop deeper insights into GCNs. First, we show that the graph convolution of the GCN model is actually a special form of Laplacian smoothing, which is the key reason why GCNs work, but it also brings potential concerns of over-smoothing with many convolutional layers. Second, to overcome the limits of the GCN model with shallow architectures, we propose both co-training and self-training approaches to train GCNs. Our approaches significantly improve GCNs in learning with very few labels, and exempt them from requiring additional labels for validation. Extensive experiments on benchmarks verify our theory and proposals.},
   address = {New Orleans, Louisiana, USA},
   author = {Qimai Li and Zhichao Han and Xiao-Ming Wu},
@@ -2622,7 +2622,7 @@
   year = {2018}
 }
 
-@misc{Battaglia2018RelationalInductive,
+@misc{battaglia2018relationalinductive,
   abstract = {Artificial intelligence has undergone a renaissance recently, making major progress in key domains such as vision, language, control, and decision-making. This has been due, in part, to cheap data and cheap compute resources, which have fit the natural strengths of deep learning. However, many defining characteristics of human intelligence, which developed under much different pressures, remain out of reach for current approaches. In particular, generalizing beyond one's experiences--a hallmark of human intelligence from infancy--remains a formidable challenge for modern AI. The following is part position paper, part review, and part unification. We argue that combinatorial generalization must be a top priority for AI to achieve human-like abilities, and that structured representations and computations are key to realizing this objective. Just as biology uses nature and nurture cooperatively, we reject the false choice between "hand-engineering" and "end-to-end" learning, and instead advocate for an approach which benefits from their complementary strengths. We explore how using relational inductive biases within deep learning architectures can facilitate learning about entities, relations, and rules for composing them. We present a new building block for the AI toolkit with a strong relational inductive bias--the graph network--which generalizes and extends various approaches for neural networks that operate on graphs, and provides a straightforward interface for manipulating structured knowledge and producing structured behaviors. We discuss how graph networks can support relational reasoning and combinatorial generalization, laying the foundation for more sophisticated, interpretable, and flexible patterns of reasoning. As a companion to this paper, we have released an open-source software library for building graph networks, with demonstrations of how to use them in practice.},
   archiveprefix = {arXiv},
   author = {Peter W. Battaglia and Jessica B. Hamrick and Victor Bapst and Álvaro Sánchez-González and Vinícius Zambaldi and Mateusz Malinowski and Andrea Tacchetti and David Raposo and Adam Santoro and Ryan Faulkner and Çağlar Gülçehre and H. Francis Song and Andrew J. Ballard and Justin Gilmer and George E. Dahl and Ashish Vaswani and Kelsey R. Allen and Charles Nash and Victoria Langston and Chris Dyer and Nicolas Heess and Daan Wierstra and Pushmeet Kohli and Matthew Botvinick and Oriol Vinyals and Yujia Li and Razvan Pascanu},
@@ -2675,7 +2675,7 @@
   year = {2017}
 }
 
-@inproceedings{Kipf2017GCN,
+@inproceedings{kipf2017gcn,
   abstract = {We present a scalable approach for semi-supervised learning on graph-structured data that is based on an efficient variant of convolutional neural networks which operate directly on graphs. We motivate the choice of our architecture via a localized first-order approximation of spectral graph convolutions. Our model scales linearly in the number of graph edges and learns hidden layer representations that encode both local graph structure and features of nodes. In experiments on citation networks and knowledge graph datasets, we demonstrate that our approach outperforms related methods by a significant margin.},
   author = {Thomas N. Kipf and Max Welling},
   booktitle = {International Conference on Learning Representations},
@@ -2686,7 +2686,7 @@
   year = {2017}
 }
 
-@inproceedings{Hamilton2017GraphSAGE,
+@inproceedings{hamilton2017graphsage,
   abstract = {Low-dimensional embeddings of nodes in large graphs have proved extremely useful in a variety of prediction tasks, from content recommendation to identifying protein functions. However, most existing approaches require that all nodes in the graph are present during training of the embeddings; these previous approaches are inherently transductive and do not naturally generalize to unseen nodes. Here we present GraphSAGE, a general, inductive framework that leverages node feature information (e.g., text attributes) to efficiently generate node embeddings for previously unseen data. Instead of training individual embeddings for each node, we learn a function that generates embeddings by sampling and aggregating features from a node's local neighborhood. Our algorithm outperforms strong baselines on three inductive node-classification benchmarks: we classify the category of unseen nodes in evolving information graphs based on citation and Reddit post data, and we show that our algorithm generalizes to completely unseen graphs using a multi-graph dataset of protein-protein interactions.},
   author = {William L. Hamilton and Rex Ying and Jure Leskovec},
   booktitle = {Advances in Neural Information Processing Systems},
@@ -2699,7 +2699,7 @@
   year = {2017}
 }
 
-@inproceedings{Gilmer2017MPNN,
+@inproceedings{gilmer2017mpnn,
   abstract = {Supervised learning on molecules has incredible potential to be useful in chemistry, drug discovery, and materials science. Luckily, several promising and closely related neural network models invariant to molecular symmetries have already been described in the literature. These models learn a message passing algorithm and aggregation procedure to compute a function of their entire input graph. In this work, we reformulate existing models into a single common framework we call Message Passing Neural Networks (MPNNs) and explore additional novel variations within this framework. Using MPNNs, we demonstrate state of the art results on an important molecular property prediction benchmark; however, we also observe that test performance on this benchmark was not well correlated with test performance on new datasets we collected. Furthermore, we demonstrate that our model outperforms the previous state of the art methods on these new datasets.},
   author = {Justin Gilmer and Samuel S. Schoenholz and Patrick F. Riley and Oriol Vinyals and George E. Dahl},
   booktitle = {Proceedings of the 34th International Conference on Machine Learning},
@@ -2714,7 +2714,7 @@
   year = {2017}
 }
 
-@article{Bronstein2017GeometricDL,
+@article{bronstein2017geometricdl,
   abstract = {Many scientific fields study data with an underlying structure that is a non-Euclidean space. Some examples include social networks in computational social sciences, sensor networks in communications, functional networks in brain imaging, regulatory networks in genetics, and meshed surfaces in computer graphics. In many applications, such geometric data are large and complex (in the case of social networks, on the scale of billions), and are natural targets for machine learning techniques. In particular, we would like to use deep neural networks, which have recently proven to be powerful tools for a broad range of problems from computer vision, natural language processing, and audio analysis. However, these tools have been most successful on data with an underlying Euclidean or grid-like structure, and in cases where the invariances of these structures are built into networks used to model them. Geometric deep learning is an umbrella term for emerging techniques attempting to generalize (structured) deep neural models to non-Euclidean domains such as graphs and manifolds. The purpose of this paper is to overview different examples of geometric deep learning problems and present available solutions, key difficulties, applications, and future research directions in this nascent field.},
   author = {Michael M. Bronstein and Joan Bruna and Yann LeCun and Arthur Szlam and Pierre Vandergheynst},
   doi = {10.1109/MSP.2017.2693418},
@@ -2745,7 +2745,7 @@
   year = {2016}
 }
 
-@inproceedings{Defferrard2016ChebNet,
+@inproceedings{defferrard2016chebnet,
   abstract = {In this work, we are interested in generalizing convolutional neural networks (CNNs) from low-dimensional regular grids, where image, video and speech are represented, to high-dimensional irregular domains, such as social networks, brain connectomes or words' embedding, represented by graphs. We present a formulation of CNNs in the context of spectral graph theory, which provides the necessary mathematical background and efficient numerical schemes to design fast localized convolutional filters on graphs. Importantly, the proposed technique offers the same linear computational complexity and constant learning complexity as classical CNNs, while being universal to any graph structure. Experiments on MNIST and 20NEWS demonstrate the ability of this novel deep learning system to learn local, stationary, and compositional features on graphs.},
   author = {Michaël Defferrard and Xavier Bresson and Pierre Vandergheynst},
   booktitle = {Advances in Neural Information Processing Systems 29},
@@ -2772,7 +2772,7 @@
   year = {2014}
 }
 
-@inproceedings{Bruna2014Spectral,
+@inproceedings{bruna2014spectral,
   abstract = {Convolutional Neural Networks are extremely efficient architectures in image and audio recognition tasks, thanks to their ability to exploit the local translational invariance of signal classes over their domain. In this paper we consider possible generalizations of CNNs to signals defined on more general domains without the action of a translation group. In particular, we propose two constructions, one based upon a hierarchical clustering of the domain, and another based on the spectrum of the graph Laplacian. We show through experiments that for low-dimensional graphs it is possible to learn convolutional layers with a number of parameters independent of the input size, resulting in efficient deep architectures.},
   address = {Banff, Canada},
   author = {Joan Bruna and Wojciech Zaremba and Arthur Szlam and Yann LeCun},
@@ -2823,7 +2823,7 @@
   year = {2009}
 }
 
-@article{Scarselli2009GNN,
+@article{scarselli2009gnn,
   abstract = {Many underlying relationships among data in several areas of science and engineering, e.g., computer vision, molecular chemistry, molecular biology, pattern recognition, and data mining, can be represented in terms of graphs. In this paper, we propose a new neural network model, called graph neural network (GNN) model, that extends existing neural network methods for processing the data represented in graph domains. This GNN model, which can directly process most of the practically useful types of graphs, e.g., acyclic, cyclic, directed, and undirected, implements a function tau(G,n) is an element of IR(m) that maps a graph G and one of its nodes n into an m-dimensional Euclidean space. A supervised learning algorithm is derived to estimate the parameters of the proposed GNN model. The computational cost of the proposed algorithm is also considered. Some experimental results are shown to validate the proposed learning algorithm, and to demonstrate its generalization capabilities.},
   author = {Franco Scarselli and Marco Gori and Ah Chung Tsoi and Markus Hagenbuchner and Gabriele Monfardini},
   doi = {10.1109/TNN.2008.2005605},

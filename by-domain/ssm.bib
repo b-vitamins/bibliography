@@ -1,4 +1,4 @@
-@inproceedings{mambarecon2024,
+@inproceedings{korkmaz2024mambarecon,
   abstract = {Magnetic Resonance Imaging (MRI) is one of the most important medical imaging modalities as it provides superior resolution of soft tissues, albeit with a notable limitation in scanning speed. The advent of deep learning has catalyzed the development of cutting-edge methods for the expedited reconstruction of MRI scans, utilizing convolutional neural networks and, more recently, vision transformers. Recently proposed structured state space models (e.g., Mamba) have gained some traction due to their efficiency and low computational requirements compared to transformer models. We propose an innovative MRI reconstruction framework that employs structured state space models at its core, aimed at amplifying both long-range contextual sensitivity and reconstruction efficacy. Comprehensive experiments on public brain MRI datasets show that our model sets new benchmarks beating state-of-the-art reconstruction baselines. Code will be available (https://github.com/yilmazkorkmaz1/MambaRecon).},
   address = {Tucson, AZ, USA},
   author = {Korkmaz, Yilmaz and Patel, Vishal M.},
@@ -29,7 +29,7 @@
   year = {2025}
 }
 
-@inproceedings{samba2024,
+@inproceedings{ren2024samba,
   abstract = {Efficiently modeling sequences with infinite context length has long been a challenging problem. Previous approaches have either suffered from quadratic computational complexity or limited extrapolation ability in length generalization. In this work, we present Samba, a simple hybrid architecture that layer-wise combines Mamba, a selective State Space Model (SSM), with Sliding Window Attention (SWA). Samba selectively compresses a given sequence into recurrent hidden states while still maintaining the ability to precisely recall recent memories with the attention mechanism. We scale Samba up to 3.8B parameters with 3.2T training tokens and demonstrate that it significantly outperforms state-of-the-art models across a variety of benchmarks. Pretrained on sequences of 4K length, Samba shows improved perplexity in context lengths of up to 1M in zero-shot. When finetuned on 4K-length sequences, Samba efficiently extrapolates to a 256K context length with perfect memory recall on the Passkey Retrieval task, and exhibits superior retrieval extrapolation on the challenging Phonebook task compared to full-attention models. As a linear-time sequence model, Samba achieves a 3.73x higher throughput compared to Transformers with grouped-query attention for user prompts of 128K length, and a 3.64x speedup when generating 64K tokens with unlimited streaming. Our code for training on open source data is publicly available at https://github.com/microsoft/Samba.},
   archiveprefix = {arXiv},
   author = {Ren, Liliang and Liu, Yang and Lu, Yadong and Shen, Yelong and Liang, Chen and Chen, Weizhu},
@@ -45,7 +45,7 @@
   year = {2025}
 }
 
-@article{serpent2025,
+@article{rando2025serpent,
   abstract = {State Space Models (SSMs) have recently enjoyed a rise to prominence in the field of deep learning for sequence modeling, especially as an alternative to Transformers. Their success stems from avoiding two well-known drawbacks of attention-based models: quadratic complexity with respect to the sequence length and inability to model long-range dependencies. The SSM variant Mamba has demonstrated performance comparable to Transformers without any form of attention, thanks to the use of a selective mechanism for the state parameters. Selectivity, however, is only evaluated empirically and the reasons of its effectiveness remain unclear. In this work, we show how selectivity is related to the sequence processing. Our analysis shows that selective time intervals in Mamba act as linear approximators of information. Then, we propose our SeRpEnt architecture, a SSM that further exploits selectivity to compress sequences in an information-aware fashion. It employs a resampling mechanism that aggregates elements based on their information content. Our empirical results in the Long Range Arena benchmark and other language modeling tasks show benefits of the SeRpEnt's resampling mechanism.},
   author = {Stefano Rando and Lucia Romani and Matteo Migliarini and Luca Franco and Denis Gudovskiy and Fabio Galasso},
   journal = {arXiv preprint arXiv:2501.11729},
@@ -253,7 +253,7 @@
   year = {2024}
 }
 
-@inproceedings{mambalrp2024,
+@inproceedings{jafari2024mambalrp,
   abstract = {Recent sequence modeling approaches using selective state space sequence models, referred to as Mamba models, have seen a surge of interest. These models allow efficient processing of long sequences in linear time and are rapidly being adopted in a wide range of applications such as language modeling, demonstrating promising performance. To foster their reliable use in real-world scenarios, it is crucial to augment their transparency. Our work bridges this critical gap by bringing explainability, particularly Layer-wise Relevance Propagation (LRP), to the Mamba architecture. Guided by the axiom of relevance conservation, we identify specific components in the Mamba architecture, which cause unfaithful explanations. To remedy this issue, we propose MambaLRP, a novel algorithm within the LRP framework, which ensures a more stable and reliable relevance propagation through these components. Our proposed method is theoretically sound and excels in achieving state-of-the-art explanation performance across a diverse range of models and datasets. Moreover, MambaLRP facilitates a deeper inspection of Mamba architectures, uncovering various biases and evaluating their significance. It also enables the analysis of previous speculations regarding the long-range capabilities of Mamba models.},
   author = {Jafari, Farnoush Rezaei and Montavon, Grégoire and Müller, Klaus-Robert and Eberle, Oliver},
   booktitle = {Advances in Neural Information Processing Systems},
@@ -325,7 +325,7 @@
   year = {2024}
 }
 
-@article{zamba2024,
+@article{glorioso2024zamba,
   abstract = {In this technical report, we present Zamba, a novel 7B SSM-transformer hybrid model which achieves competitive performance against leading open-weight models at a comparable scale. Zamba is trained on 1T tokens from openly available datasets and is the best non-transformer model at this scale. Zamba pioneers a unique architecture combining a Mamba backbone with a single shared attention module, thus obtaining the benefits of attention at minimal parameter cost. Due to its architecture, Zamba is significantly faster at inference than comparable transformer models and requires substantially less memory for generation of long sequences. Zamba is pretrained in two phases: the first phase is based on existing web datasets, while the second one consists of annealing the model over high-quality instruct and synthetic datasets, and is characterized by a rapid learning rate decay. We open-source the weights and all checkpoints for Zamba, through both phase 1 and annealing phases.},
   archiveprefix = {arXiv},
   author = {Glorioso, Paolo and Anthony, Quentin and Tokpanov, Yury and Whittington, James and Pilault, Jonathan and Ibrahim, Adam and Millidge, Beren},
