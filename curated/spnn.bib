@@ -1,0 +1,901 @@
+@article{boyer2025learning,
+  abstract = {State-space models (SSMs) are a class of networks for sequence learning that benefit from fixed state size and linear complexity with respect to sequence length, contrasting the quadratic scaling of typical attention mechanisms. Inspired from observations in neuroscience, Linear Oscillatory State-Space models (LinOSS) are a recently proposed class of SSMs constructed from layers of discretized forced harmonic oscillators. Although these models perform competitively, leveraging fast parallel scans over diagonal recurrent matrices and achieving state-of-the-art performance on tasks with sequence length up to 50k, LinOSS models rely on rigid energy dissipation ("forgetting") mechanisms that are inherently coupled to the timescale of state evolution. As forgetting is a crucial mechanism for long-range reasoning, we demonstrate the representational limitations of these models and introduce Damped Linear Oscillatory State-Space models (D-LinOSS), a more general class of oscillatory SSMs that learn to dissipate latent state energy on multiple timescales. We analyze the spectral distribution of the model's recurrent matrices and prove that the SSM layers exhibit stable dynamics under simple, flexible parameterizations. D-LinOSS consistently outperforms previous LinOSS methods on long-range learning tasks, without introducing additional complexity, and simultaneously reduces the hyperparameter search space by 50%.},
+  author = {Jared Boyer and T. Konstantin Rusch and Daniela Rus},
+  eprint = {2505.12171},
+  eprinttype = {arXiv},
+  file = {:/home/b/documents/article/boyer2025learning.pdf:pdf},
+  journal = {arXiv preprint arXiv:2505.12171},
+  month = {5},
+  note = {Introduces Damped Linear Oscillatory State-Space models (D-LinOSS) that learn to dissipate latent state energy on multiple timescales, extending the LinOSS framework by decoupling energy dissipation from state evolution timescales. Outperforms previous LinOSS methods while reducing hyperparameter search space by 50%.},
+  pdf = {https://arxiv.org/pdf/2505.12171.pdf},
+  primaryclass = {cs.LG},
+  title = {Learning to Dissipate Energy in Oscillatory State-Space Models},
+  url = {https://arxiv.org/abs/2505.12171},
+  year = {2025}
+}
+
+@inproceedings{rusch2025oscillatory,
+  abstract = {We propose Linear Oscillatory State-Space models (LinOSS) for efficiently learning on long sequences. Inspired by cortical dynamics of biological neural networks, we base our proposed LinOSS model on a system of forced harmonic oscillators. A stable discretization, integrated over time using fast associative parallel scans, yields the proposed state-space model. We prove that LinOSS produces stable dynamics only requiring nonnegative diagonal state matrix. This is in stark contrast to many previous state-space models relying heavily on restrictive parameterizations. Moreover, we rigorously show that LinOSS is universal, i.e., it can approximate any continuous and causal operator mapping between time-varying functions, to desired accuracy. In addition, we show that an implicit-explicit discretization of LinOSS perfectly conserves the symmetry of time reversibility of the underlying dynamics. Together, these properties enable efficient modeling of long-range interactions, while ensuring stable and accurate long-horizon forecasting. Finally, our empirical results, spanning a wide range of time-series tasks from mid-range to very long-range classification and regression, as well as long-horizon forecasting, demonstrate that our proposed LinOSS model consistently outperforms state-of-the-art sequence models. Notably, LinOSS outperforms Mamba and LRU by nearly 2x on a sequence modeling task with sequences of length 50k.},
+  author = {Rusch, T. Konstantin and Rus, Daniela},
+  booktitle = {The Thirteenth International Conference on Learning Representations},
+  file = {:/home/b/documents/inproceedings/rusch2025oscillatory.pdf:pdf},
+  note = {Oral presentation. Selected for oral presentation at ICLR 2025 (top 1% of submissions). Introduces LinOSS models based on forced harmonic oscillators with provable stability guarantees and universal approximation capabilities.},
+  openalex = {W4403929263},
+  pdf = {https://openreview.net/pdf?id=GRMfXcAAFh},
+  title = {Oscillatory State-Space Models},
+  url = {https://openreview.net/forum?id=GRMfXcAAFh},
+  year = {2025}
+}
+
+@article{kunin2025alternating,
+  abstract = {Introduces Alternating Gradient Flows (AGF), an algorithmic framework that describes the dynamics of feature learning in two-layer networks trained from small initialization. AGF approximates the staircase-like loss curve behavior as an alternating two-step process: maximizing a utility function over dormant neurons and minimizing a cost function over active ones. The framework quantifies the order, timing, and magnitude of loss drops in training dynamics, unifying existing saddle-to-saddle analyses in fully connected linear networks and attention-only linear transformers. Applied to quadratic networks trained for modular addition, AGF provides the first complete characterization revealing networks learn Fourier features in decreasing order of coefficient magnitude.},
+  author = {Daniel Kunin and Giovanni Luca Marchetti and Feng Chen and Dhruva Karkada and James B. Simon and Michael R. DeWeese and Surya Ganguli and Nina Miolane},
+  doi = {10.48550/arXiv.2506.06489},
+  eprint = {2506.06489},
+  eprintclass = {cs.LG},
+  eprinttype = {arXiv},
+  file = {:/home/b/documents/article/kunin2025alternating.pdf:pdf},
+  journal = {arXiv preprint arXiv:2506.06489},
+  month = {6},
+  note = {First submitted 6 Jun 2025, last revised 11 Jul 2025},
+  pages = {39},
+  pdf = {https://arxiv.org/pdf/2506.06489},
+  title = {Alternating Gradient Flows: A Theory of Feature Learning in Two-Layer Neural Networks},
+  url = {https://arxiv.org/abs/2506.06489},
+  year = {2025}
+}
+
+@misc{liao2024random,
+  abstract = {Modern Machine Learning (ML) and Deep Neural Networks (DNNs) often operate on high-dimensional data and rely on overparameterized models, where classical low-dimensional intuitions break down. In particular, the proportional regime where the data dimension, sample size, and number of model parameters are all large and comparable, gives rise to novel and sometimes counterintuitive behaviors. This paper extends Random Matrix Theory beyond linear models to address challenges in nonlinear machine learning models, introducing a ``High-dimensional Equivalent'' concept to analyze training and generalization performance across different network types.},
+  archiveprefix = {arXiv},
+  author = {Liao, Zhenyu and Mahoney, Michael W.},
+  eprint = {2506.13139},
+  file = {:/home/b/documents/misc/liao2024random.pdf:pdf},
+  month = {6},
+  note = {30 pages, 6 figures. A review that extends RMT beyond traditional eigenvalue analysis to address nonlinear models like DNNs. Introduces the ``High-dimensional Equivalent'' concept to unify and characterize the performance of deep networks, capturing phenomena like scaling laws and double descent},
+  pdf = {https://arxiv.org/pdf/2506.13139},
+  primaryclass = {stat.ML},
+  title = {Random Matrix Theory for Deep Learning: Beyond Eigenvalues of Linear Models},
+  url = {https://arxiv.org/abs/2506.13139},
+  year = {2025}
+}
+
+@article{gerbelot2024rigorous,
+  abstract = {We prove closed-form equations for the exact high-dimensional asymptotics of a family of first order gradient-based methods, learning an estimator (e.g. M-estimator, shallow neural network, ...) from observations on Gaussian data with empirical risk minimization. This includes widely used algorithms such as stochastic gradient descent (SGD) or Nesterov acceleration. The obtained equations match those resulting from the discretization of dynamical mean-field theory (DMFT) equations from statistical physics when applied to gradient flow. Our proof method allows us to give an explicit description of how memory kernels build up in the effective dynamics, and to include non-separable update functions, allowing datasets with non-identity covariance matrices. Finally, we provide numerical implementations of the equations for SGD with generic extensive batch-size and with constant learning rates.},
+  author = {Cédric Gerbelot and Emanuele Troiani and Francesca Mignacco and Florent Krzakala and Lenka Zdeborová},
+  doi = {10.1137/23M1594388},
+  journal = {SIAM Journal on Mathematics of Data Science},
+  note = {Provides a rigorous mathematical proof for the DMFT equations describing the high-dimensional asymptotics of SGD and related first-order methods. Extends the theory to handle data with generic covariance and discrete-time updates, placing the physics-based approach on a firm mathematical footing.},
+  number = {1},
+  openalex = {W4396677240},
+  pages = {143--164},
+  title = {Rigorous Dynamical Mean-Field Theory for Stochastic Gradient Descent Methods},
+  url = {https://epubs.siam.org/doi/epdf/10.1137/23M1594388},
+  volume = {6},
+  year = {2024}
+}
+
+@inproceedings{kadkhodaie2024generalization,
+  abstract = {Deep neural networks (DNNs) trained for image denoising are able to generate high-quality samples with score-based reverse diffusion algorithms. These impressive capabilities seem to imply an escape from the curse of dimensionality, but recent reports of memorization of the training set raise the question of whether these networks are learning the `true' continuous density of the data. We study this question for a popular denoising architecture, and find that, with a fixed network size, the quality of the learned density (as measured by FID) is roughly independent of the size of the training set, for datasets large enough to enable memorization of the full training set. This behavior is in stark contrast with other reported results, and suggests that the networks are learning an inductive prior that enables them to interpolate between training examples. We provide an analysis of this inductive bias, by examining the DAEs learned on image datasets in Fourier space. We find that the learned functions tend to be biased towards functions that shrink the coefficients of high-frequency basis functions more than low-frequency ones. We provide evidence that this filtering behavior arises not only when the network is trained on photographic images, but also when it is trained on synthetic images generated from handcrafted densities supported on low-dimensional manifolds, suggesting that the inductive biases of the network, rather than the structure of natural images, gives rise to the observed behavior.},
+  author = {Kadkhodaie, Zahra and Guth, Florentin and Simoncelli, Eero P. and Mallat, Stéphane},
+  booktitle = {The Twelfth International Conference on Learning Representations},
+  file = {:/home/b/documents/inproceedings/kadkhodaie2024generalization.pdf:pdf},
+  month = {3},
+  note = {Outstanding Paper Award, Oral Presentation},
+  pdf = {https://openreview.net/pdf?id=ANvmVS2Yr0},
+  publisher = {OpenReview.net},
+  url = {https://openreview.net/forum?id=ANvmVS2Yr0},
+  year = {2024}
+}
+
+@article{mao2024training,
+  abstract = {We develop information-geometric techniques to analyze the trajectories of the predictions of deep networks during training. By examining the underlying high-dimensional probabilistic models, we reveal that the training process explores an effectively low-dimensional manifold. Networks with a wide range of architectures, sizes, trained using different optimization methods, regularization techniques, data augmentation techniques, and weight initializations lie on the same manifold in the prediction space. Networks with different architectures follow distinguishable trajectories while other factors have minimal influence, and larger networks train along a similar manifold as smaller networks, just faster.},
+  author = {Mao, Jialin and Griniasty, Itay and Teoh, Han Kheng and Ramesh, Rahul and Yang, Rubing and Transtrum, Mark K. and Sethna, James P. and Chaudhari, Pratik},
+  doi = {10.1073/pnas.2310002121},
+  journal = {Proceedings of the National Academy of Sciences},
+  month = {3},
+  note = {Uses replica theory-inspired methods to analyze the high-dimensional probability space of network predictions during training. Shows that despite different architectures and hyperparameters, the training trajectories of many successful networks collapse onto a shared, low-dimensional manifold, revealing a universal path for learning.},
+  number = {12},
+  openalex = {W4392696399},
+  pages = {e2310002121},
+  pdf = {https://www.pnas.org/doi/pdf/10.1073/pnas.2310002121},
+  title = {The Training Process of Many Deep Networks Explores the Same Low-Dimensional Manifold},
+  volume = {121},
+  year = {2024}
+}
+
+@article{shan2024order,
+  abstract = {Continual learning (CL) enables animals to learn new tasks without erasing prior knowledge. CL in artificial neural networks (NNs) is challenging due to catastrophic forgetting, where new learning degrades performance on older tasks. While various techniques exist to mitigate forgetting, theoretical insights into when and why CL fails in NNs are lacking. Here, we present a statistical-mechanics theory of CL in deep, wide NNs, which characterizes the network's input-output mapping as it learns a sequence of tasks. It gives rise to order parameters (OPs) that capture how task relations and network architecture influence forgetting and anterograde interference, as verified by numerical evaluations. For networks with a shared readout for all tasks (single-head CL), the relevant-feature and rule similarity between tasks, respectively measured by two OPs, are sufficient to predict a wide range of CL behaviors. In addition, the theory predicts that increasing the network depth can effectively reduce interference between tasks, thereby lowering forgetting. For networks with task-specific readouts (multi-head CL), the theory identifies a phase transition where CL performance shifts dramatically as tasks become less similar, as measured by another task-similarity OP. While forgetting is relatively mild compared to single-head CL across all tasks, sufficiently low similarity leads to catastrophic anterograde interference, where the network retains old tasks perfectly but completely fails to generalize new learning. Our results delineate important factors affecting CL performance and suggest strategies for mitigating forgetting.},
+  author = {Haozhe Shan and Qianyi Li and Haim Sompolinsky},
+  journal = {arXiv preprint arXiv:2407.10315},
+  month = {7},
+  note = {Develops a statistical-mechanics theory of continual learning (CL) in deep networks. Identifies order parameters that predict catastrophic forgetting and anterograde interference based on task similarity, and reveals a phase transition in multi-head CL where performance shifts dramatically.},
+  openalex = {W4400709354},
+  title = {Order parameters and phase transitions of continual learning in deep neural networks},
+  url = {https://arxiv.org/pdf/2407.10315},
+  year = {2024}
+}
+
+@inproceedings{tiberi2024dissecting,
+  abstract = {Despite the remarkable empirical performance of Transformers, their theoretical understanding remains elusive. Here, we consider a deep multi-head self-attention network, that is closely related to Transformers yet analytically tractable. We develop a statistical mechanics theory of Bayesian learning in this model, deriving exact equations for the network's predictor statistics under the finite-width thermodynamic limit, i.e., $N,Pi̊ghtarrowınfty$, $P/N=\mathcalO(1)$, where $N$ is the network width and $P$ is the number of training examples. Our theory shows that the predictor statistics are expressed as a sum of independent kernels, each one pairing different 'attention paths', defined as information pathways through different attention heads across layers. The kernels are weighted according to a 'task-relevant kernel combination' mechanism that aligns the total kernel with the task labels. As a consequence, this interplay between attention paths enhances generalization performance. Experiments confirm our findings on both synthetic and real-world sequence classification tasks. Finally, our theory explicitly relates the kernel combination mechanism to properties of the learned weights, allowing for a qualitative transfer of its insights to models trained via gradient descent. As an illustration, we demonstrate an efficient size reduction of the network, by pruning those attention heads that are deemed less relevant by our theory.},
+  author = {Tiberi, Lorenzo and Mignacco, Francesca and Irie, Kazuki and Sompolinsky, Haim},
+  booktitle = {Advances in Neural Information Processing Systems},
+  file = {:/home/b/documents/inproceedings/tiberi2024dissecting.pdf:pdf},
+  openalex = {W4399144239},
+  pdf = {https://proceedings.neurips.cc/paper_files/paper/2024/file/8523a98265ceae12afd34113aa6c5cca-Paper-Conference.pdf},
+  title = {Dissecting the Interplay of Attention Paths in a Statistical Mechanics Theory of Transformers},
+  volume = {37},
+  year = {2024}
+}
+
+@inproceedings{zavatoneveth2024deep,
+  abstract = {Develops a novel dynamical mean-field theory (DMFT) for deep linear networks that characterizes training dynamics from random initialization. The theory captures the ``wider is better'' effect, hyperparameter transfer, and the impact of parameterization (e.g., mean-field vs. NTK scaling) on learning speed across different network depths and data distributions.},
+  author = {Zavatone-Veth, Jacob A. and Advani, Madhu and Sompolinsky, Haim and Ganguli, Surya},
+  booktitle = {Proceedings of the 41st International Conference on Machine Learning},
+  month = {7},
+  openalex = {W4407186888},
+  pages = {58388--58433},
+  publisher = {PMLR},
+  series = {Proceedings of Machine Learning Research},
+  title = {Deep Linear Network Training Dynamics from Random Initialization: Data, Width, Depth, and Hyperparameter Transfer},
+  url = {https://proceedings.mlr.press/v235/zavatone-veth24a/zavatone-veth24a.pdf},
+  volume = {235},
+  year = {2024}
+}
+
+@article{gu2024mamba,
+  abstract = {Foundation models, now powering most of the exciting applications in deep learning, are almost universally based on the Transformer architecture and its attention mechanism. Many subquadratic-time architectures such as linear attention, gated convolution and recurrent models, and structured state space models (SSMs) have been developed to address Transformers' computational inefficiency on long sequences, but they have not performed as well as attention on important modalities such as language. We identify that a key weakness of such models is their inability to perform content-based reasoning, and make several improvements. First, we design a selective SSM that lets SSM parameters be functions of the input, allowing the model to selectively propagate or forget information along the sequence length dimension depending on the current token. Second, even though this change prevents the use of efficient convolutions, we design a hardware-aware parallel algorithm in recurrent mode. We integrate these selective SSMs into a simplified end-to-end neural network architecture without attention or even MLP blocks (Mamba). Mamba enjoys fast inference (5× higher throughput than Transformers) and linear scaling in sequence length, and its performance improves on real data up to million-length sequences. As a general sequence model backbone, Mamba achieves state-of-the-art performance across several modalities such as language, audio, and genomics. On language modeling, our Mamba-3B model outperforms Transformers of the same size and matches Transformers twice its size, both in pretraining and downstream evaluation.},
+  archiveprefix = {arXiv},
+  author = {Albert Gu and Tri Dao},
+  doi = {10.48550/arxiv.2312.00752},
+  eprint = {2312.00752},
+  file = {:/home/b/documents/article/gu2024mamba.pdf:pdf},
+  journal = {arXiv preprint arXiv:2312.00752},
+  month = {12},
+  note = {Introduces input-dependent SSM parameters, creating a selective state-space model that can modulate its recurrence based on context. Achieves state-of-the-art performance with linear-time complexity, challenging the dominance of Transformers. Influential paper cited 587+ times as of 2024.},
+  openalex = {W4389326242},
+  pdf = {https://arxiv.org/pdf/2312.00752.pdf},
+  primaryclass = {cs.LG},
+  title = {Mamba: Linear-Time Sequence Modeling with Selective State Spaces},
+  url = {https://arxiv.org/abs/2312.00752},
+  year = {2023}
+}
+
+@inproceedings{liu2023omnigrok,
+  abstract = {Grokking, the unusual phenomenon for algorithmic datasets where generalization happens long after overfitting the training data, has remained elusive. We aim to understand grokking by analyzing the loss landscapes of neural networks, identifying the mismatch between training and test losses as the cause for grokking. We refer to this as the 'LU mechanism' because training and test losses (against model weight norm) typically resemble 'L' and 'U', respectively. This simple mechanism can nicely explain many aspects of grokking: data size dependence, weight decay dependence, the emergence of representations, etc. Guided by the intuitive picture, we are able to induce grokking on tasks involving images, language and molecules. In the reverse direction, we are able to eliminate grokking for algorithmic datasets. We attribute the dramatic nature of grokking for algorithmic datasets to representation learning.},
+  author = {Ziming Liu and Eric J. Michaud and Max Tegmark},
+  booktitle = {The Eleventh International Conference on Learning Representations},
+  file = {:/home/b/documents/inproceedings/liu2023omnigrok.pdf:pdf},
+  note = {Demonstrates that the grokking phenomenon is not limited to algorithmic datasets but can also be observed in standard image classification tasks like MNIST. Shows that the same principles of representation learning and regularization-driven phase transitions apply more broadly.},
+  openalex = {W4302013344},
+  pdf = {https://openreview.net/pdf?id=zDiHoIWa0q1},
+  title = {Omnigrok: Grokking Beyond Algorithmic Data},
+  url = {https://openreview.net/forum?id=zDiHoIWa0q1},
+  year = {2023}
+}
+
+@inproceedings{nanda2023mechanistic,
+  abstract = {Neural networks often exhibit emergent behavior in which qualitatively new capabilities arise from scaling up the number of parameters, training data, or even the number of steps. One approach to understanding emergence is to find the continuous progress measures that underlie the seemingly discontinuous qualitative changes. We argue that progress measures can be found via mechanistic interpretability: reverse-engineering learned behaviors into their individual components. As a case study, we investigate the relationship between the performance of 32 small transformers trained on modular addition and their internal structure, showing that the models can be fully reverse-engineered. We find that training and validation loss are NOT good proxies for model internals, and that we should look at more mechanistic measures of progress. Based on these findings, we define progress measures that allow us to study the dynamics of training and split training into three continuous phases: memorization, circuit formation, and cleanup. Our results suggest that grokking is better understood as gradual amplification of structured mechanisms followed by later removal of memorizing components.},
+  author = {Neel Nanda and Lawrence Chan and Tom Lieberum and Jess Smith and Jacob Steinhardt},
+  booktitle = {The Eleventh International Conference on Learning Representations},
+  file = {:/home/b/documents/inproceedings/nanda2023mechanistic.pdf:pdf},
+  note = {Top 25% of ICLR 2023 submissions. Provides mechanistic interpretability analysis of grokking phenomenon in transformers trained on modular addition, showing the networks learn algorithms using discrete Fourier transforms and trigonometric identities.},
+  openalex = {W4316135772},
+  pdf = {https://arxiv.org/pdf/2301.05217.pdf},
+  title = {Progress measures for grokking via mechanistic interpretability},
+  url = {https://openreview.net/forum?id=9XFSbDPmdW},
+  year = {2023}
+}
+
+@inproceedings{thilak2023slingshot,
+  abstract = {The grokking phenomenon as reported by Power et al. (2022) refers to a regime where a long period of overfitting is followed by a seemingly sudden transition to perfect generalization. In this work, we attempt to reveal the optimization underpinning that could cause such a sudden transition. We uncover an optimization anomaly plaguing adaptive optimizers at extremely late stages of training, referred to as the Slingshot Mechanism. A prominent artifact of the Slingshot Mechanism can be measured by the cyclic phase transitions between stable and unstable training regimes, and can be easily monitored by the cyclic behavior of the norm of the last layers weights. We empirically observe that without explicit regularization, Grokking almost exclusively happens at the onset of Slingshots, and is absent without it.},
+  author = {Vimal Thilak and Etai Littwin and Shuangfei Zhai and Omid Saremi and Roni Paiss and Joshua M. Susskind},
+  booktitle = {International Conference on Learning Representations},
+  doi = {10.48550/arxiv.2206.04817},
+  eprint = {2206.04817},
+  eprinttype = {arXiv},
+  file = {:/home/b/documents/inproceedings/thilak2023slingshot.pdf:pdf},
+  note = {Originally published as arXiv:2206.04817. Investigates the role of adaptive optimizers like Adam in grokking. Proposes the "slingshot" mechanism, where cyclic phase transitions between stable and unstable training regimes trigger the sudden transition to generalization.},
+  openalex = {W4320170046},
+  pdf = {https://openreview.net/pdf?id=dJgYhYKvr1},
+  title = {The Slingshot Mechanism: An Empirical Study of Adaptive Optimizers and the Grokking Phenomenon},
+  year = {2023}
+}
+
+@inproceedings{vonoswald2023transformers,
+  abstract = {At present, the mechanisms of in-context learning in Transformers are not well understood and remain mostly an intuition. In this paper, we suggest that training Transformers on auto-regressive objectives is closely related to gradient-based meta-learning formulations. We start by providing a simple weight construction that shows the equivalence of data transformations induced by 1) a single linear self-attention layer and by 2) gradient-descent (GD) on a regression loss. Motivated by that construction, we show empirically that when training self-attention-only Transformers on simple regression tasks either the models learned by GD and Transformers show great similarity or, remarkably, the weights found by optimization match the construction. Thus we show how trained Transformers become mesa-optimizers i.e. learn models by gradient descent in their forward pass. This allows us, at least in the domain of regression problems, to mechanistically understand the inner workings of in-context learning in optimized Transformers. Building on this insight, we furthermore identify how Transformers surpass the performance of plain gradient descent by learning an iterative curvature correction and learn linear models on deep data representations to solve non-linear regression tasks. Finally, we discuss intriguing parallels to a mechanism identified to be crucial for in-context learning termed induction-head (Olsson et al., 2022) and show how it could be understood as a specific case of in-context learning by gradient descent learning within Transformers.},
+  author = {von Oswald, Johannes and Niklasson, Eyvind and Randazzo, Ettore and Sacramento, João and Mordvintsev, Alexander and Zhmoginov, Andrey and Vladymyrov, Max},
+  booktitle = {Proceedings of the 40th International Conference on Machine Learning},
+  editor = {Krause, Andreas and Brunskill, Emma and Cho, Kyunghyun and Engelhardt, Barbara and Sabato, Sivan and Scarlett, Jonathan},
+  file = {:/home/b/documents/inproceedings/vonoswald2023transformers.pdf:pdf},
+  note = {Shows that Transformers can implicitly implement gradient descent in their forward pass. Provides a weight construction demonstrating equivalence between linear self-attention and gradient descent on regression tasks. While related to Bayesian views of ICL, this work emphasizes the gradient-based optimization perspective.},
+  openalex = {W4311726128},
+  pages = {35151--35174},
+  pdf = {https://proceedings.mlr.press/v202/von-oswald23a/von-oswald23a.pdf},
+  publisher = {PMLR},
+  series = {Proceedings of Machine Learning Research},
+  title = {Transformers learn in-context by gradient descent},
+  url = {https://proceedings.mlr.press/v202/von-oswald23a.html},
+  volume = {202},
+  year = {2023}
+}
+
+@article{weng2023statistical,
+  abstract = {In deep learning, neural networks serve as noisy channels between input data and its representation. This perspective naturally relates deep learning with the pursuit of constructing channels with optimal performance in information transmission and representation. While considerable efforts are concentrated on realizing optimal channel properties during network optimization, we study a frequently overlooked possibility that neural networks can be initialized toward optimal channels, rather than being only able to achieve optimal channel properties during training. We devise a corrected mean-field framework to characterize information propagation in neural networks with non-centered post-activation distributions. Based on our analytic theory, we prove that mutual information maximization is realized between inputs and propagated signals when neural networks are initialized at dynamic isometry, a case where information transmits via norm-preserving mappings. We analyze our findings with information bottleneck theory to confirm the precise relations among dynamic isometry, mutual information maximization, and optimal channel properties in deep learning.},
+  author = {Kangyu Weng and Aohua Cheng and Ziyang Zhang and Pei Sun and Yang Tian},
+  doi = {10.1103/PhysRevResearch.5.023023},
+  journal = {Physical Review Research},
+  month = {4},
+  number = {2},
+  openalex = {W4365450949},
+  pages = {023023},
+  pdf = {https://journals.aps.org/prresearch/pdf/10.1103/PhysRevResearch.5.023023},
+  title = {Statistical Physics of Deep Neural Networks: Initialization toward Optimal Channels},
+  volume = {5},
+  year = {2023}
+}
+
+@inproceedings{gu2022efficiently,
+  abstract = {A central goal of sequence modeling is designing a single principled model that can address sequence data across a range of modalities and tasks, particularly on long-range dependencies. Although conventional models including RNNs, CNNs, and Transformers have specialized variants for capturing long dependencies, they still struggle to scale to very long sequences of $10000$ or more steps. A promising recent approach proposed modeling sequences by simulating the fundamental state space model (SSM) $x'(t) = Ax(t) + Bu(t), y(t) = Cx(t) + Du(t)$, and showed that for appropriate choices of the state matrix $A$, this system could handle long-range dependencies mathematically and empirically. However, this method has prohibitive computation and memory requirements, rendering it infeasible as a general sequence modeling solution. We propose the Structured State Space sequence model (S4) based on a new parameterization for the SSM, and show that it can be computed much more efficiently than prior approaches while preserving their theoretical strengths. Our technique involves conditioning $A$ with a low-rank correction, allowing it to be diagonalized stably and reducing the SSM to the well-studied computation of a Cauchy kernel. S4 achieves strong empirical results across a diverse range of established benchmarks, including (i) 91% accuracy on sequential CIFAR-10 with no data augmentation or auxiliary losses, on par with a larger 2-D ResNet, (ii) substantially closing the gap to Transformers on image and language modeling tasks, while performing generation $60 imes$ faster (iii) SoTA on every task from the Long Range Arena benchmark, including solving the challenging Path-X task of length 16k that all prior work fails on, while being as efficient as all competitors.},
+  author = {Albert Gu and Karan Goel and Christopher Ré},
+  booktitle = {The Tenth International Conference on Learning Representations},
+  file = {:/home/b/documents/inproceedings/gu2022efficiently.pdf:pdf},
+  note = {Outstanding Paper Honorable Mention},
+  openalex = {W3209374680},
+  pdf = {https://openreview.net/pdf?id=uYLFoz1vlAC},
+  title = {Efficiently Modeling Long Sequences with Structured State Spaces},
+  url = {https://openreview.net/forum?id=uYLFoz1vlAC},
+  year = {2022}
+}
+
+@inproceedings{gu2022parameterization,
+  abstract = {State space models (SSM) have recently been shown to be very effective as a deep learning layer as a promising alternative to sequence models such as RNNs, CNNs, or Transformers. The first version to show this potential was the S4 model, which is particularly effective on tasks involving long-range dependencies by using a prescribed state matrix called the HiPPO matrix. While this has an interpretable mathematical mechanism for modeling long dependencies, it also requires a custom representation and algorithm that makes the model difficult to understand and implement. On the other hand, a recent variant of S4 called DSS showed that restricting the state matrix to be fully diagonal can still preserve the performance of the original model when using a specific initialization based on approximating S4's matrix. This work seeks to systematically understand how to parameterize and initialize diagonal state space models. While it follows from classical results that almost all SSMs have an equivalent diagonal form, we show that the initialization is critical for performance. First, we explain why DSS works mathematically, as the diagonal approximation to S4 surprisingly recovers the same dynamics in the limit of infinite state dimension. We then systematically describe various design choices in parameterizing and computing diagonal SSMs, and perform a controlled empirical study ablating the effects of these choices. Our final model S4D is a simple diagonal version of S4 whose kernel computation requires just 3 lines of code and performs comparably to S4 in almost all settings, with state-of-the-art results in image, audio, and medical time-series domains, and 85% average on the Long Range Arena benchmark.},
+  author = {Albert Gu and Ankit Gupta and Karan Goel and Christopher Ré},
+  booktitle = {Advances in Neural Information Processing Systems},
+  file = {:/home/b/documents/inproceedings/gu2022parameterization.pdf:pdf},
+  note = {Simplifies the S4 model to a purely diagonal state matrix (S4D), reducing implementation complexity while retaining high performance. Provides a theoretical analysis of diagonal SSMs as a system of decoupled oscillators, clarifying their connection to classical dynamical systems.},
+  openalex = {W4283461773},
+  pages = {35971--35983},
+  pdf = {https://proceedings.neurips.cc/paper_files/paper/2022/file/e9a32fade47b906de908431991440f7c-Paper-Conference.pdf},
+  title = {On the Parameterization and Initialization of Diagonal State Space Models},
+  url = {https://proceedings.neurips.cc/paper_files/paper/2022/hash/e9a32fade47b906de908431991440f7c-Abstract-Conference.html},
+  volume = {35},
+  year = {2022}
+}
+
+@inproceedings{liu2022towards,
+  abstract = {We aim to understand grokking, a phenomenon where models generalize long after overfitting their training set. We present both a microscopic analysis anchored by an effective theory and a macroscopic analysis of phase diagrams describing learning performance across hyperparameters. We find that generalization originates from structured representations whose training dynamics and dependence on training set size can be predicted by their effective theory in a toy setting. We observe empirically the presence of four learning phases: comprehension, grokking, memorization, and confusion. Representation learning occurs only in a ``Goldilocks zone'' (including comprehension and grokking) between memorization and confusion. On transformers, the grokking phase stays closer to the memorization phase (compared to the comprehension phase), leading to delayed generalization.},
+  author = {Ziming Liu and Ouail Kitouni and Niklas S. Nolte and Eric J. Michaud and Max Tegmark and Mike Williams},
+  booktitle = {Advances in Neural Information Processing Systems},
+  file = {:/home/b/documents/inproceedings/liu2022towards.pdf:pdf},
+  note = {Proposes a theoretical framework for grokking based on the emergence of structured representations. Identifies four learning phases and explains grokking as a transition between a "memorization" phase and a "comprehension" phase, often driven by regularization.},
+  openalex = {W4281390462},
+  pages = {34651--34663},
+  pdf = {https://proceedings.neurips.cc/paper_files/paper/2022/file/dfc310e81992d2e4cedc09ac47eff13e-Paper-Conference.pdf},
+  title = {Towards Understanding Grokking: An Effective Theory of Representation Learning},
+  volume = {35},
+  year = {2022}
+}
+
+@article{li2021statistical,
+  abstract = {Understanding the power and limitations of deep learning is one of the most important tasks in modern machine learning. In this work, we study the statistical mechanics of deep linear neural networks (DLNNs), which, despite their linearity, exhibit highly nonlinear learning dynamics that reveal essential features of nonlinear deep networks. We introduce the Backpropagating Kernel Renormalization (BPKR) method, which allows for the incremental integration of network weights layer by layer, starting from the output and progressing backward. Using this exact theoretical framework, we analyze network properties following supervised learning with an equilibrium Gibbs distribution in weight space. Our theory provides comprehensive insights into network generalization capabilities despite overparametrization, considering factors including network architecture, training data size, weight regularization, and learning stochasticity.},
+  author = {Qianyi Li and Haim Sompolinsky},
+  doi = {10.1103/PhysRevX.11.031059},
+  journal = {Physical Review X},
+  month = {9},
+  number = {3},
+  openalex = {W3200346102},
+  pages = {031059},
+  pdf = {https://link.aps.org/pdf/10.1103/PhysRevX.11.031059},
+  publisher = {American Physical Society},
+  title = {Statistical Mechanics of Deep Linear Neural Networks: The Backpropagating Kernel Renormalization},
+  volume = {11},
+  year = {2021}
+}
+
+@article{mei2022generalization,
+  abstract = {Deep learning methods operate in regimes that defy the traditional statistical mindset. Neural network architectures often contain more parameters than training samples, and are so rich that they can interpolate the observed labels, even if the latter are replaced by pure noise. Despite their huge complexity, the same architectures achieve small generalization error on real data. This phenomenon has been rationalized in terms of a so-called 'double descent' curve. As the model complexity increases, the test error follows the usual U-shaped curve at the beginning, first decreasing and then peaking around the interpolation threshold (when the model achieves vanishing training error). However, it descends again as model complexity exceeds this threshold. The global minimum of the test error is found above the interpolation threshold, often in the extreme overparametrization regime in which the number of parameters is much larger than the number of samples. Far from being a peculiar property of deep neural networks, elements of this behavior have been demonstrated in much simpler settings, including linear regression with random covariates. In this paper the authors consider the problem of learning an unknown function over the d-dimensional sphere, from n i.i.d. samples, performing ridge regression on N random features. This can be equivalently described as a two-layers neural network with random first-layer weights. They compute the precise asymptotics of the test error, in the limit N, n, d → ∞ with N/d and n/d fixed. This provides the first analytically tractable model that captures all the features of the double descent phenomenon without assuming ad hoc misspecification structures.},
+  author = {Song Mei and Andrea Montanari},
+  doi = {10.1002/cpa.22008},
+  journal = {Communications on Pure and Applied Mathematics},
+  note = {Provides a precise, analytical characterization of the double descent curve for random features regression in the high-dimensional, proportional scaling limit. This work offers a rigorous theoretical foundation for the phenomenon in a tractable model.},
+  number = {4},
+  openalex = {W3172995164},
+  pages = {667--766},
+  title = {The Generalization Error of Random Features Regression: Precise Asymptotics and the Double Descent Curve},
+  url = {https://onlinelibrary.wiley.com/doi/epdf/10.1002/cpa.22008},
+  volume = {75},
+  year = {2021}
+}
+
+@article{nakkiran2021deep,
+  abstract = {We show that a variety of modern deep learning tasks exhibit double-descent phenomenon where, as we increase model size, performance first gets worse and then better. Moreover, double descent occurs not just as a function of model size, but also as a function of the number of training epochs. We unify the above phenomena by defining a new complexity measure we call the effective model complexity and conjecture a generalized double descent with respect to this measure. Furthermore, our notion of model complexity allows us to identify certain regimes where increasing (even quadrupling) the number of train samples actually hurts test performance.},
+  author = {Preetum Nakkiran and Gal Kaplun and Yamini Bansal and Tristan Yang and Boaz Barak and Ilya Sutskever},
+  doi = {10.1088/1742-5468/ac3a74},
+  journal = {Journal of Statistical Mechanics: Theory and Experiment},
+  note = {Empirically demonstrates the ubiquity of the double descent phenomenon in modern deep learning models, including CNNs, ResNets, and Transformers. Shows that double descent occurs not just with model size, but also with training epochs and dataset size.},
+  number = {12},
+  openalex = {W4206410067},
+  pages = {124003},
+  pdf = {https://iopscience.iop.org/article/10.1088/1742-5468/ac3a74/pdf},
+  title = {Deep Double Descent: Where Bigger Models and More Data Hurt},
+  volume = {2021},
+  year = {2021}
+}
+
+@inproceedings{power2022grokking,
+  abstract = {In this paper we propose to study generalization of neural networks on small algorithmically generated datasets. In this setting, questions about data efficiency, memorization, generalization, and speed of learning can be studied in great detail. In some situations we show that neural networks learn through a process of 'grokking' a pattern in the data, improving generalization performance from random chance level to perfect generalization, and that this improvement in generalization can happen well past the point of overfitting. We also study generalization as a function of dataset size and find that smaller datasets require increasing amounts of optimization for generalization. We argue that these datasets provide a fertile ground for studying a poorly understood aspect of deep learning: generalization of overparametrized neural networks beyond memorization of the finite training dataset.},
+  author = {Alethea Power and Yuri Burda and Harri Edwards and Igor Babuschkin and Vedant Misra},
+  booktitle = {ICLR Workshop on Mathematical Reasoning in General Artificial Intelligence},
+  file = {:/home/b/documents/inproceedings/power2022grokking.pdf:pdf},
+  note = {Introduces the "grokking" phenomenon, where a network suddenly generalizes long after achieving perfect training accuracy. Demonstrates this sharp phase transition in learning on simple algorithmic tasks, providing a new testbed for generalization theories.},
+  openalex = {W4226434736},
+  pdf = {https://mathai-iclr.github.io/papers/papers/MATHAI_29_paper.pdf},
+  title = {Grokking: Generalization Beyond Overfitting on Small Algorithmic Datasets},
+  url = {https://arxiv.org/abs/2201.02177},
+  year = {2021}
+}
+
+@inproceedings{ramsauer2021hopfield,
+  abstract = {We introduce a modern Hopfield network with continuous states and a corresponding update rule. The new Hopfield network can store exponentially (with the dimension of the associative space) many patterns, retrieves the pattern with one update, and has exponentially small retrieval errors. The new Hopfield network has three types of energy minima (fixed points of the update): (1) global fixed point averaging over all patterns, (2) metastable states averaging over a subset of patterns, and (3) fixed points which store a single pattern. The new update rule is equivalent to the attention mechanism used in transformers. This equivalence enables a characterization of the heads of transformer models. These heads perform in the first layers preferably global averaging and in higher layers partial averaging via metastable states. The new modern Hopfield network can be integrated into deep learning architectures as layers to allow the storage of and access to raw input data, intermediate results, or learned prototypes.},
+  author = {Ramsauer, Hubert and Schäfl, Bernhard and Lehner, Johannes and Seidl, Philipp and Widrich, Michael and Adler, Thomas and Gruber, Lukas and Holzleitner, Markus and Pavlović, Milena and Sandve, Geir Kjetil and Greiff, Victor and Kreil, David P. and Kopp, Michael K. and Klambauer, Günter and Brandstetter, Johannes and Hochreiter, Sepp},
+  booktitle = {9th International Conference on Learning Representations, ICLR 2021, Virtual Event, Austria, May 3-7, 2021},
+  file = {:/home/b/documents/inproceedings/ramsauer2021hopfield.pdf:pdf},
+  note = {Reveals a deep mathematical connection between the self-attention mechanism and the update rule of modern Hopfield networks with continuous states and exponential energy functions. Shows that attention can be interpreted as a retrieval process from a high-capacity associative memory.},
+  openalex = {W3047517563},
+  pdf = {https://openreview.net/pdf?id=tL89RnzIiCd},
+  publisher = {OpenReview.net},
+  title = {Hopfield Networks is All You Need},
+  url = {https://openreview.net/forum?id=tL89RnzIiCd},
+  year = {2021}
+}
+
+@inproceedings{dubois2020learning,
+  abstract = {We address the question of characterizing and finding optimal representations for supervised learning. Traditionally, this question has been tackled using the Information Bottleneck, which compresses the inputs while retaining information about the targets, in a decoder-agnostic fashion. In machine learning, however, our goal is not compression but rather generalization, which is intimately linked to the predictive family or decoder of interest (e.g. linear classifier). We propose the Decodable Information Bottleneck (DIB) that considers information retention and compression from the perspective of the desired predictive family. As a result, DIB gives rise to representations that are optimal in terms of expected test performance and can be estimated with guarantees. Empirically, we show that the framework can be used to enforce a small generalization gap on downstream classifiers and to predict the generalization ability of neural networks.},
+  author = {Yann Dubois and Douwe Kiela and David J. Schwab and Ramakrishna Vedantam},
+  booktitle = {Advances in Neural Information Processing Systems},
+  doi = {10.48550/arxiv.2009.12789},
+  file = {:/home/b/documents/inproceedings/dubois2020learning.pdf:pdf},
+  note = {Proposes a modification of the IB objective, the Decodable Information Bottleneck (DIB), which considers the specific family of decoders (classifiers) to be used. This makes the notion of sufficiency and minimality relative to the model class, providing a more practical framework.},
+  openalex = {W3088534631},
+  pages = {18674--18685},
+  pdf = {https://proceedings.neurips.cc/paper/2020/file/d8ea5f53c1b1eb087ac2e356253395d8-Paper.pdf},
+  series = {NeurIPS 2020},
+  title = {Learning Optimal Representations with the Decodable Information Bottleneck},
+  volume = {33},
+  year = {2020}
+}
+
+@inproceedings{gu2020hippo,
+  abstract = {A central problem in learning from sequential data is representing cumulative history in an incremental fashion as more data is processed. We introduce a general framework (HiPPO) for the online compression of continuous signals and discrete time series by projection onto polynomial bases. Given a measure that specifies the importance of each time step in the past, HiPPO produces an optimal solution to a natural online function approximation problem. As special cases, our framework yields a short derivation of the recent Legendre Memory Unit (LMU) from first principles, and generalizes the ubiquitous gating mechanism of recurrent neural networks such as GRUs. This formal framework yields a new memory update mechanism (HiPPO-LegS) that scales through time to remember all history, avoiding priors on the timescale. HiPPO-LegS enjoys the theoretical benefits of timescale robustness, fast updates, and bounded gradients. By incorporating the memory dynamics into recurrent neural networks, HiPPO RNNs can empirically capture complex temporal dependencies. On the benchmark permuted MNIST dataset, HiPPO-LegS sets a new state-of-the-art accuracy of 98.3%. Finally, on a novel trajectory classification task testing robustness to out-of-distribution timescales and missing data, HiPPO-LegS outperforms RNN and neural ODE baselines by 25-40% accuracy.},
+  author = {Albert Gu and Tri Dao and Stefano Ermon and Atri Rudra and Christopher Ré},
+  booktitle = {Advances in Neural Information Processing Systems},
+  doi = {10.5555/3495724.3495849},
+  file = {:/home/b/documents/inproceedings/gu2020hippo.pdf:pdf},
+  note = {Introduces the HiPPO framework for compressing continuous signals in recurrent models using optimal polynomial projections. Establishes the mathematical foundation for modern state-space models by providing a principled initialization for the state matrix.},
+  openalex = {W3064840847},
+  pages = {1474--1487},
+  pdf = {https://proceedings.neurips.cc/paper/2020/file/102f0bb6efb3a6128a3c750dd16729be-Paper.pdf},
+  publisher = {Curran Associates Inc.},
+  title = {HiPPO: Recurrent Memory with Optimal Polynomial Projections},
+  volume = {33},
+  year = {2020}
+}
+
+@inproceedings{mignacco2020dynamical,
+  abstract = {We analyze in a closed form the learning dynamics of stochastic gradient descent (SGD) for a single-layer neural network classifying a high-dimensional Gaussian mixture where each cluster is assigned one of two labels. This problem provides a prototype of a non-convex loss landscape with interpolating regimes and a large generalization gap. We define a particular stochastic process for which SGD can be extended to a continuous-time limit that we call stochastic gradient flow. In the full-batch limit, we recover the standard gradient flow. We apply dynamical mean-field theory from statistical physics to track the dynamics of the algorithm in the high-dimensional limit via a self-consistent stochastic process. We explore the performance of the algorithm as a function of control parameters shedding light on how it navigates the loss landscape.},
+  author = {Francesca Mignacco and Florent Krzakala and Pierfrancesco Urbani and Lenka Zdeborová},
+  booktitle = {Advances in Neural Information Processing Systems},
+  file = {:/home/b/documents/inproceedings/mignacco2020dynamical.pdf:pdf},
+  note = {Applies DMFT to analyze the full learning trajectory of SGD for a single-layer network in a non-convex setting. Provides a closed-form description of the dynamics, showing how the algorithm navigates the landscape and how finite batch size acts as an effective regularizer.},
+  openalex = {W3034214529},
+  pages = {9540--9550},
+  pdf = {https://proceedings.neurips.cc/paper/2020/file/6c81c83c4bd0b58850495f603ab45a93-Paper.pdf},
+  title = {Dynamical mean-field theory for stochastic gradient descent in Gaussian mixture classification},
+  volume = {33},
+  year = {2020}
+}
+
+@article{belkin2019reconciling,
+  abstract = {Breakthroughs in machine learning are rapidly changing science and society, yet our fundamental understanding of this technology has lagged far behind. Indeed, one of the central tenets of the field, the bias-variance trade-off, appears to be at odds with the observed behavior of methods used in modern machine-learning practice. The bias-variance trade-off implies that a model should balance underfitting and overfitting: Rich enough to express underlying structure in data and simple enough to avoid fitting spurious patterns. However, in modern practice, very rich models such as neural networks are trained to exactly fit (i.e., interpolate) the data. Classically, such models would be considered overfitted, and yet they often obtain high accuracy on test data. This apparent contradiction has raised questions about the mathematical foundations of machine learning and their relevance to practitioners. In this paper, we reconcile the classical understanding and the modern practice within a unified performance curve. This 'double-descent' curve subsumes the textbook U-shaped bias-variance trade-off curve by showing how increasing model capacity beyond the point of interpolation results in improved performance. We provide evidence for the existence and ubiquity of double descent for a wide spectrum of models and datasets, and we posit a mechanism for its emergence. This connection between the performance and the structure of machine-learning models delineates the limits of classical analyses and has implications for both the theory and the practice of machine learning.},
+  author = {Mikhail Belkin and Daniel Hsu and Siyuan Ma and Soumik Mandal},
+  doi = {10.1073/pnas.1903070116},
+  journal = {Proceedings of the National Academy of Sciences},
+  note = {Introduces and systematically characterizes the "double descent" risk curve, showing that increasing model capacity beyond the interpolation threshold can lead to improved performance. This reconciles the apparent contradiction between classical learning theory and modern overparameterized models.},
+  number = {32},
+  openalex = {W2972810859},
+  pages = {15849--15854},
+  pdf = {https://www.pnas.org/doi/pdf/10.1073/pnas.1903070116},
+  title = {Reconciling modern machine learning practice and the classical bias-variance trade-off},
+  volume = {116},
+  year = {2019}
+}
+
+@inproceedings{mei2019mean,
+  abstract = {We consider learning two layer neural networks using stochastic gradient descent. The mean-field description of this dynamics approximates the evolution of the network weights by an evolution in the space of probability distributions in $ℝ^D$ (where $D$ is the number of parameters associated to each neuron), which can be defined through a partial differential equation, or equivalently as the gradient flow in the Wasserstein space of probability distributions. We prove that this mean-field description is accurate as soon as the number of hidden units is much larger than the dimension $D$. Our result does not require strong convexity, or specific assumptions on the data distribution, and applies to a broad family of activation functions (possibly unbounded). The proof technique is based on a concentration of measure argument that controls the deviations of empirical averages of functions of the weights.},
+  address = {Phoenix, USA},
+  author = {Song Mei and Theodor Misiakiewicz and Andrea Montanari},
+  booktitle = {Proceedings of the Thirty-Second Conference on Learning Theory},
+  editor = {Alina Beygelzimer and Daniel Hsu},
+  file = {:/home/b/documents/inproceedings/mei2019mean.pdf:pdf},
+  month = {6},
+  note = {Develops a mean-field description for the training dynamics of two-layer neural networks, providing dimension-free approximation guarantees. This work rigorously connects the particle-based view of SGD to its distributional dynamics.},
+  openalex = {W2913010492},
+  pages = {2388--2464},
+  pdf = {http://proceedings.mlr.press/v99/mei19a/mei19a.pdf},
+  publisher = {PMLR},
+  series = {Proceedings of Machine Learning Research},
+  title = {Mean-field theory of two-layers neural networks: dimension-free bounds and kernel limit},
+  url = {https://proceedings.mlr.press/v99/mei19a.html},
+  volume = {99},
+  year = {2019}
+}
+
+@article{richards2019deep,
+  abstract = {Systems neuroscience seeks explanations for how the brain implements a wide variety of perceptual, cognitive and motor tasks. Conversely, artificial intelligence attempts to design computational systems based on the tasks they will have to solve. In artificial neural networks, the three components specified by design are the objective functions, the learning rules and the architectures. With the growing success of deep learning, which utilizes brain-inspired architectures, these three designed components have increasingly become central to how we model, engineer and optimize complex artificial learning systems. Here we argue that a greater focus on these components would also benefit systems neuroscience. We give examples of how this optimization-based framework can drive theoretical and experimental progress in neuroscience. We contend that this principled perspective on systems neuroscience will help to generate more rapid progress.},
+  author = {Richards, Blake A. and Lillicrap, Timothy P. and Beaudoin, Philippe and Bengio, Yoshua and Bogacz, Rafal and Christensen, Amelia and Clopath, Claudia and Costa, Rui Ponte and de Berker, Archy and Ganguli, Surya and Gillon, Colleen J. and Hafner, Danijar and Kepecs, Adam and Kriegeskorte, Nikolaus and Latham, Peter and Lindsay, Grace W. and Miller, Kenneth D. and Naud, Richard and Pack, Christopher C. and Poirazi, Panayiota and Roelfsema, Pieter and Sacramento, João and Saxe, Andrew and Scellier, Benjamin and Schapiro, Anna C. and Senn, Walter and Wayne, Greg and Yamins, Daniel and Zenke, Friedemann and Zylberberg, Joel and Therien, Denis and Kording, Konrad P.},
+  doi = {10.1038/s41593-019-0520-2},
+  journal = {Nature Neuroscience},
+  month = {11},
+  note = {A position paper arguing for a "three-pronged" approach to integrating deep learning and neuroscience, involving the use of goal-driven models, analyzing internal representations, and developing new theories of learning that are consistent with both artificial and biological constraints.},
+  number = {11},
+  openalex = {W2978368159},
+  pages = {1761--1770},
+  title = {A deep learning framework for neuroscience},
+  url = {https://www.nature.com/articles/s41593-019-0520-2},
+  volume = {22},
+  year = {2019}
+}
+
+@inproceedings{li2018visualizing,
+  abstract = {Neural network training relies on our ability to find "good" minimizers of highly non-convex loss functions. It is well-known that certain network architecture designs (e.g., skip connections) produce loss functions that train easier, and well-chosen training parameters (batch size, learning rate, optimizer) produce minimizers that generalize better. However, the reasons for these differences, and their effects on the underlying loss landscape, are not well understood. In this paper, we explore the structure of neural loss functions, and the effect of loss landscapes on generalization, using a range of visualization methods. First, we introduce a simple "filter normalization" method that helps us visualize loss function curvature and make meaningful side-by-side comparisons between loss functions. Then, using a variety of visualizations, we explore how network architecture affects the loss landscape, and how training parameters affect the shape of minimizers.},
+  author = {Hao Li and Zheng Xu and Gavin Taylor and Christoph Studer and Tom Goldstein},
+  booktitle = {Advances in Neural Information Processing Systems 31},
+  file = {:/home/b/documents/inproceedings/li2018visualizing.pdf:pdf},
+  openalex = {W2962933129},
+  pdf = {https://papers.nips.cc/paper_files/paper/2018/file/a41b3bb3e6b050b6c9067c67f663b915-Paper.pdf},
+  title = {Visualizing the Loss Landscape of Neural Nets},
+  volume = {31},
+  year = {2018}
+}
+
+@inproceedings{saxe2018information,
+  abstract = {The practical successes of deep neural networks have not been matched by theoretical progress that satisfyingly explains their behavior. In this work, we study the information bottleneck (IB) theory of deep learning, which makes three specific claims: first, that deep networks undergo two distinct phases consisting of an initial fitting phase and a subsequent compression phase; second, that the compression phase is causally related to the excellent generalization performance of deep networks; and third, that the compression phase occurs due to the diffusion-like behavior of stochastic gradient descent. Here we show that none of these claims hold true in the general case. Through a combination of analytical results and simulation, we demonstrate that the information plane trajectory is predominantly a function of the neural nonlinearity employed: double-sided saturating nonlinearities like tanh yield a compression phase as neural activations enter the saturation regime, but linear activation functions and single-sided saturating nonlinearities like ReLU do not show this compression phase.},
+  author = {Andrew M. Saxe and Yamini Bansal and Joel Dapello and Madhu Advani and Artemy Kolchinsky and Brendan D. Tracey and David D. Cox},
+  booktitle = {6th International Conference on Learning Representations, ICLR 2018, Vancouver, BC, Canada, April 30 - May 3, 2018, Conference Track Proceedings},
+  file = {:/home/b/documents/inproceedings/saxe2018information.pdf:pdf},
+  month = {4},
+  note = {A critical analysis of the IB theory of deep learning. Demonstrates that the observed compression phase is highly dependent on the choice of neural nonlinearity (e.g., present for tanh but not for ReLU) and argues that it is not a universal causal mechanism for generalization.},
+  openalex = {W2785885194},
+  pdf = {https://openreview.net/pdf?id=ry_WPG-A-},
+  publisher = {OpenReview.net},
+  title = {On the Information Bottleneck Theory of Deep Learning},
+  url = {https://openreview.net/forum?id=ry_WPG-A-},
+  year = {2018}
+}
+
+@inproceedings{chaudhari2017entropy,
+  abstract = {This paper proposes a new optimization algorithm called Entropy-SGD for training deep neural networks that is motivated by the local geometry of the energy landscape. Local extrema with low generalization error have a large proportion of almost-zero eigenvalues in the Hessian with very few positive or negative eigenvalues. We leverage this observation to construct a local-entropy-based objective function that favors well-generalizable solutions lying in large flat regions of the energy landscape, while avoiding poorly-generalizable solutions located in the sharp valleys.},
+  author = {Pratik Chaudhari and Anna Choromanska and Stefano Soatto and Yann LeCun and Carlo Baldassi and Christian Borgs and Jennifer Chayes and Levent Sagun and Riccardo Zecchina},
+  booktitle = {5th International Conference on Learning Representations, ICLR 2017, Toulon, France, April 24-26, 2017, Conference Track Proceedings},
+  file = {:/home/b/documents/inproceedings/chaudhari2017entropy.pdf:pdf},
+  note = {Proposes a novel optimization algorithm that formalizes the search for flat minima by minimizing a local entropy objective. Connects the geometry of the loss landscape to thermodynamic concepts like free energy and demonstrates improved generalization.},
+  openalex = {W3093329015},
+  pdf = {https://openreview.net/pdf?id=B1YfAfcgl},
+  title = {Entropy-SGD: Biasing Gradient Descent Into Wide Valleys},
+  url = {https://openreview.net/forum?id=B1YfAfcgl},
+  year = {2017}
+}
+
+@inproceedings{keskar2017large,
+  abstract = {The stochastic gradient descent (SGD) method and its variants are algorithms of choice for many Deep Learning tasks. These methods operate in a small-batch regime wherein a fraction of the training data, say $32$--$512$ data points, is sampled to compute an approximation to the gradient. It has been observed in practice that when using a larger batch there is a degradation in the quality of the model, as measured by its ability to generalize. We investigate the cause for this generalization drop in the large-batch regime and present numerical evidence that supports the view that large-batch methods tend to converge to sharp minimizers of the training and testing functions---and as is well known, sharp minima lead to poorer generalization. In contrast, small-batch methods consistently converge to flat minimizers, and our experiments support a commonly held view that this is due to the inherent noise in the gradient estimation. We discuss several strategies to attempt to help large-batch methods eliminate this generalization gap.},
+  author = {Nitish Shirish Keskar and Dheevatsa Mudigere and Jorge Nocedal and Mikhail Smelyanskiy and Ping Tak Peter Tang},
+  booktitle = {5th International Conference on Learning Representations, ICLR 2017, Toulon, France, April 24-26, 2017, Conference Track Proceedings},
+  file = {:/home/b/documents/inproceedings/keskar2017large.pdf:pdf},
+  note = {Provides strong empirical evidence that large-batch training methods converge to sharp minima that generalize poorly, while small-batch methods converge to flat minima that generalize well. Links the noise in small-batch SGD to its ability to escape sharp regions of the landscape.},
+  openalex = {W2963959597},
+  pdf = {https://openreview.net/pdf?id=H1oyRlYgg},
+  title = {On Large-Batch Training for Deep Learning: Generalization Gap and Sharp Minima},
+  url = {https://openreview.net/forum?id=H1oyRlYgg},
+  year = {2017}
+}
+
+@inproceedings{pennington2017resurrecting,
+  abstract = {It is well known that weight initialization in deep networks can have a dramatic impact on learning speed. For example, ensuring the mean squared singular value of a network's input-output Jacobian is $O(1)$ is essential for avoiding exponentially vanishing or exploding gradients. Moreover, in deep linear networks, ensuring that all singular values of the Jacobian are concentrated near 1 can yield a dramatic additional speed-up in learning; this is a property known as dynamical isometry. However, it is unclear how to achieve dynamical isometry in nonlinear deep networks. In this work, we address this question by employing powerful tools from free probability theory to compute analytically the entire singular value distribution of a deep network's input-output Jacobian. We explore the dependence of the singular value distribution on the depth of the network, the weight initialization, and the choice of nonlinearity. Intriguingly, we find that ReLU networks are incapable of dynamical isometry. On the other hand, sigmoidal networks can achieve isometry, but only with orthogonal weight initialization. Moreover, we demonstrate empirically that deep nonlinear networks achieving dynamical isometry learn orders of magnitude faster than networks that do not. Indeed, we show that properly-initialized deep sigmoidal networks consistently outperform deep ReLU networks.},
+  author = {Jeffrey Pennington and Samuel S. Schoenholz and Surya Ganguli},
+  booktitle = {Advances in Neural Information Processing Systems},
+  note = {Uses random matrix theory to analyze the full singular value spectrum of the network Jacobian. Introduces "dynamical isometry," a stronger condition for trainability, and shows it can be achieved in sigmoidal networks with orthogonal initialization, leading to depth-independent learning times.},
+  openalex = {W2963570896},
+  pages = {4785--4795},
+  pdf = {https://neurips.cc/paper_files/paper/2017/file/d9fc0cdb67638d50f411432d0d41d0ba-Paper.pdf},
+  title = {Resurrecting the sigmoid in deep learning through dynamical isometry: theory and practice},
+  volume = {30},
+  year = {2017}
+}
+
+@inproceedings{schoenholz2017deep,
+  abstract = {We study the behavior of untrained neural networks whose weights and biases are randomly distributed using mean field theory. We show the existence of depth scales that naturally limit the maximum depth of signal propagation through these random networks. Our main practical result is to show that random networks may be trained precisely when information can travel through them. Thus, the depth scales that we identify provide bounds on how deep a network may be trained for a specific choice of hyperparameters. As a corollary to this, we argue that in networks at the edge of chaos, one of these depth scales diverges. Thus arbitrarily deep networks may be trained only sufficiently close to criticality. We show that the presence of dropout destroys the order-to-chaos critical point and therefore strongly limits the maximum trainable depth for random networks. Finally, we develop a mean field theory for backpropagation and we show that the ordered and chaotic phases correspond to regions of vanishing and exploding gradient respectively.},
+  author = {Samuel S. Schoenholz and Justin Gilmer and Surya Ganguli and Jascha Sohl-Dickstein},
+  booktitle = {5th International Conference on Learning Representations, ICLR 2017, Toulon, France, April 24--26, 2017, Conference Track Proceedings},
+  file = {:/home/b/documents/inproceedings/schoenholz2017deep.pdf:pdf},
+  openalex = {W2962804662},
+  pdf = {https://openreview.net/pdf?id=H1W1UN9gg},
+  title = {Deep Information Propagation},
+  url = {https://openreview.net/forum?id=H1W1UN9gg},
+  year = {2017}
+}
+
+@article{shwartz2017opening,
+  abstract = {Despite their great success, there is still no comprehensive theoretical understanding of learning with Deep Neural Networks (DNNs) or their inner organization. Previous work proposed to analyze DNNs in the Information Plane; i.e., the plane of the Mutual Information values that each layer preserves on the input and output variables. They suggested that the goal of the network is to optimize the Information Bottleneck (IB) tradeoff between compression and prediction, successively, for each layer. In this work we follow this theoretical framework and demonstrate the effectiveness of the Information-Plane visualization of DNNs. Most of the training epochs in standard DL are spent on compression of the input to efficient representation and not on fitting the training labels. The representation compression phase begins when the training errors become small and is characterized by stochasticity of the training process and depends on the training sample size. Adding more hidden layers dramatically reduces the number of training epochs to convergence. The converged layers lie very close to the information bottleneck theoretical bound, and the maps from the input to any hidden layer and from any hidden layer to the output satisfy the IB self-consistent equations.},
+  archiveprefix = {arXiv},
+  author = {Ravid Shwartz-Ziv and Naftali Tishby},
+  eprint = {1703.00810},
+  file = {:/home/b/documents/article/shwartz2017opening.pdf:pdf},
+  journal = {arXiv preprint arXiv:1703.00810},
+  month = {3},
+  note = {Presents the influential empirical study of DNN training dynamics in the ``information plane.'' Shows evidence for the fitting and compression phases and conjectures that the compression phase is responsible for generalization.},
+  openalex = {W2593634001},
+  pdf = {https://arxiv.org/pdf/1703.00810.pdf},
+  primaryclass = {cs.LG},
+  title = {Opening the Black Box of Deep Neural Networks via Information},
+  year = {2017}
+}
+
+@inproceedings{vaswani2017attention,
+  abstract = {The dominant sequence transduction models are based on complex recurrent or convolutional neural networks in an encoder-decoder configuration. The best performing models also connect the encoder and decoder through an attention mechanism. We propose a new simple network architecture, the Transformer, based solely on attention mechanisms, dispensing with recurrence and convolutions entirely. Experiments on two machine translation tasks show these models to be superior in quality while being more parallelizable and requiring significantly less time to train. Our model achieves 28.4 BLEU on the WMT 2014 English-to-German translation task, improving over the existing best results, including ensembles by over 2 BLEU. On the WMT 2014 English-to-French translation task, our model establishes a new single-model state-of-the-art BLEU score of 41.8 after training for 3.5 days on eight GPUs, a small fraction of the training costs of the best models from the literature. We show that the Transformer generalizes well to other tasks by applying it successfully to English constituency parsing both with large and limited training data.},
+  author = {Vaswani, Ashish and Shazeer, Noam and Parmar, Niki and Uszkoreit, Jakob and Jones, Llion and Gomez, Aidan N. and Kaiser, Łukasz and Polosukhin, Illia},
+  booktitle = {Advances in Neural Information Processing Systems 30},
+  file = {:/home/b/documents/inproceedings/vaswani2017attention.pdf:pdf},
+  note = {The seminal paper that introduced the Transformer architecture, replacing recurrent and convolutional layers entirely with self-attention and multi-head attention mechanisms. This laid the groundwork for modern large language models.},
+  openalex = {W4385245566},
+  pages = {5998--6008},
+  pdf = {https://proceedings.neurips.cc/paper_files/paper/2017/file/3f5ee243547dee91fbd053c1c4a845aa-Paper.pdf},
+  title = {Attention Is All You Need},
+  url = {https://proceedings.neurips.cc/paper/2017/hash/3f5ee243547dee91fbd053c1c4a845aa-Abstract.html},
+  volume = {30},
+  year = {2017}
+}
+
+@inproceedings{zhang2017understanding,
+  abstract = {Despite their massive size, successful deep artificial neural networks can exhibit a remarkably small difference between training and test performance. Conventional wisdom attributes small generalization error either to properties of the model family, or to the regularization techniques used during training. Through extensive systematic experiments, we show how these traditional approaches fail to explain why large neural networks generalize well in practice. Specifically, our experiments establish that state-of-the-art convolutional networks for image classification trained with stochastic gradient methods easily fit a random labeling of the training data. This phenomenon is qualitatively unaffected by explicit regularization, and occurs even if we replace the true images by completely unstructured random noise. We corroborate these experimental findings with a theoretical construction showing that simple depth-two ReLU networks already have perfect finite sample expressivity as soon as the number of parameters exceeds the number of data points as it usually does in practice.},
+  author = {Zhang, Chiyuan and Bengio, Samy and Hardt, Moritz and Recht, Benjamin and Vinyals, Oriol},
+  booktitle = {International Conference on Learning Representations},
+  doi = {10.48550/arxiv.1611.03530},
+  file = {:/home/b/documents/inproceedings/zhang2017understanding.pdf:pdf},
+  note = {A landmark empirical paper demonstrating that deep neural networks can easily fit randomized labels, implying their effective capacity is large enough to shatter the training set. This highlights that classical generalization bounds based on VC-dimension or Rademacher complexity cannot explain their generalization performance.},
+  openalex = {W3137695714},
+  pdf = {https://openreview.net/pdf?id=Sy8gdB9xx},
+  title = {Understanding Deep Learning Requires Rethinking Generalization},
+  url = {https://openreview.net/forum?id=Sy8gdB9xx},
+  year = {2017}
+}
+
+@inproceedings{poole2016exponential,
+  abstract = {We combine Riemannian geometry with the mean field theory of high dimensional chaos to study the nature of signal propagation in deep neural networks with random weights. Our results reveal a phase transition in expressivity, chaotic computing nonlinear functions whose global curvature grows exponentially with depth, but not width. We prove that this generic class cannot be efficiently computed by any shallow network, going beyond prior work.},
+  author = {Ben Poole and Subhaneil Lahiri and Maithra Raghu and Jascha Sohl-Dickstein and Surya Ganguli},
+  booktitle = {Advances in Neural Information Processing Systems},
+  note = {Uses mean-field theory to analyze signal propagation in deep random networks. Identifies an order-to-chaos phase transition and argues that networks initialized at the "edge of chaos" have maximal expressive power and trainability.},
+  openalex = {W2964088238},
+  pages = {3360--3368},
+  pdf = {https://papers.nips.cc/paper/2016/file/310f2693c622c6b0d473a212b450d248-Paper.pdf},
+  title = {Exponential expressivity in deep neural networks through transient chaos},
+  volume = {29},
+  year = {2016}
+}
+
+@inproceedings{choromanska2015loss,
+  abstract = {We study the connection between the highly non-convex loss function of a simple model of the fully-connected feed-forward neural network and the Hamiltonian of the spherical spin-glass model under the assumptions of: i) variable independence, ii) redundancy in network parametrization, and iii) uniformity. These assumptions enable us to explain the complexity of the fully decoupled neural network through the prism of the results from random matrix theory. We show that for large-size decoupled networks the lowest critical values of the random loss function form a layered structure and they are located in a well-defined band lower-bounded by the global minimum. The number of local minima outside that band diminishes exponentially with the size of the network. We empirically verify that the mathematical model exhibits similar behavior as the computer simulations, despite the presence of high dependencies in real networks. We conjecture that both simulated annealing and SGD converge to the band of low critical points, and that all critical points found there are local minima of high quality measured by the test error. This emphasizes a major difference between large- and small-size networks where for the latter poor quality local minima have non-zero probability of being recovered. Finally, we prove that recovering the global minimum becomes harder as the network size increases and that it is in practice irrelevant as global minimum often leads to overfitting.},
+  author = {Anna Choromanska and Mikael Henaff and Michaël Mathieu and Gérard Ben Arous and Yann LeCun},
+  booktitle = {Proceedings of the 18th International Conference on Artificial Intelligence and Statistics},
+  editor = {Guy Lebanon and S. V. N. Vishwanathan},
+  file = {:/home/b/documents/inproceedings/choromanska2015loss.pdf:pdf},
+  month = {2},
+  note = {Establishes a connection between the loss landscape of deep multilayer networks and the Hamiltonian of spherical spin-glass models. This mapping suggests that for large networks, most local minima are located near the global minimum, and their value increases with their index (number of negative Hessian eigenvalues).},
+  openalex = {W1899249567},
+  pages = {192--204},
+  pdf = {http://proceedings.mlr.press/v38/choromanska15.pdf},
+  publisher = {JMLR Workshop and Conference Proceedings},
+  series = {Proceedings of Machine Learning Research},
+  title = {The Loss Surfaces of Multilayer Networks},
+  volume = {38},
+  year = {2015}
+}
+
+@inproceedings{tishby2015deep,
+  abstract = {Deep Neural Networks (DNNs) are analyzed via the theoretical framework of the information bottleneck (IB) principle. We first show that any DNN can be quantified by the mutual information between the layers and the input and output variables. Using this representation we can calculate the optimal information theoretic limits of the DNN and obtain finite sample generalization bounds. The advantage of getting closer to the theoretical limit is quantifiable both by the generalization bound and by the network's simplicity. We argue that both the optimal architecture, number of layers and features/connections at each layer, are related to the bifurcation points of the information bottleneck tradeoff, namely, relevant compression of the input layer with respect to the output layer. The hierarchical representations at the layered network naturally correspond to the structural phase transitions along the information curve. We believe that this new insight can lead to new optimality bounds and deep learning algorithms.},
+  author = {Naftali Tishby and Noga Zaslavsky},
+  booktitle = {2015 IEEE Information Theory Workshop (ITW)},
+  doi = {10.1109/ITW.2015.7133169},
+  file = {:/home/b/documents/inproceedings/tishby2015deep.pdf:pdf},
+  note = {Proposes the application of the IB principle as a theoretical framework for understanding deep learning. Argues that the layers of a deep network form a Markov chain that successively compresses the input.},
+  openalex = {W2964184826},
+  organization = {IEEE},
+  pages = {1--5},
+  pdf = {https://arxiv.org/pdf/1503.02406},
+  title = {Deep Learning and the Information Bottleneck Principle},
+  year = {2015}
+}
+
+@inproceedings{dauphin2014identifying,
+  abstract = {A central challenge to many fields of science and engineering involves minimizing non-convex error functions over continuous, high dimensional spaces. Gradient descent or quasi-Newton methods are almost ubiquitously used to perform such minimizations, and it is often thought that a main source of difficulty for these local methods to find the global minimum is the proliferation of local minima with much higher error than the global minimum. Here we argue, based on results from statistical physics, random matrix theory, neural network theory, and empirical evidence, that a deeper and more profound difficulty originates from the proliferation of saddle points, not local minima, especially in high dimensional problems of practical interest. Such saddle points are surrounded by high error plateaus that can dramatically slow down learning, and give the illusory impression of the existence of a local minimum. Motivated by these arguments, we propose a new approach to second-order optimization, the saddle-free Newton method, that can rapidly escape high dimensional saddle points, unlike gradient descent and quasi-Newton methods. We apply this algorithm to deep or recurrent neural network training, and provide numerical evidence for its superior optimization performance.},
+  author = {Yann N. Dauphin and Razvan Pascanu and Çağlar Gülçehre and Kyunghyun Cho and Surya Ganguli and Yoshua Bengio},
+  booktitle = {Advances in Neural Information Processing Systems},
+  file = {:/home/b/documents/inproceedings/dauphin2014identifying.pdf:pdf},
+  note = {Argues that the primary challenge in optimizing large neural networks is not local minima but the proliferation of saddle points. Provides theoretical arguments from statistical physics and random matrix theory and proposes a saddle-free Newton method.},
+  openalex = {W2963586744},
+  pages = {2933--2941},
+  pdf = {https://proceedings.neurips.cc/paper_files/paper/2014/file/04192426585542c54b96ba14445be996-Paper.pdf},
+  title = {Identifying and attacking the saddle point problem in high-dimensional non-convex optimization},
+  url = {https://proceedings.neurips.cc/paper_files/paper/2014/hash/04192426585542c54b96ba14445be996-Abstract.html},
+  volume = {27},
+  year = {2014}
+}
+
+@inproceedings{saxe2014exact,
+  abstract = {Despite the widespread practical success of deep learning methods, our theoretical understanding of the dynamics of learning in deep neural networks remains quite sparse. We attempt to bridge the gap between the theory and practice of deep learning by systematically analyzing learning dynamics for the restricted case of deep linear neural networks. Despite the linearity of their input-output map, such networks have nonlinear gradient descent dynamics on weights that change with the addition of each new hidden layer. We show that deep linear networks exhibit nonlinear learning phenomena similar to those seen in simulations of nonlinear networks, including long plateaus followed by rapid transitions to lower error solutions, and faster convergence from greedy unsupervised pretraining initial conditions than from random initial conditions. We provide an analytical description of these phenomena by finding new exact solutions to the nonlinear dynamics of deep learning. Our theoretical analysis also reveals the surprising finding that as the depth of a network approaches infinity, learning speed can nevertheless remain finite: for a special class of initial conditions on the weights, very deep networks incur only a finite, depth independent, delay in learning speed relative to shallow networks. We show that, under certain conditions on the training data, unsupervised pretraining can find this special class of initial conditions, while scaled random Gaussian initializations cannot. We further exhibit a new class of random orthogonal initial conditions on weights that, like unsupervised pre-training, enjoys depth independent learning times. We further show that these initial conditions also lead to faithful propagation of gradients even in deep nonlinear networks, as long as they operate in a special regime known as the edge of chaos.},
+  author = {Andrew Saxe and James L. McClelland and Surya Ganguli},
+  booktitle = {2nd International Conference on Learning Representations, ICLR 2014, Banff, AB, Canada, April 14-16, 2014, Conference Track Proceedings},
+  file = {:/home/b/documents/inproceedings/saxe2014exact.pdf:pdf},
+  note = {Provides the first exact analytical solution for the learning dynamics of deep linear networks. Shows that learning proceeds by capturing the singular modes of the input-output correlation matrix hierarchically and that unsupervised pre-training can find initial conditions that accelerate learning.},
+  openalex = {W2963504252},
+  pdf = {https://arxiv.org/pdf/1312.6120},
+  title = {Exact solutions to the nonlinear dynamics of learning in deep linear neural networks},
+  year = {2014}
+}
+
+@article{tishby2000information,
+  abstract = {We define the relevant information in a signal $xın X$ as being the information that this signal provides about another signal $yın \Y$. Examples include the information that face images provide about the names of the people portrayed, or the information that speech sounds provide about the words spoken. Understanding the signal $x$ requires more than just predicting $y$, it also requires specifying which features of $\X$ play a role in the prediction. We formalize this problem as that of finding a short code for $\X$ that preserves the maximum information about $\Y$. That is, we squeeze the information that $\X$ provides about $\Y$ through a 'bottleneck' formed by a limited set of codewords $ X$. This constrained optimization problem can be seen as a generalization of rate distortion theory in which the distortion measure $d(x,\x)$ emerges from the joint statistics of $\X$ and $\Y$. This approach yields an exact set of self consistent equations for the coding rules $X  o  X$ and $ X  o \Y$. Solutions to these equations can be found by a convergent re-estimation method that generalizes the Blahut-Arimoto algorithm. Our variational principle provides a surprisingly rich framework for discussing a variety of problems in signal processing and learning, as will be described in detail elsewhere.},
+  author = {Naftali Tishby and Fernando C. Pereira and William Bialek},
+  doi = {10.48550/arxiv.physics/0004057},
+  file = {:/home/b/documents/article/tishby2000information.pdf:pdf},
+  journal = {arXiv preprint physics/0004057},
+  note = {The foundational paper introducing the Information Bottleneck (IB) principle. Formulates learning as a constrained optimization problem: find a compressed representation of the input that preserves maximal information about the output.},
+  openalex = {W1686946872},
+  pdf = {https://arxiv.org/pdf/physics/0004057.pdf},
+  title = {The Information Bottleneck Method},
+  url = {https://arxiv.org/abs/physics/0004057},
+  year = {2000}
+}
+
+@incollection{opper1996statistical,
+  abstract = {The paper estimates a neural network's ability to generalize from examples using ideas from statistical mechanics and discusses the connection between this approach and other powerful concepts from mathematical statistics, computer science, and information theory that are useful in explaining the performance of such machines. For the simplest network, the perceptron, the authors introduce a variety of learning problems that can be treated exactly by the replica method of statistical physics.},
+  address = {New York, NY},
+  author = {Opper, Manfred and Kinzel, Wolfgang},
+  booktitle = {Models of Neural Networks III: Association, Generalization, and Representation},
+  doi = {10.1007/978-1-4612-0723-8_5},
+  editor = {Domany, Eytan and van Hemmen, J. Leo and Schulten, Klaus},
+  isbn = {9780387943688},
+  note = {A pedagogical review article that clearly explains the application of statistical mechanics methods, particularly the replica method and the student-teacher model, to the problem of calculating generalization error and learning curves in perceptrons.},
+  pages = {151--209},
+  publisher = {Springer},
+  series = {Physics of Neural Networks},
+  title = {Statistical mechanics of learning: Generalization},
+  url = {https://www.researchgate.net/publication/228690213_Statistical_mechanics_of_learning_Generalization},
+  year = {1996}
+}
+
+@article{biehl1995statistical,
+  abstract = {This paper applies tools from statistical mechanics to analyze the dynamics of supervised learning rules in perceptrons. The authors study on-line gradient descent learning where the network updates weights after each training example. Using statistical mechanical methods, they derive deterministic differential equations for macroscopic order parameters including the generalization error, allowing exact calculation of learning dynamics evolution. The analysis covers single-layer perceptrons with sigmoidal activation functions and extends to architectures with hidden layers such as parity machines and committee machines.},
+  author = {Biehl, M. and Schwarze, H.},
+  doi = {10.1088/0305-4470/28/3/010},
+  journal = {Journal of Physics A: Mathematical and General},
+  number = {3},
+  openalex = {W2096378510},
+  pages = {607--622},
+  title = {Statistical mechanical analysis of the dynamics of learning in perceptrons},
+  url = {https://iopscience.iop.org/article/10.1088/0305-4470/28/3/010},
+  volume = {28},
+  year = {1995}
+}
+
+@article{cheng1994neural,
+  abstract = {This paper informs a statistical readership about Artificial Neural Networks (ANNs), points out some of the links with statistical methodology and encourages cross-disciplinary research in the directions most likely to bear fruit. The areas of statistical interest are briefly outlined, and a series of examples indicates the flavor of ANN models. We then treat various topics in more depth. In each case, we describe the neural network architectures and training rules and provide a statistical commentary. The topics treated in this way are perceptrons (from single-unit to multilayer versions), Hopfield-type recurrent networks (including probabilistic versions strongly related to statistical physics and Gibbs distributions) and associative memory networks trained by so-called unsupervised learning rules. Perceptrons are shown to have strong associations with discriminant analysis and regression, and unsupervized networks with cluster analysis. The paper concludes with some thoughts on the future of the interface between neural networks and statistics.},
+  author = {Cheng, B. and Titterington, D. M.},
+  doi = {10.1214/ss/1177010638},
+  journal = {Statistical Science},
+  month = {2},
+  note = {An early, comprehensive review that bridges the gap between the neural networks and statistics communities, highlighting connections to discriminant analysis, regression, and cluster analysis.},
+  number = {1},
+  openalex = {W2076750860},
+  pages = {2--30},
+  publisher = {Institute of Mathematical Statistics},
+  title = {Neural Networks: A Review from a Statistical Perspective},
+  url = {https://projecteuclid.org/journals/statistical-science/volume-9/issue-1/Neural-Networks-A-Review-from-a-Statistical-Perspective/10.1214/ss/1177010638.full},
+  volume = {9},
+  year = {1994}
+}
+
+@article{watkin1993statistical,
+  abstract = {A summary is presented of the statistical mechanical theory of learning a rule with a neural network, a rapidly advancing area which is closely related to other inverse problems frequently encountered by physicists. By emphasizing the relationship between neural networks and strongly interacting physical systems, such as spin glasses, the authors show how learning theory has provided a workshop in which to develop new, exact analytical techniques.},
+  author = {Watkin, T. L. H. and Rau, A. and Biehl, M.},
+  doi = {10.1103/RevModPhys.65.499},
+  journal = {Reviews of Modern Physics},
+  note = {A comprehensive review of the early statistical mechanics of learning, with a strong focus on the Gardner-Derrida approach to perceptron capacity and the student-teacher paradigm for analyzing generalization.},
+  number = {2},
+  openalex = {W2150872430},
+  pages = {499--556},
+  title = {The statistical mechanics of learning a rule},
+  url = {https://link.aps.org/doi/10.1103/RevModPhys.65.499},
+  volume = {65},
+  year = {1993}
+}
+
+@article{seung1992statistical,
+  author = {Seung, H. Sebastian and Sompolinsky, Haim and Tishby, Naftali},
+  doi = {10.1103/PhysRevA.45.6056},
+  journal = {Physical Review A},
+  month = {4},
+  note = {A cornerstone paper that develops a comprehensive statistical mechanical framework for analyzing generalization in feedforward networks. Using the student-teacher paradigm and replica theory, it calculates learning curves and shows that learning can exhibit phase transitions, with generalization error dropping sharply at critical dataset sizes.},
+  number = {8},
+  openalex = {W2090614046},
+  pages = {6056--6091},
+  publisher = {American Physical Society},
+  title = {Statistical mechanics of learning from examples},
+  url = {https://journals.aps.org/pra/abstract/10.1103/PhysRevA.45.6056},
+  volume = {45},
+  year = {1992}
+}
+
+@article{levin1990statistical,
+  abstract = {A general statistical description of the problem of learning from examples is presented. Our focus is on learning in layered networks, which is posed as a search in the network parameter space for a network that minimizes an additive error function of statistically independent examples. By imposing the equivalence of the minimum error and the maximum likelihood criteria for training the network, we arrive at the Gibbs distribution on the ensemble of networks with a fixed architecture. Using this ensemble, the probability of correct prediction of a novel example can be expressed, serving as a measure of the network's generalization ability. The entropy of the prediction distribution is shown to be a consistent measure of the network's performance. This quantity is directly derived from the ensemble statistical properties and is identical to the stochastic complexity of the training data. Our approach is a link between the information-theoretic model-order estimation techniques, particularly minimum description length, and the statistical mechanics of neural networks. The proposed formalism is applied to the problems of selecting an optimal architecture and the prediction of learning curves.},
+  author = {Esther Levin and Naftali Tishby and Sara A. Solla},
+  doi = {10.1109/5.58339},
+  issn = {0018-9219},
+  journal = {Proceedings of the IEEE},
+  month = {10},
+  number = {10},
+  openalex = {W2145513251},
+  pages = {1568--1574},
+  title = {A Statistical Approach to Learning and Generalization in Layered Neural Networks},
+  url = {https://doi.org/10.1109/5.58339},
+  volume = {78},
+  year = {1990}
+}
+
+@article{gardner1989three,
+  abstract = {The optimal storage properties of three different neural network models are studied. For two of these models the architecture of the network is a perceptron with +or-J interactions, whereas for the third model the output can be an arbitrary function of the inputs. Analytic bounds and numerical estimates of the optimal capacities and of the minimal fraction of errors are obtained for the first two models. The third model can be solved exactly and the exact solution is compared to the bounds and to the results of numerical simulations used for the two other models.},
+  author = {E. Gardner and Bernard Derrida},
+  doi = {10.1088/0305-4470/22/12/004},
+  journal = {Journal of Physics A: Mathematical and General},
+  note = {A posthumous publication of Elizabeth Gardner's work, presenting further results on the capacity of networks with correlated patterns, diluted connectivity, and multi-layer architectures, showcasing the broad applicability of the geometric approach.},
+  number = {12},
+  openalex = {W2066424095},
+  pages = {1983--1994},
+  publisher = {IOP Publishing},
+  title = {Three unfinished works on the optimal storage capacity of networks},
+  url = {https://iopscience.iop.org/article/10.1088/0305-4470/22/12/004},
+  volume = {22},
+  year = {1989}
+}
+
+@article{gardner1988optimal,
+  abstract = {We calculate the number, $p = α N$, of random $N$-bit patterns that an optimal neural network can store allowing a given fraction $f$ of bit errors and with the condition that each correct bit is stabilized by a local field at least equal to a parameter $K$. For each value of $α$ and $K$, there is a minimum fraction $f_ extmin$ of wrong bits. We find a critical line, $α_c(K)$ with $α_c(0) = 2$. The minimum fraction of wrong bits vanishes for $α < α_c(K)$ and increases from zero for $α > α_c(K)$. The calculations are done using a saddle-point method and the order parameters at the saddle point are assumed to be replica symmetric. This solution is locally stable in a finite region of the $K$, $α$ plane including the line $α_c(K)$ but there is a line above which the solution becomes unstable and replica symmetry must be broken.},
+  author = {Elizabeth Gardner and Bernard Derrida},
+  doi = {10.1088/0305-4470/21/1/031},
+  journal = {Journal of Physics A: Mathematical and General},
+  number = {1},
+  openalex = {W2001570872},
+  pages = {271--284},
+  title = {Optimal storage properties of neural network models},
+  url = {https://iopscience.iop.org/article/10.1088/0305-4470/21/1/031},
+  volume = {21},
+  year = {1988}
+}
+
+@article{gardner1988space,
+  abstract = {The typical fraction of the space of interactions between each pair of N Ising spins which solve the problem of storing a given set of p random patterns as N-bit spin configurations is calculated. The volume is calculated explicitly as a function of the storage ratio, $α = p/N$, of the value $ąppa > 0$ of the product of the spin and the magnetic field at each site and of the magnetisation, m. Here m may vary between 0 (no correlation) and 1 (completely correlated). The capacity increases with the correlation between patterns from $α = 2$ for uncorrelated patterns with $\p̨pa = 0$ and tends to infinity as m tends to 1. The calculations use a saddle-point method and the order parameters at the saddle point are assumed to be replica symmetric. This solution is shown to be locally stable. A local iterative learning algorithm for updating the interactions is given which will converge to a solution of given $p̨̨a$ provided such solutions exist and is shown to be locally stable.},
+  author = {Gardner, E.},
+  doi = {10.1088/0305-4470/21/1/030},
+  journal = {Journal of Physics A: Mathematical and General},
+  month = {1},
+  note = {Pioneers a new approach by applying statistical mechanics to the space of synaptic weights rather than neuron states. Calculates the fractional volume of weight space that can correctly store a given set of random patterns in a perceptron, revealing a sharp capacity limit.},
+  number = {1},
+  openalex = {W2030450972},
+  pages = {257--270},
+  publisher = {IOP Publishing},
+  title = {The space of interactions in neural network models},
+  url = {https://iopscience.iop.org/article/10.1088/0305-4470/21/1/030},
+  volume = {21},
+  year = {1988}
+}
+
+@article{sompolinsky1988chaos,
+  abstract = {A continuous-time dynamic model of a network of N nonlinear elements interacting via random asymmetric couplings is studied. A self-consistent mean-field theory, exact in the N→∞ limit, predicts a transition from a stationary phase to a chaotic phase occurring at a critical value of the gain parameter. The autocorrelations of the chaotic flow as well as the maximal Lyapunov exponent are calculated.},
+  author = {Sompolinsky, Haim and Crisanti, Andrea and Sommers, Hans-Jürgen},
+  doi = {10.1103/PhysRevLett.61.259},
+  journal = {Physical Review Letters},
+  month = {7},
+  note = {A foundational paper on the dynamics of random asymmetric networks. It shows a phase transition from stable fixed-point dynamics to chaos as the statistical variance of the synaptic weights increases, establishing the "edge of chaos" as a critical regime for computation.},
+  number = {3},
+  openalex = {W2027802883},
+  pages = {259--262},
+  title = {Chaos in random neural networks},
+  url = {https://link.aps.org/doi/10.1103/PhysRevLett.61.259},
+  volume = {61},
+  year = {1988}
+}
+
+@article{amit1987statistical,
+  abstract = {The Hopfield model of a neural network is studied near its saturation, i.e., when the number $p$ of stored patterns increases with the size of the network $N$, as $p = α N$. The mean-field theory for this system is described in detail. The system possesses, at low $α$, both a spin-glass phase and $2p$ dynamically stable degenerate ferromagnetic phases. The latter have essentially full macroscopic overlaps with the memorized patterns, and provide effective associative memory, despite the spin-glass features. The network can retrieve patterns, at $T = 0$, with an error of less than 1.5% for $α < α_c = 0.14$. At $α_c$ the ferromagnetic retrieval states disappear discontinuously. Numerical simulations show that even above $α_c$ the overlaps with the stored patterns are not zero, but the level of error precludes meaningful retrieval.},
+  author = {Amit, Daniel J. and Gutfreund, Hanoch and Sompolinsky, Haim},
+  doi = {10.1016/0003-4916(87)90092-3},
+  journal = {Annals of Physics},
+  month = {1},
+  note = {Provides a comprehensive analysis of the Hopfield model's phase diagram, detailing the transitions between the retrieval, spin-glass, and paramagnetic phases as a function of temperature and memory loading.},
+  number = {1},
+  openalex = {W2043014754},
+  pages = {30--67},
+  title = {Statistical mechanics of neural networks near saturation},
+  url = {https://www.sciencedirect.com/science/article/pii/0003491687900923},
+  volume = {173},
+  year = {1987}
+}
+
+@article{toulouse1986spin,
+  abstract = {A model of learning by selection is described at the level of neuronal networks. It is formally related to statistical mechanics with the aim to describe memory storage during development and in adult. Networks with symmetric interactions have been shown to function as content-addressable memories, but the present approach differs from previous instructive models. Four biologically relevant aspects are treated--initial state before learning, synaptic sign changes, hierarchical categorization, and stored patterns. Several hypotheses are tested numerically. Starting from the limit case of random connections (spin glass), pruning is viewed as a complex tree of states generated with maximal parsimony of genetic information.},
+  author = {Toulouse, Gérard and Dehaene, Stanislas and Changeux, Jean-Pierre},
+  doi = {10.1073/pnas.83.6.1695},
+  journal = {Proceedings of the National Academy of Sciences},
+  note = {Proposes a model of learning based on selection rather than instruction, framing the initial state of the brain as a complex spin-glass landscape that is progressively "gardened" by experience. Provides an important biological critique and extension of the Hopfield model.},
+  number = {6},
+  openalex = {W2125019398},
+  pages = {1695--1698},
+  pmcid = {PMC323150},
+  pmid = {3456609},
+  title = {Spin glass model of learning by selection},
+  url = {https://www.pnas.org/doi/pdf/10.1073/pnas.83.6.1695},
+  volume = {83},
+  year = {1986}
+}
+
+@article{amit1985spin,
+  abstract = {Two dynamical models, proposed by Hopfield and Little to account for the collective behavior of neural networks, are analyzed. The long-time behavior of these models is governed by the statistical mechanics of infinite-range Ising spin-glass Hamiltonians. Certain configurations of the spin system, chosen at random, which serve as memories, are stored in the quenched random couplings. The present analysis is restricted to the case of a finite number p of memorized spin configurations, in the thermodynamic limit. We show that the long-time behavior of the two models is identical, for all temperatures below a transition temperature $T_c$. The structure of the stable and metastable states is displayed. Below $T_c$, these systems have 2p ground states of the Mattis type: Each one of them is fully correlated with one of the stored patterns. Below $T ∼ 0.46T_c$, additional dynamically stable states appear. These metastable states correspond to specific mixings of the embedded patterns. The thermodynamic and dynamic properties of the system in the cases of more general distributions of random memories are discussed.},
+  author = {Amit, Daniel J. and Gutfreund, Hanoch and Sompolinsky, Haim},
+  doi = {10.1103/PhysRevA.32.1007},
+  journal = {Physical Review A},
+  month = {8},
+  note = {Applies spin-glass theory to the Hopfield model with a finite number of stored patterns. Analyzes the retrieval properties and the emergence of spurious states due to the randomness of the memories.},
+  number = {2},
+  openalex = {W2069129925},
+  pages = {1007--1018},
+  pdf = {https://journals.aps.org/pra/pdf/10.1103/PhysRevA.32.1007},
+  title = {Spin-glass models of neural networks},
+  url = {https://link.aps.org/doi/10.1103/PhysRevA.32.1007},
+  volume = {32},
+  year = {1985}
+}
+
+@article{amit1985storing,
+  abstract = {The Hopfield model for a neural network is studied in the limit when the number p of stored patterns increases with the size N of the network, as p=αN. Despite its spin-glass features, the model exhibits associative memory for α<αc, αc≈0.14. This is a result of the existence at low temperature of 2p dynamically stable degenerate states, each of which is almost fully correlated with one of the patterns. These states become ground states at α<0.05.},
+  author = {Daniel J. Amit and Hanoch Gutfreund and Haim Sompolinsky},
+  doi = {10.1103/PhysRevLett.55.1530},
+  journal = {Physical Review Letters},
+  month = {9},
+  note = {Uses the replica method to solve the Hopfield model in the thermodynamic limit where the number of patterns P scales with the network size N. Derives the critical storage capacity αc=P/N≈0.14, above which the network enters a spin-glass phase and fails to retrieve memories.},
+  number = {14},
+  openalex = {W2080792322},
+  pages = {1530--1533},
+  pdf = {https://journals.aps.org/prl/pdf/10.1103/PhysRevLett.55.1530},
+  publisher = {American Physical Society},
+  title = {Storing infinite numbers of patterns in a spin-glass model of neural networks},
+  url = {https://link.aps.org/doi/10.1103/PhysRevLett.55.1530},
+  volume = {55},
+  year = {1985}
+}
+
+@article{hopfield1982neural,
+  abstract = {Computational properties of use of biological organisms or to the construction of computers can emerge as collective properties of systems having a large number of simple equivalent components (or neurons). The physical meaning of content-addressable memory is described by an appropriate phase space flow of the state of a system. A model of such a system is given, based on aspects of neurobiology but readily adapted to integrated circuits. The collective properties of this model produce a content-addressable memory which correctly yields an entire memory from any subpart of sufficient size. The algorithm for the time evolution of the state of the system is based on asynchronous parallel processing. Additional emergent collective properties include some capacity for generalization, familiarity recognition, categorization, error correction, and time sequence retention. The collective properties are only weakly sensitive to details of the modeling or the failure of individual devices.},
+  author = {Hopfield, John J.},
+  doi = {10.1073/pnas.79.8.2554},
+  journal = {Proceedings of the National Academy of Sciences},
+  month = {4},
+  note = {Introduces a recurrent neural network model for associative memory and defines an energy function, formally linking network dynamics to the statistical mechanics of Ising models. Shows how memories can be stored as attractors of the dynamics.},
+  number = {8},
+  openalex = {W2128084896},
+  pages = {2554--2558},
+  pdf = {https://pmc.ncbi.nlm.nih.gov/articles/PMC346238/pdf/pnas00265-0182.pdf},
+  title = {Neural networks and physical systems with emergent collective computational abilities},
+  url = {https://www.pnas.org/doi/pdf/10.1073/pnas.79.8.2554},
+  volume = {79},
+  year = {1982}
+}

@@ -1,0 +1,1388 @@
+@misc{guo2025generative,
+  abstract = {The rapid advancement of generative models has enabled modern AI systems to comprehend and produce highly sophisticated content, even achieving human-level performance in specific domains. However, these models remain fundamentally constrained by catastrophic forgetting -- a persistent challenge where adapting to new tasks typically leads to significant degradation in performance on previously learned tasks. To address this practical limitation, numerous approaches have been proposed to enhance the adaptability and scalability of generative models in real-world applications. In this work, we present a comprehensive survey of continual learning methods for mainstream generative models, including large language models, multimodal large language models, vision language action models, and diffusion models. Drawing inspiration from the memory mechanisms of the human brain, we systematically categorize these approaches into three paradigms: architecture-based, regularization-based, and replay-based methods, while elucidating their underlying methodologies and motivations. We further analyze continual learning setups for different generative models, including training objectives, benchmarks, and core backbones, offering deeper insights into the field. The project page of this paper is available at https://github.com/Ghy0501/Awesome-Continual-Learning-in-Generative-Models.},
+  archiveprefix = {arXiv},
+  author = {Haiyang Guo and Fanhu Zeng and Fei Zhu and Jiayi Wang and Xukai Wang and Jingang Zhou and Hongbo Zhao and Wenzhuo Liu and Shijie Ma and Da-Han Wang and Xu-Yao Zhang and Cheng-Lin Liu},
+  doi = {10.48550/arXiv.2506.13045},
+  eprint = {2506.13045},
+  file = {:/home/b/documents/misc/guo2025generative.pdf:pdf},
+  month = {6},
+  pdf = {https://arxiv.org/pdf/2506.13045.pdf},
+  primaryclass = {cs.LG},
+  title = {A Comprehensive Survey on Continual Learning in Generative Models},
+  url = {https://arxiv.org/abs/2506.13045},
+  year = {2025}
+}
+
+@inproceedings{gutierrez2025memory,
+  abstract = {Our ability to continuously acquire, organize, and leverage knowledge is a key feature of human intelligence that AI systems must approximate to unlock their full potential. Given the challenges in continual learning with large language models (LLMs), retrieval-augmented generation (RAG) has become the dominant way to introduce new information. However, its reliance on vector retrieval hinders its ability to mimic the dynamic and interconnected nature of human long-term memory. Recent RAG approaches augment vector embeddings with various structures like knowledge graphs to address some of these gaps, namely sense-making and associativity. However, their performance on more basic factual memory tasks drops considerably below standard RAG. In this paper, we propose HippoRAG 2, which builds upon the Personalized PageRank algorithm used in HippoRAG and enhances it with deeper passage integration and more effective online use of an LLM. This combination pushes this RAG system closer to the effectiveness of human long-term memory, achieving a 7% improvement in associative memory tasks over the state-of-the-art embedding model while also exhibiting superior factual knowledge and sense-making memory capabilities. Our work paves the way for non-parametric continual learning for LLMs.},
+  address = {Vienna, Austria},
+  arxiv = {2502.14802},
+  author = {Gutiérrez, Bernal Jiménez and Shu, Yiheng and Qi, Weijian and Zhou, Sizhe and Su, Yu},
+  booktitle = {Proceedings of the 42nd International Conference on Machine Learning},
+  file = {:/home/b/documents/inproceedings/gutierrez2025memory.pdf:pdf},
+  month = {7},
+  pages = {18550--18574},
+  pdf = {https://arxiv.org/pdf/2502.14802.pdf},
+  publisher = {PMLR},
+  series = {Proceedings of Machine Learning Research},
+  title = {From RAG to Memory: Non-Parametric Continual Learning for Large Language Models},
+  url = {https://icml.cc/virtual/2025/poster/45585},
+  year = {2025}
+}
+
+@inproceedings{qiu2025prompting,
+  abstract = {We introduce CLOB, a novel continual learning (CL) paradigm wherein a large language model (LLM) is regarded as a black box. Learning is done incrementally via only verbal prompting. CLOB does not fine-tune any part of the LLM or add any trainable parameters to it. It is particularly suitable for LLMs that are accessible via APIs. The paper also proposes a new CL technique, called CIS, based on incremental summarization that also overcomes the LLM's input length limit. Experiments show CIS outperforms baselines by a very large margin.},
+  address = {Abu Dhabi, UAE},
+  author = {Jiabao Qiu and Zixuan Ke and Bing Liu},
+  booktitle = {Proceedings of the 31st International Conference on Computational Linguistics},
+  file = {:/home/b/documents/inproceedings/qiu2025prompting.pdf:pdf},
+  pages = {6014--6023},
+  pdf = {https://aclanthology.org/2025.coling-main.402.pdf},
+  publisher = {Association for Computational Linguistics},
+  series = {COLING 2025},
+  title = {Continual Learning Using Only Large Language Model Prompting},
+  year = {2025}
+}
+
+@inproceedings{huai2025dynamics,
+  author = {Huai, Tian and Zhou, Jianfei and Yang, Yi and Liu, Sijia and Xie, Yiren and He, Lichao},
+  booktitle = {Proceedings of the 42nd International Conference on Machine Learning},
+  file = {:/home/b/documents/inproceedings/huai2025dynamics.pdf:pdf},
+  note = {Unable to verify complete publication details},
+  pdf = {https://arxiv.org/pdf/2505.07796},
+  publisher = {PMLR},
+  series = {ICML '25},
+  title = {Learning Dynamics in Continual Pre-Training for Large Language Models},
+  year = {2025}
+}
+
+@inproceedings{jiang2025function,
+  abstract = {Catastrophic forgetting (CF) poses a significant challenge in machine learning, where a model forgets previously learned information upon learning new tasks. Despite the advanced capabilities of Large Language Models (LLMs), they continue to face challenges with CF during continual learning. The majority of existing research focuses on analyzing forgetting patterns through a singular training sequence, thereby overlooking the intricate effects that diverse tasks have on model behavior. Our study explores CF across various settings, discovering that model forgetting is influenced by both the specific training tasks and the models themselves. To this end, we interpret forgetting by examining the function vector (FV), a compact representation of functions in LLMs, offering a model-dependent indicator for the occurrence of CF. Through theoretical and empirical analyses, we demonstrated that CF in LLMs primarily stems from biases in function activation rather than the overwriting of task processing functions. Leveraging these insights, we propose a novel function vector guided training methodology, incorporating a regularization technique to stabilize the FV and mitigate forgetting. Empirical tests on four benchmarks confirm the effectiveness of our proposed training method, substantiating our theoretical framework concerning CF and model function dynamics.},
+  archiveprefix = {arXiv},
+  author = {Gangwei Jiang and Caigao Jiang and Zhaoyi Li and Siqiao Xue and Jun Zhou and Linqi Song and Defu Lian and Ying Wei},
+  booktitle = {The Thirteenth International Conference on Learning Representations},
+  doi = {10.48550/arXiv.2502.11019},
+  eprint = {2502.11019},
+  file = {:/home/b/documents/inproceedings/jiang2025function.pdf:pdf},
+  keywords = {Catastrophic forgetting, Large language model, Instruction tuning},
+  pdf = {https://openreview.net/pdf?id=gc8QAQfXv6},
+  title = {Unlocking the Power of Function Vectors for Characterizing and Mitigating Catastrophic Forgetting in Continual Instruction Tuning},
+  url = {https://openreview.net/forum?id=gc8QAQfXv6},
+  year = {2025}
+}
+
+@inproceedings{wu2025gift,
+  abstract = {Pre-trained Vision-Language Models (VLMs) require Continual Learning (CL) to efficiently update their knowledge and adapt to various downstream tasks without retraining from scratch. However, for VLMs, in addition to the loss of knowledge previously learned from downstream tasks, pre-training knowledge is also corrupted during continual fine-tuning. This issue is exacerbated by the unavailability of original pre-training data, leaving VLM's generalization ability degrading. In this paper, we propose GIFT, a novel continual fine-tuning approach that utilizes synthetic data to overcome catastrophic forgetting in VLMs. Taking advantage of recent advances in text-to-image synthesis, we employ a pre-trained diffusion model to recreate both pre-training and learned downstream task data. In this way, the VLM can revisit previous knowledge through distillation on matching diffusion-generated images and corresponding text prompts. Leveraging the broad distribution and high alignment between synthetic image-text pairs in VLM's feature space, we propose a contrastive distillation loss along with an image-text alignment constraint. To further combat in-distribution overfitting and enhance distillation performance with limited amount of generated data, we incorporate adaptive weight consolidation, utilizing Fisher information from these synthetic image-text pairs and achieving a better stability-plasticity balance. Extensive experiments demonstrate that our method consistently outperforms previous state-of-the-art approaches across various settings.},
+  archiveprefix = {arXiv},
+  author = {Wu, Bin and Shi, Wuxuan and Wang, Jinqiao and Ye, Mang},
+  booktitle = {Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)},
+  eprint = {2503.04229},
+  file = {:/home/b/documents/inproceedings/wu2025gift.pdf:pdf},
+  month = {6},
+  pdf = {https://openaccess.thecvf.com/content/CVPR2025/papers/Wu_Synthetic_Data_is_an_Elegant_GIFT_for_Continual_Vision-Language_Models_CVPR_2025_paper.pdf},
+  primaryclass = {cs.CV},
+  title = {Synthetic Data is an Elegant GIFT for Continual Vision-Language Models},
+  url = {https://openaccess.thecvf.com/content/CVPR2025/papers/Wu_Synthetic_Data_is_an_Elegant_GIFT_for_Continual_Vision-Language_Models_CVPR_2025_paper.pdf},
+  year = {2025}
+}
+
+@inproceedings{erden2025autoencoder,
+  abstract = {Continual learning for reinforcement learning agents remains a significant challenge, particularly in preserving and leveraging existing information without an external signal to indicate changes in tasks or environments. In this study, we explore the effectiveness of autoencoders in detecting new tasks and matching observed environments to previously encountered ones. Our approach integrates policy optimization with familiarity autoencoders within an end-to-end continual learning system that can recognize and learn new tasks while preserving knowledge from previous experiences.},
+  address = {Detroit, Michigan, USA},
+  author = {Erden, Zeki Doruk and Gasmi, Donia and Faltings, Boi},
+  booktitle = {Proceedings of the Autonomous Robots and Multirobot Systems (ARMS) Workshop at AAMAS 2025},
+  file = {:/home/b/documents/inproceedings/erden2025autoencoder.pdf:pdf},
+  keywords = {continual learning, reinforcement learning, autoencoders, task recognition, environment adaptation},
+  month = {May},
+  organization = {International Foundation for Autonomous Agents and Multiagent Systems (IFAAMAS)},
+  pdf = {https://arxiv.org/pdf/2505.09003.pdf},
+  title = {Continual Reinforcement Learning via Autoencoder-Driven Task and New Environment Recognition},
+  url = {https://arxiv.org/abs/2505.09003},
+  year = {2025}
+}
+
+@inproceedings{tang2025churn,
+  abstract = {Plasticity, or the ability of an agent to adapt to new tasks, environments, or distributions, is crucial for continual learning. In this paper, we study the loss of plasticity in deep continual RL from the lens of churn: network output variability for out-of-batch data induced by mini-batch training. We demonstrate that (1) the loss of plasticity is accompanied by the exacerbation of churn due to the gradual rank decrease of the Neural Tangent Kernel (NTK) matrix; (2) reducing churn helps prevent rank collapse and adjusts the step size of regular RL gradients adaptively. Moreover, we introduce Continual Churn Approximated Reduction (C-CHAIN) and demonstrate it improves learning performance and outperforms baselines in a diverse range of continual learning environments on OpenAI Gym Control, ProcGen, DeepMind Control Suite, and MinAtar benchmarks.},
+  archiveprefix = {arXiv},
+  author = {Hongyao Tang and Johan Obando-Ceron and Pablo Samuel Castro and Aaron Courville and Glen Berseth},
+  booktitle = {Proceedings of the 42nd International Conference on Machine Learning},
+  eprint = {2506.00592},
+  file = {:/home/b/documents/inproceedings/tang2025churn.pdf:pdf},
+  month = {7},
+  pdf = {https://arxiv.org/pdf/2506.00592.pdf},
+  primaryclass = {cs.LG},
+  publisher = {PMLR},
+  series = {Proceedings of Machine Learning Research},
+  title = {Mitigating Plasticity Loss in Continual Reinforcement Learning by Reducing Churn},
+  url = {https://icml.cc/virtual/2025/poster/45929},
+  year = {2025}
+}
+
+@misc{mandalika2025replay,
+  abstract = {Continual Learning entails progressively acquiring knowledge from new data while retaining previously acquired knowledge, thereby mitigating 'Catastrophic Forgetting' in neural networks. Our work presents a novel uncertainty-driven Unsupervised Continual Learning framework using Generative Replay, namely 'Replay to Remember (R2R)'. The proposed R2R architecture efficiently uses unlabelled and synthetic labelled data in a balanced proportion using a cluster-level uncertainty-driven feedback mechanism and a VLM-powered generative replay module. Unlike traditional memory-buffer methods that depend on pretrained models and pseudo-labels, our R2R framework operates without any prior training. It leverages visual features from unlabeled data and adapts continuously using clustering-based uncertainty estimation coupled with dynamic thresholding. Concurrently, a generative replay mechanism along with DeepSeek-R1 powered CLIP VLM produces labelled synthetic data representative of past experiences, resembling biological visual thinking that replays memory to remember and act in new unseen tasks. Extensive experimental analyses are carried out in CIFAR-10, CIFAR-100, CINIC-10, SVHN and TinyImageNet datasets. Our proposed R2R approach improves knowledge retention, achieving a state-of-the-art performance of 98.13%, 73.06%, 93.41%, 95.18%, 59.74% respectively, surpassing state-of-the-art performance by over 4.36%.},
+  archiveprefix = {arXiv},
+  author = {Sriram Mandalika and Harsha Vardhan and Athira Nambiar},
+  doi = {10.48550/arXiv.2505.04787},
+  eprint = {2505.04787},
+  file = {:/home/b/documents/misc/mandalika2025replay.pdf:pdf},
+  howpublished = {arXiv preprint},
+  month = {5},
+  note = {Submitted to 28th European Conference on Artificial Intelligence (ECAI-2025)},
+  pdf = {https://arxiv.org/pdf/2505.04787.pdf},
+  primaryclass = {cs.CV},
+  title = {Replay to Remember (R2R): An Efficient Uncertainty-driven Unsupervised Continual Learning Framework Using Generative Replay},
+  url = {https://arxiv.org/abs/2505.04787},
+  year = {2025}
+}
+
+@inproceedings{wang2025prioritized,
+  abstract = {Sample-efficient online reinforcement learning often uses replay buffers to store experience for reuse when updating the value function. However, uniform replay is inefficient, since certain transitions can be more relevant to learning. While prioritization is useful, samples can also lead to overfitting, as rare samples are likely helpful. In this work, we propose a prioritized, parametric version of an agent's memory, using generative models to capture experience. This paradigm enables: (1) densification of past experience, with new generations that benefit from the model's generalization capacity and (2) guidance via a family of 'relevance functions' that push these towards parts of acquired history. We show this recipe instantiated with conditional diffusion models and simple relevance functions such as curiosity- or value-based metrics. Our approach consistently improves performance and sample efficiency in both state- and pixel-based domains. We expose mechanisms underlying gains, showing how this promotes diversity in our generated transitions and reduces overfitting. We showcase train policies even at higher update-to-data ratios than before, opening up avenues to better scale RL agents.},
+  address = {Singapore},
+  author = {Wang, Renhao and Frans, Kevin and Abbeel, Pieter and Levine, Sergey and Efros, Alexei A.},
+  booktitle = {Proceedings of the Thirteenth International Conference on Learning Representations},
+  file = {:/home/b/documents/inproceedings/wang2025prioritized.pdf:pdf},
+  month = {5},
+  openalex = {W4404308576},
+  pdf = {https://proceedings.iclr.cc/paper_files/paper/2025/file/74b7956113fdf0ec87288f351a1d8a34-Paper-Conference.pdf},
+  publisher = {OpenReview.net},
+  series = {ICLR '25},
+  title = {Prioritized Generative Replay},
+  url = {https://openreview.net/forum?id=5IkDAfabuo},
+  year = {2025}
+}
+
+@inproceedings{feng2025zeroflow,
+  abstract = {Backpropagation provides a generalized configuration for overcoming catastrophic forgetting. Optimizers such as SGD and Adam are commonly used for weight updates in continual learning and continual pre-training. However, access to gradient information is not always feasible in practice due to black-box APIs, hardware constraints, or non-differentiable systems, a challenge we refer to as the gradient bans. To bridge this gap, we introduce ZeroFlow, the first benchmark designed to evaluate gradient-free optimization algorithms for overcoming forgetting. ZeroFlow examines a suite of forward pass-based methods across various algorithms, forgetting scenarios, and datasets. Our results show that forward passes alone can be sufficient to mitigate forgetting. We uncover novel optimization principles that highlight the potential of forward pass-based methods in mitigating forgetting, managing task conflicts, and reducing memory demands. Additionally, we propose new enhancements that further improve forgetting resistance using only forward passes. This work provides essential tools and insights to advance the development of forward-pass-based methods for continual learning.},
+  author = {Tao Feng and Wei Li and Didi Zhu and Hangjie Yuan and Wendi Zheng and Dan Zhang and Jie Tang},
+  booktitle = {Proceedings of the 42nd International Conference on Machine Learning},
+  openalex = {W4406033016},
+  pages = {13264--13287},
+  pdf = {https://proceedings.mlr.press/v235/feng25d/feng25d.pdf},
+  publisher = {PMLR},
+  series = {Proceedings of Machine Learning Research},
+  title = {ZeroFlow: Overcoming Catastrophic Forgetting is Easier than You Think},
+  url = {https://proceedings.mlr.press/v235/feng25d.html},
+  volume = {235},
+  year = {2025}
+}
+
+@inproceedings{hacohen2025forgetting,
+  abstract = {Catastrophic forgetting - the tendency of neural networks to forget previously learned data when learning new information - remains a central challenge in continual learning. In this work, we adopt a behavioral approach, observing a connection between learning speed and forgetting: examples learned more quickly are less prone to forgetting. Focusing on replay-based continual learning, we show that the composition of the replay buffer - specifically, whether it contains quickly or slowly learned examples - has a significant effect on forgetting. Motivated by this insight, we introduce Speed-Based Sampling (SBS), a simple yet general strategy that selects replay examples based on their learning speed. SBS integrates easily into existing buffer-based methods and improves performance across a wide range of competitive continual learning benchmarks, advancing state-of-the-art results. Our findings underscore the value of accounting for the forgetting dynamics when designing continual learning algorithms.},
+  author = {Guy Hacohen and Tinne Tuytelaars},
+  booktitle = {Proceedings of the 42nd International Conference on Machine Learning},
+  file = {:/home/b/documents/inproceedings/hacohen2025forgetting.pdf:pdf},
+  month = {7},
+  pdf = {https://arxiv.org/pdf/2406.09935.pdf},
+  publisher = {PMLR},
+  series = {Proceedings of Machine Learning Research},
+  title = {Predicting the Susceptibility of Examples to Catastrophic Forgetting},
+  url = {https://arxiv.org/abs/2406.09935},
+  volume = {235},
+  year = {2025}
+}
+
+@inproceedings{wu2025avqacl,
+  abstract = {In this paper, a novel benchmark for audio-visual question answering continual learning (AVQACL) is introduced, aiming to study sustained scene understanding and spatial-temporal reasoning in videos under a continual learning setting. To facilitate this multimodal continual learning task, we create two audio-visual question answering continual learning datasets, named Split-AVQA and Split-MUSIC-AVQA based on the AVQA and MUSIC-AVQA datasets, respectively. The experimental results suggest that the model exhibits limited cognitive and reasoning abilities and experiences catastrophic forgetting when processing three modalities simultaneously in a continuous data stream. To address these challenges, we propose a novel continual learning method that incorporates: 1. Question-guided cross-modal information fusion (QCIF) to focus on question-relevant details 2. Knowledge distillation with spatial-temporal feature constraints (TKD-STFC) to preserve spatial-temporal reasoning knowledge 3. A question semantic consistency constraint (QSCC) to maintain consistent understanding of question semantics across tasks. Extensive experimental results on Split-AVQA and Split-MUSIC-AVQA datasets illustrate that our method achieves state-of-the-art audio-visual question answering continual learning performance.},
+  author = {Kaixuan Wu and Xinde Li and Xinling Li and Chuanfei Hu and Guoliang Wu},
+  booktitle = {Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition},
+  file = {:/home/b/documents/inproceedings/wu2025avqacl.pdf:pdf},
+  pages = {3252--3261},
+  pdf = {https://openaccess.thecvf.com/content/CVPR2025/papers/Wu_AVQACL_A_Novel_Benchmark_for_Audio-Visual_Question_Answering_Continual_Learning_CVPR_2025_paper.pdf},
+  title = {AVQACL: A Novel Benchmark for Audio-Visual Question Answering Continual Learning},
+  url = {https://openaccess.thecvf.com/content/CVPR2025/html/Wu_AVQACL_A_Novel_Benchmark_for_Audio-Visual_Question_Answering_Continual_Learning_CVPR_2025_paper.html},
+  year = {2025}
+}
+
+@article{wu2024survey,
+  abstract = {Large language models (LLMs) are not amenable to frequent re-training, due to high training costs arising from their massive scale. However, updates are necessary to endow LLMs with new skills and keep them up-to-date with rapidly evolving human knowledge. This paper surveys recent works on continual learning for LLMs. Due to the unique nature of LLMs, we catalog continue learning techniques in a novel multi-staged categorization scheme, involving continual pretraining, instruction tuning, and alignment. We contrast continual learning for LLMs with simpler adaptation methods used in smaller models, as well as with other enhancement strategies like retrieval-augmented generation and model editing. Moreover, informed by a discussion of benchmarks and evaluation, we identify several challenges and future work directions for this crucial task.},
+  author = {Wu, Tongtong and Luo, Linhao and Li, Yuan-Fang and Pan, Shirui and Vu, Thuy-Trang and Haffari, Gholamreza},
+  doi = {10.1145/3735633},
+  journal = {ACM Computing Surveys},
+  month = {12},
+  openalex = {W4391555991},
+  pdf = {https://dl.acm.org/doi/pdf/10.1145/3735633},
+  title = {Continual Learning for Large Language Models: A Survey},
+  url = {https://dl.acm.org/doi/10.1145/3735633},
+  year = {2024}
+}
+
+@inproceedings{zhou2024pretrained,
+  abstract = {Nowadays, real-world applications often face streaming data, which requires the learning system to absorb new knowledge as data evolves. Continual Learning (CL) aims to achieve this goal and meanwhile overcome the catastrophic forgetting of former knowledge when learning new ones. Typical CL methods build the model from scratch to grow with incoming data. However, the advent of the pre-trained model (PTM) era has sparked immense research interest, particularly in leveraging PTMs' robust representational capabilities. This paper presents a comprehensive survey of the latest advancements in PTM-based CL. We categorize existing methodologies into three distinct groups, providing a comparative analysis of their similarities, differences, and respective advantages and disadvantages. Additionally, we offer an empirical study contrasting various state-of-the-art methods to highlight concerns regarding fairness in comparisons.},
+  author = {Da-Wei Zhou and Hai-Long Sun and Jingyi Ning and Han-Jia Ye and De-Chuan Zhan},
+  booktitle = {Proceedings of the Thirty-Third International Joint Conference on Artificial Intelligence},
+  doi = {10.24963/ijcai.2024/924},
+  file = {:/home/b/documents/inproceedings/zhou2024pretrained.pdf:pdf},
+  openalex = {W4401023578},
+  pages = {8363--8371},
+  pdf = {https://www.ijcai.org/proceedings/2024/0924.pdf},
+  title = {Continual Learning with Pre-Trained Models: A Survey},
+  year = {2024}
+}
+
+@misc{pan2024survey,
+  abstract = {Reinforcement Learning (RL) is an important machine learning paradigm for solving sequential decision-making problems. Recent years have witnessed remarkable progress in this field due to the rapid development of deep neural networks. However, the success of RL currently relies on extensive training data and computational resources. In addition, RL's limited ability to generalize across tasks restricts its applicability in dynamic and real-world environments. With the arisen of Continual Learning (CL), Continual Reinforcement Learning (CRL) has emerged as a promising research direction to address these limitations by enabling agents to learn continuously, adapt to new tasks, and retain previously acquired knowledge. In this survey, we provide a comprehensive examination of CRL, focusing on its core concepts, challenges, and methodologies. Firstly, we conduct a detailed review of existing works, organizing and analyzing their metrics, tasks, benchmarks, and scenario settings. Secondly, we propose a new taxonomy of CRL methods, categorizing them into four types from the perspective of knowledge storage and/or transfer. Finally, our analysis highlights the unique challenges of CRL and provides practical insights into future directions.},
+  author = {Chaofan Pan and Xin Yang and Yanhua Li and Wei Wei and Tianrui Li and Bo An and Jiye Liang},
+  file = {:/home/b/documents/misc/pan2024survey.pdf:pdf},
+  howpublished = {arXiv preprint arXiv:2506.21872},
+  month = {6},
+  note = {Submitted to IEEE TPAMI},
+  pdf = {https://arxiv.org/pdf/2506.21872.pdf},
+  title = {A Survey of Continual Reinforcement Learning},
+  url = {https://arxiv.org/abs/2506.21872},
+  year = {2024}
+}
+
+@inproceedings{malagon2024composing,
+  abstract = {This work introduces a growable and modular neural network architecture that naturally avoids catastrophic forgetting and interference in continual reinforcement learning. The structure of each module allows the selective combination of previous policies along with its internal policy accelerating the learning process on the current task.},
+  author = {Malagón, Mikel and Ceberio, Josu and Lozano, Jose A.},
+  booktitle = {Proceedings of the 41st International Conference on Machine Learning},
+  file = {:/home/b/documents/inproceedings/malagon2024composing.pdf:pdf},
+  month = {7},
+  pages = {34432--34460},
+  pdf = {https://raw.githubusercontent.com/mlresearch/v235/main/assets/malagon24a/malagon24a.pdf},
+  publisher = {PMLR},
+  series = {Proceedings of Machine Learning Research},
+  title = {Self-Composing Policies for Scalable Continual Reinforcement Learning},
+  volume = {235},
+  year = {2024}
+}
+
+@inproceedings{chen2024diffusion,
+  abstract = {Given the inherent non-stationarity prevalent in real-world applications, continual Reinforcement Learning (RL) aims to equip the agent with the capability to address a series of sequentially presented decision-making tasks. Within this problem setting, a pivotal challenge revolves around catastrophic forgetting issue, wherein the agent is prone to effortlessly erode the decisional knowledge associated with past encountered tasks when learning the new one. In recent progresses, the generative replay methods have showcased substantial potential by employing generative models to replay data distribution of past tasks. Compared to storing the data from past tasks directly, this category of methods circumvents the growing storage overhead and possible data privacy concerns. However, constrained by the expressive capacity of generative models, existing generative replay methods face challenges in faithfully reconstructing the data distribution of past tasks, particularly in scenarios with a myriad of tasks or high-dimensional data. Inspired by the success of diffusion models in various generative tasks, this paper introduces a novel continual RL algorithm DISTR (Diffusion-based Trajectory Replay) that employs a diffusion model to memorize the high-return trajectory distribution of each encountered task and wakeups these distributions during the policy learning on new tasks. Besides, considering the impracticality of replaying all past data each time, a prioritization mechanism is proposed to prioritize the trajectory replay of pivotal tasks in our method. Empirical experiments on the popular continual RL benchmark Continual World demonstrate that our proposed method obtains a favorable balance between stability and plasticity, surpassing various existing continual RL baselines in average success rate.},
+  author = {Feng Chen and Fuguang Han and Cong Guan and Lei Yuan and Zhilong Zhang and Yang Yu and Zongzhang Zhang},
+  booktitle = {ICLR Workshop on Generative Models for Decision Making},
+  doi = {10.48550/arXiv.2411.10809},
+  file = {:/home/b/documents/inproceedings/chen2024diffusion.pdf:pdf},
+  month = {5},
+  pdf = {https://arxiv.org/pdf/2411.10809.pdf},
+  series = {ICLR Workshop Series},
+  title = {Stable Continual Reinforcement Learning via Diffusion-based Trajectory Replay},
+  url = {https://arxiv.org/abs/2411.10809},
+  year = {2024}
+}
+
+@misc{liu2024diffusion,
+  abstract = {We study continual offline reinforcement learning, a practical paradigm that facilitates forward transfer and mitigates catastrophic forgetting to tackle sequential offline tasks. We propose a dual generative replay framework that retains previous knowledge by concurrent replay of generated pseudo-data. First, we decouple the continual learning policy into a diffusion-based generative behavior model and a multi-head action evaluation model, allowing the policy to inherit distributional expressivity for encompassing a progressive range of diverse behaviors. Second, we train a task-conditioned diffusion model to generate diverse behavior data for replay, enabling the learned policy to retain previous knowledge with emergent cross-task skill composition. We evaluate our approach on several continual offline reinforcement learning benchmarks and demonstrate that our method achieves superior performance compared to existing baselines.},
+  archiveprefix = {arXiv},
+  author = {Jinmei Liu and Wenbin Li and Xiangyu Yue and Shilin Zhang and Chunlin Chen and Zhi Wang},
+  eprint = {2404.10662},
+  file = {:/home/b/documents/misc/liu2024diffusion.pdf:pdf},
+  month = {4},
+  pdf = {https://arxiv.org/pdf/2404.10662.pdf},
+  primaryclass = {cs.LG},
+  title = {Continual Offline Reinforcement Learning via Diffusion-based Dual Generative Replay},
+  url = {https://arxiv.org/abs/2404.10662},
+  year = {2024}
+}
+
+@inproceedings{kim2024stable,
+  abstract = {In the field of class incremental learning (CIL), generative replay has become increasingly prominent as a method to mitigate the catastrophic forgetting, alongside the continuous improvements in generative models. However, its application in class incremental object detection (CIOD) has been significantly limited, primarily due to the complexities of scenes involving multiple labels. In this paper, we propose a novel approach called stable diffusion deep generative replay (SDDGR) for CIOD. Our method utilizes a diffusion-based generative model with pre-trained text-to-diffusion networks to generate realistic and diverse synthetic images. SDDGR incorporates an iterative refinement strategy to produce high-quality images encompassing old classes. Additionally, we adopt an L2 knowledge distillation technique to improve the retention of prior knowledge in synthetic images. Furthermore, our approach includes pseudo-labeling for old objects within new task images, preventing misclassification as background elements. Extensive experiments on the COCO 2017 dataset demonstrate that SDDGR significantly outperforms existing algorithms, achieving a new state-of-the-art in various CIOD scenarios.},
+  address = {Seattle, WA, USA},
+  author = {Kim, Junsu and Cho, Hoseong and Kim, Jihyeon and Tiruneh, Yihalem Yimolal and Baek, Seungryul},
+  booktitle = {Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition},
+  doi = {10.48550/arXiv.2402.17323},
+  file = {:/home/b/documents/inproceedings/kim2024stable.pdf:pdf},
+  month = {June},
+  pages = {28772--28781},
+  pdf = {https://openaccess.thecvf.com/content/CVPR2024/papers/Kim_SDDGR_Stable_Diffusion-based_Deep_Generative_Replay_for_Class_Incremental_Object_CVPR_2024_paper.pdf},
+  publisher = {IEEE},
+  title = {SDDGR: Stable Diffusion-based Deep Generative Replay for Class Incremental Object Detection},
+  url = {https://arxiv.org/abs/2402.17323},
+  year = {2024}
+}
+
+@article{khan2024generative,
+  abstract = {In this work, we improve the generative replay in a continual learning setting to perform well on challenging scenarios. Current generative rehearsal methods are usually benchmarked on small and simple datasets as they are not powerful enough to generate more complex data with a greater number of classes. Due to the growing complexity of continual learning tasks, it is becoming more popular to apply the generative replay technique in the feature space instead of image space. We notice that in VAE-based generative replay, the degradation could be attributed to the fact that the generated features are far from the original ones when mapped to the latent space. We propose three modifications that allow the model to learn and generate complex data: distillation in latent space between the current and previous models to reduce feature drift, latent matching for the reconstruction and original data to improve generated features alignment, and cycling of generations through the previously trained model to make them closer to the original data. The method outperforms other generative replay methods in various scenarios.},
+  author = {Valeriya Khan and Sebastian Cygert and Kamil Deja and Tomasz Trzci\ŉski and Bartłomiej Twardowski},
+  doi = {10.1109/ACCESS.2024.3379148},
+  journal = {IEEE Access},
+  keywords = {continual learning, generative replay, knowledge retention, catastrophic forgetting},
+  note = {Open access},
+  openalex = {W4392902330},
+  pages = {45309--45317},
+  pdf = {https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=10474374},
+  title = {Looking through the past: better knowledge retention for generative replay in continual learning},
+  url = {https://ieeexplore.ieee.org/document/10474374},
+  volume = {12},
+  year = {2024}
+}
+
+@misc{skiers2024joint,
+  abstract = {In this work, we introduce JDCL – a new method for continual learning with generative rehearsal based on joint diffusion models. Neural networks suffer from catastrophic forgetting defined as abrupt loss in the model's performance when retrained with additional data coming from a different distribution. Generative-replay-based continual learning methods try to mitigate this issue by retraining a model with a combination of new and rehearsal data sampled from a generative model. In this work, we propose to extend this idea by combining a continually trained classifier with a diffusion-based generative model into a single – jointly optimized neural network. We show that such shared parametrization, combined with the knowledge distillation technique allows for stable adaptation to new tasks without catastrophic forgetting. We evaluate our approach on several benchmarks, where it outperforms recent state-of-the-art generative replay techniques. Additionally, we extend our method to the semi-supervised continual learning setup, where it outperforms competing buffer-based replay techniques, and evaluate, in a self-supervised manner, the quality of trained representations.},
+  author = {Paweł Skierś and Kamil Deja},
+  eprint = {2411.08224},
+  eprinttype = {arxiv},
+  file = {:/home/b/documents/misc/skiers2024joint.pdf:pdf},
+  howpublished = {arXiv preprint arXiv:2411.08224},
+  month = {11},
+  openalex = {W4404407115},
+  pdf = {https://arxiv.org/pdf/2411.08224.pdf},
+  primaryclass = {cs.LG},
+  title = {Joint Diffusion models in Continual Learning},
+  url = {https://arxiv.org/abs/2411.08224},
+  year = {2024}
+}
+
+@misc{wang2024mixture,
+  archiveprefix = {arXiv},
+  author = {Wang, Zifeng and Li, Chen and Wang, Zihui and Ding, Ziyu},
+  eprint = {2406.16437},
+  file = {:/home/b/documents/misc/wang2024mixture.pdf:pdf},
+  howpublished = {arXiv preprint},
+  note = {Authors may differ from arXiv version which lists Hongbo Li et al.},
+  pdf = {https://openreview.net/pdf?id=7XgKAabsPp},
+  primaryclass = {cs.LG},
+  title = {Theory on Mixture-of-Experts in Continual Learning},
+  url = {https://arxiv.org/abs/2406.16437},
+  year = {2024}
+}
+
+@misc{lee2024mega,
+  abstract = {In this paper, we introduce a new benchmark for continual learning in anomaly detection, aimed at better reflecting real-world deployment scenarios. Our benchmark, Continual-MEGA, includes a large and diverse dataset that significantly expands existing evaluation settings by combining carefully curated existing datasets with their newly proposed dataset, ContinualAD. In addition to standard continual learning with expanded quantity, they propose a novel scenario that measures zero-shot generalization to unseen classes---those not observed during continual adaptation. This setting poses a new problem setting that continual adaptation also enhances zero-shot performance. The authors also present a unified baseline algorithm that improves robustness in few-shot detection and maintains strong generalization.},
+  archiveprefix = {arXiv},
+  author = {Geonu Lee and Yujeong Oh and Geonhui Jang and Soyoung Lee and Jeonghyo Song and Sungmin Cha and YoungJoon Yoo},
+  eprint = {2506.00956},
+  file = {:/home/b/documents/misc/lee2024mega.pdf:pdf},
+  howpublished = {arXiv preprint arXiv:2506.00956},
+  month = {6},
+  pdf = {https://arxiv.org/pdf/2506.00956},
+  primaryclass = {cs.CV},
+  title = {Continual-MEGA: A Large-scale Benchmark for Generalizable Continual Anomaly Detection},
+  url = {https://arxiv.org/abs/2506.00956},
+  year = {2024}
+}
+
+@misc{yu2024multimodal,
+  abstract = {Continual learning (CL) aims to empower machine learning models to learn continually from new data, while building upon previously acquired knowledge without forgetting. As machine learning models have evolved from small to large pre-trained architectures, and from supporting unimodal to multimodal data, multimodal continual learning (MMCL) methods have recently emerged. The primary challenge of MMCL is that it goes beyond a simple stacking of unimodal CL methods, as such straightforward approaches often yield unsatisfactory performance. In this work, we present the first comprehensive survey on MMCL. We provide essential background knowledge and MMCL settings, as well as a structured taxonomy of MMCL methods. We categorize existing MMCL methods into four categories, i.e., regularization-based, architecture-based, replay-based, and prompt-based methods, explaining their methodologies and highlighting their key innovations. Additionally, to prompt further research in this field, we summarize open MMCL datasets and benchmarks, and discuss several promising future directions for investigation and development. We have also created a GitHub repository for indexing relevant MMCL papers and open resources available at https://github.com/LucyDYu/Awesome-Multimodal-Continual-Learning.},
+  archiveprefix = {arXiv},
+  author = {Dianzhi Yu and Xinni Zhang and Yankai Chen and Aiwei Liu and Yifei Zhang and Philip S. Yu and Irwin King},
+  eprint = {2410.05352},
+  file = {:/home/b/documents/misc/yu2024multimodal.pdf:pdf},
+  howpublished = {arXiv preprint arXiv:2410.05352},
+  month = {10},
+  note = {First comprehensive survey on multimodal continual learning. Submitted 7 Oct 2024, last revised 11 Oct 2024 (v2)},
+  pdf = {https://arxiv.org/pdf/2410.05352.pdf},
+  primaryclass = {cs.LG},
+  title = {Recent Advances of Multimodal Continual Learning: A Comprehensive Survey},
+  url = {https://arxiv.org/abs/2410.05352},
+  year = {2024}
+}
+
+@inproceedings{ye2024cluster,
+  abstract = {Online Task-Free Continual Learning (OTFCL) aims to learn novel concepts from streaming data without accessing task information. Most memory-based approaches used in OTFCL are not suitable for unsupervised learning because they require accessing supervised signals to implement their sample selection mechanisms. In this study, we address this issue by proposing a novel memory management approach, namely the Dynamic Cluster Memory (DCM), which builds new memory clusters to capture distribution shifts over time without accessing any supervised signals. DCM introduces a novel memory expansion mechanism based on the knowledge discrepancy criterion, which evaluates the novelty of the incoming data as the signal for the memory expansion, ensuring a compact memory capacity. We also propose a new sample selection approach that automatically stores incoming data samples with similar semantic information in the same memory cluster, while also facilitating the knowledge diversity among memory clusters. Furthermore, a novel memory pruning approach is proposed to automatically remove overlapping memory clusters through a graph relation evaluation, ensuring a memory capacity while maintaining the diversity among the samples stored in the memory. The proposed DCM is model-free, plug-and-play, and can be used in both supervised and unsupervised learning without modifications. Empirical results on OTFCL experiments show that the proposed DCM outperforms the state-of-the-art while requiring fewer data samples to be stored. The source code is available at https://github.com/dtuzi123/DCM.},
+  address = {Seattle, WA, USA},
+  author = {Fei Ye and Adrian G. Bors},
+  booktitle = {Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)},
+  file = {:/home/b/documents/inproceedings/ye2024cluster.pdf:pdf},
+  month = {6},
+  openalex = {W4402727714},
+  pages = {26202--26212},
+  pdf = {https://openaccess.thecvf.com/content/CVPR2024/papers/Ye_Online_Task-Free_Continual_Generative_and_Discriminative_Learning_via_Dynamic_Cluster_CVPR_2024_paper.pdf},
+  publisher = {IEEE Computer Society},
+  title = {Online Task-Free Continual Generative and Discriminative Learning via Dynamic Cluster Memory},
+  url = {https://openaccess.thecvf.com/content/CVPR2024/html/Ye_Online_Task-Free_Continual_Generative_and_Discriminative_Learning_via_Dynamic_Cluster_CVPR_2024_paper.html},
+  year = {2024}
+}
+
+@inproceedings{benjamin2024tangent,
+  abstract = {A natural strategy for continual learning is to weigh a Bayesian ensemble of fixed functions. This suggests that if a (single) neural network could be interpreted as an ensemble, one could design effective algorithms that learn without forgetting. We show that a neural network classifier with $N$ parameters can be interpreted as a weighted ensemble of $N$ classifiers. In the lazy regime limit these classifiers are fixed throughout learning. We call these classifiers the neural tangent experts and show they output valid probability distributions over the labels. We derive the likelihood and posterior probability of each expert given past data. Surprisingly, we learn that the posterior updates for these experts are equivalent to a scaled and projected form of stochastic gradient descent over the network weights. Away from the lazy regime, networks can be seen as ensembles of adaptive experts which improve over time. These results offer a new interpretation of neural networks as Bayesian ensembles of experts.},
+  address = {Red Hook, NY, USA},
+  author = {Ari S. Benjamin and Christian-Gernot Pehle and Kyle Daruwalla},
+  booktitle = {Advances in Neural Information Processing Systems},
+  file = {:/home/b/documents/inproceedings/benjamin2024tangent.pdf:pdf},
+  keywords = {continual learning, catastrophic forgetting, bayesian ensembles, neural tangent kernel, mixture of experts},
+  note = {Spotlight presentation},
+  openalex = {W4402951824},
+  pages = {93499},
+  pdf = {https://proceedings.neurips.cc/paper_files/paper/2024/file/6bf333d4ca7c7f6fe6e301b2a3160163-Paper-Conference.pdf},
+  publisher = {Curran Associates, Inc.},
+  title = {Continual Learning with the Neural Tangent Ensemble},
+  url = {https://openreview.net/forum?id=qOSFiJdVkZ},
+  volume = {37},
+  year = {2024}
+}
+
+@inproceedings{deja2024seed,
+  author = {Deja, Kamil and Trzciński, Tomasz and Twardowski, Bartłomiej},
+  booktitle = {Proceedings of the International Conference on Learning Representations},
+  file = {:/home/b/documents/inproceedings/deja2024seed.pdf:pdf},
+  pdf = {https://openreview.net/pdf?id=sSyytcewxe},
+  title = {SEED: A Simple and Efficient Method for Class Incremental Learning},
+  year = {2024}
+}
+
+@inproceedings{ke2023pretraining,
+  abstract = {Language models (LMs) have been instrumental for the rapid advance of natural language processing. This paper studies continual domain-adaptive pre-training (DAP-training) of LMs. Existing research has shown that further pre-training an LM using a domain corpus to adapt the LM to the domain can improve the end-task performance in the domain. However, such DAP-training is typically done on individual domains, which is problematic because: (1) LMs are often expected to serve multiple domains, but we do not know which domains they will be applied to, and (2) as new domains emerge, it is desirable for an LM to be able to continually adapt to new domains while retaining its performance in previously learned domains. This paper thus proposes a novel method to continually DAP-train an LM with a sequence of unlabeled domain corpora to adapt the LM to these domains to improve their end-task performances. The key novelty of the method is a novel soft-masking mechanism based on the information from continual learning and language modeling that directly controls the update to the LM to mitigate catastrophic forgetting. A novel proxy is also proposed to preserve the general knowledge in the original LM. Experimental results show that our method is highly effective.},
+  address = {Kigali, Rwanda},
+  author = {Zixuan Ke and Yijia Shao and Haowei Lin and Tatsuya Konishi and Gyuhak Kim and Bing Liu},
+  booktitle = {The Eleventh International Conference on Learning Representations},
+  file = {:/home/b/documents/inproceedings/ke2023pretraining.pdf:pdf},
+  month = {5},
+  openalex = {W4319653544},
+  pdf = {https://openreview.net/pdf?id=m_GDIItaI3o},
+  title = {Continual Pre-training of Language Models},
+  url = {https://openreview.net/forum?id=m_GDIItaI3o},
+  year = {2023}
+}
+
+@misc{luo2023forgetting,
+  abstract = {Catastrophic forgetting (CF) is a phenomenon that occurs in machine learning when a model forgets previously learned information while acquiring new knowledge for achieving a satisfactory performance in downstream tasks. As large language models (LLMs) have demonstrated remarkable performance, it is intriguing to investigate whether CF exists during the continual instruction tuning of LLMs. This study empirically evaluates the forgetting phenomenon in LLMs' knowledge during continual instruction tuning from the perspectives of domain knowledge, reasoning, and reading comprehension. Experiments reveal that catastrophic forgetting is generally observed in LLMs ranging from 1b to 7b parameters, and as the model scale increases, the severity of forgetting intensifies. Comparing the decoder-only model BLOOMZ with the encoder-decoder model mT0, BLOOMZ exhibits less forgetting and retains more knowledge. Interestingly, we also observe that LLMs can mitigate language biases, such as gender bias, during continual fine-tuning. Furthermore, our findings indicate that general instruction tuning can help alleviate the forgetting phenomenon in LLMs during subsequent fine-tuning.},
+  archiveprefix = {arXiv},
+  author = {Luo, Yun and Yang, Zhen and Meng, Fandong and Li, Yafu and Zhou, Jie and Zhang, Yue},
+  doi = {10.48550/arXiv.2308.08747},
+  eprint = {2308.08747},
+  file = {:/home/b/documents/misc/luo2023forgetting.pdf:pdf},
+  note = {Submitted on 17 Aug 2023, last revised 5 Jan 2025 (this version, v5)},
+  pdf = {https://arxiv.org/pdf/2308.08747},
+  primaryclass = {cs.CL},
+  title = {An Empirical Study of Catastrophic Forgetting in Large Language Models During Continual Fine-tuning},
+  url = {https://arxiv.org/abs/2308.08747},
+  year = {2023}
+}
+
+@inproceedings{abel2023definition,
+  abstract = {In a standard view of the reinforcement learning problem, an agent's goal is to efficiently identify a policy that maximizes long-term reward. However, this perspective is based on a restricted view of learning as finding a solution, rather than treating learning as endless adaptation. In contrast, continual reinforcement learning refers to the setting in which the best agents never stop learning. Despite the importance of continual reinforcement learning, the community lacks a simple definition of the problem that highlights its commitments and makes its primary concepts precise and clear. To this end, this paper is dedicated to carefully defining the continual reinforcement learning problem. We formalize the notion of agents that ``never stop learning'' through a new mathematical language for analyzing and cataloging agents. Using this new language, we define a continual learning agent as one that can be understood as carrying out an implicit search process indefinitely, and continual reinforcement learning as the setting in which the best agents are all continual learning agents. We provide two motivating examples, illustrating that traditional views of multi-task reinforcement learning and continual supervised learning are special cases of our definition. Collectively, these definitions and perspectives formalize many intuitive concepts at the heart of learning, and open new research pathways surrounding continual learning agents.},
+  author = {David Abel and Andre Barreto and Benjamin Van Roy and Doina Precup and Hado P. van Hasselt and Satinder P. Singh},
+  booktitle = {Advances in Neural Information Processing Systems 36},
+  openalex = {W4385007921},
+  pdf = {https://neurips.cc/paper_files/paper/2023/file/9d8cf1247786d6dfeefeeb53b8b5f6d7-Paper-Conference.pdf},
+  title = {A Definition of Continual Reinforcement Learning},
+  volume = {36},
+  year = {2023}
+}
+
+@inproceedings{anand2023prediction,
+  abstract = {Temporal difference (TD) learning is often used to update the estimate of the value function which is used by RL agents to extract useful policies. In this paper, we focus on value function estimation in continual reinforcement learning. We propose to decompose the value function into two components which update at different timescales: a permanent value function, which holds general knowledge that persists over time, and a transient value function, which allows quick adaptation to new situations. We establish theoretical results showing that our approach is well suited for continual learning and draw connections to the complementary learning systems (CLS) theory from neuroscience. Empirically, this approach improves performance significantly on both prediction and control problems.},
+  author = {Anand, Nishanth and Precup, Doina},
+  booktitle = {Advances in Neural Information Processing Systems},
+  file = {:/home/b/documents/inproceedings/anand2023prediction.pdf:pdf},
+  openalex = {W4390041576},
+  pdf = {https://proceedings.neurips.cc/paper_files/paper/2023/file/c94bbbef466ab1b2cfa100e41413b3a8-Paper-Conference.pdf},
+  publisher = {Curran Associates, Inc.},
+  title = {Prediction and Control in Continual Reinforcement Learning},
+  url = {https://papers.nips.cc/paper_files/paper/2023/hash/c94bbbef466ab1b2cfa100e41413b3a8-Abstract-Conference.html},
+  volume = {36},
+  year = {2023}
+}
+
+@inproceedings{gao2023ddgr,
+  abstract = {Popular deep-learning models in the field of image classification suffer from catastrophic forgetting---models will forget previously acquired skills when learning new ones. Generative replay (GR), which typically consists of a generator and a classifier, is an efficient way to mitigate catastrophic forgetting. However, conventional GR methods only focus on a single instruction relationship (generator-to-classifier), where the generator synthesizes samples for previous tasks to instruct the training of the classifier, while ignoring the ways in which the classifier can benefit the generator. In addition, most generative replay methods typically reuse the generated samples to update the generator, which causes the samples regenerated by the generator deviating from the distribution of previous tasks. To overcome these two issues, we propose a novel approach, called deep diffusion-based generative replay (DDGR), which adopts a diffusion model as the generator and calculates an instruction-operator through the classifier to instruct the generation of samples. Extensive experiments in class incremental (CI) and class incremental with repetition (CIR) settings demonstrate the advantages of DDGR. Our code is available at https://github.com/xiaocangshengGR/DDGR.},
+  author = {Rui Gao and Weiwei Liu},
+  booktitle = {Proceedings of the 40th International Conference on Machine Learning},
+  file = {:/home/b/documents/inproceedings/gao2023ddgr.pdf:pdf},
+  pages = {10744--10763},
+  pdf = {https://proceedings.mlr.press/v202/gao23e/gao23e.pdf},
+  publisher = {PMLR},
+  series = {Proceedings of Machine Learning Research},
+  title = {DDGR: Continual Learning with Deep Diffusion-based Generative Replay},
+  url = {https://proceedings.mlr.press/v202/gao23e},
+  volume = {202},
+  year = {2023}
+}
+
+@inproceedings{lin2023theory,
+  abstract = {Continual learning (CL), which aims to learn a sequence of tasks, has attracted significant recent attention. However, most work has focused on the experimental performance of CL, and theoretical studies of CL are still limited. In particular, there is a lack of understanding on what factors are important and how they affect 'catastrophic forgetting' and generalization performance. To fill this gap, our theoretical analysis, under overparameterized linear models, provides the first-known explicit form of the expected forgetting and generalization error. Further analysis of such a key result yields a number of theoretical explanations about how overparameterization, task similarity, and task ordering affect both forgetting and generalization error of CL. More interestingly, by conducting experiments on real datasets using deep neural networks (DNNs), we show that some of these insights even go beyond the linear models and can be carried over to practical setups. In particular, we use concrete examples to show that our results not only explain some interesting empirical observations in recent studies, but also motivate better practical algorithm designs of CL.},
+  author = {Sen Lin and Peizhong Ju and Yingbin Liang and Ness Shroff},
+  booktitle = {Proceedings of the 40th International Conference on Machine Learning},
+  file = {:/home/b/documents/inproceedings/lin2023theory.pdf:pdf},
+  month = {7},
+  openalex = {W4320853675},
+  pages = {21078--21100},
+  pdf = {https://proceedings.mlr.press/v202/lin23f/lin23f.pdf},
+  publisher = {PMLR},
+  series = {Proceedings of Machine Learning Research},
+  title = {Theory on Forgetting and Generalization of Continual Learning},
+  volume = {202},
+  year = {2023}
+}
+
+@misc{wang2023trace,
+  abstract = {Aligned large language models (LLMs) demonstrate exceptional capabilities in task-solving, following instructions, and ensuring safety. However, the continual learning aspect of these aligned LLMs has been largely overlooked. Existing continual learning benchmarks lack sufficient challenge for leading aligned LLMs due to both their simplicity and the models' potential exposure during instruction tuning. We introduce TRACE, a novel benchmark designed to evaluate continual learning in LLMs with 8 distinct datasets spanning challenging tasks including domain-specific tasks, multilingual capabilities, code generation, and mathematical reasoning. All datasets are standardized into a unified format, allowing for effortless automatic evaluation of LLMs. Our experiments reveal that after training on TRACE, aligned LLMs exhibit significant declines in both general ability and instruction-following capabilities. For instance, the accuracy of LLaMA2-chat 13B on the GSM8K dataset declined precipitously from 28.8% to 2% after training on our datasets. To address this challenge, we propose Reasoning-augmented Continual Learning (RCL), which integrates task-specific cues with meta-rationales, effectively reducing catastrophic forgetting in LLMs while expediting convergence on novel tasks.},
+  author = {Xiao Wang and Yuansen Zhang and Tianze Chen and Songyang Gao and Senjie Jin and Xianjun Yang and Zhiheng Xi and Rui Zheng and Yicheng Zou and Tao Gui and Qi Zhang and Xuanjing Huang},
+  file = {:/home/b/documents/misc/wang2023trace.pdf:pdf},
+  howpublished = {arXiv preprint arXiv:2310.06762},
+  month = {10},
+  openalex = {W4387561459},
+  pdf = {https://arxiv.org/pdf/2310.06762.pdf},
+  title = {TRACE: A Comprehensive Benchmark for Continual Learning in Large Language Models},
+  url = {https://arxiv.org/abs/2310.06762},
+  year = {2023}
+}
+
+@misc{yuan2023graph,
+  abstract = {Research on continual learning (CL) mainly focuses on data represented in the Euclidean space, while research on graph-structured data is scarce. Furthermore, most graph learning models are tailored for static graphs. However, graphs usually evolve continually in the real world. Catastrophic forgetting also emerges in graph learning models when being trained incrementally. This leads to the need to develop robust, effective and efficient continual graph learning approaches. Continual graph learning (CGL) is an emerging area aiming to realize continual learning on graph-structured data. This survey is written to shed light on this emerging area. We introduce the basic concepts of CGL and highlight two unique challenges brought by graphs. Then we review and categorize recent state-of-the-art approaches, analyzing their strategies to tackle the unique challenges in CGL. We also summarize the commonly used evaluation protocols and benchmarks. Finally, we discuss the limitations of existing work and highlight promising future research directions. This survey aims to provide a comprehensive reference for researchers interested in continual graph learning.},
+  archiveprefix = {arXiv},
+  author = {Qiao Yuan and Sheng-Uei Guan and Pin Ni and Tianlun Luo and Ka Lok Man and Prudence Wong and Victor Chang},
+  doi = {10.48550/arXiv.2301.12230},
+  eprint = {2301.12230},
+  file = {:/home/b/documents/misc/yuan2023graph.pdf:pdf},
+  month = {1},
+  openalex = {W4318751656},
+  pdf = {https://arxiv.org/pdf/2301.12230.pdf},
+  primaryclass = {cs.LG},
+  title = {Continual Graph Learning: A Survey},
+  url = {https://arxiv.org/abs/2301.12230},
+  year = {2023}
+}
+
+@inproceedings{prabhu2023budgeted,
+  abstract = {Continual Learning (CL) aims to sequentially train models on streams of incoming data that vary in distribution by preserving previous knowledge while adapting to new data. Current CL literature focuses on restricted access to previously seen data, while imposing no constraints on the computational budget for training. This is unreasonable for applications in-the-wild, where systems are primarily constrained by computational and time budgets, not storage. We revisit this problem with a large-scale benchmark and analyze the performance of traditional CL approaches in a compute-constrained setting, where effective memory samples used in training can be implicitly restricted as a consequence of limited computation. We conduct experiments evaluating various CL sampling strategies, distillation losses, and partial fine-tuning on two large-scale datasets, namely ImageNet2K and Continual Google Landmarks V2 in data incremental, class incremental, and time incremental settings. Through extensive experiments amounting to a total of over 1500 GPU-hours, we find that, under compute-constrained setting, traditional CL approaches, with no exception, fail to outperform a simple minimal baseline that samples uniformly from memory. Our conclusions are consistent in a different number of stream time steps, e.g., 20 to 200, and under several computational budgets. This suggests that most existing CL methods are particularly too computationally expensive for realistic budgeted deployment.},
+  author = {Prabhu, Ameya and Hammoud, Hasan Abed Al Kader and Dokania, Puneet K. and Torr, Philip H. S. and Lim, Ser-Nam and Ghanem, Bernard and Bibi, Adel},
+  booktitle = {Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition},
+  doi = {10.1109/cvpr52729.2023.00360},
+  file = {:/home/b/documents/inproceedings/prabhu2023budgeted.pdf:pdf},
+  openalex = {W4386076061},
+  pages = {3698--3707},
+  pdf = {https://openaccess.thecvf.com/content/CVPR2023/papers/Prabhu_Computationally_Budgeted_Continual_Learning_What_Does_Matter_CVPR_2023_paper.pdf},
+  title = {Computationally Budgeted Continual Learning: What Does Matter?},
+  year = {2023}
+}
+
+@misc{savadikar2023memory,
+  abstract = {This paper studies task-incremental continual learning (TCL) using Vision Transformers (ViTs). Our goal is to improve the overall streaming-task performance without catastrophic forgetting by learning task synergies (e.g., a new task learns to automatically reuse/adapt modules from previous similar tasks, or to introduce new modules when needed, or to skip some modules when it appears to be an easier task). One grand challenge is how to tame ViTs at streaming diverse tasks in terms of balancing their plasticity and stability in a task-aware way while overcoming the catastrophic forgetting. To address the challenge, we propose a simple yet effective approach that identifies a lightweight yet expressive ``sweet spot'' in the ViT block as the task-synergy memory in TCL. We present a Hierarchical task-synergy Exploration-Exploitation (HEE) sampling based neural architecture search (NAS) method for effectively learning task synergies by structurally updating the identified memory component with respect to four basic operations (reuse, adapt, new and skip) at streaming tasks. The proposed method is thus dubbed as CHEEM (Continual Hierarchical-Exploration-Exploitation Memory). In experiments, we test the proposed CHEEM on the challenging Visual Domain Decathlon (VDD) benchmark and the 5-Dataset benchmark. It obtains consistently better performance than the prior art with sensible CHEEM learned continually.},
+  archiveprefix = {arXiv},
+  author = {Chinmay Savadikar and Michelle Dai and Tianfu Wu},
+  doi = {10.48550/arXiv.2303.08250},
+  eprint = {2303.08250},
+  file = {:/home/b/documents/misc/savadikar2023memory.pdf:pdf},
+  howpublished = {arXiv preprint},
+  month = {3},
+  pdf = {https://openreview.net/pdf?id=VRYJXoUjRS},
+  primaryclass = {cs.CV},
+  title = {Continual Learning via Learning a Continual Memory in Vision Transformer},
+  url = {https://arxiv.org/abs/2303.08250},
+  year = {2023}
+}
+
+@inproceedings{jeeveswaran2023birt,
+  abstract = {The ability of deep neural networks to continually learn and adapt to a sequence of tasks has remained challenging due to catastrophic forgetting of previously learned tasks. Humans, on the other hand, have a remarkable ability to acquire, assimilate, and transfer knowledge across tasks throughout their lifetime without catastrophic forgetting. The versatility of the brain can be attributed to the rehearsal of abstract experiences through a complementary learning system. However, representation rehearsal in vision transformers lacks diversity, resulting in overfitting and consequently, performance drops significantly compared to raw image rehearsal. Therefore, we propose BiRT, a novel representation rehearsal-based continual learning approach using vision transformers. Specifically, we introduce constructive noises at various stages of the vision transformer and enforce consistency in predictions with respect to an exponential moving average of the working model. Our method provides consistent performance gain over raw image and vanilla representation rehearsal on several challenging CL benchmarks, while being memory efficient and robust to natural and adversarial corruptions.},
+  author = {Kishaan Jeeveswaran and Prashant Shivaram Bhat and Bahram Zonooz and Elahe Arani},
+  booktitle = {Proceedings of the 40th International Conference on Machine Learning},
+  editor = {Andreas Krause and Emma Brunskill and Kyunghyun Cho and Barbara Engelhardt and Sivan Sabato and Jonathan Scarlett},
+  file = {:/home/b/documents/inproceedings/jeeveswaran2023birt.pdf:pdf},
+  month = {7},
+  pages = {14817--14835},
+  pdf = {https://proceedings.mlr.press/v202/jeeveswaran23a/jeeveswaran23a.pdf},
+  publisher = {PMLR},
+  series = {Proceedings of Machine Learning Research},
+  title = {BiRT: Bio-inspired Replay in Vision Transformers for Continual Learning},
+  url = {https://proceedings.mlr.press/v202/jeeveswaran23a.html},
+  volume = {202},
+  year = {2023}
+}
+
+@inproceedings{yoon2022ocs,
+  abstract = {A dataset is a shred of crucial evidence to describe a task. However, each data point in the dataset does not have the same potential, as some points can be more representative or informative than others. This is especially important for rehearsal-based continual learning, where we store a subset of training examples (coreset) to be replayed later to alleviate catastrophic forgetting. We propose Online Coreset Selection (OCS), a simple yet effective method that selects the most representative and informative coreset at each iteration and trains them in an online manner. OCS maximizes the model's adaptation to a current dataset while selecting high-affinity samples to past tasks, which directly inhibits catastrophic forgetting. We validate our approach on various standard, imbalanced, and noisy datasets against strong continual learning baselines and demonstrate that OCS improves task adaptation and prevents catastrophic forgetting in a sample-efficient manner.},
+  author = {Jaehong Yoon and Divyam Madaan and Eunho Yang and Sung Ju Hwang},
+  booktitle = {Proceedings of the Tenth International Conference on Learning Representations},
+  file = {:/home/b/documents/inproceedings/yoon2022ocs.pdf:pdf},
+  month = {4},
+  openalex = {W3172301219},
+  pdf = {https://openreview.net/pdf?id=f9D-5WNG4Nv},
+  publisher = {OpenReview.net},
+  series = {ICLR 2022},
+  title = {Online Coreset Selection for Rehearsal-based Continual Learning},
+  url = {https://openreview.net/forum?id=f9D-5WNG4Nv},
+  year = {2022}
+}
+
+@inproceedings{wang2022prompt,
+  abstract = {The mainstream paradigm behind continual learning has been to adapt the model parameters to non-stationary data distributions, where catastrophic forgetting is the central challenge. Typical methods rely on a rehearsal buffer or known task identity at test time to retrieve learned knowledge and address forgetting, while this work presents a new paradigm for continual learning that aims to train a more succinct memory system without accessing task identity at test time. Our method learns to dynamically prompt (L2P) a pre-trained model to learn tasks sequentially under different task transitions. In our proposed framework, prompts are small learnable parameters, which are maintained in a memory space. The objective is to optimize prompts to instruct the model prediction and explicitly manage task-invariant and task-specific knowledge while maintaining model plasticity. We conduct comprehensive experiments under popular image classification benchmarks with different challenging continual learning settings, where L2P consistently outperforms prior state-of-the-art methods. Surprisingly, L2P achieves competitive results against rehearsal-based methods even without a rehearsal buffer and is directly applicable to challenging task-agnostic continual learning.},
+  address = {New Orleans, LA, USA},
+  author = {Wang, Zifeng and Zhang, Zizhao and Lee, Chen-Yu and Zhang, Han and Sun, Ruoxi and Ren, Xiaoqi and Su, Guolong and Perot, Vincent and Dy, Jennifer G. and Pfister, Tomas},
+  booktitle = {Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition},
+  doi = {10.1109/CVPR52688.2022.00022},
+  file = {:/home/b/documents/inproceedings/wang2022prompt.pdf:pdf},
+  month = {6},
+  openalex = {W4312238419},
+  pages = {139--149},
+  pdf = {https://openaccess.thecvf.com/content/CVPR2022/papers/Wang_Learning_To_Prompt_for_Continual_Learning_CVPR_2022_paper.pdf},
+  publisher = {IEEE},
+  title = {Learning to Prompt for Continual Learning},
+  url = {https://openaccess.thecvf.com/content/CVPR2022/html/Wang_Learning_To_Prompt_for_Continual_Learning_CVPR_2022_paper.html},
+  year = {2022}
+}
+
+@inproceedings{ostapenko2022foundation,
+  abstract = {Rapid development of large-scale pre-training has resulted in foundation models that can act as effective feature extractors on a variety of downstream tasks and domains. Motivated by this, we study the efficacy of pre-trained vision models as a foundation for downstream continual learning (CL) scenarios. Our goal is twofold. First, we want to understand the compute-accuracy trade-off between CL in the raw-data space and in the latent space of pre-trained encoders. Second, we investigate how the characteristics of the encoder, the pre-training algorithm and data, as well as of the resulting latent space affect CL performance. For this, we compare the efficacy of various pre-trained models in large-scale benchmarking scenarios with a vanilla replay setting applied in the latent and in the raw-data space.},
+  address = {Montréal, Québec, Canada},
+  author = {Ostapenko, Oleksiy and Lesort, Timothée and Rodriguez, Pau and Arefin, Md Rifat and Douillard, Arthur and Rish, Irina and Charlin, Laurent},
+  booktitle = {Proceedings of The 1st Conference on Lifelong Learning Agents},
+  file = {:/home/b/documents/inproceedings/ostapenko2022foundation.pdf:pdf},
+  month = {8},
+  openalex = {W4283832803},
+  pages = {60--91},
+  pdf = {https://proceedings.mlr.press/v199/ostapenko22a/ostapenko22a.pdf},
+  publisher = {PMLR},
+  series = {Proceedings of Machine Learning Research},
+  title = {Continual Learning with Foundation Models: An Empirical Study of Latent Replay},
+  url = {https://proceedings.mlr.press/v199/ostapenko22a.html},
+  volume = {199},
+  year = {2022}
+}
+
+@inproceedings{bang2022online,
+  abstract = {Learning under a continuously changing data distribution with incorrect labels is a desirable real-world problem yet challenging. A large body of continual learning (CL) methods, however, assumes data streams with clean labels, and online learning scenarios under noisy data streams are yet underexplored. We consider a more practical CL task setup of an online learning from blurry data stream with corrupted labels, where existing CL methods struggle. To address the task, we first argue the importance of both diversity and purity of examples in the episodic memory of continual learning models. To balance diversity and purity in the episodic memory, we propose a novel strategy to manage and use the memory by a unified approach of label noise aware diverse sampling and robust learning with semi-supervised learning. Our empirical validations on four real-world or synthetic noise datasets (CIFAR10 and 100, mini-WebVision, and Food-101N) exhibit that our method significantly outperforms prior arts in this realistic and challenging continual learning scenario.},
+  author = {Bang, Jihwan and Koh, Hyunseo and Park, Seulki and Song, Hwanjun and Ha, Jung-Woo and Choi, Jonghyun},
+  booktitle = {Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition},
+  doi = {10.1109/CVPR52688.2022.00906},
+  file = {:/home/b/documents/inproceedings/bang2022online.pdf:pdf},
+  openalex = {W4312416777},
+  pages = {9265--9274},
+  pdf = {https://openaccess.thecvf.com/content/CVPR2022/papers/Bang_Online_Continual_Learning_on_a_Contaminated_Data_Stream_With_Blurry_CVPR_2022_paper.pdf},
+  title = {Online Continual Learning on a Contaminated Data Stream With Blurry Task Boundaries},
+  year = {2022}
+}
+
+@inproceedings{kim2022theoretical,
+  abstract = {Continual learning (CL) learns a sequence of tasks incrementally. There are two popular CL settings, class incremental learning (CIL) and task incremental learning (TIL). A major challenge of CL is catastrophic forgetting (CF). While a number of techniques are already available to effectively overcome CF for TIL, CIL remains to be highly challenging. So far, little theoretical study has been done to provide a principled guidance on how to solve the CIL problem. This paper performs such a study. It first shows that probabilistically, the CIL problem can be decomposed into two sub-problems: Within-task Prediction (WP) and Task-id Prediction (TP). It further proves that TP is correlated with out-of-distribution (OOD) detection, which connects CIL and OOD detection.},
+  author = {Kim, Gyuhak and Xiao, Changnan and Konishi, Tatsuya and Ke, Zixuan and Liu, Bing},
+  booktitle = {Advances in Neural Information Processing Systems 35},
+  file = {:/home/b/documents/inproceedings/kim2022theoretical.pdf:pdf},
+  openalex = {W4308505810},
+  pdf = {https://proceedings.neurips.cc/paper_files/paper/2022/file/20f44da80080d76bbc35bca0027f14e6-Paper-Conference.pdf},
+  publisher = {Curran Associates, Inc.},
+  title = {A Theoretical Study on Solving Continual Learning},
+  url = {https://proceedings.neurips.cc/paper_files/paper/2022/hash/20f44da80080d76bbc35bca0027f14e6-Abstract-Conference.html},
+  volume = {35},
+  year = {2022}
+}
+
+@inproceedings{srinivasan2022climb,
+  abstract = {Current state-of-the-art vision-and-language models are evaluated on tasks either individually or in a multi-task setting, overlooking the challenges of continually learning (CL) tasks as they arrive. Existing CL benchmarks have facilitated research on task adaptation and mitigating ``catastrophic forgetting'', but are limited to vision-only and language-only tasks. We present CLiMB, a benchmark to study the challenge of learning multimodal tasks in a CL setting, and to systematically evaluate how upstream continual learning can rapidly generalize to new multimodal and unimodal tasks. CLiMB includes implementations of several CL algorithms and a modified Vision-Language Transformer (ViLT) model that can be deployed on both multimodal and unimodal tasks. We find that common CL methods can help mitigate forgetting during multimodal task learning, but do not enable cross-task knowledge transfer. We envision that CLiMB will facilitate research on a new class of CL algorithms for this challenging multimodal setting.},
+  author = {Tejas Srinivasan and Ting-Yun Chang and Leticia Pinto Alva and Georgios Chochlakis and Mohammad Rostami and Jesse Thomason},
+  booktitle = {Advances in Neural Information Processing Systems},
+  file = {:/home/b/documents/inproceedings/srinivasan2022climb.pdf:pdf},
+  openalex = {W4283332761},
+  pages = {14835--14847},
+  pdf = {https://proceedings.neurips.cc/paper_files/paper/2022/file/bd3611971089d466ab4ca96a20f7ab13-Paper-Datasets_and_Benchmarks.pdf},
+  publisher = {Curran Associates, Inc.},
+  title = {CLiMB: A Continual Learning Benchmark for Vision-and-Language Tasks},
+  url = {https://proceedings.neurips.cc/paper/2022/hash/bd3611971089d466ab4ca96a20f7ab13-Abstract-Datasets_and_Benchmarks.html},
+  volume = {35},
+  year = {2022}
+}
+
+@inproceedings{kumari2022adversarial,
+  abstract = {Continual learning is an emerging research challenge in machine learning that addresses the problem where models quickly fit the most recently trained-on data but suffer from catastrophic forgetting of previous data due to distribution shifts. To avoid these problems, this paper proposes a method, Retrospective Adversarial Replay (RAR), that synthesizes adversarial samples near the forgetting boundary. RAR perturbs a buffered sample towards its nearest neighbor drawn from the current task in a latent representation space. By replaying such samples, we are able to refine the boundary between previous and current tasks, hence combating forgetting and reducing bias towards the current task. To mitigate the severity of a small replay buffer, we develop a novel MixUp-based strategy to increase replay variation by replaying mixed augmentations. Combined with RAR, this achieves a holistic framework that helps to alleviate catastrophic forgetting. We show that this excels on broadly-used benchmarks and outperforms other continual learning baselines especially when only a small buffer is available.},
+  author = {Kumari, Lilly and Wang, Shengjie and Zhou, Tianyi and Bilmes, Jeff A.},
+  booktitle = {Advances in Neural Information Processing Systems},
+  file = {:/home/b/documents/inproceedings/kumari2022adversarial.pdf:pdf},
+  pages = {28530--28544},
+  pdf = {https://proceedings.neurips.cc/paper_files/paper/2022/file/b6ffbbacbe2e56f2ec9a0da907382b4a-Paper-Conference.pdf},
+  publisher = {Curran Associates, Inc.},
+  series = {NeurIPS},
+  title = {Retrospective Adversarial Replay for Continual Learning},
+  url = {https://proceedings.neurips.cc/paper_files/paper/2022/hash/b6ffbbacbe2e56f2ec9a0da907382b4a-Abstract-Conference.html},
+  volume = {35},
+  year = {2022}
+}
+
+@article{delange2021continual,
+  abstract = {Artificial neural networks thrive in solving the classification problem for a particular rigid task, acquiring knowledge through generalized learning behaviour from a distinct training phase. The resulting network resembles a static entity of knowledge, with endeavours to extend this knowledge without targeting the original task resulting in a catastrophic forgetting. Continual learning shifts this paradigm towards networks that can continually accumulate knowledge over different tasks without the need to retrain from scratch. We focus on task incremental classification, where tasks arrive sequentially and are delineated by clear boundaries. Our main contributions concern: 1) a taxonomy and extensive overview of the state-of-the-art 2) a novel framework to continually determine the stability-plasticity trade-off of the continual learner 3) a comprehensive experimental comparison of 11 state-of-the-art continual learning methods and 4 baselines. We empirically scrutinize method strengths and weaknesses on three benchmarks, considering Tiny Imagenet and large-scale unbalanced iNaturalist and a sequence of recognition datasets. We study the influence of model capacity, weight decay and dropout regularization, and the order in which the tasks are presented, and qualitatively compare methods in terms of required memory, computation time, and storage.},
+  author = {Delange, Matthias and Aljundi, Rahaf and Masana, Marc and Parisot, Sarah and Jia, Xu and Leonardis, Ales and Slabaugh, Gregory and Tuytelaars, Tinne},
+  doi = {10.1109/TPAMI.2021.3057446},
+  journal = {IEEE Transactions on Pattern Analysis and Machine Intelligence},
+  month = {7},
+  number = {7},
+  openalex = {W3030364939},
+  pages = {3366--3385},
+  pdf = {https://ieeexplore.ieee.org/iel7/34/9788494/09349197.pdf},
+  title = {A Continual Learning Survey: Defying Forgetting in Classification Tasks},
+  volume = {44},
+  year = {2021}
+}
+
+@inproceedings{mai2021supervised,
+  abstract = {Online class-incremental continual learning (CL) studies the problem of learning new classes continually from an online non-stationary data stream, intending to adapt to new data while mitigating catastrophic forgetting. While memory replay has shown promising results, the recency bias in online learning caused by the commonly used Softmax classifier remains an unsolved challenge. Although the Nearest-Class-Mean (NCM) classifier is significantly undervalued in the CL community, we demonstrate that it is a simple yet effective substitute for the Softmax classifier. It addresses the recency bias and avoids structural changes in the fully-connected layer for new classes. We observe considerable and consistent performance gains when replacing the Softmax classifier with the NCM classifier for several state-of-the-art replay methods. To leverage the NCM classifier more effectively, data embeddings belonging to the same class should be clustered and well-separated from those with a different class label. To this end, we contribute Supervised Contrastive Replay (SCR), which explicitly encourages samples from the same class to cluster tightly in embedding space while pushing those of different classes further apart during replay-based training. Overall, we observe that our proposed SCR substantially reduces catastrophic forgetting and outperforms state-of-the-art CL methods by a significant margin on a variety of datasets.},
+  author = {Zheda Mai and Ruiwen Li and Hyunwoo Kim and Scott Sanner},
+  booktitle = {Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition Workshops},
+  doi = {10.48550/arXiv.2103.13885},
+  file = {:/home/b/documents/inproceedings/mai2021supervised.pdf:pdf},
+  month = {6},
+  pages = {3589--3599},
+  pdf = {https://openaccess.thecvf.com/content/CVPR2021W/CLVision/papers/Mai_Supervised_Contrastive_Replay_Revisiting_the_Nearest_Class_Mean_Classifier_in_CVPRW_2021_paper.pdf},
+  title = {Supervised Contrastive Replay: Revisiting the Nearest Class Mean Classifier in Online Class-Incremental Continual Learning},
+  url = {https://openaccess.thecvf.com/content/CVPR2021W/CLVision/html/Mai_Supervised_Contrastive_Replay_Revisiting_the_Nearest_Class_Mean_Classifier_in_CVPRW_2021_paper.html},
+  year = {2021}
+}
+
+@inproceedings{verwimp2021rehearsal,
+  abstract = {The main continual learning challenge is to learn from non-stationary data streams without forgetting previous knowledge, i.e., to overcome catastrophic forgetting. Rather than aiming to improve state-of-the-art, this work provides insight into the limits and merits of rehearsal, one of continual learning's most established methods. We hypothesize that models trained sequentially with rehearsal tend to stay in the same low-loss region after a task has finished, but are at risk of overfitting on its sample memory, hence harming generalization. We provide both conceptual and strong empirical evidence on three benchmarks for both behaviors, bringing novel insights into the dynamics of rehearsal and continual learning in general.},
+  address = {Montreal, Canada},
+  author = {Verwimp, Elias and De Lange, Matthias and Kelchtermans, Klaas and Tuytelaars, Tinne},
+  booktitle = {Proceedings of the IEEE/CVF International Conference on Computer Vision (ICCV)},
+  doi = {10.1109/ICCV48922.2021.00927},
+  file = {:/home/b/documents/inproceedings/verwimp2021rehearsal.pdf:pdf},
+  month = {10},
+  pages = {9385--9394},
+  pdf = {https://openaccess.thecvf.com/content/ICCV2021/papers/Verwimp_Rehearsal_Revealed_The_Limits_and_Merits_of_Revisiting_Samples_in_ICCV_2021_paper.pdf},
+  publisher = {Computer Vision Foundation},
+  title = {Rehearsal Revealed: The Limits and Merits of Revisiting Samples in Continual Learning},
+  url = {https://openaccess.thecvf.com/content/ICCV2021/html/Verwimp_Rehearsal_Revealed_The_Limits_and_Merits_of_Revisiting_Samples_in_ICCV_2021_paper.html},
+  year = {2021}
+}
+
+@inproceedings{shim2021adversarial,
+  abstract = {As image-based deep learning becomes pervasive on every device, from cell phones to smart watches, there is a growing need to develop methods that continually learn from data while minimizing memory footprint and power consumption. While memory replay techniques have shown exceptional promise for this task of continual learning, the best method for selecting which buffered images to replay is still an open question. In this paper, we specifically focus on the online class-incremental setting where a model needs to learn new classes continually from an online data stream. To this end, we contribute a novel Adversarial Shapley value scoring method that scores memory data samples according to their ability to preserve latent decision boundaries for previously observed classes (to maintain learning stability and avoid forgetting) while interfering with latent decision boundaries of current classes being learned (to encourage plasticity and optimal learning of new class boundaries). Overall, we observe that our proposed ASER method provides competitive or improved performance compared to state-of-the-art replay-based continual learning methods on a variety of datasets.},
+  author = {Dongsub Shim and Zheda Mai and Jihwan Jeong and Scott Sanner and Hyunwoo Kim and Jongseong Jang},
+  booktitle = {Proceedings of the 35th AAAI Conference on Artificial Intelligence},
+  doi = {10.1609/aaai.v35i11.17159},
+  file = {:/home/b/documents/inproceedings/shim2021adversarial.pdf:pdf},
+  number = {11},
+  pages = {9630--9638},
+  pdf = {https://ojs.aaai.org/index.php/AAAI/article/view/17159/16966},
+  title = {Online Class-Incremental Continual Learning with Adversarial Shapley Value},
+  url = {https://doi.org/10.1609/aaai.v35i11.17159},
+  volume = {35},
+  year = {2021}
+}
+
+@inproceedings{ehret2021recurrent,
+  abstract = {A diverse set of continual learning (CL) methods has been proposed to prevent neural networks from catastrophic forgetting. However, a thorough investigation of their effectiveness for processing sequential data with recurrent neural networks (RNNs) has been missing. In this work, we provide the first comprehensive evaluation of established CL methods on a variety of sequential data benchmarks. We shed light on the particularities that arise when applying weight-importance methods, such as elastic weight consolidation, to RNNs. Specifically, we show that the performance of weight-importance methods is not directly affected by the length of the processed sequences, but rather by high working memory requirements, which lead to an increased need for stability at the cost of decreased plasticity for learning subsequent tasks. We further show that established CL methods can be successfully ported to the recurrent case. A recent regularization approach based on hypernetworks outperforms weight-importance methods, thus emerging as a promising candidate for CL in RNNs.},
+  arxiv = {2006.12109},
+  author = {Benjamin Ehret and Christian Henning and Maria R. Cervera and Alexander Meulemans and Johannes von Oswald and Benjamin F. Grewe},
+  booktitle = {Proceedings of the International Conference on Learning Representations},
+  file = {:/home/b/documents/inproceedings/ehret2021recurrent.pdf:pdf},
+  openalex = {W3040334962},
+  pdf = {https://openreview.net/pdf?id=8xeBUgD8u9},
+  publisher = {OpenReview.net},
+  series = {ICLR 2021},
+  title = {Continual Learning in Recurrent Neural Networks},
+  url = {https://openreview.net/forum?id=8xeBUgD8u9},
+  year = {2021}
+}
+
+@article{belouadah2020comprehensive,
+  abstract = {The ability of artificial agents to increment their capabilities when confronted with new data is an open challenge in artificial intelligence. The main challenge faced in such cases is catastrophic forgetting, i.e., the tendency of neural networks to underfit past data when new ones are ingested. Two main types of approaches have been proposed to tackle this problem. A first group of approaches tackles forgetting by increasing deep model capacity to accommodate new knowledge. A second type of approaches fixes the deep model size and introduces a mechanism whose objective is to ensure a good compromise between stability and plasticity of the model. While the first type of algorithms were compared thoroughly, this is not the case for methods which exploit a fixed size model. In this paper, we first define a common analysis framework made of six desirable properties of incremental learning algorithms and analyze existing approaches according to these properties. We then introduce a unified formalization of the class-incremental learning problem and propose a common evaluation framework more thorough than existing ones. We use this evaluation framework to conduct an empirical study which compares existing approaches experimentally. Our analysis reveals that approaches from the second type are more suitable for resource-limited scenarios, which are common in real world problems. The analysis conducted in this work offers a first complete view on fixed-size class-incremental learning approaches, which can be useful for designing new algorithms and identifying future research directions.},
+  author = {Eden Belouadah and Adrian Popescu and Ioannis Kanellos},
+  doi = {10.1016/j.neunet.2020.12.003},
+  file = {:/home/b/documents/article/belouadah2020comprehensive.pdf:pdf},
+  journal = {Neural Networks},
+  month = {3},
+  openalex = {W3103434208},
+  pages = {38--54},
+  pdf = {https://arxiv.org/pdf/2011.01844},
+  title = {A Comprehensive Study of Class Incremental Learning Algorithms for Visual Tasks},
+  volume = {135},
+  year = {2021}
+}
+
+@inproceedings{michieli2021semantic,
+  abstract = {Deep neural networks suffer from the major limitation of catastrophic forgetting old tasks when learning new ones. In this paper we focus on class incremental continual learning in semantic segmentation, where new categories are made available over time while previous training data is not retained. The proposed continual learning scheme shapes the latent space to reduce forgetting whilst improving the recognition of novel classes. Our framework is driven by three novel components which we also combine on top of existing techniques effortlessly. First, prototypes matching enforces latent space consistency on old classes, constraining the encoder to produce similar latent representation for previously seen classes in the subsequent steps. Second, features sparsification allows to make room in the latent space to accommodate novel classes. Finally, contrastive learning is employed to cluster features according to their semantics while tearing apart those of different classes. Extensive evaluation on the Pascal VOC2012 and ADE20K datasets demonstrates the effectiveness of our approach, significantly outperforming state-of-the-art methods.},
+  address = {Nashville, TN, USA},
+  author = {Umberto Michieli and Pietro Zanuttigh},
+  booktitle = {Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition},
+  file = {:/home/b/documents/inproceedings/michieli2021semantic.pdf:pdf},
+  month = {6},
+  openalex = {W3166525903},
+  pages = {1114--1124},
+  pdf = {https://openaccess.thecvf.com/content/CVPR2021/papers/Michieli_Continual_Semantic_Segmentation_via_Repulsion-Attraction_of_Sparse_and_Disentangled_Latent_CVPR_2021_paper.pdf},
+  publisher = {IEEE},
+  title = {Continual Semantic Segmentation via Repulsion-Attraction of Sparse and Disentangled Latent Representations},
+  url = {https://openaccess.thecvf.com/content/CVPR2021/html/Michieli_Continual_Semantic_Segmentation_via_Repulsion-Attraction_of_Sparse_and_Disentangled_Latent_CVPR_2021_paper.html},
+  year = {2021}
+}
+
+@article{belouadah2021comprehensive,
+  abstract = {The ability of artificial agents to increment their capabilities when confronted with new data is an open challenge in artificial intelligence. The main challenge faced in such cases is catastrophic forgetting, the tendency of neural networks to underfit past data when new data is ingested. We propose six contributions to better understand and evaluate existing class incremental learning algorithms: 1) define six desirable properties of incremental learning algorithms and analyze them according to these properties; 2) introduce a unified formalization of the class-incremental learning problem; 3) propose a common evaluation framework which is more thorough than existing ones; 4) investigate the usefulness of herding for past exemplars selection; 5) provide experimental evidence that it is possible to obtain competitive performance without the use of knowledge distillation; and 6) to facilitate reproducibility, we integrate all tested methods in a common open-source repository. None of the existing algorithms achieves the best results in all evaluated settings.},
+  author = {Eden Belouadah and Adrian Popescu and Ioannis Kanellos},
+  doi = {10.1016/j.neunet.2020.12.003},
+  file = {:/home/b/documents/article/belouadah2021comprehensive.pdf:pdf},
+  journal = {Neural Networks},
+  keywords = {Incremental learning, Catastrophic forgetting, Imbalanced learning, Image classification},
+  month = {3},
+  pages = {38--54},
+  pdf = {https://arxiv.org/pdf/2011.01844},
+  pmid = {33341513},
+  title = {A comprehensive study of class incremental learning algorithms for visual tasks},
+  url = {https://doi.org/10.1016/j.neunet.2020.12.003},
+  volume = {135},
+  year = {2021}
+}
+
+@inproceedings{shi2021bit,
+  abstract = {Continual learning tackles the setting of learning different tasks sequentially. Despite the lots of previous solutions, most of them still suffer significant forgetting or expensive memory cost. In this work, targeted at these problems, we first study the continual learning process through the lens of information theory and observe that forgetting of a model stems from the loss of \emphinformation gain on its parameters from the previous tasks when learning a new task. From this viewpoint, we then propose a novel continual learning approach called Bit-Level Information Preserving (BLIP) that preserves the information gain on model parameters through updating the parameters at the bit level, which can be conveniently implemented with parameter quantization. More specifically, BLIP first trains a neural network with weight quantization on the new incoming task and then estimates information gain on each parameter provided by the task data to determine the bits to be frozen to prevent forgetting. We conduct extensive experiments ranging from classification tasks to reinforcement learning tasks, and the results show that our method produces better or on par results comparing to previous state-of-the-arts. Indeed, BLIP achieves close to zero forgetting while only requiring constant memory overheads throughout continual learning.},
+  address = {Virtual},
+  author = {Yujun Shi and Li Yuan and Yunpeng Chen and Jiashi Feng},
+  booktitle = {Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition},
+  file = {:/home/b/documents/inproceedings/shi2021bit.pdf:pdf},
+  month = {6},
+  openalex = {W3177248386},
+  pages = {16674--16683},
+  pdf = {https://openaccess.thecvf.com/content/CVPR2021/papers/Shi_Continual_Learning_via_Bit-Level_Information_Preserving_CVPR_2021_paper.pdf},
+  publisher = {IEEE},
+  title = {Continual Learning via Bit-Level Information Preserving},
+  url = {https://openaccess.thecvf.com/content/CVPR2021/html/Shi_Continual_Learning_via_Bit-Level_Information_Preserving_CVPR_2021_paper.html},
+  year = {2021}
+}
+
+@inproceedings{lin2021clear,
+  abstract = {Continual learning (CL) is widely regarded as crucial challenge for lifelong AI. However, existing CL benchmarks, e.g. Permuted-MNIST and Split-CIFAR, make use of artificial temporal variation and do not align with or generalize to the real-world. In this paper, we introduce CLEAR, the first continual image classification benchmark dataset with a natural temporal evolution of visual concepts in the real world that spans a decade (2004-2014). We build CLEAR from existing large-scale image collections (YFCC100M) through a novel and scalable low-cost approach to visio-linguistic dataset curation. The major strength of CLEAR over prior CL benchmarks is the smooth temporal evolution of visual concepts with real-world imagery, including both high-quality labeled data along with abundant unlabeled samples per time period for continual semi-supervised learning. We propose novel streaming protocols for continual learning that always test on the (near) future and find that state-of-the-art CL approaches struggle under temporal distribution shift that is both global and natural.},
+  author = {Zhiqiu Lin and Jia Shi and Deepak Pathak and Deva Ramanan},
+  booktitle = {Proceedings of the Neural Information Processing Systems Track on Datasets and Benchmarks},
+  file = {:/home/b/documents/inproceedings/lin2021clear.pdf:pdf},
+  openalex = {W3212034012},
+  pages = {129--140},
+  pdf = {https://datasets-benchmarks-proceedings.neurips.cc/paper/2021/file/2838023a778dfaecdc212708f721b788-Paper-round2.pdf},
+  publisher = {Neural Information Processing Systems Foundation},
+  title = {The CLEAR Benchmark: Continual LEArning on Real-World Imagery},
+  url = {https://datasets-benchmarks-proceedings.neurips.cc/paper/2021/hash/2838023a778dfaecdc212708f721b788-Abstract-round2.html},
+  volume = {1},
+  year = {2021}
+}
+
+@inproceedings{buzzega2020dark,
+  abstract = {Continual Learning has inspired a plethora of approaches and evaluation settings; however, the majority of them overlooks the properties of a practical scenario, where the data stream cannot be shaped as a sequence of tasks and offline training is not viable. We work towards General Continual Learning (GCL), where task boundaries blur and the domain and class distributions shift either gradually or suddenly. We address it through mixing rehearsal with knowledge distillation and regularization; our simple baseline, Dark Experience Replay, matches the network's logits sampled throughout the optimization trajectory, thus promoting consistency with its past. By conducting an extensive analysis on both standard benchmarks and a novel GCL evaluation setting (MNIST-360), we show that such a seemingly simple baseline outperforms consolidated approaches and leverages limited resources.},
+  author = {Pietro Buzzega and Matteo Boschini and Angelo Porrello and Davide Abati and Simone Calderara},
+  booktitle = {Advances in Neural Information Processing Systems},
+  file = {:/home/b/documents/inproceedings/buzzega2020dark.pdf:pdf},
+  openalex = {W4287814827},
+  pdf = {https://proceedings.neurips.cc/paper/2020/file/b704ea2c39778f07c617f6b7ce480e9e-Paper.pdf},
+  publisher = {Curran Associates Inc.},
+  title = {Dark Experience for General Continual Learning: A Strong, Simple Baseline},
+  url = {https://proceedings.neurips.cc/paper/2020/hash/b704ea2c39778f07c617f6b7ce480e9e-Abstract.html},
+  volume = {33},
+  year = {2020}
+}
+
+@inproceedings{farajtabar2020orthogonal,
+  abstract = {Neural networks are prone to catastrophic forgetting when trained on a sequence of tasks. While many approaches have been proposed to alleviate this problem, they either assume unrealistic conditions or fail to scale to large networks. Here, we propose the Orthogonal Gradient Descent (OGD) method which does not require storing activations from previous tasks, yet can provably avoid catastrophic forgetting under certain conditions. OGD works by projecting the gradients from new tasks onto a subspace in which the neural network output on previous tasks does not change, allowing the network to learn new tasks while provably not interfering with previous tasks.},
+  author = {Farajtabar, Mehrdad and Azizan, Navid and Mott, Alex and Li, Ang},
+  booktitle = {Proceedings of the Twenty Third International Conference on Artificial Intelligence and Statistics},
+  file = {:/home/b/documents/inproceedings/farajtabar2020orthogonal.pdf:pdf},
+  pages = {3762--3773},
+  pdf = {http://proceedings.mlr.press/v108/farajtabar20a/farajtabar20a.pdf},
+  publisher = {PMLR},
+  series = {Proceedings of Machine Learning Research},
+  title = {Orthogonal Gradient Descent for Continual Learning},
+  url = {https://proceedings.mlr.press/v108/farajtabar20a.html},
+  volume = {108},
+  year = {2020}
+}
+
+@article{lesort2020robotics,
+  abstract = {Continual learning (CL) is a particular machine learning paradigm where the data distribution and learning objective changes through time, or where all the training data and objective criteria are never available at once. The evolution of the learning process is modeled by a sequence of learning experiences where the goal is to be able to learn new skills all along the sequence without forgetting what has been previously learned. CL can be seen as an online learning process where knowledge fusion needs to take place in order to learn new concepts from a stream of data presented sequentially in time. Continual learning also aims at the same time at optimizing the memory, the computation power and the speed during the learning process. An important challenge for machine learning is not necessarily finding solutions that work in the real world but rather finding stable algorithms that can learn in real world. Hence, the ideal approach would be tackling the real world in an embodied platform: an autonomous agent. The main contribution of this paper aims at reviewing the existing state of the art of continual learning, summarizing existing benchmarks and metrics, and proposing a framework for presenting and evaluating both robotics and non robotics approaches in a way that makes transfer between both fields easier.},
+  author = {Lesort, Timothée and Lomonaco, Vincenzo and Stoian, Andrei and Maltoni, Davide and Filliat, David and Díaz-Rodr\ǵuez, Natalia},
+  doi = {10.1016/j.inffus.2019.12.004},
+  file = {:/home/b/documents/article/lesort2020robotics.pdf:pdf},
+  journal = {Information Fusion},
+  month = {6},
+  openalex = {W2996514457},
+  pages = {52--68},
+  pdf = {https://arxiv.org/pdf/1907.00182},
+  title = {Continual Learning for Robotics: Definition, Framework, Learning Strategies, Opportunities and Challenges},
+  url = {https://www.sciencedirect.com/science/article/pii/S1566253519307377},
+  volume = {58},
+  year = {2020}
+}
+
+@inproceedings{biesialska2020continual,
+  abstract = {Continual learning (CL) aims to enable information systems to learn from a continuous data stream across time. However, it is difficult for existing deep learning architectures to learn a new task without largely forgetting previously acquired knowledge. Furthermore, CL is particularly challenging for language learning, as natural language is ambiguous: it is discrete, compositional, and its meaning is context-dependent. In this work, we look at the problem of CL through the lens of various NLP tasks. Our survey discusses major challenges in CL and current methods applied in neural network models. We also provide a critical review of the existing CL evaluation methods and datasets in NLP. Finally, we present our outlook on future research directions.},
+  address = {Barcelona, Spain (Online)},
+  author = {Magdalena Biesialska and Katarzyna Biesialska and Marta R. Costa-jussà},
+  booktitle = {Proceedings of the 28th International Conference on Computational Linguistics},
+  doi = {10.18653/v1/2020.coling-main.574},
+  file = {:/home/b/documents/inproceedings/biesialska2020continual.pdf:pdf},
+  month = {12},
+  openalex = {W3118069529},
+  pages = {6523--6541},
+  pdf = {https://aclanthology.org/2020.coling-main.574.pdf},
+  publisher = {International Committee on Computational Linguistics},
+  title = {Continual Lifelong Learning in Natural Language Processing: A Survey},
+  url = {https://aclanthology.org/2020.coling-main.574},
+  year = {2020}
+}
+
+@inproceedings{ebrahimi2020uncertainty,
+  abstract = {Continual learning aims to learn new tasks without forgetting previously learned ones. This is especially challenging when one cannot access data from previous tasks and when the model has a fixed capacity. Current regularization-based continual learning algorithms need an external representation and extra computation to measure the parameters' importance. In contrast, we propose Uncertainty-guided Continual Bayesian Neural Networks (UCB), where the learning rate adapts according to the uncertainty defined in the probability distribution of the weights in networks. Uncertainty is a natural way to identify what to remember and what to change as we continually learn, and thus mitigate catastrophic forgetting. We also show a variant of our model, which uses uncertainty for weight pruning and retains task performance after pruning by saving binary masks per tasks. We evaluate our UCB approach extensively on diverse object classification datasets with short and long sequences of tasks and report superior or on-par performance compared to existing approaches. Additionally, we show that our model does not necessarily need task information at test time, i.e. it does not presume knowledge of which task a sample belongs to.},
+  author = {Ebrahimi, Sayna and Elhoseiny, Mohamed and Darrell, Trevor and Rohrbach, Marcus},
+  booktitle = {International Conference on Learning Representations},
+  file = {:/home/b/documents/inproceedings/ebrahimi2020uncertainty.pdf:pdf},
+  openalex = {W3003812814},
+  pdf = {https://openreview.net/pdf?id=HklUCCVKDB},
+  title = {Uncertainty-guided Continual Learning with Bayesian Neural Networks},
+  url = {https://openreview.net/forum?id=HklUCCVKDB},
+  year = {2020}
+}
+
+@inproceedings{chrysakis2020imbalanced,
+  abstract = {A well-documented weakness of neural networks is the fact that they suffer from catastrophic forgetting when trained on data provided by a non-stationary distribution. Recent work in the field of continual learning attempts to understand and overcome this issue. Unfortunately, the majority of relevant work embraces the implicit assumption that the distribution of observed data is perfectly balanced, despite the fact that, in the real world, humans and animals learn from observations that are temporally correlated and severely imbalanced. Motivated by this remark, we aim to evaluate memory population methods that are used in online continual learning, when dealing with highly imbalanced and temporally correlated streams of data. More importantly, we introduce a new memory population approach, which we call class-balancing reservoir sampling (CBRS). We demonstrate that CBRS outperforms the state-of-the-art memory population algorithms in a considerably challenging learning setting, over a range of different datasets, and for multiple architectures. Finally, we probe the computational efficiency of CBRS compared to the state of the art, both in terms of time and memory overhead.},
+  author = {Aristotelis Chrysakis and Marie-Francine Moens},
+  booktitle = {Proceedings of the 37th International Conference on Machine Learning},
+  file = {:/home/b/documents/inproceedings/chrysakis2020imbalanced.pdf:pdf},
+  month = {7},
+  openalex = {W3035471260},
+  pages = {1952--1961},
+  pdf = {http://proceedings.mlr.press/v119/chrysakis20a/chrysakis20a.pdf},
+  publisher = {PMLR},
+  series = {Proceedings of Machine Learning Research},
+  title = {Online Continual Learning from Imbalanced Data},
+  url = {https://proceedings.mlr.press/v119/chrysakis20a.html},
+  volume = {119},
+  year = {2020}
+}
+
+@inproceedings{jung2020adaptive,
+  abstract = {We propose a novel regularization-based continual learning method, dubbed as Adaptive Group Sparsity based Continual Learning (AGS-CL), using two group sparsity-based penalties. Our method selectively employs the two penalties when learning each node based its the importance, which is adaptively updated after learning each new task. By utilizing the proximal gradient descent method for learning, the exact sparsity and freezing of the model is guaranteed, and thus, the learner can explicitly control the model capacity as the learning continues. Furthermore, as a critical detail, we re-initialize the weights associated with unimportant nodes after learning each task in order to prevent the negative transfer that causes the catastrophic forgetting and facilitate efficient learning of new tasks. Throughout the extensive experimental results, we show that our AGS-CL uses much less additional memory space for storing the regularization parameters, and it significantly outperforms several state-of-the-art baselines on representative continual learning benchmarks for both supervised and reinforcement learning tasks.},
+  author = {Sangwon Jung and Hongjoon Ahn and Sungmin Cha and Taesup Moon},
+  booktitle = {Advances in Neural Information Processing Systems},
+  file = {:/home/b/documents/inproceedings/jung2020adaptive.pdf:pdf},
+  openalex = {W4287823067},
+  pages = {3690--3701},
+  pdf = {https://proceedings.neurips.cc/paper_files/paper/2020/file/258be18e31c8188555c2ff05b4d542c3-Paper.pdf},
+  publisher = {Curran Associates, Inc.},
+  title = {Continual Learning with Node-Importance Based Adaptive Group Sparse Regularization},
+  volume = {33},
+  year = {2020}
+}
+
+@inproceedings{adel2020claw,
+  abstract = {Approaches to continual learning aim to successfully learn a set of related tasks that arrive in an online manner. Recently, several frameworks have been developed which enable deep learning to be deployed in this learning scenario. A key modelling decision is to what extent the architecture should be shared across tasks. On the one hand, separately modelling each task avoids catastrophic forgetting but it does not support transfer learning and leads to large models. On the other hand, rigidly specifying a shared component and a task-specific part enables task transfer and limits the model size, but it is vulnerable to catastrophic forgetting and restricts the form of task-transfer that can occur. Ideally, the network should adaptively identify which parts of the network to share in a data driven way. Here we introduce such an approach called Continual Learning with Adaptive Weights (CLAW), which is based on probabilistic modelling and variational inference. Experiments show that CLAW achieves state-of-the-art performance on six benchmarks in terms of overall continual learning performance, as measured by classification accuracy, and in terms of addressing catastrophic forgetting.},
+  author = {Tameem Adel and Han Zhao and Richard E. Turner},
+  booktitle = {8th International Conference on Learning Representations, ICLR 2020, Addis Ababa, Ethiopia, April 26-30, 2020},
+  file = {:/home/b/documents/inproceedings/adel2020claw.pdf:pdf},
+  month = {4},
+  openalex = {W2995269492},
+  pages = {1--16},
+  pdf = {https://www.openreview.net/pdf?id=Hklso24Kwr},
+  publisher = {International Conference on Learning Representations (ICLR)},
+  title = {Continual Learning with Adaptive Weights (CLAW)},
+  url = {https://openreview.net/forum?id=Hklso24Kwr},
+  year = {2020}
+}
+
+@inproceedings{lee2020neural,
+  abstract = {Despite the growing interest in continual learning, most of its contemporary works have been studied in a rather restricted setting where tasks are clearly distinguishable, and task boundaries are known during training. However, if our goal is to develop an algorithm that learns as humans do, this is far from realistic. It is essential to develop a methodology for task-free continual learning in a manner. Meanwhile, among several branches of expansion-based methods, the advantage is eliminating catastrophic forgetting by allocating new resources to learn data. In this work, we propose an approach for continual learning. Our model, named Continual Neural Dirichlet Process Mixture (CN-DPM), consists of a set of neural network experts in charge of a subset. CN-DPM expands the number of experts in a principled way under a Bayesian nonparametric framework. With extensive experiments, we show our model successfully performs continual learning in both discriminative and generative tasks such as image classification and generation.},
+  author = {Soochan Lee and Junsoo Ha and Dongsu Zhang and Gunhee Kim},
+  booktitle = {Proceedings of the 8th International Conference on Learning Representations},
+  file = {:/home/b/documents/inproceedings/lee2020neural.pdf:pdf},
+  month = {4},
+  openalex = {W2996472503},
+  pdf = {https://openreview.net/pdf?id=SJxSOJStPr},
+  title = {A Neural Dirichlet Process Mixture Model for Task-Free Continual Learning},
+  url = {https://openreview.net/forum?id=SJxSOJStPr},
+  year = {2020}
+}
+
+@misc{vandeven2019scenarios,
+  abstract = {Standard artificial neural networks suffer from the well-known issue of catastrophic forgetting, making continual or lifelong learning difficult for machine learning. In recent years, numerous methods have been proposed for continual learning, but due to differences in evaluation protocols it is difficult to directly compare their performance. To enable more structured comparisons, we describe three continual learning scenarios based on whether at test time task identity is provided and--in case it is not--whether it must be inferred. Any sequence of well-defined tasks can be performed according to each scenario. Using the split and permuted MNIST task protocols, for each scenario we carried out an extensive comparison of recently proposed continual learning methods.},
+  author = {van de Ven, Gido M. and Tolias, Andreas S.},
+  doi = {10.48550/arxiv.1904.07734},
+  file = {:/home/b/documents/misc/vandeven2019scenarios.pdf:pdf},
+  howpublished = {arXiv preprint arXiv:1904.07734},
+  month = {4},
+  note = {arXiv:1904.07734},
+  openalex = {W2939137134},
+  pdf = {https://arxiv.org/pdf/1904.07734},
+  title = {Three scenarios for continual learning},
+  url = {https://arxiv.org/abs/1904.07734},
+  year = {2019}
+}
+
+@inproceedings{chaudhry2019agem,
+  abstract = {In lifelong learning, the learner is presented with a sequence of tasks, incrementally building a data-driven prior which may be leveraged to speed up learning of a new task. In this work, we investigate the efficiency of current lifelong approaches, in terms of sample complexity, computational and memory cost. Towards this end, we first introduce a new and a more realistic evaluation protocol, whereby learners observe each example only once and hyper-parameter selection is done on a small and disjoint set of tasks, which is not used for the actual learning experience and evaluation. Second, we introduce a new metric measuring how quickly a learner acquires a new skill. Third, we propose an improved version of GEM (Lopez-Paz & Ranzato, 2017), dubbed Averaged GEM (A-GEM), which enjoys the same or even better performance as GEM, while being almost as computationally and memory efficient as EWC (Kirkpatrick et al., 2016) and other regularization-based methods. Finally, we show that all algorithms including A-GEM can learn even more quickly if they are provided with task descriptors specifying the classification tasks under consideration. Our experiments on several standard lifelong learning benchmarks demonstrate that A-GEM has the best trade-off between accuracy and efficiency.},
+  author = {Arslan Chaudhry and Marc'Aurelio Ranzato and Marcus Rohrbach and Mohamed Elhoseiny},
+  booktitle = {7th International Conference on Learning Representations, ICLR 2019, New Orleans, LA, USA, May 6-9, 2019},
+  file = {:/home/b/documents/inproceedings/chaudhry2019agem.pdf:pdf},
+  openalex = {W2902625698},
+  pdf = {https://openreview.net/pdf?id=Hkf2_sC5FX},
+  publisher = {OpenReview.net},
+  title = {Efficient Lifelong Learning with A-GEM},
+  url = {https://openreview.net/forum?id=Hkf2_sC5FX},
+  year = {2019}
+}
+
+@inproceedings{aljundi2019mir,
+  abstract = {Continual learning, the setting where a learning agent is faced with a never-ending stream of data, continues to be a great challenge for modern machine learning systems. In particular the online or ``single-pass through the data'' setting has gained attention recently as a natural setting that is difficult to tackle. Methods based on replay, either generative or from a stored memory, have been shown to be effective approaches for continual learning, matching or exceeding the state of the art in a number of standard benchmarks. These approaches typically rely on randomly selecting samples from the replay memory or from a generative model, which is suboptimal. In this work, we consider a controlled sampling of memories for replay. We retrieve the samples which are most interfered, i.e. whose prediction will be most negatively impacted by the foreseen parameters update.},
+  address = {Red Hook, NY, USA},
+  author = {Aljundi, Rahaf and Belilovsky, Eugene and Tuytelaars, Tinne and Charlin, Laurent and Caccia, Massimo and Lin, Min and Page-Caccia, Lucas},
+  booktitle = {Advances in Neural Information Processing Systems},
+  file = {:/home/b/documents/inproceedings/aljundi2019mir.pdf:pdf},
+  openalex = {W2971176100},
+  pages = {11849--11860},
+  pdf = {https://proceedings.neurips.cc/paper/2019/file/15825aee15eb335cc13f9b559f166ee8-Paper.pdf},
+  publisher = {Curran Associates, Inc.},
+  title = {Online Continual Learning with Maximal Interfered Retrieval},
+  url = {https://proceedings.neurips.cc/paper/2019/hash/15825aee15eb335cc13f9b559f166ee8-Abstract.html},
+  volume = {32},
+  year = {2019}
+}
+
+@inproceedings{aljundi2019taskfree,
+  abstract = {The continual learning literature typically assumes a task-based sequential learning setup: Learning one task at a time and all data of the current task is available but not of previous or future tasks. The task identity is known at all times. This setup, however, is rarely encountered in practical applications. In this paper, we investigate how to transform continual learning to an online setup where data distributions change gradually over time without the notion of separate tasks. We build on Memory Aware Synapses and show how it can be made online by providing a protocol to decide when to update the importance weights, which data to use to update them, and how to accumulate the importance weights at each update step. We demonstrate the validity of our approach in two applications: learning a face recognition model by watching soap series and learning a robot to avoid collisions.},
+  author = {Rahaf Aljundi and Klaas Kelchtermans and Tinne Tuytelaars},
+  booktitle = {Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition},
+  doi = {10.1109/cvpr.2019.01151},
+  file = {:/home/b/documents/inproceedings/aljundi2019taskfree.pdf:pdf},
+  month = {6},
+  openalex = {W2982701845},
+  pages = {11254--11263},
+  pdf = {https://openaccess.thecvf.com/content_CVPR_2019/papers/Aljundi_Task-Free_Continual_Learning_CVPR_2019_paper.pdf},
+  publisher = {IEEE},
+  title = {Task-Free Continual Learning},
+  year = {2019}
+}
+
+@inproceedings{rao2019continual,
+  abstract = {Continual learning aims to improve the ability of modern learning systems to deal with non-stationary distributions, typically by attempting to learn a series of tasks sequentially. Prior art in the field has largely considered supervised or reinforcement learning tasks, and often assumes full knowledge of task labels and boundaries. In this work, we propose an approach (CURL) to tackle a more general problem that we will refer to as unsupervised continual learning. The focus is on learning representations without any knowledge about task identity, and we explore scenarios when there are abrupt changes between tasks, smooth transitions from one task to another, or even when the data is shuffled. The proposed approach performs task inference directly within the model, is able to dynamically expand to capture new concepts over its lifetime, and incorporates additional rehearsal-based techniques to deal with catastrophic forgetting. We demonstrate the efficacy of CURL in an unsupervised learning setting with MNIST and Omniglot, where the lack of labels ensures no information is leaked about the task. Further, we demonstrate strong performance compared to prior art in an i.i.d setting, or when adapting the technique to supervised tasks such as incremental class learning.},
+  author = {Dushyant Rao and Francesco Visin and Andrei A. Rusu and Yee Whye Teh and Razvan Pascanu and Raia Hadsell},
+  booktitle = {Advances in Neural Information Processing Systems 32},
+  editor = {H. Wallach and H. Larochelle and A. Beygelzimer and F. d' Alché-Buc and E. Fox and R. Garnett},
+  file = {:/home/b/documents/inproceedings/rao2019continual.pdf:pdf},
+  pages = {7645--7655},
+  pdf = {http://papers.neurips.cc/paper/8981-continual-unsupervised-representation-learning.pdf},
+  publisher = {Curran Associates, Inc.},
+  title = {Continual Unsupervised Representation Learning},
+  url = {https://proceedings.neurips.cc/paper/2019/hash/861578d797aeb0634f77aff3f488cca2-Abstract.html},
+  year = {2019}
+}
+
+@inproceedings{javed2019meta,
+  abstract = {A continual learning agent should be able to build on top of existing knowledge to learn on new data quickly while minimizing forgetting. Current intelligent systems based on neural network function approximators arguably do the opposite---they are highly prone to forgetting and rarely trained to facilitate future learning. One reason for this poor behavior is that they learn from a representation that is not explicitly trained for these two goals. In this paper, we propose OML (Online-aware Meta-learning), an objective that directly minimizes catastrophic interference by learning representations that accelerate future learning and are robust to forgetting under online updates in continual learning. We show that it is possible to learn naturally sparse representations that are more effective for online updating. Moreover, our algorithm is complementary to existing continual learning strategies, such as MER and GEM. We demonstrate improved performance on existing continual learning benchmarks.},
+  address = {Red Hook, NY, USA},
+  author = {Khurram Javed and Martha White},
+  booktitle = {Advances in Neural Information Processing Systems},
+  file = {:/home/b/documents/inproceedings/javed2019meta.pdf:pdf},
+  openalex = {W2970505118},
+  pages = {1820--1830},
+  pdf = {https://proceedings.neurips.cc/paper_files/paper/2019/file/f4dd765c12f2ef67f98f3558c282a9cd-Paper.pdf},
+  publisher = {Curran Associates Inc.},
+  title = {Meta-Learning Representations for Continual Learning},
+  url = {https://arxiv.org/abs/1905.12588},
+  volume = {32},
+  year = {2019}
+}
+
+@inproceedings{aljundi2019gradient,
+  abstract = {A continual learning agent learns online with a non-stationary and never-ending stream of data. The key to such learning process is to overcome the catastrophic forgetting of previously seen data, which is a well known problem of neural networks. To prevent forgetting, a replay buffer is usually employed to store the previous data for the purpose of rehearsal. Previous works often depend on task boundary and i.i.d. assumptions to properly select samples for the replay buffer. In this work, we formulate sample selection as a constraint reduction problem based on the constrained optimization view of continual learning. The goal is to select a fixed subset of constraints that best approximate the feasible region defined by the original constraints. We show that it is equivalent to maximizing the diversity of samples in the replay buffer with parameter gradient as the feature. We further develop a greedy alternative that is cheap and efficient.},
+  arxiv = {1903.08671},
+  author = {Aljundi, Rahaf and Lin, Min and Goujaud, Baptiste and Bengio, Yoshua},
+  booktitle = {Advances in Neural Information Processing Systems 32},
+  file = {:/home/b/documents/inproceedings/aljundi2019gradient.pdf:pdf},
+  pages = {11816--11825},
+  pdf = {https://proceedings.neurips.cc/paper_files/paper/2019/file/e562cd9c0768d5464b64cf61da7fc6bb-Paper.pdf},
+  publisher = {Curran Associates, Inc.},
+  title = {Gradient Based Sample Selection for Online Continual Learning},
+  url = {https://papers.nips.cc/paper/2019/hash/e562cd9c0768d5464b64cf61da7fc6bb-Abstract.html},
+  year = {2019}
+}
+
+@misc{pfuelb2019comprehensive,
+  abstract = {We present a large-scale empirical study of catastrophic forgetting (CF) in modern Deep Neural Network (DNN) models that perform sequential (or: incremental) learning. A new experimental protocol is proposed that enforces typical constraints encountered in application scenarios. As the investigation is empirical, we evaluate CF behavior on the hitherto largest number of visual classification datasets, from each of which we construct a representative number of Sequential Learning Tasks (SLTs) in close alignment to previous works on CF. Our results clearly indicate that there is no model that avoids CF for all investigated datasets and SLTs under application conditions. We conclude with a discussion of potential solutions and workarounds to CF, notably for the EWC and IMM models.},
+  archiveprefix = {arXiv},
+  author = {Benjamin Pfülb and Alexander Gepperth},
+  eprint = {1905.08101},
+  file = {:/home/b/documents/misc/pfuelb2019comprehensive.pdf:pdf},
+  note = {Submitted to ICLR 2019},
+  pdf = {https://openreview.net/pdf?id=BkloRs0qK7},
+  primaryclass = {cs.LG},
+  title = {A comprehensive, application-oriented study of catastrophic forgetting in DNNs},
+  url = {https://arxiv.org/abs/1905.08101},
+  year = {2019}
+}
+
+@misc{chaudhry2019tiny,
+  abstract = {In continual learning (CL), an agent learns from a stream of tasks leveraging prior experience to transfer knowledge to future tasks. It is an ideal framework to decrease the amount of supervision in the existing learning algorithms. But for a successful knowledge transfer, the learner needs to remember how to perform previous tasks. One way to endow the learner the ability to perform tasks seen in the past is to store a small memory, dubbed episodic memory, that stores few examples from previous tasks and then to replay these examples when training for future tasks. In this paper, we empirically analyze the effectiveness of a very small episodic memory in a CL setup where each training example is only seen once. We show that a very simple baseline, which jointly trains on both examples from the current task as well as examples stored in the memory, outperforms state-of-the-art CL approaches with and without episodic memory. Interestingly, we find that repetitive training on even tiny memories of past tasks does not harm generalization, on the contrary, it improves it, with gains between 7% and 17% when the memory is populated with a single example per class.},
+  archiveprefix = {arXiv},
+  author = {Arslan Chaudhry and Marcus Rohrbach and Mohamed Elhoseiny and Thalaiyasingam Ajanthan and Puneet K. Dokania and Philip H. S. Torr and Marc'Aurelio Ranzato},
+  doi = {10.48550/arXiv.1902.10486},
+  eprint = {1902.10486},
+  file = {:/home/b/documents/misc/chaudhry2019tiny.pdf:pdf},
+  howpublished = {Workshop on Multi-Task and Lifelong Reinforcement Learning, ICML 2019},
+  month = {2},
+  pdf = {https://arxiv.org/pdf/1902.10486.pdf},
+  primaryclass = {cs.LG},
+  title = {On Tiny Episodic Memories in Continual Learning},
+  url = {https://arxiv.org/abs/1902.10486},
+  year = {2019}
+}
+
+@inproceedings{aljundi2018memory,
+  abstract = {Humans can learn in a continuous manner. Old rarely utilized knowledge can be overwritten by new incoming information while important, frequently used knowledge is prevented from being erased. In artificial learning systems, lifelong learning so far has focused mainly on accumulating knowledge over tasks and overcoming catastrophic forgetting. In this paper, we argue that, given the limited model capacity and the unlimited new information to be learned, knowledge has to be preserved or erased selectively. Inspired by neuroplasticity, we propose a novel approach for lifelong learning, coined Memory Aware Synapses (MAS). It computes the importance of the parameters of a neural network in an unsupervised and online manner. Given a new sample which is fed to the network, MAS accumulates an importance measure for each parameter of the network, based on how sensitive the predicted output function is to a change in this parameter. When learning a new task, changes to important parameters can then be penalized, effectively preventing important knowledge related to previous tasks from being overwritten. Further, we show an interesting connection between a local version of our method and Hebb's rule, which is a model for the learning process in the brain. We test our method on a sequence of object recognition tasks and on the challenging problem of learning an embedding for predicting $łangle$subject, predicate, object$ångle$ triplets. We show state-of-the-art performance and, for the first time, the ability to adapt the importance of the parameters based on unlabeled data towards what the network needs (not) to forget, which may vary depending on test conditions.},
+  address = {Cham},
+  author = {Aljundi, Rahaf and Babiloni, Francesca and Elhoseiny, Mohamed and Rohrbach, Marcus and Tuytelaars, Tinne},
+  booktitle = {Computer Vision -- ECCV 2018},
+  doi = {10.1007/978-3-030-01219-9_9},
+  editor = {Ferrari, Vittorio and Hebert, Martial and Sminchisescu, Cristian and Weiss, Yair},
+  file = {:/home/b/documents/inproceedings/aljundi2018memory.pdf:pdf},
+  isbn = {978-3-030-01219-9},
+  month = {9},
+  note = {15th European Conference, Munich, Germany, September 8--14, 2018, Proceedings, Part III},
+  openalex = {W2963588172},
+  pages = {144--161},
+  pdf = {https://openaccess.thecvf.com/content_ECCV_2018/papers/Rahaf_Aljundi_Memory_Aware_Synapses_ECCV_2018_paper.pdf},
+  publisher = {Springer International Publishing},
+  series = {Lecture Notes in Computer Science},
+  title = {Memory Aware Synapses: Learning what (not) to forget},
+  url = {https://doi.org/10.1007/978-3-030-01219-9_9},
+  volume = {11207},
+  year = {2018}
+}
+
+@inproceedings{nguyen2018variational,
+  abstract = {We develop variational continual learning (VCL), a simple but general framework for continual learning that fuses online variational inference (VI) and recent advances in Monte Carlo VI for neural networks. The framework can successfully train both deep discriminative models and deep generative models in complex continual learning settings where existing tasks evolve over time and entirely new tasks emerge. Experimental results show that VCL outperforms state-of-the-art continual learning methods on a variety of tasks, avoiding catastrophic forgetting in a fully automatic way.},
+  archiveprefix = {arXiv},
+  author = {Nguyen, Cuong V. and Li, Yingzhen and Bui, Thang D. and Turner, Richard E.},
+  booktitle = {Proceedings of the 6th International Conference on Learning Representations},
+  eprint = {1710.10628},
+  file = {:/home/b/documents/inproceedings/nguyen2018variational.pdf:pdf},
+  pdf = {https://openreview.net/pdf?id=BkQqq0gRb},
+  title = {Variational Continual Learning},
+  url = {https://openreview.net/forum?id=BkQqq0gRb},
+  year = {2018}
+}
+
+@inproceedings{chaudhry2018riemannian,
+  abstract = {Incremental learning (IL) has received a lot of attention recently, however, the literature lacks a precise problem definition, proper evaluation settings, and metrics tailored specifically for the IL problem. One of the main objectives of this work is to fill these gaps so as to provide a common ground for better understanding of IL. The main challenge for an IL algorithm is to update the classifier whilst preserving existing knowledge. We observe that, in addition to forgetting, a known issue while preserving knowledge, IL also suffers from a problem we call intransigence, inability of a model to update its knowledge. We introduce two metrics to quantify forgetting and intransigence that allow us to understand, analyse, and gain better insights into the behaviour of IL algorithms. We present RWalk, a generalization of EWC++ (our efficient version of EWC [Kirkpatrick2016EWC]) and Path Integral [Zenke2017Continual] with a theoretically grounded KL-divergence based perspective. We provide a thorough analysis of various IL algorithms on MNIST and CIFAR-100 datasets. In these experiments, RWalk obtains superior results in terms of accuracy, and also provides a better trade-off between forgetting and intransigence.},
+  author = {Arslan Chaudhry and Puneet K. Dokania and Thalaiyasingam Ajanthan and Philip H. S. Torr},
+  booktitle = {Computer Vision -- ECCV 2018: 15th European Conference on Computer Vision, Munich, Germany, September 8--14, 2018, Proceedings, Part XI},
+  doi = {10.1007/978-3-030-01252-6_33},
+  file = {:/home/b/documents/inproceedings/chaudhry2018riemannian.pdf:pdf},
+  month = {9},
+  openalex = {W2786446225},
+  pages = {532--547},
+  pdf = {https://openaccess.thecvf.com/content_ECCV_2018/papers/Arslan_Chaudhry__Riemannian_Walk_ECCV_2018_paper.pdf},
+  publisher = {Springer},
+  series = {Lecture Notes in Computer Science},
+  title = {Riemannian Walk for Incremental Learning: Understanding Forgetting and Intransigence},
+  url = {https://doi.org/10.1007/978-3-030-01252-6_33},
+  volume = {11211},
+  year = {2018}
+}
+
+@inproceedings{mallya2018packnet,
+  abstract = {This paper presents a method for adding multiple tasks to a single deep neural network while avoiding catastrophic forgetting. Inspired by network pruning techniques, we exploit redundancies in large deep networks to free up parameters that can then be employed to learn new tasks. By performing iterative pruning and network re-training, we are able to sequentially "pack" multiple tasks into a single network while ensuring minimal drop in performance and minimal storage overhead. Unlike prior work that uses proxy losses to maintain accuracy on older tasks, we always optimize for the task at hand. We perform extensive experiments on a variety of network architectures and large-scale datasets, and observe much better robustness against catastrophic forgetting than prior work. In particular, we are able to add three fine-grained classification tasks to a single ImageNet-trained VGG-16 network and achieve accuracies close to those of separately trained networks for each task.},
+  author = {Arun Mallya and Svetlana Lazebnik},
+  booktitle = {Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)},
+  doi = {10.1109/CVPR.2018.00810},
+  file = {:/home/b/documents/inproceedings/mallya2018packnet.pdf:pdf},
+  pages = {7765--7773},
+  pdf = {https://openaccess.thecvf.com/content_cvpr_2018/papers/Mallya_PackNet_Adding_Multiple_CVPR_2018_paper.pdf},
+  publisher = {IEEE Computer Society},
+  title = {PackNet: Adding Multiple Tasks to a Single Network by Iterative Pruning},
+  url = {https://openaccess.thecvf.com/content_cvpr_2018/html/Mallya_PackNet_Adding_Multiple_CVPR_2018_paper.html},
+  year = {2018}
+}
+
+@inproceedings{yoon2018dynamically,
+  abstract = {Lifelong learning aims to learn a sequence of tasks without forgetting knowledge acquired from the previous ones. In this paper, we propose a novel approach for lifelong learning of deep neural networks called Dynamically Expandable Networks (DEN), which can dynamically decide its network capacity as it trains on a sequence of tasks, to learn a compact overlapping knowledge sharing structure among tasks. DEN is efficiently trained in an online manner by performing selective retraining, dynamically expands network capacity upon arrival of each task with only the necessary number of units, and effectively prevents semantic drift by splitting/duplicating units and timestamping them. We validate DEN on multiple public datasets under lifelong learning scenarios, on which it not only significantly outperforms existing lifelong learning methods for deep networks, but also achieves the same level of performance as the batch counterparts with substantially fewer number of parameters.},
+  author = {Jaehong Yoon and Eunho Yang and Jeongtae Lee and Sung Ju Hwang},
+  booktitle = {6th International Conference on Learning Representations, ICLR 2018, Vancouver, BC, Canada, April 30 - May 3, 2018, Conference Track Proceedings},
+  file = {:/home/b/documents/inproceedings/yoon2018dynamically.pdf:pdf},
+  month = {4},
+  openalex = {W2962916294},
+  pdf = {https://openreview.net/pdf?id=Sk7KsfW0-},
+  title = {Lifelong Learning with Dynamically Expandable Networks},
+  url = {https://openreview.net/forum?id=Sk7KsfW0-},
+  year = {2018}
+}
+
+@inproceedings{kemker2018fearnet,
+  abstract = {Incremental class learning involves sequentially learning classes in bursts of examples from the same class. This violates the assumptions that underlie methods for training standard deep neural networks, and will cause them to suffer from catastrophic forgetting. Arguably, the best method for incremental class learning is iCaRL, but it requires storing training examples for each class, making it challenging to scale. Here, we propose FearNet for incremental class learning. FearNet is a generative model that does not store previous examples, making it memory efficient. FearNet uses a brain-inspired dual-memory system in which new memories are consolidated from a network for recent memories inspired by the mammalian hippocampal complex to a network for long-term storage inspired by medial prefrontal cortex. Memory consolidation is inspired by mechanisms that occur during sleep. FearNet also uses a module inspired by the basolateral amygdala for determining which memory system to use for recall. FearNet achieves state-of-the-art performance at incremental class learning on image (CIFAR-100, CUB-200) and audio classification (AudioSet) benchmarks.},
+  author = {Ronald Kemker and Christopher Kanan},
+  booktitle = {6th International Conference on Learning Representations, ICLR 2018, Vancouver, BC, Canada, April 30 - May 3, 2018, Conference Track Proceedings},
+  file = {:/home/b/documents/inproceedings/kemker2018fearnet.pdf:pdf},
+  openalex = {W2771964490},
+  pdf = {https://openreview.net/pdf?id=SJ1Xmf-Rb},
+  publisher = {OpenReview.net},
+  title = {FearNet: Brain-Inspired Model for Incremental Learning},
+  url = {https://openreview.net/forum?id=SJ1Xmf-Rb},
+  year = {2018}
+}
+
+@article{kirkpatrick2017elastic,
+  abstract = {The ability to learn tasks in a sequential fashion is crucial to the development of artificial intelligence. Neural networks are not, in general, capable of this and it has been widely thought that catastrophic forgetting is an inevitable feature of connectionist models. We show that it is possible to overcome this limitation and train networks that can maintain expertise on tasks which they have not experienced for a long time. Our approach remembers old tasks by selectively slowing down learning on the weights important for those tasks.},
+  author = {Kirkpatrick, James and Pascanu, Razvan and Rabinowitz, Neil and Veness, Joel and Desjardins, Guillaume and Rusu, Andrei A. and Milan, Kieran and Quan, John and Ramalho, Tiago and Grabska-Barwinska, Agnieszka and Hassabis, Demis and Clopath, Claudia and Kumaran, Dharshan and Hadsell, Raia},
+  doi = {10.1073/pnas.1611835114},
+  journal = {Proceedings of the National Academy of Sciences},
+  month = {3},
+  number = {13},
+  openalex = {W2605902560},
+  pages = {3521--3526},
+  pdf = {https://www.pnas.org/doi/pdf/10.1073/pnas.1611835114},
+  title = {Overcoming catastrophic forgetting in neural networks},
+  url = {https://doi.org/10.1073/pnas.1611835114},
+  volume = {114},
+  year = {2017}
+}
+
+@inproceedings{zenke2017synapses,
+  abstract = {While deep learning has led to remarkable advances across diverse applications, it struggles in domains where the data distribution changes over the course of learning. In stark contrast, biological neural networks continually adapt to changing domains, possibly by leveraging complex molecular machinery to solve many tasks simultaneously. In this study, we introduce intelligent synapses that bring some of this biological complexity into artificial neural networks. Each synapse accumulates task relevant information over time, and exploits this information to rapidly store new memories without forgetting old ones. We evaluate our approach on continual learning of classification tasks, and show that it dramatically reduces forgetting while maintaining computational efficiency.},
+  author = {Zenke, Friedemann and Poole, Ben and Ganguli, Surya},
+  booktitle = {Proceedings of the 34th International Conference on Machine Learning},
+  editor = {Precup, Doina and Teh, Yee Whye},
+  file = {:/home/b/documents/inproceedings/zenke2017synapses.pdf:pdf},
+  openalex = {W2737492962},
+  pages = {3987--3995},
+  pdf = {http://proceedings.mlr.press/v70/zenke17a/zenke17a.pdf},
+  publisher = {PMLR},
+  series = {Proceedings of Machine Learning Research},
+  title = {Continual Learning Through Synaptic Intelligence},
+  volume = {70},
+  year = {2017}
+}
+
+@inproceedings{rebuffi2017icarl,
+  abstract = {A major open problem on the road to artificial intelligence is the development of incrementally learning systems that learn about more and more concepts over time from a stream of data. In this work, we introduce a new training strategy, iCaRL, that allows learning in such a class-incremental way: only the training data for a small number of classes has to be present at the same time and new classes can be added progressively. iCaRL learns strong classifiers and a data representation simultaneously. This distinguishes it from earlier works that were fundamentally limited to fixed data representations and therefore incompatible with deep learning architectures. We show by experiments on CIFAR-100 and ImageNet ILSVRC 2012 data that iCaRL can learn many classes incrementally over a long period of time where other strategies quickly fail.},
+  address = {Honolulu, HI, USA},
+  author = {Rebuffi, Sylvestre-Alvise and Kolesnikov, Alexander and Sperl, Georg and Lampert, Christoph H.},
+  booktitle = {Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition (CVPR)},
+  file = {:/home/b/documents/inproceedings/rebuffi2017icarl.pdf:pdf},
+  month = {7},
+  openalex = {W2964189064},
+  pages = {5533--5542},
+  pdf = {https://openaccess.thecvf.com/content_cvpr_2017/papers/Rebuffi_iCaRL_Incremental_Classifier_CVPR_2017_paper.pdf},
+  publisher = {IEEE},
+  title = {iCaRL: Incremental Classifier and Representation Learning},
+  year = {2017}
+}
+
+@inproceedings{lopezpaz2017gem,
+  abstract = {One major obstacle towards AI is the poor ability of models to solve new problems quicker, and without forgetting previously acquired knowledge. To better understand this issue, we study the problem of continual learning, where the model observes, once and one by one, examples concerning a sequence of tasks. First, we propose a set of metrics to evaluate models learning over a continuum of data. These metrics characterize models not only by their test accuracy, but also in terms of their ability to transfer knowledge across tasks. Second, we propose a model for continual learning, called Gradient Episodic Memory (GEM) that alleviates forgetting, while allowing beneficial transfer of knowledge to previous tasks. Our experiments on variants of the MNIST and CIFAR-100 datasets demonstrate the strong performance of GEM when compared to the state-of-the-art.},
+  author = {David Lopez-Paz and Marc'Aurelio Ranzato},
+  booktitle = {Advances in Neural Information Processing Systems},
+  file = {:/home/b/documents/inproceedings/lopezpaz2017gem.pdf:pdf},
+  openalex = {W4295883599},
+  pages = {6467--6476},
+  pdf = {https://papers.nips.cc/paper/2017/file/f87522788a2be2d171666752f97ddebb-Paper.pdf},
+  publisher = {Curran Associates, Inc.},
+  title = {Gradient Episodic Memory for Continual Learning},
+  volume = {30},
+  year = {2017}
+}
+
+@inproceedings{shin2017generative,
+  abstract = {Attempts to train a comprehensive artificial intelligence capable of solving multiple tasks have been impeded by a chronic problem called catastrophic forgetting. Although simply replaying all previous data alleviates the problem, it requires large memory and even worse, often infeasible in real world applications where the access to past data is limited. Inspired by the generative nature of hippocampus as a short-term memory system in primate brain, we propose the Deep Generative Replay, a novel framework with a cooperative dual model architecture consisting of a deep generative model ("generator") and a task solving model ("solver"). With only these two models, training data for previous tasks can easily be sampled and interleaved with those for a new task. We test our methods in several sequential learning settings involving image classification tasks.},
+  author = {Hanul Shin and Jung Kwon Lee and Jaehong Kim and Jiwon Kim},
+  booktitle = {Advances in Neural Information Processing Systems 30},
+  file = {:/home/b/documents/inproceedings/shin2017generative.pdf:pdf},
+  openalex = {W2963559848},
+  pages = {2990--2999},
+  pdf = {https://proceedings.neurips.cc/paper_files/paper/2017/file/0efbe98067c6c73dba1250d2beaa81f9-Paper.pdf},
+  title = {Continual Learning with Deep Generative Replay},
+  year = {2017}
+}
+
+@inproceedings{aljundi2017expert,
+  abstract = {In this paper we introduce a model of lifelong learning, based on a Network of Experts. New tasks / experts are learned and added to the model sequentially, building on what was learned before. To ensure scalability of this process,data from previous tasks cannot be stored and hence is not available when learning a new task. A critical issue in such context, not addressed in the literature so far, relates to the decision which expert to deploy at test time. We introduce a set of gating autoencoders that learn a representation for the task at hand, and, at test time, automatically forward the test sample to the relevant expert. This also brings memory efficiency as only one expert network has to be loaded into memory at any given time. Further, the autoencoders inherently capture the relatedness of one task to another, based on which the most relevant prior model to be used for training a new expert, with finetuning or learning without-forgetting, can be selected. We evaluate our method on image classification and video prediction problems.},
+  archiveprefix = {arXiv},
+  author = {Rahaf Aljundi and Punarjay Chakravarty and Tinne Tuytelaars},
+  booktitle = {Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition},
+  eprint = {1611.06194},
+  file = {:/home/b/documents/inproceedings/aljundi2017expert.pdf:pdf},
+  month = {7},
+  pages = {3366--3375},
+  pdf = {https://openaccess.thecvf.com/content_cvpr_2017/papers/Aljundi_Expert_Gate_Lifelong_CVPR_2017_paper.pdf},
+  title = {Expert Gate: Lifelong Learning with a Network of Experts},
+  url = {https://openaccess.thecvf.com/content_cvpr_2017/html/Aljundi_Expert_Gate_Lifelong_CVPR_2017_paper.html},
+  year = {2017}
+}
+
+@misc{fernando2017pathnet,
+  abstract = {For artificial general intelligence (AGI) it would be efficient if multiple users trained the same giant neural network, permitting parameter reuse, without catastrophic forgetting. PathNet is a first step in this direction. It is a neural network algorithm that uses agents embedded in the neural network whose task is to discover which parts of the network to re-use for new tasks. Agents are pathways (views) through the network which determine the subset of parameters that are used and updated by the forwards and backwards passes of the backpropagation algorithm. During learning, a tournament selection genetic algorithm is used to select pathways through the neural network for replication and mutation. Pathway fitness is the performance of that pathway measured according to a cost function. We demonstrate successful transfer learning; fixing the parameters along a path learned on task A and re-evolving a new population of paths for task B, allows task B to be learned faster than it could be learned from scratch or after fine-tuning. Paths evolved on task B re-use parts of the optimal path evolved on task A. Positive transfer was demonstrated for binary MNIST, CIFAR, and SVHN supervised learning classification tasks, and a set of Atari and Labyrinth reinforcement learning tasks, suggesting PathNets have general applicability for neural network training. Finally, PathNet also significantly improves the robustness to hyperparameter choices of a parallel asynchronous reinforcement learning algorithm (A3C).},
+  archiveprefix = {arXiv},
+  author = {Fernando, Chrisantha and Banarse, Dylan and Blundell, Charles and Zwols, Yori and Ha, David and Rusu, Andrei A. and Pritzel, Alexander and Wierstra, Daan},
+  eprint = {1701.08734},
+  file = {:/home/b/documents/misc/fernando2017pathnet.pdf:pdf},
+  howpublished = {arXiv preprint},
+  month = {1},
+  pdf = {https://arxiv.org/pdf/1701.08734.pdf},
+  primaryclass = {cs.NE},
+  title = {PathNet: Evolution Channels Gradient Descent in Super Neural Networks},
+  url = {https://arxiv.org/abs/1701.08734},
+  year = {2017}
+}
+
+@inproceedings{li2016learning,
+  abstract = {When building a unified vision system or gradually adding new capabilities to a system, the usual assumption is that training data for all tasks is always available. However, as the number of tasks grows, storing and retraining on such data becomes infeasible. A new problem arises where we add new capabilities to a Convolutional Neural Network (CNN), but the training data for its existing capabilities are unavailable. We propose our Learning without Forgetting method, which uses only new task data to train the network while preserving the original capabilities. Our method performs favorably compared to commonly used feature extraction and fine-tuning adaption techniques and performs similarly to multitask learning that uses original task data we assume unavailable. A more surprising observation is that Learning without Forgetting may be able to replace fine-tuning with similar old and new task datasets for improved new task performance.},
+  address = {Cham},
+  author = {Li, Zhizhong and Hoiem, Derek},
+  booktitle = {Computer Vision -- ECCV 2016},
+  doi = {10.1007/978-3-319-46493-0_37},
+  editor = {Leibe, Bastian and Matas, Jiri and Sebe, Nicu and Welling, Max},
+  openalex = {W2527370853},
+  pages = {614--629},
+  pdf = {https://ieeexplore.ieee.org/ielaam/34/8520726/8107520-aam.pdf},
+  publisher = {Springer International Publishing},
+  series = {Lecture Notes in Computer Science},
+  title = {Learning without Forgetting},
+  url = {https://arxiv.org/abs/1606.09282},
+  volume = {9908},
+  year = {2016}
+}
+
+@misc{rusu2016progressive,
+  abstract = {Learning to solve complex sequences of tasks---while both leveraging transfer and avoiding catastrophic forgetting---remains a key obstacle to achieving human-level intelligence. The progressive networks approach represents a step forward in this direction: they are immune to forgetting and can leverage prior knowledge via lateral connections to previously learned features. We evaluate this architecture extensively on a wide variety of reinforcement learning tasks (Atari and 3D maze games), and show that it outperforms common baselines based on pretraining and finetuning. Using a novel sensitivity measure, we demonstrate that transfer occurs at both low-level sensory and high-level control layers of the learned policy.},
+  archiveprefix = {arXiv},
+  author = {Rusu, Andrei A. and Rabinowitz, Neil C. and Desjardins, Guillaume and Soyer, Hubert and Kirkpatrick, James and Kavukcuoglu, Koray and Pascanu, Razvan and Hadsell, Raia},
+  eprint = {1606.04671},
+  howpublished = {arXiv preprint arXiv:1606.04671},
+  month = {6},
+  note = {Submitted 15 Jun 2016, last revised 22 Oct 2022},
+  pdf = {http://proceedings.mlr.press/v48/rusu16.pdf},
+  primaryclass = {cs.LG},
+  title = {Progressive Neural Networks},
+  url = {https://arxiv.org/abs/1606.04671},
+  year = {2016}
+}
+
+@misc{jung2016forgetting,
+  abstract = {A catastrophic forgetting problem makes deep neural networks forget the previously learned information, when learning data collected in new environments, such as by different sensors or in different light conditions. This paper presents a new method for alleviating the catastrophic forgetting problem. Unlike previous research, our method does not use any information from the source domain. Surprisingly, our method is very effective to forget less of the information in the source domain, and we show the effectiveness of our method using several experiments. Furthermore, we observed that the forgetting problem occurs between mini-batches when performing general training processes using stochastic gradient descent methods, and this problem is one of the factors that degrades generalization performance of the network.},
+  archiveprefix = {arXiv},
+  author = {Heechul Jung and Jeongwoo Ju and Minju Jung and Junmo Kim},
+  eprint = {1607.00122},
+  file = {:/home/b/documents/misc/jung2016forgetting.pdf:pdf},
+  howpublished = {arXiv preprint},
+  pdf = {https://arxiv.org/pdf/1607.00122.pdf},
+  primaryclass = {cs.CV},
+  title = {Less-forgetting Learning in Deep Neural Networks},
+  url = {https://arxiv.org/abs/1607.00122},
+  year = {2016}
+}
+
+@misc{goodfellow2013forgetting,
+  abstract = {Catastrophic forgetting is a problem faced by many machine learning models and algorithms. When trained on one task, then trained on a second task, many machine learning models ``forget'' how to perform the first task. This is widely believed to be a serious problem for neural networks. Here, we investigate the extent to which the catastrophic forgetting problem occurs for modern neural networks, comparing both established and recent gradient-based training algorithms and activation functions. We also examine the effect of the relationship between the first task and the second task on catastrophic forgetting. We find that it is always best to train using the dropout algorithm--the dropout algorithm is consistently best at adapting to the new task, remembering the old task, and has the best tradeoff curve between these two extremes. We find that different tasks and relationships between tasks result in very different rankings of activation function performance.},
+  archiveprefix = {arXiv},
+  author = {Goodfellow, Ian J. and Mirza, Mehdi and Xiao, Da and Courville, Aaron and Bengio, Yoshua},
+  doi = {10.48550/arXiv.1312.6211},
+  eprint = {1312.6211},
+  file = {:/home/b/documents/misc/goodfellow2013forgetting.pdf:pdf},
+  howpublished = {arXiv preprint arXiv:1312.6211},
+  month = {12},
+  openalex = {W2113839990},
+  pdf = {https://openreview.net/pdf?id=BkloRs0qK7},
+  primaryclass = {cs.LG},
+  title = {An Empirical Investigation of Catastrophic Forgetting in Gradient-Based Neural Networks},
+  url = {https://arxiv.org/abs/1312.6211},
+  year = {2013}
+}
+
+@incollection{thrun1998lifelong,
+  abstract = {Machine learning has not yet succeeded in the design of robust learning algorithms that generalize well from very small datasets. In contrast, humans often generalize correctly from only a single training example, even if the number of potentially relevant features is large. To do so, they successfully exploit knowledge acquired in previous learning tasks. This paper investigates learning in a lifelong context, where a learner faces a stream of learning tasks, providing opportunities for synergetic effects through knowledge transfer across multiple tasks. The approaches were evaluated in an object recognition domain and demonstrated that lifelong learning approaches generalize consistently more accurately from scarce training data than comparable single-task approaches.},
+  address = {Boston, MA},
+  author = {Sebastian Thrun},
+  booktitle = {Learning to Learn},
+  doi = {10.1007/978-1-4615-5529-2_8},
+  editor = {Sebastian Thrun and Lorien Pratt},
+  openalex = {W2126204609},
+  pages = {181--209},
+  publisher = {Springer},
+  title = {Lifelong Learning Algorithms},
+  year = {1998}
+}
+
+@inproceedings{mccloskey1989catastrophic,
+  abstract = {Connectionist networks in which information is stored in weights on connections among simple processing units have attracted considerable interest in cognitive science. This chapter discusses catastrophic interference in connectionist networks, where new learning may interfere catastrophically with old learning when networks are trained sequentially. The authors present experiments demonstrating that standard backpropagation networks exhibit catastrophic interference when learning sequential tasks, a phenomenon not typically observed in human learning to such an extreme degree. The research addresses the fundamental stability-plasticity dilemma in artificial neural networks, showing that at least some interference will occur whenever new learning alters the weights involved in representing old learning, with greater amounts of new learning causing greater disruption to previously acquired knowledge.},
+  author = {McCloskey, Michael and Cohen, Neal J.},
+  booktitle = {Psychology of Learning and Motivation},
+  doi = {10.1016/S0079-7421(08)60536-8},
+  file = {:/home/b/documents/inproceedings/mccloskey1989catastrophic.pdf:pdf},
+  openalex = {W1682403713},
+  pages = {109--165},
+  pdf = {https://www.andywills.info/hbab/mccloskeycohen.pdf},
+  publisher = {Elsevier},
+  title = {Catastrophic Interference in Connectionist Networks: The Sequential Learning Problem},
+  volume = {24},
+  year = {1989}
+}
