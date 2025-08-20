@@ -46,7 +46,7 @@ def track_entry(
         ]
         if openalex_id:
             cmd.append(openalex_id)
-        
+
         result = subprocess.run(cmd, capture_output=True, text=True)
         return result.returncode == 0
     except Exception:
@@ -57,42 +57,44 @@ def main() -> None:
     if len(sys.argv) != 3:
         print("Usage: track-batch-enrichment.py file.bib tmp/file/", file=sys.stderr)
         sys.exit(1)
-    
+
     bib_file = Path(sys.argv[1])
     tmp_dir = Path(sys.argv[2])
-    
+
     if not bib_file.exists():
         print(f"Error: BibTeX file '{bib_file}' not found", file=sys.stderr)
         sys.exit(1)
-    
+
     if not tmp_dir.exists():
         print(f"Error: Temporary directory '{tmp_dir}' not found", file=sys.stderr)
         sys.exit(1)
-    
+
     # Process all entry files in tmp directory
     entry_files = sorted(tmp_dir.glob("entry-*.bib"))
     if not entry_files:
         print(f"Error: No entry files found in '{tmp_dir}'", file=sys.stderr)
         sys.exit(1)
-    
+
     tracked = 0
     failed = 0
-    
+
     for entry_file in entry_files:
         try:
             with open(entry_file, "r", encoding="utf-8") as f:
                 content = f.read()
-            
+
             entry_key = extract_entry_key(content)
             if not entry_key:
-                print(f"Warning: Could not extract key from {entry_file}", file=sys.stderr)
+                print(
+                    f"Warning: Could not extract key from {entry_file}", file=sys.stderr
+                )
                 failed += 1
                 continue
-            
+
             # Check if enriched
             is_enriched = check_enrichment(content)
             openalex_id = extract_openalex_id(content) if is_enriched else None
-            
+
             # Track the result
             if track_entry(str(bib_file), entry_key, is_enriched, openalex_id):
                 tracked += 1
@@ -101,13 +103,13 @@ def main() -> None:
             else:
                 failed += 1
                 print(f"✗ Failed to track {entry_key}", file=sys.stderr)
-                
+
         except Exception as e:
             print(f"Error processing {entry_file}: {e}", file=sys.stderr)
             failed += 1
-    
+
     print(f"\nSummary: {tracked} entries tracked, {failed} failures")
-    
+
     if failed > 0:
         sys.exit(1)
 

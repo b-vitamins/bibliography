@@ -31,24 +31,25 @@ DB_FILE = "bibliography.db"
 BASE_DIR = Path("/home/b/documents")
 
 # Mapping of BibTeX entry types to subdirectories
+# Each entry type maps to a directory with the EXACT same name
 TYPE_TO_DIR = {
-    "article": "articles",
-    "inproceedings": "inproceedings",
-    "phdthesis": "phdthesis",
-    "mastersthesis": "mastersthesis",
-    "book": "books",
-    "incollection": "incollection",
+    "article": "article",
+    "book": "book",
+    "booklet": "booklet",
+    "conference": "conference",
     "inbook": "inbook",
-    "proceedings": "proceedings",
-    "techreport": "techreports",
-    "unpublished": "unpublished",
+    "incollection": "incollection",
+    "inproceedings": "inproceedings",
+    "manual": "manual",
+    "mastersthesis": "mastersthesis",
+    "masterthesis": "masterthesis",  # Alternative spelling
     "misc": "misc",
     "online": "online",
-    "manual": "manuals",
-    "booklet": "booklets",
-    "conference": "conferences",
+    "phdthesis": "phdthesis",
     "phdproposal": "phdproposal",
-    "masterthesis": "mastersthesis",  # Alternative spelling
+    "proceedings": "proceedings",
+    "techreport": "techreport",
+    "unpublished": "unpublished",
 }
 
 
@@ -206,36 +207,46 @@ def scan_pdf_directory() -> int:
 
     for entry_type, subdir in TYPE_TO_DIR.items():
         dir_path = BASE_DIR / subdir
-        if dir_path.exists():
-            for pdf_file in dir_path.glob("*.pdf"):
-                pdf_path = str(pdf_file)
-                entry_key = pdf_file.stem
-                file_size = pdf_file.stat().st_size
-                file_hash = get_file_hash(pdf_path, quick=True)
+        # Skip if directory doesn't exist or is a symlink (to avoid double-counting)
+        if dir_path.exists() and not dir_path.is_symlink():
+            # Check for PDFs and EPUBs (and potentially other formats)
+            for pattern in ["*.pdf", "*.epub"]:
+                for file_path in dir_path.glob(pattern):
+                    full_path = str(file_path)
+                    entry_key = file_path.stem
+                    file_size = file_path.stat().st_size
+                    file_hash = get_file_hash(full_path, quick=True)
 
-                # Check if this PDF matches any entry
-                c.execute(
-                    """
-                    SELECT COUNT(*) FROM bib_entries 
-                    WHERE expected_pdf_path = ? OR file_field_path = ?
-                """,
-                    (pdf_path, pdf_path),
-                )
+                    # Check if this file matches any entry
+                    c.execute(
+                        """
+                        SELECT COUNT(*) FROM bib_entries 
+                        WHERE expected_pdf_path = ? OR file_field_path = ?
+                    """,
+                        (full_path, full_path),
+                    )
 
-                has_entry = c.fetchone()[0] > 0
-                status = "matched" if has_entry else "orphaned"
+                    has_entry = c.fetchone()[0] > 0
+                    status = "matched" if has_entry else "orphaned"
 
-                # Insert or update PDF record
-                c.execute(
-                    """
-                    INSERT OR REPLACE INTO pdf_files
-                    (pdf_path, file_size, file_hash, entry_key, entry_type, status, last_seen)
-                    VALUES (?, ?, ?, ?, ?, ?, CURRENT_TIMESTAMP)
-                """,
-                    (pdf_path, file_size, file_hash, entry_key, entry_type, status),
-                )
+                    # Insert or update PDF record
+                    c.execute(
+                        """
+                        INSERT OR REPLACE INTO pdf_files
+                        (pdf_path, file_size, file_hash, entry_key, entry_type, status, last_seen)
+                        VALUES (?, ?, ?, ?, ?, ?, CURRENT_TIMESTAMP)
+                    """,
+                        (
+                            full_path,
+                            file_size,
+                            file_hash,
+                            entry_key,
+                            entry_type,
+                            status,
+                        ),
+                    )
 
-                pdf_count += 1
+                    pdf_count += 1
 
     # Mark PDFs not seen in this scan as potentially deleted
     c.execute("""

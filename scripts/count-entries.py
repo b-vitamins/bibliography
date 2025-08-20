@@ -21,8 +21,7 @@ def count_entries(filepath: str | Path) -> int:
             for line in f:
                 line = line.strip()
                 if line.startswith("@") and not any(
-                    re.match(pattern, line, re.IGNORECASE)
-                    for pattern in skip_patterns
+                    re.match(pattern, line, re.IGNORECASE) for pattern in skip_patterns
                 ):
                     count += 1
     except Exception as e:

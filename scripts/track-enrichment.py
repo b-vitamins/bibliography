@@ -67,7 +67,7 @@ def log_enrichment(
         # Rollback transaction on any error
         conn.rollback()
         print(f"✗ Error logging enrichment: {e}", file=sys.stderr)
-        print(f"✗ Transaction rolled back - database unchanged", file=sys.stderr)
+        print("✗ Transaction rolled back - database unchanged", file=sys.stderr)
         sys.exit(1)
     finally:
         conn.close()

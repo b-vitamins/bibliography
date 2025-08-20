@@ -135,7 +135,7 @@ def init_database_if_needed(db_path: str = "bibliography.db") -> None:
                 ["python3", str(script_path), db_path],
                 capture_output=True,
                 text=True,
-                check=True
+                check=True,
             )
             if result.stdout:
                 print(result.stdout.strip())

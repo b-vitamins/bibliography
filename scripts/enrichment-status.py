@@ -14,7 +14,9 @@ from datetime import datetime, timedelta
 from pathlib import Path
 
 
-def get_file_stats(cursor: sqlite3.Cursor, file_path: str | None = None) -> list[sqlite3.Row]:
+def get_file_stats(
+    cursor: sqlite3.Cursor, file_path: str | None = None
+) -> list[sqlite3.Row]:
     """Get enrichment statistics for a file or all files."""
     if file_path:
         cursor.execute(

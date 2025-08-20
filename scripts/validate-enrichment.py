@@ -69,7 +69,7 @@ class ValidationResult:
 
     def report(self) -> str:
         """Generate validation report."""
-        lines = [f"\n{'='*60}", f"Entry: {self.entry_key} ({self.entry_type})"]
+        lines = [f"\n{'=' * 60}", f"Entry: {self.entry_key} ({self.entry_type})"]
 
         if self.passed:
             lines.append("\n✓ Passed checks:")
@@ -114,7 +114,9 @@ def check_openalex_id(entry: dict[str, Any], result: ValidationResult) -> None:
         result.passed.append(f"Valid OpenAlex ID format: {openalex_id}")
         result.openalex_id = openalex_id
     else:
-        result.failed.append(f"Invalid OpenAlex ID format: {openalex_id} (expected W followed by numbers)")
+        result.failed.append(
+            f"Invalid OpenAlex ID format: {openalex_id} (expected W followed by numbers)"
+        )
 
 
 def check_pdf_link(entry: dict[str, Any], result: ValidationResult) -> None:
@@ -139,18 +141,20 @@ def check_pdf_link(entry: dict[str, Any], result: ValidationResult) -> None:
     try:
         req = Request(pdf_url, method="HEAD")
         req.add_header("User-Agent", "BibTeX-Validator/1.0")
-        
+
         with urlopen(req, timeout=10) as response:
             content_type = response.headers.get("Content-Type", "").lower()
-            
+
             if response.status == 200:
                 if "pdf" in content_type or pdf_url.endswith(".pdf"):
                     result.passed.append(f"PDF link accessible: {pdf_url}")
                 else:
-                    result.warnings.append(f"PDF link accessible but unexpected content type: {content_type}")
+                    result.warnings.append(
+                        f"PDF link accessible but unexpected content type: {content_type}"
+                    )
             else:
                 result.warnings.append(f"PDF link returned status {response.status}")
-                
+
     except HTTPError as e:
         if e.code == 403:
             result.warnings.append(f"PDF link requires authentication (403): {pdf_url}")
@@ -188,7 +192,7 @@ def check_abstract(entry: dict[str, Any], result: ValidationResult) -> None:
     # Check for common issues
     if abstract.startswith('"') and abstract.endswith('"'):
         result.warnings.append("Abstract has surrounding quotes")
-    
+
     if "..." in abstract or abstract.endswith("..."):
         result.warnings.append("Abstract appears truncated")
 
@@ -202,8 +206,28 @@ def check_formatting(entry: dict[str, Any], result: ValidationResult) -> None:
         if title.isupper():
             result.warnings.append("Title is in all caps")
         # Check for proper brace protection
-        elif not re.search(r"\{[^}]+\}", title) and any(word[0].isupper() for word in title.split()[1:] if word not in ["a", "an", "the", "of", "in", "on", "at", "to", "for", "and", "or", "but"]):
-            result.warnings.append("Title may need brace protection for capitalized words")
+        elif not re.search(r"\{[^}]+\}", title) and any(
+            word[0].isupper()
+            for word in title.split()[1:]
+            if word
+            not in [
+                "a",
+                "an",
+                "the",
+                "of",
+                "in",
+                "on",
+                "at",
+                "to",
+                "for",
+                "and",
+                "or",
+                "but",
+            ]
+        ):
+            result.warnings.append(
+                "Title may need brace protection for capitalized words"
+            )
 
     # Author format
     authors = entry.get("author", "")
@@ -211,10 +235,12 @@ def check_formatting(entry: dict[str, Any], result: ValidationResult) -> None:
         # Check for "and" separator
         if ";" in authors:
             result.warnings.append("Authors should be separated by 'and' not semicolon")
-        
+
         # Check for first name abbreviations
         author_parts = authors.replace(" and ", "|").split("|")
-        abbreviated = [a.strip() for a in author_parts if re.search(r"\b[A-Z]\.", a.strip())]
+        abbreviated = [
+            a.strip() for a in author_parts if re.search(r"\b[A-Z]\.", a.strip())
+        ]
         if abbreviated and len(abbreviated) == len(author_parts):
             result.warnings.append("All authors use abbreviated first names")
 
@@ -243,7 +269,7 @@ def validate_entry(entry: dict[str, Any]) -> ValidationResult:
     """Validate a single BibTeX entry."""
     entry_key = entry.get("ID", "unknown")
     entry_type = entry.get("ENTRYTYPE", "unknown").lower()
-    
+
     result = ValidationResult(entry_key, entry_type)
 
     # Run all validation checks
@@ -257,9 +283,7 @@ def validate_entry(entry: dict[str, Any]) -> ValidationResult:
 
 
 def update_tracking_database(
-    file_path: str, 
-    results: list[ValidationResult],
-    db_path: str = "bibliography.db"
+    file_path: str, results: list[ValidationResult], db_path: str = "bibliography.db"
 ) -> None:
     """Update tracking database with validation results using atomic transaction."""
     # Skip if database doesn't exist
@@ -277,7 +301,7 @@ def update_tracking_database(
         # Check if validation columns exist, add if not
         cursor.execute("PRAGMA table_info(enrichment_log)")
         columns = [col[1] for col in cursor.fetchall()]
-        
+
         if "validation_status" not in columns:
             print("\n📊 Adding validation columns to tracking database...")
             cursor.execute("""
@@ -301,10 +325,11 @@ def update_tracking_database(
                 "passed": len(result.passed),
                 "warnings": len(result.warnings),
                 "failed": len(result.failed),
-                "checks": result.passed + result.warnings + result.failed
+                "checks": result.passed + result.warnings + result.failed,
             }
-            
-            cursor.execute("""
+
+            cursor.execute(
+                """
                 UPDATE enrichment_log
                 SET validation_status = ?,
                     validation_timestamp = CURRENT_TIMESTAMP,
@@ -317,20 +342,24 @@ def update_tracking_database(
                       WHERE e2.file_path = enrichment_log.file_path
                         AND e2.entry_key = enrichment_log.entry_key
                   )
-            """, (result.status, str(details), file_path, result.entry_key))
-            
+            """,
+                (result.status, str(details), file_path, result.entry_key),
+            )
+
             if cursor.rowcount > 0:
                 updates_made += 1
 
         # Commit only if all updates succeeded
         conn.commit()
-        print(f"\n✓ Updated validation status for {updates_made} entries in tracking database")
+        print(
+            f"\n✓ Updated validation status for {updates_made} entries in tracking database"
+        )
 
     except Exception as e:
         # Rollback transaction on any error
         conn.rollback()
         print(f"\n✗ Error updating database: {e}", file=sys.stderr)
-        print(f"✗ Transaction rolled back - database unchanged", file=sys.stderr)
+        print("✗ Transaction rolled back - database unchanged", file=sys.stderr)
     finally:
         conn.close()
 
@@ -342,19 +371,13 @@ def main() -> None:
     parser.add_argument("file", help="BibTeX file to validate")
     parser.add_argument("entry_key", nargs="?", help="Specific entry key to validate")
     parser.add_argument(
-        "--no-pdf-check", 
-        action="store_true", 
-        help="Skip PDF accessibility checks"
+        "--no-pdf-check", action="store_true", help="Skip PDF accessibility checks"
     )
     parser.add_argument(
-        "--no-db-update",
-        action="store_true",
-        help="Skip updating tracking database"
+        "--no-db-update", action="store_true", help="Skip updating tracking database"
     )
     parser.add_argument(
-        "--summary",
-        action="store_true",
-        help="Show only summary statistics"
+        "--summary", action="store_true", help="Show only summary statistics"
     )
 
     args = parser.parse_args()
@@ -381,28 +404,32 @@ def main() -> None:
     if args.entry_key:
         entries = [e for e in bib_db.entries if e.get("ID") == args.entry_key]  # type: ignore[arg-type]
         if not entries:
-            print(f"Error: Entry '{args.entry_key}' not found in {file_path}", file=sys.stderr)
+            print(
+                f"Error: Entry '{args.entry_key}' not found in {file_path}",
+                file=sys.stderr,
+            )
             sys.exit(1)
     else:
         entries = bib_db.entries  # type: ignore[assignment]
 
     # Validate entries
     results: list[ValidationResult] = []
-    
+
     print(f"\n🔍 Validating {len(entries)} entries from {file_path}")
     if args.no_pdf_check:
         print("   (Skipping PDF accessibility checks)")
 
     for entry in entries:
         # Skip PDF check if requested
+        original_pdf = None
         if args.no_pdf_check:
             original_pdf = entry.get("pdf")
             if original_pdf:
                 entry["pdf"] = ""  # Temporarily remove to skip check
-        
+
         result = validate_entry(entry)
         results.append(result)
-        
+
         # Restore PDF field
         if args.no_pdf_check and original_pdf:
             entry["pdf"] = original_pdf
@@ -416,13 +443,13 @@ def main() -> None:
     warnings = sum(1 for r in results if r.status == "warning")
     failed = sum(1 for r in results if r.status == "failed")
 
-    print(f"\n{'='*60}")
+    print(f"\n{'=' * 60}")
     print(f"VALIDATION SUMMARY for {file_path.name}")
-    print(f"{'='*60}")
+    print(f"{'=' * 60}")
     print(f"Total entries validated: {len(results)}")
-    print(f"✓ Passed: {passed} ({passed/len(results)*100:.1f}%)")
-    print(f"⚠ Warnings: {warnings} ({warnings/len(results)*100:.1f}%)")
-    print(f"✗ Failed: {failed} ({failed/len(results)*100:.1f}%)")
+    print(f"✓ Passed: {passed} ({passed / len(results) * 100:.1f}%)")
+    print(f"⚠ Warnings: {warnings} ({warnings / len(results) * 100:.1f}%)")
+    print(f"✗ Failed: {failed} ({failed / len(results) * 100:.1f}%)")
 
     # Update tracking database
     if not args.no_db_update:

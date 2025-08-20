@@ -109,7 +109,7 @@ def import_database(
         if conn is not None:
             conn.rollback()
         print(f"Error importing data: {e}", file=sys.stderr)
-        print(f"✗ Transaction rolled back - database unchanged", file=sys.stderr)
+        print("✗ Transaction rolled back - database unchanged", file=sys.stderr)
         return False
     finally:
         if conn is not None:

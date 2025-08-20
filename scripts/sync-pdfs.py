@@ -29,21 +29,21 @@ BASE_DIR = Path("/home/b/documents")
 
 # Mapping of BibTeX entry types to subdirectories
 TYPE_TO_DIR = {
-    "article": "articles",
+    "article": "article",
     "inproceedings": "inproceedings",
     "phdthesis": "phdthesis",
     "mastersthesis": "mastersthesis",
-    "book": "books",
+    "book": "book",
     "incollection": "incollection",
     "inbook": "inbook",
     "proceedings": "proceedings",
-    "techreport": "techreports",
+    "techreport": "techreport",
     "unpublished": "unpublished",
     "misc": "misc",
     "online": "online",
-    "manual": "manuals",
-    "booklet": "booklets",
-    "conference": "conferences",
+    "manual": "manual",
+    "booklet": "booklet",
+    "conference": "conference",
     "phdproposal": "phdproposal",
     "masterthesis": "mastersthesis",  # Alternative spelling
 }
