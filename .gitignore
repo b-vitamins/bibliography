@@ -353,3 +353,6 @@ meta/test-*.bib
 *~
 .*.swp
 .*.swo
+BOOTSTRAP-ENRICHMENT-PROCESS.md
+# Bootstrap methodology
+bootstrap-enrichment-methodology.md
