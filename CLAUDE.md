@@ -22,9 +22,42 @@ Personal bibliography management system with automated enrichment tracking, qual
 ## Proactive Agent Usage
 
 ### Primary Bibliography Workflow
-1. **Adding Papers**: Use `bibtex-entry-enricher` for each new entry
-2. **Quality Checks**: Use `bibtex-citation-checker` after LaTeX work  
-3. **Bulk Processing**: Chain multiple `bibtex-entry-enricher` calls
+
+#### Systematic Batch Enrichment (UPDATED FOR QUALITY)
+The `bibtex-entry-enricher` agent now processes exactly 10 entries at a time:
+```
+# Usage: Provide directory path + entry range
+bibtex-entry-enricher("/home/b/projects/bibliography/tmp/neurips/2024/", entries 1-10)
+bibtex-entry-enricher("/home/b/projects/bibliography/tmp/neurips/2024/", entries 11-20)
+# ... continues in batches of 10
+```
+- Processes entry-N.bib through entry-(N+9).bib sequentially
+- Performs REAL searches for each entry (no hallucination)
+- Modifies each file in-place (overwrites original)  
+- ZERO skipping allowed - all 10 must be processed
+- Returns summary with source verification for each entry
+- Quality over speed: Better partial data than false data
+
+#### Large-Scale Sprint Processing (NEW)
+For massive enrichment sprints (1000+ entries), deploy **parallel litters** of 20 agents:
+```
+# Each litter processes 200 entries (20 agents × 10 entries each)
+# Deploy 20 agents simultaneously:
+bibtex-entry-enricher(entries 1-10)    bibtex-entry-enricher(entries 101-110)
+bibtex-entry-enricher(entries 11-20)   bibtex-entry-enricher(entries 111-120)
+bibtex-entry-enricher(entries 21-30)   bibtex-entry-enricher(entries 121-130)
+...                                     ...
+bibtex-entry-enricher(entries 91-100)  bibtex-entry-enricher(entries 191-200)
+```
+- **Sprint batch size**: 200 entries per litter (20 agents × 10 entries)
+- **Parallel execution**: All 20 agents run simultaneously for maximum throughput
+- **Quality maintained**: Each agent still processes exactly 10 entries with full verification
+- **Use case**: Conference proceedings, large journal collections, bulk imports
+
+#### Standard Workflow
+1. **Split file**: Use `extract-entries.py` to split .bib into individual entries
+2. **Batch enrichment**: Deploy `bibtex-entry-enricher` on 10-entry batches
+3. **Quality Checks**: Use `bibtex-citation-checker` after LaTeX work
 4. **Validation**: Always run `validate-enrichment.py` before submission
 
 ### Python Script Maintenance
@@ -135,25 +168,57 @@ guix shell -m manifest.scm -- python3 scripts/enrichment-status.py
 
 ## Agent-Specific Usage Patterns
 
-### bibtex-entry-enricher Agent
+### bibtex-entry-enricher Agent (UPDATED FOR QUALITY)
 **When to Use:**
-- Single entry needs enrichment with OpenAlex ID + PDF
-- Part of batch processing workflow  
-- Entry has incomplete or incorrect metadata
+- Processing batches of 10 entries systematically  
+- Large-scale bibliography enrichment projects
+- Conference/journal paper collections needing metadata
 
-**Expected Input:** File path to single BibTeX entry
-**Agent Output:** Status message only (modifies file in-place)
+**Expected Input:** Directory path + entry range (10 entries)
+**Agent Output:** Summary report with source verification for all 10 entries
+
+**Quality Safeguards:**
+- Reduced batch size (10 vs 25) to prevent fatigue/hallucination
+- Mandatory source verification for each enrichment
+- "Partial enrichment" marking when data not found
+- No data reuse between entries
+
+**Smart Landing Page Strategy:**
+- Agent attempts to fetch conference landing page once per batch
+- Extracts available titles/URL patterns as HINTS (not complete data)
+- Uses patterns to guide more efficient individual searches
+- Still fetches individual paper pages for abstracts and complete data
+- Flexible: continues even if landing page fails or is incomplete
+- Realistic about web scraping: expects redirects, changes, missing data
+
+**Domain-Specific Search Optimization:**
+The agent uses venue-specific sources and PDF patterns:
+- **NeurIPS**: `proceedings.neurips.cc/paper_files/paper/YEAR/file/HASH-Paper-Conference.pdf`
+- **ICML**: `proceedings.mlr.press/vVOL/surname##a/surname##a.pdf`
+- **ICLR**: `openreview.net/pdf?id=PAPER_ID`
+- **CVPR/ICCV**: `openaccess.thecvf.com/content/` + patterns
+- **ACL**: `aclanthology.org/YEAR.venue-main.###.pdf`
+
+**Critical Priority**: Always prefer official accepted version PDFs over arXiv preprints
+**Note:** OpenAlex ID enrichment is optional (removed to optimize token usage)
 
 **Workflow:**
 ```bash
-# Prepare entry file for agent
-echo '@article{key2023, title={...}}' > /tmp/entry.bib
+# Extract entries from bibliography file
+guix shell -m manifest.scm -- python3 scripts/extract-entries.py conferences/neurips/2024.bib
 
-# Use agent via Task tool
-# Agent reads file, enriches entry, saves back to same file
+# Process in batches of 10 (for quality assurance)
+# Agent enriches entry-1.bib through entry-10.bib in-place with verified data
+bibtex-entry-enricher("tmp/neurips/2024/", entries 1-10)
+bibtex-entry-enricher("tmp/neurips/2024/", entries 11-20)
+bibtex-entry-enricher("tmp/neurips/2024/", entries 21-30)
+# ... continue until all entries processed
 
-# Verify enrichment worked
-cat /tmp/entry.bib
+# Reassemble enriched entries
+for i in $(seq 1 4494); do
+  cat tmp/neurips/2024/entry-$i.bib
+  echo
+done > conferences/neurips/2024-enriched.bib
 ```
 
 ### bibtex-citation-checker Agent  
@@ -231,7 +296,8 @@ guix shell -m manifest.scm -- python3 scripts/export-tracking.py
 ## Performance Guidelines
 
 ### Batch Processing
-- Maximum 20 entries per agent invocation
+- **Standard batches**: 10 entries per agent (quality-focused)
+- **Sprint litters**: 20 agents × 10 entries = 200 entries per litter (throughput-focused)
 - Use analyze-enrichment.py for optimal batching
 - Process unenriched entries first
 
