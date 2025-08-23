@@ -485,43 +485,7 @@
 }
 
 @inproceedings{liu2024adamoe,
-  abstract = {Mixture of experts (MoE) has become the standard for constructing production-level large language models (LLMs) due to its promise to boost model capacity without causing significant overheads. Nevertheless, existing MoE methods usually enforce a constant top-k routing for all tokens, which is arguably restrictive because various tokens may require various numbers of experts for feature abstraction. AdaMoE introduces token-adaptive routing for MoE, where different tokens are permitted to select a various number of experts. AdaMoE makes minimal modifications to the vanilla MoE with top-k routing---it simply introduces a fixed number of null experts, which do not consume any FLOPs, to the expert set and increases the value of k. AdaMoE does not force each token to occupy a fixed number of null experts but ensures the average usage of the null experts with a load-balancing loss, leading to an adaptive number of null/true experts used by each token. Extensive studies show that AdaMoE can reduce average expert load (FLOPs) while achieving superior performance. For example, on the ARC-C dataset, applying the method to fine-tuning Mixtral-8x7B can reduce FLOPs by 14.5% while increasing accuracy by 1.69%.},
-  address = {Miami, Florida, USA},
-  author = {Zeng, Zihao and Miao, Yibo and Gao, Hongcheng and Zhang, Hao and Deng, Zhijie},
-  booktitle = {Findings of the Association for Computational Linguistics: EMNLP 2024},
-  doi = {10.18653/v1/2024.findings-emnlp.361},
-  file = {:/home/b/documents/inproceedings/liu2024adamoe.pdf:pdf},
-  month = {11},
-  openalex = {W4399912530},
-  pages = {6223--6235},
-  pdf = {https://aclanthology.org/2024.findings-emnlp.361.pdf},
-  publisher = {Association for Computational Linguistics},
-  title = {AdaMoE: Token-Adaptive Routing with Null Experts for Mixture-of-Experts Language Models},
-  url = {https://aclanthology.org/2024.findings-emnlp.361/},
-  year = {2024}
-}
-
-@inproceedings{dua2024mixtures,
-  author = {Dua, Dheeru and Gupta, Pradeep and Mukherjee, Sameer and Zhang, Jifan and Awadallah, Ahmed Hassan and Gao, Jianfeng},
-  booktitle = {Association for Computational Linguistics (ACL)},
-  title = {Mixtures of Experts for Autoregressive Semantic Parsing},
-  year = {2024}
-}
-
-@inproceedings{shang2024mixture,
-  abstract = {Mixture of Experts (MoE) models based on Transformer architecture are pushing the boundaries of language and vision tasks. The allure of these models lies in their ability to substantially increase the parameter count without a corresponding increase in FLOPs. Most widely adopted MoE models are discontinuous with respect to their parameters - often referred to as sparse. At the same time, existing continuous MoE designs either lag behind their sparse counterparts or are incompatible with autoregressive decoding. Motivated by the observation that the adaptation of fully continuous methods has been an overarching trend in deep learning, we develop Mixture of Tokens (MoT), a simple, continuous architecture that is capable of scaling the number of parameters similarly to sparse MoE models. Unlike conventional methods, MoT assigns mixtures of tokens from different examples to each expert. This architecture is fully compatible with autoregressive training and generation. Our best models not only achieve a 3x increase in training speed over dense Transformer models in language pretraining but also match the performance of state-of-the-art MoE architectures. Additionally, a close connection between MoT and MoE is demonstrated through a novel technique we call transition tuning.},
-  author = {Antoniak, Szymon and Krutul, Michał and Pióro, Maciej and Krajewski, Jakub and Ludziejewski, Jan and Ciebiera, Kamil and Król, Krystian and Odrzygóźd\,́ Tomasz and Cygan, Marek and Jaszczur, Sebastian},
-  booktitle = {Advances in Neural Information Processing Systems 37: Annual Conference on Neural Information Processing Systems 2024, NeurIPS 2024, Vancouver, BC, Canada, December 10-15, 2024},
-  file = {:/home/b/documents/inproceedings/shang2024mixture.pdf:pdf},
-  pdf = {https://arxiv.org/pdf/2310.15961.pdf},
-  publisher = {MIT Press},
-  title = {Mixture of Tokens: Continuous MoE through Cross-Example Aggregation},
-  url = {https://arxiv.org/abs/2310.15961},
-  year = {2024}
-}
-
-@inproceedings{liu2024adamoe,
-  abstract = {Mixture of experts (MoE) has become the standard for constructing production-level large language models (LLMs) due to its promise to boost model capacity without causing significant overheads. Nevertheless, existing MoE methods usually enforce a constant top-k routing for all tokens, which is arguably restrictive because various tokens (e.g., ``<EOS>'' vs. ``apple'') may require various numbers of experts for feature abstraction. Lifting such a constraint can help make the most of limited resources and unleash the potential of the model for downstream tasks. In this sense, we introduce AdaMoE to realize token-adaptive routing for MoE, where different tokens are permitted to select a various number of experts. AdaMoE makes minimal modifications to the vanilla MoE with top-k routing -- it simply introduces a fixed number of null experts, which do not consume any FLOPs, to the expert set and increases the value of k. AdaMoE does not force each token to occupy a fixed number of null experts but ensures the average usage of the null experts with a load-balancing loss, leading to an adaptive number of null/true experts used by each token. AdaMoE exhibits a strong resemblance to MoEs with expert choice routing while allowing for trivial auto-regressive modeling. AdaMoE is easy to implement and can be effectively applied to pre-trained (MoE-)LLMs. Extensive studies show that AdaMoE can reduce average expert load (FLOPs) while achieving superior performance. For example, on the ARC-C dataset, applying our method to fine-tuning Mixtral-8x7B can reduce FLOPs by 14.5% while increasing accuracy by 1.69%.},
+  abstract = {Mixture of experts (MoE) has become the standard for constructing production-level large language models (LLMs) due to its promise to boost model capacity without causing significant overheads. Nevertheless, existing MoE methods usually enforce a constant top-k routing for all tokens, which is arguably restrictive because various tokens (e.g., ``<EOS>'' vs. ``apple'') may require various numbers of experts for feature abstraction. Lifting such a constraint can help make the most of limited resources and unleash the potential of the model for downstream tasks. In this sense, we introduce AdaMoE to realize token-adaptive routing for MoE, where different tokens are permitted to select a various number of experts. AdaMoE makes minimal modifications to the vanilla MoE with top-k routing -- it simply introduces a fixed number of null experts, which do not consume any FLOPs, to the expert set and increases the value of k. AdaMoE does not force each token to occupy a fixed number of null experts but ensures the average usage of the null experts with a load-balancing loss, leading to an adaptive number of null/true experts used by each token. AdaMoE exhibits a strong resemblance to MoEs with expert choice routing while allowing for trivial auto-regressive modeling. AdaMoE is easy to implement and can be effectively applied to pre-trained (MoE-)LLMs. Extensive studies show that AdaMoE can reduce average expert load (FLOPs) while achieving superior performance. For example, on the ARC-C dataset, applying our method to fine-tuning Mixtral-8x7B can reduce FLOPs by 14.5\% while increasing accuracy by 1.69\%.},
   address = {Miami, Florida, USA},
   author = {Zeng, Zihao and Miao, Yibo and Gao, Hongcheng and Zhang, Hao and Deng, Zhijie},
   booktitle = {Findings of the Association for Computational Linguistics: EMNLP 2024},
@@ -711,37 +675,6 @@
 }
 
 @inproceedings{zhai2023stabilizing,
-  abstract = {We investigate training dynamics of Transformers by examining the evolution of attention layers. We track attention entropy for each attention head during training as a proxy for model sharpness and identify a pattern where low attention entropy is accompanied by high training instability, which can manifest as oscillating loss or divergence. We term this pathologically low attention entropy as "entropy collapse". As a remedy, we propose sigma-Reparam, a simple and efficient solution where we reparametrize all linear layers with spectral normalization and an additional learned scalar. We demonstrate that sigma-Reparam successfully prevents entropy collapse in attention layers, promoting more stable training. Our method provides stability and robustness with respect to hyperparameter choices, enabling training of Vision Transformers without warmup, weight decay, layer normalization, or adaptive optimizers across tasks including image classification, self-supervised learning, machine translation, speech recognition, and language modeling.},
-  archiveprefix = {arXiv},
-  author = {Shuangfei Zhai and Tatiana Likhomanenko and Etai Littwin and Dan Busbridge and Jason Ramapuram and Yizhe Zhang and Jiatao Gu and Joshua M. Susskind},
-  booktitle = {Proceedings of the 40th International Conference on Machine Learning},
-  eprint = {2303.06296},
-  file = {:/home/b/documents/inproceedings/zhai2023stabilizing.pdf:pdf},
-  openalex = {W4324311371},
-  pages = {40770--40803},
-  pdf = {https://proceedings.mlr.press/v202/zhai23a/zhai23a.pdf},
-  primaryclass = {cs.LG},
-  publisher = {PMLR},
-  series = {Proceedings of Machine Learning Research},
-  title = {Stabilizing Transformer Training by Preventing Attention Entropy Collapse},
-  url = {https://proceedings.mlr.press/v202/zhai23a.html},
-  volume = {202},
-  year = {2023}
-}
-
-@inproceedings{chen2023sparse,
-  abstract = {Despite their remarkable achievement, gigantic transformers encounter significant drawbacks, including exorbitant computational and memory footprints during training, as well as severe collapse evidenced by a high degree of parameter redundancy. Sparsely-activated Mixture-of-Experts (SMoEs) have shown promise to mitigate the issue of training efficiency, yet they are prone to (1) redundant experts due to representational collapse; and (2) poor expert scalability for inference and downstream fine-tuning, primarily due to overfitting of the learned routing policy to the number of activated experts during training. As recent research efforts are predominantly focused on improving routing policies to encourage expert specializations, this work focuses on exploring the overlooked scalability bottleneck of SMoEs and leveraging it to effectively scale dense transformers. To this end, we propose a new plug-and-play training framework, SMoE-Dropout, to enable scaling transformers to better accuracy in their full capacity without collapse. Specifically, SMoE-Dropout consists of a randomly initialized and fixed router network to activate experts and gradually increases the activated expert number as training progresses over time. Transformers trained by SMoE-Dropout naturally exhibit a 'self-slimmable' property subject to resource availability, offering smooth and consistent performance boosts with an increase in activated experts during inference or fine-tuning. Our extensive experiments across diverse transformer architectures on a variety of tasks demonstrate the superior performance and substantial computation savings of SMoE-Dropout, compared to dense training baselines with equivalent parameter counts. In particular, our trained BERT outperforms its densely trained counterpart with consistent improvements of 1.03%, 0.78%, 1.09% on challenging reasoning tasks ASDiv-A, MAWPS, SVAMP, respectively.},
-  author = {Tianlong Chen and Zhenyu Zhang and Ajay Jaiswal and Shiwei Liu and Zhangyang Wang},
-  booktitle = {The Eleventh International Conference on Learning Representations},
-  file = {:/home/b/documents/inproceedings/chen2023sparse.pdf:pdf},
-  openalex = {W4323322833},
-  pdf = {https://openreview.net/pdf?id=w1hwFUb_81},
-  title = {Sparse MoE as the New Dropout: Scaling Dense and Self-Slimmable Transformers},
-  url = {https://openreview.net/forum?id=w1hwFUb_81},
-  year = {2023}
-}
-
-@inproceedings{zhai2023stabilizing,
   abstract = {Training stability is of great importance to Transformers. In this work, we investigate the training dynamics of Transformers by examining the evolution of attention layers. In particular, we track entropy for each head during the course of training, which is a proxy for model sharpness. We identify a common pattern across different architectures and tasks, where low entropy is accompanied by high instability, which can take the form of oscillating loss or divergence. We denote pathologically low entropy, corresponding to highly concentrated attention scores, as "entropy collapse". As a remedy, we propose "σReparam", a simple and efficient solution to reparametrize all linear layers with spectral normalization and an additional learned scalar. We demonstrate that "σReparam" successfully prevents entropy collapse in layers, promoting more stable training. Additionally, we prove a tight lower bound that decreases exponentially fast with the norm of logits, providing motivation for our approach. We conduct experiments on image classification, self-supervised learning, machine translation, speech recognition, and language modeling tasks. We show it provides robustness with respect to hyperparameter choices, going so far as enabling (a) Vision Transformer to competitive performance without warmup, weight decay, or adaptive optimizers; (b) deep translation; and (c) speech recognition performance without warmup optimizers. Code is available at https://github.com/apple/ml-sigma-reparam.},
   author = {Zhai, Shuangfei and Likhomanenko, Tatiana and Littwin, Etai and Busbridge, Dan and Ramapuram, Jason and Zhang, Yizhe and Gu, Jiatao and Susskind, Joshua M.},
   booktitle = {Proceedings of the 40th International Conference on Machine Learning},
@@ -759,7 +692,7 @@
 }
 
 @inproceedings{chen2023sparse,
-  abstract = {Despite their remarkable achievement, gigantic transformers encounter significant drawbacks, including exorbitant computational and memory footprints during training, as well severe collapse evidenced by a high degree of parameter redundancy. Sparsely-activated Mixture-of-Experts (SMoEs) have shown promise to mitigate the training efficiency issue, yet they are prone to: (1) redundant experts due to representational collapse; (2) poor expert scalability for inference and downstream fine-tuning, primarily overfitting learned routing policy. As recent research efforts are predominantly focused on improving policies to encourage expert specializations, this work focuses on exploring the overlooked bottleneck in SMoEs by leveraging it effectively to scale dense transformers. To this end, we propose a new plug-and-play framework, SMoE-Dropout, to enable scaling transformers to better accuracy in full capacity without collapse. Specifically, SMoE-Dropout consists of a randomly initialized fixed router network that gradually activates experts as training progresses. Transformers trained naturally exhibit a self-slimmable property subject to resource availability, offering smooth, consistent performance boosts with an increase or fine-tuning. Our extensive experiments demonstrate superior substantial computation savings compared to baselines with equivalent parameter counts. In particular, our BERT outperforms its densely trained counterpart with improvements of 1.03%, 0.78%, 1.09% on challenging reasoning tasks ASDiv-A, MAWPS, SVAMP, respectively.},
+  abstract = {Despite their remarkable achievement, gigantic transformers encounter significant drawbacks, including exorbitant computational and memory footprints during training, as well severe collapse evidenced by a high degree of parameter redundancy. Sparsely-activated Mixture-of-Experts (SMoEs) have shown promise to mitigate the training efficiency issue, yet they are prone to: (1) redundant experts due to representational collapse; (2) poor expert scalability for inference and downstream fine-tuning, primarily overfitting learned routing policy. As recent research efforts are predominantly focused on improving policies to encourage expert specializations, this work focuses on exploring the overlooked bottleneck in SMoEs by leveraging it effectively to scale dense transformers. To this end, we propose a new plug-and-play framework, SMoE-Dropout, to enable scaling transformers to better accuracy in full capacity without collapse. Specifically, SMoE-Dropout consists of a randomly initialized fixed router network that gradually activates experts as training progresses. Transformers trained naturally exhibit a self-slimmable property subject to resource availability, offering smooth, consistent performance boosts with an increase or fine-tuning. Our extensive experiments demonstrate superior substantial computation savings compared to baselines with equivalent parameter counts. In particular, our BERT outperforms its densely trained counterpart with improvements of 1.03\%, 0.78\%, 1.09\% on challenging reasoning tasks ASDiv-A, MAWPS, SVAMP, respectively.},
   archiveprefix = {arXiv},
   author = {Tianlong Chen and Zhenyu Zhang and Ajay Kumar Jaiswal and Shiwei Liu and Zhangyang Wang},
   booktitle = {The Eleventh International Conference on Learning Representations},

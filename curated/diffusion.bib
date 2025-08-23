@@ -912,19 +912,6 @@
   year = {2023}
 }
 
-@inproceedings{blattmann2023align,
-  abstract = {Latent Diffusion Models (LDMs) enable high-quality image synthesis while avoiding excessive compute demands by training a diffusion model in a compressed lower-dimensional latent space. Here, we apply the LDM paradigm to high-resolution video generation, a particularly resource-intensive task. We first pre-train an LDM on images only; then, we turn the image generator into a video generator by introducing a temporal dimension to the latent space diffusion model and fine-tuning on encoded image sequences, i.e., videos. Similarly, we temporally align diffusion model upsamplers, turning them into temporally consistent video super resolution models. We focus on two relevant real-world applications: Simulation of in-the-wild driving data and creative content creation with text-to-video modeling. In particular, we validate our Video LDM on real driving videos of resolution 512x1024, achieving state-of-the-art performance. Furthermore, our approach can easily leverage off-the-shelf pre-trained image LDMs, as we only need to train a temporal alignment model in that case. Doing so, we turn the publicly available, state-of-the-art text-to-image LDM Stable Diffusion into an efficient and expressive text-to-video model with resolution up to 1280x2048. We show that the temporal layers trained in this way generalize to different fine-tuned text-to-image LDMs. Utilizing this property, we show the first results for personalized text-to-video generation, opening exciting directions for future content creation.},
-  author = {Blattmann, Andreas and Rombach, Robin and Ling, Huan and Dockhorn, Tim and Kim, Seung Wook and Fidler, Sanja and Kreis, Karsten},
-  booktitle = {Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)},
-  doi = {10.1109/cvpr52729.2023.02161},
-  file = {:/home/b/documents/inproceedings/blattmann2023align.pdf:pdf},
-  openalex = {W4386071957},
-  pages = {22563--22575},
-  pdf = {https://openaccess.thecvf.com/content/CVPR2023/papers/Blattmann_Align_Your_Latents_High-Resolution_Video_Synthesis_With_Latent_Diffusion_Models_CVPR_2023_paper.pdf},
-  title = {Align your Latents: High-Resolution Video Synthesis with Latent Diffusion Models},
-  year = {2023}
-}
-
 @inproceedings{brooks2023instructpix2pix,
   abstract = {We propose a method for editing images from human instructions: given an input image and a written instruction that tells the model what to do, our model follows these instructions to edit the image. To obtain training data for this problem, we combine the knowledge of two large pretrained models -- a language model (GPT-3) and a text-to-image model (Stable Diffusion) -- to generate a large dataset of image editing examples. Our conditional diffusion model, InstructPix2Pix, is trained on our generated data, and generalizes to real images and user-written instructions at inference time. Since it performs edits in the forward pass and does not require per example fine-tuning or inversion, our model edits images quickly, in a matter of seconds.},
   author = {Brooks, Tim and Holynski, Aleksander and Efros, Alexei A.},
@@ -1031,36 +1018,6 @@
   pages = {300--309},
   pdf = {https://openaccess.thecvf.com/content/CVPR2023/papers/Lin_Magic3D_High-Resolution_Text-to-3D_Content_Creation_CVPR_2023_paper.pdf},
   title = {Magic3D: High-Resolution Text-to-3D Content Creation},
-  year = {2023}
-}
-
-@inproceedings{lipman2023flow,
-  abstract = {We introduce a new paradigm for generative modeling built on Continuous Normalizing Flows (CNFs), allowing us to train CNFs at unprecedented scale. Specifically, we present the notion of Flow Matching (FM), a simulation-free approach for training CNFs based on regressing vector fields of fixed conditional probability paths. Flow Matching is compatible with a general family of Gaussian probability paths for transforming between noise and data samples -- which subsumes existing diffusion paths as specific instances. Interestingly, we find that employing FM with diffusion paths results in a more robust and stable alternative for training diffusion models. Furthermore, Flow Matching opens the door to training CNFs with other, non-diffusion probability paths. An instance of particular interest is using Optimal Transport (OT) displacement interpolation to define the conditional probability paths. These paths are more efficient than diffusion paths, provide faster training and sampling, and result in better generalization. Training CNFs using Flow Matching on ImageNet leads to consistently better performance than alternative diffusion-based methods in terms of both likelihood and sample quality, and allows fast and reliable sample generation using off-the-shelf numerical ODE solvers.},
-  author = {Yaron Lipman and Ricky T. Q. Chen and Heli Ben-Hamu and Maximilian Nickel and Matt Le},
-  booktitle = {The Eleventh International Conference on Learning Representations},
-  file = {:/home/b/documents/inproceedings/lipman2023flow.pdf:pdf},
-  openalex = {W4303647933},
-  pdf = {https://openreview.net/pdf/e99034416acd1ca82991f5d63735e77130fc06a7.pdf},
-  title = {Flow Matching for Generative Modeling},
-  url = {https://openreview.net/forum?id=PqvMRDCJT9t},
-  year = {2023}
-}
-
-@inproceedings{liu2023audioldm,
-  abstract = {Text-to-audio (TTA) system has recently gained attention for its ability to synthesize general audio based on text descriptions. However, previous studies in TTA have limited generation quality with high computational costs. In this study, we propose AudioLDM, a TTA system that is built on a latent space to learn the continuous audio representations from contrastive language-audio pretraining (CLAP) latents. The pretrained CLAP models enable us to train LDMs with audio embedding while providing text embedding as a condition during sampling. By learning the latent representations of audio signals and their compositions without modeling the cross-modal relationship, AudioLDM is advantageous in both generation quality and computational efficiency. Trained on AudioCaps with a single GPU, AudioLDM achieves state-of-the-art TTA performance measured by both objective and subjective metrics (e.g., frechet distance). Moreover, AudioLDM is the first TTA system that enables various text-guided audio manipulations (e.g., style transfer) in a zero-shot fashion. Our implementation and demos are available at https://audioldm.github.io.},
-  author = {Liu, Haohe and Chen, Zehua and Yuan, Yi and Mei, Xinhao and Liu, Xubo and Mandic, Danilo and Wang, Wenwu and Plumbley, Mark D.},
-  booktitle = {Proceedings of the 40th International Conference on Machine Learning},
-  editor = {Krause, Andreas and Brunskill, Emma and Cho, Kyunghyun and Engelhardt, Barbara and Sabato, Sivan and Scarlett, Jonathan},
-  file = {:/home/b/documents/inproceedings/liu2023audioldm.pdf:pdf},
-  month = {7},
-  openalex = {W4318752004},
-  pages = {21450--21474},
-  pdf = {https://proceedings.mlr.press/v202/liu23f/liu23f.pdf},
-  publisher = {PMLR},
-  series = {Proceedings of Machine Learning Research},
-  title = {AudioLDM: Text-to-Audio Generation with Latent Diffusion Models},
-  url = {https://audioldm.github.io},
-  volume = {202},
   year = {2023}
 }
 
@@ -1174,22 +1131,6 @@
   pdf = {https://openreview.net/pdf?id=nJfylDvgzlq},
   title = {Make-A-Video: Text-to-Video Generation without Text-Video Data},
   url = {https://openreview.net/forum?id=nJfylDvgzlq},
-  year = {2023}
-}
-
-@inproceedings{song2023consistency,
-  abstract = {Diffusion models have significantly advanced the fields of image, audio, and video generation, but they depend on an iterative sampling process that causes slow generation. To overcome this limitation, we propose consistency models, a new family of models that generate high quality samples by directly mapping noise to data. They support fast one-step generation by design, while still allowing multistep sampling to trade compute for sample quality. They also support zero-shot data editing, such as image inpainting, colorization, and super-resolution, without requiring explicit training on these tasks. Consistency models can be trained either by distilling pre-trained diffusion models, or as standalone generative models altogether. Through extensive experiments, we demonstrate that they outperform existing distillation techniques for diffusion models in one- and few-step sampling, achieving the new state-of-the-art FID of 3.55 on CIFAR-10 and 6.20 on ImageNet 64x64 for one-step generation. When trained in isolation, consistency models become a new family of generative models that can outperform existing one-step, non-adversarial generative models on standard benchmarks such as CIFAR-10, ImageNet 64x64 and LSUN 256x256.},
-  author = {Song, Yang and Dhariwal, Prafulla and Chen, Mark and Sutskever, Ilya},
-  booktitle = {Proceedings of the 40th International Conference on Machine Learning},
-  editor = {Krause, Andreas and Brunskill, Emma and Cho, Kyunghyun and Engelhardt, Barbara and Sabato, Sivan and Scarlett, Jonathan},
-  note = {Oral},
-  openalex = {W4381026823},
-  pages = {32211--32252},
-  publisher = {PMLR},
-  series = {Proceedings of Machine Learning Research},
-  title = {Consistency Models},
-  url = {https://proceedings.mlr.press/v202/song23a/song23a.pdf},
-  volume = {202},
   year = {2023}
 }
 
@@ -1524,20 +1465,6 @@
   year = {2023}
 }
 
-@inproceedings{poole2023dreamfusion,
-  abstract = {Recent breakthroughs in text-to-image synthesis have been driven by diffusion models trained on billions of image-text pairs. Adapting this approach to 3D synthesis would require large-scale datasets of labeled 3D data and efficient architectures for denoising 3D data, neither of which currently exist. In this work, we circumvent these limitations by using a pretrained 2D text-to-image diffusion model to perform text-to-3D synthesis.},
-  author = {Ben Poole and Ajay Jain and Jonathan T. Barron and Ben Mildenhall},
-  booktitle = {The Eleventh International Conference on Learning Representations},
-  doi = {10.48550/arxiv.2209.14988},
-  file = {:/home/b/documents/inproceedings/poole2023dreamfusion.pdf:pdf},
-  note = {Outstanding Paper Award},
-  openalex = {W4298187450},
-  pdf = {https://openreview.net/pdf?id=FjNys5c7VyY},
-  title = {DreamFusion: Text-to-3D using 2D Diffusion},
-  url = {https://openreview.net/forum?id=FjNys5c7VyY},
-  year = {2023}
-}
-
 @inproceedings{rassin2023linguistic,
   abstract = {Text-conditioned image generation models often generate incorrect associations between entities and their visual attributes, reflecting an impaired mapping between linguistic binding of entities and modifiers in the prompt and visual binding of the corresponding elements in the generated image. As one example, a query like ''a pink sunflower and a yellow flamingo'' may incorrectly produce an image of a yellow sunflower and a pink flamingo. To remedy this issue, we propose SynGen, an approach which first syntactically analyses the prompt to identify entities and their modifiers, and then uses a novel loss function that encourages the cross-attention maps to agree with the linguistic binding reflected by the syntax. Specifically, we encourage large overlap between attention maps of entities and their modifiers, and small overlap with other entities and modifier words. We evaluate our approach on three datasets and show that it substantially improves attribute correspondence compared to baseline diffusion models while requiring minimal computational overhead.},
   author = {Royi Rassin and Eran Hirsch and Daniel Glickman and Shauli Ravfogel and Yoav Goldberg and Gal Chechik},
@@ -1725,24 +1652,6 @@
   year = {2022}
 }
 
-@inproceedings{karras2022elucidating,
-  abstract = {We argue that the theory and practice of diffusion-based generative models are currently unnecessarily convoluted and seek to remedy the situation by presenting a design space that clearly separates the concrete design choices. This lets us identify several changes to both the sampling and training processes, as well as preconditioning of the score networks. Together, our improvements yield new state-of-the-art FID of 1.79 for CIFAR-10 in a class-conditional setting and 1.97 in an unconditional setting, with much faster sampling (35 network evaluations per image) than prior designs. To further demonstrate their modular nature, we show that our design changes dramatically improve both the efficiency and quality obtainable with pre-trained score networks from previous work, including improving the FID of a previously trained ImageNet-64 model from 2.07 to near-SOTA 1.55, and after re-training with our proposed improvements to a new SOTA of 1.36.},
-  author = {Karras, Tero and Aittala, Miika and Aila, Timo and Laine, Samuli},
-  booktitle = {Advances in Neural Information Processing Systems},
-  editor = {Koyejo, S. and Mohamed, S. and Agarwal, A. and Belgrave, D. and Cho, K. and Oh, A.},
-  file = {:/home/b/documents/inproceedings/karras2022elucidating.pdf:pdf},
-  month = {12},
-  note = {Oral},
-  openalex = {W4281969232},
-  pdf = {https://proceedings.neurips.cc/paper_files/paper/2022/file/a98846e9d9cc01cfb87eb694d946ce6b-Paper-Conference.pdf},
-  publisher = {Curran Associates, Inc.},
-  series = {NeurIPS '22},
-  title = {Elucidating the Design Space of Diffusion-Based Generative Models},
-  url = {https://proceedings.neurips.cc/paper_files/paper/2022/hash/a98846e9d9cc01cfb87eb694d946ce6b-Abstract-Conference.html},
-  volume = {35},
-  year = {2022}
-}
-
 @inproceedings{li2022diffusionlm,
   abstract = {Controlling the behavior of language models (LMs) without re-training is a major open problem in natural language generation. While recent works have demonstrated successes on controlling simple sentence attributes (e.g., sentiment), there has been little progress on complex, fine-grained controls (e.g., syntactic structure). To address this challenge, we develop a new non-autoregressive language model based on continuous diffusions that we call Diffusion-LM. Building upon the recent successes of diffusion models in continuous domains, Diffusion-LM iteratively denoises a sequence of Gaussian vectors into word vectors, yielding a sequence of intermediate latent variables. The continuous, hierarchical nature of these intermediate variables enables a simple gradient-based algorithm to perform complex, controllable generation tasks. We demonstrate successful control of Diffusion-LM for six challenging fine-grained control tasks, significantly outperforming prior work.},
   author = {Li, Xiang Lisa and Thickstun, John and Gulrajani, Ishaan and Liang, Percy S. and Hashimoto, Tatsunori B.},
@@ -1803,21 +1712,6 @@
   year = {2022}
 }
 
-@inproceedings{rombach2022highresolution,
-  abstract = {By decomposing the image formation process into a sequential application of denoising autoencoders, diffusion models (DMs) achieve state-of-the-art synthesis results on image data and beyond. Additionally, their formulation allows for a guiding mechanism to control the image generation process without retraining. However, since these models typically operate directly in pixel space, optimization of powerful DMs often consumes hundreds of GPU days and inference is expensive due to sequential evaluations. To enable DM training on limited computational resources while retaining their quality and flexibility, we apply them in the latent space of powerful pretrained autoencoders. In contrast to previous work, training diffusion models on such a representation allows for the first time to reach a near-optimal point between complexity reduction and detail preservation, greatly boosting visual fidelity. By introducing cross-attention layers into the model architecture, we turn diffusion models into powerful and flexible generators for general conditioning inputs such as text or bounding boxes and high-resolution synthesis becomes possible in a convolutional manner. Our latent diffusion models (LDMs) achieve new state of the art scores for image inpainting and class-conditional image synthesis and highly competitive performance on various tasks, including unconditional image generation, text-to-image synthesis, and super-resolution, while significantly reducing computational requirements compared to pixel-based DMs.},
-  author = {Rombach, Robin and Blattmann, Andreas and Lorenz, Dominik and Esser, Patrick and Ommer, Björn},
-  booktitle = {Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)},
-  doi = {10.1109/CVPR52688.2022.01042},
-  file = {:/home/b/documents/inproceedings/rombach2022highresolution.pdf:pdf},
-  note = {Stable Diffusion - Oral},
-  openalex = {W4312933868},
-  pages = {10684--10695},
-  pdf = {https://openaccess.thecvf.com/content/CVPR2022/papers/Rombach_High-Resolution_Image_Synthesis_With_Latent_Diffusion_Models_CVPR_2022_paper.pdf},
-  title = {High-Resolution Image Synthesis with Latent Diffusion Models},
-  url = {https://arxiv.org/abs/2112.10752},
-  year = {2022}
-}
-
 @inproceedings{saharia2022photorealistic,
   abstract = {We present Imagen, a text-to-image diffusion model with an unprecedented degree of photorealism and a deep level of language understanding. Imagen builds on the power of large transformer language models in understanding text and hinges on the strength of diffusion models in high-fidelity image generation. Our key discovery is that generic large language models (e.g. T5), pretrained on text-only corpora, are surprisingly effective at encoding text for image synthesis: increasing the size of the language model in Imagen boosts both sample fidelity and image-text alignment much more than increasing the size of the image diffusion model. Imagen achieves a new state-of-the-art FID score of 7.27 on the COCO dataset, without ever training on COCO, and human raters find Imagen samples to be on par with the COCO data itself in image-text alignment. To assess text-to-image models in greater depth, we introduce DrawBench, a comprehensive and challenging benchmark for text-to-image models. With DrawBench, we compare Imagen with recent methods including VQ-GAN+CLIP, Latent Diffusion Models, and DALL-E 2, and find that human raters prefer Imagen over other models in side-by-side comparisons, both in terms of sample quality and image-text alignment.},
   author = {Saharia, Chitwan and Chan, William and Saxena, Saurabh and Li, Lala and Whang, Jay and Denton, Emily L. and Ghasemipour, Kamyar and Gontijo Lopes, Raphael and Karagol Ayan, Burcu and Salimans, Tim and Ho, Jonathan and Fleet, David J. and Norouzi, Mohammad},
@@ -1831,19 +1725,6 @@
   title = {Photorealistic Text-to-Image Diffusion Models with Deep Language Understanding},
   url = {https://arxiv.org/abs/2205.11487},
   volume = {35},
-  year = {2022}
-}
-
-@inproceedings{salimans2022progressive,
-  abstract = {Diffusion models have recently shown great promise for generative modeling, outperforming GANs on perceptual quality and autoregressive models at density estimation. A remaining downside is their slow sampling time: generating high quality samples takes many hundreds or thousands of model evaluations. Here we present new parameterizations of diffusion models that provide increased stability when using few sampling steps, and a method to distill a trained deterministic diffusion sampler, using many steps, into a new diffusion model that takes half as many sampling steps. We then keep progressively applying this distillation procedure to our model, halving the number of required sampling steps each time. On standard image generation benchmarks like CIFAR-10, ImageNet, and LSUN, we start out with state-of-the-art samplers taking many steps, and are able to distill down to models taking as little as 4 steps without losing much perceptual quality; achieving, for example, a FID of 3.0 on CIFAR-10 in 4 steps.},
-  author = {Tim Salimans and Jonathan Ho},
-  booktitle = {The Tenth International Conference on Learning Representations},
-  file = {:/home/b/documents/inproceedings/salimans2022progressive.pdf:pdf},
-  month = {4},
-  openalex = {W4221159371},
-  pdf = {https://openreview.net/pdf?id=TIdIXIpzhoI},
-  title = {Progressive Distillation for Fast Sampling of Diffusion Models},
-  url = {https://openreview.net/forum?id=TIdIXIpzhoI},
   year = {2022}
 }
 
@@ -1884,21 +1765,6 @@
   publisher = {OpenReview.net},
   title = {Progressive Distillation for Fast Sampling of Diffusion Models},
   url = {https://openreview.net/forum?id=TIdIXIpzhoI},
-  year = {2022}
-}
-
-@inproceedings{lu2022dpmsolver,
-  abstract = {Diffusion probabilistic models (DPMs) are emerging powerful generative models. Despite their high-quality generation performance, DPMs still suffer from their slow sampling as they generally need hundreds or thousands of sequential function evaluations (steps) of large neural networks to draw a sample. Sampling from DPMs can be viewed alternatively as solving the corresponding diffusion ordinary differential equations (ODEs). In this work, we propose an exact formulation of the solution of diffusion ODEs. The formulation analytically computes the linear part of the solution, rather than leaving all terms to black-box ODE solvers as adopted in previous works. By applying change-of-variable, the solution can be equivalently simplified to an exponentially weighted integral of the neural network. Based on our formulation, we propose DPM-Solver, a fast dedicated high-order solver for diffusion ODEs with the convergence order guarantee. DPM-Solver is suitable for both discrete-time and continuous-time DPMs without any further training. Experimental results show that DPM-Solver can generate high-quality samples in only 10 to 20 function evaluations on various datasets. We achieve 4.70 FID in 10 function evaluations and 2.87 FID in 20 function evaluations on the CIFAR10 dataset, and a $4∼ 16 imes$ speedup compared with previous state-of-the-art training-free samplers on various datasets.},
-  author = {Lu, Cheng and Zhou, Yuhao and Bao, Fan and Chen, Jianfei and Li, Chongxuan and Zhu, Jun},
-  booktitle = {Advances in Neural Information Processing Systems},
-  file = {:/home/b/documents/inproceedings/lu2022dpmsolver.pdf:pdf},
-  openalex = {W4281661987},
-  pdf = {https://proceedings.neurips.cc/paper_files/paper/2022/file/260a14acce2a89dad36adc8eefe7c59e-Paper-Conference.pdf},
-  publisher = {Curran Associates, Inc.},
-  series = {NIPS'22},
-  title = {DPM-Solver: A Fast ODE Solver for Diffusion Probabilistic Model Sampling in Around 10 Steps},
-  url = {https://proceedings.neurips.cc/paper_files/paper/2022/hash/260a14acce2a89dad36adc8eefe7c59e-Abstract-Conference.html},
-  volume = {35},
   year = {2022}
 }
 
@@ -2021,22 +1887,6 @@
   year = {2022}
 }
 
-@article{lu2022dpmsolver,
-  abstract = {Diffusion probabilistic models (DPMs) have achieved impressive success in high-resolution image synthesis, especially recent large-scale text-to-image generation applications. However, DPMs generally need hundreds or thousands of sequential function evaluations (steps) of large neural networks to draw a sample, making them computationally expensive. Recent works accelerate the sampling of DPMs by proposing training-free fast samplers, which directly approximate the solution of the corresponding diffusion ordinary differential equation (ODE) without additional training. In this work, we propose a high-order solver for the guided sampling of DPMs, named DPM-Solver++, which improves the convergence order as well as the stability. DPM-Solver++ can generate high-quality samples within only 15 to 20 steps for guided sampling by pixel-space and latent-space DPMs, achieving 4.70 FID with 15 function evaluations and 2.87 FID with 20 function evaluations on guided sampling of 50k samples from CIFAR-10. We further propose a new adaptive step-size scheduler which can automatically adjust the step size according to local truncation errors, improving the sampling quality with fewer steps.},
-  archiveprefix = {arXiv},
-  author = {Cheng Lu and Yuhao Zhou and Fan Bao and Jianfei Chen and Chongxuan Li and Jun Zhu},
-  eprint = {2211.01095},
-  file = {:/home/b/documents/article/lu2022dpmsolver.pdf:pdf},
-  journal = {arXiv preprint arXiv:2211.01095},
-  month = {11},
-  openalex = {W4308167501},
-  pdf = {https://arxiv.org/pdf/2211.01095.pdf},
-  primaryclass = {cs.LG},
-  title = {DPM-Solver++: Fast Solver for Guided Sampling of Diffusion Probabilistic Models},
-  url = {https://arxiv.org/abs/2211.01095},
-  year = {2022}
-}
-
 @inproceedings{chen2021wavegrad,
   abstract = {This paper introduces WaveGrad, a conditional model for waveform generation which estimates gradients of the data density. The model is built on prior work on score matching and diffusion probabilistic models. It starts from a Gaussian white noise signal and iteratively refines the signal via a gradient-based sampler conditioned on the mel-spectrogram. WaveGrad offers a natural way to trade inference speed for sample quality by adjusting the number of refinement steps, and bridges the gap between non-autoregressive and autoregressive models in terms of audio quality. We find that it can generate high fidelity audio samples using as few as six iterations. Experiments reveal WaveGrad to generate high fidelity audio, outperforming adversarial non-autoregressive baselines and matching a strong likelihood-based autoregressive baseline using fewer sequential operations. Audio samples are available at https://wavegrad.github.io/.},
   author = {Chen, Nanxin and Zhang, Yu and Zen, Heiga and Weiss, Ron J. and Norouzi, Mohammad and Chan, William},
@@ -2117,21 +1967,6 @@
   year = {2021}
 }
 
-@inproceedings{nichol2021improved,
-  abstract = {Denoising diffusion probabilistic models (DDPM) are a class of generative models which have recently been shown to produce excellent samples. We show that with a few simple modifications, DDPMs can also achieve competitive log-likelihoods while maintaining high sample quality. Additionally, we find that learning variances of the reverse diffusion process allows sampling with an order of magnitude fewer forward passes with a negligible difference in sample quality, which is important for the practical deployment of these models. We additionally use precision and recall to compare how well DDPMs and GANs cover the target distribution. Finally, we show that the sample quality and likelihood of these models scale smoothly with model capacity and training compute, making them easily scalable.},
-  author = {Alexander Quinn Nichol and Prafulla Dhariwal},
-  booktitle = {Proceedings of the 38th International Conference on Machine Learning},
-  file = {:/home/b/documents/inproceedings/nichol2021improved.pdf:pdf},
-  openalex = {W3168053944},
-  pages = {8162--8171},
-  pdf = {https://proceedings.mlr.press/v139/nichol21a/nichol21a.pdf},
-  publisher = {PMLR},
-  series = {Proceedings of Machine Learning Research},
-  title = {Improved Denoising Diffusion Probabilistic Models},
-  volume = {139},
-  year = {2021}
-}
-
 @inproceedings{radford2021learning,
   abstract = {State-of-the-art computer vision systems are trained to predict a fixed set of predetermined object categories. This restricted form of supervision limits their generality and usability since additional labeled data is needed to specify any other visual concept. Learning directly from raw text about images is a promising alternative which leverages a much broader source of supervision. We demonstrate that the simple pre-training task of predicting which caption goes with which image is an efficient and scalable way to learn SOTA image representations from scratch on a dataset of 400 million (image, text) pairs collected from the internet. We create a new dataset of 400 million (image, text) pairs and demonstrate that a simplified version of ConVIRT trained from scratch, which we call CLIP, for Contrastive Language--Image Pre-training, is an efficient method of learning from natural language supervision. CLIP learns a multi-modal embedding space by jointly training an image encoder and text encoder to maximize the cosine similarity of the image and text embeddings of the N real pairs in the batch while minimizing the cosine similarity of the embeddings of the N² - N incorrect pairings.},
   author = {Radford, Alec and Kim, Jong Wook and Hallacy, Chris and Ramesh, Aditya and Goh, Gabriel and Agarwal, Sandhini and Sastry, Girish and Askell, Amanda and Mishkin, Pamela and Clark, Jack and Krueger, Gretchen and Sutskever, Ilya},
@@ -2167,19 +2002,6 @@
   year = {2021}
 }
 
-@inproceedings{song2021denoising,
-  abstract = {Denoising diffusion probabilistic models (DDPMs) have achieved high quality image generation without adversarial training, yet they require simulating a Markov chain for many steps in order to produce a sample. To accelerate sampling, we present denoising diffusion implicit models (DDIMs), a more efficient class of iterative implicit probabilistic models with the same training procedure as DDPMs.},
-  author = {Song, Jiaming and Meng, Chenlin and Ermon, Stefano},
-  booktitle = {International Conference on Learning Representations},
-  doi = {10.48550/arxiv.2010.02502},
-  file = {:/home/b/documents/inproceedings/song2021denoising.pdf:pdf},
-  openalex = {W3121370741},
-  pdf = {https://openreview.net/pdf?id=St1giarCHLP},
-  title = {Denoising Diffusion Implicit Models},
-  url = {https://openreview.net/forum?id=St1giarCHLP},
-  year = {2021}
-}
-
 @inproceedings{song2021scorebased,
   abstract = {Creating noise from data is easy; creating data from noise is generative modeling. We present a stochastic differential equation (SDE) that smoothly transforms a complex data distribution to a known prior distribution by slowly injecting noise, and a corresponding reverse-time SDE that transforms the prior distribution back into the data distribution by slowly removing the noise. Crucially, the reverse-time SDE depends only on the time-dependent gradient field (a.k.a., score) of the perturbed data distribution. By leveraging advances in score-based generative modeling, we can accurately estimate these scores with neural networks, and use numerical SDE solvers to generate samples. We show that this framework encapsulates previous approaches in score-based generative modeling and diffusion probabilistic modeling, allowing for new sampling procedures and new modeling capabilities. In particular, we introduce a predictor-corrector framework to correct errors in the evolution of the discretized reverse-time SDE. We also derive an equivalent neural ODE that samples from the same distribution as the SDE, but additionally enables exact likelihood computation, and improved sampling efficiency. In addition, we provide a new way to solve inverse problems with score-based models, as demonstrated with experiments on class-conditional generation, image inpainting, and colorization. Combined with multiple architectural improvements, we achieve record-breaking performance for unconditional image generation on CIFAR-10 with an Inception score of 9.89 and FID of 2.20, a competitive likelihood of 2.99 bits/dim, and demonstrate high fidelity generation of 1024×1024 images for the first time from a score-based generative model.},
   author = {Yang Song and Jascha Sohl-Dickstein and Diederik P. Kingma and Abhishek Kumar and Stefano Ermon and Ben Poole},
@@ -2211,37 +2033,6 @@
   year = {2021}
 }
 
-@inproceedings{song2021scorebased,
-  abstract = {Creating noise from data is easy; creating data from noise is generative modeling. We present a stochastic differential equation (SDE) that smoothly transforms a complex data distribution to a known prior distribution by slowly injecting noise, and a corresponding reverse-time SDE that transforms the prior distribution back into the data distribution by slowly removing the noise. Crucially, the reverse-time SDE depends only on the time-dependent gradient field (a.k.a., score) of the perturbed data distribution. By leveraging advances in score-based generative modeling, we can accurately estimate these scores with neural networks, and use numerical SDE solvers to generate samples. We show that this framework encapsulates previous approaches in score-based generative modeling and diffusion probabilistic modeling, allowing for new sampling procedures and new modeling capabilities. In particular, we introduce a predictor-corrector framework to correct errors in the evolution of the discretized reverse-time SDE. We also derive an equivalent neural ODE that samples from the same distribution as the SDE, but additionally enables exact likelihood computation, and improved sampling efficiency. In addition, we provide a new way to solve inverse problems with score-based models, as demonstrated with experiments on class-conditional generation, image inpainting, and colorization. Combined with multiple architectural improvements, we achieve record-breaking performance for unconditional image generation on CIFAR-10 with an Inception score of 9.89 and FID of 2.20, a competitive likelihood of 2.99 bits/dim, and demonstrate high fidelity generation of 1024×1024 images for the first time from a score-based generative model.},
-  author = {Song, Yang and Sohl-Dickstein, Jascha and Kingma, Diederik P. and Kumar, Abhishek and Ermon, Stefano and Poole, Ben},
-  booktitle = {International Conference on Learning Representations},
-  file = {:/home/b/documents/inproceedings/song2021scorebased.pdf:pdf},
-  note = {Oral, Outstanding Paper Award},
-  openalex = {W3121345697},
-  pdf = {https://openreview.net/pdf/ef0eadbe07115b0853e964f17aa09d811cd490f1.pdf},
-  publisher = {OpenReview.net},
-  series = {ICLR 2021},
-  title = {Score-Based Generative Modeling through Stochastic Differential Equations},
-  url = {https://openreview.net/forum?id=PxTIG12RRHS},
-  year = {2021}
-}
-
-@inproceedings{kingma2021variational,
-  abstract = {Diffusion-based generative models have demonstrated a capacity for perceptually impressive synthesis, but can they also be great likelihood-based models? We answer this in the affirmative, and introduce a family of diffusion-based generative models that obtain state-of-the-art likelihoods on standard image density estimation benchmarks. Unlike other diffusion-based models, our method allows for efficient optimization of the noise schedule jointly with the rest of the model. We show that the variational lower bound (VLB) simplifies to a remarkably short expression in terms of the signal-to-noise ratio of the diffused data, thereby improving our theoretical understanding of this model class. Using this insight, we prove an equivalence between several models proposed in the literature. In addition, we show that the continuous-time VLB is invariant to the noise schedule, except for the signal-to-noise ratio at its endpoints. This enables us to learn a noise schedule that minimizes the variance of the resulting VLB estimator, leading to faster optimization. Combining these advances with architectural improvements, we obtain state-of-the-art likelihoods on image density estimation benchmarks, outperforming autoregressive models that have dominated these benchmarks for many years, with often significantly faster optimization. In addition, we show how to use the model as part of a bits-back compression scheme, and demonstrate lossless compression rates close to the theoretical optimum. Code is available at https://github.com/google-research/vdm.},
-  author = {Kingma, Diederik P. and Salimans, Tim and Poole, Ben and Ho, Jonathan},
-  booktitle = {Advances in Neural Information Processing Systems},
-  editor = {Ranzato, M. and Beygelzimer, A. and Dauphin, Y. and Liang, P. S. and Vaughan, J. Wortman},
-  file = {:/home/b/documents/inproceedings/kingma2021variational.pdf:pdf},
-  openalex = {W3177150392},
-  pages = {21696--21707},
-  pdf = {https://proceedings.neurips.cc/paper/2021/file/b578f2a52a0229873fefc2a4b06377fa-Paper.pdf},
-  publisher = {Curran Associates, Inc.},
-  title = {Variational Diffusion Models},
-  url = {https://proceedings.neurips.cc/paper/2021/hash/b578f2a52a0229873fefc2a4b06377fa-Abstract.html},
-  volume = {34},
-  year = {2021}
-}
-
 @inproceedings{song2021maximum,
   abstract = {Score-based diffusion models synthesize samples by reversing a stochastic process that diffuses data to noise, and are trained by minimizing a weighted combination of score matching losses. The log-likelihood of score-based diffusion models can be tractably computed through a connection to continuous normalizing flows, but log-likelihood is not directly optimized by the weighted combination of score matching losses. We show that for a specific weighting scheme, the objective upper bounds the negative log-likelihood, thus enabling approximate maximum likelihood training of score-based diffusion models. We empirically observe that maximum likelihood training consistently improves the likelihood of score-based diffusion models across multiple datasets, stochastic processes, and model architectures. Our best models achieve negative log-likelihoods of 2.83 and 3.76 bits/dim on CIFAR-10 and ImageNet 32×32 without any data augmentation. Our results can be viewed as a generalization of both the de Bruijn identity in information theory and the evidence lower bound in variational inference.},
   author = {Yang Song and Conor Durkan and Iain Murray and Stefano Ermon},
@@ -2264,23 +2055,6 @@
   publisher = {OpenReview.net},
   title = {Denoising Diffusion Implicit Models},
   url = {https://openreview.net/forum?id=St1giarCHLP},
-  year = {2021}
-}
-
-@inproceedings{dhariwal2021diffusion,
-  abstract = {We show that diffusion models can achieve image sample quality superior to the current state-of-the-art generative models. We achieve this on unconditional image synthesis by finding a better architecture through a series of ablations. For conditional image synthesis, we further improve sample quality with classifier guidance: a simple, compute-efficient method for trading off diversity for fidelity using gradients from a classifier. We achieve an FID of 2.97 on ImageNet 128×128, 4.59 on ImageNet 256×256, and 7.72 on ImageNet 512×512, and we match BigGAN-deep even with as few as 25 forward passes per sample, all while maintaining better coverage of the distribution. Finally, we find that classifier guidance combines well with upsampling models, further improving FID to 3.94 on ImageNet 256×256 and 3.85 on ImageNet 512×512.},
-  address = {Red Hook, NY, USA},
-  author = {Dhariwal, Prafulla and Nichol, Alexander},
-  booktitle = {Advances in Neural Information Processing Systems},
-  file = {:/home/b/documents/inproceedings/dhariwal2021diffusion.pdf:pdf},
-  openalex = {W3162926177},
-  pages = {8780--8794},
-  pdf = {https://proceedings.nips.cc/paper/2021/file/49ad23d1ec9fa4bd8d77d02681df5cfa-Paper.pdf},
-  publisher = {Curran Associates, Inc.},
-  series = {NIPS},
-  title = {Diffusion Models Beat GANs on Image Synthesis},
-  url = {https://papers.nips.cc/paper/2021/hash/49ad23d1ec9fa4bd8d77d02681df5cfa-Abstract.html},
-  volume = {34},
   year = {2021}
 }
 
@@ -2314,20 +2088,6 @@
   year = {2021}
 }
 
-@inproceedings{ho2020denoising,
-  abstract = {We present high quality image synthesis results using diffusion probabilistic models, a class of latent variable models inspired by considerations from nonequilibrium thermodynamics. Our best results are obtained by training on a weighted variational bound designed according to a novel connection between diffusion probabilistic models and denoising score matching with Langevin dynamics, and our models naturally admit a progressive lossy decompression scheme that can be interpreted as a generalization of autoregressive decoding. On the unconditional CIFAR10 dataset, we obtain an Inception score of 9.46 and a state-of-the-art FID score of 3.17. On 256x256 LSUN, we obtain sample quality similar to ProgressiveGAN. Our implementation is available at https://github.com/hojonathanho/diffusion},
-  author = {Ho, Jonathan and Jain, Ajay and Abbeel, Pieter},
-  booktitle = {Advances in Neural Information Processing Systems},
-  file = {:/home/b/documents/inproceedings/ho2020denoising.pdf:pdf},
-  openalex = {W3036167779},
-  pages = {6840--6851},
-  pdf = {https://proceedings.neurips.cc/paper/2020/file/4c5bcfec8584af0d967f1ab10179ca4b-Paper.pdf},
-  publisher = {Curran Associates, Inc.},
-  title = {Denoising Diffusion Probabilistic Models},
-  volume = {33},
-  year = {2020}
-}
-
 @inproceedings{nijkamp2020anatomy,
   abstract = {This study investigates the effects of Markov chain Monte Carlo (MCMC) sampling in unsupervised Maximum Likelihood (ML) learning. Our attention is restricted to the family of unnormalized probability densities for which the negative log density (or energy function) is a ConvNet. We find that many of the techniques used to stabilize training in previous studies are not necessary. ML learning with a ConvNet potential requires only a few hyper-parameters and no regularization. Using this minimal framework, we identify a variety of ML learning outcomes that depend solely on the implementation of MCMC sampling. On one hand, we show that it is easy to train an energy-based model which can sample realistic images with short-run Langevin. On the other hand, we show that ML can be effective and stable even when MCMC samples have much higher energy than true steady-state samples throughout training. This study suggests that MCMC-based ML provides a simple and general approach to learning energy-based models, without many of the bells-and-whistles used in recent studies.},
   author = {Erik Nijkamp and Mitch Hill and Tian Han and Song-Chun Zhu and Ying Nian Wu},
@@ -2356,20 +2116,6 @@
   url = {https://proceedings.neurips.cc/paper/2020/hash/4c5bcfec8584af0d967f1ab10179ca4b-Abstract.html},
   volume = {33},
   year = {2020}
-}
-
-@inproceedings{song2019generative,
-  abstract = {We introduce a new generative model where samples are produced via Langevin dynamics using gradients of the data distribution estimated with score matching. Because gradients can be ill-defined and hard to estimate when the data resides on low-dimensional manifolds, we perturb the data with different levels of Gaussian noise, and jointly estimate the corresponding scores, i.e., the vector fields of gradients of the perturbed data distribution for all noise levels.},
-  author = {Yang Song and Stefano Ermon},
-  booktitle = {Advances in Neural Information Processing Systems},
-  file = {:/home/b/documents/inproceedings/song2019generative.pdf:pdf},
-  note = {Oral},
-  openalex = {W2959300817},
-  pages = {11895--11907},
-  pdf = {https://proceedings.neurips.cc/paper/2019/file/3001ef257407d5a371a96dcd947c7d93-Paper.pdf},
-  title = {Generative Modeling by Estimating Gradients of the Data Distribution},
-  volume = {32},
-  year = {2019}
 }
 
 @inproceedings{song2019generative,

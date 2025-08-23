@@ -152,19 +152,6 @@
   year = {2025}
 }
 
-@article{farebrother2025temporal,
-  abstract = {Predictive models of the future are fundamental for an agent's ability to reason and plan. A common strategy learns a world model and unrolls it step-by-step at inference, where small errors can rapidly compound. Geometric Horizon Models (GHMs) offer a compelling alternative by directly making predictions of future states, avoiding cumulative inference errors. While GHMs can be learned through a generative analog to temporal difference learning, existing methods suffer from bootstrapping predictions during training and struggle with long-horizon predictions. This paper introduces Temporal Difference Flows (TD-Flow), which uses a novel Bellman equation on probability paths with flow-matching techniques to learn accurate GHMs at over 5x the horizon length of prior methods. Theoretically, we establish a new convergence result and attribute TD-Flow's effectiveness primarily to reduced gradient variance during training.},
-  archiveprefix = {arXiv},
-  author = {Farebrother, Jesse and Pirotta, Matteo and Tirinzoni, Andrea and Munos, Rémi and Lazaric, Alessandro and Touati, Ahmed},
-  eprint = {2503.09817},
-  journal = {arXiv preprint arXiv:2503.09817},
-  month = {3},
-  primaryclass = {cs.LG},
-  title = {Temporal Difference Flows},
-  url = {https://arxiv.org/abs/2503.09817},
-  year = {2025}
-}
-
 @article{gallici2024simplifying,
   abstract = {Q-learning played a foundational role in reinforcement learning (RL). However, TD algorithms with off-policy data, such as Q-learning, or nonlinear function approximation like deep neural networks require several additional tricks to stabilise training, primarily a large replay buffer and target networks. The delayed updating of frozen network parameters in the target network harms the sample efficiency and, similarly, the large replay buffer introduces memory and implementation overheads. In this work, we investigate whether it is possible to accelerate and simplify off-policy TD training while maintaining its stability. We propose PQN, a simplified version of DQN that leverages LayerNorm and ℓ2 regularisation to get rid of the target networks while maintaining a high level of training stability. Our key theoretical result demonstrates for the first time that regularisation techniques such as LayerNorm can yield provably convergent TD algorithms. We empirically validate our theoretical results on Baird's counterexample, a challenging domain that is provably divergent for off-policy methods. We then demonstrate that PQN is competitive with more complex methods such as Rainbow, PPO-RNN, QMix while being up to 50× faster than traditional DQN.},
   author = {Gallici, Matteo and Fellows, Mattie and Ellis, Benjamin and Pou, Bartomeu and Masmitja, Ivan and Foerster, Jakob Nicolaus and Martin, Mario},
@@ -431,22 +418,6 @@
   pdf = {https://arxiv.org/pdf/2410.15595},
   primaryclass = {cs.LG},
   title = {A Comprehensive Survey of Direct Preference Optimization: Datasets, Theories, Variants, and Applications},
-  url = {https://arxiv.org/abs/2410.15595},
-  year = {2024}
-}
-
-@misc{xiao2024comprehensivedpo,
-  abstract = {With the rapid advancement of large language models (LLMs), aligning policy models with human preferences has become increasingly critical. Direct Preference Optimization (DPO) has emerged as a promising approach for alignment, acting as an RL-free alternative to Reinforcement Learning from Human Feedback (RLHF). Despite DPO's various advancements and inherent limitations, an in-depth review of these aspects was lacking in the literature. This work addresses this gap by presenting a comprehensive review of the challenges and opportunities in DPO. We categorize recent studies on DPO based on key research questions to provide a thorough understanding of DPO's current landscape. We propose several future research directions to offer insights on model alignment for the research community.},
-  archiveprefix = {arXiv},
-  author = {Xiao, Wenyi and Wang, Zechuan and Gan, Leilei and Zhao, Shuai and Li, Zongrui and Lei, Ruirui and He, Wanggui and Tuan, Luu Anh and Chen, Long and Jiang, Hao and Zhao, Zhou and Wu, Fei},
-  doi = {10.48550/arxiv.2410.15595},
-  eprint = {2410.15595},
-  file = {:/home/b/documents/misc/xiao2024comprehensivedpo.pdf:pdf},
-  month = {10},
-  openalex = {W4404088808},
-  pdf = {https://arxiv.org/pdf/2410.15595},
-  primaryclass = {cs.LG},
-  title = {A Comprehensive Survey of Datasets, Theories, Variants, and Applications in Direct Preference Optimization},
   url = {https://arxiv.org/abs/2410.15595},
   year = {2024}
 }
@@ -1279,33 +1250,6 @@
   year = {2020}
 }
 
-@inproceedings{kumar2020conservative,
-  abstract = {Effectively leveraging large, previously collected datasets in reinforcement learning (RL) is a key challenge for large-scale real-world applications. Offline RL algorithms promise to learn effective policies from previously-collected, static datasets without further interaction. However, in practice, offline RL presents a major challenge, and standard off-policy RL methods can fail due to overestimation of values induced by the distributional shift between the dataset and the learned policy, especially when training on complex and multi-modal data distributions. The paper proposes conservative Q-learning (CQL), which aims to address these limitations by learning a conservative Q-function such that the expected value of a policy under this Q-function lower-bounds its true value.},
-  author = {Kumar, Aviral and Zhou, Aurick and Tucker, George and Levine, Sergey},
-  booktitle = {Advances in Neural Information Processing Systems},
-  editor = {Larochelle, H. and Ranzato, M. and Hadsell, R. and Balcan, M. F. and Lin, H.},
-  file = {:/home/b/documents/inproceedings/kumar2020conservative.pdf:pdf},
-  pages = {1179--1191},
-  pdf = {https://proceedings.neurips.cc/paper/2020/file/0d2b2061826a5df3221116a5085a6052-Paper.pdf},
-  title = {Conservative Q-Learning for Offline Reinforcement Learning},
-  url = {https://proceedings.neurips.cc/paper/2020/hash/0d2b2061826a5df3221116a5085a6052-Abstract.html},
-  volume = {33},
-  year = {2020}
-}
-
-@inproceedings{xu2020finitetimepbrl,
-  abstract = {Preference-based Reinforcement Learning (PbRL) replaces reward values in traditional reinforcement learning by preferences to better elicit human opinion on the target objective. Despite promising results in applications, the theoretical understanding of PbRL is still in its infancy. This paper presents the first finite-time analysis for general PbRL problems. We first show that a unique optimal policy may not exist if preferences over trajectories are deterministic for PbRL. If preferences are stochastic, and the preference probability relates to the hidden reward values, we present algorithms for PbRL, both with and without a simulator, that are able to identify the best policy up to accuracy $ε$ with high probability.},
-  author = {Yichong Xu and Ruosong Wang and Lin F. Yang and Aarti Singh and Artur Dubrawski},
-  booktitle = {Advances in Neural Information Processing Systems},
-  file = {:/home/b/documents/inproceedings/xu2020finitetimepbrl.pdf:pdf},
-  openalex = {W3099643187},
-  pages = {18784--18794},
-  pdf = {https://papers.nips.cc/paper/2020/file/d9d3837ee7981e8c064774da6cdd98bf-Paper.pdf},
-  title = {Preference-based Reinforcement Learning with Finite-Time Guarantees},
-  volume = {33},
-  year = {2020}
-}
-
 @inproceedings{burda2019exploration,
   abstract = {We introduce an exploration bonus for deep reinforcement learning methods that is easy to implement and adds minimal overhead to the computation performed. The bonus is the error of a neural network predicting features of the observations given by a fixed randomly initialized neural network. We also introduce a method to flexibly combine intrinsic and extrinsic rewards. We find that the random network distillation bonus combined with this increased flexibility enables significant progress on several hard exploration Atari games. Most notably, Random Network Distillation establishes the first method to exceed average human performance on Montezuma's Revenge without using demonstrations or having access to the underlying state of the game.},
   author = {Burda, Yuri and Edwards, Harrison and Storkey, Amos and Klimov, Oleg},
@@ -1869,25 +1813,6 @@
   year = {1992}
 }
 
-@article{watkins1992qlearning,
-  abstract = {Q-learning (Watkins, 1989) is a simple way for agents to learn how to act optimally in controlled Markovian domains. It amounts to an incremental method for dynamic programming which imposes limited computational demands. It works by successively improving its evaluations of the quality of particular actions at particular states. This paper presents and proves in detail a convergence theorem for Q-learning based on that outlined in Watkins (1989). We show that Q-learning converges to the optimum action-values with probability 1 so long as all actions are repeatedly sampled in all states and the action-values are represented discretely. We also sketch extensions to the cases of non-discounted, but absorbing, Markov environments, and where many Q values can be changed each iteration, rather than just one.},
-  author = {Watkins, Christopher J. C. H. and Dayan, Peter},
-  doi = {10.1007/BF00992698},
-  file = {:/home/b/documents/article/watkins1992qlearning.pdf:pdf},
-  issn = {0885-6125},
-  journal = {Machine Learning},
-  month = {5},
-  number = {3-4},
-  openalex = {W32403112},
-  pages = {279--292},
-  pdf = {https://link.springer.com/content/pdf/10.1007/BF00992698.pdf},
-  publisher = {Springer},
-  title = {Technical Note: Q-learning},
-  url = {https://doi.org/10.1007/BF00992698},
-  volume = {8},
-  year = {1992}
-}
-
 @article{williams1992reinforce,
   abstract = {This article presents a general class of associative reinforcement learning algorithms for connectionist networks containing stochastic units. These algorithms, called REINFORCE algorithms, are shown to make weight adjustments in a direction that lies along the gradient of expected reinforcement in both immediate-reinforcement tasks and certain limited forms of delayed-reinforcement tasks, and they do this without explicitly computing gradient estimates or even storing information from which such estimates could be computed. Specific examples of such algorithms are presented, some of which bear a close relationship to certain existing algorithms while others are novel but potentially interesting in their own right. Also given are results that show how such algorithms can be naturally integrated with backpropagation. We close with a brief discussion of a number of additional issues surrounding the use of such algorithms, including what is known about their limiting behaviors as well as further considerations that might be used to help develop similar but potentially more powerful reinforcement learning algorithms.},
   author = {Williams, Ronald J.},
@@ -1980,20 +1905,6 @@
   year = {1960}
 }
 
-@book{howard1960dynamic,
-  abstract = {Presents an analytic structure for a decision-making system that is at the same time both general enough to be descriptive and yet computationally feasible. Based on the Markov process as a system model, and uses an iterative technique like dynamic programming as its optimization method. Focuses on analyzing processes of indefinite duration that will make many transitions before termination.},
-  address = {Cambridge},
-  author = {Howard, Ronald A.},
-  isbn = {9780262080095},
-  lccn = {60011030},
-  note = {Outgrowth of the author's Sc.D. thesis submitted to the Department of Electrical Engineering, M.I.T., in June, 1958},
-  pages = {viii + 136},
-  publisher = {Technology Press of Massachusetts Institute of Technology},
-  series = {Technology Press Research Monographs},
-  title = {Dynamic Programming and Markov Processes},
-  year = {1960}
-}
-
 @book{bellman1957dynamic,
   abstract = {This classic book introduces dynamic programming, presented by the scientist who coined the term and developed the theory in its early stages. The book provides a mathematical theory of multistage decision processes and explores optimal policies using a functional equation approach. It covers topics including inventory equations, bottleneck problems, and game strategies, requiring only a basic mathematical foundation including calculus. The work serves as a mathematical tool for treating complex problems across diverse fields like mathematical economics, logistics, scheduling theory, communication theory, and control processes.},
   author = {Bellman, Richard},
@@ -2005,20 +1916,6 @@
   publisher = {Princeton University Press},
   title = {Dynamic Programming},
   url = {https://press.princeton.edu/books/hardcover/9780691125559/dynamic-programming},
-  year = {1957}
-}
-
-@book{bellman1957dynamic,
-  abstract = {An introduction to the mathematical theory of multistage decision processes, this text takes a 'functional equation' approach to the discovery of optimum policies. Written by a leading developer of such policies, it presents a series of methods, uniqueness and existence theorems, and examples for solving the relevant equations. The text examines existence and uniqueness theorems, the optimal inventory equation, bottleneck problems in multistage production processes, a new formalism in the calculus of variation, strategies behind multistage games, and Markovian decision processes. The book is written at a moderate mathematical level, requiring only a basic foundation in mathematics, including calculus.},
-  address = {Princeton, N.J.},
-  author = {Richard E. Bellman},
-  isbn = {9780691079516},
-  keywords = {dynamic programming, optimization, decision processes, operations research, mathematical programming},
-  note = {Dover reprint available with ISBN 0486428095},
-  pages = {xxv+342},
-  publisher = {Princeton University Press},
-  title = {Dynamic Programming},
-  url = {https://press.princeton.edu/books/paperback/9780691146683/dynamic-programming},
   year = {1957}
 }
 

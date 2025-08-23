@@ -1,4 +1,4 @@
-@article{larocca2025barren,
+@article{Larocca2025barren,
   abstract = {Variational quantum computing offers a flexible computational paradigm with applications in diverse areas. However, a key obstacle to realizing their potential is the Barren Plateau (BP) phenomenon. When a model exhibits a BP, its parameter optimization landscape becomes exponentially flat and featureless as the problem size increases. Importantly, all the moving pieces of an algorithm---choices of ansatz, initial state, observable, loss function and hardware noise---can lead to BPs when ill-suited. Due to the significant impact of BPs on trainability, researchers have dedicated considerable effort to develop theoretical and heuristic methods to understand and mitigate their effects. As a result, the study of BPs has become a thriving area of research, influencing and cross-fertilizing other fields such as quantum optimal control, tensor networks, and learning theory. This article provides a comprehensive review of the current understanding of the BP phenomenon.},
   author = {Larocca, Martin and Thanasilp, Supanut and Wang, Samson and Sharma, Kunal and Biamonte, Jacob and Coles, Patrick J and Cincio, Lukasz and McClean, Jarrod R and Holmes, Zoë and Cerezo, M},
   doi = {10.1038/s42254-025-00813-9},
@@ -60,23 +60,6 @@
   number = {6},
   openalex = {W4411091673},
   pages = {062410},
-  publisher = {American Physical Society},
-  title = {Quantum machine learning for multiclass classification beyond kernel methods},
-  volume = {111},
-  year = {2025}
-}
-
-@article{chen2025quantum,
-  abstract = {Quantum machine learning is considered one of the current research fields with great potential. In recent years, Havlíček et al. proposed a quantum machine learning algorithm with quantum-enhanced feature spaces, which effectively addressed a binary classification problem on a superconducting processor and offered a potential pathway to achieving quantum advantage. However, a straightforward binary classification algorithm falls short in solving multiclass classification problems. In this paper, the authors propose a quantum algorithm that rigorously demonstrates that quantum kernel methods enhance the efficiency of multiclass classification in real-world applications, providing quantum advantage. To demonstrate this, they design six distinct quantum kernels within the quantum algorithm to map input data into quantum state spaces, estimate corresponding quantum kernel matrices, and use quantum simulations to show the algorithm outperforms classical counterparts in handling six real-world multiclass classification problems. The results demonstrate that the quantum algorithm achieves superior classification and better generalization performance relative to classical approaches.},
-  author = {Ding, Chao and Wang, Shi and Wang, Yaonan and Gao, Weibo},
-  doi = {10.1103/PhysRevA.111.062410},
-  file = {:/home/b/documents/article/chen2025quantum.pdf:pdf},
-  journal = {Physical Review A},
-  month = {6},
-  number = {6},
-  openalex = {W4404404155},
-  pages = {062410},
-  pdf = {https://arxiv.org/pdf/2411.02913.pdf},
   publisher = {American Physical Society},
   title = {Quantum machine learning for multiclass classification beyond kernel methods},
   volume = {111},
@@ -829,38 +812,6 @@
   year = {2022}
 }
 
-@inproceedings{wang2022concentration,
-  abstract = {Variational quantum algorithms have been acknowledged as the leading strategy to realize near-term quantum advantages in meaningful tasks, including machine learning and optimization. When applied to tasks involving classical data, such algorithms generally begin with data encoding circuits and train quantum neural networks (QNNs) to minimize target functions. Although QNNs have been widely studied to improve these algorithms' performance on practical tasks, there is a gap in systematically understanding the influence of data encoding on the eventual performance. In this paper, we make progress in filling this gap by considering the common data encoding strategies based on parameterized quantum circuits. We prove that, under reasonable assumptions, the distance between the average encoded state and the maximally mixed state could be explicitly upper-bounded with respect to the width and depth of the encoding circuit. This result in particular implies that the average encoded state will concentrate on the maximally mixed state at an exponential speed on depth. Such concentration seriously limits the capabilities of quantum classifiers, and strictly restricts the distinguishability of encoded states from a quantum information perspective. To support our findings, we numerically verify these results on both synthetic and public data sets. Our results highlight the significance of quantum data encoding and may shed light on the future design of quantum encoding strategies.},
-  author = {Li, Guangxi and Ye, Ruilin and Zhao, Xuanqiang and Wang, Xin},
-  booktitle = {Advances in Neural Information Processing Systems},
-  editor = {Koyejo, S. and Mohamed, S. and Agarwal, A. and Belgrave, D. and Cho, K. and Oh, A.},
-  file = {:/home/b/documents/inproceedings/wang2022concentration.pdf:pdf},
-  openalex = {W4283076339},
-  pages = {19586--19600},
-  pdf = {https://proceedings.neurips.cc/paper_files/paper/2022/file/7b2d0730df1edd8c97df4bf83696025d-Paper-Conference.pdf},
-  publisher = {Curran Associates, Inc.},
-  title = {Concentration of data encoding in parameterized quantum circuits},
-  url = {https://proceedings.neurips.cc/paper_files/paper/2022/hash/7b2d0730df1edd8c97df4bf83696025d-Abstract-Conference.html},
-  volume = {35},
-  year = {2022}
-}
-
-@article{larocca2022diagnosing,
-  abstract = {Variational Quantum Algorithms (VQAs) have received considerable attention due to their potential for achieving near-term quantum advantage. However, more work is needed to understand scalability. One known scaling result for VQAs is barren plateaus, where certain circumstances lead to exponentially vanishing gradients. It is common folklore that problem-inspired ansatzes avoid barren plateaus, but in fact, very little is known about gradient scaling. In this work, we employ tools from quantum optimal control to develop a framework that can diagnose the presence or absence of barren plateaus in ansatzes. Such include Alternating Operator Ansatz (QAOA), Hamiltonian (HVA), and others. With our framework, we prove avoiding these is not always guaranteed. Specifically, we show a VQA depends on the degree of controllability of the system, hence can be diagnosed through dynamical Lie algebra generators of the ansatz. We analyze the existence of QAOA and HVA ansatzes, highlight the role of input state, as different initial states lead to different barren plateaus. Taken together, our results provide trainability-aware ansatz design strategies that do not come at the cost of extra resources. Moreover, we show a no-go result for obtaining ground states with variational approaches in certain controllable systems such as spin glasses. Our work establishes a link between the dimension of the Lie algebra and barren plateaus.},
-  author = {Larocca, Martin and Czarnik, Piotr and Sharma, Kunal and Muraleedharan, Gopikrishnan and Coles, Patrick J. and Cerezo, M.},
-  doi = {10.22331/q-2022-09-29-824},
-  file = {:/home/b/documents/article/larocca2022diagnosing.pdf:pdf},
-  journal = {Quantum},
-  month = {9},
-  openalex = {W3166275705},
-  pages = {824},
-  pdf = {https://quantum-journal.org/papers/q-2022-09-29-824/pdf/},
-  publisher = {Verein zur Förderung des Open Access Publizierens in den Quantenwissenschaften},
-  title = {Diagnosing barren plateaus with tools from quantum optimal control},
-  url = {https://doi.org/10.22331/q-2022-09-29-824},
-  volume = {6},
-  year = {2022}
-}
 
 @article{sharma2022learning,
   author = {Sharma, Kunal and Khatri, Sumeet and Cerezo, Marco and Coles, Patrick J},
@@ -886,17 +837,6 @@
   publisher = {Verein zur Förderung des Open Access Publizierens in den Quantenwissenschaften},
   title = {Diagnosing Barren Plateaus with Tools from Quantum Optimal Control},
   volume = {6},
-  year = {2022}
-}
-
-@article{li2022quantum,
-  author = {Li, Yao and Zhao, Xiumei and Wang, Wendong},
-  journal = {Quantum Information Processing},
-  number = {9},
-  pages = {329},
-  publisher = {Springer},
-  title = {Quantum-enhanced machine learning for sentiment analysis},
-  volume = {21},
   year = {2022}
 }
 
@@ -1124,13 +1064,6 @@
   year = {2021}
 }
 
-@article{kubler2021practical,
-  author = {Kübler, Jonas M and Buchholz, Simon and Schölkopf, Bernhard},
-  journal = {arXiv preprint arXiv:2102.08562},
-  title = {On the practical usefulness of quantum kernel machines},
-  year = {2021}
-}
-
 @article{holmes2021barren,
   abstract = {Scrambling processes, which rapidly spread entanglement through many-body quantum systems, are difficult to investigate using standard techniques, but are relevant to quantum chaos and thermalization. In this Letter, we ask if quantum machine learning (QML) could be used to investigate such processes. We prove a no-go theorem for learning an unknown scrambling process with QML, showing that any variational ansatz is highly probable to have a barren plateau landscape, i.e., cost gradients that vanish exponentially in the system size. This implies that the required resources scale exponentially even when strategies to avoid such scaling (e.g., from ansatz-based barren plateaus or No-Free-Lunch theorems) are employed. Furthermore, we numerically and analytically extend our results to approximate scramblers. Hence, our work places generic limits on the learnability of unitaries when lacking prior information.},
   author = {Holmes, Zoë and Arrasmith, Andrew and Yan, Bin and Coles, Patrick J and Albrecht, Andreas and Sornborger, Andrew T},
@@ -1266,21 +1199,6 @@
   pdf = {http://arxiv.org/pdf/1910.08980},
   title = {Obstacles to State Preparation and Variational Optimization from Symmetry Protection},
   volume = {125},
-  year = {2020}
-}
-
-@article{lloyd2020quantum,
-  abstract = {Quantum classifiers are trainable quantum circuits used as machine learning models. The first part of the circuit implements a quantum feature map that encodes classical inputs into quantum states, embedding the data in a high-dimensional Hilbert space; the second part of the circuit executes a quantum measurement interpreted as the output of the model. Usually, the measurement is trained to distinguish quantum-embedded data. We propose to instead train the first part of the circuit -- the embedding -- with the objective of maximally separating data classes in Hilbert space, a strategy we call quantum metric learning. As a result, the measurement minimizing a linear classification loss is already known and depends on the metric used: for embeddings separating data using the l1 or trace distance, this is the Helstrom measurement, while for the l2 or Hilbert-Schmidt distance, it is a simple overlap measurement. This approach provides a powerful analytic framework for quantum machine learning and eliminates a major component in current models, freeing up more precious resources to best leverage the capabilities of near-term quantum information processors.},
-  archiveprefix = {arXiv},
-  author = {Lloyd, Seth and Schuld, Maria and Ijaz, Aroosa and Izaac, Josh and Killoran, Nathan},
-  eprint = {2001.03622},
-  file = {:/home/b/documents/article/lloyd2020quantum.pdf:pdf},
-  journal = {arXiv preprint arXiv:2001.03622},
-  month = {1},
-  openalex = {W4287905360},
-  pdf = {https://arxiv.org/pdf/2001.03622.pdf},
-  primaryclass = {quant-ph},
-  title = {Quantum embeddings for machine learning},
   year = {2020}
 }
 
