@@ -1,0 +1,487 @@
+@techreport{baraff1997introduction,
+  abstract = {An introduction to physically based modeling for rigid body simulation focusing on unconstrained rigid body dynamics. The solution is computed by numerically timestepping the ordinary differential equations of rigid body motion, derived from Newton's 2nd law, and conservation of linear momentum and angular momentum.},
+  author = {Baraff, David},
+  file = {:/home/b/documents/techreport/baraff1997introduction.pdf:pdf},
+  institution = {SIGGRAPH '97 Course Notes},
+  note = {URL: r̆lhttps://www.cs.cmu.edu/~baraff/sigcourse/notesd1.pdf},
+  pages = {D1--D31},
+  pdf = {https://www.cs.cmu.edu/~baraff/sigcourse/notesd1.pdf},
+  publisher = {ACM},
+  title = {An Introduction to Physically Based Modeling: Rigid Body Simulation I---Unconstrained Rigid Body Dynamics},
+  year = {1997}
+}
+
+@inproceedings{baraff1993nonpenetrating,
+  abstract = {This paper surveys recent work on dynamic simulation of rigid bodies with non-interpenetration constraints. The problems of collision detection and contact force determination are discussed, along with both frictionless and frictional collision and contact. For the collision-detection problem, methods which deal with objects' motion as a single continuous function of time are compared and contrasted.},
+  address = {Barcelona, Spain},
+  author = {Baraff, David},
+  booktitle = {Proceedings of Eurographics '93 State of the Art Reports},
+  file = {:/home/b/documents/inproceedings/baraff1993nonpenetrating.pdf:pdf},
+  month = {9},
+  note = {URL: r̆lhttps://www.ri.cmu.edu/publications/non-penetrating-rigid-body-simulation/},
+  pages = {24},
+  pdf = {https://www.cs.cmu.edu/~baraff/papers/eg93.pdf},
+  publisher = {Eurographics Association},
+  title = {Non-penetrating rigid body simulation},
+  url = {https://www.ri.cmu.edu/publications/non-penetrating-rigid-body-simulation/},
+  year = {1993}
+}
+
+@book{featherstone2008rigid,
+  abstract = {Rigid Body Dynamics Algorithms presents the subject of computational rigid-body dynamics through the medium of spatial 6D vector notation. It explains how to model a rigid-body system and how to analyze it, and it presents the most comprehensive collection of the best rigid-body dynamics algorithms to be found in a single source. The use of spatial vector notation greatly reduces the volume of algebra which allows systems to be described using fewer equations and fewer quantities.},
+  address = {New York, NY},
+  author = {Featherstone, Roy},
+  doi = {10.1007/978-1-4899-7560-7},
+  isbn = {978-0-387-74314-1},
+  note = {URL: r̆lhttps://link.springer.com/book/10.1007/978-0-387-74314-1},
+  pages = {IX, 272},
+  publisher = {Springer New York},
+  title = {Rigid Body Dynamics Algorithms},
+  url = {https://link.springer.com/book/10.1007/978-0-387-74314-1},
+  year = {2008}
+}
+
+@article{mller2020detailed,
+  abstract = {We present a rigid body simulation method that can resolve small temporal and spatial details by using a quasi explicit integration scheme that is unconditionally stable. Traditional rigid body simulators linearize constraints because they operate on the velocity level or solve the equations of motion implicitly thereby freezing the constraint directions for multiple iterations. Our method always works with the most recent constraint directions. This allows us to trace high speed motion of objects colliding against curved geometry, to reduce the number of constraints, to increase the robustness of the simulation, and to simplify the formulation of the solver. In this paper we provide all the details to implement a fully fledged rigid body solver that handles contacts, a variety of joint types and the interaction with soft objects.},
+  author = {Müller, Matthias and Macklin, Miles and Chentanez, Nuttapong and Jeschke, Stefan and Kim, Tae-Yong},
+  doi = {10.1111/cgf.14105},
+  file = {:/home/b/documents/article/mller2020detailed.pdf:pdf},
+  journal = {Computer Graphics Forum},
+  note = {Proc. ACM SIGGRAPH/Eurographics Symposium on Computer Animation},
+  number = {8},
+  pages = {101--112},
+  pdf = {https://matthias-research.github.io/pages/publications/PBDBodies.pdf},
+  title = {Detailed Rigid Body Simulation with Extended Position Based Dynamics},
+  url = {https://onlinelibrary.wiley.com/doi/abs/10.1111/cgf.14105},
+  volume = {39},
+  year = {2020}
+}
+
+@article{tan2012soft,
+  abstract = {We present a physically-based system to simulate and control the locomotion of soft body characters without skeletons. We use the finite element method to simulate the deformation of the soft body, and we instrument a character with muscle fibers to allow it to actively control its shape. To perform locomotion, we use a variety of intuitive controls such as moving a point on the character, specifying the center of mass or the angular momentum, and maintaining balance. To control the locomotion, we formulate and solve a quadratic program with complementary conditions (QPCC) to plan the muscle contraction and the contact forces simultaneously.},
+  articleno = {26},
+  author = {Tan, Jie and Turk, Greg and Liu, C. Karen},
+  file = {:/home/b/documents/article/tan2012soft.pdf:pdf},
+  journal = {ACM Transactions on Graphics},
+  month = {7},
+  note = {Proc. ACM SIGGRAPH},
+  number = {4},
+  numpages = {11},
+  pdf = {https://faculty.cc.gatech.edu/~turk/my_papers/soft_body_locomotion.pdf},
+  title = {Soft Body Locomotion},
+  url = {http://www.jie-tan.net/project/softBodyLocomotion.html},
+  volume = {31},
+  year = {2012}
+}
+
+@inproceedings{mller2002stable,
+  abstract = {The linear strain measures that are commonly used in real-time animations of deformable objects yield fast and stable simulations. However, they are not suitable for large deformations. Recently, more realistic results have been achieved in computer graphics by using Green's non-linear strain tensor, but the non-linearity makes the simulation more costly and introduces numerical problems. In this paper, we present a new simulation technique that is stable and fast like linear models, but without the disturbing artifacts that occur with large deformations.},
+  address = {San Antonio, TX, USA},
+  author = {Müller, Matthias and Dorsey, Julie and McMillan, Leonard and Jagnow, Robert and Cutler, Barbara},
+  booktitle = {Proceedings of the 2002 ACM SIGGRAPH/Eurographics symposium on Computer animation},
+  doi = {10.1145/545261.545269},
+  file = {:/home/b/documents/inproceedings/mller2002stable.pdf:pdf},
+  pages = {49--54},
+  pdf = {https://matthias-research.github.io/pages/publications/warp.pdf},
+  publisher = {ACM},
+  title = {Stable real-time deformations},
+  url = {https://dl.acm.org/doi/10.1145/545261.545269},
+  year = {2002}
+}
+
+@article{mller2007position,
+  abstract = {The most popular approaches for the simulation of dynamic systems in computer graphics are force based. Internal and external forces are accumulated from which accelerations are computed based on Newton's second law of motion. A time integration method is then used to update the velocities and finally the positions of the object. A few simulation methods (most rigid body simulators) use impulse based dynamics and directly manipulate velocities. In this paper we present an approach which omits the velocity layer as well and immediately works on the positions. The main advantage of a position based approach is its controllability. Overshooting problems of explicit integration schemes in force based systems can be avoided. In addition, collision constraints can be handled easily and penetrations can be resolved completely by projecting points to valid locations.},
+  author = {Müller, Matthias and Heidelberger, Bruno and Hennix, Marcus and Ratcliff, John},
+  doi = {10.1016/j.jvcir.2007.01.005},
+  file = {:/home/b/documents/article/mller2007position.pdf:pdf},
+  journal = {Journal of Visual Communication and Image Representation},
+  month = {4},
+  number = {2},
+  pages = {109--118},
+  pdf = {https://matthias-research.github.io/pages/publications/posBasedDyn.pdf},
+  title = {Position Based Dynamics},
+  url = {https://www.sciencedirect.com/science/article/abs/pii/S1047320307000065},
+  volume = {18},
+  year = {2007}
+}
+
+@article{matyka2004pressure,
+  abstract = {Motivated by existing models used for soft body simulation which are rather complex to implement, we present a novel technique which is based on simple laws of physics and gives high quality results in real-time. We base the implementation on simple thermodynamics laws and use the Clausius-Clapeyron state equation for pressure calculation. In addition, this provides us with a pressure force that is accumulated into a force accumulator of a 3D mesh object by using an existing spring-mass engine. Finally after integration of Newtons second law we obtain the behavior of a soft body with fixed or non-fixed air pressure inside of it.},
+  archiveprefix = {arXiv},
+  author = {Matyka, Maciej and Ollila, Mark},
+  eprint = {physics/0407003},
+  file = {:/home/b/documents/article/matyka2004pressure.pdf:pdf},
+  journal = {arXiv preprint physics/0407003},
+  month = {7},
+  note = {Presented at SIGRAD 2003, Umeå, Sweden},
+  pages = {5},
+  pdf = {https://arxiv.org/pdf/physics/0407003},
+  primaryclass = {physics.comp-ph},
+  title = {Pressure Model of Soft Body Simulation},
+  url = {https://arxiv.org/abs/physics/0407003},
+  year = {2004}
+}
+
+@inproceedings{mller2003particlebased,
+  abstract = {Realistically animated fluids can add substantial realism to interactive applications such as virtual surgery simulators or computer games. We propose an interactive method based on Smoothed Particle Hydrodynamics (SPH) to simulate fluids with free surfaces. The method extends SPH-based techniques by Desbrun for deformable bodies, gearing it toward fluid simulation by deriving the force density fields directly from the Navier-Stokes equation and by adding a term to model surface tension effects. In contrast to Eulerian grid-based approaches, the particle-based approach makes mass conservation equations and convection terms dispensable which reduces the complexity of the simulation.},
+  author = {Müller, Matthias and Charypar, David and Gross, Markus},
+  booktitle = {Proceedings of the 2003 ACM SIGGRAPH/Eurographics symposium on Computer animation},
+  doi = {10.2312/SCA03/154-159},
+  file = {:/home/b/documents/inproceedings/mller2003particlebased.pdf:pdf},
+  month = {7},
+  pages = {154--159},
+  pdf = {https://matthias-research.github.io/pages/publications/sca03.pdf},
+  publisher = {ACM},
+  title = {Particle-Based Fluid Simulation for Interactive Applications},
+  url = {https://dl.acm.org/doi/10.5555/846276.846298},
+  year = {2003}
+}
+
+@article{lelidec2024contact,
+  abstract = {Physics simulation is ubiquitous in robotics. Whether in model-based approaches (e.g., trajectory optimization), or model-free algorithms (e.g., reinforcement learning), physics simulators are a central component of modern control pipelines in robotics. Over the past decades, several robotic simulators have been developed, each with dedicated contact modeling assumptions and algorithmic solutions. In this article, we survey the main contact models and the associated numerical methods commonly used in robotics for simulating advanced robot motions involving contact interactions. In particular, we recall the physical laws underlying contacts and friction (i.e., Signorini condition, Coulomb's law, and the maximum dissipation principle), and how they are transcribed in current simulators. For each physics engine, we expose their inherent physical relaxations along with their limitations due to the numerical techniques employed. Based on our study, we propose theoretically grounded quantitative criteria on which we build benchmarks assessing both the physical and computational aspects of simulation. We support our work with an open-source and efficient C++ implementation of the existing algorithmic variations. Our results demonstrate that some approximations or algorithms commonly used in robotics can severely widen the reality gap and impact target applications.},
+  archiveprefix = {arXiv},
+  author = {Le Lidec, Quentin and Jallet, Wilson and Montaut, Louis and Laptev, Ivan and Schmid, Cordelia and Carpentier, Justin},
+  doi = {10.1109/TRO.2024.3434208},
+  eprint = {2304.06372},
+  file = {:/home/b/documents/article/lelidec2024contact.pdf:pdf},
+  journal = {IEEE Transactions on Robotics},
+  pages = {3716--3733},
+  pdf = {https://arxiv.org/pdf/2304.06372},
+  primaryclass = {cs.RO},
+  title = {Contact Models in Robotics: a Comparative Analysis},
+  url = {https://ieeexplore.ieee.org/document/10612225/},
+  volume = {40},
+  year = {2024}
+}
+
+@misc{huang2025announcing,
+  abstract = {Physical AI models enable robots to autonomously perceive, interpret, reason, and interact with the real world. Accelerated computing and simulations are key to developing the next generation of robotics. Newton is an open-source physics engine developed by NVIDIA, Google DeepMind, and Disney Research, built on NVIDIA Warp and compatible with frameworks like MuJoCo Playground and NVIDIA Isaac Lab to advance robot learning and development.},
+  author = {Huang, Spencer and Macklin, Miles and State, Gavriel},
+  howpublished = {NVIDIA Technical Blog},
+  month = {3},
+  note = {Open-source GPU-accelerated physics simulation engine targeting roboticists and simulation researchers},
+  title = {Announcing Newton, an Open-Source Physics Engine for Robotics Simulation},
+  url = {https://developer.nvidia.com/blog/announcing-newton-an-open-source-physics-engine-for-robotics-simulation/},
+  year = {2025}
+}
+
+@misc{team2024genesis,
+  abstract = {Genesis is a physics platform for robotics and embodied AI, designed as a universal physics engine that integrates multiple physics solvers into a unified framework. It supports rigid body, MPM, SPH, FEM, and PBD solvers for simulating diverse materials including rigid bodies, liquids, gases, and deformable objects. Genesis delivers ultra-fast simulation speeds up to 43 million FPS and includes native ray-tracing rendering, cross-platform support, and is designed to be fully differentiable.},
+  author = {The Genesis Embodied AI Team},
+  howpublished = {GitHub Open Source Release},
+  license = {Apache 2.0},
+  month = {12},
+  note = {Ultra-fast physics simulation platform achieving 10-80x speedup over existing GPU-accelerated robotics simulators},
+  title = {Genesis: A Generative and Universal Physics Engine for Robotics and Beyond},
+  url = {https://github.com/Genesis-Embodied-AI/Genesis},
+  urldate = {https://genesis-embodied-ai.github.io/},
+  year = {2024}
+}
+
+@inproceedings{lee2023aquarium,
+  abstract = {We present Aquarium, a differentiable fluid-structure interaction solver for robotics that offers stable simulation, accurately coupled fluid-robot physics in two dimensions, and full differentiability with respect to fluid and robot states and parameters. Aquarium achieves stable simulation with accurate flow physics by directly integrating over the incompressible Navier-Stokes equations using a fully implicit Crank-Nicolson scheme with a second-order finite-volume spatial discretization.},
+  author = {Lee, Jeong Hun and Michelis, Mike Y. and Katzschmann, Robert and Manchester, Zachary},
+  booktitle = {IEEE International Conference on Robotics and Automation (ICRA)},
+  doi = {10.1109/ICRA48891.2023.10161494},
+  file = {:/home/b/documents/inproceedings/lee2023aquarium.pdf:pdf},
+  note = {Code available at r̆lhttps://github.com/RoboticExplorationLab/Aquarium.jl},
+  pages = {11272--11279},
+  pdf = {https://arxiv.org/pdf/2301.07028.pdf},
+  title = {Aquarium: A Fully Differentiable Fluid-Structure Interaction Solver for Robotics Applications},
+  url = {https://ieeexplore.ieee.org/document/10161494/},
+  year = {2023}
+}
+
+@article{lee2025unified,
+  abstract = {We present a framework for simulating fluid-robot multiphysics as a single, unified optimization problem. The coupled manipulator and incompressible Navier-Stokes equations governing the robot and fluid dynamics are derived together from a single Lagrangian using the principal of least action. This approach creates a numerically stable and physically accurate method for multibody systems in robotics involving fluid interactions.},
+  archiveprefix = {arXiv},
+  author = {Lee, Jeong Hun and Hu, Junzhe and Kwok, Sofia and Majidi, Carmel and Manchester, Zachary},
+  eprint = {2506.05012},
+  file = {:/home/b/documents/article/lee2025unified.pdf:pdf},
+  journal = {arXiv preprint arXiv:2506.05012},
+  month = {6},
+  note = {Preprint submitted for publication},
+  pdf = {https://arxiv.org/pdf/2506.05012.pdf},
+  primaryclass = {cs.RO},
+  title = {A Unified Framework for Simulating Strongly-Coupled Fluid-Robot Multiphysics},
+  url = {https://arxiv.org/abs/2506.05012},
+  year = {2025}
+}
+
+@article{bai2024energybased,
+  abstract = {Numerical methods for contact mechanics are of great importance in engineering applications, enabling the prediction and analysis of complex surface interactions under various conditions. We propose an energy-based physics-informed neural network (PINNs) framework for solving frictionless contact problems under large deformation, using a surface contact energy inspired by the Lennard-Jones potential. The framework introduces relaxation, gradual loading, and output scaling techniques and demonstrates competitive computational efficiency compared to FEM software.},
+  archiveprefix = {arXiv},
+  author = {Bai, Jinshuai and Lin, Zhongya and Wang, Yizheng and Wen, Jiancong and Liu, Yinghua and Rabczuk, Timon and Gu, YuanTong and Feng, Xi-Qiao},
+  eprint = {2411.03671},
+  file = {:/home/b/documents/article/bai2024energybased.pdf:pdf},
+  journal = {arXiv preprint arXiv:2411.03671},
+  month = {11},
+  note = {Last revised 30 Jan 2025},
+  pdf = {https://arxiv.org/pdf/2411.03671.pdf},
+  primaryclass = {cs.CE},
+  title = {Energy-based physics-informed neural network for frictionless contact problems under large deformation},
+  url = {https://arxiv.org/abs/2411.03671},
+  year = {2024}
+}
+
+@article{sahin2024physicsinformed,
+  abstract = {This paper explores the application of physics-informed neural networks (PINNs) to tackle forward problems in 3D contact mechanics, focusing on small deformation elasticity. The authors utilize a mixed-variable formulation, enhanced with output transformations, to enforce Dirichlet and Neumann boundary conditions as hard constraints. The inherent inequality constraints in contact mechanics, particularly the Karush-Kuhn-Tucker (KKT) conditions, are addressed as soft constraints by integrating them into the network's loss function.},
+  archiveprefix = {arXiv},
+  author = {Sahin, Tarik and Wolff, Daniel and Popp, Alexander},
+  eprint = {2412.09022},
+  file = {:/home/b/documents/article/sahin2024physicsinformed.pdf:pdf},
+  journal = {arXiv preprint arXiv:2412.09022},
+  keywords = {Physics-informed neural networks, Contact mechanics, Three-dimensional problems, Mixed-variable formulation},
+  month = {12},
+  note = {University of the Bundeswehr Munich},
+  pdf = {https://arxiv.org/pdf/2412.09022.pdf},
+  primaryclass = {cs.CE},
+  title = {Physics-Informed Neural Networks for Solving Contact Problems in Three Dimensions},
+  url = {https://arxiv.org/abs/2412.09022},
+  year = {2024}
+}
+
+@inproceedings{tobin2017domain,
+  abstract = {We explore domain randomization, a simple technique for training models on simulated images that transfer to real images by randomizing rendering in the simulator. With enough variability in the simulator, the real world may appear to the model as just another variation. We trained a real-world object detector accurate to 1.5 cm that is robust to distractors and partial occlusions using only simulated data with non-realistic random textures, and demonstrated grasping capabilities in cluttered environments.},
+  address = {Vancouver, BC, Canada},
+  author = {Tobin, Josh and Fong, Rachel and Ray, Alex and Schneider, Jonas and Zaremba, Wojciech and Abbeel, Pieter},
+  booktitle = {2017 IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS)},
+  doi = {10.1109/IROS.2017.8202133},
+  file = {:/home/b/documents/inproceedings/tobin2017domain.pdf:pdf},
+  isbn = {978-1-5386-2682-5},
+  note = {First successful transfer of deep neural network trained only on simulated RGB images to real world for robotic control},
+  pages = {23--30},
+  pdf = {https://arxiv.org/pdf/1703.06907.pdf},
+  title = {Domain Randomization for Transferring Deep Neural Networks from Simulation to the Real World},
+  url = {https://ieeexplore.ieee.org/document/8202133/},
+  year = {2017}
+}
+
+@inproceedings{tan2018simtoreal,
+  abstract = {We present a system for learning quadruped locomotion from scratch using deep reinforcement learning with simple reward signals. The system automates the design process that often requires extensive expertise and tedious manual tuning. Control policies are learned in a physics simulator and then deployed on real robots. We narrow the reality gap by improving the physics simulator, developing accurate actuator models, simulating latency, and randomizing physical environments. The system was evaluated on two agile locomotion gaits: trotting and galloping, with successful transfer from simulation to real-world performance.},
+  address = {Pittsburgh, Pennsylvania},
+  author = {Tan, Jie and Zhang, Tingnan and Coumans, Erwin and Iscen, Atil and Bai, Yunfei and Hafner, Danijar and Bohez, Steven and Vanhoucke, Vincent},
+  booktitle = {Robotics: Science and Systems XIV},
+  doi = {10.15607/RSS.2018.XIV.010},
+  file = {:/home/b/documents/inproceedings/tan2018simtoreal.pdf:pdf},
+  month = {6},
+  note = {Google AI Research. Video available on YouTube},
+  pdf = {https://arxiv.org/pdf/1804.10332.pdf},
+  title = {Sim-to-Real: Learning Agile Locomotion For Quadruped Robots},
+  url = {https://roboticsproceedings.org/rss14/p10.html},
+  year = {2018}
+}
+
+@inproceedings{schenck2017reasoning,
+  abstract = {Simulators are powerful tools for reasoning about a robot's interactions with its environment. However, when simulations diverge from reality, that reasoning becomes less useful. In this paper, we show how to close the loop between liquid simulation and real-time perception. Our results show that closed-loop simulation is an effective way to prevent large divergence between the simulated and real liquid states, enabling reasoning about liquids that would otherwise be infeasible due to large divergences, such as reasoning about occluded liquid.},
+  address = {Cambridge, Massachusetts},
+  author = {Schenck, Connor and Fox, Dieter},
+  booktitle = {Robotics: Science and Systems XIII},
+  doi = {10.15607/RSS.2017.XIII.014},
+  file = {:/home/b/documents/inproceedings/schenck2017reasoning.pdf:pdf},
+  month = {7},
+  note = {University of Washington. Demonstrates real-time liquid tracking with simulation correction},
+  pdf = {https://arxiv.org/pdf/1703.01656.pdf},
+  title = {Reasoning About Liquids via Closed-Loop Simulation},
+  url = {https://www.roboticsproceedings.org/rss13/p14.html},
+  year = {2017}
+}
+
+@inproceedings{zhao2020simtoreal,
+  abstract = {Deep reinforcement learning has recently seen huge success across multiple areas in the robotics domain. Owing to the limitations of gathering real-world data, i.e., sample inefficiency and the cost of collecting it, simulation environments are utilized for training the different agents. The paper explores sim-to-real transfer methods in deep reinforcement learning for robotics, covering techniques like domain randomization, domain adaptation, imitation learning, meta-learning, and knowledge distillation.},
+  author = {Zhao, Wenshuai and Queralta, Jorge Peña and Westerlund, Tomi},
+  booktitle = {2020 IEEE Symposium Series on Computational Intelligence (SSCI)},
+  doi = {10.1109/SSCI47803.2020.9308468},
+  pages = {737--744},
+  pdf = {https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=9308468},
+  title = {Sim-to-Real Transfer in Deep Reinforcement Learning for Robotics: a Survey},
+  url = {https://ieeexplore.ieee.org/document/9308468},
+  year = {2020}
+}
+
+@article{abouchakra2025realissim,
+  abstract = {We introduce real-is-sim, a new approach to integrating simulation into behavior cloning pipelines. In contrast to real-only methods, which lack the ability to safely test policies before deployment, and sim-to-real methods, which require complex adaptation to cross the sim-to-real gap, our framework allows policies to seamlessly switch between running on real hardware and running in parallelized virtual environments. At the center of real-is-sim is a dynamic digital twin, powered by the Embodied Gaussian simulator, that synchronizes with the real world at 60Hz. This twin acts as a mediator between the behavior cloning policy and the real robot. Policies are trained using representations derived from simulator states and always act on the simulated robot, never the real one.},
+  archiveprefix = {arXiv},
+  author = {Abou-Chakra, Jad and Sun, Lingfeng and Rana, Krishan and May, Brandon and Schmeckpeper, Karl and Suenderhauf, Niko and Minniti, Maria Vittoria and Herlant, Laura},
+  eprint = {2504.03597},
+  file = {:/home/b/documents/article/abouchakra2025realissim.pdf:pdf},
+  journal = {arXiv preprint arXiv:2504.03597},
+  pdf = {https://arxiv.org/pdf/2504.03597.pdf},
+  title = {Real-is-Sim: Bridging the Sim-to-Real Gap with a Dynamic Digital Twin},
+  url = {https://arxiv.org/abs/2504.03597},
+  year = {2025}
+}
+
+@misc{zhang2024dynamics,
+  abstract = {Sim-to-real transfer remains a significant challenge in robotics due to the discrepancies between simulated and real-world dynamics. Traditional methods like Domain Randomization often fail to capture fine-grained dynamics, limiting their effectiveness for precise control tasks. The paper proposes a novel approach that dynamically adjusts simulation environment parameters online using in-context learning. By leveraging past interaction histories as context, their method adapts the simulation environment dynamics to real-world dynamics without requiring gradient updates, resulting in faster and more accurate alignment between simulated and real-world performance.},
+  archiveprefix = {arXiv},
+  author = {Zhang, Xilun and Liu, Shiqi and Huang, Peide and Han, William Jongwon and Lyu, Yiqi and Xu, Mengdi and Zhao, Ding},
+  eprint = {2410.20357},
+  file = {:/home/b/documents/misc/zhang2024dynamics.pdf:pdf},
+  pdf = {https://arxiv.org/pdf/2410.20357.pdf},
+  primaryclass = {cs.RO},
+  title = {Dynamics as Prompts: In-Context Learning for Sim-to-Real System Identifications},
+  url = {https://arxiv.org/abs/2410.20357},
+  year = {2024}
+}
+
+@article{da2025survey,
+  abstract = {Deep Reinforcement Learning (RL) has been explored and verified to be effective in solving decision-making tasks in various domains, such as robotics, transportation, recommender systems, etc. However, due to the limited real-world data and unbearable consequences of taking detrimental actions, the learning of RL policy is mainly restricted within the simulators. This practice guarantees safety in learning but introduces an inevitable sim-to-real gap in terms of deployment, thus causing degraded performance and risks in execution. This survey paper is the first taxonomy that formally frames the sim-to-real techniques from key elements of the Markov Decision Process (State, Action, Transition, and Reward) and covers comprehensive literature from classic to the most advanced methods including sim-to-real techniques empowered by foundation models.},
+  archiveprefix = {arXiv},
+  author = {Da, Longchao and Turnau, Justin and Kutralingam, Thirulogasankar Pranav and Velasquez, Alvaro and Shakarian, Paulo and Wei, Hua},
+  eprint = {2502.13187},
+  file = {:/home/b/documents/article/da2025survey.pdf:pdf},
+  journal = {arXiv preprint arXiv:2502.13187},
+  pdf = {https://arxiv.org/pdf/2502.13187.pdf},
+  title = {A Survey of Sim-to-Real Methods in RL: Progress, Prospects and Challenges with Foundation Models},
+  url = {https://arxiv.org/abs/2502.13187},
+  year = {2025}
+}
+
+@inproceedings{si2024difftactile,
+  abstract = {We introduce DIFFTACTILE, a physics-based differentiable tactile simulation system designed to enhance robotic manipulation with dense and physically accurate tactile feedback. The system emphasizes high-fidelity contact modeling, supporting simulations of diverse contact modes and material interactions. Key components include a FEM-based soft body model, multi-material simulator, and penalty-based contact model. The differentiable nature facilitates gradient-based optimization for refining physical properties and efficient learning of tactile-assisted grasping and contact-rich manipulation skills.},
+  archiveprefix = {arXiv},
+  author = {Si, Zilin and Zhang, Gu and Ben, Qingwei and Romero, Branden and Xian, Zhou and Liu, Chao and Gan, Chuang},
+  booktitle = {The Twelfth International Conference on Learning Representations (ICLR)},
+  eprint = {2403.08716},
+  file = {:/home/b/documents/inproceedings/si2024difftactile.pdf:pdf},
+  pdf = {https://openreview.net/pdf?id=eJHnSg783t},
+  title = {DIFFTACTILE: A Physics-based Differentiable Tactile Simulator for Contact-rich Robotic Manipulation},
+  url = {https://openreview.net/forum?id=eJHnSg783t},
+  website = {https://difftactile.github.io/},
+  year = {2024}
+}
+
+@inproceedings{liu2024differentiable,
+  abstract = {Vision foundation models trained on massive amounts of visual data have shown unprecedented reasoning and planning skills in open-world settings. A key challenge in applying them to robotic tasks is the modality gap between visual data and action data. The paper introduces differentiable robot rendering, a method allowing the visual appearance of a robot body to be directly differentiable with respect to its control parameters. Their model integrates a kinematics-aware deformable model and Gaussian Splatting and is compatible with any robot form factors and degrees of freedom. The authors demonstrate its capability in applications including reconstruction of robot poses from images and controlling robots through vision language models.},
+  archiveprefix = {arXiv},
+  author = {Liu, Ruoshi and Canberk, Alper and Song, Shuran and Vondrick, Carl},
+  booktitle = {Conference on Robot Learning (CoRL)},
+  code = {https://github.com/cvlab-columbia/drrobot},
+  eprint = {2410.13851},
+  file = {:/home/b/documents/inproceedings/liu2024differentiable.pdf:pdf},
+  pdf = {https://arxiv.org/pdf/2410.13851.pdf},
+  title = {Differentiable Robot Rendering},
+  url = {https://arxiv.org/abs/2410.13851},
+  website = {https://drrobot.cs.columbia.edu/},
+  year = {2024}
+}
+
+@inproceedings{yang2023unisim,
+  abstract = {UniSim is a neural sensor simulator that takes a single recorded log captured by a sensor-equipped vehicle and converts it into a realistic closed-loop multi-sensor simulation. UniSim builds neural feature grids to reconstruct both the static background and dynamic actors in the scene, and composites them together to simulate LiDAR and camera data at new viewpoints, with actors added or removed and at new placements. To better handle extrapolated views, it incorporates learnable priors for dynamic objects, and leverages a convolutional network to complete unseen regions. Experiments show UniSim can simulate realistic sensor data with small domain gap on downstream tasks. With UniSim, the authors demonstrate, for the first time, closed-loop evaluation of an autonomy system on safety-critical scenarios as if it were in the real world.},
+  archiveprefix = {arXiv},
+  author = {Yang, Ze and Chen, Yun and Wang, Jingkang and Manivasagam, Sivabalan and Ma, Wei-Chiu and Yang, Anqi Joyce and Urtasun, Raquel},
+  booktitle = {Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)},
+  eprint = {2308.01898},
+  file = {:/home/b/documents/inproceedings/yang2023unisim.pdf:pdf},
+  pages = {1389--1399},
+  pdf = {https://openaccess.thecvf.com/content/CVPR2023/papers/Yang_UniSim_A_Neural_Closed-Loop_Sensor_Simulator_CVPR_2023_paper.pdf},
+  title = {UniSim: A Neural Closed-Loop Sensor Simulator},
+  url = {https://openaccess.thecvf.com/content/CVPR2023/html/Yang_UniSim_A_Neural_Closed-Loop_Sensor_Simulator_CVPR_2023_paper.html},
+  website = {https://waabi.ai/unisim/},
+  year = {2023}
+}
+
+@inproceedings{tevet2025closd,
+  abstract = {Motion diffusion models and Reinforcement Learning (RL) based control for physics-based simulations have complementary strengths for human motion generation. The paper introduces CLoSD, a text-driven RL physics-based controller, guided by diffusion generation for various tasks. The key innovation is using motion diffusion as an on-the-fly universal planner for a robust RL controller through a closed-loop interaction between a Diffusion Planner and a tracking controller. CLoSD maintains a closed-loop interaction between two modules — a Diffusion Planner (DiP), and a tracking controller. DiP is a fast-responding autoregressive diffusion model, controlled by textual prompts and target locations, and the controller is a simple and robust motion imitator that continuously receives motion plans from DiP and provides feedback from the environment. CLoSD is capable of seamlessly performing a sequence of different tasks, including navigation to a goal location, striking an object with a hand or foot as specified in a text prompt, sitting down, and getting up.},
+  archiveprefix = {arXiv},
+  author = {Tevet, Guy and Raab, Sigal and Cohan, Setareh and Reda, Daniele and Luo, Zhengyi and Peng, Xue Bin and Bermano, Amit H. and van de Panne, Michiel},
+  booktitle = {The Thirteenth International Conference on Learning Representations (ICLR)},
+  code = {https://github.com/GuyTevet/CLoSD},
+  eprint = {2410.03441},
+  file = {:/home/b/documents/inproceedings/tevet2025closd.pdf:pdf},
+  note = {Spotlight},
+  pdf = {https://arxiv.org/pdf/2410.03441.pdf},
+  title = {CLoSD: Closing the Loop between Simulation and Diffusion for multi-task character control},
+  url = {https://openreview.net/forum?id=pZISppZSTv},
+  website = {https://guytevet.github.io/CLoSD-page/},
+  year = {2025}
+}
+
+@article{gillman2025force,
+  abstract = {The paper investigates using physical forces as a control signal for video generation and proposes "force prompts" which enable users to interact with images through both localized point forces (such as poking a plant) and global wind force fields (such as wind blowing on fabric). The main challenge addressed is the difficulty in obtaining high-quality paired force-video training data. The key finding is that video generation models can generalize remarkably well when adapted to follow physical force conditioning from videos synthesized by Blender, even with limited demonstrations of few objects. The method can generate videos which simulate forces across diverse geometries, settings, and materials without requiring physics simulators at inference time.},
+  archiveprefix = {arXiv},
+  author = {Gillman, Nate and Herrmann, Charles and Freeman, Michael and Aggarwal, Daksh and Luo, Evan and Sun, Deqing and Sun, Chen},
+  code = {https://github.com/brown-palm/force-prompting},
+  eprint = {2505.19386},
+  file = {:/home/b/documents/article/gillman2025force.pdf:pdf},
+  journal = {arXiv preprint arXiv:2505.19386},
+  pdf = {https://arxiv.org/pdf/2505.19386.pdf},
+  title = {Force Prompting: Video Generation Models Can Learn and Generalize Physics-based Control Signals},
+  url = {https://arxiv.org/abs/2505.19386},
+  website = {https://force-prompting.github.io/},
+  year = {2025}
+}
+
+@inproceedings{jiang2023motiongpt,
+  abstract = {MotionGPT proposes a unified, versatile, and user-friendly motion-language model to handle multiple motion-relevant tasks. The core insight is that human motion displays a semantic coupling akin to human language, often perceived as a form of body language. The authors employ discrete vector quantization for human motion and transfer 3D motion into motion tokens, similar to the generation process of word tokens. MotionGPT consists of a motion tokenizer responsible for converting raw motion data into discrete motion tokens, as well as a motion-aware language model that learns to understand the motion tokens from large language pre-training models. Building upon this "motion vocabulary", they perform language modeling on both motion and text in a unified manner, treating human motion as a specific language. Extensive experiments demonstrate that MotionGPT achieves state-of-the-art performances on multiple motion tasks including text-driven motion generation, motion captioning, motion prediction, and motion in-between.},
+  archiveprefix = {arXiv},
+  author = {Jiang, Biao and Chen, Xin and Liu, Wen and Yu, Jingyi and Yu, Gang and Chen, Tao},
+  booktitle = {Advances in Neural Information Processing Systems},
+  code = {https://github.com/OpenMotionLab/MotionGPT},
+  eprint = {2306.14795},
+  file = {:/home/b/documents/inproceedings/jiang2023motiongpt.pdf:pdf},
+  pdf = {https://arxiv.org/pdf/2306.14795.pdf},
+  title = {MotionGPT: Human Motion as a Foreign Language},
+  url = {https://proceedings.neurips.cc/paper_files/paper/2023/hash/3fbf0c1ea0716c03dea93bb6be78dd6f-Abstract-Conference.html},
+  volume = {36},
+  website = {https://motion-gpt.github.io/},
+  year = {2023}
+}
+
+@misc{melnik2025semrob,
+  address = {Los Angeles, CA, USA},
+  author = {Melnik, Andrew and Francis, Jonathan and Zhao, Michelle and Singh, Ishika and Haldar, Siddhant and Naeem, Mehreen and Rana, Krishan},
+  howpublished = {Workshop at Robotics: Science and Systems (RSS)},
+  month = {6},
+  note = {June 21, 2025, 8:30am-12:30pm PT, OHE #122, USC Campus. Supported by FAME Research Initiative and euROBIN},
+  organization = {University of Southern California},
+  title = {SemRob 2025: 2nd Workshop on Semantic Reasoning and Goal Understanding in Robotics},
+  url = {https://semrob.github.io/},
+  year = {2025}
+}
+
+@inproceedings{zhao2024neural,
+  abstract = {Acquiring new skills through Imitation Learning (IL) is crucial for handling diverse complex tasks in robotics. However, model-free IL faces challenges of data inefficiency and prolonged training time, whereas model-based methods struggle to obtain accurate nonlinear models. To address these challenges, we develop Neural ODE-based Imitation Learning (NODE-IL), a novel model-based imitation learning framework that employs Neural Ordinary Differential Equations (Neural ODEs) for learning task dynamics and control policies. NODE-IL comprises Dynamic-NODE for learning continuous differentiable task transition dynamics and Control-NODE for learning long-horizon control policy in an MPC fashion. Extensively evaluated on challenging manipulation tasks, NODE-IL demonstrates significant advantages in data efficiency, requiring less than 70 samples to achieve robust performance, outperforming BCO and GP-IL methods with 70% higher average success rate.},
+  address = {Abu Dhabi, United Arab Emirates},
+  author = {Zhao, Shiyao and Xu, Yucheng and Kasaei, Mohammadreza and Khadem, Mohsen and Li, Zhibin},
+  booktitle = {2024 IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS)},
+  doi = {10.1109/IROS58592.2024.10802736},
+  month = {10},
+  pages = {8524--8530},
+  publisher = {IEEE},
+  title = {Neural ODE-based Imitation Learning (NODE-IL): Data-efficient imitation learning for long-horizon multi-skill robot manipulation},
+  url = {https://ieeexplore.ieee.org/document/10802736/},
+  year = {2024}
+}
+
+@article{zheng2025physicsembedded,
+  abstract = {Edge Digital Twins (EDTs) are crucial for monitoring power electronics systems. This paper proposes Physics-Embedded Neural ODEs (PENODE) to address challenges in capturing hybrid dynamics, with experimental results showing significantly higher accuracy and 75% reduction in neuron count compared to conventional approaches. The method bridges the gap between simulated environments and real-world applications by incorporating physical constraints directly into the neural network architecture.},
+  archiveprefix = {arXiv},
+  author = {Zheng, Jialin and Wang, Haoyu and Zeng, Yangbin and Mou, Di and Zhang, Xin and Li, Hong and Vazquez, Sergio and Franquelo, Leopoldo G.},
+  eprint = {2508.02887},
+  file = {:/home/b/documents/article/zheng2025physicsembedded.pdf:pdf},
+  journal = {arXiv preprint arXiv:2508.02887},
+  month = {8},
+  note = {Submitted 4 Aug 2024. Original entry had incorrect author attribution},
+  pdf = {https://arxiv.org/pdf/2508.02887},
+  title = {Physics-Embedded Neural ODEs for Sim2Real Edge Digital Twins of Hybrid Power Electronics Systems},
+  url = {https://arxiv.org/abs/2508.02887},
+  year = {2025}
+}
+
+@inproceedings{ingebrand2024zeroshot,
+  abstract = {Autonomous systems often encounter environments and scenarios beyond the scope of their training data, which underscores a critical challenge: the need to generalize and adapt to unseen scenarios in real time. This challenge necessitates new mathematical and algorithmic tools that enable adaptation and zero-shot transfer. To this end, we leverage the theory of function encoders, which enables zero-shot transfer by combining the flexibility of neural networks with the mathematical principles of Hilbert spaces. Using this theory, we first present a method for learning a space of dynamics spanned by a set of neural ODE basis functions. After training, the proposed approach can rapidly identify dynamics in the learned space using an efficient inner product calculation. Critically, this calculation requires no gradient calculations or retraining during the online phase. This method enables zero-shot transfer for autonomous systems at runtime and opens the door for a new class of adaptable control algorithms. We demonstrate state-of-the-art system modeling accuracy for two MuJoCo robot environments and show that the learned models can be used for more efficient MPC control of a quadrotor.},
+  archiveprefix = {arXiv},
+  author = {Ingebrand, Tyler and Thorpe, Adam J. and Topcu, Ufuk},
+  booktitle = {Advances in Neural Information Processing Systems 37},
+  eprint = {2405.08954},
+  file = {:/home/b/documents/inproceedings/ingebrand2024zeroshot.pdf:pdf},
+  note = {Original entry had incorrect author attribution},
+  pdf = {https://proceedings.neurips.cc/paper_files/paper/2024/file/7ce9df1d14adc2806df18c8e168d7ef9-Paper-Conference.pdf},
+  publisher = {Curran Associates, Inc.},
+  title = {Zero-Shot Transfer of Neural ODEs},
+  url = {https://proceedings.neurips.cc/paper_files/paper/2024/hash/7ce9df1d14adc2806df18c8e168d7ef9-Abstract-Conference.html},
+  volume = {37},
+  year = {2024}
+}
