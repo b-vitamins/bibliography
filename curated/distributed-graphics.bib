@@ -1,0 +1,652 @@
+@inproceedings{alfares2008scalable,
+  abstract = {Today's data centers may contain tens of thousands of computers with significant aggregate bandwidth requirements. The network architecture typically consists of a tree of routing and switching elements with progressively more specialized and expensive equipment moving up the network hierarchy. Unfortunately, even when deploying the highest-end IP switches/routers, resulting topologies may only support 50% of the aggregate bandwidth available at the edge of the network, while still incurring tremendous cost. Non-uniform bandwidth among data center nodes complicates application design and limits overall system performance. In this paper, we show how to leverage largely commodity Ethernet switches to support the full aggregate bandwidth of clusters consisting of tens of thousands of elements. Similar to how clusters of commodity computers have largely replaced more specialized SMPs and MPPs, we argue that appropriately architected and interconnected commodity switches may deliver more performance at less cost than available from today's higher-end solutions. Our approach requires no modifications to the end host network interface, operating system, or applications; critically, it is fully backward compatible with Ethernet, IP, and TCP.},
+  address = {Seattle, WA, USA},
+  author = {Al-Fares, Mohammad and Loukissas, Alexander and Vahdat, Amin},
+  booktitle = {Proceedings of the ACM SIGCOMM 2008 Conference on Data Communication},
+  doi = {10.1145/1402946.1402967},
+  file = {:/home/b/documents/inproceedings/alfares2008scalable.pdf:pdf},
+  month = {8},
+  number = {4},
+  pages = {63--74},
+  pdf = {https://web.stanford.edu/class/cs244/papers/al-fares-sigcomm08.pdf},
+  publisher = {ACM},
+  title = {A Scalable, Commodity Data Center Network Architecture},
+  url = {https://dl.acm.org/doi/10.1145/1402946.1402967},
+  volume = {38},
+  year = {2008}
+}
+
+@inproceedings{kalia2016design,
+  abstract = {Modern RDMA hardware offers the potential for exceptional performance, but design choices including which RDMA operations to use and how to use them significantly affect observed performance. This paper lays out guidelines that can be used by system designers to navigate the RDMA design space. The guidelines emphasize paying attention to low-level details such as individual PCIe transactions and NIC architecture. We empirically demonstrate how these guidelines can be used to improve the performance of RDMA-based systems: we design a networked sequencer that outperforms an existing design by 50x, and improve the CPU efficiency of a prior high-performance key-value store by 83%. We also present and evaluate several new RDMA optimizations and pitfalls, and discuss how they affect the design of RDMA systems.},
+  address = {Denver, CO, USA},
+  author = {Kalia, Anuj and Kaminsky, Michael and Andersen, David G.},
+  booktitle = {Proceedings of the 2016 USENIX Annual Technical Conference (USENIX ATC '16)},
+  file = {:/home/b/documents/inproceedings/kalia2016design.pdf:pdf},
+  month = {6},
+  pages = {437--450},
+  pdf = {https://www.usenix.org/system/files/conference/atc16/atc16_paper-kalia.pdf},
+  publisher = {USENIX Association},
+  title = {Design Guidelines for High Performance RDMA Systems},
+  url = {https://www.usenix.org/conference/atc16/technical-sessions/presentation/kalia},
+  year = {2016}
+}
+
+@article{liu2003high,
+  abstract = {InfiniBand Architecture is relatively new in the high performance computing area, but it offers many features which help improve the performance of communication subsystems. One of these features is Remote Direct Memory Access (RDMA) operations. In this paper, we propose a new design of MPI over InfiniBand which brings the benefit of RDMA to not only large messages, but also small and control messages. We also achieve better scalability by exploiting application communication pattern and combining send/receive operations with RDMA operations. Our RDMA-based MPI implementation achieves a latency of 6.8 μsec for small messages and a peak bandwidth of 871 million bytes/sec. For small messages, our RDMA-based design can reduce the latency by 24%, increase the bandwidth by over 104%, and reduce the host overhead by up to 22%. For large messages, we improve performance by reducing the time for transferring control messages.},
+  author = {Liu, Jiuxing and Wu, Jiesheng and Kini, Sushmitha P. and Wyckoff, Pete and Panda, Dhabaleswar K.},
+  doi = {10.1023/A:1025178100191},
+  journal = {International Journal of Parallel Programming},
+  month = {8},
+  number = {4},
+  pages = {245--268},
+  pdf = {https://nowlab.cse.ohio-state.edu/static/media/publications/abstract/liuj-ics03.pdf},
+  publisher = {Springer},
+  title = {High Performance RDMA-Based MPI Implementation over InfiniBand},
+  url = {https://link.springer.com/article/10.1023/A:1025178100191},
+  volume = {31},
+  year = {2003}
+}
+
+@techreport{scott2011introduction,
+  abstract = {NVIDIA GPUDirect is a family of technologies that enables enhanced data movement and access for NVIDIA data center GPUs. Using GPUDirect, network adapters and storage drives can directly read and write to/from GPU memory, eliminating unnecessary memory copies, decreasing CPU overheads and reducing latency, resulting in significant performance improvements. This technology overview introduces the core concepts and architecture of GPUDirect, including GPUDirect Peer-to-Peer communication within a single node and GPUDirect RDMA for communication between GPUs in different nodes across InfiniBand networks.},
+  address = {Santa Clara, CA, USA},
+  author = {Scott, Steve and Potluri, D. and Ranka, S.},
+  institution = {NVIDIA Corporation},
+  pdf = {https://developer.download.nvidia.com/assets/cuda/docs/GPUDirect_Technology_Overview.pdf},
+  title = {An Introduction to NVIDIA GPUDirect},
+  type = {Technical Whitepaper},
+  url = {https://developer.download.nvidia.com/assets/cuda/docs/GPUDirect_Technology_Overview.pdf},
+  year = {2011}
+}
+
+@techreport{corporation2014nvidia,
+  abstract = {NVIDIA NVLink is a high-speed interconnect technology that enables GPUs and CPUs to share data five to 12 times faster than existing PCI Express solutions. NVLink matches the bandwidth of typical CPU memory systems, enabling GPUs to access CPU memory at its full bandwidth. This technology represents a significant advancement over traditional PCIe interfaces, which were four to five times slower than typical CPU memory systems. NVLink enables the tightly coupled systems that present a path to highly energy-efficient and scalable exascale supercomputers, running at 1,000 petaflops. The technology was co-developed with IBM and incorporated into future versions of IBM POWER CPUs, with initial implementation planned for NVIDIA Pascal GPU architecture.},
+  address = {Santa Clara, CA, USA},
+  author = {NVIDIA Corporation},
+  institution = {NVIDIA Corporation},
+  month = {3},
+  pdf = {https://info.nvidianews.com/rs/nvidia/images/NVIDIA NVLink High-Speed Interconnect Application Performance Brief.pdf},
+  title = {NVIDIA NVLink High-Speed Interconnect},
+  type = {Technical Whitepaper},
+  url = {https://info.nvidianews.com/rs/nvidia/images/NVIDIA NVLink High-Speed Interconnect Application Performance Brief.pdf},
+  year = {2014}
+}
+
+@article{lamport1978time,
+  abstract = {The concept of one event happening before another in a distributed system is examined, and is shown to define a partial ordering of the events. A distributed algorithm is given for synchronizing a system of logical clocks which can be used to totally order the events. The use of the total ordering is illustrated with a method for solving synchronization problems. The algorithm is then specialized for synchronizing physical clocks, and a bound is derived on how far out of synchrony the clocks can become.},
+  author = {Lamport, Leslie},
+  doi = {10.1145/359545.359563},
+  file = {:/home/b/documents/article/lamport1978time.pdf:pdf},
+  journal = {Communications of the ACM},
+  month = {7},
+  note = {2000 PODC Influential Paper Award. One of the papers for which Leslie Lamport was awarded the Turing Award.},
+  number = {7},
+  pages = {558--565},
+  pdf = {https://lamport.azurewebsites.net/pubs/time-clocks.pdf},
+  publisher = {ACM},
+  title = {Time, Clocks, and the Ordering of Events in a Distributed System},
+  url = {https://dl.acm.org/doi/10.1145/359545.359563},
+  volume = {21},
+  year = {1978}
+}
+
+@article{chandy1985distributed,
+  abstract = {This paper presents an algorithm by which a process in a distributed system determines a global state of the system during a computation. Many problems in distributed systems can be cast in terms of the problem of detecting global states. For instance, the global state detection algorithm helps to solve an important class of problems: stable property detection. A stable property is one that persists: once a stable property becomes true it remains true thereafter. Examples of stable properties are ``computation has terminated,'' ``the system is deadlocked'' and ``all tokens in a token ring have disappeared.'' The algorithm is illustrated by solving a classical problem in distributed systems: the termination detection problem. The authors assume that messages are delivered in the order sent and that the communication graph is strongly connected.},
+  author = {Chandy, K. Mani and Lamport, Leslie},
+  doi = {10.1145/214451.214456},
+  journal = {ACM Transactions on Computer Systems},
+  month = {2},
+  note = {The Chandy-Lamport algorithm for consistent global snapshots in distributed systems},
+  number = {1},
+  pages = {63--75},
+  pdf = {https://lamport.azurewebsites.net/pubs/chandy.pdf},
+  publisher = {ACM},
+  title = {Distributed Snapshots: Determining Global States of a Distributed System},
+  url = {https://dl.acm.org/doi/10.1145/214451.214456},
+  volume = {3},
+  year = {1985}
+}
+
+@article{fischer1985impossibility,
+  abstract = {The consensus problem involves an asynchronous system of processes, some of which may be unreliable. The problem is for the reliable processes to agree on a binary value. In this paper, it is shown that every protocol for this problem has the possibility of nontermination, even with only one faulty process. By way of contrast, solutions are known for the synchronous case, the ``Byzantine Generals'' problem.},
+  author = {Fischer, Michael J. and Lynch, Nancy A. and Paterson, Michael S.},
+  doi = {10.1145/3149.214121},
+  file = {:/home/b/documents/article/fischer1985impossibility.pdf:pdf},
+  journal = {Journal of the ACM},
+  month = {4},
+  note = {The FLP impossibility result. Winner of the Dijkstra Award for most influential paper in distributed computing.},
+  number = {2},
+  pages = {374--382},
+  pdf = {https://groups.csail.mit.edu/tds/papers/Lynch/jacm85.pdf},
+  publisher = {ACM},
+  title = {Impossibility of Distributed Consensus with One Faulty Process},
+  url = {https://dl.acm.org/doi/10.1145/3149.214121},
+  volume = {32},
+  year = {1985}
+}
+
+@article{lamport1998parttime,
+  abstract = {Recent archaeological discoveries on the island of Paxos reveal that the parliament functioned despite the peripatetic propensity of its part-time legislators. The legislators maintained consistent copies of the parliamentary record, despite their frequent forays from the chamber and the forgetfulness of their messengers. The Paxon parliament's protocol provides a new way of implementing the state machine approach to the design of distributed systems.},
+  author = {Lamport, Leslie},
+  doi = {10.1145/279227.279229},
+  file = {:/home/b/documents/article/lamport1998parttime.pdf:pdf},
+  journal = {ACM Transactions on Computer Systems},
+  month = {5},
+  note = {Introduces the Paxos consensus algorithm. Originally submitted in 1990, published in 1998.},
+  number = {2},
+  pages = {133--169},
+  pdf = {https://lamport.azurewebsites.net/pubs/lamport-paxos.pdf},
+  publisher = {ACM},
+  title = {The Part-Time Parliament},
+  url = {https://dl.acm.org/doi/10.1145/279227.279229},
+  volume = {16},
+  year = {1998}
+}
+
+@inproceedings{ongaro2014search,
+  abstract = {Raft is a consensus algorithm for managing a replicated log. It produces a result equivalent to (multi-)Paxos, and it is as efficient as Paxos, but its structure is different from Paxos; this makes Raft more understandable than Paxos and also provides a better foundation for building practical systems. In order to enhance understandability, Raft separates the key elements of consensus, such as leader election, log replication, and safety, and it enforces a stronger degree of coherency to reduce the number of states that must be considered. Results from a user study demonstrate that Raft is easier for students to learn than Paxos. Raft also includes a new mechanism for changing the cluster membership, which uses overlapping majorities to guarantee safety.},
+  address = {Philadelphia, PA, USA},
+  author = {Ongaro, Diego and Ousterhout, John},
+  booktitle = {Proceedings of the 2014 USENIX Annual Technical Conference (USENIX ATC '14)},
+  file = {:/home/b/documents/inproceedings/ongaro2014search.pdf:pdf},
+  month = {6},
+  note = {Best Paper Award. Introduces the Raft consensus algorithm.},
+  pages = {305--319},
+  pdf = {https://raft.github.io/raft.pdf},
+  publisher = {USENIX Association},
+  title = {In Search of an Understandable Consensus Algorithm},
+  url = {https://www.usenix.org/conference/atc14/technical-sessions/presentation/ongaro},
+  year = {2014}
+}
+
+@misc{schulzrinne1998real,
+  abstract = {The Real Time Streaming Protocol, or RTSP, is an application-level protocol for control over the delivery of data with real-time properties. RTSP provides an extensible framework to enable controlled, on-demand delivery of real-time data, such as audio and video.},
+  author = {Schulzrinne, Henning and Rao, Anup and Lanphier, Rob},
+  file = {:/home/b/documents/misc/schulzrinne1998real.pdf:pdf},
+  howpublished = {IETF RFC 2326},
+  month = {4},
+  note = {Proposed Standard},
+  pdf = {https://www.potaroo.net/ietf/all-ids/draft-ietf-mmusic-rfc2326bis-03.pdf},
+  title = {Real Time Streaming Protocol (RTSP)},
+  url = {https://datatracker.ietf.org/doc/html/rfc2326},
+  year = {1998}
+}
+
+@misc{schulzrinne2003rtp,
+  abstract = {RTP provides end-to-end network transport functions suitable for applications transmitting real-time data, such as audio, video or simulation data, over multicast or unicast network services.},
+  author = {Schulzrinne, Henning and Casner, Stephen L. and Frederick, Ron and Jacobson, Van},
+  file = {:/home/b/documents/misc/schulzrinne2003rtp.pdf:pdf},
+  howpublished = {IETF RFC 3550},
+  month = {7},
+  note = {Internet Standards Track Protocol},
+  pdf = {https://www.rfc-editor.org/rfc/rfc3550.pdf},
+  title = {RTP: A Transport Protocol for Real-Time Applications},
+  url = {https://datatracker.ietf.org/doc/html/rfc3550},
+  year = {2003}
+}
+
+@article{wiegand2003overview,
+  abstract = {H.264/AVC is newest video coding standard of the ITU-T Video Coding Experts Group and the ISO/IEC Moving Picture Experts Group. The main goals of the H.264/AVC standardization effort have been enhanced compression performance and provision of a ŉetwork-friendly' video representation addressing 'conversational' (video telephony) and ŉonconversational' (storage, broadcast, or streaming) applications.},
+  author = {Wiegand, Thomas and Sullivan, Gary J. and Bjøntegaard, Gisle and Luthra, Ajay K.},
+  doi = {10.1109/TCSVT.2003.815165},
+  file = {:/home/b/documents/article/wiegand2003overview.pdf:pdf},
+  journal = {IEEE Transactions on Circuits and Systems for Video Technology},
+  month = {6},
+  number = {7},
+  pages = {560--576},
+  pdf = {http://amalia.img.lx.it.pt/~fp/cav/Additional_material/AVC_overview_1.pdf},
+  title = {Overview of the H.264/AVC Video Coding Standard},
+  url = {https://ieeexplore.ieee.org/document/1210854},
+  volume = {13},
+  year = {2003}
+}
+
+@article{sullivan2012overview,
+  abstract = {High Efficiency Video Coding (HEVC) is currently being prepared as the newest video coding standard of the ITU-T Video Coding Experts Group and the ISO/IEC Moving Picture Experts Group. The main goal of the HEVC standardization effort is to enable significantly improved compression performance relative to existing standards-in the range of 50% bit-rate reduction for equal perceptual video quality.},
+  author = {Sullivan, Gary J. and Ohm, Jens-Rainer and Han, Woo-Jin and Wiegand, Thomas},
+  doi = {10.1109/TCSVT.2012.2221191},
+  journal = {IEEE Transactions on Circuits and Systems for Video Technology},
+  month = {11},
+  number = {12},
+  pages = {1649--1668},
+  pdf = {https://www.researchgate.net/profile/Gary-Sullivan/publication/255568019_Overview_of_the_High_Efficiency_Video_Coding_HEVC_standard/links/5d9f2fd092851c2f70ef75ec/Overview-of-the-High-Efficiency-Video-Coding-HEVC-standard.pdf},
+  title = {Overview of the High Efficiency Video Coding (HEVC) Standard},
+  url = {https://ieeexplore.ieee.org/document/6316135},
+  volume = {22},
+  year = {2012}
+}
+
+@article{shea2013cloud,
+  abstract = {Recent advances in cloud technology have turned the idea of cloud gaming into a reality. Cloud gaming, in its simplest form, renders an interactive gaming application remotely in the cloud and streams the scenes as a video sequence back to the player over the Internet. This is an advantage for less powerful computational devices that are otherwise incapable of running high-quality games. Such industrial pioneers as OnLive and Gaikai have seen success in the market with large user bases. This article conducts a systematic analysis of state-of-the-art cloud gaming platforms, and highlights the uniqueness of their framework design, and measures their real world performance with different types of games, revealing critical challenges toward the widespread deployment of cloud gaming.},
+  author = {Shea, Ryan and Liu, Jiangchuan and Ngai, Edith C.-H. and Cui, Yong},
+  doi = {10.1109/MNET.2013.6574660},
+  file = {:/home/b/documents/article/shea2013cloud.pdf:pdf},
+  journal = {IEEE Network},
+  number = {4},
+  pages = {16--21},
+  pdf = {https://www.cs.sfu.ca/~jcliu/Papers/CloudGaming.pdf},
+  title = {Cloud Gaming: Architecture and Performance},
+  url = {https://ieeexplore.ieee.org/document/6574670},
+  volume = {27},
+  year = {2013}
+}
+
+@inproceedings{greenberg2009vl2,
+  abstract = {To be agile and cost effective, data centers should allow dynamic resource allocation across large server pools. In particular, the data center network should enable any server to be assigned to any service. To meet these goals, we present VL2, a practical network architecture that scales to support huge data centers with uniform high capacity between servers, performance isolation between services, and Ethernet layer-2 semantics. VL2 uses (1) flat addressing to allow service instances to be placed anywhere in the network, (2) Valiant Load Balancing to spread traffic uniformly across network paths, and (3) end-system based address resolution to scale to large server pools, without introducing complexity to the network control plane.},
+  author = {Greenberg, Albert and Hamilton, James R. and Jain, Navendu and Kandula, Srikanth and Kim, Changhoon and Lahiri, Parantap and Maltz, Dave and Patel, Parveen and Sengupta, Sudipta},
+  booktitle = {Proceedings of the ACM SIGCOMM 2009 Conference on Data Communication},
+  doi = {10.1145/1592568.1592576},
+  file = {:/home/b/documents/inproceedings/greenberg2009vl2.pdf:pdf},
+  number = {4},
+  pages = {51--62},
+  pdf = {https://www.microsoft.com/en-us/research/wp-content/uploads/2016/02/vl2-sigcomm09-final.pdf},
+  title = {VL2: A Scalable and Flexible Data Center Network},
+  url = {https://dl.acm.org/doi/10.1145/1592568.1592576},
+  volume = {39},
+  year = {2009}
+}
+
+@inproceedings{singla2012jellyfish,
+  abstract = {Industry experience indicates that the ability to incrementally expand data centers is essential. However, existing high-bandwidth network designs have rigid structure that interferes with incremental expansion. We present Jellyfish, a high-capacity network interconnect which, by adopting a random graph topology, yields itself naturally to incremental expansion. Somewhat surprisingly, Jellyfish is more cost-efficient than a fat-tree, supporting as many as 25% more servers at full capacity using the same equipment at the scale of a few thousand nodes, and this advantage improves with scale.},
+  author = {Singla, Ankit and Hong, Chi-Yao and Popa, Lucian and Godfrey, P. Brighten},
+  booktitle = {9th USENIX Symposium on Networked Systems Design and Implementation (NSDI)},
+  file = {:/home/b/documents/inproceedings/singla2012jellyfish.pdf:pdf},
+  pages = {225--238},
+  pdf = {https://www.usenix.org/system/files/conference/nsdi12/nsdi12-final82.pdf},
+  title = {Jellyfish: Networking Data Centers Randomly},
+  url = {https://www.usenix.org/conference/nsdi12/technical-sessions/presentation/singla},
+  year = {2012}
+}
+
+@article{lu2022survey,
+  abstract = {High-performance interconnection network is the key to realizing high-speed, collaborative, parallel computing at each node in a high-performance computer system. Its performance and scalability directly affect the performance and scalability of the whole system. This paper analyzes interconnection networks used in Top500 supercomputers, elaborating on representative networks like NVIDIA InfiniBand, Intel Omni-Path, Cray Slingshot/Aries, and custom networks like Fugaku Tofu, Bull BXI, and TH Express. The authors discuss latest technologies and trends, and provide perspectives on interconnection networks in the post-Moore era and exascale computing era.},
+  author = {Lu, Ping-Jing and Lai, Ming-Che and Chang, Jun-Sheng},
+  doi = {10.3390/electronics11091369},
+  journal = {Electronics},
+  number = {9},
+  pages = {1369},
+  pdf = {https://www.mdpi.com/2079-9292/11/9/1369/pdf},
+  publisher = {MDPI},
+  title = {A Survey of High-Performance Interconnection Networks in High-Performance Computer Systems},
+  url = {https://www.mdpi.com/2079-9292/11/9/1369},
+  volume = {11},
+  year = {2022}
+}
+
+@inproceedings{kandula2009nature,
+  abstract = {This paper explores the nature of traffic in data centers designed to support the mining of massive data sets. The authors instrument the servers to collect socket-level logs, with negligible performance impact. In a 1500 server operational cluster, they amassed roughly a petabyte of measurements over two months, from which they obtained detailed views of traffic and congestion conditions and patterns. Much of the traffic volume could be explained by two clearly visible patterns which they call Work-Seeks-Bandwidth and Scatter-Gather.},
+  author = {Kandula, Srikanth and Sengupta, Sudipta and Greenberg, Albert and Patel, Parveen and Chaiken, Ronnie},
+  booktitle = {Proceedings of the 9th ACM SIGCOMM Conference on Internet Measurement},
+  doi = {10.1145/1644893.1644918},
+  file = {:/home/b/documents/inproceedings/kandula2009nature.pdf:pdf},
+  location = {Chicago, Illinois, USA},
+  pages = {202--208},
+  pdf = {https://www.microsoft.com/en-us/research/wp-content/uploads/2016/02/imc09_dcTraffic.pdf},
+  publisher = {ACM},
+  title = {The Nature of Datacenter Traffic: Measurements & Analysis},
+  url = {https://dl.acm.org/doi/10.1145/1644893.1644918},
+  year = {2009}
+}
+
+@inproceedings{huai2011dot,
+  abstract = {This paper presents a general model that abstracts critical computation and communication behavior and computation-communication interactions for big data analytics in a scalable and fault-tolerant manner. The model is called DOT, represented by three matrices for data sets (D), concurrent data processing operations (O), and data transformations (T), respectively. With the DOT model, any big data analytics job execution in various software frameworks can be represented by a specific or non-specific number of elementary/composite DOT blocks, each of which performs operations on the data sets, stores intermediate results, makes necessary data transfers, and performs data transformations in the end.},
+  author = {Huai, Yin and Lee, Rubao and Zhang, Simon and Xia, Cathy H. and Zhang, Xiaodong},
+  booktitle = {Proceedings of the 2nd ACM Symposium on Cloud Computing},
+  doi = {10.1145/2038916.2038920},
+  pdf = {https://web.cse.ohio-state.edu/~zhang.574/papers/socc11.pdf},
+  publisher = {ACM},
+  title = {DOT: A Matrix Model for Analyzing, Optimizing and Deploying Software for Big Data Analytics in Distributed Systems},
+  url = {https://dl.acm.org/doi/10.1145/2038916.2038920},
+  year = {2011}
+}
+
+@article{noormohammadpour2018datacenter,
+  abstract = {Datacenters provide cost-effective and flexible access to scalable compute and storage resources necessary for today's cloud computing needs. A typical datacenter is made up of thousands of servers connected with a large network and usually managed by one operator. To provide quality access to the variety of applications and services hosted on datacenters and maximize performance, it deems necessary to use datacenter networks effectively and efficiently. Datacenter traffic is often a mix of several classes with different priorities and requirements. This includes user-generated interactive traffic, traffic with deadlines, and long-running traffic. To this end, custom transport protocols and traffic management techniques have been developed to improve datacenter network performance. In this tutorial paper, we review the general architecture of datacenter networks, various topologies proposed for them, their traffic properties, general traffic control challenges in datacenters and general traffic control objectives. We discuss various characteristics of datacenter traffic control including management schemes, transmission control, traffic shaping, prioritization, load balancing, multipathing, and traffic scheduling.},
+  author = {Noormohammadpour, Mohammad and Raghavendra, Cauligi S.},
+  doi = {10.1109/COMST.2017.2782753},
+  journal = {IEEE Communications Surveys & Tutorials},
+  number = {2},
+  pages = {1492--1525},
+  pdf = {https://arxiv.org/pdf/1712.03530.pdf},
+  publisher = {IEEE},
+  title = {Datacenter Traffic Control: Understanding Techniques and Trade-offs},
+  url = {https://ieeexplore.ieee.org/document/8207422/},
+  volume = {20},
+  year = {2018}
+}
+
+@article{ramanathan2020survey,
+  abstract = {Artificial Intelligence (AI) and Internet of Things (IoT) applications are rapidly growing in today's world where they are continuously connected to the internet and process, store and exchange information among the devices and the environment. The cloud and edge platform is very crucial to these applications due to their inherent compute-intensive and resource-constrained nature. One of the foremost challenges in cloud and edge resource allocation is the efficient management of computation and communication resources to meet the performance and latency guarantees of the applications. This paper reviews the current state-of-the-art resource allocation techniques for the cloud continuum, in particular those that consider time-sensitive applications, and presents a taxonomy to classify existing literature and identify research gaps.},
+  archiveprefix = {arXiv},
+  author = {Ramanathan, Saravanan and Shivaraman, Nitin and Suryasekaran, Seima and Easwaran, Arvind and Borde, Etienne and Steinhorst, Sebastian},
+  doi = {10.1515/itit-2020-0013},
+  eprint = {2004.14559},
+  file = {:/home/b/documents/article/ramanathan2020survey.pdf:pdf},
+  journal = {it - Information Technology},
+  number = {5-6},
+  pages = {241--255},
+  pdf = {https://arxiv.org/pdf/2004.14559},
+  publisher = {De Gruyter},
+  title = {A Survey on Time-Sensitive Resource Allocation in the Cloud Continuum},
+  url = {https://www.degruyterbrill.com/document/doi/10.1515/itit-2020-0013/html},
+  volume = {62},
+  year = {2020}
+}
+
+@inproceedings{mildenhall2020nerf,
+  abstract = {We present a method that achieves state-of-the-art results for synthesizing novel views of complex scenes by optimizing an underlying continuous volumetric scene function using a sparse set of input views. Our algorithm represents a scene using a fully-connected (non-convolutional) deep network, whose input is a single continuous 5D coordinate (spatial location (x,y,z) and viewing direction) and whose output is the volume density and view-dependent emitted radiance at that spatial location. We synthesize views by querying 5D coordinates along camera rays and use classic volume rendering techniques to project the output colors and densities into an image. Because volume rendering is naturally differentiable, the only input required to optimize our representation is a set of images with known camera poses.},
+  archiveprefix = {arXiv},
+  author = {Mildenhall, Ben and Srinivasan, Pratul P. and Tancik, Matthew and Barron, Jonathan T. and Ramamoorthi, Ravi and Ng, Ren},
+  booktitle = {European Conference on Computer Vision (ECCV)},
+  doi = {10.1007/978-3-030-58452-8_24},
+  eprint = {2003.08934},
+  file = {:/home/b/documents/inproceedings/mildenhall2020nerf.pdf:pdf},
+  pages = {405--421},
+  pdf = {https://www.ecva.net/papers/eccv_2020/papers_ECCV/papers/123460392.pdf},
+  publisher = {Springer},
+  series = {Lecture Notes in Computer Science},
+  title = {NeRF: Representing Scenes as Neural Radiance Fields for View Synthesis},
+  url = {https://www.matthewtancik.com/nerf},
+  volume = {12346},
+  year = {2020}
+}
+
+@article{kerbl20233d,
+  abstract = {Radiance Field methods have recently revolutionized novel-view synthesis of scenes captured with multiple photos or videos. However, achieving high visual quality still requires neural networks that are costly to train and render, while recent faster methods inevitably trade off speed for quality. For unbounded and complete scenes (rather than isolated objects) and 1080p resolution rendering, no current method can achieve real-time display rates. We introduce three key elements that allow us to achieve state-of-the-art visual quality while maintaining competitive training times and importantly allow high-quality real-time (≥ 30 fps) novel-view synthesis at 1080p resolution: 1) Starting from sparse points produced during camera calibration, we represent the scene with 3D Gaussians that preserve desirable properties of continuous volumetric radiance fields for scene optimization while avoiding unnecessary computation in empty space; 2) We perform interleaved optimization/density control of the 3D Gaussians, notably optimizing anisotropic covariance to achieve an accurate representation of the scene; 3) We develop a fast visibility-aware rendering algorithm that supports anisotropic splatting and both accelerates training and allows realtime rendering.},
+  archiveprefix = {arXiv},
+  articleno = {139},
+  author = {Kerbl, Bernhard and Kopanas, Georgios and Leimkühler, Thomas and Drettakis, George},
+  doi = {10.1145/3592433},
+  eprint = {2308.04079},
+  file = {:/home/b/documents/article/kerbl20233d.pdf:pdf},
+  journal = {ACM Transactions on Graphics},
+  month = {7},
+  number = {4},
+  pdf = {https://arxiv.org/pdf/2308.04079},
+  publisher = {ACM},
+  title = {3D Gaussian Splatting for Real-Time Radiance Field Rendering},
+  url = {https://repo-sam.inria.fr/fungraph/3d-gaussian-splatting/},
+  volume = {42},
+  year = {2023}
+}
+
+@article{bird20213d,
+  abstract = {We present a novel approach for compressing 3D scenes using entropy-penalized neural representations to achieve high-quality reconstruction with compact storage.},
+  archiveprefix = {arXiv},
+  author = {Bird, Thomas and Ballé, Johannes and Singh, Saurabh and Chou, Philip A.},
+  eprint = {2104.12456},
+  file = {:/home/b/documents/article/bird20213d.pdf:pdf},
+  journal = {arXiv preprint arXiv:2104.12456},
+  pdf = {https://arxiv.org/pdf/2104.12456},
+  title = {3D Scene Compression through Entropy Penalized Neural Representation Functions},
+  url = {https://arxiv.org/abs/2104.12456},
+  year = {2021}
+}
+
+@inproceedings{liu2024compgs,
+  abstract = {Gaussian splatting has emerged as a prominent technique in 3D scene representation but the substantial data volume impedes practical utility. We propose CompGS, which harnesses compact Gaussian primitives for faithful 3D scene modeling with remarkably reduced data size. We devise a hybrid primitive structure that captures predictive relationships among primitives and develop a rate-constrained optimization scheme to eliminate redundancies. Experimental results show that CompGS significantly outperforms existing methods, achieving superior compactness without compromising model accuracy and rendering quality.},
+  archiveprefix = {arXiv},
+  author = {Liu, Xiangrui and Wu, Xinju and Zhang, Pingping and Wang, Shiqi and Li, Zhu and Kwong, Sam},
+  booktitle = {Proceedings of the 32nd ACM International Conference on Multimedia},
+  doi = {10.1145/3664647.3681468},
+  eprint = {2404.09458},
+  file = {:/home/b/documents/inproceedings/liu2024compgs.pdf:pdf},
+  pdf = {https://arxiv.org/pdf/2404.09458},
+  publisher = {ACM},
+  title = {CompGS: Efficient 3D Scene Representation via Compressed Gaussian Splatting},
+  url = {https://dl.acm.org/doi/10.1145/3664647.3681468},
+  year = {2024}
+}
+
+@inproceedings{fan2024lightgaussian,
+  abstract = {LightGaussian transforms 3D Gaussians into a more compact format by identifying Gaussians with minimal global significance on scene reconstruction and applying a pruning and recovery process to reduce redundancy while preserving visual quality. The method uses knowledge distillation and pseudo-view augmentation to transfer spherical harmonic coefficients to a lower degree, and employs Gaussian Vector Quantization based on each Gaussian's global significance. Experimental results achieve an average 15x compression rate and boost FPS from 144 to 237 within the 3D-GS framework on Mip-NeRF 360 and Tank & Temple datasets.},
+  archiveprefix = {arXiv},
+  author = {Fan, Zhiwen and Wang, Kevin and Wen, Kairun and Zhu, Zehao and Xu, Dejia and Wang, Zhangyang},
+  booktitle = {Advances in Neural Information Processing Systems},
+  eprint = {2311.17245},
+  file = {:/home/b/documents/inproceedings/fan2024lightgaussian.pdf:pdf},
+  pdf = {https://proceedings.neurips.cc/paper_files/paper/2024/file/fd881d3b625437354d4421818f81058f-Paper-Conference.pdf},
+  publisher = {NeurIPS},
+  title = {LightGaussian: Unbounded 3D Gaussian Compression with 15x Reduction and 200+ FPS},
+  url = {https://proceedings.neurips.cc/paper_files/paper/2024/hash/fd881d3b625437354d4421818f81058f-Abstract-Conference.html},
+  volume = {37},
+  year = {2024}
+}
+
+@inproceedings{mentzer2022neural,
+  abstract = {We present the first neural video compression method based on generative adversarial networks (GANs), and significantly outperform previous neural and non-neural video compression methods in user studies, setting a new state-of-the-art in visual quality for neural methods. The approach shows that the GAN loss is crucial to obtain high visual quality. Two components make the GAN loss effective: synthesizing detail by conditioning the generator on a latent extracted from the warped previous reconstruction and then propagating this detail with high-quality flow. User studies were required to compare methods as quantitative metrics were unable to predict all studies.},
+  archiveprefix = {arXiv},
+  author = {Mentzer, Fabian and Agustsson, Eirikur and Ballé, Johannes and Minnen, David and Johnston, Nick and Toderici, George},
+  booktitle = {European Conference on Computer Vision (ECCV)},
+  doi = {10.1007/978-3-031-19809-0_32},
+  eprint = {2107.12038},
+  file = {:/home/b/documents/inproceedings/mentzer2022neural.pdf:pdf},
+  pages = {549--565},
+  pdf = {https://arxiv.org/pdf/2107.12038},
+  publisher = {Springer},
+  title = {Neural Video Compression using GANs for Detail Synthesis and Propagation},
+  url = {https://link.springer.com/chapter/10.1007/978-3-031-19809-0_32},
+  year = {2022}
+}
+
+@article{zeghidour2022soundstream,
+  abstract = {We present SoundStream, a novel neural audio codec that can efficiently compress speech, music and general audio at bitrates normally targeted by speech-tailored codecs. SoundStream relies on a model architecture composed by a fully convolutional encoder/decoder network and a residual vector quantizer, which are trained jointly end-to-end. Training leverages recent advances in text-to-speech and speech enhancement, which combine adversarial and reconstruction losses to allow the generation of high-quality audio content from quantized embeddings. By training with structured dropout applied to quantizer layers, a single model can operate across variable bitrates from 3kbps to 18kbps, with a negligible quality loss when compared with models trained at fixed bitrates. In addition, the model is amenable to a low latency implementation, which supports streamable inference and runs in real time on a smartphone CPU. In subjective evaluations using audio at 24kHz sampling rate, SoundStream at 3kbps outperforms Opus at 12kbps and approaches EVS at 9.6kbps.},
+  archiveprefix = {arXiv},
+  author = {Zeghidour, Neil and Luebs, Alejandro and Omran, Ahmed and Skoglund, Jan and Tagliasacchi, Marco},
+  doi = {10.1109/TASLP.2021.3129994},
+  eprint = {2107.03312},
+  file = {:/home/b/documents/article/zeghidour2022soundstream.pdf:pdf},
+  journal = {IEEE/ACM Transactions on Audio, Speech, and Language Processing},
+  pages = {495--507},
+  pdf = {https://arxiv.org/pdf/2107.03312},
+  publisher = {IEEE},
+  title = {SoundStream: An End-to-End Neural Audio Codec},
+  url = {https://ieeexplore.ieee.org/document/9625818/},
+  volume = {30},
+  year = {2022}
+}
+
+@inproceedings{le2022gamecodec,
+  abstract = {We present GameCodec, the first neural video codec designed for cloud gaming. Cloud gaming video is inherently challenging to compress due to extreme camera and object motion, rich textures and visual effects. Although neural video codecs have shown great progress on natural videos, there is little work on compressing gaming video. Furthermore, existing neural codecs are unable to take useful game engine information into account. We introduce a novel neural network based cloud gaming codec that leverages rendering information in an end-to-end fashion. Specifically, we introduce DMC, a decomposed motion compensation method that splits movement in the video into two separate steps: camera motion and object motion.},
+  address = {London, UK},
+  author = {Le, Hoang and Pourreza, Reza and Said, Amir and Sautiere, Guillaume and Wiggers, Auke},
+  booktitle = {33rd British Machine Vision Conference (BMVC)},
+  file = {:/home/b/documents/inproceedings/le2022gamecodec.pdf:pdf},
+  pdf = {https://bmvc2022.mpi-inf.mpg.de/0204.pdf},
+  publisher = {British Machine Vision Association},
+  title = {GameCodec: Neural Cloud Gaming Video Codec},
+  url = {https://bmvc2022.mpi-inf.mpg.de/204/},
+  year = {2022}
+}
+
+@article{chemnitz2025dynamical,
+  abstract = {In this chapter, we utilize dynamical systems to analyze several aspects of machine learning algorithms. As an expository contribution we demonstrate how to re-formulate a wide variety of challenges from deep neural networks, (stochastic) gradient descent, and related topics into dynamical statements. We also tackle three concrete challenges: (1) Information propagation through neural networks: studying input-output maps for different architectures, including universal embedding properties for neural ODEs and classification of multilayer perceptrons. (2) Neural network training dynamics: examining gradient descent from a dynamical systems perspective, exploring stability in overdetermined and overparameterized settings, and investigating the "edge of stability" phenomenon. (3) Mean-field limits of neural networks: extending techniques to heterogeneous neural networks using graph limits and demonstrating how neural networks relate to Kuramoto-type models. Finally, we suggest that similar dynamical approaches could be applied to generative models and fundamental gradient training issues like backpropagation and gradient instability.},
+  archiveprefix = {arXiv},
+  author = {Chemnitz, Dennis and Engel, Maximilian and Kuehn, Christian and Kuntz, Sara-Viola},
+  eprint = {2507.05164},
+  file = {:/home/b/documents/article/chemnitz2025dynamical.pdf:pdf},
+  journal = {arXiv preprint arXiv:2507.05164},
+  pdf = {https://arxiv.org/pdf/2507.05164.pdf},
+  title = {A Dynamical Systems Perspective on the Analysis of Neural Networks},
+  url = {https://arxiv.org/abs/2507.05164},
+  year = {2025}
+}
+
+@article{li2025control,
+  abstract = {Neural networks are powerful tools for data-driven modeling of complex dynamical systems, enhancing predictive capability for control applications. However, their inherent nonlinearity and black-box nature challenge control designs that prioritize rigorous safety and recursive feasibility guarantees. This paper presents algorithmic methods for synthesizing control invariant sets specifically tailored to neural network based dynamical models. These algorithms employ set recursion, ensuring termination after a finite number of iterations and generating subsets in which closed-loop dynamics are forward invariant, thus guaranteeing perpetual operational safety. Additionally, the authors propose model predictive control designs that integrate these control invariant sets into mixed-integer optimization, with guaranteed adherence to safety constraints and recursive feasibility at the computational level. The paper includes a comprehensive theoretical analysis examining the properties and guarantees of the proposed methods. Numerical simulations in an autonomous driving scenario demonstrate the methods' effectiveness in synthesizing control-invariant sets offline and implementing model predictive control online, ensuring safety and recursive feasibility.},
+  archiveprefix = {arXiv},
+  author = {Li, Xiao and Wei, Tianhao and Liu, Changliu and Girard, Anouck and Kolmanovsky, Ilya},
+  eprint = {2505.11546},
+  file = {:/home/b/documents/article/li2025control.pdf:pdf},
+  journal = {arXiv preprint arXiv:2505.11546},
+  pdf = {https://arxiv.org/pdf/2505.11546.pdf},
+  title = {Control Invariant Sets for Neural Network Dynamical Systems and Recursive Feasibility in Model Predictive Control},
+  url = {https://arxiv.org/abs/2505.11546},
+  year = {2025}
+}
+
+@article{wang2025sze,
+  abstract = {Weighted bandwidth allocation is a powerful abstraction that has a wide range of use cases in modern data center networks. However, realizing highly agile and precise weighted bandwidth allocation for large-scale cloud environments is fundamentally challenging. In this paper, we propose Söze, a lightweight decentralized weighted bandwidth allocation system that leverages simple network telemetry features of commodity Ethernet switches. Given the flow weights, Söze can effectively use the telemetry information to compute and enforce the weighted bandwidth allocations without per-flow, topology, or routing knowledge. We demonstrate the effectiveness of Söze through simulations and testbed experiments, improving TPC-H jobs completion time by up to 0.59× and 0.79× on average.},
+  archiveprefix = {arXiv},
+  author = {Wang, Weitao and Ng, T. S. Eugene},
+  eprint = {2506.00834},
+  file = {:/home/b/documents/article/wang2025sze.pdf:pdf},
+  journal = {arXiv preprint arXiv:2506.00834},
+  note = {Submitted to OSDI 2025},
+  pdf = {https://arxiv.org/pdf/2506.00834.pdf},
+  title = {Söze: One Network Telemetry Is All You Need for Per-flow Weighted Bandwidth Allocation at Scale},
+  url = {https://arxiv.org/abs/2506.00834},
+  year = {2025}
+}
+
+@article{natterer2025machine,
+  abstract = {This paper explores the use of machine learning surrogates for optimizing transportation policies with agent-based models, demonstrating significant computational efficiency gains.},
+  archiveprefix = {arXiv},
+  author = {Natterer, Elena and Engelhardt, Roman and Hörl, Sebastian and Bogenberger, Klaus},
+  eprint = {2501.11057},
+  file = {:/home/b/documents/article/natterer2025machine.pdf:pdf},
+  journal = {arXiv preprint arXiv:2501.11057},
+  pdf = {https://arxiv.org/pdf/2501.11057.pdf},
+  title = {Machine Learning Surrogates for Optimizing Transportation Policies with Agent-Based Models},
+  url = {https://arxiv.org/abs/2501.11057},
+  year = {2025}
+}
+
+@article{gu2025deep,
+  abstract = {Cloud computing has revolutionized the provisioning of computing resources, offering scalable, flexible, and on-demand services to meet the diverse requirements of modern applications. At the heart of efficient cloud operations are job scheduling and resource management, which are critical for optimizing system performance and ensuring timely and cost-effective service delivery. However, the dynamic and heterogeneous nature of cloud environments presents significant challenges for these tasks, as workloads and resource availability can fluctuate unpredictably. Traditional approaches, including heuristic and meta-heuristic algorithms, often struggle to adapt to these real-time changes due to their reliance on static models or predefined rules. Deep Reinforcement Learning (DRL) has emerged as a promising solution to these challenges by enabling systems to learn and adapt policies based on continuous observations of the environment, facilitating intelligent and responsive decision-making. This work bridges the gap by systematically analyzing DRL in job scheduling and resource management from an algorithm-level perspective, providing a structured examination of advancements and methodologies.},
+  archiveprefix = {arXiv},
+  author = {Gu, Yan and Liu, Zhaoze and Dai, Shuhong and Liu, Cong and Wang, Ying and Wang, Shen and Theodoropoulos, Georgios and Cheng, Long},
+  eprint = {2501.01007},
+  file = {:/home/b/documents/article/gu2025deep.pdf:pdf},
+  journal = {arXiv preprint arXiv:2501.01007},
+  pdf = {https://arxiv.org/pdf/2501.01007.pdf},
+  title = {Deep Reinforcement Learning for Job Scheduling and Resource Management in Cloud Computing: An Algorithm-Level Review},
+  url = {https://arxiv.org/abs/2501.01007},
+  year = {2025}
+}
+
+@article{narasingu2025ai,
+  abstract = {Data centers are integral to the digital economy, but their rapid growth presents increasing challenges, particularly in terms of energy consumption and operational complexity. This paper explores the potential of artificial intelligence (AI) techniques to enhance energy efficiency and optimize resource utilization in contemporary data centers. Key areas of focus include workload forecasting, dynamic resource allocation, and optimizing cooling system performance. By leveraging advanced AI methodologies such as reinforcement learning, predictive analytics, and neural network models, this research aims to address two primary objectives: reducing operational costs and minimizing the environmental impact of data centers. The AI-driven solutions are evaluated in both virtual and real-world scenarios, with performance metrics compared to traditional heuristic-based algorithms. The findings offer practical insights for the design and deployment of more efficient, sustainable data centers in an increasingly computationally demanding environment.},
+  author = {Narasingu, Sai Prakash},
+  doi = {10.34218/IJCET_16_01_083},
+  file = {:/home/b/documents/article/narasingu2025ai.pdf:pdf},
+  journal = {International Journal of Computer Engineering & Technology (IJCET)},
+  month = {1},
+  number = {1},
+  pages = {1065--1078},
+  pdf = {https://iaeme.com/MasterAdmin/Journal_uploads/IJCET/VOLUME_16_ISSUE_1/IJCET_16_01_083.pdf},
+  publisher = {IAEME Publication},
+  title = {AI-Powered Solutions for Enhancing Energy Efficiency and Resource Management in Modern Data Centers},
+  url = {https://iaeme.com/Home/article_id/IJCET_16_01_083},
+  volume = {16},
+  year = {2025}
+}
+
+@inproceedings{xu2025decouple,
+  abstract = {Efficient resource allocation is essential in cloud systems to facilitate resource sharing among tenants. However, the growing scale of these optimization problems have outpaced commercial solvers commonly employed in production. To accelerate resource allocation, prior approaches either customize solutions for narrow domains or impose workload-specific assumptions. In this work, the authors revisit real-world resource allocation problems and uncover a common underlying structure: the vast majority of these problems are inherently separable, i.e., they optimize the aggregate utility of individual resource and demand allocations, under separate constraints for each resource and each demand. Building on this observation, they develop DeDe, a scalable and theoretically rooted optimization framework for large-scale resource allocation. At the core of DeDe is a decouple-and-decompose approach: it decouples entangled resource and demand constraints and thereby decomposes the overall optimization into alternating per-resource and per-demand subproblems that can be solved efficiently and in parallel. They have implemented and released DeDe as a Python package with a familiar modeling interface. Experiments on three representative resource allocation tasks -- cluster scheduling, traffic engineering, and load balancing -- demonstrate that DeDe delivers significant speedups while generating higher-quality allocations.},
+  archiveprefix = {arXiv},
+  author = {Xu, Zhiying and Yu, Minlan and Yan, Francis Y.},
+  booktitle = {19th USENIX Symposium on Operating Systems Design and Implementation (OSDI 25)},
+  eprint = {2412.11447},
+  file = {:/home/b/documents/inproceedings/xu2025decouple.pdf:pdf},
+  pdf = {https://arxiv.org/pdf/2412.11447.pdf},
+  publisher = {USENIX Association},
+  title = {Decouple and Decompose: Scaling Resource Allocation with DeDe},
+  url = {https://www.usenix.org/conference/osdi25/presentation/xu},
+  year = {2025}
+}
+
+@article{osnes2022harnessing,
+  abstract = {The growing number of data centers consumes a vast amount of energy for processing. There is a desire to reduce the environmental footprint of the IT industry, and one way to achieve this is to use renewable energy sources. A challenge with using renewable resources is that the energy output is irregular as a consequence of the intermittent nature of this form of energy. In this paper, we propose a simple and yet efficient latency-aware workload scheduler that creates an energy-agile workload, by deferring tasks with low latency sensitivity to periods with excess renewable energy. The scheduler also increases the overall efficiency of the data center, by packing the workload into as few servers as possible, using neural-network-based predictions of resource usage on an individual task basis to avoid unnecessarily provisioning an excess number of servers. The scheduler was tested on a subset of real-world workload traces, and real-world wind-power generation data, simulating a small-scale data center co-located with a wind turbine. Extensive experimental results show that the devised scheduler reduced the number of servers doing work in periods of low wind-power production up to 93% of the time, by postponing tasks with a low latency sensitivity to a later interval.},
+  author = {Osnes, Idun and Yazidi, Anis and Jacobsen, Hans-Arno and Eliassen, Frank and Sartori, Sabrina},
+  doi = {10.3390/en15124469},
+  journal = {Energies},
+  number = {12},
+  pages = {4469},
+  pdf = {https://www.mdpi.com/1996-1073/15/12/4469/pdf},
+  publisher = {MDPI},
+  title = {Harnessing Task Usage Prediction and Latency Sensitivity for Scheduling Workloads in Wind-Powered Data Centers},
+  url = {https://www.mdpi.com/1996-1073/15/12/4469},
+  volume = {15},
+  year = {2022}
+}
+
+@misc{harris2025ai,
+  author = {Harris, Dion},
+  howpublished = {NVIDIA Blog},
+  month = {3},
+  note = {AI factories are purpose-built data centers designed to manufacture intelligence at scale, transforming raw data into real-time insights. Unlike traditional data centers, they focus on AI token throughput and the entire AI lifecycle from data ingestion to inference. They represent a new industrial revolution, enabling enterprises to turn AI from a long-term investment into an immediate competitive advantage.},
+  organization = {NVIDIA Corporation},
+  title = {AI Factories Are Redefining Data Centers and Enabling the Next Era of AI},
+  url = {https://blogs.nvidia.com/blog/ai-factory/},
+  year = {2025}
+}
+
+@article{he2025pretrained,
+  abstract = {Pre-trained video generative models have achieved remarkable success at producing realistic synthetic videos. However, they often generate clips based on static prompts, limiting their ability to model interactive and dynamic scenarios. This paper proposes Dynamic World Simulation (DWS), a method to transform pre-trained video generative models into controllable world simulators capable of executing specified action trajectories. We introduce a lightweight, universal action-conditioned module that seamlessly integrates into any existing model to achieve precise alignment between actions and visual changes, along with a motion-reinforced loss that enhances action controllability by compelling the model to capture dynamic changes more effectively.},
+  archiveprefix = {arXiv},
+  author = {He, Haoran and Zhang, Yang and Lin, Liang and Xu, Zhongwen and Pan, Ling},
+  eprint = {2502.07825},
+  file = {:/home/b/documents/article/he2025pretrained.pdf:pdf},
+  journal = {arXiv preprint arXiv:2502.07825},
+  pdf = {https://arxiv.org/pdf/2502.07825},
+  title = {Pre-Trained Video Generative Models as World Simulators},
+  url = {https://arxiv.org/abs/2502.07825},
+  year = {2025}
+}
+
+@article{lin2025exploring,
+  abstract = {Recent advancements in video generation have witnessed significant progress driven by the development of diffusion models. However, despite these remarkable achievements, generated content often violates the fundamental laws of physics, falling into the dilemma of visual realism but physical absurdity. Researchers have begun to recognize the importance of physical fidelity in video generation and are attempting to integrate physical cognition such as motion representations and physical knowledge into generative systems to simulate real-world dynamic scenarios. This survey provides a comprehensive review of physics cognition in video generation, proposing a three-tier taxonomy: basic schema perception for generation, passive cognition of physical knowledge for generation, and active cognition for world simulation.},
+  archiveprefix = {arXiv},
+  author = {Lin, Minghui and Wang, Xiang and Wang, Yishan and Wang, Shu and Dai, Fengqi and Ding, Pengxiang and Wang, Cunxiang and Zuo, Zhengrong and Sang, Nong and Huang, Siteng and Wang, Donglin},
+  eprint = {2503.21765},
+  file = {:/home/b/documents/article/lin2025exploring.pdf:pdf},
+  journal = {arXiv preprint arXiv:2503.21765},
+  pdf = {https://arxiv.org/pdf/2503.21765},
+  title = {Exploring the Evolution of Physics Cognition in Video Generation: A Survey},
+  url = {https://arxiv.org/abs/2503.21765},
+  year = {2025}
+}
+
+@inproceedings{girish2024queen,
+  abstract = {Online free-viewpoint video (FVV) streaming is a challenging problem, which is relatively under-explored. It requires incremental on-the-fly updates to a volumetric representation, fast training and rendering to satisfy realtime constraints and a small memory footprint for efficient transmission. We propose QUEEN, a framework for QUantized and Efficient ENcoding for streaming free-viewpoint videos using 3D Gaussian Splatting (3D-GS). QUEEN directly learns Gaussian attribute residuals between consecutive frames at each time-step without imposing any structural constraints on them, allowing for high quality reconstruction and generalizability. The method uses a quantization-sparsity framework with a learned latent-decoder for effectively quantizing attribute residuals and uses the Gaussian viewspace gradient difference vector as a signal to separate static and dynamic content of the scene.},
+  archiveprefix = {arXiv},
+  author = {Girish, Sharath and Li, Tianye and Mazumdar, Amrita and Shrivastava, Abhinav and Luebke, David and De Mello, Shalini},
+  booktitle = {Advances in Neural Information Processing Systems (NeurIPS)},
+  eprint = {2412.04469},
+  file = {:/home/b/documents/inproceedings/girish2024queen.pdf:pdf},
+  pdf = {https://arxiv.org/pdf/2412.04469},
+  title = {QUEEN: QUantized Efficient ENcoding of Dynamic Gaussians for Streaming Free-viewpoint Videos},
+  url = {https://openreview.net/forum?id=7xhwE7VH4S},
+  year = {2024}
+}
+
+@inproceedings{chen2025omnire,
+  abstract = {We introduce OmniRe, a comprehensive system for efficiently creating high-fidelity digital twins of dynamic real-world scenes from on-device logs. Recent methods using neural fields or Gaussian Splatting primarily focus on vehicles, hindering a holistic framework for all dynamic foregrounds demanded by downstream applications, e.g., the simulation of human behavior. Our approach builds scene graphs on 3DGS and constructs multiple Gaussian representations in canonical spaces that model various dynamic actors, including vehicles, pedestrians, cyclists, and others. OmniRe allows holistically reconstructing any dynamic object in the scene, enabling advanced simulations that include human-participated scenarios.},
+  archiveprefix = {arXiv},
+  author = {Chen, Ziyu and Yang, Jiawei and Huang, Jiahui and de Lutio, Riccardo and Martinez Esturo, Janick and Ivanovic, Boris and Litany, Or and Gojcic, Zan and Fidler, Sanja and Pavone, Marco and Song, Li and Wang, Yue},
+  booktitle = {International Conference on Learning Representations (ICLR)},
+  eprint = {2408.16760},
+  file = {:/home/b/documents/inproceedings/chen2025omnire.pdf:pdf},
+  note = {Spotlight Paper},
+  pdf = {https://arxiv.org/pdf/2408.16760},
+  project = {https://ziyc.github.io/omnire/},
+  title = {OmniRe: Omni Urban Scene Reconstruction},
+  url = {https://openreview.net/forum?id=11xgiMEI5o},
+  year = {2025}
+}
+
+@misc{siggraph2025generative,
+  abstract = {SIGGRAPH 2025 highlights groundbreaking research in 3D generative AI that is transforming creativity across computer graphics, animation, and fashion technology. Featured innovations include CAST for single-image 3D scene reconstruction, Sketch2Anim for converting storyboards to 3D animation, and Dress-1-to-3 for creating simulation-ready garments from photographs. These advances demonstrate how generative AI is reshaping creative processes and opening new frontiers in digital content creation.},
+  author = {ACM SIGGRAPH},
+  conference = {August 10--14, 2025},
+  contact = {Michelle Ellis, michelle.ellis@siggraph.org},
+  day = {13},
+  howpublished = {Press Release},
+  month = {6},
+  organization = {ACM SIGGRAPH},
+  title = {3D Generative AI Transforms How We Create, Design, Interact With Digital Content},
+  url = {https://s2025.siggraph.org/3d-generative-ai-transforms-how-we-create-design-interact-with-digital-content/},
+  venue = {SIGGRAPH 2025, Vancouver Convention Centre, Vancouver, B.C., Canada},
+  year = {2025}
+}
