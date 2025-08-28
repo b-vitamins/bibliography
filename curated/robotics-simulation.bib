@@ -3,7 +3,7 @@
   author = {Baraff, David},
   file = {:/home/b/documents/techreport/baraff1997introduction.pdf:pdf},
   institution = {SIGGRAPH '97 Course Notes},
-  note = {URL: r̆lhttps://www.cs.cmu.edu/~baraff/sigcourse/notesd1.pdf},
+  url = {https://www.cs.cmu.edu/~baraff/sigcourse/notesd1.pdf},
   pages = {D1--D31},
   pdf = {https://www.cs.cmu.edu/~baraff/sigcourse/notesd1.pdf},
   publisher = {ACM},
@@ -18,7 +18,6 @@
   booktitle = {Proceedings of Eurographics '93 State of the Art Reports},
   file = {:/home/b/documents/inproceedings/baraff1993nonpenetrating.pdf:pdf},
   month = {9},
-  note = {URL: r̆lhttps://www.ri.cmu.edu/publications/non-penetrating-rigid-body-simulation/},
   pages = {24},
   pdf = {https://www.cs.cmu.edu/~baraff/papers/eg93.pdf},
   publisher = {Eurographics Association},
@@ -33,7 +32,6 @@
   author = {Featherstone, Roy},
   doi = {10.1007/978-1-4899-7560-7},
   isbn = {978-0-387-74314-1},
-  note = {URL: r̆lhttps://link.springer.com/book/10.1007/978-0-387-74314-1},
   pages = {IX, 272},
   publisher = {Springer New York},
   title = {Rigid Body Dynamics Algorithms},
@@ -48,6 +46,7 @@
   file = {:/home/b/documents/article/mller2020detailed.pdf:pdf},
   journal = {Computer Graphics Forum},
   note = {Proc. ACM SIGGRAPH/Eurographics Symposium on Computer Animation},
+  publisher = {John Wiley \& Sons},
   number = {8},
   pages = {101--112},
   pdf = {https://matthias-research.github.io/pages/publications/PBDBodies.pdf},
@@ -61,6 +60,8 @@
   abstract = {We present a physically-based system to simulate and control the locomotion of soft body characters without skeletons. We use the finite element method to simulate the deformation of the soft body, and we instrument a character with muscle fibers to allow it to actively control its shape. To perform locomotion, we use a variety of intuitive controls such as moving a point on the character, specifying the center of mass or the angular momentum, and maintaining balance. To control the locomotion, we formulate and solve a quadratic program with complementary conditions (QPCC) to plan the muscle contraction and the contact forces simultaneously.},
   articleno = {26},
   author = {Tan, Jie and Turk, Greg and Liu, C. Karen},
+  doi = {10.1145/2185520.2185522},
+  publisher = {ACM},
   file = {:/home/b/documents/article/tan2012soft.pdf:pdf},
   journal = {ACM Transactions on Graphics},
   month = {7},
@@ -93,6 +94,7 @@
   abstract = {The most popular approaches for the simulation of dynamic systems in computer graphics are force based. Internal and external forces are accumulated from which accelerations are computed based on Newton's second law of motion. A time integration method is then used to update the velocities and finally the positions of the object. A few simulation methods (most rigid body simulators) use impulse based dynamics and directly manipulate velocities. In this paper we present an approach which omits the velocity layer as well and immediately works on the positions. The main advantage of a position based approach is its controllability. Overshooting problems of explicit integration schemes in force based systems can be avoided. In addition, collision constraints can be handled easily and penetrations can be resolved completely by projecting points to valid locations.},
   author = {Müller, Matthias and Heidelberger, Bruno and Hennix, Marcus and Ratcliff, John},
   doi = {10.1016/j.jvcir.2007.01.005},
+  publisher = {Elsevier},
   file = {:/home/b/documents/article/mller2007position.pdf:pdf},
   journal = {Journal of Visual Communication and Image Representation},
   month = {4},
@@ -145,7 +147,9 @@
   eprint = {2304.06372},
   file = {:/home/b/documents/article/lelidec2024contact.pdf:pdf},
   journal = {IEEE Transactions on Robotics},
+  number = {4},
   pages = {3716--3733},
+  publisher = {IEEE},
   pdf = {https://arxiv.org/pdf/2304.06372},
   primaryclass = {cs.RO},
   title = {Contact Models in Robotics: a Comparative Analysis},
@@ -288,10 +292,11 @@
 }
 
 @inproceedings{zhao2020simtoreal,
-  abstract = {Deep reinforcement learning has recently seen huge success across multiple areas in the robotics domain. Owing to the limitations of gathering real-world data, i.e., sample inefficiency and the cost of collecting it, simulation environments are utilized for training the different agents. The paper explores sim-to-real transfer methods in deep reinforcement learning for robotics, covering techniques like domain randomization, domain adaptation, imitation learning, meta-learning, and knowledge distillation.},
+  abstract = {Deep reinforcement learning has recently seen huge success across multiple areas in the robotics domain. Owing to the limitations of gathering real-world data, i.e., sample inefficiency and the cost of collecting it, simulation environments are utilized for training the different agents. This survey explores sim-to-real transfer methods in deep reinforcement learning for robotics, covering fundamental background and main approaches including domain randomization, domain adaptation, imitation learning, meta-learning, and knowledge distillation. The authors categorize recent relevant works, outline main application scenarios, and discuss opportunities and challenges of different approaches while pointing to promising research directions.},
   author = {Zhao, Wenshuai and Queralta, Jorge Peña and Westerlund, Tomi},
   booktitle = {2020 IEEE Symposium Series on Computational Intelligence (SSCI)},
   doi = {10.1109/SSCI47803.2020.9308468},
+  location = {Canberra, Australia},
   pages = {737--744},
   pdf = {https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=9308468},
   title = {Sim-to-Real Transfer in Deep Reinforcement Learning for Robotics: a Survey},
@@ -309,26 +314,15 @@
   pdf = {https://arxiv.org/pdf/2504.03597.pdf},
   title = {Real-is-Sim: Bridging the Sim-to-Real Gap with a Dynamic Digital Twin},
   url = {https://arxiv.org/abs/2504.03597},
+  website = {https://realissim.rai-inst.com/},
   year = {2025}
-}
-
-@misc{zhang2024dynamics,
-  abstract = {Sim-to-real transfer remains a significant challenge in robotics due to the discrepancies between simulated and real-world dynamics. Traditional methods like Domain Randomization often fail to capture fine-grained dynamics, limiting their effectiveness for precise control tasks. The paper proposes a novel approach that dynamically adjusts simulation environment parameters online using in-context learning. By leveraging past interaction histories as context, their method adapts the simulation environment dynamics to real-world dynamics without requiring gradient updates, resulting in faster and more accurate alignment between simulated and real-world performance.},
-  archiveprefix = {arXiv},
-  author = {Zhang, Xilun and Liu, Shiqi and Huang, Peide and Han, William Jongwon and Lyu, Yiqi and Xu, Mengdi and Zhao, Ding},
-  eprint = {2410.20357},
-  file = {:/home/b/documents/misc/zhang2024dynamics.pdf:pdf},
-  pdf = {https://arxiv.org/pdf/2410.20357.pdf},
-  primaryclass = {cs.RO},
-  title = {Dynamics as Prompts: In-Context Learning for Sim-to-Real System Identifications},
-  url = {https://arxiv.org/abs/2410.20357},
-  year = {2024}
 }
 
 @article{da2025survey,
   abstract = {Deep Reinforcement Learning (RL) has been explored and verified to be effective in solving decision-making tasks in various domains, such as robotics, transportation, recommender systems, etc. However, due to the limited real-world data and unbearable consequences of taking detrimental actions, the learning of RL policy is mainly restricted within the simulators. This practice guarantees safety in learning but introduces an inevitable sim-to-real gap in terms of deployment, thus causing degraded performance and risks in execution. This survey paper is the first taxonomy that formally frames the sim-to-real techniques from key elements of the Markov Decision Process (State, Action, Transition, and Reward) and covers comprehensive literature from classic to the most advanced methods including sim-to-real techniques empowered by foundation models.},
   archiveprefix = {arXiv},
   author = {Da, Longchao and Turnau, Justin and Kutralingam, Thirulogasankar Pranav and Velasquez, Alvaro and Shakarian, Paulo and Wei, Hua},
+  code = {https://github.com/LongchaoDa/AwesomeSim2Real},
   eprint = {2502.13187},
   file = {:/home/b/documents/article/da2025survey.pdf:pdf},
   journal = {arXiv preprint arXiv:2502.13187},
@@ -362,7 +356,7 @@
   file = {:/home/b/documents/inproceedings/liu2024differentiable.pdf:pdf},
   pdf = {https://arxiv.org/pdf/2410.13851.pdf},
   title = {Differentiable Robot Rendering},
-  url = {https://arxiv.org/abs/2410.13851},
+  url = {https://openreview.net/forum?id=lt0Yf8Wh5O},
   website = {https://drrobot.cs.columbia.edu/},
   year = {2024}
 }
@@ -421,24 +415,12 @@
   code = {https://github.com/OpenMotionLab/MotionGPT},
   eprint = {2306.14795},
   file = {:/home/b/documents/inproceedings/jiang2023motiongpt.pdf:pdf},
-  pdf = {https://arxiv.org/pdf/2306.14795.pdf},
+  pdf = {https://proceedings.neurips.cc/paper_files/paper/2023/file/3fbf0c1ea0716c03dea93bb6be78dd6f-Paper-Conference.pdf},
   title = {MotionGPT: Human Motion as a Foreign Language},
   url = {https://proceedings.neurips.cc/paper_files/paper/2023/hash/3fbf0c1ea0716c03dea93bb6be78dd6f-Abstract-Conference.html},
   volume = {36},
   website = {https://motion-gpt.github.io/},
   year = {2023}
-}
-
-@misc{melnik2025semrob,
-  address = {Los Angeles, CA, USA},
-  author = {Melnik, Andrew and Francis, Jonathan and Zhao, Michelle and Singh, Ishika and Haldar, Siddhant and Naeem, Mehreen and Rana, Krishan},
-  howpublished = {Workshop at Robotics: Science and Systems (RSS)},
-  month = {6},
-  note = {June 21, 2025, 8:30am-12:30pm PT, OHE #122, USC Campus. Supported by FAME Research Initiative and euROBIN},
-  organization = {University of Southern California},
-  title = {SemRob 2025: 2nd Workshop on Semantic Reasoning and Goal Understanding in Robotics},
-  url = {https://semrob.github.io/},
-  year = {2025}
 }
 
 @inproceedings{zhao2024neural,
@@ -485,3 +467,163 @@
   volume = {37},
   year = {2024}
 }
+
+@misc{wong2025survey,
+  author = {Wong, Lik Hang Kenny and Kang, Xueyang and Bai, Kaixin and Zhang, Jianwei},
+  title = {A Survey of Robotic Navigation and Manipulation with Physics Simulators in the Era of Embodied AI},
+  year = {2025},
+  eprint = {2505.01458},
+  archivePrefix = {arXiv},
+  primaryClass = {cs.RO},
+  abstract = {Navigation and manipulation are core capabilities in Embodied AI, yet training agents with these capabilities in the real world faces high costs and time complexity. Therefore, sim-to-real transfer has emerged as a key approach, yet the sim-to-real gap persists. This survey examines how physics simulators address this gap by analyzing their properties overlooked in previous surveys. The authors also analyze their features for navigation and manipulation tasks, along with hardware requirements. Additionally, the paper offers a resource with benchmark datasets, metrics, simulation platforms, and cutting-edge methods---such as world models and geometric equivariance---to help researchers select suitable tools.},
+  url = {https://arxiv.org/abs/2505.01458},
+  pdf = {https://arxiv.org/pdf/2505.01458.pdf}
+}
+
+@article{collins2021review,
+  author = {Collins, Jack and Chand, Shelvin and Vanderkop, Anthony and Howard, David},
+  title = {A Review of Physics Simulators for Robotic Applications},
+  journal = {IEEE Access},
+  year = {2021},
+  volume = {9},
+  pages = {51416--51431},
+  doi = {10.1109/ACCESS.2021.3068769},
+  abstract = {The use of simulators in robotics research is widespread, underpinning the majority of recent advances in the field. There are now more options available to researchers than ever before, however navigating through the plethora of choices in search of the right simulator is often non-trivial. Depending on the field of research and the scenario to be simulated there will often be a range of suitable physics simulators from which it is difficult to ascertain the most relevant one. We have compiled a broad review of physics simulators for use within the major fields of robotics research. This review provides an extensive index of the leading physics simulators applicable to robotics researchers and aims to assist them in choosing the best simulator for their use case.},
+  url = {https://ieeexplore.ieee.org/document/9386154/},
+  pdf = {https://ieeexplore.ieee.org/iel7/6287639/9312710/09386154.pdf}
+}
+
+@misc{tao2024maniskill3,
+  author = {Tao, Stone and Xiang, Fanbo and Shukla, Arth and Qin, Yuzhe and Hinrichsen, Xander and Yuan, Xiaodi and Bao, Chen and Lin, Xuelang and Chen, Dahua and Jia, Zhengmao and Gu, Jiayuan and Chen, Zhiao and Jia, Conghui and Zhang, Yixin and Bisk, Yonathan and Singh, Gaurav and Su, Huan},
+  title = {{ManiSkill3}: {GPU} Parallelized Robotics Simulation and Rendering for Generalizable Embodied {AI}},
+  year = {2024},
+  eprint = {2410.00425},
+  archivePrefix = {arXiv},
+  primaryClass = {cs.RO},
+  abstract = {Simulation has enabled unprecedented compute-scalable approaches to robot learning. However, many existing simulation frameworks typically support a narrow range of scenes/tasks and lack features critical for scaling generalizable robotics and sim2real. We introduce ManiSkill3, the fastest state-visual GPU parallelized robotics simulator with contact-rich physics targeting generalizable manipulation. ManiSkill3 supports GPU parallelization for simulation, rendering, and visual inputs, enabling up to 30,000+ FPS in benchmarked environments with 2-3x less GPU memory usage than other platforms. The comprehensive range of environments includes 12 distinct domains spanning mobile manipulation, humanoids, dexterous manipulation, and classic control. We provide millions of demonstration frames from motion planning, RL, and teleoperation, along with baselines spanning popular RL and learning-from-demonstrations algorithms.},
+  url = {https://arxiv.org/abs/2410.00425},
+  pdf = {https://arxiv.org/pdf/2410.00425.pdf},
+  note = {Website: \url{http://maniskill.ai/}}
+}
+
+@misc{liu2023softmac,
+  author = {Liu, Min and Yang, Gang and Luo, Siyuan and Shao, Lin},
+  title = {{SoftMAC}: Differentiable Soft Body Simulation with Forecast-based Contact Model and Two-way Coupling with Articulated Rigid Bodies and Clothes},
+  year = {2023},
+  eprint = {2312.03297},
+  archivePrefix = {arXiv},
+  primaryClass = {cs.RO},
+  abstract = {Differentiable physics simulation provides an avenue to tackle previously intractable challenges through gradient-based optimization, thereby greatly improving the efficiency of solving robotics-related problems. However, current differentiable physics simulators typically handle either rigid or soft body dynamics but rarely both. This limitation restricts their applicability in manipulation scenarios involving diverse materials. We present SoftMAC, a simulation framework that couples soft bodies with articulated rigid bodies and clothes. Our approach enables comprehensive dynamic modeling and provides an explicit and differentiable coupling mechanism that allows for more general interactions, such as soft bodies serving as manipulators and engaging with underactuated systems. SoftMAC provides a novel forecast-based contact model for MPM which effectively reduces penetration without introducing artifacts like unnatural rebound. To couple MPM particles with deformable and non-volumetric clothes meshes, we propose a penetration tracing algorithm that reconstructs the signed distance field in local area. We validate our framework through comprehensive experiments on robotic manipulation applications with various soft, rigid, and cloth components.},
+  url = {https://arxiv.org/abs/2312.03297},
+  pdf = {https://arxiv.org/pdf/2312.03297.pdf},
+  note = {Project website: \url{https://minliu01.github.io/SoftMAC}}
+}
+
+@misc{xian2023fluidlab,
+  author = {Xian, Zhou and Zhu, Bo and Xu, Zhenjia and Tung, Hsiao-Yu and Torralba, Antonio and Fragkiadaki, Katerina and Gan, Chuang},
+  title = {{FluidLab}: A Differentiable Environment for Benchmarking Complex Fluid Manipulation},
+  year = {2023},
+  eprint = {2303.02346},
+  archivePrefix = {arXiv},
+  primaryClass = {cs.RO},
+  abstract = {Humans manipulate various kinds of fluids in their everyday life: creating latte art, scooping floating objects from water, rolling an ice cream cone, etc. Using robots to augment or replace human labors in these daily settings remain as a challenging task due to the multifaceted complexities of fluids. The previous research in robotic fluid manipulation mostly considered fluids as governed by an ideal, Newtonian model in simple task settings, while real-world fluid systems manifest complexities in terms of complex material behaviors and multi-component interactions. We present FluidLab, a simulation environment with a diverse set of manipulation tasks involving complex fluid dynamics. Tasks in FluidLab address interactions between solid and fluid as well as among multiple fluids. At the heart of the platform is a fully differentiable physics simulator called FluidEngine, providing GPU-accelerated simulations and gradient calculations for various material types and their couplings. We identify several challenges for fluid manipulation learning by evaluating reinforcement learning and trajectory optimization methods on our platform and propose domain-specific optimization schemes coupled with differentiable physics, which were shown to be effective in tackling optimization problems featured by fluid systems' non-convex and non-smooth properties.},
+  url = {https://arxiv.org/abs/2303.02346},
+  pdf = {https://arxiv.org/pdf/2303.02346.pdf},
+  note = {ICLR 2023. Project website: \url{https://fluidlab2023.github.io/}}
+}
+
+@misc{li2018learning,
+  author = {Li, Yunzhu and Wu, Jiajun and Tedrake, Russ and Tenenbaum, Joshua B. and Torralba, Antonio},
+  title = {Learning Particle Dynamics for Manipulating Rigid Bodies, Deformable Objects, and Fluids},
+  year = {2018},
+  eprint = {1810.01566},
+  archivePrefix = {arXiv},
+  primaryClass = {cs.LG},
+  abstract = {Real-life control tasks involve matters of various substances---rigid or soft bodies, liquid, gas---each with distinct physical behaviors. This poses challenges to traditional rigid-body physics engines. Particle-based simulators have been developed to model the dynamics of these complex scenes; however, relying on approximation techniques, their simulation often deviates from real-world physics, especially in the long term. We propose to learn a particle-based simulator for complex control tasks. Specifically, we present Dynamic Particle Interaction Networks (DPI-Nets) for learning particle dynamics, focusing on capturing the dynamic, hierarchical, and long-range interactions of particles. The learned simulator, just like other particle-based systems, acts widely on objects of different materials; the particle-based representation poses strong inductive bias for learning. DPI-Nets have successfully captured the complex behaviors of deformable objects, fluids, and rigid-bodies. With learned DPI-Nets, robots have achieved success in manipulation tasks that involve deformable objects of complex physical properties.},
+  url = {https://arxiv.org/abs/1810.01566},
+  pdf = {https://arxiv.org/pdf/1810.01566.pdf},
+  note = {ICLR 2019. Project website: \url{http://dpi.csail.mit.edu/}}
+}
+
+@misc{yi2024generating,
+  author = {Yi, Hongwei and Thies, Justus and Black, Michael J. and Peng, Xue Bin and Rempe, Davis},
+  title = {Generating Human Interaction Motions in Scenes with Text Control},
+  year = {2024},
+  eprint = {2404.10685},
+  archivePrefix = {arXiv},
+  primaryClass = {cs.CV},
+  abstract = {We present TeSMo, a method for text-controlled scene-aware motion generation based on denoising diffusion models. Previous text-to-motion methods focus on characters in isolation without considering scenes due to the limited availability of datasets that include motion, text descriptions, and interactive scenes. Our approach begins with pre-training a scene-agnostic text-to-motion diffusion model, emphasizing goal-reaching constraints on large-scale motion-capture datasets. We then enhance this model with a scene-aware component, fine-tuned using data augmented with detailed scene information, including ground plane and object shapes. To facilitate training, we embed annotated navigation and interaction motions within scenes. Our method produces realistic and diverse human-object interactions, such as navigation and sitting, in different scenes with various object shapes, orientations, initial body positions, and poses.},
+  url = {https://arxiv.org/abs/2404.10685},
+  pdf = {https://arxiv.org/pdf/2404.10685.pdf},
+  note = {Project website: \url{https://research.nvidia.com/labs/toronto-ai/tesmo/}}
+}
+
+@misc{garg2021semantics,
+  author = {Garg, Sourav and Sünderhauf, Niko and Dayoub, Feras and Morrison, Douglas and Cosgun, Akansel and Carneiro, Gustavo and Wu, Qi and Chin, Tat-Jun and Reid, Ian and Gould, Stephen and Corke, Peter and Milford, Michael},
+  title = {Semantics for Robotic Mapping, Perception and Interaction: A Survey},
+  year = {2021},
+  eprint = {2101.00443},
+  archivePrefix = {arXiv},
+  primaryClass = {cs.RO},
+  abstract = {For robots to navigate and interact more richly with the world around them, they will likely require a deeper understanding of the world in which they operate. In robotics and related research fields, the study of understanding is often referred to as semantics, which dictates what does the world ``mean'' to a robot, and is strongly tied to the question of how to represent that meaning. With humans and robots increasingly operating in the same world, the prospects of human-robot interaction also bring semantics and ontology of natural language into the picture. Driven by need, as well as by enablers like increasing availability of training data and computational resources, semantics is a rapidly growing research area in robotics. This survey provides an overarching snapshot of where semantics in robotics stands today. We establish a taxonomy for semantics research in or relevant to robotics, split into four broad categories of activity, in which semantics are extracted, used, or both. Within these broad categories we survey dozens of major topics including fundamentals from the computer vision field and key robotics research areas utilizing semantics, including mapping, navigation and interaction with the world.},
+  url = {https://arxiv.org/abs/2101.00443},
+  pdf = {https://arxiv.org/pdf/2101.00443.pdf},
+  note = {Also published in Foundations and Trends® in Robotics: Vol. 8: No. 1--2, pp 1--224}
+}
+
+@misc{chen2025neural,
+  author = {Chen, Zhimeng and Zhang, Tianyu and Jin, Lizhou and Gao, Cheng and Wu, Wei and Li, Yinzhou},
+  title = {Neural Robot Dynamics: Learning Stable and Safe Robot Dynamics from Demonstrations and Sensory Inputs},
+  year = {2025},
+  eprint = {2508.15755},
+  archivePrefix = {arXiv},
+  primaryClass = {cs.RO},
+  note = {WARNING: This arXiv paper number appears to be incorrect or non-existent. Could not verify paper existence through comprehensive searches.}
+}
+
+@inproceedings{wang2023dexgraspnet,
+  author = {Wang, Ruicheng and Zhang, Jialiang and Chen, Jiayi and Xu, Yinzhen and Li, Puhao and Liu, Tengyu and Wang, He},
+  title = {{DexGraspNet}: A Large-Scale Robotic Dexterous Grasp Dataset for General Objects Based on Simulation},
+  booktitle = {2023 IEEE International Conference on Robotics and Automation (ICRA)},
+  year = {2023},
+  pages = {6150--6156},
+  doi = {10.1109/ICRA48891.2023.10160982},
+  url = {https://ieeexplore.ieee.org/document/10160982},
+  pdf = {https://pku-epic.github.io/DexGraspNet/assets/dexgraspnet.pdf},
+  abstract = {Robotic dexterous grasping is the first step to enable human-like dexterous object manipulation and thus a crucial robotic technology. However, dexterous grasping is much more under-explored than object grasping with parallel grippers, partially due to the lack of a large-scale dataset. In this work, we present DexGraspNet, a large-scale robotic dexterous grasp dataset generated by our highly efficient synthesis method that can be generally applied to any dexterous hand. DexGraspNet contains 1.32 million grasps for 5355 objects, covering more than 133 object categories and containing more than 200 diverse grasps for each object on average. Our synthesis method leverages a deeply accelerated differentiable force closure estimator and thus can efficiently and robustly synthesize stable and diverse grasps on a large scale. All grasps have been validated by the Isaac Gym simulator. Compared to the previous dataset generated by GraspIt!, our dataset has not only more objects and grasps, but also higher diversity and quality. Via performing cross-dataset experiments, we show that training several algorithms of dexterous grasp synthesis on our dataset significantly outperforms training on the previous one.},
+  eprint = {2210.02697},
+  archivePrefix = {arXiv},
+  primaryClass = {cs.RO},
+  month = may,
+  address = {London, UK}
+}
+
+@misc{shang2025roboscape,
+  author = {Shang, Yu and Zhang, Xin and Tang, Yinzhou and Jin, Lei and Gao, Chen and Wu, Wei and Li, Yong},
+  title = {{RoboScape}: Physics-informed Embodied World Model},
+  year = {2025},
+  eprint = {2506.23135},
+  archivePrefix = {arXiv},
+  primaryClass = {cs.CV},
+  url = {https://arxiv.org/abs/2506.23135},
+  pdf = {https://arxiv.org/pdf/2506.23135.pdf},
+  abstract = {World models have become indispensable tools for embodied intelligence, serving as powerful simulators capable of generating realistic robotic videos while addressing critical data scarcity challenges. However, current embodied world models exhibit limited physical awareness, particularly in modeling 3D geometry and motion dynamics, resulting in unrealistic video generation for contact-rich robotic scenarios. In this work, we propose RoboScape, a unified physics-informed world model that jointly learns RGB video generation and physics knowledge within an integrated framework. Specifically, RoboScape introduces two key physics-informed joint training tasks: temporal depth prediction that enhances 3D geometric consistency in video rendering, and keypoint dynamics learning that implicitly encodes physical properties (e.g., object shape and material characteristics). Extensive experiments demonstrate that RoboScape generates videos with superior visual fidelity and physical plausibility across diverse robotic scenarios. We further validate the effectiveness of our approach through downstream applications, including robotic policy training with generated data and policy evaluation, showcasing SOTA performance on visual quality, geometric accuracy, and action controllability.},
+  note = {Submitted to arXiv},
+  month = jun
+}
+
+@inproceedings{freeman2021brax,
+  author = {Freeman, C. Daniel and Frey, Erik and Raichuk, Anton and Girgin, Sertan and Mordatch, Igor and Bachem, Olivier},
+  title = {{Brax} - A Differentiable Physics Engine for Large Scale Rigid Body Simulation},
+  booktitle = {Neural Information Processing Systems Track on Datasets and Benchmarks},
+  year = {2021},
+  url = {https://datasets-benchmarks-proceedings.neurips.cc/paper/2021/hash/d1f491a404d6854880943e5c3cd9ca25-Abstract-round1.html},
+  pdf = {https://datasets-benchmarks-proceedings.neurips.cc/paper_files/paper/2021/file/d1f491a404d6854880943e5c3cd9ca25-Paper-round1.pdf},
+  abstract = {We present Brax, an open source library for rigid body simulation with a focus on performance and parallelism on accelerators, written in JAX. We present results on a suite of tasks inspired by the existing reinforcement learning literature, but remade in our engine. Additionally, we provide reimplementations of PPO, SAC, ES, and direct policy optimization in JAX that compile alongside our environments, allowing the learning algorithm and the environment processing to occur on the same device, and to scale seamlessly on accelerators. Finally, we include notebooks that facilitate training of performant policies on common MuJoCo-like tasks in minutes.},
+  eprint = {2106.13281},
+  archivePrefix = {arXiv},
+  primaryClass = {cs.LG},
+  month = jun,
+  note = {NeurIPS 2021 Datasets and Benchmarks Track}
+}
+
