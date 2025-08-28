@@ -1,166 +1,3 @@
-@inproceedings{wei2022chainofthought,
-  abstract = {We explore how generating a chain of thought---a series of intermediate reasoning steps---significantly improves the ability of large language models to perform complex reasoning.},
-  author = {Wei, Jason and Wang, Xuezhi and Schuurmans, Dale and Bosma, Maarten and Ichter, Brian and Xia, Fei and Chi, Ed and Le, Quoc V. and Zhou, Denny},
-  booktitle = {Advances in Neural Information Processing Systems},
-  file = {:/home/b/documents/inproceedings/wei2022chainofthought.pdf:pdf},
-  pdf = {https://proceedings.neurips.cc/paper_files/paper/2022/file/9d5609613524ecf4f15af0f7b31abca4-Paper-Conference.pdf},
-  title = {Chain-of-Thought Prompting Elicits Reasoning in Large Language Models},
-  url = {https://proceedings.neurips.cc/paper_files/paper/2022/hash/9d5609613524ecf4f15af0f7b31abca4-Abstract-Conference.html},
-  volume = {35},
-  year = {2022}
-}
-
-@inproceedings{wang2023selfconsistency,
-  abstract = {Chain-of-thought prompting combined with pretrained large language models has achieved encouraging results on complex reasoning tasks. In this paper, we propose a new decoding strategy, self-consistency, to replace the naive greedy decoding used in chain-of-thought prompting.},
-  author = {Wang, Xuezhi and Wei, Jason and Schuurmans, Dale and Le, Quoc V. and Chi, Ed H. and Narang, Sharan and Chowdhery, Aakanksha and Zhou, Denny},
-  booktitle = {International Conference on Learning Representations},
-  file = {:/home/b/documents/inproceedings/wang2023selfconsistency.pdf:pdf},
-  pdf = {https://openreview.net/pdf?id=1PL1NIMMrw},
-  title = {Self-Consistency Improves Chain of Thought Reasoning in Language Models},
-  url = {https://openreview.net/forum?id=1PL1NIMMrw},
-  year = {2023}
-}
-
-@article{zhang2023multimodal,
-  abstract = {Large language models (LLMs) have shown impressive performance on complex reasoning by leveraging chain-of-thought (CoT) prompting to generate intermediate reasoning chains as the rationale to infer the answer. However, existing CoT studies have primarily focused on the language modality. We propose Multimodal-CoT that incorporates language (text) and vision (images) modalities into a two-stage framework that separates rationale generation and answer inference. In this way, answer inference can leverage better generated rationales that are based on multimodal information. Experimental results on ScienceQA and A-OKVQA benchmark datasets show the effectiveness of our proposed approach. With Multimodal-CoT, our model under 1 billion parameters achieves state-of-the-art performance on the ScienceQA benchmark. Our analysis indicates that Multimodal-CoT offers the advantages of mitigating hallucination and enhancing convergence speed. Code is publicly available at https://github.com/amazon-science/mm-cot.},
-  author = {Zhang, Zhuosheng and Zhang, Aston and Li, Mu and Zhao, Hai and Karypis, George and Smola, Alex},
-  file = {:/home/b/documents/article/zhang2023multimodal.pdf:pdf},
-  journal = {Transactions on Machine Learning Research},
-  pdf = {https://openreview.net/pdf?id=y1pPWFVfvR},
-  title = {Multimodal Chain-of-Thought Reasoning in Language Models},
-  url = {https://openreview.net/forum?id=y1pPWFVfvR},
-  year = {2024}
-}
-
-@inproceedings{chen2024visual,
-  abstract = {Knowledge-based visual reasoning remains a daunting task since it not only requires machines to interpret the concepts and relationships from visual scenes but also associate them with external world knowledge to conduct a chain of reasoning on open-world questions. Previous works, however, treat visual perception and language-based reasoning as two independent modules, failing to attend to both modules throughout all stages of reasoning. To this end, we propose Visual Chain-of-thought Prompting (VCTP) for knowledge-based reasoning, which involves the interaction between visual content and natural language in an iterative step-by-step reasoning manner. VCTP contains three stages, see, think and confirm. The see stage scans the image and grounds the visual concept candidates with a visual perception model. The think stage adopts a pre-trained large language model (LLM) to attend to key visual concepts from natural language questions adaptively. It then transforms key visual context into text context for prompting with a visual captioning model, and adopts the LLM to generate the answer. The confirm stage further uses the LLM to generate the supporting rationale for the answer, which is then passed through a cross-modality classifier to verify that it's consistent with the visual context. We iterate through the think-confirm stages to ensure the verified rationale is consistent with the answer. We conduct experiments on a range of knowledge-based visual reasoning datasets. We found our VCTP enjoys several benefits, 1), it achieves better performance than the previous few-shot learning baselines; 2), it enjoys the total transparency and trustworthiness of the whole reasoning process by providing rationales for each reasoning step; 3), it is computation-efficient compared with other fine-tuning baselines. Our code is available at https://github.com/UMass-Foundation-Model/VisualCoT.git},
-  articleno = {140},
-  author = {Chen, Zhenfang and Zhou, Qinhong and Shen, Yikang and Hong, Yining and Sun, Zhiqing and Gutfreund, Dan and Gan, Chuang},
-  booktitle = {Proceedings of the Thirty-Eighth AAAI Conference on Artificial Intelligence and Thirty-Sixth Conference on Innovative Applications of Artificial Intelligence and Fourteenth Symposium on Educational Advances in Artificial Intelligence},
-  doi = {10.1609/aaai.v38i2.27888},
-  file = {:/home/b/documents/inproceedings/chen2024visual.pdf:pdf},
-  isbn = {978-1-57735-887-9},
-  number = {2},
-  numpages = {9},
-  pages = {1254--1262},
-  pdf = {https://ojs.aaai.org/index.php/AAAI/article/download/27888/27801},
-  publisher = {AAAI Press},
-  series = {AAAI'24/IAAI'24/EAAI'24},
-  title = {Visual Chain-of-Thought Prompting for Knowledge-based Visual Reasoning},
-  url = {https://doi.org/10.1609/aaai.v38i2.27888},
-  volume = {38},
-  year = {2024}
-}
-
-@inproceedings{mondal2024kamcot,
-  abstract = {We propose KAM-CoT, a framework integrating chain of thought reasoning, Knowledge Graphs, and multiple modalities for comprehensive understanding of multimodal tasks. The framework uses a two-stage training process with knowledge graph grounding to generate effective rationales and answers, reducing hallucinations and enhancing answer quality.},
-  author = {Mondal, Debjyoti and Modi, Suraj and Panda, Subhadarshi and Singh, Rituraj and Rao, Godawari Sudhakar},
-  booktitle = {Proceedings of the AAAI Conference on Artificial Intelligence},
-  file = {:/home/b/documents/inproceedings/mondal2024kamcot.pdf:pdf},
-  number = {17},
-  pages = {18798--18806},
-  pdf = {https://ojs.aaai.org/index.php/AAAI/article/download/29844/29845},
-  title = {KAM-CoT: Knowledge Augmented Multimodal Chain-of-Thoughts Reasoning},
-  url = {https://ojs.aaai.org/index.php/AAAI/article/view/29844},
-  volume = {38},
-  year = {2024}
-}
-
-@inproceedings{chen2024spatialvlm,
-  abstract = {Vision Language Models (VLMs) have demonstrated remarkable performance in certain VQA benchmarks, but still lack capabilities in 3D spatial reasoning. We develop an automatic 3D spatial VQA data generation framework capable of creating 2 billion VQA examples from real-world images, introducing the first Internet-scale 3D spatial reasoning dataset in metric space.},
-  author = {Chen, Boyuan and Xu, Zhuo and Kirmani, Sean and Ichter, Brian and Driess, Danny and Florence, Pete and Sadigh, Dorsa and Guibas, Leonidas and Xia, Fei},
-  booktitle = {Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition},
-  file = {:/home/b/documents/inproceedings/chen2024spatialvlm.pdf:pdf},
-  pages = {14455--14465},
-  pdf = {https://openaccess.thecvf.com/content/CVPR2024/papers/Chen_SpatialVLM_Endowing_Vision-Language_Models_with_Spatial_Reasoning_Capabilities_CVPR_2024_paper.pdf},
-  title = {SpatialVLM: Endowing Vision-Language Models with Spatial Reasoning Capabilities},
-  url = {https://openaccess.thecvf.com/content/CVPR2024/html/Chen_SpatialVLM_Endowing_Vision-Language_Models_with_Spatial_Reasoning_Capabilities_CVPR_2024_paper.html},
-  year = {2024}
-}
-
-@inproceedings{shao2024visual,
-  abstract = {Multi-Modal Large Language Models (MLLMs) have demonstrated impressive performance in various VQA tasks. However, they often lack interpretability and struggle with complex visual inputs. We introduce the Visual CoT dataset with 438k question-answer pairs annotated with intermediate bounding boxes and detailed reasoning steps to address these challenges.},
-  author = {Shao, Hao and Qian, Shengju and Xiao, Han and Song, Guanglu and Zong, Zhuofan and Wang, Letian and Liu, Yu and Li, Hongsheng},
-  booktitle = {Advances in Neural Information Processing Systems},
-  file = {:/home/b/documents/inproceedings/shao2024visual.pdf:pdf},
-  pdf = {https://proceedings.neurips.cc/paper_files/paper/2024/file/0ff38d72a2e0aa6dbe42de83a17b2223-Paper-Datasets_and_Benchmarks_Track.pdf},
-  title = {Visual CoT: Advancing Multi-Modal Language Models with a Comprehensive Dataset and Benchmark for Chain-of-Thought Reasoning},
-  url = {https://proceedings.neurips.cc/paper_files/paper/2024/hash/0ff38d72a2e0aa6dbe42de83a17b2223-Abstract-Datasets_and_Benchmarks_Track.html},
-  volume = {37},
-  year = {2024}
-}
-
-@inproceedings{peng2024kosmos2,
-  abstract = {We introduce Kosmos-2, a Multimodal Large Language Model (MLLM) that enables new capabilities of perceiving object descriptions and grounding text to the visual world. The model represents referring expressions as links in Markdown format and integrates grounding capability into downstream applications, shedding light on the convergence of language, multimodal perception, and world modeling.},
-  author = {Peng, Zhiliang and Wang, Wenhui and Dong, Li and Hao, Yaru and Huang, Shaohan and Ma, Shuming and Ye, Qixiang and Wei, Furu},
-  booktitle = {International Conference on Learning Representations},
-  file = {:/home/b/documents/inproceedings/peng2024kosmos2.pdf:pdf},
-  pdf = {https://openreview.net/pdf?id=lLmqxkfSIw},
-  title = {Kosmos-2: Grounding Multimodal Large Language Models to the World},
-  url = {https://openreview.net/forum?id=lLmqxkfSIw},
-  year = {2024}
-}
-
-@inproceedings{jin2023refclip,
-  abstract = {We propose RefCLIP, a novel weakly supervised model for Referring Expression Comprehension (REC) that redefines the task as an anchor-text matching problem. The approach introduces an anchor-based contrastive loss and acts as a universal teacher for generating pseudo-labels for other REC models, achieving significant performance gains.},
-  author = {Jin, Lei and Luo, Gen and Zhou, Yiyi and Sun, Xiaoshuai and Jiang, Guannan and Shu, Annan and Ji, Rongrong},
-  booktitle = {Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition},
-  file = {:/home/b/documents/inproceedings/jin2023refclip.pdf:pdf},
-  pages = {2681--2690},
-  pdf = {https://openaccess.thecvf.com/content/CVPR2023/papers/Jin_RefCLIP_A_Universal_Teacher_for_Weakly_Supervised_Referring_Expression_Comprehension_CVPR_2023_paper.pdf},
-  title = {RefCLIP: A Universal Teacher for Weakly Supervised Referring Expression Comprehension},
-  url = {https://openaccess.thecvf.com/content/CVPR2023/html/Jin_RefCLIP_A_Universal_Teacher_for_Weakly_Supervised_Referring_Expression_Comprehension_CVPR_2023_paper.html},
-  year = {2023}
-}
-
-@inproceedings{yan2024vigor,
-  abstract = {Large vision language models (LVLMs) have shown unprecedented reasoning capabilities, but the generated text often suffers from inaccurate grounding in visual input, resulting in hallucination and other errors. We introduce ViGoR, a framework using fine-grained reward modeling to significantly enhance the visual grounding of LVLMs through cheaper human evaluations and automated methods.},
-  author = {Yan, Siming and Bai, Min and Chen, Weifeng and Zhou, Xiong and Huang, Qixing and Li, Erran},
-  booktitle = {Computer Vision -- ECCV 2024: 18th European Conference on Computer Vision},
-  file = {:/home/b/documents/inproceedings/yan2024vigor.pdf:pdf},
-  pages = {36--53},
-  pdf = {https://www.ecva.net/papers/eccv_2024/papers_ECCV/papers/07792.pdf},
-  title = {ViGoR: Improving Visual Grounding of Large Vision Language Models with Fine-Grained Reward Modeling},
-  url = {https://link.springer.com/chapter/10.1007/978-3-031-73030-6_3},
-  year = {2024}
-}
-
-@inproceedings{wan2024contrastive,
-  abstract = {Highlighting particularly relevant regions of an image can improve the performance of vision-language models (VLMs) on various vision-language (VL) tasks by guiding the model to attend more closely to these regions of interest. We introduce Contrastive Region Guidance (CRG), a training-free guidance method that enables open-source VLMs to respond to visual prompts by contrasting model outputs produced with and without visual prompts, factoring out biases revealed by the model when answering without the information required to produce a correct answer. CRG achieves substantial improvements across various tasks including up to 11.1\% accuracy increase on ViP-Bench, 10\% improvement on spatial reasoning, 11.5\% and 7.5\% gains on compositional generalization, and up to 8.4 AUROC improvement on image-text alignment.},
-  author = {Wan, David and Cho, Jaemin and Stengel-Eskin, Elias and Bansal, Mohit},
-  booktitle = {Computer Vision -- ECCV 2024: 18th European Conference on Computer Vision},
-  doi = {10.1007/978-3-031-72986-7_12},
-  file = {:/home/b/documents/inproceedings/wan2024contrastive.pdf:pdf},
-  pages = {198--215},
-  pdf = {https://www.ecva.net/papers/eccv_2024/papers_ECCV/papers/10172.pdf},
-  publisher = {Springer},
-  title = {Contrastive Region Guidance: Improving Grounding in Vision-Language Models Without Training},
-  url = {https://eccv.ecva.net/virtual/2024/poster/754},
-  year = {2024}
-}
-
-@inproceedings{zhang2023grounding,
-  abstract = {Classical planning systems have shown great advances in utilizing rule-based human knowledge to compute accurate plans for service robots, but they face challenges due to the strong assumptions of perfect perception and action executions. To tackle these challenges, one solution is to connect the symbolic states and actions generated by classical planners to the robot's sensory observations, thus closing the perception-action loop. In this work, we propose TPVQA, a visually-grounded planning framework that leverages Vision-Language Models (VLMs) to detect action failures and verify action affordances towards enabling successful plan execution. Results from quantitative experiments show that TPVQA surpasses competitive baselines from previous studies in task completion rate.},
-  author = {Zhang, Xiaohan and Ding, Yan and Amiri, Saeid and Yang, Hao and Kaminski, Andy and Esselink, Chad and Zhang, Shiqi},
-  booktitle = {ICRA 2023 Workshop on Robot Execution Failures and Failure Management Strategies},
-  file = {:/home/b/documents/inproceedings/zhang2023grounding.pdf:pdf},
-  pdf = {https://robot-failures.github.io/icra2023/papers/RobotFailuresICRA2023_paper_8.pdf},
-  title = {Grounding Classical Task Planners via Vision-Language Models},
-  url = {https://arxiv.org/abs/2304.08587},
-  year = {2023}
-}
-
-@inproceedings{prasad2024rephrase,
-  abstract = {An increasing number of vision-language tasks can be handled with little to no training, i.e., in a zero and few-shot manner, by marrying large language models (LLMs) to vision encoders, resulting in large vision-language models (LVLMs). While this has huge upsides, such as not requiring training data or custom architectures, how an input is presented to an LVLM can have a major impact on zero-shot model performance. In particular, inputs phrased in an underspecified way can result in incorrect answers due to factors like missing visual information, complex implicit reasoning, or linguistic ambiguity. We present RepARe (Rephrase, Augment and Reason), a gradient-free framework that extracts salient details about the image using the underlying LVLM as a captioner and reasoner, in order to propose modifications to the original question. We achieve accuracy improvements of 3.85\% on VQAv2, 6.41\% on A-OKVQA, and 7.94\% on VizWiz over strong zero-shot baselines.},
-  author = {Prasad, Archiki and Stengel-Eskin, Elias and Bansal, Mohit},
-  booktitle = {The Twelfth International Conference on Learning Representations},
-  file = {:/home/b/documents/inproceedings/prasad2024rephrase.pdf:pdf},
-  pdf = {https://openreview.net/pdf?id=L4nOxziGf9},
-  title = {Rephrase, Augment, Reason: Visual Grounding of Questions for Vision-Language Models},
-  url = {https://openreview.net/forum?id=L4nOxziGf9},
-  year = {2024}
-}
-
 @inproceedings{zhao2025cotvla,
   abstract = {Current vision-language-action models (VLAs) primarily focus on direct input-output mappings, lacking the intermediate reasoning steps crucial for complex manipulation tasks. We introduce CoT-VLA, a method that incorporates explicit visual chain-of-thought reasoning by predicting future image frames autoregressively as visual goals before generating a short action sequence to achieve these goals. Our approach introduces a state-of-the-art 7B VLA that can understand and generate visual and action tokens. CoT-VLA achieves strong performance, outperforming the state-of-the-art VLA model by 17\% in real-world manipulation tasks and 6\% in simulation benchmarks, demonstrating the effectiveness of visual chain-of-thought reasoning in robotic control.},
   author = {Zhao, Qingqing and Lu, Yao and Kim, Moo Jin and Fu, Zipeng and Zhang, Zhuoyang and Wu, Yecheng and Li, Zhaoshuo and Ma, Qianli and Han, Song and Finn, Chelsea and Handa, Ankur and Liu, Ming-Yu and Xiang, Donglai and Wetzstein, Gordon and Lin, Tsung-Yi},
@@ -263,11 +100,11 @@
   year = {2025}
 }
 
-@inproceedings{xu2024vlmgrounder,
+@inproceedings{xu2025vlm,
   abstract = {3D visual grounding is crucial for robots, requiring integration of natural language and 3D scene understanding. Traditional methods depending on supervised learning with 3D point clouds are limited by scarce datasets. Recently zero-shot methods leveraging LLMs have been proposed to address the data issue. While effective, these methods only use object-centric information, limiting their ability to handle complex queries. We present VLM-Grounder, a novel framework using vision-language models (VLMs) for zero-shot 3D visual grounding based solely on 2D images. VLM-Grounder dynamically stitches image sequences, employs a grounding and feedback scheme to find the target object, and uses multi-view ensemble projection to accurately estimate 3D bounding boxes. Without relying on 3D geometric information or object priors, VLM-Grounder achieves 51.6\% Acc@0.25 on ScanRefer and 48.0\% Acc on Nr3D, outperforming previous zero-shot methods and achieving comparable performance to supervised learning baselines.},
   author = {Xu, Runsen and Huang, Zhiwei and Wang, Tai and Chen, Yilun and Pang, Jiangmiao and Lin, Dahua},
   booktitle = {Proceedings of the 8th Conference on Robot Learning},
-  file = {:/home/b/documents/inproceedings/xu2024vlmgrounder.pdf:pdf},
+  file = {:/home/b/documents/inproceedings/xu2025vlm.pdf:pdf},
   pages = {3961--3985},
   pdf = {https://raw.githubusercontent.com/mlresearch/v270/main/assets/xu25c/xu25c.pdf},
   publisher = {PMLR},
@@ -329,10 +166,10 @@
   year = {2025}
 }
 
-@article{wang2025multimodalsurvey,
+@article{wang2025multimodal,
   abstract = {By extending the advantage of chain-of-thought (CoT) reasoning in human-like step-by-step processes to multimodal contexts, multimodal CoT (MCoT) reasoning has recently garnered significant research attention, especially in the integration with multimodal large language models (MLLMs). Existing MCoT studies design various methodologies and innovative reasoning paradigms to address unique challenges across different modalities including image, video, speech, audio, 3D, and structured data, achieving success in applications such as robotics, healthcare, autonomous driving, and multimodal generation. However, MCoT still presents distinct challenges and opportunities that require further focus, and an up-to-date review of this domain has been lacking. To address this gap, we present the first systematic survey of MCoT reasoning, elucidating relevant foundational concepts and definitions. We provide a comprehensive taxonomy of current MCoT methodologies, analyze existing challenges, and suggest future research directions toward multimodal artificial general intelligence (AGI). Additionally, we compile publicly available MCoT resources including benchmarks and models to facilitate community research and development.},
   author = {Wang, Yaoting and Wu, Shengqiong and Zhang, Yuecheng and Yan, Shuicheng and Liu, Ziwei and Luo, Jiebo and Fei, Hao},
-  file = {:/home/b/documents/article/wang2025multimodalsurvey.pdf:pdf},
+  file = {:/home/b/documents/article/wang2025multimodal.pdf:pdf},
   journal = {arXiv preprint arXiv:2503.12605},
   month = {3},
   pdf = {https://arxiv.org/pdf/2503.12605},
@@ -341,28 +178,16 @@
   year = {2025}
 }
 
-@article{zhang2025unified,
+@article{cheng2025visual,
   abstract = {Large Vision-Language Models (LVLMs) have achieved significant success in multimodal tasks, with multimodal chain-of-thought (MCoT) further enhancing performance and interpretability. Recent MCoT methods fall into two categories: (i) Textual-MCoT (T-MCoT), which takes multimodal input and produces textual output; and (ii) Interleaved-MCoT (I-MCoT), which generates interleaved image-text outputs. Despite advances in both approaches, the mechanisms driving these improvements are not fully understood. To fill this gap, we reveal that MCoT boosts LVLMs by incorporating visual thoughts, which convey image information to the reasoning process regardless of the MCoT format, depending only on clarity and conciseness of expression. Based on this finding, we propose a unified framework that conceptualizes visual thoughts as information transmissions across transformer layers, enabling a comprehensive understanding of how visual information flows through reasoning processes in both T-MCoT and I-MCoT paradigms.},
   author = {Cheng, Zihui and Chen, Qiguang and Xu, Xiao and Wang, Jiaqi and Wang, Weiyun and Fei, Hao and Wang, Yidong and Wang, Alex Jinpeng and Chen, Zhi and Che, Wanxiang and Qin, Libo},
-  file = {:/home/b/documents/article/zhang2025unified.pdf:pdf},
+  file = {:/home/b/documents/article/cheng2025visual.pdf:pdf},
   journal = {arXiv preprint arXiv:2505.15510},
   month = {5},
   pdf = {https://arxiv.org/pdf/2505.15510},
   title = {Visual Thoughts: A Unified Perspective of Understanding Multimodal Chain-of-Thought},
   url = {https://arxiv.org/abs/2505.15510},
   year = {2025}
-}
-
-@article{rose2023visual,
-  abstract = {Recent advances in large language models elicit reasoning in a chain-of-thought that allows models to decompose problems in a human-like fashion. Though this paradigm improves multi-step reasoning ability in language models, it is limited by being unimodal and applied mainly to question-answering tasks. We claim that incorporating visual augmentation into reasoning is essential, especially for complex, imaginative tasks. Consequently, we introduce VCoT, a novel method that leverages chain-of-thought prompting with vision-language grounding to recursively bridge the logical gaps within sequential data. Our method uses visual guidance to generate synthetic multimodal infillings that add consistent and novel information to reduce the logical gaps for downstream tasks that can benefit from temporal reasoning, as well as provide interpretability into models' multi-step reasoning. We apply VCoT to the Visual Storytelling and WikiHow summarization datasets and demonstrate through human evaluation that VCoT offers novel and consistent synthetic data augmentation beating chain-of-thought baselines, which can be used to enhance downstream performance.},
-  author = {Daniel Philip Rose and Vaishnavi Himakunthala and Andy Ouyang and Ryan He and Alex Mei and Yujie Lu and Michael Saxon and Chinmay Sonar and Diba Mirza and William Yang Wang},
-  file = {:/home/b/documents/article/rose2023visual.pdf:pdf},
-  journal = {arXiv preprint arXiv:2305.02317},
-  note = {ICLR 2024 Conference Withdrawn Submission},
-  pdf = {https://arxiv.org/pdf/2305.02317.pdf},
-  title = {Visual Chain of Thought: Bridging Logical Gaps with Multimodal Infillings},
-  url = {https://arxiv.org/abs/2305.02317},
-  year = {2023}
 }
 
 @inproceedings{zhang2025improve,
@@ -385,18 +210,6 @@
   title = {Guiding Medical Vision-Language Models with Explicit Visual Prompts: Framework Design and Comprehensive Exploration of Prompt Variations},
   url = {https://arxiv.org/abs/2501.02385},
   year = {2025}
-}
-
-@inproceedings{shtedritski2023what,
-  abstract = {Large-scale Vision-Language Models, such as CLIP, learn powerful image-text representations that have found numerous applications, from zero-shot classification to text-to-image generation. Despite that, their capabilities for solving novel discriminative tasks via prompting fall behind those of large language models, such as GPT-3. Here we explore the idea of visual prompt engineering for solving computer vision tasks beyond classification by editing in image space instead of text. In particular, we discover an emergent ability of CLIP, where, by simply drawing a red circle around an object, we can direct the model's attention to that region, while also maintaining global information. We show the power of this simple approach by achieving state-of-the-art in zero-shot referring expressions comprehension and strong performance in keypoint localization tasks.},
-  author = {Aleksandar Shtedritski and Christian Rupprecht and Andrea Vedaldi},
-  booktitle = {Proceedings of the IEEE/CVF International Conference on Computer Vision},
-  file = {:/home/b/documents/inproceedings/shtedritski2023what.pdf:pdf},
-  pages = {11987--11997},
-  pdf = {https://openaccess.thecvf.com/content/ICCV2023/papers/Shtedritski_What_does_CLIP_know_about_a_red_circle_Visual_prompt_ICCV_2023_paper.pdf},
-  title = {What Does {CLIP} Know About a Red Circle? Visual Prompt Engineering for {VLM}s},
-  url = {https://arxiv.org/abs/2304.06712},
-  year = {2023}
 }
 
 @article{zhong2025flowvla,
@@ -456,11 +269,128 @@
   year = {2025}
 }
 
-@inproceedings{hu2024sketchpad,
+@article{zhang2024multimodal,
+  abstract = {Large language models (LLMs) have shown impressive performance on complex reasoning by leveraging chain-of-thought (CoT) prompting to generate intermediate reasoning chains as the rationale to infer the answer. However, existing CoT studies have primarily focused on the language modality. We propose Multimodal-CoT that incorporates language (text) and vision (images) modalities into a two-stage framework that separates rationale generation and answer inference. In this way, answer inference can leverage better generated rationales that are based on multimodal information. Experimental results on ScienceQA and A-OKVQA benchmark datasets show the effectiveness of our proposed approach. With Multimodal-CoT, our model under 1 billion parameters achieves state-of-the-art performance on the ScienceQA benchmark. Our analysis indicates that Multimodal-CoT offers the advantages of mitigating hallucination and enhancing convergence speed. Code is publicly available at https://github.com/amazon-science/mm-cot.},
+  author = {Zhang, Zhuosheng and Zhang, Aston and Li, Mu and Zhao, Hai and Karypis, George and Smola, Alex},
+  file = {:/home/b/documents/article/zhang2024multimodal.pdf:pdf},
+  journal = {Transactions on Machine Learning Research},
+  pdf = {https://openreview.net/pdf?id=y1pPWFVfvR},
+  title = {Multimodal Chain-of-Thought Reasoning in Language Models},
+  url = {https://openreview.net/forum?id=y1pPWFVfvR},
+  year = {2024}
+}
+
+@inproceedings{chen2024visual,
+  abstract = {Knowledge-based visual reasoning remains a daunting task since it not only requires machines to interpret the concepts and relationships from visual scenes but also associate them with external world knowledge to conduct a chain of reasoning on open-world questions. Previous works, however, treat visual perception and language-based reasoning as two independent modules, failing to attend to both modules throughout all stages of reasoning. To this end, we propose Visual Chain-of-thought Prompting (VCTP) for knowledge-based reasoning, which involves the interaction between visual content and natural language in an iterative step-by-step reasoning manner. VCTP contains three stages, see, think and confirm. The see stage scans the image and grounds the visual concept candidates with a visual perception model. The think stage adopts a pre-trained large language model (LLM) to attend to key visual concepts from natural language questions adaptively. It then transforms key visual context into text context for prompting with a visual captioning model, and adopts the LLM to generate the answer. The confirm stage further uses the LLM to generate the supporting rationale for the answer, which is then passed through a cross-modality classifier to verify that it's consistent with the visual context. We iterate through the think-confirm stages to ensure the verified rationale is consistent with the answer. We conduct experiments on a range of knowledge-based visual reasoning datasets. We found our VCTP enjoys several benefits, 1), it achieves better performance than the previous few-shot learning baselines; 2), it enjoys the total transparency and trustworthiness of the whole reasoning process by providing rationales for each reasoning step; 3), it is computation-efficient compared with other fine-tuning baselines. Our code is available at https://github.com/UMass-Foundation-Model/VisualCoT.git},
+  articleno = {140},
+  author = {Chen, Zhenfang and Zhou, Qinhong and Shen, Yikang and Hong, Yining and Sun, Zhiqing and Gutfreund, Dan and Gan, Chuang},
+  booktitle = {Proceedings of the Thirty-Eighth AAAI Conference on Artificial Intelligence and Thirty-Sixth Conference on Innovative Applications of Artificial Intelligence and Fourteenth Symposium on Educational Advances in Artificial Intelligence},
+  doi = {10.1609/aaai.v38i2.27888},
+  file = {:/home/b/documents/inproceedings/chen2024visual.pdf:pdf},
+  isbn = {978-1-57735-887-9},
+  number = {2},
+  numpages = {9},
+  pages = {1254--1262},
+  pdf = {https://ojs.aaai.org/index.php/AAAI/article/download/27888/27801},
+  publisher = {AAAI Press},
+  series = {AAAI'24/IAAI'24/EAAI'24},
+  title = {Visual Chain-of-Thought Prompting for Knowledge-based Visual Reasoning},
+  url = {https://doi.org/10.1609/aaai.v38i2.27888},
+  volume = {38},
+  year = {2024}
+}
+
+@inproceedings{mondal2024kamcot,
+  abstract = {We propose KAM-CoT, a framework integrating chain of thought reasoning, Knowledge Graphs, and multiple modalities for comprehensive understanding of multimodal tasks. The framework uses a two-stage training process with knowledge graph grounding to generate effective rationales and answers, reducing hallucinations and enhancing answer quality.},
+  author = {Mondal, Debjyoti and Modi, Suraj and Panda, Subhadarshi and Singh, Rituraj and Rao, Godawari Sudhakar},
+  booktitle = {Proceedings of the AAAI Conference on Artificial Intelligence},
+  file = {:/home/b/documents/inproceedings/mondal2024kamcot.pdf:pdf},
+  number = {17},
+  pages = {18798--18806},
+  pdf = {https://ojs.aaai.org/index.php/AAAI/article/download/29844/29845},
+  title = {KAM-CoT: Knowledge Augmented Multimodal Chain-of-Thoughts Reasoning},
+  url = {https://ojs.aaai.org/index.php/AAAI/article/view/29844},
+  volume = {38},
+  year = {2024}
+}
+
+@inproceedings{chen2024spatialvlm,
+  abstract = {Vision Language Models (VLMs) have demonstrated remarkable performance in certain VQA benchmarks, but still lack capabilities in 3D spatial reasoning. We develop an automatic 3D spatial VQA data generation framework capable of creating 2 billion VQA examples from real-world images, introducing the first Internet-scale 3D spatial reasoning dataset in metric space.},
+  author = {Chen, Boyuan and Xu, Zhuo and Kirmani, Sean and Ichter, Brian and Driess, Danny and Florence, Pete and Sadigh, Dorsa and Guibas, Leonidas and Xia, Fei},
+  booktitle = {Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition},
+  file = {:/home/b/documents/inproceedings/chen2024spatialvlm.pdf:pdf},
+  pages = {14455--14465},
+  pdf = {https://openaccess.thecvf.com/content/CVPR2024/papers/Chen_SpatialVLM_Endowing_Vision-Language_Models_with_Spatial_Reasoning_Capabilities_CVPR_2024_paper.pdf},
+  title = {SpatialVLM: Endowing Vision-Language Models with Spatial Reasoning Capabilities},
+  url = {https://openaccess.thecvf.com/content/CVPR2024/html/Chen_SpatialVLM_Endowing_Vision-Language_Models_with_Spatial_Reasoning_Capabilities_CVPR_2024_paper.html},
+  year = {2024}
+}
+
+@inproceedings{shao2024visual,
+  abstract = {Multi-Modal Large Language Models (MLLMs) have demonstrated impressive performance in various VQA tasks. However, they often lack interpretability and struggle with complex visual inputs. We introduce the Visual CoT dataset with 438k question-answer pairs annotated with intermediate bounding boxes and detailed reasoning steps to address these challenges.},
+  author = {Shao, Hao and Qian, Shengju and Xiao, Han and Song, Guanglu and Zong, Zhuofan and Wang, Letian and Liu, Yu and Li, Hongsheng},
+  booktitle = {Advances in Neural Information Processing Systems},
+  file = {:/home/b/documents/inproceedings/shao2024visual.pdf:pdf},
+  pdf = {https://proceedings.neurips.cc/paper_files/paper/2024/file/0ff38d72a2e0aa6dbe42de83a17b2223-Paper-Datasets_and_Benchmarks_Track.pdf},
+  title = {Visual CoT: Advancing Multi-Modal Language Models with a Comprehensive Dataset and Benchmark for Chain-of-Thought Reasoning},
+  url = {https://proceedings.neurips.cc/paper_files/paper/2024/hash/0ff38d72a2e0aa6dbe42de83a17b2223-Abstract-Datasets_and_Benchmarks_Track.html},
+  volume = {37},
+  year = {2024}
+}
+
+@inproceedings{peng2024kosmos2,
+  abstract = {We introduce Kosmos-2, a Multimodal Large Language Model (MLLM) that enables new capabilities of perceiving object descriptions and grounding text to the visual world. The model represents referring expressions as links in Markdown format and integrates grounding capability into downstream applications, shedding light on the convergence of language, multimodal perception, and world modeling.},
+  author = {Peng, Zhiliang and Wang, Wenhui and Dong, Li and Hao, Yaru and Huang, Shaohan and Ma, Shuming and Ye, Qixiang and Wei, Furu},
+  booktitle = {International Conference on Learning Representations},
+  file = {:/home/b/documents/inproceedings/peng2024kosmos2.pdf:pdf},
+  pdf = {https://openreview.net/pdf?id=lLmqxkfSIw},
+  title = {Kosmos-2: Grounding Multimodal Large Language Models to the World},
+  url = {https://openreview.net/forum?id=lLmqxkfSIw},
+  year = {2024}
+}
+
+@inproceedings{yan2024vigor,
+  abstract = {Large vision language models (LVLMs) have shown unprecedented reasoning capabilities, but the generated text often suffers from inaccurate grounding in visual input, resulting in hallucination and other errors. We introduce ViGoR, a framework using fine-grained reward modeling to significantly enhance the visual grounding of LVLMs through cheaper human evaluations and automated methods.},
+  author = {Yan, Siming and Bai, Min and Chen, Weifeng and Zhou, Xiong and Huang, Qixing and Li, Erran},
+  booktitle = {Computer Vision -- ECCV 2024: 18th European Conference on Computer Vision},
+  file = {:/home/b/documents/inproceedings/yan2024vigor.pdf:pdf},
+  pages = {36--53},
+  pdf = {https://www.ecva.net/papers/eccv_2024/papers_ECCV/papers/07792.pdf},
+  title = {ViGoR: Improving Visual Grounding of Large Vision Language Models with Fine-Grained Reward Modeling},
+  url = {https://link.springer.com/chapter/10.1007/978-3-031-73030-6_3},
+  year = {2024}
+}
+
+@inproceedings{wan2024contrastive,
+  abstract = {Highlighting particularly relevant regions of an image can improve the performance of vision-language models (VLMs) on various vision-language (VL) tasks by guiding the model to attend more closely to these regions of interest. We introduce Contrastive Region Guidance (CRG), a training-free guidance method that enables open-source VLMs to respond to visual prompts by contrasting model outputs produced with and without visual prompts, factoring out biases revealed by the model when answering without the information required to produce a correct answer. CRG achieves substantial improvements across various tasks including up to 11.1\% accuracy increase on ViP-Bench, 10\% improvement on spatial reasoning, 11.5\% and 7.5\% gains on compositional generalization, and up to 8.4 AUROC improvement on image-text alignment.},
+  author = {Wan, David and Cho, Jaemin and Stengel-Eskin, Elias and Bansal, Mohit},
+  booktitle = {Computer Vision -- ECCV 2024: 18th European Conference on Computer Vision},
+  doi = {10.1007/978-3-031-72986-7_12},
+  file = {:/home/b/documents/inproceedings/wan2024contrastive.pdf:pdf},
+  pages = {198--215},
+  pdf = {https://www.ecva.net/papers/eccv_2024/papers_ECCV/papers/10172.pdf},
+  publisher = {Springer},
+  title = {Contrastive Region Guidance: Improving Grounding in Vision-Language Models Without Training},
+  url = {https://eccv.ecva.net/virtual/2024/poster/754},
+  year = {2024}
+}
+
+@inproceedings{prasad2024rephrase,
+  abstract = {An increasing number of vision-language tasks can be handled with little to no training, i.e., in a zero and few-shot manner, by marrying large language models (LLMs) to vision encoders, resulting in large vision-language models (LVLMs). While this has huge upsides, such as not requiring training data or custom architectures, how an input is presented to an LVLM can have a major impact on zero-shot model performance. In particular, inputs phrased in an underspecified way can result in incorrect answers due to factors like missing visual information, complex implicit reasoning, or linguistic ambiguity. We present RepARe (Rephrase, Augment and Reason), a gradient-free framework that extracts salient details about the image using the underlying LVLM as a captioner and reasoner, in order to propose modifications to the original question. We achieve accuracy improvements of 3.85\% on VQAv2, 6.41\% on A-OKVQA, and 7.94\% on VizWiz over strong zero-shot baselines.},
+  author = {Prasad, Archiki and Stengel-Eskin, Elias and Bansal, Mohit},
+  booktitle = {The Twelfth International Conference on Learning Representations},
+  file = {:/home/b/documents/inproceedings/prasad2024rephrase.pdf:pdf},
+  pdf = {https://openreview.net/pdf?id=L4nOxziGf9},
+  title = {Rephrase, Augment, Reason: Visual Grounding of Questions for Vision-Language Models},
+  url = {https://openreview.net/forum?id=L4nOxziGf9},
+  year = {2024}
+}
+
+@inproceedings{hu2024visual,
   abstract = {Humans draw to facilitate reasoning: we draw auxiliary lines when solving geometry problems; we mark and circle when reasoning on maps; we use sketches to amplify our ideas and relieve our limited-capacity working memory. However, such actions are missing in current multimodal language models (LMs). Current chain-of-thought and tool-use paradigms only use text as intermediate reasoning steps. In this work, we introduce Sketchpad, a framework that gives multimodal LMs a visual sketchpad and tools to draw on the sketchpad. The LM conducts planning and reasoning according to the visual artifacts it has drawn. Different from prior work, which uses text-to-image models to enable LMs to draw, Sketchpad enables LMs to draw with lines, boxes, marks, etc., which is closer to human sketching and better facilitates reasoning. Sketchpad can also use specialist vision models during the sketching process (e.g., draw bounding boxes with object detection models, draw masks with segmentation models), to further enhance visual perception and reasoning. We experiment on a wide range of math tasks (including geometry, functions, graph, chess) and complex visual reasoning tasks. Sketchpad substantially improves performance on all tasks over strong base models with no sketching, yielding an average gain of 12.7\% on math tasks, and 8.6\% on vision tasks. GPT-4o with Sketchpad sets a new state of the art on all tasks, including V*Bench (80.3\%), BLINK spatial reasoning (83.9\%), and visual correspondence (80.8\%). We will release all code and data.},
   author = {Yushi Hu and Weijia Shi and Xingyu Fu and Dan Roth and Mari Ostendorf and Luke Zettlemoyer and Noah A. Smith and Ranjay Krishna},
   booktitle = {Advances in Neural Information Processing Systems},
-  file = {:/home/b/documents/inproceedings/hu2024sketchpad.pdf:pdf},
+  file = {:/home/b/documents/inproceedings/hu2024visual.pdf:pdf},
   keywords = {multimodal, large language model, computer vision, reasoning},
   pdf = {https://proceedings.neurips.cc/paper_files/paper/2024/file/fb82011040977c7712409fbdb5456647-Paper-Conference.pdf},
   title = {Visual Sketchpad: Sketching as a Visual Chain of Thought for Multimodal Language Models},
@@ -469,11 +399,11 @@
   year = {2024}
 }
 
-@inproceedings{zhang2024deductive,
+@inproceedings{zhang2024how,
   abstract = {Vision-Language Models (VLMs) such as GPT-4V have recently demonstrated incredible strides on diverse vision language tasks. We dig into vision-based deductive reasoning, a more sophisticated but less explored realm, and find previously unexposed blindspots in the current SOTA VLMs. Specifically, we leverage Raven's Progressive Matrices (RPMs), to assess VLMs' abilities to perform multi-hop relational and deductive reasoning relying solely on visual clues. We perform comprehensive evaluations of several popular VLMs employing standard strategies such as in-context learning, self-consistency, and Chain-of-thoughts (CoT) on three diverse datasets, including the Mensa IQ test, IntelligenceTest, and RAVEN. The results reveal that despite the impressive capabilities of LLMs in text-based reasoning, we are still far from achieving comparable proficiency in visual deductive reasoning. We found that certain standard strategies that are effective when applied to LLMs do not seamlessly translate to the challenges presented by visual reasoning tasks. Moreover, a detailed analysis reveals that VLMs struggle to solve these tasks mainly because they are unable to perceive and comprehend multiple, confounding abstract patterns in RPM examples.},
   author = {Yizhe Zhang and He Bai and Ruixiang Zhang and Jiatao Gu and Shuangfei Zhai and Josh Susskind and Navdeep Jaitly},
   booktitle = {ICLR 2024 Workshop on How Far Are We from AGI?},
-  file = {:/home/b/documents/inproceedings/zhang2024deductive.pdf:pdf},
+  file = {:/home/b/documents/inproceedings/zhang2024how.pdf:pdf},
   pdf = {https://arxiv.org/pdf/2403.04732.pdf},
   title = {How Far Are We from Intelligent Visual Deductive Reasoning?},
   url = {https://arxiv.org/abs/2403.04732},
@@ -548,10 +478,10 @@
   year = {2024}
 }
 
-@article{chen2024m3docrag,
+@article{cho2024m3docrag,
   abstract = {Document visual question answering (DocVQA) pipelines that answer questions from documents have broad applications. Existing methods focus on handling single-page documents with multi-modal language models (MLMs), or rely on text-based retrieval-augmented generation (RAG) that loses visual information. However, documents often contain multiple pages with important visual elements, and questions may require reasoning across these pages. To address these challenges, we introduce M3DocRAG, a novel multi-modal RAG framework that flexibly accommodates various document contexts (closed-domain and open-domain), question hops (single-hop and multi-hop), and evidence modalities (text, chart, figure, etc.). M3DocRAG finds relevant documents and answers questions using a multi-modal retriever and an MLM, preserving visual information while efficiently handling multiple documents. We also present M3DocVQA, a new benchmark for evaluating open-domain DocVQA over 3,000+ PDF documents with 40,000+ pages. Empirical results show that M3DocRAG achieves superior performance compared to many strong baselines across three benchmarks.},
   author = {Jaemin Cho and Debanjan Mahata and Ozan Irsoy and Yujie He and Mohit Bansal},
-  file = {:/home/b/documents/article/chen2024m3docrag.pdf:pdf},
+  file = {:/home/b/documents/article/cho2024m3docrag.pdf:pdf},
   journal = {arXiv preprint arXiv:2411.04952},
   month = {11},
   pdf = {https://arxiv.org/pdf/2411.04952.pdf},
@@ -569,19 +499,6 @@
   title = {{LEMMA}: Towards {LVLM}-Enhanced Multimodal Misinformation Detection with External Knowledge Augmentation},
   url = {https://arxiv.org/abs/2402.11943},
   year = {2024}
-}
-
-@inproceedings{kim2023videoqa,
-  abstract = {We challenge the assumption that Video Question Answering (VideoQA) models truly understand video content. Current VideoQA evaluation treats different clips from the same video inconsistently, which we argue is problematic. We propose VideoQA-SC, which improves the ActivityNet-QA dataset by excluding biased questions that models can answer without visual information. Using question triplets (annotator-centered questions, questions about other objects, and paraphrased questions), we evaluate semantic consistency. Many state-of-the-art models struggle with semantic consistency, often performing close to random chance despite showing improvements on traditional metrics.},
-  author = {Heeseung Kim and Jungho Lee and Seungwoong Nam and Sungmin Lee},
-  booktitle = {Proceedings of the {IEEE/CVF} International Conference on Computer Vision Workshops ({ICCVW})},
-  file = {:/home/b/documents/inproceedings/kim2023videoqa.pdf:pdf},
-  note = {ICCV 2023 Workshop on Video Understanding (VidU)},
-  pdf = {https://arxiv.org/pdf/2309.01431.pdf},
-  publisher = {IEEE Computer Society},
-  title = {{VideoQA-SC}: Semantically Consistent Video Question Answering},
-  url = {https://openaccess.thecvf.com/content/ICCV2023W/VidU/html/Kim_VideoQA-SC_Semantically_Consistent_Video_Question_Answering_ICCVW_2023_paper.html},
-  year = {2023}
 }
 
 @inproceedings{fujitake2024layoutllm,
@@ -614,11 +531,11 @@
   year = {2024}
 }
 
-@inproceedings{zong2024vlguard,
+@inproceedings{zong2024safety,
   abstract = {Current vision large language models (VLLMs) are prone to generating harmful content and are vulnerable to even simple jailbreaking attacks. This is due to the presence of harmful data during vision-language instruction fine-tuning, and that VLLM fine-tuning can cause forgetting of safety alignment previously learned by the underlying LLM. We introduce VLGuard, the first vision-language safe instruction-following dataset covering various harmful categories. Experiments demonstrate that integrating VLGuard into standard vision-language fine-tuning or utilizing it for post-hoc fine-tuning effectively safety aligns VLLMs. Fine-tuned VLLMs effectively reject unsafe instructions and substantially reduce the success rates of several black-box adversarial attacks, which approach zero in many cases, while maintaining model helpfulness.},
   author = {Yongshuo Zong and Ondrej Bohdal and Tingyang Yu and Yongxin Yang and Timothy Hospedales},
   booktitle = {Proceedings of the 41st International Conference on Machine Learning},
-  file = {:/home/b/documents/inproceedings/zong2024vlguard.pdf:pdf},
+  file = {:/home/b/documents/inproceedings/zong2024safety.pdf:pdf},
   note = {VLGuard dataset and code available at https://github.com/ys-zong/VLGuard},
   pdf = {https://arxiv.org/pdf/2402.02207.pdf},
   publisher = {PMLR},
@@ -627,4 +544,87 @@
   url = {https://arxiv.org/abs/2402.02207},
   volume = {235},
   year = {2024}
+}
+
+@inproceedings{wang2023selfconsistency,
+  abstract = {Chain-of-thought prompting combined with pretrained large language models has achieved encouraging results on complex reasoning tasks. In this paper, we propose a new decoding strategy, self-consistency, to replace the naive greedy decoding used in chain-of-thought prompting.},
+  author = {Wang, Xuezhi and Wei, Jason and Schuurmans, Dale and Le, Quoc V. and Chi, Ed H. and Narang, Sharan and Chowdhery, Aakanksha and Zhou, Denny},
+  booktitle = {International Conference on Learning Representations},
+  file = {:/home/b/documents/inproceedings/wang2023selfconsistency.pdf:pdf},
+  pdf = {https://openreview.net/pdf?id=1PL1NIMMrw},
+  title = {Self-Consistency Improves Chain of Thought Reasoning in Language Models},
+  url = {https://openreview.net/forum?id=1PL1NIMMrw},
+  year = {2023}
+}
+
+@inproceedings{jin2023refclip,
+  abstract = {We propose RefCLIP, a novel weakly supervised model for Referring Expression Comprehension (REC) that redefines the task as an anchor-text matching problem. The approach introduces an anchor-based contrastive loss and acts as a universal teacher for generating pseudo-labels for other REC models, achieving significant performance gains.},
+  author = {Jin, Lei and Luo, Gen and Zhou, Yiyi and Sun, Xiaoshuai and Jiang, Guannan and Shu, Annan and Ji, Rongrong},
+  booktitle = {Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition},
+  file = {:/home/b/documents/inproceedings/jin2023refclip.pdf:pdf},
+  pages = {2681--2690},
+  pdf = {https://openaccess.thecvf.com/content/CVPR2023/papers/Jin_RefCLIP_A_Universal_Teacher_for_Weakly_Supervised_Referring_Expression_Comprehension_CVPR_2023_paper.pdf},
+  title = {RefCLIP: A Universal Teacher for Weakly Supervised Referring Expression Comprehension},
+  url = {https://openaccess.thecvf.com/content/CVPR2023/html/Jin_RefCLIP_A_Universal_Teacher_for_Weakly_Supervised_Referring_Expression_Comprehension_CVPR_2023_paper.html},
+  year = {2023}
+}
+
+@inproceedings{zhang2023grounding,
+  abstract = {Classical planning systems have shown great advances in utilizing rule-based human knowledge to compute accurate plans for service robots, but they face challenges due to the strong assumptions of perfect perception and action executions. To tackle these challenges, one solution is to connect the symbolic states and actions generated by classical planners to the robot's sensory observations, thus closing the perception-action loop. In this work, we propose TPVQA, a visually-grounded planning framework that leverages Vision-Language Models (VLMs) to detect action failures and verify action affordances towards enabling successful plan execution. Results from quantitative experiments show that TPVQA surpasses competitive baselines from previous studies in task completion rate.},
+  author = {Zhang, Xiaohan and Ding, Yan and Amiri, Saeid and Yang, Hao and Kaminski, Andy and Esselink, Chad and Zhang, Shiqi},
+  booktitle = {ICRA 2023 Workshop on Robot Execution Failures and Failure Management Strategies},
+  file = {:/home/b/documents/inproceedings/zhang2023grounding.pdf:pdf},
+  pdf = {https://robot-failures.github.io/icra2023/papers/RobotFailuresICRA2023_paper_8.pdf},
+  title = {Grounding Classical Task Planners via Vision-Language Models},
+  url = {https://arxiv.org/abs/2304.08587},
+  year = {2023}
+}
+
+@article{rose2023visual,
+  abstract = {Recent advances in large language models elicit reasoning in a chain-of-thought that allows models to decompose problems in a human-like fashion. Though this paradigm improves multi-step reasoning ability in language models, it is limited by being unimodal and applied mainly to question-answering tasks. We claim that incorporating visual augmentation into reasoning is essential, especially for complex, imaginative tasks. Consequently, we introduce VCoT, a novel method that leverages chain-of-thought prompting with vision-language grounding to recursively bridge the logical gaps within sequential data. Our method uses visual guidance to generate synthetic multimodal infillings that add consistent and novel information to reduce the logical gaps for downstream tasks that can benefit from temporal reasoning, as well as provide interpretability into models' multi-step reasoning. We apply VCoT to the Visual Storytelling and WikiHow summarization datasets and demonstrate through human evaluation that VCoT offers novel and consistent synthetic data augmentation beating chain-of-thought baselines, which can be used to enhance downstream performance.},
+  author = {Daniel Philip Rose and Vaishnavi Himakunthala and Andy Ouyang and Ryan He and Alex Mei and Yujie Lu and Michael Saxon and Chinmay Sonar and Diba Mirza and William Yang Wang},
+  file = {:/home/b/documents/article/rose2023visual.pdf:pdf},
+  journal = {arXiv preprint arXiv:2305.02317},
+  note = {ICLR 2024 Conference Withdrawn Submission},
+  pdf = {https://arxiv.org/pdf/2305.02317.pdf},
+  title = {Visual Chain of Thought: Bridging Logical Gaps with Multimodal Infillings},
+  url = {https://arxiv.org/abs/2305.02317},
+  year = {2023}
+}
+
+@inproceedings{shtedritski2023what,
+  abstract = {Large-scale Vision-Language Models, such as CLIP, learn powerful image-text representations that have found numerous applications, from zero-shot classification to text-to-image generation. Despite that, their capabilities for solving novel discriminative tasks via prompting fall behind those of large language models, such as GPT-3. Here we explore the idea of visual prompt engineering for solving computer vision tasks beyond classification by editing in image space instead of text. In particular, we discover an emergent ability of CLIP, where, by simply drawing a red circle around an object, we can direct the model's attention to that region, while also maintaining global information. We show the power of this simple approach by achieving state-of-the-art in zero-shot referring expressions comprehension and strong performance in keypoint localization tasks.},
+  author = {Aleksandar Shtedritski and Christian Rupprecht and Andrea Vedaldi},
+  booktitle = {Proceedings of the IEEE/CVF International Conference on Computer Vision},
+  file = {:/home/b/documents/inproceedings/shtedritski2023what.pdf:pdf},
+  pages = {11987--11997},
+  pdf = {https://openaccess.thecvf.com/content/ICCV2023/papers/Shtedritski_What_does_CLIP_know_about_a_red_circle_Visual_prompt_ICCV_2023_paper.pdf},
+  title = {What Does {CLIP} Know About a Red Circle? Visual Prompt Engineering for {VLM}s},
+  url = {https://arxiv.org/abs/2304.06712},
+  year = {2023}
+}
+
+@inproceedings{kim2023videoqasc,
+  abstract = {We challenge the assumption that Video Question Answering (VideoQA) models truly understand video content. Current VideoQA evaluation treats different clips from the same video inconsistently, which we argue is problematic. We propose VideoQA-SC, which improves the ActivityNet-QA dataset by excluding biased questions that models can answer without visual information. Using question triplets (annotator-centered questions, questions about other objects, and paraphrased questions), we evaluate semantic consistency. Many state-of-the-art models struggle with semantic consistency, often performing close to random chance despite showing improvements on traditional metrics.},
+  author = {Heeseung Kim and Jungho Lee and Seungwoong Nam and Sungmin Lee},
+  booktitle = {Proceedings of the {IEEE/CVF} International Conference on Computer Vision Workshops ({ICCVW})},
+  file = {:/home/b/documents/inproceedings/kim2023videoqasc.pdf:pdf},
+  note = {ICCV 2023 Workshop on Video Understanding (VidU)},
+  pdf = {https://arxiv.org/pdf/2309.01431.pdf},
+  publisher = {IEEE Computer Society},
+  title = {{VideoQA-SC}: Semantically Consistent Video Question Answering},
+  url = {https://openaccess.thecvf.com/content/ICCV2023W/VidU/html/Kim_VideoQA-SC_Semantically_Consistent_Video_Question_Answering_ICCVW_2023_paper.html},
+  year = {2023}
+}
+
+@inproceedings{wei2022chainofthought,
+  abstract = {We explore how generating a chain of thought---a series of intermediate reasoning steps---significantly improves the ability of large language models to perform complex reasoning.},
+  author = {Wei, Jason and Wang, Xuezhi and Schuurmans, Dale and Bosma, Maarten and Ichter, Brian and Xia, Fei and Chi, Ed and Le, Quoc V. and Zhou, Denny},
+  booktitle = {Advances in Neural Information Processing Systems},
+  file = {:/home/b/documents/inproceedings/wei2022chainofthought.pdf:pdf},
+  pdf = {https://proceedings.neurips.cc/paper_files/paper/2022/file/9d5609613524ecf4f15af0f7b31abca4-Paper-Conference.pdf},
+  title = {Chain-of-Thought Prompting Elicits Reasoning in Large Language Models},
+  url = {https://proceedings.neurips.cc/paper_files/paper/2022/hash/9d5609613524ecf4f15af0f7b31abca4-Abstract-Conference.html},
+  volume = {35},
+  year = {2022}
 }
