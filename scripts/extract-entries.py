@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 Extract BibTeX entries from a file and write them as individual files.
-Creates tmp/<basename>/entry-N.bib for each entry.
+Creates entry-N.bib files in specified output directory or tmp/<basename>/ by default.
 """
 
 import shutil
@@ -103,8 +103,8 @@ def extract_and_write_entries(filepath: str | Path, output_dir: Path) -> int:
 
 
 def main() -> None:
-    if len(sys.argv) != 2:
-        print("Usage: extract-entries.py <bibfile>", file=sys.stderr)
+    if len(sys.argv) < 2 or len(sys.argv) > 3:
+        print("Usage: extract-entries.py <bibfile> [output_dir]", file=sys.stderr)
         sys.exit(1)
 
     filepath = Path(sys.argv[1])
@@ -113,9 +113,13 @@ def main() -> None:
         print(f"Error: File '{filepath}' not found", file=sys.stderr)
         sys.exit(1)
 
-    # Create output directory based on input filename
-    basename = filepath.stem
-    output_dir = Path("tmp") / basename
+    # Create output directory 
+    if len(sys.argv) == 3:
+        output_dir = Path(sys.argv[2])
+    else:
+        # Default: create output directory based on input filename
+        basename = filepath.stem
+        output_dir = Path("tmp") / basename
 
     # Clean existing directory if it exists
     if output_dir.exists():

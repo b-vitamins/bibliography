@@ -81,8 +81,8 @@ def update_bibtex_keys(filepath):
         else:
             year = '0000'
         
-        # Extract keyword from title
-        title_match = re.search(r'title\s*=\s*{([^}]+(?:{[^}]*}[^}]*)*)}', entry_content, re.IGNORECASE)
+        # Extract keyword from title (NOT booktitle)
+        title_match = re.search(r'(?<!book)title\s*=\s*{([^}]+(?:{[^}]*}[^}]*)*)}', entry_content, re.IGNORECASE)
         if title_match:
             title = title_match.group(1)
             keyword = extract_keyword_from_title(title)

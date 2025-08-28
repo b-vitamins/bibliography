@@ -22,7 +22,7 @@ from typing import Optional, Tuple, Any
 import bibtexparser
 from bibtexparser.bparser import BibTexParser
 from bibtexparser.bwriter import BibTexWriter
-from bibtexparser.customization import convert_to_unicode
+# from bibtexparser.customization import convert_to_unicode
 
 # Base directory for all PDFs
 BASE_DIR = Path("/home/b/documents")
@@ -309,7 +309,7 @@ def process_file(
     # Parse the BibTeX file
     with open(bib_file, "r", encoding="utf-8") as f:
         parser = BibTexParser(common_strings=True)
-        parser.customization = convert_to_unicode  # type: ignore[attr-defined]
+        # Remove problematic Unicode customization that causes errors
         bib_db = bibtexparser.load(f, parser=parser)
 
     # Process each entry
