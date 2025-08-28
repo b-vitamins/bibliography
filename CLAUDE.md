@@ -204,7 +204,10 @@ The agent uses venue-specific sources and PDF patterns:
 
 **Workflow:**
 ```bash
-# Extract entries from bibliography file
+# Extract entries from bibliography file to specific directory
+guix shell -m manifest.scm -- python3 scripts/extract-entries.py conferences/neurips/2024.bib tmp/neurips/2024/
+
+# OR use default tmp/<basename>/ directory
 guix shell -m manifest.scm -- python3 scripts/extract-entries.py conferences/neurips/2024.bib
 
 # Process in batches of 10 (for quality assurance)
