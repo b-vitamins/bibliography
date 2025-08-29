@@ -17,6 +17,8 @@ import shutil
 import requests
 import tempfile
 import re
+import subprocess
+import time
 from pathlib import Path
 from typing import Optional, Tuple, Any
 import bibtexparser
@@ -80,6 +82,113 @@ def get_target_path(entry: dict[str, Any]) -> Path:
     return target_dir / f"{bibkey}.pdf"
 
 
+def wait_for_manual_download(url: str, bibkey: str, timeout: int = 300) -> Optional[Path]:
+    """
+    Open URL in Firefox and wait for user to manually download the PDF.
+    
+    Args:
+        url: The URL to open in Firefox
+        bibkey: The BibTeX key (used to identify the downloaded file)
+        timeout: Maximum time to wait in seconds (default 5 minutes)
+    
+    Returns:
+        Path to the downloaded file if successful, None otherwise
+    """
+    downloads_dir = Path.home() / "downloads"
+    
+    # Get list of existing PDFs in downloads before opening browser
+    existing_files = set(downloads_dir.glob("*.pdf"))
+    existing_files.update(downloads_dir.glob("*.pdf.part"))  # Include partial downloads
+    
+    print(f"\n  === Manual Download Required ===")
+    print(f"  Opening Firefox with URL: {url}")
+    print(f"  Please download the PDF manually.")
+    print(f"  Looking for new PDF in: {downloads_dir}")
+    print(f"  (Will wait up to {timeout} seconds)")
+    print(f"  Press Ctrl+C to skip this entry")
+    
+    # Open URL in Firefox
+    try:
+        subprocess.Popen(["firefox", url], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+    except Exception as e:
+        print(f"  ERROR: Could not open Firefox: {e}")
+        return None
+    
+    # Wait for download
+    start_time = time.time()
+    last_check_time = 0
+    found_file = None
+    
+    try:
+        while time.time() - start_time < timeout:
+            current_time = time.time()
+            
+            # Check every 2 seconds
+            if current_time - last_check_time >= 2:
+                # Look for new PDF files
+                current_files = set(downloads_dir.glob("*.pdf"))
+                new_files = current_files - existing_files
+                
+                # Filter out partial downloads
+                complete_files = [f for f in new_files if not f.name.endswith(".part")]
+                
+                if complete_files:
+                    # Wait a bit more to ensure download is complete
+                    time.sleep(2)
+                    
+                    # Check file size is stable
+                    for f in complete_files:
+                        initial_size = f.stat().st_size
+                        time.sleep(1)
+                        final_size = f.stat().st_size
+                        
+                        if initial_size == final_size and initial_size > 1024:
+                            found_file = f
+                            print(f"  Found downloaded file: {f.name}")
+                            break
+                    
+                    if found_file:
+                        break
+                
+                # Show progress
+                elapsed = int(current_time - start_time)
+                if elapsed % 10 == 0 and elapsed > 0:
+                    print(f"    Waiting... ({elapsed}s elapsed)")
+                
+                last_check_time = current_time
+            
+            time.sleep(0.5)
+    
+    except KeyboardInterrupt:
+        print("\n  Download skipped by user")
+        return None
+    
+    if not found_file:
+        print(f"  ERROR: No new PDF found after {timeout} seconds")
+        return None
+    
+    # Verify it's a valid PDF
+    is_valid, message = verify_pdf(found_file)
+    if not is_valid:
+        print(f"  ERROR: Downloaded file is not a valid PDF - {message}")
+        return None
+    
+    return found_file
+
+
+def interactive_download_prompt(url: str, bibkey: str) -> bool:
+    """
+    Prompt user whether to try manual download for a paywalled article.
+    
+    Returns:
+        True if user wants to try manual download, False to skip
+    """
+    print(f"\n  Paywall detected for {bibkey}")
+    print(f"  URL: {url}")
+    response = input("  Try manual download? [y/N]: ").strip().lower()
+    return response in ['y', 'yes']
+
+
 def verify_pdf(file_path: Path | str) -> Tuple[bool, str]:
     """Verify that a file is a valid PDF with content."""
     try:
@@ -107,9 +216,21 @@ def verify_pdf(file_path: Path | str) -> Tuple[bool, str]:
 
 
 def download_pdf(
-    url: str, target_path: Path, timeout: int = 30, max_retries: int = 3
+    url: str, target_path: Path, bibkey: str = "", interactive: bool = False, timeout: int = 30, max_retries: int = 3
 ) -> bool:
-    """Download a PDF from URL to target path with retries and verification."""
+    """Download a PDF from URL to target path with retries and verification.
+    
+    Args:
+        url: URL to download from
+        target_path: Where to save the PDF
+        bibkey: BibTeX key for the entry (used for interactive mode)
+        interactive: Whether to prompt for manual download on paywall
+        timeout: Request timeout in seconds
+        max_retries: Number of automatic retry attempts
+    
+    Returns:
+        True if download successful, False otherwise
+    """
     headers = {
         "User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
         "Accept": "application/pdf,*/*",
@@ -156,6 +277,13 @@ def download_pdf(
             # Warn about suspicious content types
             if "html" in content_type:
                 print("  WARNING: Content-Type is HTML, likely a landing page")
+                # Try interactive download if enabled
+                if interactive and interactive_download_prompt(url, bibkey):
+                    downloaded_file = wait_for_manual_download(url, bibkey)
+                    if downloaded_file:
+                        shutil.move(str(downloaded_file), str(target_path))
+                        print(f"  Success: Manual download saved to {target_path}")
+                        return True
                 return False
             elif "pdf" not in content_type and not url.lower().endswith(".pdf"):
                 print(f"  WARNING: Content-Type is {content_type}, may not be PDF")
@@ -193,6 +321,13 @@ def download_pdf(
                         print(
                             "  ERROR: Downloaded HTML instead of PDF (likely paywall/login page)"
                         )
+                        # Try interactive download if enabled
+                        if interactive and interactive_download_prompt(url, bibkey):
+                            downloaded_file = wait_for_manual_download(url, bibkey)
+                            if downloaded_file:
+                                shutil.move(str(downloaded_file), str(target_path))
+                                print(f"  Success: Manual download saved to {target_path}")
+                                return True
                         return False
 
                 continue  # Retry
@@ -212,9 +347,16 @@ def download_pdf(
             if e.response.status_code == 404:
                 print("  ERROR: File not found (404)")
                 return False  # Don't retry 404s
-            elif e.response.status_code == 403:
-                print("  ERROR: Access forbidden (403) - may need authentication")
-                return False  # Don't retry 403s
+            elif e.response.status_code in [403, 401]:
+                print(f"  ERROR: Access forbidden ({e.response.status_code}) - may need authentication")
+                # Try interactive download if enabled
+                if interactive and interactive_download_prompt(url, bibkey):
+                    downloaded_file = wait_for_manual_download(url, bibkey)
+                    if downloaded_file:
+                        shutil.move(str(downloaded_file), str(target_path))
+                        print(f"  Success: Manual download saved to {target_path}")
+                        return True
+                return False  # Don't retry paywalls
             else:
                 print(
                     f"  ERROR: HTTP {e.response.status_code} (attempt {attempt + 1}/{max_retries})"
@@ -253,9 +395,19 @@ def fix_existing_file(
 
 
 def process_entry(
-    entry: dict[str, Any], download: bool = True, fix_existing: bool = True
+    entry: dict[str, Any], download: bool = True, fix_existing: bool = True, interactive: bool = False
 ) -> bool:
-    """Process a single BibTeX entry."""
+    """Process a single BibTeX entry.
+    
+    Args:
+        entry: BibTeX entry to process
+        download: Whether to download PDFs from pdf field
+        fix_existing: Whether to fix existing file paths
+        interactive: Whether to prompt for manual download on paywall
+    
+    Returns:
+        True if entry was modified, False otherwise
+    """
     bibkey = entry.get("ID", "unknown")
     entry_type = entry.get("ENTRYTYPE", "misc")
     print(f"\nProcessing {bibkey} ({entry_type}):")
@@ -288,7 +440,7 @@ def process_entry(
                 modified = True
             else:
                 # Download the PDF
-                if download_pdf(pdf_url, target_path):
+                if download_pdf(pdf_url, target_path, bibkey, interactive):
                     entry["file"] = format_file_field(str(target_path), "pdf")
                     modified = True
                 else:
@@ -302,8 +454,17 @@ def process_file(
     download: bool = True,
     fix_existing: bool = True,
     dry_run: bool = False,
+    interactive: bool = False,
 ) -> None:
-    """Process a BibTeX file."""
+    """Process a BibTeX file.
+    
+    Args:
+        bib_file: Path to the BibTeX file
+        download: Whether to download PDFs from pdf field
+        fix_existing: Whether to fix existing file paths
+        dry_run: Whether to just show what would be done
+        interactive: Whether to prompt for manual download on paywall
+    """
     print(f"Processing {bib_file}...")
 
     # Parse the BibTeX file
@@ -333,7 +494,7 @@ def process_file(
                         fixed_count += 1
         else:
             old_file = entry.get("file")
-            modified = process_entry(entry, download, fix_existing)
+            modified = process_entry(entry, download, fix_existing, interactive)
 
             if modified:
                 modified_count += 1
@@ -390,6 +551,9 @@ Examples:
   # Dry run to see what would be done
   %(prog)s --dry-run file.bib
   
+  # Interactive mode for handling paywalled content
+  %(prog)s --interactive file.bib
+  
   # Process all files in a directory
   %(prog)s curated/*.bib
         """,
@@ -409,6 +573,11 @@ Examples:
         action="store_true",
         help="Show what would be done without making changes",
     )
+    parser.add_argument(
+        "--interactive", "-i",
+        action="store_true",
+        help="Prompt for manual download when paywalls are detected",
+    )
 
     args = parser.parse_args()
 
@@ -423,6 +592,7 @@ Examples:
             download=not args.no_download,
             fix_existing=not args.no_fix,
             dry_run=args.dry_run,
+            interactive=args.interactive,
         )
 
 
