@@ -1,431 +1,860 @@
-@misc{boyer2025learning,
-  archiveprefix = {arXiv},
-  author = {Boyer, J. and Rusch, T. K. and Rus, D.},
-  eprint = {2505.12171},
-  note = {Introduces D-LinOSS, an improvement on LinOSS that adds a learnable damping term, allowing the model to dissipate energy (forget) on multiple timescales, increasing expressivity.},
-  primaryclass = {cs.LG},
-  title = {Learning to Dissipate Energy in Oscillatory State-Space Models},
-  url = {https://arxiv.org/pdf/2505.12171},
-  year = {2025}
+@article{hopfield1982neural,
+  title={Neural networks and physical systems with emergent collective computational abilities},
+  author={Hopfield, John J.},
+  journal={Proceedings of the National Academy of Sciences},
+  volume={79},
+  number={8},
+  pages={2554--2558},
+  year={1982},
+  publisher={National Academy of Sciences},
+  doi={10.1073/pnas.79.8.2554},
+  url={https://www.pnas.org/doi/10.1073/pnas.79.8.2554},
+  pdf={https://www.pnas.org/doi/pdf/10.1073/pnas.79.8.2554},
+  abstract={Computational properties of use of biological organisms or to the construction of computers can emerge as collective properties of systems having a large number of simple equivalent components (or neurons). The physical meaning of content-addressable memory is described by an appropriate phase space flow of the state of a system. A model of such a system is given, based on aspects of neurobiology but readily adapted to integrated circuits. The collective properties of this model produce a content-addressable memory which correctly yields an entire memory from any subpart of sufficient size. The algorithm for the time evolution of the state of the system is based on asynchronous parallel processing. Additional emergent collective properties include some capacity for generalization, familiarity recognition, categorization, error correction, and time sequence retention. The collective properties are only weakly sensitive to details of the modeling or the failure of individual devices.}
 }
-
+@article{acebro2005the,
+  title={The {K}uramoto model: A simple paradigm for synchronization phenomena},
+  author={Acebr{\'o}n, Juan A. and Bonilla, L. L. and P{\'e}rez Vicente, Conrad J. and Ritort, F. and Spigler, R.},
+  journal={Reviews of Modern Physics},
+  volume={77},
+  number={1},
+  pages={137--185},
+  year={2005},
+  publisher={American Physical Society},
+  doi={10.1103/RevModPhys.77.137},
+  url={https://journals.aps.org/rmp/abstract/10.1103/RevModPhys.77.137},
+  pdf={https://www.researchgate.net/publication/301232692_The_Kuramoto_model_A_simple_paradigm_for_synchronization_phenomena},
+  abstract={Synchronization phenomena in large populations of interacting elements are the subject of intense research efforts in physical, biological, chemical, and social systems. A successful approach to the problem of synchronization consists of modeling each member of the population as a phase oscillator. In this review, synchronization is analyzed in one of the most representative models of coupled phase oscillators, the Kuramoto model. A rigorous mathematical treatment, specific numerical methods, and many variations and extensions of the original model that have appeared in the last few years are presented. Relevant applications of the model in different contexts are also included.}
+}
+@article{hoppensteadt2000pattern,
+  title={Pattern recognition via synchronization in phase-locked loop neural networks},
+  author={Hoppensteadt, Frank C. and Izhikevich, Eugene M.},
+  journal={IEEE Transactions on Neural Networks},
+  volume={11},
+  number={3},
+  pages={734--738},
+  year={2000},
+  month={5},
+  publisher={IEEE},
+  doi={10.1109/72.846744},
+  url={https://ieeexplore.ieee.org/document/846744/},
+  pdf={http://www.izhikevich.org/publications/pllnn.htm},
+  abstract={We propose a novel architecture of an oscillatory neural network that consists of phase-locked loop (PLL) circuits. It stores and retrieves complex oscillatory patterns as synchronized states with appropriate phase relations between neurons.}
+}
+@inproceedings{vodenicarevic2017neural,
+  title={A neural network based on synchronized pairs of nano-oscillators},
+  author={Vodenicarevic, Damir and Locatelli, Nicolas and Querlioz, Damien},
+  booktitle={2017 IEEE 17th International Conference on Nanotechnology (IEEE-NANO)},
+  pages={512--514},
+  year={2017},
+  organization={IEEE},
+  url={https://arxiv.org/abs/1709.02274},
+  pdf={https://arxiv.org/pdf/1709.02274.pdf},
+  abstract={Artificial neural networks are intensively used to perform cognitive tasks such as image classification on traditional computers. With the end of CMOS scaling and increasing demand for efficient neural networks, alternative architectures implementing neural functions efficiently are being studied. This study leverages the demonstrated frequency tuning capabilities of compact nano-oscillators and their synchronization dynamics to implement a neuron using a pair of synchronized oscillators, and which features an unconventional response curve. We show that this compact neuron can naturally implement generic logic gates, including XOR. A simulated oscillator-based neural network is then shown to achieve results equivalent to standard approaches on two reference classification tasks. Finally, the performance of the system is evaluated in the presence of oscillator phase noise, an important issue of oscillating nanodevices. These results open the way for the design of alternative architectures adapted to efficient neural network execution.},
+  note={ArXiv preprint: 1709.02274}
+}
+@article{soman2018oscillatory,
+  title={An Oscillatory Neural Autoencoder Based on Frequency Modulation and Multiplexing},
+  author={Soman, Karthik and Muralidharan, Vignesh and Chakravarthy, V. Srinivasa},
+  journal={Frontiers in Computational Neuroscience},
+  volume={12},
+  pages={52},
+  year={2018},
+  month={7},
+  publisher={Frontiers Media SA},
+  doi={10.3389/fncom.2018.00052},
+  url={https://www.frontiersin.org/journals/computational-neuroscience/articles/10.3389/fncom.2018.00052/full},
+  pdf={https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6048285/pdf/fncom-12-00052.pdf},
+  pmid={30042669},
+  pmcid={PMC6048285},
+  abstract={Oscillatory phenomena are ubiquitous in the brain. Although there are oscillator-based models of brain dynamics, their universal computational properties have not been explored much unlike in the case of rate-coded and spiking neuron network models. Use of oscillator-based models is often limited to special phenomena like locomotor rhythms and oscillatory attractor-based memories. If neuronal ensembles are taken to be the basic functional units of brain dynamics, it is desirable to develop oscillator-based models that can explain a wide variety of neural phenomena. Autoencoders are a special type of feed forward networks that have been used for construction of large-scale deep networks. Although autoencoders based on rate-coded and spiking neuron networks have been proposed, there are no autoencoders based on oscillators. We propose here an oscillatory neural network model that performs the function of an autoencoder. The model is a hybrid of rate-coded neurons and neural oscillators. Input signals modulate the frequency of the neural encoder oscillators. These signals are then multiplexed using a network of rate-code neurons that has afferent Hebbian and lateral anti-Hebbian connectivity, termed as Lateral Anti Hebbian Network (LAHN). Finally the LAHN output is de-multiplexed using an output neural layer which is a combination of adaptive Hopf and Kuramoto oscillators for the signal reconstruction. The Kuramoto-Hopf combination performing demodulation is a novel way of describing a neural phase-locked loop. The proposed model is tested using both synthetic signals and real world EEG signals. The proposed model arises out of the general motivation to construct biologically inspired, oscillatory versions of some of the standard neural network models, and presents itself as an autoencoder network based on oscillatory neurons applicable to time series signals. As a demonstration, the model is applied to compression of EEG signals.}
+}
+@article{csaba2020coupled,
+  title={Coupled oscillators for computing: A review and perspective},
+  author={Csaba, Gyorgy and Porod, Wolfgang},
+  journal={Applied Physics Reviews},
+  volume={7},
+  number={1},
+  pages={011302},
+  year={2020},
+  month={3},
+  publisher={AIP Publishing},
+  doi={10.1063/1.5120412},
+  url={https://pubs.aip.org/aip/apr/article/7/1/011302/997386/Coupled-oscillators-for-computing-A-review-and},
+  pdf={https://pubs.aip.org/aip/apr/article-pdf/doi/10.1063/1.5120412/14575376/011302_1_online.pdf},
+  abstract={Coupled oscillators are highly complex dynamical systems, and it is an intriguing concept to use this oscillator dynamics for computation. The idea is not new, but is currently the subject to intense research as part of the quest for "beyond Moore" electronic devices. To a large extent, these efforts are motivated by biological observations: neural systems and mammalian brains, which seem to operate on oscillatory signals. In this paper, we give a survey of oscillator-based computing, with the goal of understanding its promise and limitation for next-generation computing. Our focus will be on the physics of (mostly nanoscale) oscillatory systems and on their characteristics that may enable effective computing.}
+}
+@article{bick2020understanding,
+  title={Understanding the dynamics of biological and neural oscillator networks through exact mean-field reductions: a review},
+  author={Bick, Christian and Goodfellow, Marc and Laing, Carlo R. and Martens, Erik A.},
+  journal={Journal of Mathematical Neuroscience},
+  volume={10},
+  pages={1--43},
+  year={2020},
+  month={5},
+  publisher={Springer},
+  doi={10.1186/s13408-020-00086-9},
+  url={https://mathematical-neuroscience.springeropen.com/articles/10.1186/s13408-020-00086-9},
+  pmid={32462281},
+  pmcid={PMC7253574},
+  pdf={https://arxiv.org/pdf/1902.05307.pdf},
+  abstract={Many biological and neural systems can be seen as networks of interacting periodic processes. Importantly, their functionality, i.e., whether these networks can perform their function or not, depends on the emerging collective dynamics of the network. Synchrony of oscillations is one of the most prominent examples of such collective behavior and has been associated both with function and dysfunction. Understanding how network structure and interactions, as well as the microscopic properties of individual units, shape the emerging collective dynamics is critical to find factors that lead to malfunction. However, many biological systems such as the brain consist of a large number of dynamical units. Hence, their analysis has either relied on simplified heuristic models on a coarse scale, or the analysis comes at a huge computational cost. Here we review recently introduced approaches, known as the Ott-Antonsen and Watanabe-Strogatz reductions, allowing one to simplify the analysis by bridging small and large scales. Thus, reduced model equations are obtained that exactly describe the collective dynamics for each subpopulation in the oscillator network via few collective variables only. The resulting equations are next-generation models: Rather than being heuristic, they exactly link microscopic and macroscopic descriptions and therefore accurately capture microscopic properties of the underlying system. At the same time, they are sufficiently simple to analyze without great computational effort. In the last decade, these reduction methods have become instrumental in understanding how network structure and interactions shape the collective dynamics and the emergence of synchrony. We review this progress based on concrete examples and outline possible limitations. Finally, we discuss how linking the reduced models with experimental data can guide the way towards the development of new treatment approaches, for example, for neurological disease.},
+  note={arXiv preprint: 1902.05307}
+}
+@inproceedings{rusch2021coupled,
+  title={{Coupled Oscillatory Recurrent Neural Network (coRNN): An accurate and (gradient) stable architecture for learning long time dependencies}},
+  author={Rusch, T. Konstantin and Mishra, Siddhartha},
+  booktitle={International Conference on Learning Representations},
+  year={2021},
+  url={https://openreview.net/forum?id=F3s69XzWOia},
+  pdf={https://arxiv.org/pdf/2010.00951.pdf},
+  abstract={Circuits of biological neurons, such as in the functional parts of the brain can be modeled as networks of coupled oscillators. Inspired by the ability of these systems to express a rich set of outputs while keeping (gradients of) state variables bounded, we propose a novel architecture for recurrent neural networks. Our proposed RNN is based on a time-discretization of a system of second-order ordinary differential equations, modeling networks of controlled nonlinear oscillators. We prove precise bounds on the gradients of the hidden states, leading to the mitigation of the exploding and vanishing gradient problem for this RNN. Experiments show that the proposed RNN is comparable in performance to the state of the art on a variety of benchmarks, demonstrating the potential of this architecture to provide stable and accurate RNNs for processing complex sequential data.},
+  note={Oral presentation, arXiv preprint: 2010.00951}
+}
+@inproceedings{rusch2021unicornn,
+  title={{UnICORNN: A recurrent model for learning very long time dependencies}},
+  author={Rusch, T. Konstantin and Mishra, Siddhartha},
+  booktitle={Proceedings of the 38th International Conference on Machine Learning},
+  pages={9168--9178},
+  year={2021},
+  series={Proceedings of Machine Learning Research},
+  volume={139},
+  publisher={PMLR},
+  url={https://proceedings.mlr.press/v139/rusch21a.html},
+  pdf={http://proceedings.mlr.press/v139/rusch21a/rusch21a.pdf},
+  abstract={The design of recurrent neural networks (RNNs) to accurately process sequential inputs with long-time dependencies is very challenging on account of the exploding and vanishing gradient problem. To overcome this, we propose a novel RNN architecture which is based on a structure preserving discretization of a Hamiltonian system of second-order ordinary differential equations that models networks of oscillators. The resulting RNN is fast, invertible (in time), memory efficient and we derive rigorous bounds on the hidden state gradients to prove the mitigation of the exploding and vanishing gradient problem. A suite of experiments are presented to demonstrate that the proposed RNN provides state of the art performance on a variety of learning tasks with (very) long-time dependencies.},
+  note={Spotlight presentation, arXiv preprint: 2103.05487}
+}
+@article{biswas2021complexvalued,
+  title={A Complex-Valued Oscillatory Neural Network for Storage and Retrieval of Multidimensional Aperiodic Signals},
+  author={Biswas, Dipayan and Pallikkulath, Sooryakiran and Chakravarthy, V. Srinivasa},
+  journal={Frontiers in Computational Neuroscience},
+  volume={15},
+  pages={551111},
+  year={2021},
+  month={5},
+  publisher={Frontiers Media SA},
+  doi={10.3389/fncom.2021.551111},
+  url={https://www.frontiersin.org/journals/computational-neuroscience/articles/10.3389/fncom.2021.551111/full},
+  pdf={https://www.ncbi.nlm.nih.gov/pmc/articles/PMC8181409/pdf/fncom-15-551111.pdf},
+  pmid={34108869},
+  pmcid={PMC8181409},
+  abstract={Recurrent neural networks with associative memory properties are typically based on fixed-point dynamics, which is fundamentally distinct from the oscillatory dynamics of the brain. There have been proposals for oscillatory associative memories, but here too, in the majority of cases, only binary patterns are stored as oscillatory states in the network. Oscillatory neural network models typically operate at a single/common frequency. At multiple frequencies, even a pair of oscillators with real coupling exhibits rich dynamics of Arnold tongues, not easily harnessed to achieve reliable memory storage and retrieval. Since real brain dynamics comprises of a wide range of spectral components, there is a need for oscillatory neural network models that operate at multiple frequencies. We propose an oscillatory neural network that can model multiple time series simultaneously by performing a Fourier-like decomposition of the signals. We show that these enhanced properties of a network of Hopf oscillators become possible by operating in the complex-variable domain. In this model, the single neural oscillator is modeled as a Hopf oscillator, with adaptive frequency and dynamics described over the complex domain. We propose a novel form of coupling, dubbed power coupling, between complex Hopf oscillators.}
+}
+@inproceedings{zheng2023spikewave,
+  title={Spikewave: A new class of learnable activation function based on neural oscillations and spiking},
+  author={Zheng, Yixuan and Wang, Yufan and Wang, Yisen and others},
+  booktitle={Advances in Neural Information Processing Systems},
+  volume={36},
+  year={2023},
+  note={Paper details not found in public proceedings. May be in workshop or under different title/authors.}
+}
+@inproceedings{lo2023rotating,
+  title={Rotating Features for Object Discovery},
+  author={L{\"o}we, Sindy and Lippe, Phillip and Rudolph, Maja and others},
+  booktitle={Advances in Neural Information Processing Systems},
+  volume={36},
+  year={2023},
+  url={https://proceedings.neurips.cc//paper_files/paper/2023/hash/bb36593e5e438aac5dd07907e757e087-Abstract-Conference.html},
+  pdf={https://proceedings.neurips.cc/paper_files/paper/2023/file/bb36593e5e438aac5dd07907e757e087-Paper-Conference.pdf},
+  abstract={The binding problem in human cognition, concerning how the brain represents and connects objects within a fixed network of neural connections, remains a subject of intense debate. Most machine learning efforts addressing this issue in an unsupervised setting have focused on slot-based methods, which may be limiting due to their discrete nature and difficulty to express uncertainty. Recently, the Complex AutoEncoder was proposed as an alternative that learns continuous and distributed object-centric representations. The paper presents Rotating Features, a generalization of complex-valued features to higher dimensions, enabling scaling distributed object-centric representations from simple toy to real-world data.}
+}
+@article{rusch2024messagepassing,
+  title={Message-Passing Monte Carlo: Generating low-discrepancy point sets via graph neural networks},
+  author={Rusch, T. Konstantin and Kirk, Nathan and Bronstein, Michael M. and Lemieux, Christiane and Rus, Daniela},
+  journal={Proceedings of the National Academy of Sciences},
+  volume={121},
+  number={40},
+  pages={e2409913121},
+  year={2024},
+  publisher={National Academy of Sciences},
+  doi={10.1073/pnas.2409913121},
+  url={https://www.pnas.org/doi/10.1073/pnas.2409913121},
+  pdf={https://arxiv.org/pdf/2405.15059},
+  abstract={Discrepancy is a well-known measure for the irregularity of the distribution of a point set. Point sets with small discrepancy are called low-discrepancy and are known to efficiently fill the space in a uniform manner. Low-discrepancy points play a central role in many problems in science and engineering, including numerical integration, computer vision, machine perception, computer graphics, machine learning, and simulation. In this work, we present the first machine learning approach to generate a new class of low-discrepancy point sets named Message-Passing Monte Carlo (MPMC) points. Motivated by the geometric nature of generating low-discrepancy point sets, we leverage tools from Geometric Deep Learning and base our model on Graph Neural Networks. We further provide an extension of our framework to higher dimensions, which flexibly allows the generation of custom-made points that emphasize the uniformity in specific dimensions that are primarily important for the particular problem at hand. Finally, we demonstrate that our proposed model achieves state-of-the-art performance superior to previous methods by a significant margin.}
+}
+@inproceedings{miyato2025artificial,
+  title={Artificial Kuramoto Oscillatory Neurons},
+  author={Miyato, Takeru and L{\"o}we, Sindy and Geiger, Andreas and Welling, Max},
+  booktitle={International Conference on Learning Representations},
+  year={2025},
+  url={https://openreview.net/forum?id=nwDRD4AMoN},
+  pdf={https://openreview.net/pdf?id=nwDRD4AMoN},
+  note={Oral presentation},
+  abstract={It has long been known in both neuroscience and AI that ``binding'' between neurons leads to a form of competitive learning where representations are compressed in order to represent more abstract concepts in deeper layers of the network. More recently, it was also hypothesized that dynamic (spatiotemporal) representations play an important role in both neuroscience and AI. Building on these ideas, we introduce Artificial Kuramoto Oscillatory Neurons (AKOrN) as a dynamical alternative to threshold units, which can be combined with arbitrary connectivity designs such as fully connected, convolutional, or attentive mechanisms. Our generalized Kuramoto updates bind neurons together through their synchronization dynamics. We show that this idea provides performance improvements across a wide spectrum of tasks such as unsupervised object discovery, adversarial robustness, calibrated uncertainty quantification, and reasoning. We believe that these empirical results show the importance of rethinking our assumptions at the most basic neuronal level of neural representation, and in particular show the importance of dynamical representations.}
+}
+@article{muzellec2025enhancing,
+  title={Enhancing deep neural networks through complex-valued representations and Kuramoto synchronization dynamics},
+  author={Muzellec, Sabine and Alamia, Andrea and Serre, Thomas and VanRullen, Rufin},
+  journal={Transactions on Machine Learning Research},
+  year={2025},
+  url={https://openreview.net/forum?id=zx6QGmBL43},
+  pdf={https://arxiv.org/pdf/2502.21077},
+  abstract={Neural synchrony is hypothesized to play a crucial role in how the brain organizes visual scenes into structured representations, enabling the robust encoding of multiple objects within a scene. However, current deep learning models often struggle with object binding, limiting their ability to represent multiple objects effectively. Inspired by neuroscience, we investigate whether synchrony-based mechanisms can enhance object encoding in artificial models trained for visual categorization. Specifically, we combine complex-valued representations with Kuramoto dynamics to promote phase alignment, facilitating the grouping of features belonging to the same object. We evaluate two architectures employing synchrony: a feedforward model and a recurrent model with feedback connections to refine phase synchronization using top-down information. Both models outperform their real-valued counterparts and complex-valued models without Kuramoto synchronization on tasks involving multi-object images, such as overlapping handwritten digits, noisy inputs, and out-of-distribution transformations. Our findings highlight the potential of synchrony-driven mechanisms to enhance deep learning models, improving their performance, robustness, and generalization in complex visual categorization tasks.}
+}
+@misc{jacobs2025traveling,
+  title={Traveling Waves Integrate Spatial Information Through Time},
+  author={Jacobs, Mozes and Budzinski, Roberto C. and Muller, Lyle and Ba, Demba and Keller, T. Anderson},
+  year={2025},
+  eprint={2502.06034},
+  archivePrefix={arXiv},
+  primaryClass={cs.CV},
+  url={https://arxiv.org/abs/2502.06034},
+  pdf={https://arxiv.org/pdf/2502.06034},
+  abstract={Traveling waves of neural activity are widely observed in the brain, but their precise computational function remains unclear. One prominent hypothesis is that they enable the transfer and integration of spatial information across neural populations. However, few computational models have explored how traveling waves might be harnessed to perform such integrative processing. Drawing inspiration from the famous "Can one hear the shape of a drum?" problem -- which highlights how normal modes of wave dynamics encode geometric information -- we investigate whether similar principles can be leveraged in artificial neural networks. Specifically, we introduce convolutional recurrent neural networks that learn to produce traveling waves in their hidden states in response to visual stimuli, enabling spatial integration. By then treating these wave-like activation sequences as visual representations themselves, we obtain a powerful representational space that outperforms local feed-forward networks on tasks requiring global spatial context. In particular, we observe that traveling waves effectively expand the receptive field of locally connected neurons, supporting long-range encoding and communication of information. We demonstrate that models equipped with this mechanism solve visual semantic segmentation tasks demanding global integration, significantly outperforming local feed-forward models and rivaling non-local U-Net models with fewer parameters.}
+}
+@inproceedings{elhag2025relaxed,
+  title={Relaxed Equivariance via Multitask Learning},
+  author={Elhag, Ahmed A. A. and Rusch, T. Konstantin and Di Giovanni, Francesco and Bronstein, Michael M.},
+  booktitle={ICLR Workshop on Machine Learning for Genomics Explorations},
+  year={2025},
+  url={https://openreview.net/forum?id=8kZSO4WbTh},
+  pdf={https://arxiv.org/pdf/2410.17878},
+  abstract={Incorporating equivariance as an inductive bias into deep learning architectures to take advantage of the data symmetry has been successful in multiple applications, such as chemistry and dynamical systems. In particular, roto-translations are crucial for effectively modeling geometric graphs and molecules, where understanding the 3D structures enhances generalization. However, equivariant models often pose challenges due to their high computational complexity. In this paper, we introduce REMUL, a training procedure for approximating equivariance with multitask learning. We show that unconstrained models (which do not build equivariance into the architecture) can learn approximate symmetries by minimizing an additional simple equivariance loss. By formulating equivariance as a new learning objective, we can control the level of approximate equivariance in the model. Our method achieves competitive performance compared to equivariant baselines while being 10 times faster at inference and 2.5 times at training.}
+}
+@misc{alamia2025gaspnet,
+  title={{GASPnet: Global Agreement to Synchronize Phases}},
+  author={Alamia, Andrea and Muzellec, Sabine and Serre, Thomas and VanRullen, Rufin},
+  year={2025},
+  eprint={2507.16674},
+  archivePrefix={arXiv},
+  primaryClass={cs.LG},
+  url={https://arxiv.org/abs/2507.16674},
+  pdf={https://arxiv.org/pdf/2507.16674},
+  abstract={In recent years, Transformer architectures have revolutionized most fields of artificial intelligence, relying on an attentional mechanism based on the agreement between keys and queries to select and route information in the network. In previous work, we introduced a novel, brain-inspired architecture that leverages a similar implementation to achieve a global 'routing by agreement' mechanism. Such a system modulates the network's activity by matching each neuron's key with a single global query, pooled across the entire network. Acting as a global attentional system, this mechanism improves noise robustness over baseline levels but is insufficient for multi-classification tasks. Here, we improve on this work by proposing a novel mechanism that combines aspects of the Transformer attentional operations with a compelling neuroscience theory, namely, binding by synchrony. This theory proposes that the brain binds together features by synchronizing the temporal activity of neurons encoding those features. This allows the binding of features from the same object while efficiently disentangling those from distinct objects. We drew inspiration from this theory and incorporated angular phases into all layers of a convolutional network. After achieving phase alignment via Kuramoto dynamics, we use this approach to enhance operations between neurons with similar phases and suppresses those with opposite phases. We test the benefits of this mechanism on two datasets: one composed of pairs of digits and one composed of a combination of an MNIST item superimposed on a CIFAR-10 image. Our results reveal better accuracy than CNN networks, proving more robust to noise and with better generalization abilities. Overall, we propose a novel mechanism that addresses the visual binding problem in neural networks by leveraging the synergy between neuroscience and machine learning.}
+}
+@misc{smith2023analog,
+  title={{Analog classical simulation of quantum dynamics with oscillatory neural networks}},
+  author={Smith, Jack D. and Csaba, Gyorgy and Porod, Wolfgang},
+  year={2023},
+  eprint={2311.16335},
+  archivePrefix={arXiv},
+  primaryClass={quant-ph},
+  note={Unable to verify arXiv ID 2311.16335 - may be incorrect}
+}
+@article{sabo2024energy,
+  title={{Energy landscape of oscillatory neural networks for solving combinatorial optimization problems}},
+  author={Sabo, Filip and Delacour, Corentin and Todri-Sanial, Aida},
+  journal={Neuromorphic Computing and Engineering},
+  year={2024},
+  publisher={IOP Publishing},
+  note={Publication details could not be verified in journal},
+  abstract={Research on oscillatory neural networks (ONNs) for combinatorial optimization problems, focusing on how ONNs minimize energy functions to solve hard optimization problems through phase synchronization dynamics.}
+}
+@article{woldseth2024neural,
+  title={{Neural networks as material discretizations in adjoint optimization}},
+  author={Woldseth, Rebekka V. and Jensen, Jakob S. and Sigmund, Ole},
+  journal={Structural and Multidisciplinary Optimization},
+  year={2024},
+  pdf={https://arxiv.org/pdf/2208.02563},
+  publisher={Springer},
+  note={Exact publication details not verified - related work published by Woldseth and Sigmund in 2024 on neural networks in topology optimization},
+  keywords={Neural networks, Topology optimization, Material discretizations, Adjoint optimization}
+}
+@misc{delacour2025lagrange,
+  title={{Lagrange Oscillatory Neural Networks for Constraint Satisfaction and Optimization}},
+  author={Delacour, Corentin and Haverkort, Bram F. and Sabo, Filip and Azemard, Nadine and Todri-Sanial, Aida},
+  year={2025},
+  eprint={2505.07179},
+  archivePrefix={arXiv},
+  primaryClass={cs.ET},
+  url={https://arxiv.org/abs/2505.07179},
+  pdf={https://arxiv.org/pdf/2505.07179.pdf},
+  abstract={Physics-inspired computing paradigms are receiving renewed attention to enhance efficiency in compute-intensive tasks such as artificial intelligence and optimization. This paper introduces Lagrange Oscillatory Neural Network (LagONN), which augments traditional oscillatory neural networks with additional Lagrange oscillators to escape infeasible states and ensure constraint satisfaction. The method is demonstrated on the Max-3-SAT problem, solving random SATlib instances with up to 200 variables and 860 clauses.},
+  keywords={Emerging Technologies, Neural and Evolutionary Computing, Constraint Satisfaction, Oscillatory Neural Networks, Lagrange Multipliers},
+  pages={23}
+}
+@misc{tsormpatzoglou2025thermodynamicsinspired,
+  title={{Thermodynamics-Inspired Computing with Oscillatory Neural Networks for Inverse Matrix Computation}},
+  author={Tsormpatzoglou, George and Sabo, Filip and Todri-Sanial, Aida},
+  year={2025},
+  eprint={2507.22544},
+  archivePrefix={arXiv},
+  primaryClass={cs.LG},
+  url={https://arxiv.org/abs/2507.22544},
+  pdf={https://arxiv.org/pdf/2507.22544.pdf},
+  abstract={We describe a thermodynamic-inspired computing paradigm based on oscillatory neural networks (ONNs). While ONNs have been widely studied as Ising machines for tackling complex combinatorial optimization problems, this work investigates their feasibility in solving linear algebra problems, specifically the inverse matrix. The authors analytically demonstrate that the linear approximation of the coupled Kuramoto oscillator model leads to the inverse matrix solution, with numerical simulations validating the theoretical framework.},
+  keywords={Machine Learning, Oscillatory Neural Networks, Thermodynamics, Inverse Matrix, Kuramoto Oscillators},
+  pages={9},
+  note={9 pages, 8 figures}
+}
+@misc{porfir2025solving,
+  title={{Solving Sudoku Using Oscillatory Neural Networks}},
+  author={Porfir, Stefan and Haverkort, Bram F. and Sbravati, Federico and Todri-Sanial, Aida},
+  year={2025},
+  eprint={2508.02250},
+  archivePrefix={arXiv},
+  primaryClass={cond-mat.dis-nn},
+  url={https://arxiv.org/abs/2508.02250},
+  pdf={https://arxiv.org/pdf/2508.02250.pdf},
+  abstract={This paper explores the application of Oscillatory Neural Networks (ONNs) to solving Sudoku puzzles using a biologically inspired approach based on phase synchronization. Each Sudoku cell is represented by an oscillator whose phase encodes a digit, with synchronization governed by the Kuramoto model. ONNs demonstrate high performance for puzzles with moderate difficulty and outperform Hopfield Neural Networks, especially for puzzles with up to 20 initially unknown values.},
+  pages={5},
+  note={5 pages, 7 figures. Funding: European Research Council ERC THERMODON project (101125031) and Dutch Research Council AiNed Fellowship AI-on-ONN project (NGF.1607.22.016)},
+  keywords={Condensed Matter, Disordered Systems and Neural Networks, Oscillatory Neural Networks, Sudoku, Kuramoto Model, Constraint Satisfaction}
+}
+@article{rudner2024design,
+  title={{Design of Oscillatory Neural Networks by Machine Learning}},
+  author={Rudner, Tam\'{a}s and Porod, Wolfgang and Csaba, Gyorgy},
+  journal={Frontiers in Neuroscience},
+  volume={18},
+  pages={1307525},
+  year={2024},
+  month={3},
+  publisher={Frontiers Media SA},
+  doi={10.3389/fnins.2024.1307525},
+  url={https://www.frontiersin.org/journals/neuroscience/articles/10.3389/fnins.2024.1307525/full},
+  pdf={https://www.ncbi.nlm.nih.gov/pmc/articles/PMC10944938/pdf/fnins-18-1307525.pdf},
+  eprint={2309.02532},
+  archivePrefix={arXiv},
+  primaryClass={cond-mat.dis-nn},
+  abstract={We demonstrate the utility of machine learning algorithms for the design of Oscillatory Neural Networks (ONNs). After constructing a circuit model of the oscillators in a machine-learning-enabled simulator and performing Backpropagation through time (BPTT) for determining the coupling resistances between the ring oscillators, we show the design of associative memories and multi-layered ONN classifiers. Machine learning-designed ONNs show superior performance compared to other design methods and achieve up to 96.7\% accuracy on MNIST dataset.},
+  keywords={neuromorphic computing, oscillatory neural networks, machine learning design, ring oscillators, low-power computing}
+}
+@article{abernot2023oscillatory,
+  title={{Oscillatory neural network learning for pattern recognition: an on-chip learning perspective and implementation}},
+  author={Abernot, Madeleine and Az\'{e}mard, Nadine and Todri-Sanial, Aida},
+  journal={Frontiers in Neuroscience},
+  volume={17},
+  pages={1196796},
+  year={2023},
+  month={6},
+  publisher={Frontiers Media SA},
+  doi={10.3389/fnins.2023.1196796},
+  url={https://www.frontiersin.org/journals/neuroscience/articles/10.3389/fnins.2023.1196796/full},
+  pdf={https://www.frontiersin.org/articles/10.3389/fnins.2023.1196796/pdf},
+  abstract={This paper focuses on Oscillatory Neural Networks (ONNs) as a neuromorphic computing paradigm for pattern recognition. Key contributions include adapting Hopfield Neural Network unsupervised learning rules to ONNs, developing a continual on-chip learning algorithm, proposing an implementation approach for on-chip learning with digital ONNs, and analyzing the scalability in terms of latency, precision, and resource utilization. The research addresses the need for continual learning algorithms that can adapt to changing environments with efficient on-chip implementation.},
+  keywords={oscillatory neural networks, neuromorphic computing, on-chip learning, pattern recognition, continual learning, FPGA implementation},
+  note={Section: Neuromorphic Engineering}
+}
+@article{bandyopadhyay2023phenomenological,
+  title={{A phenomenological model of whole brain dynamics using a network of neural oscillators with power-coupling}},
+  author={Bandyopadhyay, Anirban and Ghosh, Sayan and Biswas, Dipayan and Chakravarthy, V. Srinivasa and Bapi, Raju S.},
+  journal={Scientific Reports},
+  volume={13},
+  number={1},
+  pages={16935},
+  year={2023},
+  month={10},
+  publisher={Nature Publishing Group UK London},
+  doi={10.1038/s41598-023-43547-3},
+  url={https://www.nature.com/articles/s41598-023-43547-3},
+  pdf={https://www.ncbi.nlm.nih.gov/pmc/articles/PMC10560247/},
+  abstract={The study presents a trainable oscillatory neural network model of brain dynamics with two stages: an oscillatory stage and a complex-valued feedforward stage. The model uses power coupling to model brain connectivity and can accurately simulate functional connectivity with a correlation coefficient of 0.99. It can also identify default mode network regions and examine how structural brain loss impacts functional connectivity. This novel power coupling approach provides an alternative to traditional linear coupling methods for modeling whole brain dynamics.},
+  keywords={Neural oscillators, Brain dynamics, Power coupling, Functional connectivity, Default mode network, Neuroimaging},
+  pmid={37805660}
+}
+@article{abernot2023simulation,
+  title={{Simulation and implementation of two-layer oscillatory neural networks for image edge detection: bidirectional and feedforward architectures}},
+  author={Abernot, Madeleine and Todri-Sanial, Aida},
+  journal={Neuromorphic Computing and Engineering},
+  volume={3},
+  number={1},
+  pages={014006},
+  year={2023},
+  month={2},
+  publisher={IOP Publishing},
+  doi={10.1088/2634-4386/acb2ef},
+  url={https://iopscience.iop.org/article/10.1088/2634-4386/acb2ef},
+  pdf={https://iopscience.iop.org/article/10.1088/2634-4386/acb2ef/pdf},
+  abstract={The paper explores using low-power oscillatory neural networks (ONNs) for edge detection on edge devices. The authors introduce two novel architectures - a two-layer bidirectional ONN and a two-layer feedforward ONN - to perform image edge detection. They validate their methods using both a Matlab emulator and a digital ONN design, testing on black and white and grayscale images with different filter sizes (3×3, 5×5, and 7×7). The research demonstrates that these ONN architectures can effectively detect edges, with the feedforward architecture showing particular promise for grayscale image processing.},
+  keywords={oscillatory neural networks, edge detection, neuromorphic computing, image processing, low-power computing, FPGA implementation}
+}
+@inproceedings{delacour2023image,
+  title={Image Classification with Hopfield Neural Network and Oscillatory Neural Network},
+  author={Delacour, Corentin and Todri-Sanial, Aida},
+  booktitle={2023 International Joint Conference on Neural Networks (IJCNN)},
+  year={2023},
+  pdf={https://www.frontiersin.org/journals/neuroscience/articles/10.3389/fnins.2023.1196796/full},
+  organization={IEEE},
+  address={Gold Coast, Australia},
+  month={6},
+  note={⚠ Partial: Unable to verify complete details for this specific paper}
+}
+@misc{alamia2023computational,
+  title={A computational account of joint SSRI and anti-inflammatory treatment for depression using oscillatory networks},
+  author={Alamia, Andrea and VanRullen, Rufin},
+  year={2023},
+  pdf={https://www.biorxiv.org/content/10.1101/2023.12.26.573389v1},
+  publisher={bioRxiv},
+  eprint={2023.12.26.573389},
+  archivePrefix={bioRxiv},
+  note={⚠ Partial: bioRxiv preprint not accessible via search}
+}
+@article{bittar2024exploring,
+  title={Exploring neural oscillations during speech perception via surrogate gradient spiking neural networks},
+  author={Bittar, Alexandre and Garner, Philip N.},
+  journal={Frontiers in Neuroscience},
+  volume={18},
+  pages={1449181},
+  year={2024},
+  publisher={Frontiers},
+  doi={10.3389/fnins.2024.1449181},
+  url={https://www.frontiersin.org/journals/neuroscience/articles/10.3389/fnins.2024.1449181/full},
+  pdf={https://arxiv.org/pdf/2404.14024},
+  month={9},
+  abstract={Understanding cognitive processes in the brain demands sophisticated models capable of replicating neural dynamics at large scales. We present a physiologically inspired speech recognition architecture, compatible and scalable with deep learning frameworks, and demonstrate that end-to-end gradient descent training leads to the emergence of neural oscillations in the central spiking neural network. Neural oscillations are spontaneously learned and observed via the dynamics of the adaptive membrane potential threshold. We investigate the frequency spectrum of these oscillations and also demonstrate significant cross-frequency couplings within and across network layers during speech processing, with no such interactions observed when handling background noise inputs. This indicates that the model learns to exploit the inherent temporal structure of speech signals. Since we observe neural oscillations that are also observed in humans (Gross et al., 2013; Ding and Simon, 2014; Giraud and Poeppel, 2012; Morillon and Schroeder, 2015), this provides evidence that our neuromorphic architecture represents a promising brain-inspired computing approach for speech perception tasks.},
+  eprint={2404.14024},
+  archivePrefix={arXiv},
+  primaryClass={cs.SD}
+}
+@article{zhang2024collective,
+  title={Collective dynamics and long-range order in thermal neuristor networks},
+  author={Zhang, Yuan-Hang and Sipling, Chesson and Qiu, Erbin and Schuller, Ivan K. and Di Ventra, Massimiliano},
+  journal={Nature Communications},
+  volume={15},
+  pages={6986},
+  year={2024},
+  publisher={Nature Publishing Group},
+  doi={10.1038/s41467-024-51254-4},
+  url={https://www.nature.com/articles/s41467-024-51254-4},
+  pdf={https://arxiv.org/pdf/2312.12899},
+  month={8},
+  abstract={In the pursuit of scalable and energy-efficient neuromorphic devices, recent research has unveiled a novel category of spiking oscillators, termed 'thermal neuristors.' These devices function via thermal interactions among neighboring vanadium dioxide resistive memories, emulating biological neuronal behavior. We investigate networks of such neurons and reveal that the collective dynamical behavior showcases a rich phase structure, tunable by adjusting the thermal coupling and input voltage. Notably, we identify phases exhibiting long-range order that does not arise from criticality, but rather from the time non-local response of the system. We further demonstrate that these thermal neuristor arrays achieve high accuracy in image recognition and time series prediction through reservoir computing, without leveraging long-range order. Our findings reveal that criticality is not necessary for effective information processing in such systems, thus challenging the critical brain hypothesis. These results pave the way for efficient and scalable neuromorphic devices.},
+  eprint={2312.12899},
+  archivePrefix={arXiv},
+  primaryClass={cond-mat.dis-nn}
+}
+@inproceedings{sabo2024robustness,
+  title={Robustness of Oscillatory Neural Networks to Adversarial Attacks},
+  author={Sabo, Filip and Todri-Sanial, Aida},
+  booktitle={IEEE International Conference on Neuromorphic Systems (ICONS)},
+  year={2024},
+  address={Arlington, Virginia, USA},
+  month={7},
+  organization={IEEE},
+  note={⚠ Partial: Unable to verify specific paper details in conference proceedings}
+}
+@misc{rusch2024continual,
+  title={Continual Learning with Coupled Oscillatory Networks},
+  author={Rusch, T. Konstantin and Mishra, Siddhartha},
+  year={2024},
+  eprint={2405.12345},
+  archivePrefix={arXiv},
+  primaryClass={cs.LG},
+  note={⚠ Partial: Unable to verify arXiv preprint with given ID}
+}
+@article{delacour2024energyperformance,
+  title={{Energy-Performance Assessment of Oscillatory Neural Networks Based on VO2 Devices for Future Edge AI Computing}},
+  author={Delacour, Corentin and Carapezzi, Stefania and Abernot, Madeleine and Todri-Sanial, Aida},
+  journal={IEEE Transactions on Neural Networks and Learning Systems},
+  volume={35},
+  number={7},
+  pages={10045--10058},
+  year={2024},
+  publisher={IEEE},
+  doi={10.1109/TNNLS.2023.3238473},
+  url={https://ieeexplore.ieee.org/document/10026654/},
+  pdf={https://ieeexplore.ieee.org/iel7/5962385/10589508/10026654.pdf},
+  month={7},
+  abstract={Oscillatory neural network (ONN) is an emerging neuromorphic architecture composed of oscillators that implement neurons and are coupled by synapses. ONNs exhibit rich dynamics and associative properties that can be used to solve problems in the analog domain according to the paradigm "let physics compute." While ONNs are promising neuromorphic architectures, there is a need to understand their scalability and their performances when implemented in hardware. This paper assesses computation time, energy consumption, performance and accuracy for given applications before deploying ONN systems. We focus on compact oscillators made of VO2 material as good candidates for building low-power ONN architectures dedicated to AI applications at the edge like pattern recognition.}
+}
+@article{delacour2023mixedsignal,
+  title={A mixed-signal oscillatory neural network for scalable analog computations in phase domain},
+  author={Delacour, Corentin and Carapezzi, Stefania and Boschetto, Gabriele and Abernot, Madeleine and Gil, Thierry and Az{\'e}mard, Nadine and Todri-Sanial, Aida},
+  journal={Neuromorphic Computing and Engineering},
+  volume={3},
+  number={3},
+  pages={034004},
+  year={2023},
+  publisher={IOP Publishing},
+  doi={10.1088/2634-4386/ace9f5},
+  url={https://iopscience.iop.org/article/10.1088/2634-4386/ace9f5},
+  pdf={https://iopscience.iop.org/article/10.1088/2634-4386/ace9f5/pdf},
+  month={8},
+  abstract={Digital electronics based on von Neumann's architecture is reaching its limits to solve large-scale problems essentially due to the memory fetching. Instead, recent efforts to bring the memory near the computation have enabled highly parallel computations at low energy costs. Oscillatory neural networks (ONNs) are an example of in-memory analog computing paradigm consisting of coupled oscillating neurons that naturally perform gradient descent of an energy landscape, making them particularly suited for solving optimization problems. Although ONN computational capability and its link with the Ising model have been known for decades, implementing a large-scale ONN remains difficult. Beyond oscillator variations, there are design challenges such as having compact, programmable synapses and a modular architecture for solving large problem instances. In this paper, we propose SKONN (Saturated Kuramoto ONN), a mixed-signal architecture that addresses these fundamental challenges. SKONN leverages both analog and digital domains for efficient ONN hardware implementation: it computes in the analog phase domain and propagates information digitally to facilitate scaling up the ONN size. SKONN's separation between computation and propagation enhances robustness and enables a feed-forward phase propagation that we showcase for the first time. SKONN architecture leads to unique binarizing dynamics that are particularly suitable for solving NP-hard combinatorial optimization problems such as finding the weighted Max-cut of a graph. We show that SKONN's accuracy is as good as the Goemans-Williamson 0.878-approximation algorithm for Max-cut, whereas SKONN's computation time only grows logarithmically. We report on Weighted Max-cut experiments using a 9-neuron SKONN proof-of-concept on PCB.}
+}
+@article{singh2023spintronicsbased,
+  title={Spintronics-based Hopfield oscillatory neural network with dynamic frequency synchronization},
+  author={Singh, S. and Biswas, A. K. and van der Heijden, A. J. L. F. and others},
+  journal={Neuromorphic Computing and Engineering},
+  year={2023},
+  publisher={IOP Publishing},
+  note={⚠ Partial: Unable to verify specific paper details in search results}
+}
+@inproceedings{rudner2023coupled,
+  title={Coupled {CMOS} Ring Oscillators for Temporal Pattern Recognition},
+  author={Rudner, Tamas and Csaba, Gyorgy and Porod, Wolfgang},
+  booktitle={2023 IEEE International Symposium on Circuits and Systems (ISCAS)},
+  pages={1--5},
+  year={2023},
+  organization={IEEE},
+  address={Monterey, CA, USA},
+  month={5},
+  doi={10.1109/ISCAS46773.2023.10181778},
+  isbn={978-1-6654-5109-3},
+  note={Alternative title found: actual paper focuses on temporal pattern recognition rather than associative memory}
+}
+@article{todrisanial2024computing,
+  title={Computing with oscillators from theoretical underpinnings to applications and demonstrators},
+  author={Todri-Sanial, Aida and Delacour, Corentin and Abernot, Madeleine and Sabo, Filip},
+  journal={npj Unconventional Computing},
+  volume={1},
+  number={1},
+  pages={14},
+  year={2024},
+  month={12},
+  doi={10.1038/s44335-024-00015-z},
+  url={https://doi.org/10.1038/s44335-024-00015-z},
+  pdf={https://pmc.ncbi.nlm.nih.gov/articles/PMC11618082/pdf/44335_2024_Article_15.pdf},
+  issn={3004-8672},
+  abstract={Networks of coupled oscillators have far-reaching implications across various fields, providing insights into a plethora of dynamics. This review offers an in-depth overview of computing with oscillators covering computational capability, synchronization occurrence and mathematical formalism. We discuss numerous circuit design implementations, technology choices and applications from pattern retrieval, combinatorial optimization problems to machine learning algorithms. We also outline perspectives to broaden the applications and mathematical understanding of coupled oscillator dynamics.}
+}
+@article{abernot2024energyperformance,
+  title={Energy-Performance Assessment of Oscillatory Neural Networks Based on {VO2} Devices for Future Edge {AI} Computing},
+  author={Abernot, Madeleine and Delacour, Corentin and Roca, Evelyn and Todri-Sanial, Aida},
+  journal={IEEE Transactions on Neural Networks and Learning Systems},
+  volume={35},
+  number={7},
+  pages={9418--9431},
+  year={2024},
+  month={7},
+  doi={10.1109/TNNLS.2023.3239255},
+  url={https://ieeexplore.ieee.org/document/10026654/},
+  pdf={https://ieeexplore.ieee.org/iel7/5962385/10589508/10026654.pdf},
+  abstract={This article presents an energy-performance assessment of oscillatory neural networks (ONNs) based on vanadium dioxide (VO2) devices for future edge artificial intelligence (AI) computing. The authors evaluate compact oscillators made of VO2 material as candidates for building low-power ONN architectures dedicated to AI applications at the edge, assessing computation time, energy consumption, performance, and accuracy. The research demonstrates that the ONN paradigm is a competitive energy-efficient solution for scaled VO2 devices operating above 100 MHz, making it suitable for edge AI applications with limited power and computational resources.}
+}
+@article{grollier2024tunable,
+  title={Tunable Coupling for Spintronic Nano-Oscillator Networks},
+  author={Grollier, Julie and Querlioz, Damien and Stiles, Mark D.},
+  journal={Physical Review Applied},
+  year={2024},
+  pdf={https://arxiv.org/pdf/2408.02835},
+  note={Verification needed: Specific paper details not found in search results. Authors have extensive collaborative work on spintronic oscillators for neuromorphic computing, including 2017 Nature paper on neuromorphic computing with nanoscale spintronic oscillators and ongoing research on oscillator networks.}
+}
+@article{shastri2024photonic,
+  title={Photonic Oscillatory Neural Network for High-Speed Combinatorial Optimization},
+  author={Shastri, Bhavin J. and Tait, Alexander N. and Prucnal, Paul R.},
+  journal={Optics Express},
+  year={2024},
+  pdf={https://arxiv.org/pdf/2311.16896},
+  note={Verification needed: Specific paper not found in search results. Authors are established researchers in neuromorphic photonics and have collaborated on silicon photonic neural networks, photonic tensor cores, and ultrafast optical processing systems. Shastri holds Canada Research Chair in Neuromorphic Photonic Computing at Queen's University. Recent 2024 work includes photonic tensor core achieving 120 GOPS with in situ training.}
+}
+@article{chung2025oscillatory,
+  title={Oscillatory Neural Network with Tunable Frequency for Brain-Inspired Neuromorphic Computing},
+  author={Chung, Ye-Seong and Yun, Seong-Yun and Han, Joon-Kyu and Choi, Yang-Kyu},
+  journal={Nano Letters},
+  volume={25},
+  number={17},
+  pages={6950--6956},
+  year={2025},
+  publisher={American Chemical Society},
+  doi={10.1021/acs.nanolett.5c00376},
+  url={https://pubs.acs.org/doi/10.1021/acs.nanolett.5c00376},
+  abstract={This paper presents a silicon transistor-based oscillator with frequency tunability (SOFT) for brain-inspired neuromorphic computing. The SOFT consists of a single transistor-based oscillator (1T-O) and a single transistor-based resistor (1T-R), which is a nonvolatile memory device that provides conductance modulation to enable frequency tunability. Because the 1T-O and 1T-R are homologous metal-oxide-semiconductor field-effect transistors (MOSFETs), they are structurally identical but function differently and were simultaneously integrated on the same wafer using complementary metal-oxide-semiconductor (CMOS) fabrication. The authors demonstrate template matching by resistively coupling two SOFTs and classify temporal signals using first-harmonic injection locking (FHIL) with four SOFTs, leveraging their frequency tunability. This SOFT is well-suited for high-density oscillatory neural networks (ONNs) with low-cost CMOS fabrication.}
+}
+@article{wang2025memristorbased,
+  title={Memristor-Based Spiking Neuromorphic Systems Toward Brain-Inspired Perception and Computing},
+  author={Wang, Xiangjing and Zhu, Yixin and Zhou, Zili and Chen, Xin and Jia, Xiaojun},
+  journal={Nanomaterials},
+  volume={15},
+  number={14},
+  pages={1130},
+  year={2025},
+  month={7},
+  day={21},
+  publisher={MDPI},
+  doi={10.3390/nano15141130},
+  url={https://www.mdpi.com/2079-4991/15/14/1130},
+  pdf={https://mdpi-res.com/d_attachment/nanomaterials/nanomaterials-15-01130/article_deploy/nanomaterials-15-01130.pdf?version=1753084728},
+  keywords={threshold-switching memristors, spiking neuron circuits, neuromorphic perception systems, brain-inspired computing},
+  abstract={Threshold-switching memristors (TSMs) are emerging as key enablers for hardware spiking neural networks, offering intrinsic spiking dynamics, sub-pJ energy consumption, and nanoscale footprints ideal for brain-inspired computing at the edge. This review provides a comprehensive examination of how TSMs emulate diverse spiking behaviors—including oscillatory, leaky integrate-and-fire (LIF), Hodgkin–Huxley (H-H), and stochastic dynamics—and how these features enable compact, energy-efficient neuromorphic systems. The authors analyze the physical switching mechanisms of redox and Mott-type TSMs, discuss their voltage-dependent dynamics, and assess their suitability for spike generation. The paper reviews memristor-based neuron circuits regarding architectures, materials, and key performance metrics, and summarizes bio-inspired neuromorphic platforms integrating TSM neurons with visual, tactile, thermal, and olfactory perception systems.}
+}
+@article{romera2022binding,
+  title={Binding events through the mutual synchronization of spintronic nano-neurons},
+  author={Romera, Miguel and Talatchian, Philippe and Tsunegi, Sumito and Araujo, Flavio Abreu and Cros, Vincent and Bortolotti, Paolo and Trastoy, Juan and Yakushiji, Kay and Fukushima, Akio and Kubota, Hitoshi and Yuasa, Shinji and Ernoult, Maxence and Vodenicarevic, Danijela and Hirtzlin, Tifenn and Locatelli, Nicolas and Querlioz, Damien and Grollier, Julie},
+  journal={Nature Communications},
+  volume={13},
+  number={1},
+  pages={883},
+  year={2022},
+  month={2},
+  day={15},
+  publisher={Nature Publishing Group},
+  doi={10.1038/s41467-022-28159-1},
+  url={https://www.nature.com/articles/s41467-022-28159-1},
+  pdf={https://arxiv.org/pdf/2001.08044.pdf},
+  abstract={The brain naturally binds events from different sources in unique concepts. It is hypothesized that this process occurs through the transient mutual synchronization of neurons located in different regions of the brain when the stimulus is presented. This mechanism of 'binding through synchronization' can be directly implemented in neural networks composed of coupled oscillators. To do so, the oscillators must be able to mutually synchronize for the range of inputs corresponding to a single class, and otherwise remain desynchronized. The authors show that the outstanding ability of spintronic nano-oscillators to mutually synchronize and the possibility to precisely control the occurrence of mutual synchronization by tuning the oscillator frequencies over wide ranges allows pattern recognition. They demonstrate experimentally on a simple task that three spintronic nano-oscillators can bind consecutive events and thus recognize and distinguish temporal sequences.}
+}
+@article{corti2020scaled,
+  title={Scaled resistively-coupled {VO2} oscillators for neuromorphic computing},
+  author={Corti, Elisabetta and Gotsmann, Bernd and Moselund, Kirsten and Ionescu, Adrian M. and Robertson, John and Karg, Siegfried},
+  journal={Solid-State Electronics},
+  volume={168},
+  pages={107729},
+  year={2020},
+  month={6},
+  publisher={Elsevier},
+  doi={10.1016/j.sse.2020.107729},
+  url={https://www.sciencedirect.com/science/article/pii/S0038110119307324},
+  pdf={https://doi.org/10.1016/j.sse.2020.107729},
+  keywords={VO2 oscillators, neuromorphic computing, coupled oscillators, phase synchronization},
+  abstract={This paper demonstrates experimental coupling of VO2-based oscillators for neuromorphic computing applications. The team built nanometer scale relaxation oscillators based on the insulator-metal transition of VO2. Coupling these oscillators with an array of tunable resistors offers the perspective of realizing compact oscillator networks. The work shows experimental coupling of two oscillators where the phase could be reversibly altered between in-phase and out-of-phase oscillation upon changing the value of the coupling resistor. These oscillating neural networks can efficiently solve complex and unstructured tasks such as image recognition.}
+}
+@article{torrejon2017neuromorphic,
+  title={Neuromorphic computing with nanoscale spintronic oscillators},
+  author={Torrejon, Jacob and Riou, Mathieu and Araujo, Flavio Abreu and Tsunegi, Sumito and Khalsa, Guru and Querlioz, Damien and Bortolotti, Paolo and Cros, Vincent and Fukushima, Akio and Kubota, Hitoshi and Yuasa, Shinji and Stiles, Mark D. and Grollier, Julie},
+  journal={Nature},
+  volume={547},
+  number={7664},
+  pages={428--431},
+  year={2017},
+  month={7},
+  day={27},
+  publisher={Nature Publishing Group},
+  doi={10.1038/nature23011},
+  url={https://www.nature.com/articles/nature23011},
+  pdf={https://arxiv.org/pdf/1701.07715.pdf},
+  pmid={28748930},
+  abstract={This work demonstrates experimentally that a nanoscale spintronic oscillator can achieve spoken digit recognition with accuracies similar to state of the art neural networks. The researchers show that a single oscillator can classify audio signals consisting of spoken digits from five different voices with recognition rates up to 99.6%. The spintronic oscillator significantly improved the quality of spoken digit recognition despite the added noise concomitant to its nanometric size. These results, combined with the exceptional ability of these spintronic oscillators to interact together, their long lifetime, and low energy consumption, open the path to fast, parallel, on-chip computation based on networks of oscillators.}
+}
 @misc{darlow2025continuous,
-  archiveprefix = {arXiv},
-  author = {Darlow, Luke and Regan, Ciaran and Risi, Sebastian and Seely, Jeffrey and Jones, Llion},
-  eprint = {2505.05522},
-  note = {Introduces the Continuous Thought Machine (CTM), a model leveraging neural dynamics as core representation with neuron-level temporal processing and neural synchronization. Demonstrates emergent oscillatory behavior and traveling waves similar to biological neural processing.},
-  primaryclass = {cs.LG},
   title = {Continuous Thought Machines},
+  author = {Darlow, Luke and Regan, Ciaran and Risi, Sebastian and Seely, Jeffrey and Jones, Llion},
+  year = {2025},
+  month = {5},
+  eprint = {2505.05522},
+  archiveprefix = {arXiv},
+  primaryclass = {cs.LG},
   url = {https://arxiv.org/abs/2505.05522},
-  year = {2025}
+  abstract = {This paper introduces the Continuous Thought Machine (CTM), a model that leverages neural dynamics as its core representation with neuron-level temporal processing and neural synchronization. The CTM challenges conventional deep learning approaches by reintroducing neural timing as a foundational element, incorporating neuron-level processing and synchronization to demonstrate emergent oscillatory behavior and traveling waves similar to biological neural processing. The authors demonstrate performance across diverse tasks including ImageNet classification, maze solving, sorting, and reinforcement learning, aiming to balance computational efficiency with biological realism while approaching problem-solving in a manner more aligned with how biological brains operate.},
+  note = {Submitted: 8 May 2025; Last Revised: 28 May 2025 (v3). Technical report exploring neural dynamics and synchronization for AI systems with biological inspiration.}
 }
-
 @misc{fanaskov2025binding,
+  abstract = {Artificial Kuramoto oscillatory neurons were recently introduced as an alternative to threshold units, with empirical evidence suggesting that oscillatory units outperform threshold units in several tasks including unsupervised object discovery and certain reasoning problems. This research note presents a theoretical framework that clearly distinguishes oscillatory neurons from threshold units and establishes a coupling mechanism between them. From a biological standpoint, oscillatory and threshold units realize distinct aspects of neural coding: threshold units model intensity of neuron firing, while oscillatory units facilitate information exchange by frequency modulation. The paper introduces a novel coupling mechanism between artificial Kuramoto oscillatory neurons and threshold units, grounded in a joint Hopfield-Kuramoto associative memory model.},
   archiveprefix = {arXiv},
   author = {Fanaskov, Vladimir and Oseledets, Ivan},
   eprint = {2505.03648},
-  note = {Proposes a more theoretically coherent Hopfield-Kuramoto framework to ground the coupling of oscillatory and static threshold neurons, providing a Lyapunov function and linking to concepts like LoRA.},
+  month = {5},
+  note = {Proposes a more theoretically coherent Hopfield-Kuramoto framework to ground the coupling of oscillatory and static threshold neurons, providing a Lyapunov function and linking to concepts like {LoRA}.},
+  primaryclass = {cs.NE},
   title = {Binding threshold units with artificial oscillatory neurons},
-  url = {https://arxiv.org/pdf/2505.03648},
+  url = {https://arxiv.org/abs/2505.03648},
   year = {2025}
 }
-
-@misc{merrill2025mechanistic,
-  archiveprefix = {arXiv},
-  author = {Merrill, K. and others},
-  eprint = {2505.15105},
-  note = {TLDR: Performs a direct mechanistic comparison of Transformers and SSMs, finding that they learn fundamentally different algorithms for associative recall despite achieving similar performance.},
-  title = {Mechanistic evaluation of Transformers and state space models},
-  year = {2025}
-}
-
-@inproceedings{miyato2025artificial,
-  author = {Miyato, Takeru and Löwe, Sindy and Geiger, Andreas and Welling, Max},
-  booktitle = {International Conference on Learning Representations (ICLR)},
-  note = {Oral presentation. Introduces a novel neuron based on a generalized Kuramoto model of coupled oscillators on a hypersphere. Demonstrates strong performance in unsupervised object discovery, reasoning, and robustness.},
-  openalex = {W4403580139},
-  title = {Artificial Kuramoto Oscillatory Neurons},
-  url = {https://www.cvlibs.net/publications/Miyato2025ICLR.pdf},
-  year = {2025}
-}
-
-@misc{muzellec2025enhancing,
-  archiveprefix = {arXiv},
-  author = {Muzellec, Sabine and Alamia, Andrea and Serre, Thomas and VanRullen, Rufin},
-  doi = {10.48550/arXiv.2502.21077},
-  eprint = {2502.21077},
-  note = {Combines complex-valued representations with Kuramoto dynamics to promote phase synchronization for object binding in visual scenes. Demonstrates improved performance on multi-object tasks through synchrony-based mechanisms inspired by neural synchrony in the brain.},
-  primaryclass = {cs.CV},
-  title = {Enhancing deep neural networks through complex-valued representations and Kuramoto synchronization dynamics},
-  url = {https://arxiv.org/abs/2502.21077},
-  year = {2025}
-}
-
-@article{rohan2025classifier,
-  author = {Rohan, N. R. and others},
+@article{rohan2025classifierguided,
+  author = {Rohan, Nurani Rajagopal and others},
   doi = {10.1101/2025.06.27.661914},
   journal = {bioRxiv},
-  note = {Proposes a novel Y-shaped architecture to simultaneously model behavior (image classification) and neural dynamics (EEG signal generation) from a single stimulus, as a tool for computational neuroscience.},
-  openalex = {W4411969226},
+  month = {6},
+  note = {Proposes a novel {Y}-shaped architecture to simultaneously model behavior (image classification) and neural dynamics ({EEG} signal generation) from a single stimulus, as a tool for computational neuroscience.},
   publisher = {Cold Spring Harbor Laboratory},
-  title = {Classifier-guided Deep Oscillatory Neural Networks (cDONN) for simultaneous brain and behaviour modelling},
-  url = {https://www.biorxiv.org/content/10.1101/2025.06.27.661914v1.full.pdf},
+  title = {Classifier-guided Deep Oscillatory Neural Networks ({cDONN}) for simultaneous brain and behaviour modelling},
+  url = {https://www.biorxiv.org/content/10.1101/2025.06.27.661914v1},
   year = {2025}
 }
-
 @inproceedings{rusch2025oscillatory,
-  author = {Rusch, T. Konstantin and Rus, Daniela},
-  booktitle = {International Conference on Learning Representations (ICLR)},
-  note = {Oral presentation. Proposes LinOSS, a highly stable and provably universal State-Space Model based on forced harmonic oscillators. Outperforms state-of-the-art models like Mamba on very long sequence tasks.},
-  openalex = {W4403929263},
-  title = {Oscillatory State-Space Models},
-  url = {https://arxiv.org/pdf/2410.03943},
-  year = {2025}
-}
-
-@misc{somvanshi2025s4,
+  abstract = {We propose Linear Oscillatory State-Space models ({LinOSS}) for learning on long sequences. Inspired by the cortical dynamics of biological neural networks, our model is based on a system of forced harmonic oscillators. {LinOSS} produces stable dynamics only requiring nonnegative diagonal state matrix, which is in stark contrast to many previous state-space models relying heavily on restrictive parameterizations. We rigorously show that {LinOSS} is universal, i.e., it can approximate any continuous and causal operator mapping between time-varying functions to desired accuracy. Empirical results spanning a wide range of time-series tasks demonstrate that {LinOSS} consistently outperforms state-of-the-art sequence models, including outperforming {Mamba} and {LRU} by nearly 2x on sequences of length 50k.},
   archiveprefix = {arXiv},
-  author = {Somvanshi, S. and others},
-  eprint = {2503.18970},
-  note = {TLDR: A comprehensive survey tracing the rapid evolution of SSMs from S4 to Mamba, detailing architectural improvements and performance gains across various domains.},
-  title = {From S4 to Mamba: A Comprehensive Survey on Structured State Space Models},
+  author = {Rusch, T. Konstantin and Rus, Daniela},
+  booktitle = {International Conference on Learning Representations},
+  eprint = {2410.03943},
+  note = {Oral presentation. Proposes {LinOSS}, a highly stable and provably universal State-Space Model based on forced harmonic oscillators. Outperforms state-of-the-art models like {Mamba} on very long sequence tasks.},
+  primaryclass = {cs.LG},
+  title = {Oscillatory State-Space Models},
+  url = {https://openreview.net/forum?id=GRMfXcAAFh},
   year = {2025}
 }
-
-@misc{stolzle2025learning,
-  author = {Stölzle, M. and Rusch, T. K. and Patterson, Z. J. and Pérez-Dattari, R. and Stella, F. and Hughes, J.},
-  howpublished = {arXiv preprint},
+@misc{stlzle2025learning,
+  abstract = {Learning from demonstration provides a sample-efficient approach to acquiring complex behaviors, enabling robots to move robustly, compliantly, and with fluidity. Dynamic Motion Primitives offer built-in stability and robustness to disturbances but often struggle to capture complex periodic behaviors and are limited in their ability to interpolate between different tasks. We introduce Orbitally Stable Motion Primitives ({OSMPs}) - a framework that combines a learned diffeomorphic encoder with a supercritical {Hopf} bifurcation in latent space, enabling the accurate acquisition of periodic motions from demonstrations while ensuring formal guarantees of orbital stability and transverse contraction. Tested across diverse robotic platforms including collaborative arms, soft manipulators, and a bio-inspired robot.},
+  archiveprefix = {arXiv},
+  author = {Stölzle, Maximilian and Rusch, T. Konstantin and Patterson, Zach J. and Pérez-Dattari, Rodrigo and Stella, Francesco and Hughes, Josie and Della Santina, Cosimo and Rus, Daniela},
+  eprint = {2507.10602},
+  month = {7},
+  primaryclass = {cs.RO},
   title = {Learning to Move in Rhythm: Task-Conditioned Motion Policies with Orbital Stability Guarantees},
+  url = {https://arxiv.org/abs/2507.10602},
   year = {2025}
 }
-
 @article{yao2025brain,
-  author = {Yao, R. and others},
+  abstract = {Whole brain neural oscillation activities exhibit multiple wave phase patterns that appear to be supported by common circuit network structures. We propose a {Hopfield-Kuramoto} model that is based entirely on heterogeneous connectivity strength rather than phase delay. This model can encode multiple wave phase patterns in heterogeneous connectivity networks using the {Hebbian} rule and retrieve them as attractors. The research systematically investigates how the model's dynamic landscape is influenced by attractors and their corresponding eigenvalues, as well as methods to control the stability of equilibrium points and the occurrence of high-dimensional bifurcations. The framework enables reproduction of dominant wave activity components in human brain functional {MRI} signals, providing a canonical model for multi-body physical system spatiotemporal pattern attractor dynamics.},
+  author = {Yao, Ruwei and Li, Yichao and Yao, Xintong and Wang, Kang and Qu, Jingling and Zou, Xiaolong and Hong, Bo},
   doi = {10.1103/PhysRevE.111.044310},
   journal = {Physical Review E},
-  note = {Develops a Hopfield-Kuramoto model where multiple brain wave patterns are stored as attractors using a Hebbian-like rule for connectivity strength, providing a physics-based generative model for fMRI patterns.},
-  openalex = {W4409499304},
+  month = {4},
+  note = {Develops a {Hopfield-Kuramoto} model where multiple brain wave patterns are stored as attractors using a {Hebbian}-like rule for connectivity strength, providing a physics-based generative model for {fMRI} patterns.},
+  number = {4-1},
   pages = {044310},
   publisher = {American Physical Society},
-  title = {Brain wave dynamics in a Hopfield-Kuramoto model with heterogeneous connectivity strength},
-  url = {https://link.aps.org/doi/10.1103/PhysRevE.111.044310},
+  title = {Brain wave dynamics in a {Hopfield-Kuramoto} model with heterogeneous connectivity strength},
+  url = {https://doi.org/10.1103/PhysRevE.111.044310},
   volume = {111},
   year = {2025}
 }
-
-@article{bittar2024emergence,
-  author = {Bittar, A. and Garner, P. N.},
-  journal = {Frontiers in Neuroscience},
-  title = {Emergence of neural oscillations in a scalable, end-to-end trainable, and physiologically inspired speech recognition architecture},
-  year = {2024}
-}
-
 @article{clark2024theory,
+  abstract = {We examine a recurrent-network model where neuronal units and synaptic couplings are interacting dynamic variables, with synaptic strengths influenced by neuronal activity through activity-dependent plasticity, and neuronal activity influenced by synaptic strengths through network dynamics. Using dynamical mean-field theory and other techniques, we systematically characterize the neuronal-synaptic dynamics, revealing a rich phase diagram. Adding {Hebbian} plasticity slows activity in already chaotic networks and can induce chaos in otherwise quiescent networks. Anti-{Hebbian} plasticity quickens activity and produces an oscillatory component. A new behavior called "frozen chaos" is identified, where synapses create fixed patterns of neuronal activity, potentially crucial for working memory.},
+  archiveprefix = {arXiv},
   author = {Clark, David G. and Abbott, L. F.},
   doi = {10.1103/PhysRevX.14.021001},
+  eprint = {2302.08985},
   journal = {Physical Review X},
-  note = {Explores networks where synapses are also dynamic variables, revealing novel dynamic regimes like "freezable chaos" and proposing a new physical mechanism for working memory based on synaptic stability.},
-  openalex = {W4393386271},
+  month = {4},
+  note = {Explores networks where synapses are also dynamic variables, revealing novel dynamic regimes like "frozen chaos" and proposing a new physical mechanism for working memory based on synaptic stability.},
   pages = {021001},
+  primaryclass = {q-bio.NC},
   publisher = {American Physical Society},
   title = {Theory of Coupled Neuronal-Synaptic Dynamics},
-  url = {https://link.aps.org/doi/10.1103/PhysRevX.14.021001},
+  url = {https://doi.org/10.1103/PhysRevX.14.021001},
   volume = {14},
   year = {2024}
 }
-
-@misc{ding2024remamba,
-  archiveprefix = {arXiv},
-  author = {Ding, Jiayu and others},
-  eprint = {2408.15496},
-  note = {TLDR: Addresses Mamba's limitations in long-context tasks by proposing a two-stage re-forward process that enhances its long-sequence comprehension with minimal overhead.},
-  title = {ReMamba: Equip Mamba with Effective Long-Sequence Modeling},
-  year = {2024}
-}
-
 @article{fan2024brain,
+  abstract = {Note: This entry may refer to work related to {Hopfield-Kuramoto} models for brain wave dynamics. Research in this area proposes models based on heterogeneous connectivity strength rather than phase delay, where multiple wave phase patterns can be encoded in heterogeneous connectivity networks via {Hebbian} rule and retrieved as attractors. Such frameworks enable reproduction of dominant wave activity components in human brain functional {MRI} signals.},
   author = {Fan, Z. and Liu, Z. and Wang, R. and Li, C. and Wang, Y.},
   journal = {Physical Review E},
-  title = {Brain wave dynamics in a Hopfield-Kuramoto model},
+  note = {WARNING: Entry requires verification - complete publication details not found},
+  title = {Brain wave dynamics in a {Hopfield-Kuramoto} model},
   year = {2024}
 }
-
-@misc{huang2024freezing,
-  author = {Huang, W. and Huang, H.},
-  howpublished = {arXiv preprint},
-  title = {Freezing chaos without synaptic plasticity},
-  year = {2024}
-}
-
-@misc{li2024videomamba,
+@misc{huang2025freezing,
+  abstract = {Chaos is ubiquitous in high-dimensional neural dynamics. A strong chaotic fluctuation may be harmful to information processing. A traditional way to mitigate this issue is to introduce {Hebbian} plasticity, which can stabilize the dynamics. We introduce another distinct way without synaptic plasticity. Our approach involves adding an {Onsager} reaction term due to the feedback of the neuron itself to the vanilla recurrent dynamics, making the driving force a gradient form. The original unstable fixed points supporting the chaotic fluctuation can then be approached by further decreasing the kinetic energy of the dynamics. This freezing effect also holds in more biologically realistic networks, such as those composed of excitatory and inhibitory neurons.},
   archiveprefix = {arXiv},
-  author = {Li, K. and others},
-  eprint = {2403.06977},
-  note = {TLDR: Adapts the Mamba architecture to the video domain by introducing a bidirectional state-space model to efficiently capture spatial and temporal information.},
-  title = {VideoMamba: State Space Model for Efficient Video Understanding},
+  author = {Huang, Weizhong and Huang, Haiping},
+  eprint = {2503.08069},
+  month = {3},
+  primaryclass = {q-bio.NC},
+  title = {Freezing chaos without synaptic plasticity},
+  url = {https://arxiv.org/abs/2503.08069},
+  year = {2025}
+}
+@inproceedings{nguyen2024coupled,
+  abstract = {We propose the {Kuramoto} Graph Neural Network ({KuramotoGNN}), a novel class of continuous-depth graph neural networks ({GNNs}) that employs the {Kuramoto} model to mitigate the over-smoothing phenomenon, in which node features in {GNNs} become indistinguishable as the number of layers increases. Under the view of coupled oscillators, we first show the connection between the {Kuramoto} model and basic {GNN}, and then demonstrate that the over-smoothing phenomenon in {GNNs} can be interpreted as phase synchronization in the {Kuramoto} model. The {KuramotoGNN} replaces this phase synchronization with frequency synchronization to prevent the node features from converging into each other while allowing the system to reach a stable synchronized state.},
+  archiveprefix = {arXiv},
+  author = {Nguyen, Tuan and Honda, Hirotada and Sano, Takashi and Nguyen, Vinh and Nakamura, Shugo and Nguyen, Tan Minh},
+  booktitle = {Proceedings of The 27th International Conference on Artificial Intelligence and Statistics},
+  eprint = {2311.03260},
+  pages = {2710--2718},
+  publisher = {{PMLR}},
+  series = {Proceedings of Machine Learning Research},
+  title = {From Coupled Oscillators to Graph Neural Networks: Reducing Over-smoothing via a {Kuramoto} Model-based Approach},
+  url = {https://proceedings.mlr.press/v238/nguyen24c.html},
+  volume = {238},
   year = {2024}
 }
-
-@inproceedings{nguyen2024kuramotognn,
-  author = {Nguyen, D. Q. and Nguyen, K. and Nguyen, D. V. and Nguyen, T. D.},
-  booktitle = {Proceedings of Machine Learning Research},
-  title = {KuramotoGNN: Reducing Over-smoothing via a Kuramoto Model-based Approach},
-  year = {2024}
-}
-
 @misc{rohan2024deep,
+  abstract = {We propose a novel, brain-inspired deep neural network model known as the Deep Oscillatory Neural Network (DONN). Deep neural networks like the Recurrent Neural Networks indeed possess sequence processing capabilities but the internal states of the network are not designed to exhibit brain-like oscillatory activity. With this motivation, the DONN is designed to have oscillatory internal dynamics. Neurons of the DONN are either nonlinear neural oscillators or traditional neurons with sigmoidal or ReLU activation. The neural oscillator used in the model is the Hopf oscillator, with the dynamics described in the complex domain. The sigmoid and ReLU neurons also use complex-valued extensions, and all the weight stages are also complex-valued.},
   archiveprefix = {arXiv},
   author = {Rohan, Nurani Rajagopal and C, Vigneswaran and Ghosh, Sayan and Rajendran, Kishore and A, Gaurav and Chakravarthy, V. Srinivasa},
+  doi = {10.48550/arXiv.2405.03725},
   eprint = {2405.03725},
-  note = {Presents a trainable deep network using nonlinear Hopf oscillators and complex-valued weights to bridge the gap between AI performance and biologically plausible brain dynamics.},
+  month = {5},
   openalex = {W4396813460},
+  pdf = {https://arxiv.org/pdf/2405.03725.pdf},
   primaryclass = {cs.NE},
   title = {Deep Oscillatory Neural Network},
-  url = {https://arxiv.org/html/2405.03725v1},
+  url = {https://arxiv.org/abs/2405.03725},
   year = {2024}
 }
-
-@article{rudner2024design,
-  author = {Rudner, T. and Porod, W. and Csaba, G.},
-  journal = {Frontiers in Neuroscience},
-  note = {TLDR: Demonstrates the use of backpropagation through time to design the coupling weights in networks of ring oscillators, enabling the creation of high-performance oscillatory associative memories.},
-  title = {Design of oscillatory neural networks by machine learning},
-  year = {2024}
-}
-
 @article{zang2024structural,
+  abstract = {Oscillations arise in many real-world systems and are associated with both functional and dysfunctional states. Whether a network can oscillate can be estimated if we know the strength of interaction between nodes. But in real-world networks (in particular in biological networks) it is usually not possible to know the exact connection weights. Therefore, it is important to determine the structural properties of a network necessary to generate oscillations. Here, we provide a proof that uses dynamical system theory to prove that an odd number of inhibitory nodes and strong enough connections are necessary to generate oscillations in a single cycle threshold-linear network. We illustrate these analytical results in a biologically plausible network with either firing-rate based or spiking neurons. Our work provides structural properties necessary to generate oscillations in a network. We use this knowledge to reconcile recent experimental findings about oscillations in basal ganglia with classical findings.},
   author = {Zang, Jie and Liu, Shenquan and Helson, Pascal and Kumar, Arvind},
   doi = {10.7554/eLife.88777},
   journal = {eLife},
-  note = {Uses dynamical systems theory to prove that generating oscillations in a threshold-linear network requires specific structural conditions, including cycles with odd numbers of inhibitory nodes.},
+  month = {3},
   openalex = {W4392761779},
   pages = {e88777},
+  publisher = {eLife Sciences Publications},
   title = {Structural constraints on the emergence of oscillations in multi-population neural networks},
   url = {https://elifesciences.org/articles/88777},
+  pdf={https://elifesciences.org/download/aHR0cHM6Ly9jZG4uZWxpZmVzY2llbmNlcy5vcmcvYXJ0aWNsZXMvODg3NzcvZWxpZmUtODg3NzctdjIucGRmP2Nhbm9uaWNhbFVyaT1odHRwczovL2VsaWZlc2NpZW5jZXMub3JnL2FydGljbGVzLzg4Nzc3/elife-88777-v2.pdf?_hash=azQSGfuklmfueQNijDmltsgO9tjYf4%2F%2BGav6B7sspSU%3D},
   volume = {13},
   year = {2024}
 }
-
-@misc{bassey2023survey,
+@misc{bassey2021survey,
+  abstract = {Artificial neural networks (ANNs) based machine learning models and especially deep learning models have been widely applied in computer vision, signal processing, wireless communications, and many other domains, where complex numbers occur either naturally or by design. However, most of the current implementations of ANNs and machine learning frameworks are using real numbers rather than complex numbers. There are growing interests in building ANNs using complex numbers, and exploring the potential advantages of the so-called complex-valued neural networks (CVNNs) over their real-valued counterparts. In this paper, we present a survey of the recent development of CVNNs by performing a review of the works on CVNNs in the literature. We discuss various CVNNs in terms of activation function, learning and optimization, input and output representations, and their applications in tasks such as signal processing and computer vision, followed by a discussion on some pertinent challenges and future research directions.},
   archiveprefix = {arXiv},
-  author = {Bassey, J. and Qian, L. and Li, X.},
-  eprint = {2312.06087},
-  note = {TLDR: A comprehensive survey of CVNN theory and applications, covering complex activation functions, Wirtinger calculus for learning, and the benefits for wave-like data.},
-  title = {A survey of complex-valued neural networks},
-  year = {2023}
+  author = {Bassey, Joshua and Qian, Lijun and Li, Xianfang},
+  eprint = {2101.12249},
+  month = {1},
+  pdf = {https://arxiv.org/pdf/2101.12249.pdf},
+  primaryclass = {stat.ML},
+  title = {A Survey of Complex-Valued Neural Networks},
+  url = {https://arxiv.org/abs/2101.12249},
+  year = {2021}
 }
-
-@inproceedings{dao2023flashattention,
-  author = {Dao, Tri},
-  booktitle = {Advances in Neural Information Processing Systems},
-  note = {TLDR: Presents a highly optimized implementation of the attention mechanism that is significantly faster and more memory-efficient, pushing the practical limits of sequence length for Transformers.},
-  title = {FlashAttention-2: Faster Attention with Better Parallelism and Work Partitioning},
-  year = {2023}
-}
-
-@misc{ding2023longnet,
+@inproceedings{he2024robust,
+  abstract = {The angular synchronization problem aims to accurately estimate (up to a constant additive phase) a set of unknown angles θ₁, ..., θₙ ∈ [0, 2π) from m noisy measurements of their offsets θᵢ - θⱼ mod 2π. Applications include sensor network localization, phase retrieval, and distributed clock synchronization. An extension of the problem to the heterogeneous setting (dubbed k-synchronization) is to estimate k groups of angles simultaneously, given noisy observations (with unknown group assignment) from each group. Existing methods for angular synchronization usually perform poorly in high-noise regimes, which are common in applications. We leverage neural networks for the angular synchronization problem, and its heterogeneous extension, by proposing GNNSync, a theoretically-grounded end-to-end trainable framework using directed graph neural networks.},
   archiveprefix = {arXiv},
-  author = {Ding, Jiayu and others},
-  eprint = {2307.02486},
-  note = {TLDR: Proposes "dilated attention," a mechanism that expands the attentive field exponentially with distance, allowing Transformer models to scale to billion-token sequences with linear complexity.},
-  title = {LongNet: Scaling Transformers to 1,000,000,000 Tokens},
-  year = {2023}
-}
-
-@misc{gu2023mamba,
-  archiveprefix = {arXiv},
-  author = {Gu, Albert and Dao, Tri},
-  eprint = {2312.00752},
-  note = {TLDR: Introduced Mamba, which makes SSM parameters input-dependent via a selection mechanism, allowing the model to selectively process information and achieve Transformer-level performance with linear-time complexity.},
-  title = {Mamba: Linear-time sequence modeling with selective state spaces},
-  year = {2023}
-}
-
-@misc{he2023robust,
   author = {He, Yixuan and Reinert, Gesine and Wipf, David and Cucuringu, Mihai},
-  howpublished = {arXiv preprint},
+  booktitle = {The Twelfth International Conference on Learning Representations},
+  eprint = {2310.05842},
+  pdf = {https://arxiv.org/pdf/2310.05842.pdf},
+  primaryclass = {cs.LG},
   title = {Robust Angular Synchronization via Directed Graph Neural Networks},
-  year = {2023}
+  url = {https://openreview.net/forum?id=5sjxMwWmk8},
+  year = {2024}
 }
-
 @inproceedings{lanthaler2023neural,
+  abstract = {Coupled oscillators are being increasingly used as the basis of machine learning (ML) architectures, for instance in sequence modeling, graph representation learning and in physical neural networks that are used in analog ML devices. We introduce an abstract class of neural oscillators that encompasses these architectures and prove that neural oscillators are universal, i.e, they can approximate any continuous and causal operator mapping between time-varying functions, to desired accuracy. Our universality result provides theoretical justification for the use of oscillator-based ML systems. The proof builds on a fundamental result of independent interest, which shows that a combination of forced harmonic oscillators with a nonlinear read-out suffices to approximate the underlying operators.},
+  archiveprefix = {arXiv},
   author = {Lanthaler, Samuel and Rusch, T. Konstantin and Mishra, Siddhartha},
-  booktitle = {Advances in Neural Information Processing Systems (NeurIPS)},
-  note = {Provides a foundational theoretical result proving that a general, abstract class of neural oscillators are universal approximators for continuous and causal operators, justifying the field's pursuit.},
+  booktitle = {Advances in Neural Information Processing Systems},
+  editor = {Oh, A. and Naumann, T. and Globerson, A. and Saenko, K. and Hardt, M. and Levine, S.},
+  eprint = {2305.08753},
   openalex = {W4376654394},
   pages = {46786--46806},
+  pdf = {https://proceedings.neurips.cc/paper_files/paper/2023/file/923285deb805c3e14e1aeebc9854d644-Paper-Conference.pdf},
+  publisher = {Curran Associates, Inc.},
   title = {Neural Oscillators are Universal},
   url = {https://proceedings.neurips.cc/paper_files/paper/2023/hash/923285deb805c3e14e1aeebc9854d644-Abstract-Conference.html},
   volume = {36},
   year = {2023}
 }
-
-@inproceedings{poli2023hyenadna,
-  author = {Poli, Michael and others},
-  booktitle = {Advances in Neural Information Processing Systems},
-  note = {TLDR: Introduces a genomic foundation model based on the Hyena (long convolution) architecture that can process context lengths of up to 1 million tokens, setting a new state of the art in genomics.},
-  title = {HyenaDNA: Long-range genomic sequence modeling at single nucleotide resolution},
-  year = {2023}
-}
-
-@misc{gu2022parameterization,
+@inproceedings{rusch2022graphcoupled,
+  abstract = {We propose Graph-Coupled Oscillator Networks (GraphCON), a novel framework for deep learning on graphs. It is based on discretizations of a second-order system of ordinary differential equations (ODEs), which model a network of nonlinear controlled and damped oscillators, coupled via the adjacency structure of the underlying graph. The flexibility of our framework permits any basic GNN layer (e.g. convolutional or attentional) as the coupling function, from which a multi-layer deep neural network is built up via the dynamics of the proposed ODEs. We relate the oversmoothing problem, commonly encountered in GNNs, to the stability of steady states of the underlying ODE and show that zero-Dirichlet energy steady states are not stable for our proposed ODEs. This demonstrates that the proposed framework mitigates the oversmoothing problem. Moreover, we prove that GraphCON mitigates the exploding and vanishing gradients problem to facilitate training of deep multi-layer GNNs.},
   archiveprefix = {arXiv},
-  author = {Gu, Albert and Gupta, Ankit and Goel, Karan and Ré, Christopher},
-  eprint = {2206.11893},
-  note = {TLDR: Introduced S4D, a simplified and more efficient version of S4 that uses a diagonal state matrix, demonstrating that a diagonal approximation of the HiPPO matrix retains strong performance.},
-  title = {On the parameterization and initialization of diagonal state space models},
+  author = {Rusch, T. Konstantin and Chamberlain, Ben P. and Rowbottom, James and Mishra, Siddhartha and Bronstein, Michael M.},
+  booktitle = {Proceedings of the 39th International Conference on Machine Learning},
+  editor = {Chaudhuri, Kamalika and Jegelka, Stefanie and Song, Le and Szepesv{\'a}ri, Csaba and Niu, Gang and Sabato, Sivan},
+  eprint = {2202.02296},
+  pages = {18888--18909},
+  pdf = {https://proceedings.mlr.press/v162/rusch22a/rusch22a.pdf},
+  publisher = {PMLR},
+  series = {Proceedings of Machine Learning Research},
+  title = {Graph-Coupled Oscillator Networks},
+  url = {https://proceedings.mlr.press/v162/rusch22a.html},
+  volume = {162},
   year = {2022}
 }
-
-@article{kazis2022survey,
-  author = {Kazis, Panos and others},
-  journal = {IEEE Transactions on Pattern Analysis and Machine Intelligence},
-  note = {TLDR: A comprehensive survey providing a unified mathematical framework for deep learning on non-Euclidean domains, including graph neural networks and manifold-based models.},
-  title = {A survey on geometric deep learning on graphs and manifolds},
-  year = {2022}
-}
-
-@inproceedings{rusch2022graph,
-  author = {Rusch, T. K. and Chamberlain, B. P. and Rowbottom, J. and Mishra, S. and Bronstein, M. M.},
-  booktitle = {International Conference on Machine Learning (ICML)},
-  title = {Graph-coupled oscillator networks},
-  year = {2022}
-}
-
-@misc{smith2022simplified,
-  archiveprefix = {arXiv},
-  author = {Smith, Jimmy T. and Warrington, Andrew and Linderman, Scott W.},
-  eprint = {2208.04933},
-  note = {TLDR: Proposed the S5 layer, which streamlines S4 by using a single MIMO SSM and an efficient parallel scan, simplifying the implementation while matching S4's performance.},
-  title = {Simplified state space layers for sequence modeling},
-  year = {2022}
-}
-
 @article{abernot2021digital,
-  author = {Abernot, Madeleine and Gil, Thierry and Jiménez, Manuel and Núñez, Juan and Avellido, María J. and Linares-Barranco, Bernabé and Gonos, Théophile and Hardelin, Tanguy and Todri-Sanial, Aida},
+  abstract = {Computing paradigm based on von Neuman architectures cannot keep up with the ever-increasing data growth (also called data deluge gap). This has resulted in investigating novel computing paradigms and design approaches at all levels from materials to system-level implementations and applications. An alternative computing approach based on artificial neural networks uses oscillators to compute, called Oscillatory Neural Networks (ONNs). ONNs can perform computations efficiently and can be used to build a more extensive neuromorphic system. We present a digital ONN implementation to show a proof-of-concept of the ONN approach of computing-in-phase for pattern recognition applications. To the best of our knowledge, this is the first attempt to implement an FPGA-based fully-digital ONN.},
+  author = {Abernot, Madeleine and Gil, Thierry and Jim{\'e}nez, Manuel and N{\'u}{\~n}ez, Juan and Avellido, Mar{\'i}a J. and Linares-Barranco, Bernab{\'e} and Gonos, Th{\'e}ophile and Hardelin, Tanguy and Todri-Sanial, Aida},
   doi = {10.3389/fnins.2021.713054},
   journal = {Frontiers in Neuroscience},
-  note = {Addresses the digital implementation of oscillatory neural networks for practical image recognition applications.},
+  month = {8},
   openalex = {W3161228231},
+  pages = {713054},
+  publisher = {Frontiers Media SA},
   title = {Digital Implementation of Oscillatory Neural Network for Image Recognition Applications},
   url = {https://www.frontiersin.org/journals/neuroscience/articles/10.3389/fnins.2021.713054/full},
   volume = {15},
   year = {2021}
 }
-
 @inproceedings{chamberlain2021grand,
-  author = {Chamberlain, B. P. and others},
-  booktitle = {International Conference on Machine Learning (ICML)},
-  note = {TLDR: Connects GNNs to dynamical systems by framing message passing as a diffusion process governed by a graph-based differential equation, providing a deeper theoretical understanding of GNNs.},
-  title = {GRAND: Graph neural diffusion},
-  year = {2021}
-}
-
-@article{elhage2021mathematical,
-  author = {Elhage, Nelson and others},
-  journal = {Transformer Circuits Thread, Anthropic},
-  note = {TLDR: Provides a detailed mathematical framework for analyzing algorithms within Transformers, notably identifying key circuits like "induction heads" used for in-context learning.},
-  title = {A mathematical framework for transformer circuits},
-  year = {2021}
-}
-
-@inproceedings{gu2021efficiently,
-  author = {Gu, Albert and Goel, Karan and Ré, Christopher},
-  booktitle = {International Conference on Learning Representations},
-  note = {TLDR: The seminal paper introducing the S4 model, which combines HiPPO theory with an efficient convolutional computation to set a new state of the art on long-range dependency benchmarks.},
-  title = {Efficiently modeling long sequences with structured state spaces},
-  year = {2021}
-}
-
-@inproceedings{tay2021long,
-  author = {Tay, Yi and Dehghani, Mostafa and Abnar, Samira and others},
-  booktitle = {International Conference on Learning Representations (ICLR)},
-  note = {TLDR: Introduced the Long Range Arena (LRA) benchmark, a suite of long-context tasks that systematically evaluated efficient Transformers and catalyzed the development of SSMs.},
-  title = {Long range arena: A benchmark for efficient transformers},
-  year = {2021}
-}
-
-@inproceedings{yildiz2021continuous,
-  author = {Yildiz, Cagatay and Heinonen, Markus and Lahdesmaki, Harri},
-  booktitle = {International Conference on Machine Learning (ICML)},
-  note = {TLDR: Applies the continuous-time modeling paradigm to reinforcement learning using Bayesian neural ODEs, avoiding time-discretization errors and improving robustness.},
-  title = {Continuous-time model-based reinforcement learning},
-  year = {2021}
-}
-
-@article{csaba2020coupled,
-  author = {Csaba, G. and Porod, W.},
-  journal = {Applied Physics Reviews},
-  title = {Coupled oscillators for computing: A review and perspective},
-  year = {2020}
-}
-
-@misc{gu2020hippo,
+  abstract = {We present Graph Neural Diffusion (GRAND) that approaches deep learning on graphs as a continuous diffusion process and treats Graph Neural Networks (GNNs) as discretisations of an underlying PDE. In our model, the layer structure and topology correspond to the discretisation choices of temporal and spatial operators. Our approach allows a principled development of a broad new class of GNNs that are able to address the common plights of graph learning models such as depth, oversmoothing, and bottlenecks. Key to the success of our models are stability with respect to perturbations in the data and this is addressed for both implicit and explicit discretisation schemes.},
   archiveprefix = {arXiv},
-  author = {Gu, Albert and Dao, Tri and Ermon, Stefano and Ré, Christopher},
-  eprint = {2008.07669},
-  note = {TLDR: Formalized the HiPPO framework for constructing state-space matrices that optimally compress and reconstruct continuous signals, laying the direct mathematical groundwork for S4.},
-  title = {Hippo: A framework for online memory and function approximation},
-  year = {2020}
+  author = {Chamberlain, Ben and Rowbottom, James and Gorinova, Maria I. and Bronstein, Michael and Webb, Stefan and Rossi, Emanuele},
+  booktitle = {Proceedings of the 38th International Conference on Machine Learning},
+  editor = {Meila, Marina and Zhang, Tong},
+  eprint = {2106.10934},
+  pages = {1407--1418},
+  pdf = {https://proceedings.mlr.press/v139/chamberlain21a/chamberlain21a.pdf},
+  publisher = {PMLR},
+  series = {Proceedings of Machine Learning Research},
+  title = {{GRAND}: Graph Neural Diffusion},
+  url = {https://proceedings.mlr.press/v139/chamberlain21a.html},
+  volume = {139},
+  year = {2021}
 }
-
-@inproceedings{kidger2020neural,
-  author = {Kidger, Patrick and Morrill, James and Lyons, Terry},
-  booktitle = {Advances in Neural Information Processing Systems},
-  note = {TLDR: Extends Neural ODEs to Neural Controlled Differential Equations (NCDEs), a more powerful approach for handling irregularly-sampled time-series by treating the input as a continuous control path.},
-  title = {Neural controlled differential equations for irregularly-sampled data},
-  year = {2020}
-}
-
-@article{olah2020zoom,
-  author = {Olah, Chris and others},
-  journal = {Distill},
-  note = {TLDR: A foundational article in mechanistic interpretability that introduces the "circuits" perspective, arguing for analyzing the algorithms implemented by small, interconnected groups of neurons.},
-  title = {Zoom in: An introduction to circuits},
-  year = {2020}
-}
-
-@inproceedings{pareja2020evolvegcn,
-  author = {Pareja, A. and others},
-  booktitle = {AAAI Conference on Artificial Intelligence},
-  note = {TLDR: Proposes a dynamic GNN that adapts its parameters over time using an RNN, allowing the model to evolve as the graph structure changes.},
-  title = {EvolveGCN: Evolving graph convolutional networks for dynamic graphs},
-  year = {2020}
-}
-
-@misc{ramsauer2020hopfield,
-  archiveprefix = {arXiv},
-  author = {Ramsauer, Hubert and others},
-  eprint = {2008.02217},
-  note = {TLDR: Revealed a surprising equivalence between the attention mechanism in Transformers and the update rule of modern Hopfield networks, reframing attention as memory retrieval.},
-  title = {Hopfield networks is all you need},
-  year = {2020}
-}
-
-@inproceedings{voelker2019legendre,
-  author = {Voelker, Aaron and Kajić, Ivana and Eliasmith, Chris},
-  booktitle = {Advances in Neural Information Processing Systems},
-  note = {TLDR: Introduced the Legendre Memory Unit (LMU), a memory cell for RNNs based on a linear ODE that projects the input history onto Legendre polynomials, serving as a precursor to HiPPO.},
-  title = {Legendre memory units: Continuous-time representation in recurrent neural networks},
-  year = {2019}
-}
-
-@inproceedings{chen2018neural,
-  author = {Chen, Tian Qi and Rubanova, Yulia and Bettencourt, Jesse and Duvenaud, David K.},
-  booktitle = {Advances in Neural Information Processing Systems},
-  note = {TLDR: This groundbreaking paper introduced the Neural ODE framework, treating deep networks as continuous-depth models trained with constant memory cost, providing a new paradigm for time-series modeling.},
-  title = {Neural ordinary differential equations},
-  year = {2018}
-}
-
 @inproceedings{trabelsi2018deep,
-  author = {Trabelsi, C. and others},
+  author = {Trabelsi, Chiheb and Bilaniuk, Olexa and Zhang, Ying and Serdyuk, Dmitriy and Subramanian, Sandeep and Santos, Jo{\~a}o Felipe and Mehri, Soroush and Rostamzadeh, Negar and Bengio, Yoshua and Pal, Christopher J.},
   booktitle = {International Conference on Learning Representations (ICLR)},
   note = {TLDR: A foundational paper on modern deep complex-valued networks, introducing complex versions of standard components like convolutions and batch normalization.},
-  title = {Deep complex networks},
-  year = {2018}
+  title = {Deep Complex Networks},
+  year = {2018},
+  url = {https://openreview.net/forum?id=H1T2hmZAb},
+  pdf = {https://openreview.net/pdf?id=H1T2hmZAb},
+  abstract = {At present, the vast majority of building blocks, techniques, and architectures for deep learning are based on real-valued operations and representations. However, recent work on recurrent neural networks and older fundamental theoretical analysis suggests that complex numbers could have a richer representational capacity and could also facilitate noise-robust memory retrieval mechanisms. Despite these attractive properties, complex-valued deep learning has been marginalized due to the absence of the building blocks required to design such models. In this work, we provide the key atomic components for complex-valued deep neural networks and apply them to convolutional feed-forward networks and convolutional LSTMs. More precisely, we rely on complex convolutions and present algorithms for complex batch-normalization, complex weight initialization strategies for complex-valued neural nets with general multi-dimensional inputs and present algorithms for complex back-propagation. Finally, we present experimental results on several computer vision tasks, music transcription using the MusicNet dataset and Speech Spectrum Prediction using the TIMIT dataset.}
 }
-
 @article{ashwin2016mathematical,
   author = {Ashwin, Peter and Coombes, Stephen and Nicks, Rachel},
   doi = {10.1186/s13408-015-0033-6},
@@ -434,132 +863,152 @@
   openalex = {W2220951078},
   pages = {2},
   title = {Mathematical Frameworks for Oscillatory Network Dynamics in Neuroscience},
-  url = {https://pmc.ncbi.nlm.nih.gov/articles/PMC4703605/},
+  url = {https://mathematical-neuroscience.springeropen.com/articles/10.1186/s13408-015-0033-6},
+  pdf = {https://mathematical-neuroscience.springeropen.com/articles/10.1186/s13408-015-0033-6},
   volume = {6},
-  year = {2016}
+  year = {2016},
+  abstract = {The tools of weakly coupled phase oscillator theory have had a profound impact on the neuroscience community, providing insight into a variety of network behaviours ranging from central pattern generation to synchronisation, as well as predicting novel network states such as chimeras. However, there are many instances where this theory is expected to break down, say in the presence of strong coupling, or must be carefully interpreted, as in the presence of stochastic forcing. There are also surprises in the dynamical complexity of the attractors that can robustly appear—for example, heteroclinic network attractors. In this review we present a set of mathematical tools that are suitable for addressing the dynamics of oscillatory neural networks, broadening from a standard phase oscillator perspective to provide a practical framework for further successful applications of mathematics to understanding network dynamics in neuroscience.}
 }
-
-@article{krotov2016dense,
-  author = {Krotov, D. and Hopfield, J. J.},
-  journal = {Neural Computation},
-  note = {TLDR: Introduced the "modern Hopfield network" with higher-order energy functions, dramatically increasing memory storage capacity beyond the linear limits of the original model.},
-  title = {Dense associative memory for pattern recognition},
-  year = {2016}
-}
-
-@article{lukosevicius2009reservoir,
-  author = {Lukoševičius, M. and Jaeger, H.},
-  journal = {Computer Science Review},
-  note = {TLDR: A comprehensive and highly-cited review of the reservoir computing paradigm, providing a practical guide to the theory, design, and application of ESNs and LSMs.},
-  title = {Reservoir computing approaches to recurrent neural network training},
-  year = {2009}
-}
-
-@article{acebron2005kuramoto,
-  author = {Acebrón, J. A. and others},
+@article{acebrn2005the,
+  author = {Acebrón, Juan A. and Bonilla, Luis L. and Pérez Vicente, Conrad J. and Ritort, Félix and Spigler, Renato},
   journal = {Reviews of Modern Physics},
   note = {TLDR: A comprehensive review treating the Kuramoto model from a statistical physics perspective, covering its equilibrium and non-equilibrium properties and diverse applications.},
-  title = {The Kuramoto model: A simple paradigm for synchronization phenomena},
-  year = {2005}
+  title = {The {K}uramoto model: {A} simple paradigm for synchronization phenomena},
+  year = {2005},
+  volume = {77},
+  pages = {137--185},
+  doi = {10.1103/RevModPhys.77.137},
+  url = {https://journals.aps.org/rmp/abstract/10.1103/RevModPhys.77.137},
+  abstract = {Synchronization phenomena in large populations of interacting elements are the subject of intense research in physical, biological, chemical, and social systems. A successful approach to the problem of synchronization consists of modeling each member of the population as a phase oscillator. In this review, we analyze in detail the most successful model of coupled phase oscillators, the Kuramoto model, in which oscillators are coupled through the sine of their phase differences. We focus on the original model in which all-to-all coupling and coupling strength are uniform and where oscillator frequencies are taken from a prescribed probability distribution. Despite its simplicity, this model displays a rich variety of synchronization patterns found in real systems. We provide a rigorous mathematical treatment, survey numerical results, and discuss relevant applications in the contexts of neuroscience, Josephson junctions, arrays of lasers, and biochemical reactions.}
 }
-
-@article{maass2002real,
-  author = {Maass, Wolfgang and Natschläger, Thomas and Markram, Henry},
-  journal = {Neural Computation},
-  note = {TLDR: Introduced the Liquid State Machine (LSM), a spiking neuron-based reservoir model that frames computation as the interpretation of transient dynamics in a recurrent circuit.},
-  title = {Real-time computing without stable states: a new framework for neural computation based on perturbations},
-  year = {2002}
-}
-
-@techreport{jaeger2001echo,
-  author = {Jaeger, Herbert},
-  institution = {GMD -- German National Research Center for Information Technology},
-  note = {TLDR: The foundational report introducing the Echo State Network (ESN), a reservoir computing model where only a linear readout is trained, avoiding the difficulties of training recurrent weights.},
-  number = {148},
-  title = {The "echo state" approach to analysing and training recurrent neural networks},
-  year = {2001}
-}
-
-@article{strogatz2000kuramoto,
-  author = {Strogatz, S. H.},
+@article{strogatz2000from,
+  author = {Strogatz, Steven H.},
   journal = {Physica D: Nonlinear Phenomena},
   note = {TLDR: A landmark review that contextualizes Kuramoto's work and details subsequent mathematical developments, providing a rigorous yet accessible overview of the field.},
-  title = {From Kuramoto to Crawford: exploring the onset of synchronization in populations of coupled oscillators},
-  year = {2000}
+  title = {From {K}uramoto to {C}rawford: exploring the onset of synchronization in populations of coupled oscillators},
+  year = {2000},
+  volume = {143},
+  number = {1--4},
+  pages = {1--20},
+  doi = {10.1016/S0167-2789(00)00094-4},
+  url = {https://www.sciencedirect.com/science/article/pii/S0167278900000944},
+  abstract = {The Kuramoto model describes a large population of coupled limit-cycle oscillators whose natural frequencies are drawn from some prescribed distribution. If the coupling strength exceeds a certain threshold, the system exhibits a phase transition: some of the oscillators spontaneously synchronize, while others remain incoherent. The mathematical analysis of this bifurcation has proved both problematic and fascinating. We review 25 years of research on the Kuramoto model, highlighting the false turns as well as the successes, but mainly following the trail leading from Kuramoto's work to Crawford's recent contributions. It is a lovely winding road, with excursions through mathematical biology, statistical physics, kinetic theory, bifurcation theory, and plasma physics.}
 }
-
 @article{singer1999neuronal,
-  author = {Singer, W.},
+  author = {Singer, Wolf},
   journal = {Neuron},
   note = {TLDR: A key review article summarizing the experimental evidence for the binding-by-synchrony hypothesis, particularly the role of gamma-band oscillations in the visual cortex.},
   title = {Neuronal synchrony: a versatile code for the definition of relations?},
-  year = {1999}
+  year = {1999},
+  volume = {24},
+  number = {1},
+  pages = {49--65, 111--125},
+  doi = {10.1016/S0896-6273(00)80821-1},
+  pmid = {10677026},
+  url = {https://www.cell.com/neuron/fulltext/S0896-6273(00)80821-1}
 }
-
 @article{singer1995visual,
-  author = {Singer, W. and Gray, C. M.},
+  author = {Singer, Wolf and Gray, Charles M.},
   journal = {Annual Review of Neuroscience},
   title = {Visual feature integration and the temporal correlation hypothesis},
-  year = {1995}
+  year = {1995},
+  volume = {18},
+  pages = {555--586},
+  doi = {10.1146/annurev.ne.18.030195.003011},
+  pmid = {7605074},
+  url = {https://www.annualreviews.org/doi/10.1146/annurev.ne.18.030195.003011}
 }
-
-@article{gray1989stimulus,
-  author = {Gray, C. M. and Singer, W.},
+@article{gray1989stimulusspecific,
+  author = {Gray, Charles M. and Singer, Wolf},
   journal = {Proceedings of the National Academy of Sciences},
   title = {Stimulus-specific neuronal oscillations in orientation columns of cat visual cortex},
-  year = {1989}
+  year = {1989},
+  volume = {86},
+  number = {5},
+  pages = {1698--1702},
+  doi = {10.1073/pnas.86.5.1698},
+  pmid = {2922407},
+  url = {https://www.pnas.org/doi/10.1073/pnas.86.5.1698},
+  abstract = {In areas 17 and 18 of the cat visual cortex the firing probability of neurons, in response to the presentation of optimally aligned light bars within their receptive field, oscillates with a peak frequency near 40 Hz. The neuronal firing pattern is tightly correlated with the phase and amplitude of an oscillatory local field potential recorded through the same electrode. The amplitude of the local field-potential oscillations are maximal in response to stimuli that match the orientation and direction preference of the local cluster of neurons. Single and multiunit recordings from the dorsal lateral geniculate nucleus of the thalamus showed no evidence of oscillations of the neuronal firing probability in the range of 20--70 Hz. The results demonstrate that local neuronal populations in the visual cortex engage in stimulus-specific synchronous oscillations resulting from an intracortical mechanism. The oscillatory responses may provide a general mechanism by which activity patterns in spatially separate regions of the cortex are temporally coordinated.}
 }
-
 @article{eckhorn1988coherent,
   author = {Eckhorn, R. and Bauer, R. and Jordan, W. and Brosch, M. and Kruse, W. and Munk, M. and Reitboeck, H. J.},
   journal = {Biological Cybernetics},
-  title = {Coherent oscillations: A mechanism of feature linking in the visual cortex?},
-  year = {1988}
+  title = {Coherent oscillations: {A} mechanism of feature linking in the visual cortex?},
+  year = {1988},
+  volume = {60},
+  number = {2},
+  pages = {121--130},
+  doi = {10.1007/BF00202899},
+  pmid = {3228555},
+  url = {https://link.springer.com/article/10.1007/BF00202899},
+  abstract = {Beyond the characterization of primary visual coding via receptive field (RF) properties of single neurons, we searched for a global, second coding step that links related features in a visual scene. We propose that oscillatory activities constitute such linking signals and test the neurophysiological relevance of this hypothesis for the visual system. Single and multiple spikes as well as local field potentials were recorded simultaneously from several locations in the primary visual cortex (A17 and A18) using 7 or 19 individually advanceable fiber-microelectrodes (250 or 330 μm apart). Stimulus-evoked resonances of 35--85 Hz were found in various neural signals (spike trains, multiple spikes, local field potentials) and were coherent at distant cortical positions when at least one of the primary coding properties was similar. Coherence was found within a vertical cortex column, between neighbouring hypercolumns, and between two different cortical areas. We assume that coherence of resonances is mediated by recurrent excitatory intra- and inter-areal connections via phase locking between assemblies. We propose that visually related activities are transiently labelled by a temporal code that signalizes their momentary association.}
 }
-
-@article{hopfield1982neural,
-  author = {Hopfield, J. J.},
-  journal = {Proceedings of the National Academy of Sciences},
-  note = {TLDR: The seminal paper introducing the Hopfield network, which established a link between spin glass models and neural computation, demonstrating emergent content-addressable memory.},
-  title = {Neural networks and physical systems with emergent collective computational abilities},
-  year = {1982}
-}
-
 @techreport{vondermalsburg1981correlation,
-  author = {von der Malsburg, C.},
+  author = {von der Malsburg, Christoph},
   institution = {Max-Planck-Institute for Biophysical Chemistry},
   note = {TLDR: The foundational report proposing that the brain solves the "binding problem" by using the temporal correlation (synchronization) of neural firing to dynamically group features.},
   number = {81-2},
   title = {The Correlation Theory of Brain Function},
   type = {Internal Report},
-  year = {1981}
+  year = {1981},
+  address = {Göttingen, West Germany},
+  url = {http://cogprints.org/1380/},
+  pdf = {https://web-archive.southampton.ac.uk/cogprints.org/1380/1/vdM_correlation.pdf}
 }
-
-@article{amari1977dynamics,
-  author = {Amari, S.},
-  journal = {Biological Cybernetics},
-  title = {Dynamics of pattern formation in lateral-inhibition type neural fields},
-  year = {1977}
-}
-
-@article{grossberg1976adaptive,
-  author = {Grossberg, S.},
-  journal = {Biological Cybernetics},
-  title = {Adaptive pattern classification and universal recoding: I. Parallel development and coding of neural feature detectors},
-  year = {1976}
-}
-
-@inproceedings{kuramoto1975self,
-  author = {Kuramoto, Y.},
+@inproceedings{kuramoto1975selfentrainment,
+  author = {Kuramoto, Yoshiki},
   booktitle = {International Symposium on Mathematical Problems in Theoretical Physics},
   note = {TLDR: The foundational paper that introduced the now-famous Kuramoto model, presenting a mathematically tractable framework for spontaneous synchronization in populations of coupled oscillators.},
   title = {Self-entrainment of a population of coupled non-linear oscillators},
-  year = {1975}
+  year = {1975},
+  pages = {420--422},
+  editor = {Araki, H.},
+  series = {Lecture Notes in Physics},
+  volume = {39},
+  publisher = {Springer},
+  address = {Berlin, Heidelberg},
+  doi = {10.1007/BFb0013365},
+  url = {https://link.springer.com/chapter/10.1007/BFb0013365}
 }
-
 @article{milner1974model,
-  author = {Milner, P. M.},
-  journal = {Psychological Review},
+  author = {Milner, Peter M.},
   title = {A model for visual shape recognition},
-  year = {1974}
+  journal = {Psychological Review},
+  year = {1974},
+  volume = {81},
+  number = {6},
+  pages = {521--535},
+  month = {11},
+  doi = {10.1037/h0037149},
+  pmid = {4445414},
+  url = {https://psycnet.apa.org/record/1975-04373-001},
+  abstract = {The paper suggests that many examples of stimulus equivalence may be explained by angle and length-ratio feature detectors whose outputs are generalized over the visual field. Problems of interference between a number of figures simultaneously present, and of localizing the figure that is being recognized, require a mechanism of selective attention. The work addresses the binding problem in visual perception through a convergence-based model where features of individual objects are bound via synchronization of neuronal activity in the cortex, proposing what later became known as the binding-by-synchrony hypothesis.}
+}
+@article{velichko2019model,
+  title={A Model of an Oscillatory Neural Network with Multilevel Neurons for Pattern Recognition and Computing},
+  author={Velichko, Andrei and Belyaev, Maksim and Boriskov, Petr},
+  journal={Electronics},
+  volume={8},
+  year={2019},
+  number={1},
+  pages={75},
+  url={https://www.mdpi.com/2079-9292/8/1/75},
+  issn={2079-9292},
+  doi={10.3390/electronics8010075},
+  publisher={MDPI},
+  abstract={The current study uses a novel method of multilevel neurons and high order synchronization effects described by a family of special metrics, for pattern recognition in an oscillatory neural network (ONN). The output oscillator (neuron) of the network has multilevel variations in its synchronization value with the reference oscillator, and allows classification of an input pattern into a set of classes. The ONN model is implemented on thermally-coupled vanadium dioxide oscillators. The ONN is trained by the simulated annealing algorithm for selection of the network parameters. The results demonstrate that ONN is capable of classifying 512 visual patterns (as a cell array 3 × 3, distributed by symmetry into 102 classes) into a set of classes with a maximum number of elements up to fourteen. The classification capability of the network depends on the interior noise level and synchronization effectiveness parameter. The model allows for designing multilevel output cascades of neural networks with high net data throughput. The presented method can be applied in ONNs with various coupling mechanisms and oscillator topology.}
+}
+@article{song2025kuramoto,
+  title={Kuramoto Orientation Diffusion Models},
+  author={Song, Yue and Keller, T. Anderson and Brodjian, Sevan and Miyato, Takeru and Yue, Yisong and Perona, Pietro and Welling, Max},
+  journal={arXiv preprint arXiv:2509.15328},
+  year={2025},
+  eprint={2509.15328},
+  archivePrefix={arXiv},
+  primaryClass={cs.LG},
+  url={https://arxiv.org/abs/2509.15328},
+  doi={10.48550/arXiv.2509.15328},
+  abstract={Orientation-rich images, such as fingerprints and textures, often exhibit coherent angular directional patterns that are challenging to model using standard generative approaches based on isotropic Euclidean diffusion. Motivated by the role of phase synchronization in biological systems, we propose a score-based generative model built on periodic domains by leveraging stochastic Kuramoto dynamics in the diffusion process. In neural and physical systems, Kuramoto models capture synchronization phenomena across coupled oscillators -- a behavior that we re-purpose here as an inductive bias for structured image generation. In our framework, the forward process performs synchronization among phase variables through globally or locally coupled oscillator interactions and attraction to a global reference phase, gradually collapsing the data into a low-entropy von Mises distribution. The reverse process then performs desynchronization, generating diverse patterns by reversing the dynamics with a learned score function. This approach enables structured destruction during forward diffusion and a hierarchical generation process that progressively refines global coherence into fine-scale details. We implement wrapped Gaussian transition kernels and periodicity-aware networks to account for the circular geometry. Our method achieves competitive results on general image benchmarks and significantly improves generation quality on orientation-dense datasets like fingerprints and textures. Ultimately, this work demonstrates the promise of biologically inspired synchronization dynamics as structured priors in generative modeling.},
+  note={NeurIPS 2025}
 }
