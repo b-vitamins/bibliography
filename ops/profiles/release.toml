@@ -1,0 +1,7 @@
+steps = [
+  "doctor",
+  "install-hooks",
+  "lint",
+  "export-tracking",
+  "report",
+]

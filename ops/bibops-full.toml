@@ -1,0 +1,21 @@
+roots = [
+  "books",
+  "conferences",
+  "curated",
+  "journals",
+  "references",
+  "courses",
+  "theses",
+  "presentations",
+]
+
+exclude_globs = [
+  "**/.git/**",
+  "**/__pycache__/**",
+  "**/*.backup",
+  "**/*.bak",
+]
+
+db_path = "bibliography.db"
+tracking_export = "tracking.json"
+issue_limit_per_type = 200
