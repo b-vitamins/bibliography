@@ -1,0 +1,4 @@
+interface:
+  display_name: "BibOps Daily"
+  short_description: "Run daily bibliography health profile"
+  default_prompt: "Run the daily bibliography operations profile, summarize issues by severity and type, and propose the next fixes."

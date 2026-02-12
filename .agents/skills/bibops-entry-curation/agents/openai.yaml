@@ -1,0 +1,4 @@
+interface:
+  display_name: "Entry Curation"
+  short_description: "Fix and enrich specific BibTeX entries"
+  default_prompt: "Curate the specified BibTeX entries with accurate source-backed metadata and run targeted validation checks."

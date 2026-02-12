@@ -1,0 +1,4 @@
+interface:
+  display_name: "Quality Gate"
+  short_description: "Run strict pre-commit quality checks"
+  default_prompt: "Run the quality gate, report blockers first, and summarize remaining warning-level debt."

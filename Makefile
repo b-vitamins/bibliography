@@ -1,4 +1,4 @@
-.PHONY: doctor lint scan report daily release full-audit hooks export-tracking
+.PHONY: doctor lint scan report daily release full-audit hooks export-tracking validate-skills
 
 doctor:
 	python3 scripts/bibops.py doctor
@@ -26,3 +26,6 @@ hooks:
 
 export-tracking:
 	python3 scripts/bibops.py export-tracking
+
+validate-skills:
+	python3 scripts/validate-skills.py

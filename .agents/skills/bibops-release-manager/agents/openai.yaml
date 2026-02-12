@@ -1,0 +1,4 @@
+interface:
+  display_name: "Release Manager"
+  short_description: "Run release profile and commit checklist"
+  default_prompt: "Run the release workflow, verify commit readiness, and summarize what is safe to commit now."
