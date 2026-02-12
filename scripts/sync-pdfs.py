@@ -100,12 +100,12 @@ def wait_for_manual_download(url: str, bibkey: str, timeout: int = 300) -> Optio
     existing_files = set(downloads_dir.glob("*.pdf"))
     existing_files.update(downloads_dir.glob("*.pdf.part"))  # Include partial downloads
     
-    print(f"\n  === Manual Download Required ===")
+    print("\n  === Manual Download Required ===")
     print(f"  Opening Firefox with URL: {url}")
-    print(f"  Please download the PDF manually.")
+    print("  Please download the PDF manually.")
     print(f"  Looking for new PDF in: {downloads_dir}")
     print(f"  (Will wait up to {timeout} seconds)")
-    print(f"  Press Ctrl+C to skip this entry")
+    print("  Press Ctrl+C to skip this entry")
     
     # Open URL in Firefox
     try:
