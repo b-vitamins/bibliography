@@ -30,6 +30,7 @@ Convenience targets:
 3. `inproceedings` entries must include `author`, `title`, `booktitle`, `year`.
 4. Placeholder authors like `and others` are not acceptable in curated results.
 5. Large operations should be profile-driven and repeatable.
+6. `collections/orals/` is a derived subset layer; canonical source remains `conferences/`.
 
 ## Scope tiers
 
@@ -61,6 +62,11 @@ Default `ops/bibops.toml` scope:
 ### 3) Full audit
 1. `make full-audit`
 2. Use for periodic deep cleanup, not per-change development.
+
+### 4) Oral subset validation
+1. `make orals`
+2. Keep oral files under `collections/orals/<venue>/<year>.bib`.
+3. Run `verify-orals` to enforce canonical alignment (where canonical year files exist) and required `url`/`pdf` fields.
 
 ## Skills-first execution
 

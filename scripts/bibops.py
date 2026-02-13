@@ -17,6 +17,7 @@ import subprocess
 import sys
 import tomllib
 import traceback
+import unicodedata
 import uuid
 from pathlib import Path
 from typing import Iterable
@@ -28,6 +29,9 @@ from bibtexparser.customization import convert_to_unicode
 DEFAULT_CONFIG_PATH = Path("ops/bibops.toml")
 DEFAULT_DB_PATH = Path("bibliography.db")
 LOCK_PATH = Path("ops/.bibops.lock")
+ORALS_ROOT = Path("collections/orals")
+CANONICAL_CONFERENCES_ROOT = Path("conferences")
+HTTP_URL_RE = re.compile(r"^https?://", re.IGNORECASE)
 
 
 @dataclasses.dataclass
@@ -141,8 +145,46 @@ def file_sha256(path: Path) -> str:
 
 
 def norm_title(value: str) -> str:
-    value = (value or "").replace("{", "").replace("}", "").lower().strip()
+    value = (value or "").replace("{", "").replace("}", "").strip()
+    value = unicodedata.normalize("NFKD", value).encode("ascii", "ignore").decode("ascii")
+    value = value.lower()
+    value = re.sub(r"[^a-z0-9 ]+", " ", value)
     return re.sub(r"\s+", " ", value)
+
+
+def norm_author(value: str) -> str:
+    value = (value or "").replace("{", "").replace("}", "").strip()
+    value = unicodedata.normalize("NFKD", value).encode("ascii", "ignore").decode("ascii")
+    value = value.lower()
+    value = re.sub(r"[^a-z0-9 ]+", " ", value)
+    return re.sub(r"\s+", " ", value)
+
+
+def author_signature(value: str) -> str:
+    value = (value or "").replace("{", "").replace("}", "").strip()
+    value = unicodedata.normalize("NFKD", value).encode("ascii", "ignore").decode("ascii").lower()
+    people = [p.strip() for p in value.split(" and ") if p.strip()]
+    surnames: list[str] = []
+
+    for person in people:
+        if "," in person:
+            left = person.split(",", 1)[0].strip()
+            left = re.sub(r"[^a-z0-9 ]+", " ", left)
+            toks = [t for t in left.split() if t]
+            for tok in reversed(toks):
+                if re.search(r"[a-z]", tok):
+                    surnames.append(tok)
+                    break
+            continue
+
+        cleaned = re.sub(r"[^a-z0-9 ]+", " ", person)
+        toks = [t for t in cleaned.split() if t]
+        for tok in reversed(toks):
+            if re.search(r"[a-z]", tok):
+                surnames.append(tok)
+                break
+
+    return " ".join(surnames)
 
 
 def matches_any_glob(path: Path, globs: Iterable[str]) -> bool:
@@ -169,11 +211,18 @@ def discover_bib_files(cfg: OpsConfig) -> list[Path]:
 
 
 def parse_bib(path: Path):
+    data = path.read_text(encoding="utf-8")
+
     parser = BibTexParser(common_strings=True)
     parser.customization = convert_to_unicode
     parser.ignore_nonstandard_types = False
-    with path.open("r", encoding="utf-8") as f:
-        return bibtexparser.load(f, parser=parser)
+    try:
+        return bibtexparser.loads(data, parser=parser)
+    except Exception:
+        # Fallback for legacy files that break unicode customization.
+        parser_fallback = BibTexParser(common_strings=True)
+        parser_fallback.ignore_nonstandard_types = False
+        return bibtexparser.loads(data, parser=parser_fallback)
 
 
 def init_db(db_path: Path) -> None:
@@ -629,6 +678,441 @@ def run_lint(cfg: OpsConfig, file_rows: list[FileResult], entry_rows: list[Entry
     return issues
 
 
+def oral_identity(path: Path) -> tuple[str, str] | None:
+    try:
+        rel = path.relative_to(ORALS_ROOT)
+    except ValueError:
+        return None
+
+    if len(rel.parts) != 2:
+        return None
+    venue = rel.parts[0]
+    year = rel.stem
+    if not re.match(r"^[a-z0-9]+$", venue):
+        return None
+    if not re.match(r"^(19|20)\d{2}$", year):
+        return None
+    return venue, year
+
+
+def extract_openreview_id(url: str) -> str:
+    if not url:
+        return ""
+    m = re.search(r"[?&]id=([^&#]+)", url)
+    if not m:
+        return ""
+    return m.group(1).strip()
+
+
+def url_fingerprint(url: str) -> str:
+    if not url:
+        return ""
+    u = url.strip().lower()
+    u = re.sub(r"^https?://", "", u)
+    u = u.rstrip("/")
+    return u
+
+
+def run_verify_orals(cfg: OpsConfig) -> tuple[int, int, list[Issue]]:
+    issues: list[Issue] = []
+    issue_counts: dict[str, int] = {}
+    suppressed_counts: dict[str, int] = {}
+    files_scanned = 0
+    entries_scanned = 0
+    canonical_cache: dict[
+        Path,
+        tuple[
+            dict[str, dict[str, object]],
+            dict[str, list[dict[str, object]]],
+            dict[str, list[dict[str, object]]],
+            dict[str, list[dict[str, object]]],
+            str | None,
+        ],
+    ] = {}
+    matched_by_title = 0
+    matched_by_openreview = 0
+    matched_by_link = 0
+
+    def add_issue(issue: Issue) -> None:
+        c = issue_counts.get(issue.issue_type, 0)
+        if c < cfg.issue_limit_per_type:
+            issues.append(issue)
+            issue_counts[issue.issue_type] = c + 1
+        else:
+            suppressed_counts[issue.issue_type] = suppressed_counts.get(issue.issue_type, 0) + 1
+
+    if not ORALS_ROOT.exists():
+        add_issue(
+            Issue(
+                file_path=str(ORALS_ROOT),
+                entry_key=None,
+                issue_type="orals_root_missing",
+                severity="warning",
+                message="Derived oral collections root not found",
+                details={},
+            )
+        )
+        return files_scanned, entries_scanned, issues
+
+    oral_files = sorted(ORALS_ROOT.rglob("*.bib"))
+    if not oral_files:
+        add_issue(
+            Issue(
+                file_path=str(ORALS_ROOT),
+                entry_key=None,
+                issue_type="orals_files_missing",
+                severity="warning",
+                message="No oral BibTeX files found under collections/orals",
+                details={},
+            )
+        )
+        return files_scanned, entries_scanned, issues
+
+    for oral_file in oral_files:
+        files_scanned += 1
+        ident = oral_identity(oral_file)
+        if ident is None:
+            add_issue(
+                Issue(
+                    file_path=str(oral_file),
+                    entry_key=None,
+                    issue_type="oral_path_invalid",
+                    severity="warning",
+                    message="Oral file path must match collections/orals/<venue>/<year>.bib",
+                    details={},
+                )
+            )
+            continue
+        venue, year = ident
+
+        try:
+            oral_db = parse_bib(oral_file)
+        except Exception as ex:
+            add_issue(
+                Issue(
+                    file_path=str(oral_file),
+                    entry_key=None,
+                    issue_type="parse_error",
+                    severity="error",
+                    message="Failed to parse oral BibTeX file",
+                    details={"error": str(ex)},
+                )
+            )
+            continue
+
+        oral_entries = oral_db.entries
+        entries_scanned += len(oral_entries)
+
+        canonical_path = CANONICAL_CONFERENCES_ROOT / venue / f"{year}.bib"
+        canonical_entries_by_key: dict[str, dict[str, object]] | None = None
+        canonical_entries_by_title: dict[str, list[dict[str, object]]] | None = None
+        canonical_entries_by_openreview: dict[str, list[dict[str, object]]] | None = None
+        canonical_entries_by_link: dict[str, list[dict[str, object]]] | None = None
+
+        if canonical_path.exists():
+            if canonical_path not in canonical_cache:
+                try:
+                    canonical_db = parse_bib(canonical_path)
+                    entries_by_key: dict[str, dict[str, object]] = {}
+                    entries_by_title: dict[str, list[dict[str, object]]] = {}
+                    entries_by_openreview: dict[str, list[dict[str, object]]] = {}
+                    entries_by_link: dict[str, list[dict[str, object]]] = {}
+                    for e in canonical_db.entries:
+                        canonical_key = str(e.get("ID", ""))
+                        canonical_title = norm_title(str(e.get("title", "")))
+                        canonical_or_id = extract_openreview_id(str(e.get("url", "")))
+                        if not canonical_or_id:
+                            canonical_or_id = extract_openreview_id(str(e.get("pdf", "")))
+                        for field in ("url", "pdf"):
+                            fp = url_fingerprint(str(e.get(field, "")))
+                            if fp:
+                                entries_by_link.setdefault(fp, []).append(e)
+                        if canonical_key:
+                            entries_by_key[canonical_key] = e
+                        if canonical_title:
+                            entries_by_title.setdefault(canonical_title, []).append(e)
+                        if canonical_or_id:
+                            entries_by_openreview.setdefault(canonical_or_id, []).append(e)
+                    canonical_cache[canonical_path] = (
+                        entries_by_key,
+                        entries_by_title,
+                        entries_by_openreview,
+                        entries_by_link,
+                        None,
+                    )
+                except Exception as ex:
+                    canonical_cache[canonical_path] = ({}, {}, {}, {}, str(ex))
+            cached_entries, cached_titles, cached_openreview, cached_links, cached_error = canonical_cache[canonical_path]
+            if cached_error:
+                add_issue(
+                    Issue(
+                        file_path=str(oral_file),
+                        entry_key=None,
+                        issue_type="canonical_parse_error",
+                        severity="error",
+                        message="Failed to parse canonical conference BibTeX file",
+                        details={"canonical_file": str(canonical_path), "error": cached_error},
+                    )
+                )
+            else:
+                canonical_entries_by_key = cached_entries
+                canonical_entries_by_title = cached_titles
+                canonical_entries_by_openreview = cached_openreview
+                canonical_entries_by_link = cached_links
+        else:
+            add_issue(
+                Issue(
+                    file_path=str(oral_file),
+                    entry_key=None,
+                    issue_type="canonical_file_missing",
+                    severity="warning",
+                    message="No canonical conference file for this oral subset year",
+                    details={"canonical_file": str(canonical_path)},
+                )
+            )
+
+        for entry in oral_entries:
+            key = str(entry.get("ID", ""))
+            if not key:
+                add_issue(
+                    Issue(
+                        file_path=str(oral_file),
+                        entry_key=None,
+                        issue_type="oral_missing_key",
+                        severity="error",
+                        message="Oral entry is missing an ID key",
+                        details={},
+                    )
+                )
+                continue
+
+            for field in ("url", "pdf"):
+                val = str(entry.get(field, "")).strip()
+                if not val:
+                    add_issue(
+                        Issue(
+                            file_path=str(oral_file),
+                            entry_key=key,
+                            issue_type="oral_missing_link_field",
+                            severity="error",
+                            message=f"Oral entry missing required `{field}` field",
+                            details={"field": field},
+                        )
+                    )
+                    continue
+                if not HTTP_URL_RE.match(val):
+                    add_issue(
+                        Issue(
+                            file_path=str(oral_file),
+                            entry_key=key,
+                            issue_type="oral_link_not_http",
+                            severity="warning",
+                            message=f"Oral `{field}` field is not an HTTP(S) URL",
+                            details={"field": field, "value": val},
+                        )
+                    )
+
+            if canonical_entries_by_key is None:
+                continue
+
+            oral_title = norm_title(str(entry.get("title", "")))
+            oral_or_id = extract_openreview_id(str(entry.get("url", "")))
+            if not oral_or_id:
+                oral_or_id = extract_openreview_id(str(entry.get("pdf", "")))
+            oral_link_candidates: list[str] = []
+            for field in ("url", "pdf"):
+                fp = url_fingerprint(str(entry.get(field, "")))
+                if fp:
+                    oral_link_candidates.append(fp)
+
+            match_mode = "key"
+            canonical_entry = canonical_entries_by_key.get(key)
+            if canonical_entry is None:
+                title_candidates: list[dict[str, object]] = []
+                if oral_title and canonical_entries_by_title is not None:
+                    title_candidates = canonical_entries_by_title.get(oral_title, [])
+
+                if len(title_candidates) == 1:
+                    canonical_entry = title_candidates[0]
+                    match_mode = "title"
+                elif len(title_candidates) > 1:
+                    add_issue(
+                        Issue(
+                            file_path=str(oral_file),
+                            entry_key=key,
+                            issue_type="oral_title_match_ambiguous",
+                            severity="error",
+                            message="Oral title maps to multiple canonical entries",
+                            details={
+                                "canonical_file": str(canonical_path),
+                                "candidate_count": str(len(title_candidates)),
+                            },
+                        )
+                    )
+                    continue
+                else:
+                    openreview_candidates: list[dict[str, object]] = []
+                    if oral_or_id and canonical_entries_by_openreview is not None:
+                        openreview_candidates = canonical_entries_by_openreview.get(oral_or_id, [])
+
+                    if len(openreview_candidates) == 1:
+                        canonical_entry = openreview_candidates[0]
+                        match_mode = "openreview"
+                    elif len(openreview_candidates) > 1:
+                        add_issue(
+                            Issue(
+                                file_path=str(oral_file),
+                                entry_key=key,
+                                issue_type="oral_openreview_match_ambiguous",
+                                severity="error",
+                                message="Oral OpenReview ID maps to multiple canonical entries",
+                                details={
+                                    "canonical_file": str(canonical_path),
+                                    "candidate_count": str(len(openreview_candidates)),
+                                },
+                            )
+                        )
+                        continue
+                    else:
+                        link_candidates: list[dict[str, object]] = []
+                        if canonical_entries_by_link is not None:
+                            for fp in oral_link_candidates:
+                                link_candidates.extend(canonical_entries_by_link.get(fp, []))
+                        # Deduplicate candidate entries by key.
+                        uniq: dict[str, dict[str, object]] = {}
+                        for cand in link_candidates:
+                            uniq[str(cand.get("ID", ""))] = cand
+                        link_candidates = list(uniq.values())
+
+                        if len(link_candidates) == 1:
+                            canonical_entry = link_candidates[0]
+                            match_mode = "link"
+                        elif len(link_candidates) > 1:
+                            add_issue(
+                                Issue(
+                                    file_path=str(oral_file),
+                                    entry_key=key,
+                                    issue_type="oral_link_match_ambiguous",
+                                    severity="error",
+                                    message="Oral URL/PDF maps to multiple canonical entries",
+                                    details={
+                                        "canonical_file": str(canonical_path),
+                                        "candidate_count": str(len(link_candidates)),
+                                    },
+                                )
+                            )
+                            continue
+                        else:
+                            add_issue(
+                                Issue(
+                                    file_path=str(oral_file),
+                                    entry_key=key,
+                                    issue_type="oral_key_not_in_canonical",
+                                    severity="error",
+                                    message="Oral entry not found in canonical conference file",
+                                    details={"canonical_file": str(canonical_path)},
+                                )
+                            )
+                            continue
+
+            canonical_title = norm_title(str(canonical_entry.get("title", "")))
+            if oral_title and canonical_title and oral_title != canonical_title:
+                add_issue(
+                    Issue(
+                        file_path=str(oral_file),
+                        entry_key=key,
+                        issue_type="oral_title_mismatch",
+                        severity="info",
+                        message="Oral title differs from canonical conference entry",
+                        details={"canonical_file": str(canonical_path)},
+                    )
+                )
+
+            oral_year = str(entry.get("year", "")).strip()
+            canonical_year = str(canonical_entry.get("year", "")).strip()
+            if oral_year and canonical_year and oral_year != canonical_year:
+                add_issue(
+                    Issue(
+                        file_path=str(oral_file),
+                        entry_key=key,
+                        issue_type="oral_year_mismatch",
+                        severity="error",
+                        message="Oral year differs from canonical conference entry",
+                        details={"canonical_file": str(canonical_path)},
+                    )
+                )
+
+            oral_author = author_signature(str(entry.get("author", "")))
+            canonical_author = author_signature(str(canonical_entry.get("author", "")))
+            if match_mode == "key" and oral_author and canonical_author and oral_author != canonical_author:
+                add_issue(
+                    Issue(
+                        file_path=str(oral_file),
+                        entry_key=key,
+                        issue_type="oral_author_mismatch",
+                        severity="info",
+                        message="Oral author field differs from canonical conference entry",
+                        details={"canonical_file": str(canonical_path)},
+                    )
+                )
+            elif match_mode == "title":
+                matched_by_title += 1
+            elif match_mode == "openreview":
+                matched_by_openreview += 1
+            elif match_mode == "link":
+                matched_by_link += 1
+
+    if matched_by_title:
+        issues.append(
+            Issue(
+                file_path="*",
+                entry_key=None,
+                issue_type="oral_key_mismatch_title_match",
+                severity="info",
+                message=f"{matched_by_title} oral entries matched canonical by title despite key differences",
+                details={"count": str(matched_by_title)},
+            )
+        )
+
+    if matched_by_openreview:
+        issues.append(
+            Issue(
+                file_path="*",
+                entry_key=None,
+                issue_type="oral_key_mismatch_openreview_match",
+                severity="info",
+                message=f"{matched_by_openreview} oral entries matched canonical by OpenReview ID despite key differences",
+                details={"count": str(matched_by_openreview)},
+            )
+        )
+
+    if matched_by_link:
+        issues.append(
+            Issue(
+                file_path="*",
+                entry_key=None,
+                issue_type="oral_key_mismatch_link_match",
+                severity="info",
+                message=f"{matched_by_link} oral entries matched canonical by URL/PDF despite key differences",
+                details={"count": str(matched_by_link)},
+            )
+        )
+
+    for issue_type, suppressed in sorted(suppressed_counts.items()):
+        issues.append(
+            Issue(
+                file_path="*",
+                entry_key=None,
+                issue_type="issue_limit_reached",
+                severity="info",
+                message=f"Suppressed {suppressed} additional `{issue_type}` issues (limit={cfg.issue_limit_per_type})",
+                details={"suppressed_type": issue_type, "suppressed_count": str(suppressed)},
+            )
+        )
+
+    return files_scanned, entries_scanned, issues
+
+
 def print_summary(run_id: str, file_rows: list[FileResult], entry_rows: list[EntryResult], issues: list[Issue]) -> None:
     parse_errors = sum(1 for r in file_rows if not r.parse_ok)
     by_sev: dict[str, int] = {}
@@ -814,6 +1298,59 @@ def command_export_tracking(cfg: OpsConfig) -> int:
     return proc.returncode
 
 
+def command_verify_orals(cfg: OpsConfig, recorder: RunRecorder, as_json: bool, fail_on_error: bool) -> int:
+    files_scanned, entries_scanned, issues = run_verify_orals(cfg)
+    write_issues(Path(cfg.db_path), recorder.run_id, issues)
+
+    error_count = sum(1 for i in issues if i.severity == "error")
+    warning_count = sum(1 for i in issues if i.severity == "warning")
+    payload = {
+        "errors": error_count,
+        "warnings": warning_count,
+    }
+    recorder.finish(
+        status="ok" if error_count == 0 else "issues",
+        files_scanned=files_scanned,
+        entries_scanned=entries_scanned,
+        issues_found=len(issues),
+        payload=payload,
+    )
+
+    if as_json:
+        print(
+            json.dumps(
+                {
+                    "run_id": recorder.run_id,
+                    "summary": payload,
+                    "files_scanned": files_scanned,
+                    "entries_scanned": entries_scanned,
+                    "issues": [dataclasses.asdict(i) for i in issues],
+                },
+                indent=2,
+                sort_keys=True,
+            )
+        )
+    else:
+        by_type: dict[str, int] = {}
+        for issue in issues:
+            by_type[issue.issue_type] = by_type.get(issue.issue_type, 0) + 1
+
+        print(f"run_id: {recorder.run_id}")
+        print(f"files_scanned: {files_scanned}")
+        print(f"entries_scanned: {entries_scanned}")
+        print(f"issues_found: {len(issues)}")
+        print(f"errors: {error_count}")
+        print(f"warnings: {warning_count}")
+        if by_type:
+            print("issues_by_type:")
+            for k in sorted(by_type):
+                print(f"  {k}: {by_type[k]}")
+
+    if fail_on_error and error_count > 0:
+        return 3
+    return 0
+
+
 def command_profile(cfg: OpsConfig, profile_path: Path) -> int:
     if not profile_path.exists():
         print(f"Profile not found: {profile_path}")
@@ -837,6 +1374,10 @@ def command_profile(cfg: OpsConfig, profile_path: Path) -> int:
             recorder = RunRecorder(Path(cfg.db_path), command="lint")
             recorder.start()
             rc = command_lint(cfg, recorder, as_json=False, fail_on_error=False)
+        elif step == "verify-orals":
+            recorder = RunRecorder(Path(cfg.db_path), command="verify-orals")
+            recorder.start()
+            rc = command_verify_orals(cfg, recorder, as_json=False, fail_on_error=False)
         elif step == "report":
             rc = command_report(cfg, run_id=None, as_json=False)
         elif step == "install-hooks":
@@ -869,6 +1410,14 @@ def build_parser() -> argparse.ArgumentParser:
     lint = sub.add_parser("lint", help="Run full quality linting across bibliography")
     lint.add_argument("--json", action="store_true", help="Emit JSON output")
     lint.add_argument("--fail-on-error", action="store_true", help="Return non-zero on error severity issues")
+
+    verify_orals = sub.add_parser("verify-orals", help="Validate derived oral subsets against canonical conference files")
+    verify_orals.add_argument("--json", action="store_true", help="Emit JSON output")
+    verify_orals.add_argument(
+        "--fail-on-error",
+        action="store_true",
+        help="Return non-zero when oral verification finds errors",
+    )
 
     report = sub.add_parser("report", help="Report latest or selected lint/scan run")
     report.add_argument("--run-id", help="Specific run ID")
@@ -927,6 +1476,16 @@ def main() -> int:
         with run_lock():
             try:
                 return command_lint(cfg, recorder, as_json=args.json, fail_on_error=args.fail_on_error)
+            except Exception:
+                recorder.finish("failed", 0, 0, 0, {"traceback": traceback.format_exc()})
+                raise
+
+    if args.command == "verify-orals":
+        recorder = RunRecorder(Path(cfg.db_path), command="verify-orals")
+        recorder.start()
+        with run_lock():
+            try:
+                return command_verify_orals(cfg, recorder, as_json=args.json, fail_on_error=args.fail_on_error)
             except Exception:
                 recorder.finish("failed", 0, 0, 0, {"traceback": traceback.format_exc()})
                 raise

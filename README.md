@@ -25,6 +25,9 @@ python3 scripts/bibops.py doctor
 # Daily maintenance profile
 python3 scripts/bibops.py run-profile --profile ops/profiles/daily.toml
 
+# Oral subset validation profile
+python3 scripts/bibops.py --config ops/bibops-orals.toml run-profile --profile ops/profiles/orals.toml
+
 # Release profile (hooks + lint + tracking export)
 python3 scripts/bibops.py run-profile --profile ops/profiles/release.toml
 
@@ -37,6 +40,7 @@ Or use `make` shortcuts:
 ```bash
 make doctor
 make daily
+make orals
 make release
 make full-audit
 ```
@@ -45,12 +49,16 @@ make full-audit
 
 - Default config: `ops/bibops.toml`
 - Full config: `ops/bibops-full.toml`
+- Orals subset config: `ops/bibops-orals.toml`
 
 Default scope is tuned for speed and active curation:
 - `books/`, `conferences/`, `curated/`, `references/`, `courses/`, `theses/`, `presentations/`
 
 Full scope additionally includes:
 - `journals/`
+
+Orals scope (subset verification) includes:
+- `collections/orals/`
 
 ## Skills
 
@@ -66,6 +74,7 @@ These are designed with progressive disclosure and can be invoked explicitly or 
 ## Data and state
 
 - Bibliography files live across domain folders (`books/`, `conferences/`, `curated/`, etc.).
+- Derived oral subsets live in `collections/orals/<venue>/<year>.bib`.
 - Local operational state and enrichment tracking use `bibliography.db`.
 - Version-controlled tracking snapshot is `tracking.json`.
 

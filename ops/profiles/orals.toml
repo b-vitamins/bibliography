@@ -1,0 +1,6 @@
+steps = [
+  "doctor",
+  "lint",
+  "verify-orals",
+  "report",
+]

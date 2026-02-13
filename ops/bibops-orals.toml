@@ -1,0 +1,14 @@
+roots = [
+  "collections/orals",
+]
+
+exclude_globs = [
+  "**/.git/**",
+  "**/__pycache__/**",
+  "**/*.backup",
+  "**/*.bak",
+]
+
+db_path = "bibliography.db"
+tracking_export = "tracking.json"
+issue_limit_per_type = 200
