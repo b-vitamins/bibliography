@@ -1,0 +1,724 @@
+#!/usr/bin/env python3
+"""
+Enrich BibTeX entries with arXiv metadata.
+
+This script adds:
+  - eprint = {<arxiv_id>}
+  - archiveprefix = {arXiv}
+  - primaryclass = {<arxiv_primary_category>}    (when available)
+  - arxiv = {https://arxiv.org/abs/<arxiv_id>}
+
+It intentionally does NOT modify existing url/pdf fields so canonical venue URLs
+such as OpenReview or PMLR remain untouched.
+
+Matching strategy:
+1) OpenAlex lookup by title (preferred when arXiv ID is present)
+2) arXiv API lookup by title + first-author surname
+3) Confidence gating using title similarity + author/year checks
+"""
+
+from __future__ import annotations
+
+import argparse
+import dataclasses
+import glob
+import hashlib
+import json
+import re
+import time
+import unicodedata
+from difflib import SequenceMatcher
+from pathlib import Path
+from typing import Any
+from urllib.parse import quote_plus
+from xml.etree import ElementTree as ET
+
+import bibtexparser
+import requests
+from bibtexparser.bparser import BibTexParser
+from bibtexparser.bwriter import BibTexWriter
+from bibtexparser.customization import convert_to_unicode
+from requests.adapters import HTTPAdapter
+from urllib3.util import Retry
+
+OPENALEX_WORKS_URL = "https://api.openalex.org/works"
+ARXIV_API_URL = "https://export.arxiv.org/api/query"
+
+DEFAULT_CACHE_PATH = Path("ops/arxiv-lookup-cache.json")
+DEFAULT_REPORT_PATH = Path("ops/arxiv-enrichment-report.jsonl")
+
+MAX_TITLE_QUERY_CHARS = 256
+MAX_ARXIV_RESULTS = 12
+MAX_OPENALEX_RESULTS = 15
+
+
+@dataclasses.dataclass
+class Candidate:
+    arxiv_id: str
+    abs_url: str
+    pdf_url: str
+    title: str
+    authors: list[str]
+    year: int | None
+    primary_class: str | None
+    source: str
+    source_rank: int
+    source_ref: str
+
+
+@dataclasses.dataclass
+class MatchResult:
+    candidate: Candidate
+    title_score: float
+    author_score: float
+    year_score: float
+    confidence: float
+
+
+def parse_args() -> argparse.Namespace:
+    parser = argparse.ArgumentParser(
+        description="Enrich BibTeX entries with arXiv metadata using OpenAlex + arXiv API"
+    )
+    parser.add_argument("files", nargs="+", help="BibTeX files or glob patterns")
+    parser.add_argument(
+        "--cache",
+        default=str(DEFAULT_CACHE_PATH),
+        help=f"Lookup cache path (default: {DEFAULT_CACHE_PATH})",
+    )
+    parser.add_argument(
+        "--report",
+        default=str(DEFAULT_REPORT_PATH),
+        help=f"Unresolved/ambiguous report JSONL path (default: {DEFAULT_REPORT_PATH})",
+    )
+    parser.add_argument(
+        "--mailto",
+        default="",
+        help="Email for OpenAlex polite pool (recommended)",
+    )
+    parser.add_argument(
+        "--dry-run",
+        action="store_true",
+        help="Compute matches but do not write file changes",
+    )
+    parser.add_argument(
+        "--overwrite",
+        action="store_true",
+        help="Overwrite existing arXiv fields if present",
+    )
+    parser.add_argument(
+        "--max-entries",
+        type=int,
+        default=0,
+        help="Process at most N entries per file (0 = all)",
+    )
+    parser.add_argument(
+        "--min-title-score",
+        type=float,
+        default=0.92,
+        help="Minimum normalized title similarity for acceptance (default: 0.92)",
+    )
+    parser.add_argument(
+        "--min-confidence",
+        type=float,
+        default=0.90,
+        help="Minimum overall confidence for acceptance (default: 0.90)",
+    )
+    parser.add_argument(
+        "--sleep-ms",
+        type=int,
+        default=80,
+        help="Sleep between API requests in milliseconds (default: 80)",
+    )
+    parser.add_argument(
+        "--verbose",
+        action="store_true",
+        help="Print per-entry matching details",
+    )
+    return parser.parse_args()
+
+
+def make_session() -> requests.Session:
+    session = requests.Session()
+    retry = Retry(
+        total=4,
+        connect=4,
+        read=4,
+        backoff_factor=0.4,
+        status_forcelist=[429, 500, 502, 503, 504],
+        allowed_methods=["GET"],
+        raise_on_status=False,
+    )
+    adapter = HTTPAdapter(max_retries=retry)
+    session.mount("https://", adapter)
+    session.mount("http://", adapter)
+    session.headers.update({"User-Agent": "bibliography-enrich-arxiv/1.0"})
+    return session
+
+
+def load_cache(path: Path) -> dict[str, Any]:
+    if not path.exists():
+        return {"version": 1, "openalex": {}, "arxiv": {}}
+    try:
+        data = json.loads(path.read_text(encoding="utf-8"))
+    except Exception:
+        return {"version": 1, "openalex": {}, "arxiv": {}}
+    if not isinstance(data, dict):
+        return {"version": 1, "openalex": {}, "arxiv": {}}
+    data.setdefault("version", 1)
+    data.setdefault("openalex", {})
+    data.setdefault("arxiv", {})
+    return data
+
+
+def save_cache(path: Path, cache: dict[str, Any]) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(json.dumps(cache, indent=2, sort_keys=True), encoding="utf-8")
+
+
+def normalize_spaces(s: str) -> str:
+    return re.sub(r"\s+", " ", s or "").strip()
+
+
+def strip_latex(s: str) -> str:
+    if not s:
+        return ""
+    out = s
+    out = out.replace("\\textasciicircum{}", "^")
+    out = out.replace("\\textasciicircum", "^")
+    out = out.replace("\\&", "&")
+    out = out.replace("$", "")
+    out = out.replace("{", "").replace("}", "")
+    # Remove common LaTeX commands while preserving arguments.
+    out = re.sub(r"\\[a-zA-Z]+\*?(?:\[[^\]]*\])?", "", out)
+    out = out.replace("\\", " ")
+    return normalize_spaces(out)
+
+
+def normalize_title(s: str) -> str:
+    s = strip_latex(s)
+    s = unicodedata.normalize("NFKD", s).encode("ascii", "ignore").decode("ascii")
+    s = s.lower()
+    s = re.sub(r"[^a-z0-9 ]+", " ", s)
+    return normalize_spaces(s)
+
+
+def tokenize_title(s: str) -> set[str]:
+    return {t for t in normalize_title(s).split(" ") if t}
+
+
+def title_similarity(a: str, b: str) -> float:
+    na = normalize_title(a)
+    nb = normalize_title(b)
+    if not na or not nb:
+        return 0.0
+    seq = SequenceMatcher(a=na, b=nb).ratio()
+    ta = tokenize_title(na)
+    tb = tokenize_title(nb)
+    if not ta or not tb:
+        return seq
+    jac = len(ta & tb) / len(ta | tb)
+    return max(seq, 0.65 * seq + 0.35 * jac)
+
+
+def parse_year(value: str | int | None) -> int | None:
+    if value is None:
+        return None
+    s = str(value).strip()
+    m = re.search(r"(19|20)\d{2}", s)
+    if not m:
+        return None
+    return int(m.group(0))
+
+
+def parse_authors(raw: str) -> list[str]:
+    if not raw:
+        return []
+    parts = [p.strip() for p in raw.split(" and ") if p.strip()]
+    return [normalize_spaces(strip_latex(p)) for p in parts]
+
+
+def surname(name: str) -> str:
+    text = unicodedata.normalize("NFKD", name or "").encode("ascii", "ignore").decode("ascii")
+    text = text.lower().strip()
+    if not text:
+        return ""
+    if "," in text:
+        left = text.split(",", 1)[0].strip()
+        tokens = re.findall(r"[a-z0-9]+", left)
+        return tokens[-1] if tokens else ""
+    tokens = re.findall(r"[a-z0-9]+", text)
+    return tokens[-1] if tokens else ""
+
+
+def first_author_surname(entry: dict[str, Any]) -> str:
+    authors = parse_authors(str(entry.get("author", "")))
+    if not authors:
+        return ""
+    return surname(authors[0])
+
+
+def extract_arxiv_id(text: str) -> str:
+    if not text:
+        return ""
+    # Handles modern IDs and old category IDs, optionally with version suffix.
+    m = re.search(r"arxiv\.org/(?:abs|pdf)/([A-Za-z\-\.]+/[0-9]{7}|[0-9]{4}\.[0-9]{4,5})(?:v\d+)?", text, re.IGNORECASE)
+    if not m:
+        m = re.search(r"\b([A-Za-z\-\.]+/[0-9]{7}|[0-9]{4}\.[0-9]{4,5})(?:v\d+)?\b", text)
+        if not m:
+            return ""
+    return m.group(1)
+
+
+def candidate_from_openalex(item: dict[str, Any], rank: int) -> Candidate | None:
+    ids = item.get("ids") or {}
+    arxiv_url = str(ids.get("arxiv") or "").strip()
+    arxiv_id = extract_arxiv_id(arxiv_url)
+    if not arxiv_id:
+        for loc in item.get("locations") or []:
+            for field in ("landing_page_url", "pdf_url"):
+                maybe = str((loc or {}).get(field) or "")
+                arxiv_id = extract_arxiv_id(maybe)
+                if arxiv_id:
+                    break
+            if arxiv_id:
+                break
+    if not arxiv_id:
+        return None
+
+    title = str(item.get("title") or item.get("display_name") or "").strip()
+    year = parse_year(item.get("publication_year"))
+    authors = [
+        str(((a or {}).get("author") or {}).get("display_name") or "").strip()
+        for a in (item.get("authorships") or [])
+        if ((a or {}).get("author") or {}).get("display_name")
+    ]
+    abs_url = f"https://arxiv.org/abs/{arxiv_id}"
+    pdf_url = f"https://arxiv.org/pdf/{arxiv_id}.pdf"
+    source_ref = str(item.get("id") or "")
+    return Candidate(
+        arxiv_id=arxiv_id,
+        abs_url=abs_url,
+        pdf_url=pdf_url,
+        title=title,
+        authors=authors,
+        year=year,
+        primary_class=None,
+        source="openalex",
+        source_rank=rank,
+        source_ref=source_ref,
+    )
+
+
+def query_openalex(
+    session: requests.Session,
+    cache: dict[str, Any],
+    title: str,
+    mailto: str,
+    sleep_ms: int,
+) -> list[Candidate]:
+    norm_key = hashlib.sha1(normalize_title(title).encode("utf-8")).hexdigest()
+    cached = cache["openalex"].get(norm_key)
+    if isinstance(cached, list):
+        return [Candidate(**row) for row in cached]
+
+    params = {
+        "search": title[:MAX_TITLE_QUERY_CHARS],
+        "per-page": MAX_OPENALEX_RESULTS,
+    }
+    if mailto:
+        params["mailto"] = mailto
+
+    candidates: list[Candidate] = []
+    try:
+        resp = session.get(OPENALEX_WORKS_URL, params=params, timeout=25)
+        if resp.ok:
+            payload = resp.json()
+            for idx, item in enumerate(payload.get("results") or []):
+                cand = candidate_from_openalex(item, rank=idx)
+                if cand is not None:
+                    candidates.append(cand)
+    except Exception:
+        candidates = []
+
+    cache["openalex"][norm_key] = [dataclasses.asdict(c) for c in candidates]
+    if sleep_ms > 0:
+        time.sleep(sleep_ms / 1000.0)
+    return candidates
+
+
+def parse_arxiv_feed(xml_text: str) -> list[Candidate]:
+    if not xml_text.strip():
+        return []
+    try:
+        root = ET.fromstring(xml_text)
+    except Exception:
+        return []
+
+    ns = {
+        "atom": "http://www.w3.org/2005/Atom",
+        "arxiv": "http://arxiv.org/schemas/atom",
+    }
+    out: list[Candidate] = []
+    for idx, entry in enumerate(root.findall("atom:entry", ns)):
+        abs_url = normalize_spaces(entry.findtext("atom:id", default="", namespaces=ns))
+        arxiv_id = extract_arxiv_id(abs_url)
+        if not arxiv_id:
+            continue
+        title = normalize_spaces(entry.findtext("atom:title", default="", namespaces=ns))
+        published = entry.findtext("atom:published", default="", namespaces=ns)
+        year = parse_year(published)
+        authors = [
+            normalize_spaces(a.findtext("atom:name", default="", namespaces=ns))
+            for a in entry.findall("atom:author", ns)
+        ]
+        primary = None
+        cat = entry.find("arxiv:primary_category", ns)
+        if cat is not None:
+            primary = cat.attrib.get("term")
+
+        out.append(
+            Candidate(
+                arxiv_id=arxiv_id,
+                abs_url=f"https://arxiv.org/abs/{arxiv_id}",
+                pdf_url=f"https://arxiv.org/pdf/{arxiv_id}.pdf",
+                title=title,
+                authors=authors,
+                year=year,
+                primary_class=primary,
+                source="arxiv",
+                source_rank=idx,
+                source_ref=abs_url,
+            )
+        )
+    return out
+
+
+def query_arxiv(
+    session: requests.Session,
+    cache: dict[str, Any],
+    title: str,
+    author_surname: str,
+    sleep_ms: int,
+) -> list[Candidate]:
+    norm_key = hashlib.sha1((normalize_title(title) + "|" + author_surname).encode("utf-8")).hexdigest()
+    cached = cache["arxiv"].get(norm_key)
+    if isinstance(cached, list):
+        return [Candidate(**row) for row in cached]
+
+    title_q = title[:MAX_TITLE_QUERY_CHARS]
+    if author_surname:
+        query = f'ti:"{title_q}" AND au:{author_surname}'
+    else:
+        query = f'ti:"{title_q}"'
+
+    params = {
+        "search_query": query,
+        "start": 0,
+        "max_results": MAX_ARXIV_RESULTS,
+        "sortBy": "relevance",
+        "sortOrder": "descending",
+    }
+    candidates: list[Candidate] = []
+    try:
+        resp = session.get(ARXIV_API_URL, params=params, timeout=30)
+        if resp.ok:
+            candidates = parse_arxiv_feed(resp.text)
+    except Exception:
+        candidates = []
+
+    cache["arxiv"][norm_key] = [dataclasses.asdict(c) for c in candidates]
+    if sleep_ms > 0:
+        time.sleep(sleep_ms / 1000.0)
+    return candidates
+
+
+def candidate_year_score(entry_year: int | None, cand_year: int | None) -> float:
+    if entry_year is None or cand_year is None:
+        return 0.5
+    delta = abs(entry_year - cand_year)
+    if delta == 0:
+        return 1.0
+    if delta == 1:
+        return 0.95
+    if delta == 2:
+        return 0.6
+    return 0.1
+
+
+def candidate_author_score(first_surname: str, cand_authors: list[str]) -> float:
+    if not first_surname:
+        return 0.5
+    if not cand_authors:
+        return 0.4
+    cand_surnames = {surname(a) for a in cand_authors if surname(a)}
+    if first_surname in cand_surnames:
+        return 1.0
+    return 0.0
+
+
+def compute_match(entry: dict[str, Any], cand: Candidate) -> MatchResult:
+    etitle = str(entry.get("title", ""))
+    eyear = parse_year(entry.get("year"))
+    first_sname = first_author_surname(entry)
+
+    tscore = title_similarity(etitle, cand.title)
+    ascore = candidate_author_score(first_sname, cand.authors)
+    yscore = candidate_year_score(eyear, cand.year)
+
+    # Weighted confidence; source boost favors OpenAlex-derived arXiv IDs slightly.
+    conf = 0.72 * tscore + 0.18 * ascore + 0.10 * yscore
+    if cand.source == "openalex":
+        conf = min(1.0, conf + 0.03)
+
+    return MatchResult(
+        candidate=cand,
+        title_score=tscore,
+        author_score=ascore,
+        year_score=yscore,
+        confidence=conf,
+    )
+
+
+def pick_best_match(
+    entry: dict[str, Any],
+    candidates: list[Candidate],
+    min_title_score: float,
+    min_confidence: float,
+) -> MatchResult | None:
+    if not candidates:
+        return None
+    ranked = sorted(
+        (compute_match(entry, c) for c in candidates),
+        key=lambda m: (m.confidence, m.title_score, -m.candidate.source_rank),
+        reverse=True,
+    )
+    top = ranked[0]
+    if top.title_score < min_title_score:
+        return None
+    if top.confidence < min_confidence:
+        return None
+    return top
+
+
+def has_arxiv_fields(entry: dict[str, Any]) -> bool:
+    eprint = str(entry.get("eprint", "")).strip()
+    apfx = str(entry.get("archiveprefix", "")).strip().lower()
+    arxiv = str(entry.get("arxiv", "")).strip()
+    if eprint and apfx == "arxiv":
+        return True
+    if arxiv and "arxiv.org/abs/" in arxiv.lower():
+        return True
+    return False
+
+
+def set_arxiv_fields(entry: dict[str, Any], match: MatchResult) -> None:
+    cand = match.candidate
+    entry["eprint"] = cand.arxiv_id
+    entry["archiveprefix"] = "arXiv"
+    entry["arxiv"] = cand.abs_url
+    if cand.primary_class:
+        entry["primaryclass"] = cand.primary_class
+
+
+def load_bib(path: Path):
+    parser = BibTexParser(common_strings=True)
+    parser.customization = convert_to_unicode
+    parser.ignore_nonstandard_types = False
+    with path.open("r", encoding="utf-8") as f:
+        return bibtexparser.load(f, parser=parser)
+
+
+def write_bib(path: Path, bib_db: Any) -> None:
+    writer = BibTexWriter()
+    writer.indent = "  "
+    writer.order_entries_by = None
+    writer.align_values = False
+    path.write_text(writer.write(bib_db), encoding="utf-8")
+
+
+def iter_file_paths(patterns: list[str]) -> list[Path]:
+    out: list[Path] = []
+    seen: set[Path] = set()
+    for pat in patterns:
+        matches = [Path(m) for m in sorted(glob.glob(pat, recursive=True))]
+        if not matches:
+            p = Path(pat)
+            if p.exists():
+                matches = [p]
+        for p in matches:
+            if p.is_file() and p.suffix.lower() == ".bib":
+                rp = p.resolve()
+                if rp not in seen:
+                    out.append(p)
+                    seen.add(rp)
+    return out
+
+
+def append_report(report_path: Path, payload: dict[str, Any]) -> None:
+    report_path.parent.mkdir(parents=True, exist_ok=True)
+    with report_path.open("a", encoding="utf-8") as f:
+        f.write(json.dumps(payload, sort_keys=True) + "\n")
+
+
+def process_file(
+    path: Path,
+    session: requests.Session,
+    cache: dict[str, Any],
+    args: argparse.Namespace,
+) -> tuple[int, int, int, int]:
+    db = load_bib(path)
+    entries = db.entries
+    changed = 0
+    processed = 0
+    skipped_existing = 0
+    unresolved = 0
+
+    if args.max_entries > 0:
+        entries = entries[: args.max_entries]
+
+    for entry in entries:
+        key = str(entry.get("ID", ""))
+        title = normalize_spaces(str(entry.get("title", "")))
+        if not key or not title:
+            unresolved += 1
+            append_report(
+                Path(args.report),
+                {
+                    "file": str(path),
+                    "entry_key": key,
+                    "reason": "missing_key_or_title",
+                },
+            )
+            continue
+
+        processed += 1
+        if has_arxiv_fields(entry) and not args.overwrite:
+            skipped_existing += 1
+            continue
+
+        first_sname = first_author_surname(entry)
+        openalex = query_openalex(
+            session=session,
+            cache=cache,
+            title=title,
+            mailto=args.mailto,
+            sleep_ms=args.sleep_ms,
+        )
+        arxiv = query_arxiv(
+            session=session,
+            cache=cache,
+            title=title,
+            author_surname=first_sname,
+            sleep_ms=args.sleep_ms,
+        )
+        candidates = openalex + arxiv
+        match = pick_best_match(
+            entry=entry,
+            candidates=candidates,
+            min_title_score=args.min_title_score,
+            min_confidence=args.min_confidence,
+        )
+        if match is None:
+            unresolved += 1
+            top_candidates = sorted(
+                (compute_match(entry, c) for c in candidates),
+                key=lambda m: (m.confidence, m.title_score),
+                reverse=True,
+            )[:3]
+            append_report(
+                Path(args.report),
+                {
+                    "file": str(path),
+                    "entry_key": key,
+                    "reason": "no_confident_match",
+                    "title": title,
+                    "top_candidates": [
+                        {
+                            "source": m.candidate.source,
+                            "arxiv_id": m.candidate.arxiv_id,
+                            "title": m.candidate.title,
+                            "confidence": round(m.confidence, 4),
+                            "title_score": round(m.title_score, 4),
+                            "author_score": round(m.author_score, 4),
+                            "year_score": round(m.year_score, 4),
+                        }
+                        for m in top_candidates
+                    ],
+                },
+            )
+            continue
+
+        if args.verbose:
+            print(
+                f"[match] {path}::{key} -> {match.candidate.arxiv_id} "
+                f"(src={match.candidate.source}, conf={match.confidence:.3f}, "
+                f"title={match.title_score:.3f}, author={match.author_score:.3f}, year={match.year_score:.3f})"
+            )
+
+        set_arxiv_fields(entry, match)
+        changed += 1
+
+    # If max_entries is set, we only mutated a prefix in memory. Do not write partial file in non-dry mode.
+    if changed > 0 and not args.dry_run and args.max_entries == 0:
+        write_bib(path, db)
+
+    return processed, changed, skipped_existing, unresolved
+
+
+def main() -> int:
+    args = parse_args()
+    paths = iter_file_paths(args.files)
+    if not paths:
+        print("No BibTeX files matched.")
+        return 1
+
+    # Reset report for this run.
+    report_path = Path(args.report)
+    if report_path.exists():
+        report_path.unlink()
+
+    cache_path = Path(args.cache)
+    cache = load_cache(cache_path)
+    session = make_session()
+
+    total_processed = 0
+    total_changed = 0
+    total_skipped = 0
+    total_unresolved = 0
+
+    for p in paths:
+        processed, changed, skipped_existing, unresolved = process_file(
+            path=p,
+            session=session,
+            cache=cache,
+            args=args,
+        )
+        total_processed += processed
+        total_changed += changed
+        total_skipped += skipped_existing
+        total_unresolved += unresolved
+        print(
+            f"{p}: processed={processed} changed={changed} "
+            f"skipped_existing={skipped_existing} unresolved={unresolved}"
+        )
+
+    save_cache(cache_path, cache)
+
+    print("\nSummary:")
+    print(f"  files: {len(paths)}")
+    print(f"  processed_entries: {total_processed}")
+    print(f"  changed_entries: {total_changed}")
+    print(f"  skipped_existing: {total_skipped}")
+    print(f"  unresolved_entries: {total_unresolved}")
+    print(f"  cache: {cache_path}")
+    print(f"  unresolved_report: {report_path}")
+    if args.dry_run:
+        print("  mode: dry-run (no files written)")
+    elif args.max_entries > 0:
+        print("  mode: max-entries set; no files written to avoid partial updates")
+
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

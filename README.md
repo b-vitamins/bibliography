@@ -28,6 +28,9 @@ python3 scripts/bibops.py run-profile --profile ops/profiles/daily.toml
 # Oral subset validation profile
 python3 scripts/bibops.py --config ops/bibops-orals.toml run-profile --profile ops/profiles/orals.toml
 
+# Enrich oral subsets with arXiv IDs (keeps existing url/pdf untouched)
+python3 scripts/enrich-arxiv.py collections/orals/*/*.bib
+
 # Release profile (hooks + lint + tracking export)
 python3 scripts/bibops.py run-profile --profile ops/profiles/release.toml
 
@@ -41,6 +44,7 @@ Or use `make` shortcuts:
 make doctor
 make daily
 make orals
+make enrich-arxiv-orals
 make release
 make full-audit
 ```

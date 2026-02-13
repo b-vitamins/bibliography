@@ -1,4 +1,4 @@
-.PHONY: doctor lint scan report daily release full-audit orals hooks export-tracking validate-skills
+.PHONY: doctor lint scan report daily release full-audit orals enrich-arxiv-orals hooks export-tracking validate-skills
 
 doctor:
 	python3 scripts/bibops.py doctor
@@ -23,6 +23,9 @@ full-audit:
 
 orals:
 	python3 scripts/bibops.py --config ops/bibops-orals.toml run-profile --profile ops/profiles/orals.toml
+
+enrich-arxiv-orals:
+	python3 scripts/enrich-arxiv.py collections/orals/*/*.bib
 
 hooks:
 	python3 scripts/bibops.py install-hooks
