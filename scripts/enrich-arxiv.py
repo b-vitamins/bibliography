@@ -152,6 +152,12 @@ def parse_args() -> argparse.Namespace:
         help="Minimum seconds between OpenAlex requests (default: 0.1)",
     )
     parser.add_argument(
+        "--save-cache-every",
+        type=int,
+        default=25,
+        help="Persist lookup cache every N processed entries (default: 25)",
+    )
+    parser.add_argument(
         "--verbose",
         action="store_true",
         help="Print per-entry matching details",
@@ -162,12 +168,14 @@ def parse_args() -> argparse.Namespace:
 def make_session() -> requests.Session:
     session = requests.Session()
     retry = Retry(
-        total=4,
-        connect=4,
-        read=4,
-        backoff_factor=0.4,
-        status_forcelist=[429, 500, 502, 503, 504],
+        total=2,
+        connect=2,
+        read=2,
+        backoff_factor=0.2,
+        backoff_max=4,
+        status_forcelist=[500, 502, 503, 504],
         allowed_methods=["GET"],
+        respect_retry_after_header=False,
         raise_on_status=False,
     )
     adapter = HTTPAdapter(max_retries=retry)
@@ -357,7 +365,10 @@ def query_openalex(
     candidates: list[Candidate] = []
     try:
         throttle_openalex(openalex_min_interval)
-        resp = session.get(OPENALEX_WORKS_URL, params=params, timeout=25)
+        resp = session.get(OPENALEX_WORKS_URL, params=params, timeout=(8, 20))
+        if resp.status_code == 429:
+            # Avoid long apparent hangs from server-directed retry windows.
+            return []
         if resp.ok:
             payload = resp.json()
             for idx, item in enumerate(payload.get("results") or []):
@@ -615,6 +626,7 @@ def process_file(
     path: Path,
     session: requests.Session,
     cache: dict[str, Any],
+    cache_path: Path,
     args: argparse.Namespace,
 ) -> tuple[int, int, int, int]:
     db = load_bib(path)
@@ -645,6 +657,14 @@ def process_file(
             continue
 
         processed += 1
+        if processed % 25 == 0:
+            print(
+                f"  progress {path.name}: processed={processed} changed={changed} "
+                f"skipped_existing={skipped_existing} unresolved={unresolved}"
+            )
+        if args.save_cache_every > 0 and processed % args.save_cache_every == 0:
+            save_cache(cache_path, cache)
+
         if has_arxiv_fields(entry) and not args.overwrite:
             skipped_existing += 1
             continue
@@ -751,21 +771,28 @@ def main() -> int:
     total_skipped = 0
     total_unresolved = 0
 
-    for p in paths:
-        processed, changed, skipped_existing, unresolved = process_file(
-            path=p,
-            session=session,
-            cache=cache,
-            args=args,
-        )
-        total_processed += processed
-        total_changed += changed
-        total_skipped += skipped_existing
-        total_unresolved += unresolved
-        print(
-            f"{p}: processed={processed} changed={changed} "
-            f"skipped_existing={skipped_existing} unresolved={unresolved}"
-        )
+    try:
+        for p in paths:
+            processed, changed, skipped_existing, unresolved = process_file(
+                path=p,
+                session=session,
+                cache=cache,
+                cache_path=cache_path,
+                args=args,
+            )
+            total_processed += processed
+            total_changed += changed
+            total_skipped += skipped_existing
+            total_unresolved += unresolved
+            print(
+                f"{p}: processed={processed} changed={changed} "
+                f"skipped_existing={skipped_existing} unresolved={unresolved}"
+            )
+            save_cache(cache_path, cache)
+    except KeyboardInterrupt:
+        save_cache(cache_path, cache)
+        print("\nInterrupted. Progress cached.")
+        return 130
 
     save_cache(cache_path, cache)
 
