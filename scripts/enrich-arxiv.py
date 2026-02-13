@@ -24,13 +24,13 @@ import dataclasses
 import glob
 import hashlib
 import json
+import os
 import re
 import time
 import unicodedata
 from difflib import SequenceMatcher
 from pathlib import Path
 from typing import Any
-from urllib.parse import quote_plus
 from xml.etree import ElementTree as ET
 
 import bibtexparser
@@ -50,6 +50,11 @@ DEFAULT_REPORT_PATH = Path("ops/arxiv-enrichment-report.jsonl")
 MAX_TITLE_QUERY_CHARS = 256
 MAX_ARXIV_RESULTS = 12
 MAX_OPENALEX_RESULTS = 15
+ARXIV_MIN_INTERVAL_DEFAULT = 3.0
+OPENALEX_MIN_INTERVAL_DEFAULT = 0.1  # 10 rps default; conservative across OpenAlex docs variants.
+
+_LAST_ARXIV_REQUEST_TS = 0.0
+_LAST_OPENALEX_REQUEST_TS = 0.0
 
 
 @dataclasses.dataclass
@@ -96,6 +101,11 @@ def parse_args() -> argparse.Namespace:
         help="Email for OpenAlex polite pool (recommended)",
     )
     parser.add_argument(
+        "--openalex-api-key",
+        default=os.environ.get("OPENALEX_API_KEY", ""),
+        help="OpenAlex API key (or set OPENALEX_API_KEY env var)",
+    )
+    parser.add_argument(
         "--dry-run",
         action="store_true",
         help="Compute matches but do not write file changes",
@@ -128,6 +138,18 @@ def parse_args() -> argparse.Namespace:
         type=int,
         default=80,
         help="Sleep between API requests in milliseconds (default: 80)",
+    )
+    parser.add_argument(
+        "--arxiv-min-interval",
+        type=float,
+        default=ARXIV_MIN_INTERVAL_DEFAULT,
+        help="Minimum seconds between arXiv API requests (default: 3.0)",
+    )
+    parser.add_argument(
+        "--openalex-min-interval",
+        type=float,
+        default=OPENALEX_MIN_INTERVAL_DEFAULT,
+        help="Minimum seconds between OpenAlex requests (default: 0.1)",
     )
     parser.add_argument(
         "--verbose",
@@ -314,6 +336,8 @@ def query_openalex(
     cache: dict[str, Any],
     title: str,
     mailto: str,
+    openalex_api_key: str,
+    openalex_min_interval: float,
     sleep_ms: int,
 ) -> list[Candidate]:
     norm_key = hashlib.sha1(normalize_title(title).encode("utf-8")).hexdigest()
@@ -327,9 +351,12 @@ def query_openalex(
     }
     if mailto:
         params["mailto"] = mailto
+    if openalex_api_key:
+        params["api_key"] = openalex_api_key
 
     candidates: list[Candidate] = []
     try:
+        throttle_openalex(openalex_min_interval)
         resp = session.get(OPENALEX_WORKS_URL, params=params, timeout=25)
         if resp.ok:
             payload = resp.json()
@@ -399,6 +426,7 @@ def query_arxiv(
     title: str,
     author_surname: str,
     sleep_ms: int,
+    arxiv_min_interval: float,
 ) -> list[Candidate]:
     norm_key = hashlib.sha1((normalize_title(title) + "|" + author_surname).encode("utf-8")).hexdigest()
     cached = cache["arxiv"].get(norm_key)
@@ -420,6 +448,7 @@ def query_arxiv(
     }
     candidates: list[Candidate] = []
     try:
+        throttle_arxiv(arxiv_min_interval)
         resp = session.get(ARXIV_API_URL, params=params, timeout=30)
         if resp.ok:
             candidates = parse_arxiv_feed(resp.text)
@@ -430,6 +459,28 @@ def query_arxiv(
     if sleep_ms > 0:
         time.sleep(sleep_ms / 1000.0)
     return candidates
+
+
+def throttle_arxiv(min_interval_seconds: float) -> None:
+    """Respect arXiv legacy API terms: <= 1 request every 3 seconds."""
+    global _LAST_ARXIV_REQUEST_TS
+    min_interval_seconds = max(0.0, float(min_interval_seconds))
+    now = time.monotonic()
+    elapsed = now - _LAST_ARXIV_REQUEST_TS
+    if elapsed < min_interval_seconds:
+        time.sleep(min_interval_seconds - elapsed)
+    _LAST_ARXIV_REQUEST_TS = time.monotonic()
+
+
+def throttle_openalex(min_interval_seconds: float) -> None:
+    """Throttle OpenAlex request cadence to remain under configured request rate."""
+    global _LAST_OPENALEX_REQUEST_TS
+    min_interval_seconds = max(0.0, float(min_interval_seconds))
+    now = time.monotonic()
+    elapsed = now - _LAST_OPENALEX_REQUEST_TS
+    if elapsed < min_interval_seconds:
+        time.sleep(min_interval_seconds - elapsed)
+    _LAST_OPENALEX_REQUEST_TS = time.monotonic()
 
 
 def candidate_year_score(entry_year: int | None, cand_year: int | None) -> float:
@@ -576,6 +627,8 @@ def process_file(
     if args.max_entries > 0:
         entries = entries[: args.max_entries]
 
+    print(f"processing file: {path} ({len(entries)} entries)")
+
     for entry in entries:
         key = str(entry.get("ID", ""))
         title = normalize_spaces(str(entry.get("title", "")))
@@ -602,22 +655,34 @@ def process_file(
             cache=cache,
             title=title,
             mailto=args.mailto,
+            openalex_api_key=args.openalex_api_key,
+            openalex_min_interval=args.openalex_min_interval,
             sleep_ms=args.sleep_ms,
         )
-        arxiv = query_arxiv(
-            session=session,
-            cache=cache,
-            title=title,
-            author_surname=first_sname,
-            sleep_ms=args.sleep_ms,
-        )
-        candidates = openalex + arxiv
         match = pick_best_match(
             entry=entry,
-            candidates=candidates,
+            candidates=openalex,
             min_title_score=args.min_title_score,
             min_confidence=args.min_confidence,
         )
+        if match is None:
+            arxiv = query_arxiv(
+                session=session,
+                cache=cache,
+                title=title,
+                author_surname=first_sname,
+                sleep_ms=args.sleep_ms,
+                arxiv_min_interval=args.arxiv_min_interval,
+            )
+            candidates = openalex + arxiv
+            match = pick_best_match(
+                entry=entry,
+                candidates=candidates,
+                min_title_score=args.min_title_score,
+                min_confidence=args.min_confidence,
+            )
+        else:
+            candidates = openalex
         if match is None:
             unresolved += 1
             top_candidates = sorted(
