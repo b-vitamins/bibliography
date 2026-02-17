@@ -47,6 +47,7 @@ ARXIV_API_URL = "https://export.arxiv.org/api/query"
 DEFAULT_CACHE_PATH = Path("ops/arxiv-lookup-cache.json")
 DEFAULT_REPORT_PATH = Path("ops/arxiv-enrichment-report.jsonl")
 DEFAULT_CHECKPOINT_PATH = Path("ops/arxiv-enrichment-checkpoint.json")
+DEFAULT_TRIAGE_DIR = Path("ops/unresolved")
 
 MAX_TITLE_QUERY_CHARS = 256
 MAX_ARXIV_RESULTS = 12
@@ -100,6 +101,21 @@ def parse_args() -> argparse.Namespace:
         "--report",
         default=str(DEFAULT_REPORT_PATH),
         help=f"Unresolved/ambiguous report JSONL path (default: {DEFAULT_REPORT_PATH})",
+    )
+    parser.add_argument(
+        "--triage-dir",
+        default=str(DEFAULT_TRIAGE_DIR),
+        help=f"Triage queue directory for unresolved entries (default: {DEFAULT_TRIAGE_DIR})",
+    )
+    parser.add_argument(
+        "--triage-prefix",
+        default="arxiv",
+        help="Prefix used for triage queue files (default: arxiv)",
+    )
+    parser.add_argument(
+        "--no-triage",
+        action="store_true",
+        help="Disable unresolved triage queue output files",
     )
     parser.add_argument(
         "--mailto",
@@ -704,6 +720,57 @@ def append_report(report_path: Path, payload: dict[str, Any]) -> None:
         f.write(json.dumps(payload, sort_keys=True) + "\n")
 
 
+def append_triage(
+    triage_dir: Path,
+    triage_prefix: str,
+    triage_reason: str,
+    payload: dict[str, Any],
+) -> None:
+    triage_dir.mkdir(parents=True, exist_ok=True)
+    triage_path = triage_dir / f"{triage_prefix}-{triage_reason}.jsonl"
+    with triage_path.open("a", encoding="utf-8") as f:
+        f.write(json.dumps(payload, sort_keys=True) + "\n")
+
+
+def has_non_arxiv_preprint_link(entry: dict[str, Any]) -> bool:
+    non_arxiv_hosts = (
+        "biorxiv.org",
+        "medrxiv.org",
+        "ssrn.com",
+        "researchsquare.com",
+        "osf.io",
+    )
+    for field in ("url", "pdf", "doi"):
+        value = str(entry.get(field, "")).lower()
+        if any(host in value for host in non_arxiv_hosts):
+            return True
+    return False
+
+
+def classify_triage_reason(unresolved_payload: dict[str, Any]) -> str:
+    reason = str(unresolved_payload.get("reason", ""))
+    if reason == "missing_key_or_title":
+        return "invalid_entry_metadata"
+    if reason.startswith("entry_timeout"):
+        return "query_timeout"
+    if reason != "no_confident_match":
+        return "other"
+
+    if unresolved_payload.get("non_arxiv_preprint"):
+        return "non_arxiv_preprint"
+
+    top = unresolved_payload.get("top_candidates") or []
+    if not top:
+        return "no_arxiv_found"
+
+    first = top[0] if isinstance(top[0], dict) else {}
+    title_score = float(first.get("title_score", 0.0) or 0.0)
+    confidence = float(first.get("confidence", 0.0) or 0.0)
+    if title_score >= 0.80 or confidence >= 0.70:
+        return "ambiguous_match"
+    return "weak_candidate_match"
+
+
 def process_file(
     path: Path,
     session: requests.Session,
@@ -712,6 +779,7 @@ def process_file(
     checkpoint: dict[str, Any],
     checkpoint_path: Path,
     args: argparse.Namespace,
+    triage_counts: dict[str, int],
 ) -> tuple[int, int, int, int]:
     db = load_bib(path)
     entries = list(db.entries)
@@ -751,6 +819,21 @@ def process_file(
         }
         save_checkpoint(checkpoint_path, checkpoint)
 
+    def emit_unresolved(unresolved_payload: dict[str, Any]) -> None:
+        append_report(Path(args.report), unresolved_payload)
+        if args.no_triage:
+            return
+        triage_reason = classify_triage_reason(unresolved_payload)
+        triage_counts[triage_reason] = triage_counts.get(triage_reason, 0) + 1
+        triage_payload = dict(unresolved_payload)
+        triage_payload["triage_reason"] = triage_reason
+        append_triage(
+            triage_dir=Path(args.triage_dir),
+            triage_prefix=args.triage_prefix,
+            triage_reason=triage_reason,
+            payload=triage_payload,
+        )
+
     start_reached = not args.start_key or args.start_key in processed_keys
     saw_start_key = start_reached
 
@@ -777,13 +860,12 @@ def process_file(
 
         if not key or not title:
             unresolved += 1
-            append_report(
-                Path(args.report),
+            emit_unresolved(
                 {
                     "file": str(path),
                     "entry_key": key,
                     "reason": "missing_key_or_title",
-                },
+                }
             )
             if key:
                 processed_keys.add(key)
@@ -810,14 +892,13 @@ def process_file(
 
         if entry_timed_out():
             unresolved += 1
-            append_report(
-                Path(args.report),
+            emit_unresolved(
                 {
                     "file": str(path),
                     "entry_key": key,
                     "reason": "entry_timeout_before_lookup",
                     "title": title,
-                },
+                }
             )
             processed_keys.add(key)
             continue
@@ -843,14 +924,13 @@ def process_file(
         if match is None:
             if entry_timed_out():
                 unresolved += 1
-                append_report(
-                    Path(args.report),
+                emit_unresolved(
                     {
                         "file": str(path),
                         "entry_key": key,
                         "reason": "entry_timeout_after_openalex",
                         "title": title,
-                    },
+                    }
                 )
                 processed_keys.add(key)
                 continue
@@ -881,13 +961,13 @@ def process_file(
                 key=lambda m: (m.confidence, m.title_score),
                 reverse=True,
             )[:3]
-            append_report(
-                Path(args.report),
+            emit_unresolved(
                 {
                     "file": str(path),
                     "entry_key": key,
                     "reason": "no_confident_match",
                     "title": title,
+                    "non_arxiv_preprint": has_non_arxiv_preprint_link(entry),
                     "top_candidates": [
                         {
                             "source": m.candidate.source,
@@ -900,7 +980,7 @@ def process_file(
                         }
                         for m in top_candidates
                     ],
-                },
+                }
             )
             processed_keys.add(key)
             continue
@@ -945,6 +1025,16 @@ def main() -> int:
     if args.reset_checkpoint and checkpoint_path.exists():
         checkpoint_path.unlink()
 
+    triage_counts: dict[str, int] = {}
+    triage_summary_path = Path(args.triage_dir) / f"{args.triage_prefix}-summary.json"
+    if not args.no_triage:
+        triage_dir = Path(args.triage_dir)
+        triage_dir.mkdir(parents=True, exist_ok=True)
+        for old in triage_dir.glob(f"{args.triage_prefix}-*.jsonl"):
+            old.unlink()
+        if triage_summary_path.exists():
+            triage_summary_path.unlink()
+
     cache_path = Path(args.cache)
     cache = load_cache(cache_path)
     checkpoint = load_checkpoint(checkpoint_path)
@@ -965,6 +1055,7 @@ def main() -> int:
                 checkpoint=checkpoint,
                 checkpoint_path=checkpoint_path,
                 args=args,
+                triage_counts=triage_counts,
             )
             total_processed += processed
             total_changed += changed
@@ -979,11 +1070,40 @@ def main() -> int:
     except KeyboardInterrupt:
         save_cache(cache_path, cache)
         save_checkpoint(checkpoint_path, checkpoint)
+        if not args.no_triage:
+            triage_summary_path.write_text(
+                json.dumps(
+                    {
+                        "version": 1,
+                        "counts": triage_counts,
+                        "total_unresolved": total_unresolved,
+                        "report_path": str(report_path),
+                        "interrupted": True,
+                    },
+                    indent=2,
+                    sort_keys=True,
+                ),
+                encoding="utf-8",
+            )
         print("\nInterrupted. Progress cached.")
         return 130
 
     save_cache(cache_path, cache)
     save_checkpoint(checkpoint_path, checkpoint)
+    if not args.no_triage:
+        triage_summary_path.write_text(
+            json.dumps(
+                {
+                    "version": 1,
+                    "counts": triage_counts,
+                    "total_unresolved": total_unresolved,
+                    "report_path": str(report_path),
+                },
+                indent=2,
+                sort_keys=True,
+            ),
+            encoding="utf-8",
+        )
 
     print("\nSummary:")
     print(f"  files: {len(paths)}")
@@ -994,6 +1114,9 @@ def main() -> int:
     print(f"  cache: {cache_path}")
     print(f"  checkpoint: {checkpoint_path}")
     print(f"  unresolved_report: {report_path}")
+    if not args.no_triage:
+        print(f"  triage_dir: {args.triage_dir}")
+        print(f"  triage_summary: {triage_summary_path}")
     if args.dry_run:
         print("  mode: dry-run (no files written)")
     elif args.max_entries > 0:
