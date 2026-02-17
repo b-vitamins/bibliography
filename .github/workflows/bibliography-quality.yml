@@ -1,0 +1,48 @@
+name: Bibliography Quality
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+
+jobs:
+  quality-checks:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install Dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install bibtexparser requests
+
+      - name: Lint Oral Collections
+        run: |
+          python scripts/lint-bib.py 'collections/orals/**/*.bib' --max-issues 100
+
+      - name: Formatter Check (Deterministic Output)
+        run: |
+          cp collections/orals/neurips/2025.bib /tmp/format-check.bib
+          python scripts/format-bib.py /tmp/format-check.bib
+          python scripts/verify-bib.py /tmp/format-check.bib
+
+      - name: Coverage Report Sanity Check
+        run: |
+          python scripts/report-coverage.py --only-orals --json --output /tmp/orals-coverage.json
+          python - <<'PY'
+          import json
+
+          data = json.load(open('/tmp/orals-coverage.json', 'r', encoding='utf-8'))
+          assert data['files_scanned'] > 0
+          assert data['total']['entries'] > 0
+          for field in ('url', 'pdf', 'arxiv'):
+              assert field in data['fields']
+          print('coverage_ok', data['total']['entries'])
+          PY
