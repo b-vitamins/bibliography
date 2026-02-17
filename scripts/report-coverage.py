@@ -99,7 +99,10 @@ def classify_conference_year(path: Path) -> str:
         conf = parts[1]
         year = path.stem
         return f"conferences/{conf}/{year}"
-    return f"other/{path.parent}"
+    parent = str(path.parent)
+    if parent.startswith("/"):
+        parent = f"absolute:{parent}"
+    return f"other/{parent}"
 
 
 def init_counter(fields: list[str]) -> dict[str, int]:

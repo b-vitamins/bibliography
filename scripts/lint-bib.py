@@ -320,6 +320,11 @@ def lint_entry(path: Path, entry: dict[str, Any]) -> list[Issue]:
 
 def lint_file(path: Path) -> tuple[int, list[Issue]]:
     issues: list[Issue] = []
+    raw_text = ""
+    try:
+        raw_text = path.read_text(encoding="utf-8")
+    except Exception:
+        raw_text = ""
     try:
         db = parse_bib(path)
     except Exception as ex:
@@ -334,6 +339,17 @@ def lint_file(path: Path) -> tuple[int, list[Issue]]:
         ]
 
     entries = db.entries
+    if len(entries) == 0 and re.search(r"@\s*[A-Za-z]+\s*\{", raw_text):
+        issues.append(
+            Issue(
+                file=str(path),
+                key=None,
+                severity="warning",
+                code="parse_suspicious_empty",
+                message="file contains entry-like tokens but parser produced zero entries",
+            )
+        )
+
     key_map: dict[str, int] = {}
     title_map: dict[str, int] = {}
 

@@ -780,7 +780,7 @@ def process_file(
     checkpoint_path: Path,
     args: argparse.Namespace,
     triage_counts: dict[str, int],
-) -> tuple[int, int, int, int]:
+) -> tuple[int, int, int, int, bool]:
     db = load_bib(path)
     entries = list(db.entries)
     file_key = str(path)
@@ -804,7 +804,7 @@ def process_file(
             f"processing file: {path} ({len(entries)} entries) "
             f"[resume: already complete, skipping]"
         )
-        return processed, changed, skipped_existing, unresolved
+        return processed, changed, skipped_existing, unresolved, False
 
     print(f"processing file: {path} ({len(entries)} entries)")
 
@@ -1002,11 +1002,12 @@ def process_file(
         write_bib(path, db)
 
     mark_completed = bool(args.max_entries == 0 and not args.start_key)
+    start_key_missing = bool(args.start_key and not saw_start_key)
     if args.start_key and not saw_start_key:
         print(f"  start key `{args.start_key}` not found in {path.name}; file left incomplete in checkpoint")
     persist_state(mark_completed=mark_completed)
 
-    return processed, changed, skipped_existing, unresolved
+    return processed, changed, skipped_existing, unresolved, start_key_missing
 
 
 def main() -> int:
@@ -1044,10 +1045,11 @@ def main() -> int:
     total_changed = 0
     total_skipped = 0
     total_unresolved = 0
+    start_key_misses = 0
 
     try:
         for p in paths:
-            processed, changed, skipped_existing, unresolved = process_file(
+            processed, changed, skipped_existing, unresolved, start_key_missing = process_file(
                 path=p,
                 session=session,
                 cache=cache,
@@ -1061,6 +1063,8 @@ def main() -> int:
             total_changed += changed
             total_skipped += skipped_existing
             total_unresolved += unresolved
+            if start_key_missing:
+                start_key_misses += 1
             print(
                 f"{p}: processed={processed} changed={changed} "
                 f"skipped_existing={skipped_existing} unresolved={unresolved}"
@@ -1114,6 +1118,8 @@ def main() -> int:
     print(f"  cache: {cache_path}")
     print(f"  checkpoint: {checkpoint_path}")
     print(f"  unresolved_report: {report_path}")
+    if args.start_key:
+        print(f"  start_key_misses: {start_key_misses}")
     if not args.no_triage:
         print(f"  triage_dir: {args.triage_dir}")
         print(f"  triage_summary: {triage_summary_path}")
@@ -1121,6 +1127,9 @@ def main() -> int:
         print("  mode: dry-run (no files written)")
     elif args.max_entries > 0:
         print("  mode: max-entries set; no files written to avoid partial updates")
+
+    if args.start_key and start_key_misses > 0:
+        return 4
 
     return 0
 
