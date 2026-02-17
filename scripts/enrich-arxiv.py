@@ -46,6 +46,7 @@ ARXIV_API_URL = "https://export.arxiv.org/api/query"
 
 DEFAULT_CACHE_PATH = Path("ops/arxiv-lookup-cache.json")
 DEFAULT_REPORT_PATH = Path("ops/arxiv-enrichment-report.jsonl")
+DEFAULT_CHECKPOINT_PATH = Path("ops/arxiv-enrichment-checkpoint.json")
 
 MAX_TITLE_QUERY_CHARS = 256
 MAX_ARXIV_RESULTS = 12
@@ -89,6 +90,11 @@ def parse_args() -> argparse.Namespace:
         "--cache",
         default=str(DEFAULT_CACHE_PATH),
         help=f"Lookup cache path (default: {DEFAULT_CACHE_PATH})",
+    )
+    parser.add_argument(
+        "--checkpoint",
+        default=str(DEFAULT_CHECKPOINT_PATH),
+        help=f"Checkpoint path for resumable runs (default: {DEFAULT_CHECKPOINT_PATH})",
     )
     parser.add_argument(
         "--report",
@@ -158,6 +164,51 @@ def parse_args() -> argparse.Namespace:
         help="Persist lookup cache every N processed entries (default: 25)",
     )
     parser.add_argument(
+        "--checkpoint-every",
+        type=int,
+        default=25,
+        help="Persist checkpoint every N processed entries (default: 25)",
+    )
+    parser.add_argument(
+        "--no-resume",
+        action="store_true",
+        help="Ignore existing checkpoint state and process from scratch",
+    )
+    parser.add_argument(
+        "--reset-checkpoint",
+        action="store_true",
+        help="Delete existing checkpoint file before processing",
+    )
+    parser.add_argument(
+        "--start-key",
+        default="",
+        help="Skip entries until this BibTeX key is reached (per file)",
+    )
+    parser.add_argument(
+        "--entry-timeout",
+        type=float,
+        default=45.0,
+        help="Soft per-entry timeout in seconds (default: 45.0, 0 disables)",
+    )
+    parser.add_argument(
+        "--http-connect-timeout",
+        type=float,
+        default=8.0,
+        help="HTTP connect timeout seconds (default: 8.0)",
+    )
+    parser.add_argument(
+        "--http-read-timeout",
+        type=float,
+        default=20.0,
+        help="HTTP read timeout seconds (default: 20.0)",
+    )
+    parser.add_argument(
+        "--http-max-retries",
+        type=int,
+        default=2,
+        help="HTTP retry attempts for transient failures (default: 2)",
+    )
+    parser.add_argument(
         "--verbose",
         action="store_true",
         help="Print per-entry matching details",
@@ -165,12 +216,12 @@ def parse_args() -> argparse.Namespace:
     return parser.parse_args()
 
 
-def make_session() -> requests.Session:
+def make_session(max_retries: int) -> requests.Session:
     session = requests.Session()
     retry = Retry(
-        total=2,
-        connect=2,
-        read=2,
+        total=max(0, int(max_retries)),
+        connect=max(0, int(max_retries)),
+        read=max(0, int(max_retries)),
         backoff_factor=0.2,
         backoff_max=4,
         status_forcelist=[500, 502, 503, 504],
@@ -203,6 +254,25 @@ def load_cache(path: Path) -> dict[str, Any]:
 def save_cache(path: Path, cache: dict[str, Any]) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(json.dumps(cache, indent=2, sort_keys=True), encoding="utf-8")
+
+
+def load_checkpoint(path: Path) -> dict[str, Any]:
+    if not path.exists():
+        return {"version": 1, "files": {}}
+    try:
+        data = json.loads(path.read_text(encoding="utf-8"))
+    except Exception:
+        return {"version": 1, "files": {}}
+    if not isinstance(data, dict):
+        return {"version": 1, "files": {}}
+    data.setdefault("version", 1)
+    data.setdefault("files", {})
+    return data
+
+
+def save_checkpoint(path: Path, checkpoint: dict[str, Any]) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(json.dumps(checkpoint, indent=2, sort_keys=True), encoding="utf-8")
 
 
 def normalize_spaces(s: str) -> str:
@@ -347,6 +417,8 @@ def query_openalex(
     openalex_api_key: str,
     openalex_min_interval: float,
     sleep_ms: int,
+    connect_timeout: float,
+    read_timeout: float,
 ) -> list[Candidate]:
     norm_key = hashlib.sha1(normalize_title(title).encode("utf-8")).hexdigest()
     cached = cache["openalex"].get(norm_key)
@@ -365,7 +437,11 @@ def query_openalex(
     candidates: list[Candidate] = []
     try:
         throttle_openalex(openalex_min_interval)
-        resp = session.get(OPENALEX_WORKS_URL, params=params, timeout=(8, 20))
+        resp = session.get(
+            OPENALEX_WORKS_URL,
+            params=params,
+            timeout=(max(1.0, connect_timeout), max(1.0, read_timeout)),
+        )
         if resp.status_code == 429:
             # Avoid long apparent hangs from server-directed retry windows.
             return []
@@ -438,6 +514,8 @@ def query_arxiv(
     author_surname: str,
     sleep_ms: int,
     arxiv_min_interval: float,
+    connect_timeout: float,
+    read_timeout: float,
 ) -> list[Candidate]:
     norm_key = hashlib.sha1((normalize_title(title) + "|" + author_surname).encode("utf-8")).hexdigest()
     cached = cache["arxiv"].get(norm_key)
@@ -460,7 +538,11 @@ def query_arxiv(
     candidates: list[Candidate] = []
     try:
         throttle_arxiv(arxiv_min_interval)
-        resp = session.get(ARXIV_API_URL, params=params, timeout=30)
+        resp = session.get(
+            ARXIV_API_URL,
+            params=params,
+            timeout=(max(1.0, connect_timeout), max(1.0, read_timeout)),
+        )
         if resp.ok:
             candidates = parse_arxiv_feed(resp.text)
     except Exception:
@@ -627,23 +709,72 @@ def process_file(
     session: requests.Session,
     cache: dict[str, Any],
     cache_path: Path,
+    checkpoint: dict[str, Any],
+    checkpoint_path: Path,
     args: argparse.Namespace,
 ) -> tuple[int, int, int, int]:
     db = load_bib(path)
-    entries = db.entries
-    changed = 0
-    processed = 0
-    skipped_existing = 0
-    unresolved = 0
+    entries = list(db.entries)
+    file_key = str(path)
+    file_states = checkpoint.setdefault("files", {})
+    prior = file_states.get(file_key, {}) if not args.no_resume else {}
+
+    processed = int(prior.get("processed", 0))
+    changed = int(prior.get("changed", 0))
+    skipped_existing = int(prior.get("skipped_existing", 0))
+    unresolved = int(prior.get("unresolved", 0))
+    processed_keys = set(prior.get("processed_keys", []))
+    completed = bool(prior.get("completed", False))
+    processed_this_run = 0
+    changed_this_run = 0
 
     if args.max_entries > 0:
         entries = entries[: args.max_entries]
 
+    if completed and not args.no_resume:
+        print(
+            f"processing file: {path} ({len(entries)} entries) "
+            f"[resume: already complete, skipping]"
+        )
+        return processed, changed, skipped_existing, unresolved
+
     print(f"processing file: {path} ({len(entries)} entries)")
+
+    def persist_state(mark_completed: bool = False) -> None:
+        file_states[file_key] = {
+            "processed": processed,
+            "changed": changed,
+            "skipped_existing": skipped_existing,
+            "unresolved": unresolved,
+            "processed_keys": sorted(processed_keys),
+            "completed": bool(mark_completed),
+        }
+        save_checkpoint(checkpoint_path, checkpoint)
+
+    start_reached = not args.start_key or args.start_key in processed_keys
+    saw_start_key = start_reached
 
     for entry in entries:
         key = str(entry.get("ID", ""))
         title = normalize_spaces(str(entry.get("title", "")))
+
+        if key and key in processed_keys:
+            continue
+
+        if args.start_key and not start_reached:
+            if key == args.start_key:
+                start_reached = True
+                saw_start_key = True
+            else:
+                continue
+
+        entry_started = time.monotonic()
+
+        def entry_timed_out() -> bool:
+            if args.entry_timeout <= 0:
+                return False
+            return (time.monotonic() - entry_started) > float(args.entry_timeout)
+
         if not key or not title:
             unresolved += 1
             append_report(
@@ -654,9 +785,14 @@ def process_file(
                     "reason": "missing_key_or_title",
                 },
             )
+            if key:
+                processed_keys.add(key)
+            processed += 1
+            processed_this_run += 1
             continue
 
         processed += 1
+        processed_this_run += 1
         if processed % 25 == 0:
             print(
                 f"  progress {path.name}: processed={processed} changed={changed} "
@@ -664,9 +800,26 @@ def process_file(
             )
         if args.save_cache_every > 0 and processed % args.save_cache_every == 0:
             save_cache(cache_path, cache)
+        if args.checkpoint_every > 0 and processed_this_run % args.checkpoint_every == 0:
+            persist_state(mark_completed=False)
 
         if has_arxiv_fields(entry) and not args.overwrite:
             skipped_existing += 1
+            processed_keys.add(key)
+            continue
+
+        if entry_timed_out():
+            unresolved += 1
+            append_report(
+                Path(args.report),
+                {
+                    "file": str(path),
+                    "entry_key": key,
+                    "reason": "entry_timeout_before_lookup",
+                    "title": title,
+                },
+            )
+            processed_keys.add(key)
             continue
 
         first_sname = first_author_surname(entry)
@@ -678,6 +831,8 @@ def process_file(
             openalex_api_key=args.openalex_api_key,
             openalex_min_interval=args.openalex_min_interval,
             sleep_ms=args.sleep_ms,
+            connect_timeout=args.http_connect_timeout,
+            read_timeout=args.http_read_timeout,
         )
         match = pick_best_match(
             entry=entry,
@@ -686,6 +841,20 @@ def process_file(
             min_confidence=args.min_confidence,
         )
         if match is None:
+            if entry_timed_out():
+                unresolved += 1
+                append_report(
+                    Path(args.report),
+                    {
+                        "file": str(path),
+                        "entry_key": key,
+                        "reason": "entry_timeout_after_openalex",
+                        "title": title,
+                    },
+                )
+                processed_keys.add(key)
+                continue
+
             arxiv = query_arxiv(
                 session=session,
                 cache=cache,
@@ -693,6 +862,8 @@ def process_file(
                 author_surname=first_sname,
                 sleep_ms=args.sleep_ms,
                 arxiv_min_interval=args.arxiv_min_interval,
+                connect_timeout=args.http_connect_timeout,
+                read_timeout=args.http_read_timeout,
             )
             candidates = openalex + arxiv
             match = pick_best_match(
@@ -731,6 +902,7 @@ def process_file(
                     ],
                 },
             )
+            processed_keys.add(key)
             continue
 
         if args.verbose:
@@ -742,10 +914,17 @@ def process_file(
 
         set_arxiv_fields(entry, match)
         changed += 1
+        changed_this_run += 1
+        processed_keys.add(key)
 
     # If max_entries is set, we only mutated a prefix in memory. Do not write partial file in non-dry mode.
-    if changed > 0 and not args.dry_run and args.max_entries == 0:
+    if changed_this_run > 0 and not args.dry_run and args.max_entries == 0:
         write_bib(path, db)
+
+    mark_completed = bool(args.max_entries == 0 and not args.start_key)
+    if args.start_key and not saw_start_key:
+        print(f"  start key `{args.start_key}` not found in {path.name}; file left incomplete in checkpoint")
+    persist_state(mark_completed=mark_completed)
 
     return processed, changed, skipped_existing, unresolved
 
@@ -762,9 +941,14 @@ def main() -> int:
     if report_path.exists():
         report_path.unlink()
 
+    checkpoint_path = Path(args.checkpoint)
+    if args.reset_checkpoint and checkpoint_path.exists():
+        checkpoint_path.unlink()
+
     cache_path = Path(args.cache)
     cache = load_cache(cache_path)
-    session = make_session()
+    checkpoint = load_checkpoint(checkpoint_path)
+    session = make_session(max_retries=args.http_max_retries)
 
     total_processed = 0
     total_changed = 0
@@ -778,6 +962,8 @@ def main() -> int:
                 session=session,
                 cache=cache,
                 cache_path=cache_path,
+                checkpoint=checkpoint,
+                checkpoint_path=checkpoint_path,
                 args=args,
             )
             total_processed += processed
@@ -789,12 +975,15 @@ def main() -> int:
                 f"skipped_existing={skipped_existing} unresolved={unresolved}"
             )
             save_cache(cache_path, cache)
+            save_checkpoint(checkpoint_path, checkpoint)
     except KeyboardInterrupt:
         save_cache(cache_path, cache)
+        save_checkpoint(checkpoint_path, checkpoint)
         print("\nInterrupted. Progress cached.")
         return 130
 
     save_cache(cache_path, cache)
+    save_checkpoint(checkpoint_path, checkpoint)
 
     print("\nSummary:")
     print(f"  files: {len(paths)}")
@@ -803,6 +992,7 @@ def main() -> int:
     print(f"  skipped_existing: {total_skipped}")
     print(f"  unresolved_entries: {total_unresolved}")
     print(f"  cache: {cache_path}")
+    print(f"  checkpoint: {checkpoint_path}")
     print(f"  unresolved_report: {report_path}")
     if args.dry_run:
         print("  mode: dry-run (no files written)")
