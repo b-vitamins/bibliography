@@ -199,7 +199,7 @@
   month = {12},
   note = {Tutorial from NeurIPS 2024 presenting a comprehensive introduction to flow matching, covering continuous Euclidean settings, extensions to non-Euclidean geometries, generalizations to discrete domains and Markov processes, post-training methodologies, and applications from image generation to language modeling},
   publisher = {Neural Information Processing Systems Foundation},
-  title = {Flow Matching for Generative Modeling},
+  title = {Flow Matching for Generative Modeling (NeurIPS 2024 Tutorial)},
   url = {https://neurips.cc/virtual/2024/tutorial/99531},
   year = {2024}
 }
@@ -232,17 +232,7 @@
   year = {2024}
 }
 
-@article{zhai2024normalizing,
-  abstract = {We present TarFlow: a simple and scalable architecture that enables highly performant NF models. TarFlow can be thought of as a Transformer-based variant of Masked Autoregressive Flows (MAFs): it consists of a stack of autoregressive Transformer blocks on image patches, alternating the autoregression direction between layers. TarFlow is straightforward to train end-to-end, and capable of directly modeling and generating pixels. We propose three key techniques to improve sample quality: Gaussian noise augmentation during training, a post training denoising procedure, and an effective guidance method for both class-conditional and unconditional settings.},
-  author = {Zhai, Shuangfei and Zhang, Ruixiang and Nakkiran, Preetum and Berthelot, David and Gu, Jiatao and Zheng, Huangjie and Chen, Tianrong and Bautista, Miguel Angel and Jaitly, Navdeep and Susskind, Josh},
-  file = {:/home/b/documents/article/zhai2024normalizing.pdf:pdf},
-  journal = {arXiv preprint arXiv:2412.06329},
-  month = {12},
-  pdf = {https://arxiv.org/pdf/2412.06329.pdf},
-  title = {Normalizing Flows are Capable Generative Models},
-  url = {https://arxiv.org/abs/2412.06329},
-  year = {2024}
-}
+
 
 @inproceedings{patacchiola2024transformer,
   abstract = {Density estimation, a central problem in machine learning, can be performed using Normalizing Flows (NFs). NFs comprise a sequence of invertible transformations, that turn a complex target distribution into a simple one, by exploiting the change of variables theorem. Neural Autoregressive Flows (NAFs) and Block Neural Autoregressive Flows (B-NAFs) are arguably the most performant members of the NF family. However, they suffer scalability issues and training instability due to the constraints imposed on the network structure. In this work, we propose a novel solution by exploiting transformers to define a new class of neural flows called Transformer Neural Autoregressive Flows (T-NAFs). T-NAFs treat each dimension of a random variable as a separate input token, using attention masking to enforce an autoregressive constraint. We take an amortization-inspired approach where the transformer outputs the parameters of an invertible transformation. Our experimental results demonstrate that T-NAFs consistently match or outperform NAFs and B-NAFs across multiple datasets from the UCI benchmark, while using an order of magnitude fewer parameters.},

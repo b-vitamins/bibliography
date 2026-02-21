@@ -755,20 +755,7 @@
   year = {2021}
 }
 
-@article{belouadah2020comprehensive,
-  abstract = {The ability of artificial agents to increment their capabilities when confronted with new data is an open challenge in artificial intelligence. The main challenge faced in such cases is catastrophic forgetting, i.e., the tendency of neural networks to underfit past data when new ones are ingested. Two main types of approaches have been proposed to tackle this problem. A first group of approaches tackles forgetting by increasing deep model capacity to accommodate new knowledge. A second type of approaches fixes the deep model size and introduces a mechanism whose objective is to ensure a good compromise between stability and plasticity of the model. While the first type of algorithms were compared thoroughly, this is not the case for methods which exploit a fixed size model. In this paper, we first define a common analysis framework made of six desirable properties of incremental learning algorithms and analyze existing approaches according to these properties. We then introduce a unified formalization of the class-incremental learning problem and propose a common evaluation framework more thorough than existing ones. We use this evaluation framework to conduct an empirical study which compares existing approaches experimentally. Our analysis reveals that approaches from the second type are more suitable for resource-limited scenarios, which are common in real world problems. The analysis conducted in this work offers a first complete view on fixed-size class-incremental learning approaches, which can be useful for designing new algorithms and identifying future research directions.},
-  author = {Eden Belouadah and Adrian Popescu and Ioannis Kanellos},
-  doi = {10.1016/j.neunet.2020.12.003},
-  file = {:/home/b/documents/article/belouadah2020comprehensive.pdf:pdf},
-  journal = {Neural Networks},
-  month = {3},
-  openalex = {W3103434208},
-  pages = {38--54},
-  pdf = {https://arxiv.org/pdf/2011.01844},
-  title = {A Comprehensive Study of Class Incremental Learning Algorithms for Visual Tasks},
-  volume = {135},
-  year = {2021}
-}
+
 
 @inproceedings{michieli2021semantic,
   abstract = {Deep neural networks suffer from the major limitation of catastrophic forgetting old tasks when learning new ones. In this paper we focus on class incremental continual learning in semantic segmentation, where new categories are made available over time while previous training data is not retained. The proposed continual learning scheme shapes the latent space to reduce forgetting whilst improving the recognition of novel classes. Our framework is driven by three novel components which we also combine on top of existing techniques effortlessly. First, prototypes matching enforces latent space consistency on old classes, constraining the encoder to produce similar latent representation for previously seen classes in the subsequent steps. Second, features sparsification allows to make room in the latent space to accommodate novel classes. Finally, contrastive learning is employed to cluster features according to their semantics while tearing apart those of different classes. Extensive evaluation on the Pascal VOC2012 and ADE20K datasets demonstrates the effectiveness of our approach, significantly outperforming state-of-the-art methods.},

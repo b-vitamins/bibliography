@@ -123,19 +123,7 @@
   year = {2024}
 }
 
-@inproceedings{cunningham2024towards,
-  abstract = {One of the roadblocks to a better understanding of neural networks' internals is polysemanticity, where neurons appear to activate in multiple, semantically distinct contexts. This prevents us from identifying concise, human-understandable explanations for what neural networks are doing internally. Polysemanticity may arise from "superposition", where neural networks represent more features than they have neurons by assigning features to an overcomplete set of directions in activation space, rather than to individual neurons. Here, we attempt to identify those directions, using sparse autoencoders to reconstruct the internal activations of a language model. These autoencoders learn sets of sparsely activating features that are more interpretable and monosemantic than directions identified by alternative approaches, where interpretability is measured by automated methods. We use a scalable and unsupervised method called Sparse Autoencoders to find interpretable, monosemantic features in the residual streams of real LLMs (Pythia-70M/410M).},
-  author = {Robert Huben and Hoagy Cunningham and Logan Riggs Smith and Aidan Ewart and Lee Sharkey},
-  booktitle = {The Twelfth International Conference on Learning Representations},
-  doi = {10.48550/arxiv.2309.08600},
-  file = {:/home/b/documents/inproceedings/cunningham2024towards.pdf:pdf},
-  keywords = {language model, interpretability, representation learning, sparsity, dictionary learning, unsupervised learning},
-  openalex = {W4386839891},
-  pdf = {https://openreview.net/pdf?id=F76bwRSLeK},
-  title = {Sparse Autoencoders Find Highly Interpretable Features in Language Models},
-  url = {https://openreview.net/forum?id=F76bwRSLeK},
-  year = {2024}
-}
+
 
 @misc{kissane2024sparse,
   abstract = {This work replicates the success of applying sparse autoencoders to MLP layers and demonstrates that the same technique works well on attention layer outputs. We train sparse autoencoders on the second attention layer of a two-layer language model, specifically on hook_z concatenated over all attention heads. The learned features are sparse and interpretable, providing insights into what attention layers learn and how they compute their outputs. We estimate that 82% of non-dead features in our SAE are interpretable, with 24% of the SAE features being dead. This approach allows us to see how much of each feature's weights come from each head, which is a promising direction for investigating attention head superposition. The research was conducted as part of a 2-week research sprint project during the training phase of Neel Nanda's MATS stream.},

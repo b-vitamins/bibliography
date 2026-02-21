@@ -2,7 +2,7 @@
 
 @article{deepseek2025deepseek,
   abstract = {We introduce our first-generation reasoning models, DeepSeek-R1-Zero and DeepSeek-R1. DeepSeek-R1-Zero, a model trained via large-scale reinforcement learning (RL) without supervised fine-tuning (SFT) as a preliminary step, demonstrates remarkable reasoning capabilities. Through RL, DeepSeek-R1-Zero naturally emerges with numerous powerful and intriguing reasoning behaviors. However, it encounters challenges such as poor readability, and language mixing. To address these issues and further enhance reasoning performance, we introduce DeepSeek-R1, which incorporates multi-stage training and cold-start data before RL. DeepSeek-R1 achieves performance comparable to OpenAI-o1-1217 on reasoning tasks. To support the research community, we open-source DeepSeek-R1-Zero, DeepSeek-R1, and six dense models (1.5B, 7B, 8B, 14B, 32B, 70B) distilled from DeepSeek-R1 based on Qwen and Llama.},
-  author = {DeepSeek-AI and Daya Guo and Dejian Yang and Haowei Zhang and Junxiao Song and Ruoyu Zhang and Runxin Xu and Qihao Zhu and Shirong Ma and Peiyi Wang and Xiao Bi and Xiaokang Zhang and Xingkai Yu and Yu Wu and Z.F. Wu and Zhibin Gou and Zhihong Shao and Zhuoshu Li and Ziyi Gao and Aixin Liu and others},
+  author = {DeepSeek-AI and Daya Guo and Dejian Yang and Haowei Zhang and Junxiao Song and Ruoyu Zhang and Runxin Xu and Qihao Zhu and Shirong Ma and Peiyi Wang and Xiao Bi and Xiaokang Zhang and Xingkai Yu and Yu Wu and Z.F. Wu and Zhibin Gou and Zhihong Shao and Zhuoshu Li and Ziyi Gao and Aixin Liu},
   doi = {10.48550/arxiv.2501.12948},
   file = {:/home/b/documents/article/deepseek2025deepseek.pdf:pdf},
   journal = {arXiv preprint arXiv:2501.12948},
@@ -583,19 +583,7 @@
   year = {2023}
 }
 
-@inproceedings{rafailov2023preference,
-  abstract = {While large-scale unsupervised language models (LMs) learn broad world knowledge and some reasoning skills, achieving precise control of their behavior is difficult due to the completely unsupervised nature of their training. Existing methods for gaining such steerability collect human labels of the relative quality of model generations and fine-tune the unsupervised LM to align with these preferences, often with reinforcement learning from human feedback (RLHF). However, RLHF is a complex and often unstable procedure, first fitting a reward model that reflects the human preferences, and then fine-tuning the large unsupervised LM using reinforcement learning to maximize this estimated reward without drifting too far from the original model. In this paper, we leverage a mapping between reward functions and optimal policies to show that this constrained reward maximization problem can be optimized exactly with a single stage of policy training, essentially solving a classification problem on the human preference data. The resulting algorithm, which we call Direct Preference Optimization (DPO), is stable, performant, and computationally lightweight, eliminating the need for fitting a reward model, sampling from the LM during fine-tuning, or performing significant hyperparameter tuning. Our experiments show that DPO can fine-tune LMs to align with human preferences as well as or better than existing methods. Notably, fine-tuning with DPO exceeds RLHF's ability to control sentiment of generations and improves response quality in summarization and single-turn dialogue while being substantially simpler to implement and train.},
-  author = {Rafailov, Rafael and Sharma, Archit and Mitchell, Eric and Ermon, Stefano and Manning, Christopher D. and Finn, Chelsea},
-  booktitle = {Advances in Neural Information Processing Systems},
-  editor = {Oh, A. H. and Neumann, T. and Globerson, A. and Saenko, K. and Hardt, M. and Levine, S.},
-  file = {:/home/b/documents/inproceedings/rafailov2023preference.pdf:pdf},
-  openalex = {W4378771755},
-  pages = {2--20},
-  pdf = {https://proceedings.neurips.cc/paper_files/paper/2023/file/a85b405ed65c6477a4fe8302b5e06ce7-Paper-Conference.pdf},
-  title = {Direct Preference Optimization: Your Language Model is Secretly a Reward Model},
-  volume = {36},
-  year = {2023}
-}
+
 
 @inproceedings{yang2023preference,
   abstract = {Training practical agents usually involve offline and online reinforcement learning (RL) to balance the policy's performance and interaction costs. In particular, online fine-tuning has become a commonly used method to correct the erroneous estimates of out-of-distribution data learned in the offline training phase. However, even limited online interactions can be inaccessible or catastrophic for high-stake scenarios like healthcare and autonomous driving. In this work, we introduce an interaction-free training scheme dubbed Offline-with-Action-Preferences (OAP). The main insight is that, compared to online fine-tuning, querying the preferences between pre-collected and learned actions can be equally or even more helpful to the erroneous estimate problem. By adaptively encouraging or suppressing policy constraint according to action preferences, OAP could distinguish overestimation from beneficial policy improvement and thus attains a more accurate evaluation of unseen data. Theoretically, we prove a lower bound of the behavior policy's performance improvement brought by OAP. Moreover, comprehensive experiments on the D4RL benchmark and state-of-the-art algorithms demonstrate that OAP yields higher (29% on average) scores, especially on challenging AntMaze tasks (98% higher).},
@@ -715,18 +703,7 @@
   year = {2022}
 }
 
-@inproceedings{kostrikov2022offline,
-  abstract = {Offline reinforcement learning requires reconciling two conflicting aims: learning a policy that improves over the behavior policy that collected the dataset, while at the same time minimizing the deviation from the behavior policy so as to avoid errors due to distributional shift. This trade-off is critical, because most current offline reinforcement learning methods need to query the value of unseen actions during training to improve the policy, and therefore need to either constrain these actions to be in-distribution, or else regularize their values. We propose an offline RL method that never needs to evaluate actions outside of the dataset, but still enables the learned policy to improve substantially over the best behavior in the data through generalization. The main insight in our work is that, instead of evaluating unseen actions from the latest policy, we can approximate the policy improvement step implicitly by treating the state value function as a random variable, with randomness determined by the action (while still integrating over the dynamics to avoid excessive optimism), and then taking a state conditional upper expectile of this random variable to estimate the value of the best actions in that state. This leverages the generalization capacity of the function approximator to estimate the value of the best available action at a given state without ever directly querying a Q-function with this unseen action. Our algorithm alternates between fitting this upper expectile value function and backing it up into a Q-function. Then, we extract the policy via advantage-weighted behavioral cloning. We dub our method implicit Q-learning (IQL). IQL demonstrates the state-of-the-art performance on D4RL, a standard benchmark for offline reinforcement learning. We also demonstrate that IQL achieves strong performance fine-tuning using online interaction after offline initialization.},
-  author = {Ilya Kostrikov and Ashvin Nair and Sergey Levine},
-  booktitle = {The Tenth International Conference on Learning Representations},
-  doi = {10.48550/arxiv.2110.06169},
-  file = {:/home/b/documents/inproceedings/kostrikov2022offline.pdf:pdf},
-  openalex = {W3205794883},
-  pdf = {https://openreview.net/pdf?id=68n2s9ZJWF8},
-  title = {Offline Reinforcement Learning with Implicit Q-Learning},
-  url = {https://openreview.net/forum?id=68n2s9ZJWF8},
-  year = {2022}
-}
+
 
 @inproceedings{mai2022sample,
   abstract = {In model-free deep reinforcement learning (RL) algorithms, using noisy value estimates to supervise policy evaluation and optimization is detrimental to the sample efficiency. As this noise is heteroscedastic, its effects can be mitigated using uncertainty-based weights in the optimization process. Previous methods rely on sampled ensembles, which do not capture all aspects of uncertainty. We provide a systematic analysis of the sources of uncertainty in the noisy supervision that occurs in RL, and introduce inverse-variance RL, a Bayesian framework which combines probabilistic ensembles and Batch Inverse Variance weighting. We propose a method whereby two complementary uncertainty estimation methods account for both the Q-value and the environment stochasticity to better mitigate the negative impacts of noisy supervision. Our results show significant improvement in terms of sample efficiency on discrete and continuous control tasks.},
@@ -812,21 +789,7 @@
   year = {2022}
 }
 
-@inproceedings{ouyang2022instructgpt,
-  abstract = {Making language models bigger does not inherently make them better at following a user's intent. For example, large language models can generate outputs that are untruthful, toxic, or simply not helpful to the user. In other words, these models are not aligned with their users. In this paper, we show an avenue for aligning language models with user intent on a wide range of tasks by fine-tuning with human feedback. Starting with a set of labeler-written prompts and prompts submitted through a language model API, we collect a dataset of labeler demonstrations of the desired model behavior, which we use to fine-tune GPT-3 using supervised learning. We then collect a dataset of rankings of model outputs, which we use to further fine-tune this supervised model using reinforcement learning from human feedback. We call the resulting models InstructGPT. In human evaluations on our prompt distribution, outputs from the 1.3B parameter InstructGPT model are preferred to outputs from the 175B GPT-3, despite having 100x fewer parameters. Moreover, InstructGPT models show improvements in truthfulness and reductions in toxic output generation while having minimal performance regressions on public NLP datasets. Even though InstructGPT still makes simple mistakes, our results show that fine-tuning with human feedback is a promising direction for aligning language models with human intent.},
-  author = {Ouyang, Long and Wu, Jeff and Jiang, Xu and Almeida, Diogo and Wainwright, Carroll L. and Mishkin, Pamela and Zhang, Chong and Agarwal, Sandhini and Slama, Katarina and Ray, Alex and Schulman, John and Hilton, Jacob and Kelton, Fraser and Miller, Luke and Simens, Maddie and Askell, Amanda and Welinder, Peter and Christiano, Paul F. and Leike, Jan and Lowe, Ryan},
-  booktitle = {Advances in Neural Information Processing Systems},
-  editor = {Koyejo, S. and Mohamed, S. and Agarwal, A. and Belgrave, D. and Cho, K. and Oh, A.},
-  file = {:/home/b/documents/inproceedings/ouyang2022instructgpt.pdf:pdf},
-  openalex = {W4226278401},
-  pages = {27730--27744},
-  pdf = {https://proceedings.neurips.cc/paper_files/paper/2022/file/b1efde53be364a73914f58805a001731-Paper-Conference.pdf},
-  publisher = {Curran Associates, Inc.},
-  title = {Training language models to follow instructions with human feedback},
-  url = {https://papers.nips.cc/paper_files/paper/2022/hash/b1efde53be364a73914f58805a001731-Abstract-Conference.html},
-  volume = {35},
-  year = {2022}
-}
+
 
 @inproceedings{kostrikov2022implicit,
   abstract = {Offline reinforcement learning requires reconciling two conflicting aims: learning a policy that improves over the behavior policy that collected the dataset, while at the same time minimizing the deviation from the behavior policy so as to avoid errors due to distributional shift. Prior methods for offline RL either constrain the policy to remain close to the behavior policy, or rely on estimates of the value of unseen actions, both of which prevent the learned policy from substantially improving over the best behavior in the data in the presence of sparse rewards or noisy data. In this paper, we propose an offline RL method that never needs to evaluate actions outside of the dataset, but still enables the learned policy to improve substantially over the best behavior in the data through generalization. The main insight in our approach is that, instead of evaluating unseen actions from the latest policy, we can approximate the policy improvement step implicitly by treating the state value function as a random variable, with randomness determined by the action (while still integrating over the behavior policy), and then taking a state conditional upper expectile of this random variable to estimate the value of the best actions in that state. This leverages the generalization capacity of the function approximator to estimate the value of the best available actions. We dub the resulting algorithm implicit Q-learning (IQL). IQL is easy to implement, computationally efficient, and only requires fitting an additional critic with an asymmetric L2 loss. IQL demonstrates state-of-the-art performance on D4RL, a standard benchmark for offline reinforcement learning, and we also demonstrate that IQL achieves strong performance fine-tuning using online interaction after offline initialization.},
@@ -1209,20 +1172,7 @@
   year = {2020}
 }
 
-@inproceedings{stiennon2020learning,
-  abstract = {As language models become more powerful, training and evaluation are increasingly bottlenecked by the data and metrics used for a particular task. For example, summarization models are often trained to predict human reference summaries and evaluated using ROUGE, but both of these metrics are rough proxies for what we really care about -- summary quality. In this work, we show that it is possible to significantly improve summary quality by training a model to optimize for human preferences. We collect a large, high-quality dataset of human comparisons between summaries, train a model to predict the human-preferred summary, and use that model as a reward function to fine-tune a summarization policy using reinforcement learning. We apply our method to a version of the TL;DR dataset of Reddit posts and find that our models significantly outperform both human reference summaries and much larger models fine-tuned with supervised learning alone. Our models also transfer to CNN/DM news articles, producing summaries nearly as good as the human reference without any news-specific fine-tuning. We conduct extensive analyses to understand our human feedback dataset and fine-tuned models. We establish that our reward model generalizes to new datasets, and that optimizing our reward model results in better summaries than optimizing ROUGE according to humans.},
-  author = {Stiennon, Nisan and Ouyang, Long and Wu, Jeffrey and Ziegler, Daniel M. and Lowe, Ryan and Voss, Chelsea and Radford, Alec and Amodei, Dario and Christiano, Paul F.},
-  booktitle = {Advances in Neural Information Processing Systems},
-  file = {:/home/b/documents/inproceedings/stiennon2020learning.pdf:pdf},
-  note = {One of the first large-scale applications of RLHF to natural language processing. This work showed that fine-tuning a pre-trained language model (GPT-3) using a reward model trained on human preferences for summaries led to significantly higher-quality summaries than those produced by supervised methods alone.},
-  openalex = {W4287674181},
-  pages = {3008--3021},
-  pdf = {https://proceedings.neurips.cc/paper/2020/file/1f89885d556929e98d3ef9b86448f951-Paper.pdf},
-  title = {Learning to summarize from human feedback},
-  url = {https://arxiv.org/abs/2009.01325},
-  volume = {33},
-  year = {2020}
-}
+
 
 @inproceedings{xu2020finitetimepbrl,
   author = {Xu, Yichong and Bubeck, Sébastien and Luo, Hao and Lattimore, Tor},
@@ -1575,19 +1525,7 @@
   year = {2017}
 }
 
-@inproceedings{christiano2017deeprlhf,
-  abstract = {For sophisticated reinforcement learning (RL) systems to interact usefully with real-world environments, we need to communicate complex goals to these systems. In this work, we explore goals defined in terms of (non-expert) human preferences between pairs of trajectory segments. We show that this approach can effectively solve complex RL tasks without access to the reward function, including Atari games and simulated robot locomotion, while providing feedback on less than one percent of our agent's interactions with the environment. This reduces the cost of human oversight far enough that it can be practically applied to state-of-the-art RL systems. To demonstrate the flexibility of our approach, we show that we can successfully train complex novel behaviors with about an hour of human time. These behaviors and environments are considerably more complex than any that have been previously learned from human feedback.},
-  author = {Christiano, Paul F. and Leike, Jan and Brown, Tom and Martic, Miljan and Legg, Shane and Amodei, Dario},
-  booktitle = {Advances in Neural Information Processing Systems},
-  editor = {Guyon, I. and Luxburg, U. V. and Bengio, S. and Wallach, H. and Fergus, R. and Vishwanathan, S. and Garnett, R.},
-  file = {:/home/b/documents/inproceedings/christiano2017deeprlhf.pdf:pdf},
-  openalex = {W4321392130},
-  pages = {4299--4307},
-  pdf = {https://proceedings.neurips.cc/paper_files/paper/2017/file/d5e2c0adad503c91f91df240d0cd4e49-Paper.pdf},
-  title = {Deep Reinforcement Learning from Human Preferences},
-  volume = {30},
-  year = {2017}
-}
+
 
 @article{wirth2017surveypbrl,
   abstract = {Reinforcement learning (RL) techniques optimize the accumulated long-term reward of a suitably chosen reward function. However, designing such a reward function often requires a lot of task-specific prior knowledge. The designer needs to consider different objectives that do not only influence the learned behavior but also the learning progress. To alleviate these issues, preference-based reinforcement learning algorithms (PbRL) have been proposed that can directly learn from an expert's preferences instead of a hand-designed numeric reward. PbRL has gained traction in recent years due to its ability to resolve the reward shaping problem, its ability to learn from non numeric rewards and the possibility to reduce the dependence on expert knowledge. We provide a unified framework for PbRL that describes the task formally and points out the different design principles that affect the evaluation task for the human as well as the computational complexity. The design principles include the type of feedback that is assumed, the representation that is learned to capture the preferences, the optimization problem that has to be solved as well as how the exploration/exploitation problem is tackled. Furthermore, we point out shortcomings of current algorithms, propose open research questions and briefly survey practical tasks that have been solved using PbRL.},
@@ -1815,21 +1753,7 @@
   year = {1992}
 }
 
-@article{williams1992reinforce,
-  abstract = {This article presents a general class of associative reinforcement learning algorithms for connectionist networks containing stochastic units. These algorithms, called REINFORCE algorithms, are shown to make weight adjustments in a direction that lies along the gradient of expected reinforcement in both immediate-reinforcement tasks and certain limited forms of delayed-reinforcement tasks, and they do this without explicitly computing gradient estimates or even storing information from which such estimates could be computed. Specific examples of such algorithms are presented, some of which bear a close relationship to certain existing algorithms while others are novel but potentially interesting in their own right. Also given are results that show how such algorithms can be naturally integrated with backpropagation. We close with a brief discussion of a number of additional issues surrounding the use of such algorithms, including what is known about their limiting behaviors as well as further considerations that might be used to help develop similar but potentially more powerful reinforcement learning algorithms.},
-  author = {Williams, Ronald J.},
-  doi = {10.1007/BF00992696},
-  journal = {Machine Learning},
-  month = {5},
-  number = {3-4},
-  openalex = {W2119717200},
-  pages = {229--256},
-  publisher = {Springer},
-  title = {Simple Statistical Gradient-Following Algorithms for Connectionist Reinforcement Learning},
-  url = {https://link.springer.com/article/10.1007/BF00992696},
-  volume = {8},
-  year = {1992}
-}
+
 
 @phdthesis{watkins1989learning,
   abstract = {This thesis introduces the notion of reinforcement learning as learning to control a Markov Decision Process by incremental dynamic programming, and describes a range of algorithms for doing this, including Q-learning, for which a sketch of a proof of convergence is given. The work addresses learning from rewards and punishments as incrementally optimising control of a Markov Decision Process and proposes the Q-learning algorithm that can in principle learn optimal control directly without modelling the transition probabilities or expected rewards of the MDP.},
@@ -1862,21 +1786,7 @@
   year = {1988}
 }
 
-@article{sutton1988temporal,
-  abstract = {This article introduces a class of incremental learning procedures specialized for prediction---that is, for using past experience with an incompletely known system to predict its future behavior. Whereas conventional prediction-learning methods assign credit by means of the difference between predicted and actual outcomes, the new methods assign credit by means of the difference between temporally successive predictions. Although such temporal-difference methods have been used in Samuel's checker player, Holland's bucket brigade, and the author's Adaptive Heuristic Critic, they have remained poorly understood. Here we prove their convergence and optimality for special cases and relate them to supervised-learning methods. For most real-world prediction problems, temporal-difference methods require less memory and less peak computation than conventional methods and they produce more accurate predictions.},
-  author = {Sutton, Richard S.},
-  doi = {10.1007/BF00115009},
-  issn = {0885-6125},
-  journal = {Machine Learning},
-  month = {8},
-  number = {1},
-  openalex = {W3041202696},
-  pages = {9--44},
-  publisher = {Springer},
-  title = {Learning to Predict by the Methods of Temporal Differences},
-  volume = {3},
-  year = {1988}
-}
+
 
 @article{barto1983neuronlike,
   abstract = {It is shown how a system consisting of two neuronlike adaptive elements can solve a difficult learning control problem. The task is to balance a pole that is hinged to a movable cart by applying forces to the cart's base. It is argued that the learning problems faced by adaptive elements that are components of adaptive networks are at least as difficult as this version of the pole-balancing problem. The learning system consists of a single associative search element (ASE) and a single adaptive critic element (ACE). In the course of learning to balance the pole, the ASE constructs associations between input and output by searching under the influence of reinforcement feedback, and the ACE constructs a more informative evaluation function than reinforcement feedback alone can provide.},

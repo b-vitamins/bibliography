@@ -189,7 +189,7 @@
 
 @misc{li2025seaweed,
   abstract = {This technical report presents a cost-efficient strategy for training a video generation foundation model. We present a mid-sized research model with approximately 7 billion parameters (7B) called Seaweed-7B trained from scratch using 665,000 H100 GPU hours. Seaweed-7B demonstrates competitive performance compared to larger video generation models. The model exhibits strong generalization and can be adapted to various downstream applications.},
-  author = {Team Seawead and Yang, Ceyuan and Lin, Zhijie and Zhao, Yang and Lin, Shanchuan and Ma, Zhibei and Guo, Haoyuan and Chen, Hao and Qi, Lu and Wang, Sen and others},
+  author = {Team Seawead and Yang, Ceyuan and Lin, Zhijie and Zhao, Yang and Lin, Shanchuan and Ma, Zhibei and Guo, Haoyuan and Chen, Hao and Qi, Lu and Wang, Sen},
   howpublished = {arXiv preprint},
   month = {4},
   note = {arXiv:2504.08685},
@@ -464,21 +464,7 @@
   year = {2024}
 }
 
-@inproceedings{esser2024scaling,
-  abstract = {Diffusion models create data from noise by inverting the forward paths of data towards noise and have emerged as a powerful generative modeling technique for high-dimensional, perceptual data such as images and videos. Rectified flow is a recent generative model formulation that connects data and noise in a straight line. Despite its better theoretical properties and conceptual simplicity, it is not yet decisively established as standard practice. In this work, we improve existing noise sampling techniques for training rectified flow models by biasing them towards perceptually relevant scales. Additionally, we present a novel transformer-based architecture for text-to-image generation that uses separate weights for the two modalities and enables a bidirectional flow of information between image and text tokens, improving text comprehension, typography, and human preference ratings. We demonstrate that this architecture follows predictable scaling trends and correlates lower validation loss to improved text-to-image synthesis as measured by various metrics and human evaluations. Our largest models outperform state-of-the-art models, and we provide the community with these models, curated datasets, and code.},
-  author = {Patrick Esser and Sumith Kulal and Andreas Blattmann and Rahim Entezari and Jonas Müller and Harry Saini and Yam Levi and Dominik Lorenz and Axel Sauer and Frederic Boesel and Dustin Podell and Tim Dockhorn and Zion English and Kyle Lacey and Alex Goodwin and Yannik Marek and Robin Rombach},
-  booktitle = {Proceedings of the 41st International Conference on Machine Learning},
-  file = {:/home/b/documents/inproceedings/esser2024scaling.pdf:pdf},
-  openalex = {W4392538976},
-  pages = {12606--12633},
-  pdf = {https://raw.githubusercontent.com/mlresearch/v235/main/assets/esser24a/esser24a.pdf},
-  publisher = {PMLR},
-  series = {Proceedings of Machine Learning Research},
-  title = {Scaling Rectified Flow Transformers for High-Resolution Image Synthesis},
-  url = {https://proceedings.mlr.press/v235/esser24a.html},
-  volume = {235},
-  year = {2024}
-}
+
 
 @inproceedings{song2024improved,
   abstract = {Consistency models are a nascent family of generative models that can sample high quality data in one step without the need for adversarial training. Current consistency models achieve optimal sample quality by distilling from pre-trained diffusion models and employing learned metrics such as LPIPS. However, distillation limits the quality of consistency models to that of the pre-trained diffusion model, and LPIPS causes undesirable bias in evaluation. To tackle these challenges, we present improved techniques for consistency training, where consistency models learn directly from data without distillation. We delve into the theory behind consistency training and identify a previously overlooked flaw, which we address by eliminating Exponential Moving Average from the teacher consistency model. To replace learned metrics like LPIPS, we adopt Pseudo-Huber losses from robust statistics. Additionally, we introduce a lognormal noise schedule for the consistency training objective, and propose to double total discretization steps every set number of training iterations. Combined with better hyperparameter tuning, these modifications enable consistency models to achieve FID scores of 2.51 and 3.25 on CIFAR-10 and ImageNet $64 imes 64$ respectively in a single sampling step. These scores mark a 3.5$ imes$ and 4$ imes$ improvement compared to prior consistency training approaches. Through two-step sampling, we further reduce FID scores to 2.24 and 2.77 on these two datasets, surpassing those obtained via distillation in both one-step and two-step settings, while narrowing the gap between consistency models and other state-of-the-art generative models.},
@@ -1023,18 +1009,7 @@
   year = {2023}
 }
 
-@inproceedings{liu2023rectified,
-  abstract = {We present rectified flow, a surprisingly simple approach to learning (neural) ordinary differential equation (ODE) models to transport between two empirically observed distributions $π_0$ and $π_1$, hence providing a unified solution to generative modeling and domain transfer, among various other tasks involving distribution transport. The idea of rectified flow is to learn the ODE to follow the straight paths connecting the points drawn from $π_0$ and $π_1$ as much as possible. This is achieved by solving a straightforward nonlinear least squares optimization problem, which can be easily scaled to large models without introducing extra parameters beyond standard supervised learning. The straight paths are special and preferred because they are the shortest paths between two points, and can be simulated exactly without time discretization and hence yield computationally efficient models. We show that the procedure of learning a rectified flow from data, called rectification, turns an arbitrary coupling of $π_0$ and $π_1$ to a new deterministic coupling with provably non-increasing convex transport costs. In addition, recursively applying rectification allows us to obtain a sequence of flows with increasingly straight paths, which can be simulated accurately with coarse time discretization in the inference phase. In empirical studies, we show that rectified flow performs superbly on image generation, image-to-image translation, and domain adaptation. In particular, on image generation and translation, our method yields nearly straight flows that give high quality results even with a single Euler discretization step.},
-  author = {Xingchao Liu and Chengyue Gong and Qiang Liu},
-  booktitle = {The Eleventh International Conference on Learning Representations},
-  file = {:/home/b/documents/inproceedings/liu2023rectified.pdf:pdf},
-  note = {Spotlight},
-  openalex = {W4297676498},
-  pdf = {https://arxiv.org/pdf/2209.03003},
-  title = {Flow Straight and Fast: Learning to Generate and Transfer Data with Rectified Flow},
-  url = {https://openreview.net/forum?id=XVjTT1nw5z},
-  year = {2023}
-}
+
 
 @article{luo2023latent,
   abstract = {Latent Diffusion models (LDMs) have achieved remarkable results in synthesizing high-resolution images. However, the iterative sampling process is computationally intensive and leads to slow generation. Inspired by Consistency Models (CMs), we propose Latent Consistency Models (LCMs), enabling swift inference with minimal steps on any pre-trained LDMs, including Stable Diffusion (SD). Viewing the guided reverse diffusion process as solving an augmented probability flow ODE (PF-ODE), LCMs are designed to directly predict the solution of such ODE in latent space, mitigating the need for numerous iterations and allowing rapid, high-fidelity sampling. Efficiently distilled from pre-trained classifier-free guided diffusion models, a high-quality 768×768 2∼4-step LCM takes only 32 A100 GPU hours for training. Furthermore, we introduce Latent Consistency Fine-tuning (LCF), a novel method that is tailored for fine-tuning LCMs on customized image datasets. Evaluation on the LAION-5B-Aesthetics dataset demonstrates that LCMs achieve state-of-the-art text-to-image generation performance with few-step inference.},
@@ -1199,18 +1174,7 @@
   year = {2023}
 }
 
-@inproceedings{liu2023flow,
-  abstract = {We present rectified flow, a surprisingly simple approach to learning (neural) ordinary differential equation (ODE) models to transport between two empirically observed distributions $π_0$ and $π_1$, hence providing a unified solution to generative modeling and domain transfer, among various other tasks involving distribution transport. The idea of rectified flow is to learn the ODE to follow the straight paths connecting the points drawn from $π_0$ and $π_1$ as much as possible. This is achieved by solving a straightforward nonlinear least squares optimization problem, which can be easily scaled to large models without introducing extra parameters beyond standard supervised learning. The straight paths are special and preferred because they are the shortest paths between two points, and can be simulated exactly without time discretization and hence yield computationally efficient models. The procedure of learning a rectified flow from data, called rectification, turns an arbitrary coupling of $π_0$ and $π_1$ to a new deterministic coupling with provably non-increasing convex transport costs. Recursively applying rectification allows us to obtain a sequence of flows with increasingly straight paths, which can be simulated accurately with coarse time discretization in the inference phase. In empirical studies, our method performs superbly on image generation, image-to-image translation, and domain adaptation. In particular, on image generation and translation, our method yields nearly straight flows that give high quality results even with a single Euler discretization step.},
-  author = {Liu, Xingchao and Gong, Chengyue and Liu, Qiang},
-  booktitle = {The Eleventh International Conference on Learning Representations},
-  file = {:/home/b/documents/inproceedings/liu2023flow.pdf:pdf},
-  openalex = {W4297676498},
-  pdf = {https://openreview.net/pdf?id=XVjTT1nw5z},
-  publisher = {OpenReview.net},
-  title = {Flow Straight and Fast: Learning to Generate and Transfer Data with Rectified Flow},
-  url = {https://openreview.net/forum?id=XVjTT1nw5z},
-  year = {2023}
-}
+
 
 @inproceedings{liu2022rectified,
   abstract = {We present rectified flow, a surprisingly simple approach to learning (neural) ordinary differential equation (ODE) models to transport between two empirically observed distributions π_0 and π_1, providing a unified solution for generative modeling, domain transfer, and various distribution transport tasks. The idea of rectified flow is to learn the ODE to follow straight paths connecting points drawn from π_1 as much as possible. This is achieved by solving a straightforward nonlinear least squares optimization problem that can be easily scaled to large models without introducing extra parameters beyond standard supervised learning. The authors show that a data procedure called rectification turns an arbitrary coupling into a new deterministic flow with provably non-increasing convex costs. By recursively applying rectification, they can obtain increasingly accurate flow paths during inference. Empirical studies demonstrate the method performs superbly on image generation, image-to-image translation, and adaptation, yielding nearly straight, high-quality results even in a single Euler step.},
@@ -2196,20 +2160,7 @@
   year = {2016}
 }
 
-@inproceedings{sohl2015deep,
-  abstract = {A central problem in machine learning involves modeling complex data-sets using highly flexible families of probability distributions in which learning, sampling, inference, and evaluation are still analytically or computationally tractable. Here, we develop an approach that simultaneously achieves both flexibility and tractability. The essential idea, inspired by non-equilibrium statistical physics, is to systematically and slowly destroy structure in a data distribution through an iterative forward diffusion process. We then learn a reverse diffusion process that restores structure in data, yielding a highly flexible and tractable generative model of the data. This approach allows us to rapidly learn, sample from, and evaluate probabilities in deep generative models with thousands of layers or time steps, as well as to compute conditional and posterior probabilities under the learned model.},
-  author = {Sohl-Dickstein, Jascha and Weiss, Eric A. and Maheswaranathan, Niru and Ganguli, Surya},
-  booktitle = {Proceedings of the 32nd International Conference on Machine Learning},
-  file = {:/home/b/documents/inproceedings/sohl2015deep.pdf:pdf},
-  openalex = {W2129069237},
-  pages = {2256--2265},
-  pdf = {https://proceedings.mlr.press/v37/sohl-dickstein15.pdf},
-  publisher = {PMLR},
-  series = {Proceedings of Machine Learning Research},
-  title = {Deep Unsupervised Learning using Nonequilibrium Thermodynamics},
-  volume = {37},
-  year = {2015}
-}
+
 
 @inproceedings{sohldickstein2015deep,
   abstract = {A central problem in machine learning involves modeling complex data-sets using highly flexible families of probability distributions in which learning, sampling, inference, and evaluation are still analytically or computationally tractable. Here, we develop an approach that simultaneously achieves both flexibility and tractability. The essential idea, inspired by non-equilibrium statistical physics, is to systematically and slowly destroy structure in a data distribution through an iterative forward diffusion process. We then learn a reverse diffusion process that restores structure in data, yielding a highly flexible and tractable generative model of the data. This approach allows us to rapidly learn, sample from, and evaluate probabilities in deep generative models with thousands of layers or time steps, as well as to compute conditional and posterior probabilities under the model.},

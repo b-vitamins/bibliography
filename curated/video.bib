@@ -458,20 +458,7 @@
   year = {2024}
 }
 
-@misc{shen2024longvu,
-  abstract = {Multimodal Large Language Models (MLLMs) have shown promising progress in understanding and analyzing video content. However, processing long videos remains a significant challenge constrained by LLM's context size. To address this limitation, we propose {LongVU}, a spatiotemporal adaptive compression mechanism that reduces the number of video tokens while preserving visual details of long videos. Our idea is based on leveraging cross-modal query and inter-frame dependencies to adaptively reduce temporal and spatial redundancy in videos. Specifically, we leverage {DINOv2} features to remove redundant frames that exhibit high similarity. Then we utilize text-guided cross-modal query for selective frame feature reduction. Further, we perform spatial token reduction across frames based on their temporal dependencies. Our adaptive compression strategy effectively processes a large number of frames with little visual information loss within given context length. Our {LongVU} consistently surpasses existing methods across a variety of video understanding benchmarks, especially on hour-long video understanding tasks such as {VideoMME} and {MLVU}. Given a light-weight {LLM}, our {LongVU} also scales effectively into a smaller size with state-of-the-art video understanding performance.},
-  archiveprefix = {arXiv},
-  author = {Shen, Xiaoqian and Xiong, Yunyang and Zhao, Changsheng and Wu, Lemeng and Chen, Jun and Zhu, Chenchen and Liu, Zechun and Xiao, Fanyi and Varadarajan, Balakrishnan and Bordes, Florian and Liu, Zhuang and Xu, Hu and Kim, Hyunwoo J. and Soran, Bilge and Krishnamoorthi, Raghuraman and Elhoseiny, Mohamed and Chandra, Vikas},
-  eprint = {2410.17434},
-  file = {:/home/b/documents/misc/shen2024longvu.pdf:pdf},
-  month = {10},
-  note = {Accepted at ICML 2025},
-  pdf = {https://arxiv.org/pdf/2410.17434},
-  primaryclass = {cs.CV},
-  title = {{LongVU}: Spatiotemporal Adaptive Compression for Long Video-Language Understanding},
-  url = {https://arxiv.org/abs/2410.17434},
-  year = {2024}
-}
+
 
 @inproceedings{wang2024internvideo2,
   abstract = {We introduce InternVideo2, a new family of video foundation models (ViFM) that achieve the state-of-the-art results in video recognition, video-text tasks, and video-centric dialogue. Our core design is a progressive training approach that unifies the masked video modeling, crossmodal contrastive learning, and next token prediction, scaling up the video encoder size to 6B parameters. At the data level, we prioritize spatiotemporal consistency by semantically segmenting videos and generating video-audio-speech captions. This improves the alignment between video and text. Through extensive experiments, we validate our designs and demonstrate superior performance on over 60 video and audio tasks. Notably, our model outperforms others on various video-related dialogue and long video understanding benchmarks, highlighting its ability to reason and comprehend longer contexts.},
@@ -487,21 +474,7 @@
   year = {2024}
 }
 
-@inproceedings{maaz2024video,
-  abstract = {We present Video-ChatGPT, a multimodal model that combines the capabilities of LLMs with a pretrained visual encoder adapted for spatiotemporal video representation. We introduce a new dataset of 100,000 video-instruction pairs used to train Video-ChatGPT acquired via manual and semi-automated pipeline that is easily scalable and robust to label noise. We also develop a quantitative evaluation framework for video-based dialogue models to objectively analyze the strengths and weaknesses of video-based dialogue models. Video-ChatGPT leverages the CLIP-L/14 visual encoder to extract both spatial and temporal video features by averaging frame-level features across temporal and spatial dimensions respectively. The computed spatiotemporal features are then fed into a learnable linear layer, which projects them into the LLMs input space.},
-  author = {Maaz, Muhammad and Rasheed, Hanoona and Khan, Salman H. and Khan, Fahad Shahbaz},
-  booktitle = {Proceedings of the 62nd Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers)},
-  doi = {10.18653/v1/2024.acl-long.679},
-  file = {:/home/b/documents/inproceedings/maaz2024videochatgpt.pdf:pdf},
-  month = {8},
-  note = {arXiv:2306.05424},
-  pages = {12585--12602},
-  pdf = {https://arxiv.org/pdf/2306.05424},
-  publisher = {Association for Computational Linguistics},
-  title = {Video-{ChatGPT}: Towards Detailed Video Understanding via Large Vision and Language Models},
-  url = {https://aclanthology.org/2024.acl-long.679/},
-  year = {2024}
-}
+
 
 @inproceedings{li2024mvbench,
   abstract = {With the rapid development of Multi-modal Large Language Models (MLLMs), a number of diagnostic benchmarks have recently emerged to evaluate the comprehension capabilities of these models. However, most existing benchmarks predominantly assess spatial understanding in static image tasks while overlooking temporal understanding in dynamic video tasks. In this work, we introduce MVBench, a comprehensive Multi-modal Video understanding Benchmark. It covers 20 challenging video tasks that cannot be effectively solved with a single frame, systematically evaluating the temporal understanding abilities of MLLMs. We develop a novel static-to-dynamic method to adapt static image tasks with dynamic evolution for temporal understanding. Furthermore, we develop VideoChat2, a robust video MLLM baseline, by progressive multi-modal training with diverse instruction-tuning data. Our extensive evaluation reveals that existing MLLMs are far from satisfactory in temporal understanding, while VideoChat2 largely surpasses leading models by over 15\% on MVBench.},
@@ -560,17 +533,7 @@
   year = {2024}
 }
 
-@article{qian2024streaming,
-  abstract = {The paper presents VideoStreaming, an advanced vision-language large model for video understanding that can process arbitrary-length videos with a constant number of tokens. The key innovations are Memory-Propagated Streaming Encoding that segments videos into clips and encodes sequentially with propagated memory, and Adaptive Memory Selection that selects question-related memories to generate informative responses. To address the computational burden of long video processing, the approach avoids sparse sampling or frame compression that sacrifice temporal information or spatial details.},
-  author = {Qian, Rui and Dong, Xiaoyi and Zhang, Pan and Zang, Yuhang and Ding, Shuangrui and Lin, Dahua and Wang, Jiaqi},
-  file = {:/home/b/documents/article/qian2024streaming.pdf:pdf},
-  journal = {arXiv preprint arXiv:2405.16009},
-  month = {5},
-  pdf = {https://arxiv.org/pdf/2405.16009.pdf},
-  title = {Streaming Long Video Understanding with Large Language Models},
-  url = {https://arxiv.org/abs/2405.16009},
-  year = {2024}
-}
+
 
 @inproceedings{he2024malmm,
   abstract = {Existing large multimodal models can only process a limited number of frames for short video understanding. This work focuses on designing an efficient model for long-term video understanding by processing videos in an online manner and storing past video information in a memory bank to reference historical content without exceeding context length constraints. The proposed memory bank is a plug-and-play module that can be integrated into existing large multimodal models and achieves state-of-the-art performance on video understanding tasks including video question answering and video captioning.},
@@ -596,16 +559,7 @@
   year = {2024}
 }
 
-@inproceedings{wang2024videoagent,
-  abstract = {Long-form video understanding represents a significant challenge within computer vision, demanding a model capable of reasoning over long multi-modal sequences. This paper introduces VideoAgent, an agent-based system that employs a large language model as a central agent to iteratively identify and compile crucial information to answer questions about videos. The approach mirrors human cognitive processes for understanding long-form videos through interactive reasoning and planning. Evaluated on EgoSchema and NExT-QA benchmarks, VideoAgent achieves 54.1% and 71.3% zero-shot accuracy using only 8.4 and 8.2 frames on average, demonstrating superior effectiveness and efficiency over current state-of-the-art methods.},
-  author = {Wang, Xiaohan and Zhang, Yuhui and Zohar, Orr and Yeung, Serena},
-  booktitle = {Proceedings of the European Conference on Computer Vision (ECCV)},
-  file = {:/home/b/documents/inproceedings/wang2024videoagent.pdf:pdf},
-  pdf = {https://www.ecva.net/papers/eccv_2024/papers_ECCV/papers/10325.pdf},
-  title = {VideoAgent: Long-Form Video Understanding with Large Language Model as Agent},
-  url = {https://eccv.ecva.net/virtual/2024/poster/1090},
-  year = {2024}
-}
+
 
 @article{zhou2024mlvu,
   abstract = {MLVU is proposed as a comprehensive benchmark for multi-task long video understanding, addressing limitations in existing video understanding benchmarks. The benchmark features videos of diversified lengths ranging from 3 minutes to 2 hours (average 12 minutes), includes various video genres such as movies, surveillance footage, egocentric videos, cartoons, and game videos. It covers 9 comprehensive task categories including Topic Reasoning, Anomaly Recognition, Video Summarization, Needle Question Answering, Ego Reasoning, Plot Question Answering, Sub-Scene Captioning, Action Count, and Action Order, comprising 2593 evaluation tasks. Evaluation of 23 popular MLLMs reveals that long-video understanding remains technically challenging, with GPT-4o achieving only 54.5% average score in multi-choice tasks.},
@@ -645,18 +599,7 @@
   year = {2024}
 }
 
-@inproceedings{li2024videomambastate,
-  abstract = {Addressing the dual challenges of local redundancy and global dependencies in video understanding, this work innovatively adapts the {Mamba} to the video domain. The proposed {VideoMamba} overcomes the limitations of existing 3D convolution neural networks and video transformers. Its linear-complexity operator enables efficient long-term modeling, which is crucial for high-resolution long video understanding. Extensive evaluations reveal {VideoMamba}'s four core abilities: (1) Scalability in the visual domain without extensive dataset pretraining, thanks to a novel self-distillation technique; (2) Sensitivity for recognizing short-term actions even with fine-grained motion differences; (3) Superiority in long-term video understanding, showcasing significant advancements over traditional feature-based models; and (4) Compatibility with other modalities, demonstrating robustness in multi-modal contexts. Through these distinct advantages, {VideoMamba} sets a new benchmark for video understanding, offering a scalable and efficient solution for comprehensive video understanding. All the code and models are available.},
-  author = {Li, Kunchang and Li, Xinhao and Wang, Yi and He, Yinan and Wang, Yali and Wang, Limin and Qiao, Yu},
-  booktitle = {Proceedings of the European Conference on Computer Vision (ECCV)},
-  file = {:/home/b/documents/inproceedings/li2024videomamba.pdf:pdf},
-  month = {3},
-  note = {cs.CV},
-  pdf = {https://arxiv.org/pdf/2403.06977},
-  title = {{VideoMamba}: State Space Model for Efficient Video Understanding},
-  url = {https://arxiv.org/abs/2403.06977},
-  year = {2024}
-}
+
 
 @article{fang2024mmbenchvideo,
   abstract = {The advent of large vision-language models ({LVLMs}) has spurred research into their applications in multi-modal contexts, particularly in video understanding. Traditional {VideoQA} benchmarks, despite providing quantitative metrics, often fail to encompass the full spectrum of video content and inadequately assess models' temporal comprehension. To address these limitations, we introduce {MMBench-Video}, a quantitative benchmark designed to rigorously evaluate {LVLMs}' proficiency in video understanding. {MMBench-Video} incorporates lengthy videos from {YouTube} and employs free-form questions, mirroring practical use cases. The benchmark is meticulously crafted to probe the models' temporal reasoning skills, with all questions human-annotated according to a carefully constructed ability taxonomy. We employ {GPT-4} for automated assessment, demonstrating superior accuracy and robustness over earlier {LLM}-based evaluations. Utilizing {MMBench-Video}, we have conducted comprehensive evaluations that include both proprietary and open-source {LVLMs} for images and videos. {MMBench-Video} stands as a valuable resource for the research community, facilitating improved evaluation of {LVLMs} and catalyzing progress in the field of video understanding. The evalutation code of {MMBench-Video} will be integrated into {VLMEvalKit}: https://github.com/open-compass/VLMEvalKit.},
@@ -685,7 +628,7 @@
 
 @article{lee2024look,
   abstract = {Current video-LMMs face critical challenges when applied to longer video sequences, as the attention mechanism incurs memory load and computational costs that scale quadratically with sequence length. This becomes prohibitive for processing extended video sequences, where sequence lengths often exceed 128K tokens. To address this challenge, we introduce Video-Ma2mba, a novel architecture that incorporates State Space Models (SSMs) within the Mamba-2 framework, replacing the attention mechanisms. This allows the LMMs to scale linearly in terms of time and memory requirements, making it feasible to handle long-duration video content. Additionally, we present Multi-Axis Gradient Checkpointing (MA-GC), a new method that strategically manages memory by retaining only essential activations across multiple computational axes. This approach significantly reduces the memory footprint compared to standard gradient checkpointing while maintaining training efficiency for long video sequences.},
-  author = {Lee, Hosu and Kim, Junho and Kim, Je Hyeong and others},
+  author = {Lee, Hosu and Kim, Junho and Kim, Je Hyeong},
   file = {:/home/b/documents/article/lee2024look.pdf:pdf},
   journal = {arXiv preprint arXiv:2411.19460},
   month = {11},
@@ -1258,20 +1201,7 @@
   year = {2024}
 }
 
-@article{wang2024longvu,
-  abstract = {We present LongVU, an approach for spatiotemporal adaptive compression in long video-language understanding tasks. This method efficiently handles long-form video content through adaptive compression techniques that preserve important spatial and temporal information.},
-  author = {Wang, Teng and Dai, Jinrui and Liu, Yan and Zhang, Xinyu and Chen, Kun and Qiu, Xudong and Wang, Limin},
-  doi = {10.48550/arXiv.2404.16462},
-  eprint = {2404.16462},
-  file = {:/home/b/documents/article/wang2024longvu.pdf:pdf},
-  journal = {arXiv preprint arXiv:2404.16462},
-  month = {4},
-  note = {Duplicate entry - this arXiv ID was not found in search, likely incorrect. Real LongVU paper is arXiv:2410.17434},
-  pdf = {https://arxiv.org/pdf/2404.16462.pdf},
-  title = {{LongVU}: Spatiotemporal Adaptive Compression for Long Video-Language Understanding},
-  url = {https://arxiv.org/abs/2404.16462},
-  year = {2024}
-}
+
 
 @article{yang2024vca,
   abstract = {Long video understanding poses unique challenges due to their temporal complexity and low information density. Recent works address this task by sampling numerous frames or incorporating auxiliary tools using LLMs, both of which result in high computational costs. In this work, we introduce a curiosity-driven video agent with self-exploration capability, dubbed as VCA. Built upon VLMs, VCA autonomously navigates video segments and efficiently builds a comprehensive understanding of complex video sequences. Instead of directly sampling frames, VCA employs a tree-search structure to explore video segments and collect frames. Rather than relying on external feedback or reward, VCA leverages VLM's self-generated intrinsic reward to guide its exploration, enabling it to capture the most crucial information for reasoning.},
@@ -1367,7 +1297,7 @@
 
 @inproceedings{ding2024pvuw,
   abstract = {This paper reports on the Pixel-level Video Understanding in the Wild Challenge ({PVUW}) 2024, which focuses on complex video understanding. Two new tracks were added: Complex Video Object Segmentation Track based on {MOSE} dataset and Motion Expression guided Video Segmentation track based on {MeViS} dataset. The {MOSE} challenge had 140 registered teams with 12 final submissions, while the {MeViS} challenge had 225 registered teams with 5 final submissions. These tracks foster the development of comprehensive and robust pixel-level understanding of video scenes in complex environments, featuring challenging elements such as disappearance and reappearance of objects, inconspicuous small objects, heavy occlusions, and crowded environments.},
-  author = {Ding, Henghui and Liu, Chang and Wei, Yunchao and Ravi, Nikhila and He, Shuting and Bai, Song and Torr, Philip and others},
+  author = {Ding, Henghui and Liu, Chang and Wei, Yunchao and Ravi, Nikhila and He, Shuting and Bai, Song and Torr, Philip},
   booktitle = {IEEE/CVF Conference on Computer Vision and Pattern Recognition Workshops},
   doi = {10.48550/arXiv.2406.17005},
   eprint = {2406.17005},
@@ -1574,21 +1504,7 @@
   year = {2023}
 }
 
-@inproceedings{zhang2023video,
-  abstract = {We present Video-LLaMA, a multi-modal framework that empowers Large Language Models (LLMs) with the capability of understanding both visual and auditory content in video. Unlike previous works that complement LLMs to process visual or audio signals only, Video-LLaMA enables video comprehension by tackling two challenges: (1) capturing the temporal changes in visual scenes, (2) integrating audio-visual signals. To counter the first challenge, we propose a Video Q-former to assemble a pre-trained image encoder into our video encoder and introduce a video-to-text generation task to learn video-language correspondence. For the second challenge, we leverage ImageBind, a universal embedding model aligning multiple modalities, as the pre-trained audio encoder and introduce an Audio Q-former on top of ImageBind to learn reasonable auditory query embeddings for the LLM module. We found Video-LLaMA shows the ability to perceive and comprehend video content and generate meaningful responses grounded in the visual and auditory information presented in the videos.},
-  author = {Zhang, Hang and Li, Xin and Bing, Lidong},
-  booktitle = {Proceedings of the 2023 Conference on Empirical Methods in Natural Language Processing: System Demonstrations},
-  doi = {10.18653/v1/2023.emnlp-demo.49},
-  file = {:/home/b/documents/inproceedings/zhang2023videollama.pdf:pdf},
-  month = {12},
-  note = {arXiv:2306.02858},
-  pages = {543--553},
-  pdf = {https://arxiv.org/pdf/2306.02858},
-  publisher = {Association for Computational Linguistics},
-  title = {Video-{LLaMA}: An Instruction-tuned Audio-Visual Language Model for Video Understanding},
-  url = {https://aclanthology.org/2023.emnlp-demo.49/},
-  year = {2023}
-}
+
 
 @article{li2023videochat,
   abstract = {In this paper, we initiate an attempt of developing an end-to-end chat-centric video understanding system, coined as VideoChat. It integrates video foundation models and large language models via a learnable neural interface, excelling in spatiotemporal reasoning, event localization, and causal relationship inference. To instructively tune this system, we build a video-centric instruction dataset, composed of thousands of videos associated with detailed descriptions and conversations. This dataset emphasizes spatiotemporal reasoning and captures causal relationships, providing a valuable asset for training our chat-centric video understanding system.},
@@ -1685,18 +1601,7 @@
   year = {2023}
 }
 
-@inproceedings{ren2023testa,
-  abstract = {The heavy computational burden of video encoding remains a formidable efficiency bottleneck, particularly for long-form videos, as these videos contain massive visual tokens due to their inherent 3D properties and spatiotemporal redundancy. To tackle this challenge, we propose TESTA (TEmporal-Spatial Token Aggregation), an efficient method that condenses video semantics by adaptively aggregating similar frames, as well as similar patches within each frame. TESTA can reduce the number of visual tokens by 75 percent and thus accelerate video encoding. Experimental results show that TESTA improves computing efficiency by 1.7 times. Building upon TESTA, we introduce a pre-trained video-language model equipped with a divided space-time token aggregation module in each video encoder block. Evaluated on five datasets for paragraph-to-video retrieval and long-form VideoQA tasks, our model achieves significant performance gains from its scalability in processing longer input frames.},
-  author = {Ren, Shuhuai and Chen, Sishuo and Li, Shicheng and Yuan, Qu and He, Deng and Sun, Xu and Hou, Lu and Zhang, Xuanjing},
-  booktitle = {Findings of the Association for Computational Linguistics: EMNLP 2023},
-  file = {:/home/b/documents/inproceedings/ren2023testa.pdf:pdf},
-  pages = {1006--1018},
-  pdf = {https://aclanthology.org/2023.findings-emnlp.66.pdf},
-  publisher = {Association for Computational Linguistics},
-  title = {{TESTA}: Temporal-Spatial Token Aggregation for Long-form Video-Language Understanding},
-  url = {https://arxiv.org/abs/2310.19060},
-  year = {2023}
-}
+
 
 @inproceedings{shu2023novel,
   abstract = {We introduce a novel video understanding network called {ViViP} (Video Vision {PoolFormer}), which leverages {PoolFormer} and Transformer techniques for video classification. The network begins by encoding video frames using sequential {PoolFormer} layers, with the output token then processed by a Transformer and the class token used in a Multilayer Perceptron ({MLP}) for classification. {ViViP} achieves notable results across multiple action recognition benchmarks, reaching 98.4\% accuracy on {UCF-101} and 71.6\% on {HMDB-51}. The model exhibits faster training speeds than other popular networks such as {SlowFast}, {TimeSformer}, and {TSN}, while demonstrating that the {PoolFormer} token-mixer achieves the best classification accuracy among examined design choices.},
@@ -1892,20 +1797,7 @@
   year = {2023}
 }
 
-@inproceedings{luo2023diff,
-  abstract = {The Video-to-Audio (V2A) model has recently gained attention for its practical application in generating audio directly from silent videos, particularly in video/film production. However, previous methods in V2A have limited generation quality in terms of temporal synchronization and audio-visual relevance. We present Diff-Foley, a synchronized Video-to-Audio synthesis method with a latent diffusion model (LDM) that generates high-quality audio with improved synchronization and audio-visual relevance. We adopt contrastive audio-visual pretraining (CAVP) to learn more temporally and semantically aligned features, then train an LDM with CAVP-aligned visual features on spectrogram latent space. The CAVP-aligned features enable LDM to capture the subtler audio-visual correlation via a cross-attention module. We further significantly improve sample quality with double guidance. Diff-Foley achieves state-of-the-art V2A performance on current large scale V2A dataset. Furthermore, we demonstrate Diff-Foley practical applicability and generalization capabilities via downstream finetuning.},
-  author = {Luo, Simian and Yan, Chuanhao and Hu, Chenxu and Zhao, Hang},
-  booktitle = {Advances in Neural Information Processing Systems (NeurIPS)},
-  doi = {10.48550/arXiv.2306.17203},
-  eprint = {2306.17203},
-  file = {:/home/b/documents/inproceedings/luo2023difffoley.pdf:pdf},
-  journal = {arXiv preprint arXiv:2306.17203},
-  month = {6},
-  pdf = {https://arxiv.org/pdf/2306.17203.pdf},
-  title = {{Diff-Foley}: Synchronized Video-to-Audio Synthesis with Latent Diffusion Models},
-  url = {https://arxiv.org/abs/2306.17203},
-  year = {2023}
-}
+
 
 @inproceedings{ren2023testatemporal,
   abstract = {Large-scale video-language pre-training has made remarkable strides in advancing video-language understanding tasks. However, the heavy computational burden of video encoding remains a formidable efficiency bottleneck, particularly for long-form videos. These videos contain massive visual tokens due to their inherent 3D properties and spatiotemporal redundancy, making it challenging to capture complex temporal and spatial relationships. To tackle this issue, we propose an efficient method called TEmporal-Spatial Token Aggregation (TESTA). TESTA condenses video semantics by adaptively aggregating similar frames, as well as similar patches within each frame. TESTA can reduce the number of visual tokens by 75\% and thus accelerate video encoding. Building upon TESTA, we introduce a pre-trained video-language model equipped with a divided space-time token aggregation module in each video encoder block. Experimental results show that TESTA improves computing efficiency by 1.7 times, and achieves significant performance gains from its scalability in processing longer input frames.},
