@@ -125,6 +125,7 @@ def cmd_run(args: argparse.Namespace) -> int:
             for summary in summaries:
                 print(
                     f"{summary['file_path']}: planned={summary['planned_entries']} "
+                    f"proposed={summary['proposed_entries']} "
                     f"updated={summary['updated_entries']} unresolved={summary['unresolved_entries']} "
                     f"errors={summary['error_entries']} written={summary['written']}"
                 )

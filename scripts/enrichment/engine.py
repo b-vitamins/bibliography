@@ -42,6 +42,15 @@ class EnrichmentEngine:
         etype = entry_type(entry)
         return list(self.cfg.target_fields_by_type.get(etype, []))
 
+    @staticmethod
+    def _fields_supported_by_adapter(target_fields: list[str], adapter: object | None) -> list[str]:
+        if adapter is None:
+            return target_fields
+        supported = getattr(adapter, "provided_fields", None)
+        if not isinstance(supported, set):
+            return target_fields
+        return [field for field in target_fields if field in supported]
+
     def plan(
         self,
         file_path: Path,
@@ -65,7 +74,12 @@ class EnrichmentEngine:
             if not target_fields:
                 continue
 
-            missing = [f for f in target_fields if not str(entry.get(f, "")).strip()]
+            adapter = self._adapter_for_item(file_path, entry, venue.adapter if venue else None)
+            target_fields = self._fields_supported_by_adapter(target_fields, adapter)
+            if not target_fields:
+                continue
+
+            missing = [field for field in target_fields if not str(entry.get(field, "")).strip()]
             if not missing and not overwrite:
                 continue
 
@@ -76,7 +90,7 @@ class EnrichmentEngine:
                     entry_type=entry_type(entry),
                     target_fields=target_fields,
                     missing_fields=missing,
-                    provider=venue.adapter if venue else None,
+                    provider=adapter.name if adapter else (venue.adapter if venue else None),
                 )
             )
             if max_entries > 0 and len(items) >= max_entries:
@@ -86,7 +100,9 @@ class EnrichmentEngine:
 
     def _adapter_for_item(self, file_path: Path, entry: dict[str, Any], provider_hint: str | None):
         if provider_hint and provider_hint in self.adapters:
-            return self.adapters[provider_hint]
+            hinted = self.adapters[provider_hint]
+            if hinted.supports(file_path, entry):
+                return hinted
         for adapter in self.adapters.values():
             if adapter.supports(file_path, entry):
                 return adapter
@@ -182,6 +198,7 @@ class EnrichmentEngine:
         write: bool = False,
         overwrite_existing: bool | None = None,
     ) -> tuple[FileRunSummary, list[EntryDecision]]:
+        run_started_at = now_iso()
         overwrite = self.cfg.overwrite_existing if overwrite_existing is None else overwrite_existing
         db = parse_bib_file(file_path)
         entry_map = get_entry_map(db)
@@ -287,6 +304,7 @@ class EnrichmentEngine:
         summary = FileRunSummary(
             file_path=str(file_path),
             planned_entries=len(work_items),
+            proposed_entries=sum(1 for d in decisions if d.status == "planned_update"),
             updated_entries=sum(1 for d in decisions if d.status == "updated"),
             unresolved_entries=sum(1 for d in decisions if d.status == "unresolved"),
             skipped_entries=sum(1 for d in decisions if d.status == "skipped"),
@@ -298,7 +316,7 @@ class EnrichmentEngine:
 
         envelope = RunEnvelope(
             run_id=run_id,
-            started_at=now_iso(),
+            started_at=run_started_at,
             finished_at=now_iso(),
             command="run_file",
             config_path=str(self.cfg.config_path),

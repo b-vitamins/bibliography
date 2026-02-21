@@ -13,6 +13,7 @@ from .base import AdapterContext
 
 class NeuripsProceedingsAdapter:
     name = "neurips_proceedings"
+    provided_fields = {"url", "pdf", "abstract", "title", "doi"}
 
     def __init__(self, http_client: CachedHttpClient):
         self.http_client = http_client
@@ -20,14 +21,12 @@ class NeuripsProceedingsAdapter:
     def supports(self, file_path: Path, entry: dict[str, Any]) -> bool:
         url = str(entry.get("url", "")).lower()
         pdf = str(entry.get("pdf", "")).lower()
-        file_hint = str(file_path).lower()
         return (
             "proceedings.neurips.cc" in url
             or "neurips.cc" in url
             or "papers.nips.cc" in url
             or "proceedings.neurips.cc" in pdf
             or "neurips.cc" in pdf
-            or "conferences/neurips/" in file_hint
         )
 
     @staticmethod
@@ -41,22 +40,23 @@ class NeuripsProceedingsAdapter:
         parsed = urlparse(pdf_url)
         if not parsed.netloc:
             return None
-        match = re.search(r"/file/([0-9a-f]{32})-Paper-Conference\.pdf", parsed.path)
+        match = re.search(r"/file/([0-9a-f]{32})-Paper-([A-Za-z0-9_]+)\.pdf", parsed.path)
         if not match:
             return None
         paper_hash = match.group(1)
+        track = match.group(2)
         year_match = re.search(r"/paper/(\d{4})/", parsed.path)
         if not year_match:
             return None
         year = year_match.group(1)
         return (
             f"https://proceedings.neurips.cc/paper_files/paper/{year}/hash/"
-            f"{paper_hash}-Abstract-Conference.html"
+            f"{paper_hash}-Abstract-{track}.html"
         )
 
     def _source_url_from_entry(self, entry: dict[str, Any]) -> str | None:
         url = str(entry.get("url", "")).strip()
-        if "Abstract-Conference.html" in url:
+        if "paper_files/paper/" in url and "-Abstract-" in url and url.endswith(".html"):
             return url
 
         pdf = str(entry.get("pdf", "")).strip()
@@ -90,7 +90,7 @@ class NeuripsProceedingsAdapter:
         doi_match = re.search(r'class="paper-doi">([^<]+)</a>', text)
         doi = self._normalize_text(doi_match.group(1)) if doi_match else ""
 
-        pdf_match = re.search(r'href="([^"]+-Paper-Conference\.pdf)"', text)
+        pdf_match = re.search(r'href="([^"]+-Paper-[^"]+\.pdf)"', text)
         pdf = urljoin(source_url, pdf_match.group(1)) if pdf_match else ""
 
         fields: dict[str, str] = {"url": source_url}

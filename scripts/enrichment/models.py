@@ -73,6 +73,7 @@ class EntryDecision:
 class FileRunSummary:
     file_path: str
     planned_entries: int
+    proposed_entries: int
     updated_entries: int
     unresolved_entries: int
     skipped_entries: int

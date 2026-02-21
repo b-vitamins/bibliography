@@ -15,6 +15,7 @@ _META_RE_TEMPLATE = r'name="{name}" content="([^"]+)"'
 
 class OpenReviewAdapter:
     name = "openreview"
+    provided_fields = {"url", "pdf", "abstract", "title", "booktitle", "author"}
 
     def __init__(self, http_client: CachedHttpClient):
         self.http_client = http_client
