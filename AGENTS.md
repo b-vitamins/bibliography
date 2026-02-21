@@ -77,6 +77,7 @@ Codex should prefer these over ad-hoc behavior when tasks match:
 - `bibops-entry-curation`
 - `bibops-quality-gate`
 - `bibops-release-manager`
+- `bibops-enrichment-pipeline`
 
 If new capability is needed:
 1. Create/update a skill in `.agents/skills`.

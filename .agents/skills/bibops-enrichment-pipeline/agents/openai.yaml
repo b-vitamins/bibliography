@@ -1,0 +1,4 @@
+interface:
+  display_name: "Enrichment Pipeline"
+  short_description: "Run modular venue-grounded bibliography enrichment"
+  default_prompt: "Plan and run source-grounded enrichment with provenance checks, then surface unresolved entries for triage."

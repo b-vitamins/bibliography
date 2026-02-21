@@ -1,0 +1,28 @@
+[defaults]
+overwrite_existing = false
+min_abstract_words = 25
+allow_abstract_prefix_match = false
+report_dir = "ops/enrichment-runs"
+triage_dir = "ops/unresolved/enrichment"
+source_cache_path = "ops/enrichment-source-cache.json"
+timeout_seconds = 20
+max_retries = 2
+user_agent = "bibliography-enrichment-pipeline/1.0"
+
+[targets]
+inproceedings = ["url", "pdf", "abstract", "doi"]
+
+[policy]
+protected_fields = ["author", "title", "booktitle", "year"]
+
+[[venues]]
+name = "iclr"
+path_contains = "conferences/iclr/"
+adapter = "openreview"
+allowed_domains = ["openreview.net"]
+
+[[venues]]
+name = "neurips"
+path_contains = "conferences/neurips/"
+adapter = "neurips_proceedings"
+allowed_domains = ["proceedings.neurips.cc", "neurips.cc", "papers.nips.cc"]

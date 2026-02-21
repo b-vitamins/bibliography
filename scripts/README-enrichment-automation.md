@@ -2,6 +2,28 @@
 
 This document describes the automated enrichment scripts that wrap the bibtex-entry-enricher agent and provide automatic tracking.
 
+## New Modular Pipeline (`scripts/enrichment`)
+
+For venue-grounded, provenance-aware enrichment, use the modular pipeline:
+
+- `python3 scripts/enrich-pipeline.py plan <file.bib>`
+- `python3 scripts/enrich-pipeline.py run <file.bib>`
+- `python3 scripts/enrich-pipeline.py run <file.bib> --write`
+
+Configuration lives in `ops/enrichment-pipeline.toml`.
+
+The new pipeline is adapter-based and currently includes:
+
+- OpenReview adapter for ICLR-style entries.
+- Official NeurIPS proceedings adapter for NeurIPS-style entries.
+
+Each run emits:
+
+- Per-run report under `ops/enrichment-runs/`
+- Unresolved triage queue under `ops/unresolved/enrichment/`
+
+Use this pipeline for future enrichment work where source fidelity and repeatability are primary concerns.
+
 ## Scripts Overview
 
 ### enrich-entry-with-tracking.py

@@ -1380,6 +1380,25 @@ def command_export_tracking(cfg: OpsConfig) -> int:
     return proc.returncode
 
 
+def command_enrich_pipeline(args: argparse.Namespace) -> int:
+    cmd = [sys.executable, "scripts/enrich-pipeline.py", "--config", args.enrichment_config, args.mode, *args.targets]
+    if args.entry_key:
+        for key in args.entry_key:
+            cmd.extend(["--entry-key", key])
+    if args.max_entries:
+        cmd.extend(["--max-entries", str(args.max_entries)])
+    if args.overwrite:
+        cmd.append("--overwrite")
+    if args.write:
+        cmd.append("--write")
+    if args.fail_on_unresolved:
+        cmd.append("--fail-on-unresolved")
+    if args.json:
+        cmd.append("--json")
+    proc = subprocess.run(cmd, check=False)
+    return proc.returncode
+
+
 def command_verify_orals(cfg: OpsConfig, recorder: RunRecorder, as_json: bool, fail_on_error: bool) -> int:
     files_scanned, entries_scanned, issues = run_verify_orals(cfg)
     write_issues(Path(cfg.db_path), recorder.run_id, issues)
@@ -1508,6 +1527,25 @@ def build_parser() -> argparse.ArgumentParser:
     sub.add_parser("install-hooks", help="Install git hooks from hooks/")
     sub.add_parser("export-tracking", help="Export tracking database to tracking.json")
 
+    enrich = sub.add_parser("enrich", help="Run modular enrichment pipeline for specific bibliography files")
+    enrich.add_argument("mode", choices=["plan", "run"], help="Pipeline mode")
+    enrich.add_argument("targets", nargs="+", help="BibTeX file(s) or glob(s)")
+    enrich.add_argument(
+        "--enrichment-config",
+        default="ops/enrichment-pipeline.toml",
+        help="Enrichment pipeline config path",
+    )
+    enrich.add_argument("--entry-key", action="append", default=[], help="Specific entry key to process (repeatable)")
+    enrich.add_argument("--max-entries", type=int, default=0, help="Cap processed entries per file")
+    enrich.add_argument("--overwrite", action="store_true", help="Allow non-protected field overwrites")
+    enrich.add_argument("--write", action="store_true", help="Write approved updates (run mode only)")
+    enrich.add_argument(
+        "--fail-on-unresolved",
+        action="store_true",
+        help="Return non-zero when unresolved decisions exist (run mode only)",
+    )
+    enrich.add_argument("--json", action="store_true", help="Emit JSON output")
+
     profile = sub.add_parser("run-profile", help="Run declarative ops profile")
     profile.add_argument("--profile", required=True, help="Path to profile TOML")
 
@@ -1537,6 +1575,10 @@ def main() -> int:
 
     if args.command == "export-tracking":
         return command_export_tracking(cfg)
+
+    if args.command == "enrich":
+        with run_lock():
+            return command_enrich_pipeline(args)
 
     if args.command == "run-profile":
         with run_lock():

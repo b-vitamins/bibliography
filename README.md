@@ -31,6 +31,12 @@ python3 scripts/bibops.py --config ops/bibops-orals.toml run-profile --profile o
 # Enrich oral subsets with arXiv IDs (keeps existing url/pdf untouched)
 python3 scripts/enrich-arxiv.py collections/orals/*/*.bib
 
+# Plan venue-grounded enrichment for a conference file
+python3 scripts/enrich-pipeline.py plan conferences/iclr/2024.bib
+
+# Run enrichment in dry mode (writes report + unresolved queue)
+python3 scripts/enrich-pipeline.py run conferences/iclr/2024.bib
+
 # Release profile (hooks + lint + tracking export)
 python3 scripts/bibops.py run-profile --profile ops/profiles/release.toml
 
@@ -72,6 +78,7 @@ Repository skills are in `.agents/skills/`:
 - `bibops-entry-curation`
 - `bibops-quality-gate`
 - `bibops-release-manager`
+- `bibops-enrichment-pipeline`
 
 These are designed with progressive disclosure and can be invoked explicitly or implicitly by task match.
 
