@@ -1220,6 +1220,7 @@ def print_summary(run_id: str, file_rows: list[FileResult], entry_rows: list[Ent
 
 def command_doctor(cfg: OpsConfig) -> int:
     problems: list[str] = []
+    warnings: list[str] = []
 
     if shutil.which("guix") is None:
         problems.append("guix not found in PATH")
@@ -1232,6 +1233,23 @@ def command_doctor(cfg: OpsConfig) -> int:
 
     if not Path("scripts/install-hooks.py").exists():
         problems.append("scripts/install-hooks.py missing")
+    else:
+        # Check whether installed hooks are managed wrappers that execute
+        # versioned hooks/, so hook updates are automatically picked up.
+        for hook_name in ("pre-commit", "commit-msg"):
+            installed = Path(".git/hooks") / hook_name
+            if not installed.exists():
+                warnings.append(f"{installed} missing; run `python3 scripts/install-hooks.py`")
+                continue
+            try:
+                content = installed.read_text(encoding="utf-8", errors="ignore")
+            except Exception:
+                warnings.append(f"unable to read {installed}; run `python3 scripts/install-hooks.py`")
+                continue
+            if "Managed by scripts/install-hooks.py" not in content:
+                warnings.append(
+                    f"{installed} is not managed by install-hooks and may drift from versioned hooks"
+                )
 
     discovered = discover_bib_files(cfg)
     if not discovered:
@@ -1246,6 +1264,10 @@ def command_doctor(cfg: OpsConfig) -> int:
     print("doctor: OK")
     print(f"- discovered_bib_files: {len(discovered)}")
     print(f"- db_path: {cfg.db_path}")
+    if warnings:
+        print("- warnings:")
+        for w in warnings:
+            print(f"  - {w}")
     return 0
 
 

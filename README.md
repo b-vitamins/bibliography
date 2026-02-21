@@ -93,6 +93,10 @@ These are designed with progressive disclosure and can be invoked explicitly or 
 - Local operational state and enrichment tracking use `bibliography.db`.
 - Version-controlled tracking snapshot is `tracking.json`.
 
+Hook behavior:
+- `pre-commit` tracking export is opt-in (`BIBOPS_AUTO_EXPORT_TRACKING=1`).
+- Default commits do not auto-rewrite `tracking.json`.
+
 `bibops` stores run metadata and issue snapshots in `ops_*` tables inside `bibliography.db`.
 
 ## Legacy scripts

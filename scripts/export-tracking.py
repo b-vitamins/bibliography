@@ -14,6 +14,22 @@ from pathlib import Path
 from typing import Any
 
 
+def normalize_timestamp(raw: Any) -> str | None:
+    """Normalize timestamp-like values without introducing current-time drift."""
+    if raw is None:
+        return None
+    text = str(raw).strip()
+    if not text:
+        return None
+    candidate = text.replace(" ", "T")
+    try:
+        parsed = datetime.fromisoformat(candidate)
+        return parsed.isoformat()
+    except ValueError:
+        # Preserve original value if it is not ISO-like.
+        return text
+
+
 def export_database(
     db_path: str = "bibliography.db", output_file: str = "tracking.json"
 ) -> bool:
@@ -39,34 +55,39 @@ def export_database(
                 error_message,
                 enrichment_version
             FROM enrichment_log
-            ORDER BY timestamp
+            ORDER BY timestamp, file_path, entry_key
         """)
 
         entries: list[dict[str, Any]] = []
         for row in cursor.fetchall():
             entry: dict[str, Any] = dict(row)
-            # Ensure timestamp is ISO format string
-            if entry["timestamp"]:
-                # SQLite stores as string already, just verify format
-                try:
-                    datetime.fromisoformat(entry["timestamp"].replace(" ", "T"))
-                except ValueError:
-                    # If not valid ISO, try to parse and convert
-                    entry["timestamp"] = datetime.now().isoformat()
+            entry["timestamp"] = normalize_timestamp(entry.get("timestamp"))
             entries.append(entry)
+
+        export_timestamp = entries[-1]["timestamp"] if entries else None
 
         # Create export data structure
         export_data: dict[str, Any] = {
             "export_version": "1.0",
-            "export_timestamp": datetime.now().isoformat(),
+            "export_timestamp": export_timestamp,
             "database_path": str(db_path),
             "total_entries": len(entries),
             "enrichment_log": entries,
         }
 
-        # Write to file
-        with open(output_file, "w", encoding="utf-8") as f:
-            json.dump(export_data, f, indent=2, ensure_ascii=False)
+        rendered = json.dumps(export_data, indent=2, ensure_ascii=False, sort_keys=True) + "\n"
+
+        existing = None
+        output_path = Path(output_file)
+        if output_path.exists():
+            existing = output_path.read_text(encoding="utf-8")
+
+        # Avoid rewriting file when exported content is unchanged.
+        if existing == rendered:
+            print(f"✓ Tracking export already up to date: {output_file}")
+            return True
+
+        output_path.write_text(rendered, encoding="utf-8")
 
         print(f"✓ Exported {len(entries)} enrichment records to {output_file}")
         return True

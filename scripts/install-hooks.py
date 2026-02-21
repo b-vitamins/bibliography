@@ -1,13 +1,36 @@
 #!/usr/bin/env python3
 """
 Install git hooks from the version-controlled hooks/ directory.
-Run this after cloning the repository to set up commit validation and tracking export.
+
+Installed hooks are lightweight wrappers that exec `hooks/<name>` from the
+repository root. This avoids stale copied hooks when versioned hook logic
+changes.
 """
 
-import shutil
 import stat
 import sys
 from pathlib import Path
+
+WRAPPER_HEADER = "# Managed by scripts/install-hooks.py; DO NOT EDIT.\n"
+
+
+def _build_wrapper(hook_name: str) -> str:
+    return f"""#!/usr/bin/env bash
+{WRAPPER_HEADER}set -euo pipefail
+repo_root="$(git rev-parse --show-toplevel 2>/dev/null || pwd)"
+hook="$repo_root/hooks/{hook_name}"
+
+if [ ! -f "$hook" ]; then
+    echo "Missing versioned hook: $hook" >&2
+    exit 1
+fi
+
+if [ ! -x "$hook" ]; then
+    chmod +x "$hook" 2>/dev/null || true
+fi
+
+exec "$hook" "$@"
+"""
 
 
 def install_hooks() -> bool:
@@ -28,19 +51,25 @@ def install_hooks() -> bool:
     hooks_dst_dir.mkdir(exist_ok=True)
 
     installed = 0
+    updated = 0
 
     for hook_file in hooks_src_dir.glob("*"):
         if hook_file.is_file():
             dst_file = hooks_dst_dir / hook_file.name
 
             try:
-                # Copy hook file
-                shutil.copy2(hook_file, dst_file)
+                wrapper = _build_wrapper(hook_file.name)
+                prev = ""
+                if dst_file.exists():
+                    prev = dst_file.read_text(encoding="utf-8")
+                if prev != wrapper:
+                    dst_file.write_text(wrapper, encoding="utf-8")
+                    updated += 1
 
                 # Make executable
                 dst_file.chmod(dst_file.stat().st_mode | stat.S_IEXEC)
 
-                print(f"✓ Installed {hook_file.name}")
+                print(f"✓ Installed wrapper for {hook_file.name}")
                 installed += 1
 
             except Exception as e:
@@ -51,9 +80,9 @@ def install_hooks() -> bool:
         print("⚠ No hook files found in hooks/ directory")
         return False
 
-    print(f"\n✓ Successfully installed {installed} git hook(s)")
+    print(f"\n✓ Successfully installed {installed} git hook wrapper(s) ({updated} updated)")
     print("\nInstalled hooks:")
-    print("• pre-commit: Auto-exports enrichment tracking data")
+    print("• pre-commit: Executes versioned hooks/pre-commit")
     print("• commit-msg: Validates commit message format")
 
     return True
