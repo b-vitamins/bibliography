@@ -37,8 +37,6 @@ def sanitize_bibtex_text(value: str) -> str:
     for idx, ch in enumerate(chars):
         if ch not in {"{", "}"}:
             continue
-        if idx > 0 and chars[idx - 1] == "\\":
-            continue
         if ch == "{":
             stack.append(idx)
             continue

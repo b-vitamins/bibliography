@@ -47,7 +47,7 @@ Each stage has stable interfaces and independent outputs so failures are observa
 - `scripts/enrichment/http_client.py`
   - Retry, timeout, and host-throttled HTTP retrieval.
 - `scripts/enrichment/sources/`
-  - Adapter interface + source implementations (`openreview`, `neurips`).
+  - Adapter interface + source implementations (`openreview`, `neurips`, `pmlr`).
 - `scripts/enrichment/engine.py`
   - Orchestration for `plan` and `run`, provider dispatch, triage/report emission.
 - `scripts/enrich-pipeline.py`

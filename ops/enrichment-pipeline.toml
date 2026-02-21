@@ -9,7 +9,7 @@ timeout_seconds = 20
 max_retries = 2
 max_validation_retries = 4
 host_min_interval_seconds = 1.0
-host_min_interval_by_host = { "openreview.net" = 1.0, "proceedings.neurips.cc" = 0.2 }
+host_min_interval_by_host = { "openreview.net" = 1.0, "proceedings.neurips.cc" = 0.2, "proceedings.mlr.press" = 0.2 }
 backoff_base_seconds = 1.0
 backoff_max_seconds = 30.0
 user_agent = "bibliography-enrichment-pipeline/1.0"
@@ -31,3 +31,9 @@ name = "neurips"
 path_contains = "conferences/neurips/"
 adapter = "neurips_proceedings"
 allowed_domains = ["proceedings.neurips.cc", "neurips.cc", "papers.nips.cc"]
+
+[[venues]]
+name = "icml"
+path_contains = "conferences/icml/"
+adapter = "pmlr"
+allowed_domains = ["proceedings.mlr.press"]

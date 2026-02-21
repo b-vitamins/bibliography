@@ -14,6 +14,7 @@ from pathlib import Path
 
 import bibtexparser
 from bibtexparser.bparser import BibTexParser
+from bibtexparser.bwriter import BibTexWriter
 
 REPO = Path(__file__).resolve().parents[2]
 
@@ -165,6 +166,27 @@ def run_battle_tests(mode: str) -> dict[str, object]:
         "python3",
         "scripts/enrich-pipeline.py",
         "plan",
+        "conferences/icml/2020.bib",
+        "--max-entries",
+        str(max_medium),
+        "--json",
+    ]
+    proc, dur = run_cmd(cmd)
+    ok = False
+    details = {}
+    if proc.returncode == 0:
+        payload = parse_json_output(proc)
+        files = payload.get("files", [])
+        if isinstance(files, list) and files:
+            planned = int(files[0].get("planned_entries", 0))
+            details["planned_entries"] = planned
+            ok = planned > 0
+    record(results, "plan_icml_2020", cmd, proc, dur, ok, details)
+
+    cmd = [
+        "python3",
+        "scripts/enrich-pipeline.py",
+        "plan",
         "conferences/iclr/2024.bib",
         "conferences/neurips/2024.bib",
         "--max-entries",
@@ -279,6 +301,30 @@ def run_battle_tests(mode: str) -> dict[str, object]:
         ok = int(f.get("planned_entries", 0)) > 0 and int(f.get("proposed_entries", 0)) >= 0
     record(results, "run_neurips_2024_dry", cmd, proc, dur, ok, details)
 
+    cmd = [
+        "python3",
+        "scripts/enrich-pipeline.py",
+        "run",
+        "conferences/icml/2020.bib",
+        "--max-entries",
+        str(max_medium),
+        "--json",
+    ]
+    proc, dur = run_cmd(cmd, timeout=1800)
+    ok = False
+    details = {}
+    if proc.returncode == 0:
+        payload = parse_json_output(proc)
+        f = payload["files"][0]
+        details = {
+            "planned_entries": f.get("planned_entries"),
+            "proposed_entries": f.get("proposed_entries"),
+            "updated_entries": f.get("updated_entries"),
+            "unresolved_entries": f.get("unresolved_entries"),
+        }
+        ok = int(f.get("planned_entries", 0)) > 0 and int(f.get("proposed_entries", 0)) >= 0
+    record(results, "run_icml_2020_dry", cmd, proc, dur, ok, details)
+
     # 4b) NeurIPS stale URL recovery (single-key targeted check)
     neurips_file = (REPO / "conferences/neurips/2024.bib").read_text(encoding="utf-8")
     stale_candidates = [
@@ -333,6 +379,84 @@ def run_battle_tests(mode: str) -> dict[str, object]:
             True,
             {"skipped": True},
         )
+
+    # 4c) ICML stale URL recovery (single-key targeted check on temp copy)
+    with tempfile.TemporaryDirectory(prefix="enrich-icml-stale-") as td:
+        tmp_root = Path(td)
+        icml_copy = tmp_root / "icml2020-copy.bib"
+        stale_key = "DBLP:conf:icml:0001AKP20"
+        stale_url = "https://proceedings.mlr.press/v119/zzzzzzzzzzzzzzzz.html"
+
+        parser = BibTexParser(common_strings=True)
+        parser.ignore_nonstandard_types = False
+        db = bibtexparser.loads((REPO / "conferences/icml/2020.bib").read_text(encoding="utf-8"), parser=parser)
+
+        found = False
+        for entry in db.entries:
+            if str(entry.get("ID", "")) == stale_key:
+                entry["url"] = stale_url
+                entry.pop("pdf", None)
+                entry.pop("abstract", None)
+                found = True
+                break
+
+        writer = BibTexWriter()
+        writer.indent = "  "
+        writer.order_entries_by = None
+        icml_copy.write_text(writer.write(db), encoding="utf-8")
+
+        if found:
+            before_url = entry_field(icml_copy, stale_key, "url")
+            cmd = [
+                "python3",
+                "scripts/enrich-pipeline.py",
+                "run",
+                str(icml_copy),
+                "--entry-key",
+                stale_key,
+                "--write",
+                "--json",
+            ]
+            proc, dur = run_cmd(cmd, timeout=1800)
+            ok = False
+            details = {"entry_key": stale_key, "before_url": before_url}
+            if proc.returncode == 0:
+                payload = parse_json_output(proc)
+                f = payload["files"][0]
+                after_url = entry_field(icml_copy, stale_key, "url")
+                after_pdf = entry_field(icml_copy, stale_key, "pdf")
+                after_abstract = entry_field(icml_copy, stale_key, "abstract")
+                details.update(
+                    {
+                        "planned_entries": f.get("planned_entries"),
+                        "updated_entries": f.get("updated_entries"),
+                        "unresolved_entries": f.get("unresolved_entries"),
+                        "after_url": after_url,
+                        "after_has_pdf": bool(after_pdf),
+                        "after_has_abstract": bool(after_abstract),
+                    }
+                )
+                ok = (
+                    int(f.get("updated_entries", 0)) == 1
+                    and int(f.get("unresolved_entries", 0)) == 0
+                    and after_url != before_url
+                    and "zzzzzzzzzzzzzzzz" not in after_url
+                    and bool(after_pdf)
+                    and bool(after_abstract)
+                )
+            record(results, "icml_stale_url_recovery", cmd, proc, dur, ok, details)
+        else:
+            cmd = ["echo", "icml stale key candidate not present; skipping check"]
+            fake = subprocess.CompletedProcess(cmd, 0, "skip", "")
+            record(
+                results,
+                "icml_stale_url_recovery",
+                cmd,
+                fake,
+                0.0,
+                True,
+                {"skipped": True},
+            )
 
     if unresolved_path:
         p = REPO / unresolved_path

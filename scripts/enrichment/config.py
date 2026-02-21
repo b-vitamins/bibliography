@@ -64,6 +64,7 @@ def _default_config(path: Path) -> PipelineConfig:
         host_min_interval_by_host={
             "openreview.net": 1.0,
             "proceedings.neurips.cc": 0.2,
+            "proceedings.mlr.press": 0.2,
         },
         backoff_base_seconds=1.0,
         backoff_max_seconds=30.0,
@@ -83,6 +84,14 @@ def _default_config(path: Path) -> PipelineConfig:
                     "proceedings.neurips.cc",
                     "neurips.cc",
                     "papers.nips.cc",
+                },
+            ),
+            VenuePolicy(
+                name="icml",
+                path_contains="conferences/icml/",
+                adapter="pmlr",
+                allowed_domains={
+                    "proceedings.mlr.press",
                 },
             ),
         ],

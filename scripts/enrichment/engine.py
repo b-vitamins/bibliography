@@ -123,6 +123,29 @@ class EnrichmentEngine:
             return False
         return any(host == d or host.endswith(f".{d}") for d in allowed_domains)
 
+    @staticmethod
+    def _same_host(left: str, right: str) -> bool:
+        left_host = urlparse(left).netloc.lower()
+        right_host = urlparse(right).netloc.lower()
+        return bool(left_host and right_host and left_host == right_host)
+
+    @staticmethod
+    def _safe_url_repair(
+        entry: dict[str, Any],
+        source_fields: dict[str, str],
+        current_url: str,
+        source_url: str,
+    ) -> bool:
+        if not current_url or not source_url:
+            return False
+        if not EnrichmentEngine._same_host(current_url, source_url):
+            return False
+        entry_title = str(entry.get("title", "")).strip()
+        source_title = str(source_fields.get("title", "")).strip()
+        if not entry_title or not source_title:
+            return False
+        return equivalent_text(entry_title, source_title)
+
     def _build_decision(
         self,
         file_path: Path,
@@ -168,7 +191,10 @@ class EnrichmentEngine:
                 if equivalent_text(current_value, source_value):
                     skipped_fields.append(field)
                     continue
-                if not overwrite_existing:
+                if not overwrite_existing and not (
+                    field == "url"
+                    and self._safe_url_repair(entry, source.fields, current_value, source_value)
+                ):
                     skipped_fields.append(field)
                     continue
 
