@@ -2266,7 +2266,7 @@
   year = {2024}
 }
 
-@inproceedings{ahn2024linear,
+@inproceedings{ahn2024linearalgebraic,
   abstract = {Estimating individual treatment effects in clinical data is essential for understanding how different patients uniquely respond to treatments and identifying the most effective interventions for specific patient subgroups, thereby enhancing the precision and personalization of healthcare. However, counterfactual data are not accessible, and the true calculation of causal effects cannot be performed at the individual level. This paper proposes a linear algebraic framework to generate counterfactual longitudinal data that exactly matches pre-treatment factual data. Using simulated LDL cholesterol datasets, the authors show that their method significantly outperforms the most cited methods of counterfactual generation. They also provide a formula that can estimate the time-varying variance of individual treatment effects, interpreted as a confidence level in the generated counterfactuals compared to true values.},
   author = {Jong-Hoon Ahn and Akshay Vashist},
   booktitle = {The Twelfth International Conference on Learning Representations},
@@ -4843,7 +4843,7 @@
   year = {2024}
 }
 
-@inproceedings{chen2024understanding,
+@inproceedings{chen2024understandingtransferable,
   abstract = {Multi-modal learning has become increasingly popular due to its ability to leverage information from different data sources (e.g., text and images) to improve the model performance. Recently, {CLIP} has emerged as an effective approach that employs vision-language contrastive pretraining to learn joint image and text representations and exhibits remarkable performance in zero-shot learning and text-guided natural image generation. Despite the huge practical success of {CLIP}, its theoretical understanding remains elusive. In this paper, we formally study transferrable representation learning underlying {CLIP} and demonstrate how features from different modalities get aligned. We provide theoretical analysis showing that contrastive pretraining learns representations that align different modalities by minimizing the distance between paired data while maximizing the distance between unpaired data. Our analysis reveals the mechanism behind {CLIP}'s transferability and zero-shot capabilities, providing insights into the conditions under which vision-language contrastive learning succeeds.},
   archiveprefix = {arXiv},
   author = {Zixiang Chen and Yihe Deng and Yuanzhi Li and Quanquan Gu},
@@ -5430,7 +5430,7 @@
   year = {2024}
 }
 
-@inproceedings{chen2024boosting,
+@inproceedings{chen2024boostinggraph,
   abstract = {Unsupervised graph anomaly detection has attracted increasing attention. Existing methods primarily focus on local inconsistency mining ({LIM}), based on the intuition that establishing high similarities between abnormal nodes and their neighbors is difficult. However, the message passing employed by graph neural networks ({GNNs}) results in local anomaly signal loss, as {GNNs} tend to make connected nodes similar, which conflicts with the {LIM} intuition. This paper introduces {GADAM}, a novel framework that not only resolves the conflict between {LIM} and message passing but also leverages message passing to augment anomaly detection through a transformative approach to anomaly mining beyond {LIM}. {GADAM} includes an efficient {MLP}-based {LIM} approach to obtain local anomaly scores in a conflict-free way and a novel approach to capture anomaly signals from a global perspective. Moreover, we introduce a hybrid attention based adaptive message passing, enabling nodes to selectively absorb abnormal or normal signals from their surroundings. Extensive experiments conducted on nine benchmark datasets, including two large-scale {OGB} datasets, demonstrate that {GADAM} surpasses existing state-of-the-art methods in terms of both effectiveness and efficiency.},
   author = {Jingyan Chen and Guanghui Zhu and Chunfeng Yuan and Yihua Huang 0001},
   booktitle = {The Twelfth International Conference on Learning Representations},
@@ -6775,7 +6775,7 @@
   year = {2024}
 }
 
-@inproceedings{dong2024rethinking,
+@inproceedings{dong2024rethinkingpower,
   abstract = {The expressivity of Graph Neural Networks ({GNNs}) has been studied broadly in recent years to reveal the design principles for more powerful {GNNs}. Graph canonization is known as a typical approach to distinguish non-isomorphic graphs, yet rarely adopted when developing expressive {GNNs}. This paper proposes to maximize the expressivity of {GNNs} by graph canonization, then the power of such {GNNs} is studies from the perspective of model stability. A stable {GNN} will map similar graphs to close graph representations in the vectorial space, and the stability of {GNNs} is critical to generalize their performance to unseen graphs. We theoretically reveal the trade-off of expressivity and stability in graph-canonization-enhanced {GNNs}. Then we introduce a notion of universal graph canonization as the general solution to address the trade-off and characterize a widely applicable sufficient condition to solve the universal graph canonization. In many popular graph benchmark datasets, graph canonization successfully enhances {GNNs} and provides highly competitive performance, indicating the capability and great potential of proposed method in general graph representation learning. In graph datasets where the sufficient condition holds, {GNNs} enhanced by universal graph canonization consistently outperform {GNN} baselines and successfully improve the {SOTA} performance up to 31\%, providing the optimal solution to numerous challenging real-world graph analytical tasks like gene network representation learning in bioinformatics.},
   author = {Zehao Dong and Muhan Zhang and Philip R. O. Payne and Michael A. Province and Carlos Cruchaga and Tianyu Zhao and Fuhai Li and Yixin Chen},
   booktitle = {The Twelfth International Conference on Learning Representations},
@@ -10509,7 +10509,7 @@
   year = {2024}
 }
 
-@inproceedings{hu2024large,
+@inproceedings{hu2024largelanguage,
   abstract = {Recent advances in large language models (LLMs) have promoted generative error correction (GER) for automatic speech recognition (ASR), which leverages the rich linguistic knowledge and powerful reasoning ability of LLMs to improve recognition results. The latest work proposes a GER benchmark with "HyPoradise" dataset to learn the mapping from ASR N-best hypotheses to ground-truth transcription by efficient LLM finetuning, which shows great effectiveness but lacks specificity on noise-robust ASR. In this work, we extend the benchmark to noisy conditions and investigate if we can teach LLMs to perform denoising for GER just like what robust ASR do, where one solution is introducing noise information as a conditioner into LLM. However, directly incorporating noise embeddings from audio encoder could harm the LLM tuning due to cross-modality gap. To this end, we propose to extract a language-space noise embedding from the N-best list to represent the noise conditions of source speech. Experiments on various latest LLMs show the proposed approach achieves a new breakthrough on RobustHP with up to 53.9\% GER improvement in terms of word error rate (WER). Analysis verifies the effectiveness of our proposed language-space embedding to represent audio noise, under which LLMs show strong ability of language-space denoising.},
   address = {Vienna, Austria},
   author = {Yuchen Hu and Chen Chen and Chao-Han Huck Yang and Ruizhe Li and Chao Zhang and Pin-Yu Chen and Engsiong Chng},
@@ -13280,7 +13280,7 @@
   year = {2024}
 }
 
-@inproceedings{kim2024adaptive,
+@inproceedings{kim2024adaptiveself,
   abstract = {Scene graph generation ({SGG}) models have suffered from inherent problems regarding the benchmark datasets such as the long-tailed predicate distribution and missing annotation problems. The authors introduce a Self-Training framework for {SGG} ({ST}-{SGG}) that assigns pseudo-labels for unannotated triplets based on which the {SGG} models are trained. They propose a novel pseudo-labeling technique for {SGG}, called Class-specific Adaptive Thresholding with Momentum ({CATM}), which is a model-agnostic framework that can be applied to any existing {SGG} models. They also devise a graph structure learner ({GSL}) that is beneficial when adopting their proposed self-training framework to the state-of-the-art message-passing neural network ({MPNN})-based {SGG} models. Extensive experiments verify the effectiveness of {ST}-{SGG} on various {SGG} models, particularly in enhancing the performance on fine-grained predicate classes.},
   address = {Vienna, Austria},
   author = {Kibum Kim and Kanghoon Yoon and Yeonjun In and Jinyoung Moon and Donghyun Kim and Chanyoung Park},
@@ -14336,7 +14336,7 @@
   year = {2024}
 }
 
-@inproceedings{lee2024continual,
+@inproceedings{lee2024continuallearning,
   abstract = {Most continual learning ({CL}) algorithms have focused on tackling the stability-plasticity dilemma, that is, the challenge of preventing the forgetting of past tasks while learning new ones. However, we argue that they have overlooked the impact of knowledge transfer when the training dataset of a certain task is biased -- namely, when the dataset contains some spurious correlations that can overly influence the prediction rule of a model. In this work, we carefully design systematic experiments using three benchmark datasets to answer the question from our empirical findings. Specifically, we first show through two-task {CL} experiments that standard {CL} methods, which are oblivious of the dataset bias, can transfer bias from one task to another, both forward and backward. Moreover, we find out this transfer is exacerbated depending on whether the {CL} methods focus on stability or plasticity. We then present that the bias is also transferred and even accumulates in longer task sequences. Finally, we offer a standardized experimental setup and a simple, yet strong plug-in baseline method, dubbed as group-class Balanced Greedy Sampling ({BGS}), which are utilized for the development of more advanced bias-aware {CL} methods.},
   address = {Vienna, Austria},
   author = {Donggyu Lee and Sangwon Jung and Taesup Moon},
@@ -14744,7 +14744,7 @@
   year = {2024}
 }
 
-@inproceedings{li2024towards,
+@inproceedings{li2024molecule,
   abstract = {Language Models ({LMs}) have greatly influenced diverse domains. However, their inherent limitation in comprehending {3D} molecular structures has considerably constrained their potential in the biomolecular domain. To bridge this gap, we focus on {3D} molecule-text interpretation, and propose {3D-MoLM}: {3D}-Molecular Language Modeling. Specifically, {3D-MoLM} enables an {LM} to interpret and analyze {3D} molecules by equipping the {LM} with a {3D} molecular encoder. This integration is achieved by a {3D} molecule-text projector, bridging the {3D} molecular encoder's representation space and the {LM}'s input space. Moreover, to enhance {3D-MoLM}'s ability of cross-modal molecular understanding and instruction following, we meticulously curated a {3D} molecule-centric instruction tuning dataset -- {3D-MoIT}. Through {3D} molecule-text alignment and {3D} molecule-centric instruction tuning, {3D-MoLM} establishes an integration of {3D} molecular encoder and {LM}. It significantly surpasses existing baselines on downstream tasks, including molecule-text retrieval, molecule captioning, and more challenging open-text molecular {QA} tasks, especially focusing on {3D}-dependent properties.},
   address = {Vienna, Austria},
   author = {Sihang Li and Zhiyuan Liu and Yanchen Luo and Xiang Wang and Xiangnan He and Kenji Kawaguchi and Tat-Seng Chua and Qi Tian},
@@ -14947,7 +14947,7 @@
   year = {2024}
 }
 
-@inproceedings{li2024learning,
+@inproceedings{li2024learningjointly,
   abstract = {This work aims to take a manipulation perspective to understand everyday objects and tools. The authors collect a multi-modal visual-tactile dataset that contains paired full-hand force pressure maps and manipulation videos, and propose a novel method to learn a cross-modal latent manifold that allows for cross-modal prediction and discovery of latent structure in different data modalities.},
   address = {Vienna, Austria},
   author = {Yichen Li and Yilun Du and Chao Liu and Francis Williams and Michael Foshey and Benjamin Eckart and Jan Kautz and Joshua B. Tenenbaum and Antonio Torralba and Wojciech Matusik},
@@ -15305,7 +15305,7 @@
   year = {2024}
 }
 
-@inproceedings{li2024federated,
+@inproceedings{li2024federatedcausal,
   abstract = {Conventional causal discovery methods rely on centralized data, which is inconsistent with the decentralized nature of data in many real-world situations. This discrepancy has motivated the development of federated causal discovery ({FCD}) approaches. However, existing {FCD} methods may be limited by their potentially restrictive assumptions of identifiable functional causal models or homogeneous data distributions, narrowing their applicability in diverse scenarios. In this paper, we propose a novel {FCD} method attempting to accommodate arbitrary causal models and heterogeneous data. We first utilize a surrogate variable corresponding to the client index to account for the data heterogeneity across different clients. We then develop a federated conditional independence test ({FCIT}) for causal skeleton discovery and establish a federated independent change principle ({FICP}) to determine causal directions. These approaches involve constructing summary statistics as a proxy of the raw data to protect data privacy. Owing to the nonparametric properties, {FCIT} and {FICP} make no assumption about particular functional forms, thereby facilitating the handling of arbitrary causal models. We conduct extensive experiments on synthetic and real datasets to show the efficacy of our method.},
   author = {Loka Li and Ignavier Ng and Gongxu Luo and Biwei Huang and Guangyi Chen and Tongliang Liu and Bin Gu and Kun Zhang},
   booktitle = {The Twelfth International Conference on Learning Representations, {ICLR} 2024, Vienna, Austria, May 7-11, 2024},
@@ -15396,7 +15396,7 @@
   year = {2024}
 }
 
-@inproceedings{li2024efficient,
+@inproceedings{li2024efficientbackdoor,
   abstract = {Recent deep neural networks ({DNN}s) have came to rely on vast amounts of training data, providing an opportunity for malicious attackers to exploit and contaminate the data to carry out backdoor attacks. However, existing backdoor attack methods make unrealistic assumptions, assuming that all training data comes from a single source and that attackers have full access to the training data. In this paper, we introduce a more realistic attack scenario where victims collect data from multiple sources, and attackers cannot access the complete training data. We refer to this scenario as data-constrained backdoor attacks. In such cases, previous attack methods suffer from severe efficiency degradation due to the entanglement between benign and poisoning features during the backdoor injection process. We introduce three {CLIP}-based technologies from two distinct streams: Clean Feature Suppression, which aims to suppress the influence of clean features to enhance the prominence of poisoning features, and Poisoning Feature Augmentation, which focuses on augmenting the presence and impact of poisoning features to effectively manipulate the model's behavior. To evaluate the effectiveness, harmlessness to benign accuracy, and stealthiness of our method, we conduct extensive experiments on 3 target models, 3 datasets, and over 15 different settings. The results demonstrate remarkable improvements, with some settings achieving over 100\% improvement compared to existing attacks in data-constrained scenarios.},
   author = {Ziqiang Li and Hong Sun and Pengfei Xia and Heng Li and Beihao Xia and Yi Wu and Bin Li},
   booktitle = {The Twelfth International Conference on Learning Representations, {ICLR} 2024, Vienna, Austria, May 7-11, 2024},
@@ -15500,7 +15500,7 @@
   year = {2024}
 }
 
-@inproceedings{li2024error,
+@inproceedings{li2024errornorm,
   abstract = {Text generation models are notoriously vulnerable to errors in the training data. With the wide-spread availability of massive amounts of web-crawled data becoming more commonplace, how can we enhance the robustness of models trained on a massive amount of noisy web-crawled text? We propose Error Norm Truncation ({ENT}), a robust enhancement method that truncates noisy data during the standard training objective. {ENT} provides more accurate data quality estimation by considering non-target token distributions and improves generation quality across language modeling, machine translation, and text summarization. We demonstrate that {ENT} increases model robustness, achieving over 2 {BLEU} points improvement over the baseline when up to 50\% noise is added.},
   author = {Tianjian Li and Haoran Xu and Philipp Koehn and Daniel Khashabi and Kenton Murray},
   booktitle = {The Twelfth International Conference on Learning Representations ({ICLR} 2024)},
@@ -16622,7 +16622,7 @@
   year = {2024}
 }
 
-@inproceedings{liu2024towards,
+@inproceedings{liu2024robust,
   abstract = {This paper explores model selection in multi-modal {AI} agents, focusing on how Large Language Models ({LLM}s) can dynamically select appropriate models for complex multi-step reasoning tasks. The authors propose the {M}³ framework to improve model selection robustness by considering subtask dependencies during model selection.},
   address = {Vienna, Austria},
   author = {Xiangyan Liu and Rongxue Li and Wei Ji and Tao Lin},
@@ -16892,7 +16892,7 @@
   year = {2024}
 }
 
-@inproceedings{liu2024towards,
+@inproceedings{liu2024optimal,
   abstract = {We study online reinforcement learning in linear {M}arkov decision processes with adversarial losses and bandit feedback. We introduce two algorithms that achieve improved regret performance compared to existing approaches. The first algorithm, while computationally inefficient, ensures a regret of $\widetilde{O}(\sqrt{K})$, where $K$ is the number of episodes. This is the first result with the optimal $K$ dependence in the considered setting. The second algorithm, based on the policy optimization framework, guarantees a regret of $\widetilde{O}(K^{\frac{3}{4}})$ and is computationally efficient.},
   address = {Vienna, Austria},
   author = {Haolin Liu and Chen-Yu Wei and Julian Zimmert},
@@ -19162,7 +19162,7 @@
   year = {2024}
 }
 
-@inproceedings{pan2024pretraining,
+@inproceedings{pan2024pre,
   author = {Tai-Yu Pan and Chenyang Ma and Tianle Chen and Cheng Perng Phoo and Katie Z. Luo and Yurong You and Mark Campbell 0001 and Kilian Q. Weinberger and Bharath Hariharan and Wei-Lun Chao},
   booktitle = {ICLR},
   note = {DBLP last modified: 2024-08-07},
@@ -21797,7 +21797,7 @@
   year = {2024}
 }
 
-@inproceedings{shi2024towards,
+@inproceedings{shi2024energy,
   abstract = {Spiking Neural Networks (SNNs) have emerged as energy-efficient alternatives to Artificial Neural Networks (ANNs) when deployed on neuromorphic chips. However, while recent studies have demonstrated the impressive performance of deep SNNs on challenging tasks, their energy efficiency advantage has been diminished. Existing methods targeting energy consumption reduction do not fully exploit sparsity, whereas powerful pruning methods can achieve high sparsity but are not directly targeted at energy efficiency, limiting their effectiveness in energy saving. In this work, we combine unstructured weight pruning with unstructured neuron pruning to maximize the utilization of the sparsity of neuromorphic computing, thereby enhancing energy efficiency.},
   author = {Xinyu Shi and Jianhao Ding and Zecheng Hao and Zhaofei Yu},
   booktitle = {The Twelfth International Conference on Learning Representations},
@@ -24887,7 +24887,7 @@
   year = {2024}
 }
 
-@inproceedings{wang2024towards,
+@inproceedings{wang2024codable,
   abstract = {As large language models ({LLMs}) generate texts with increasing fluency and realism, there is a growing need to identify the source of texts to prevent the abuse of {LLMs}. Text watermarking techniques have proven reliable in distinguishing whether a text is generated by {LLMs} by injecting hidden patterns. However, we argue that existing {LLM} watermarking methods are encoding-inefficient and cannot flexibly meet the diverse information encoding needs (such as encoding model version, generation time, user id, etc.). In this work, we conduct the first systematic study on the topic of Codable Text Watermarking for {LLMs} ({CTWL}) that allows text watermarks to carry multi-bit customizable information. Additionally, we provide a comprehensive evaluation system for {CTWL}: (1) watermarking success rate, (2) robustness against various corruptions, (3) coding rate of payload information, (4) encoding and decoding efficiency, (5) impacts on the quality of the generated text. To meet the requirements of these non-Pareto-improving metrics, we follow the most prominent vocabulary partition-based watermarking direction, and devise an advanced {CTWL} method named Balance-Marking. The core idea of our method is to use a proxy language model to split the vocabulary into probability-balanced parts, thereby effectively maintaining the quality of the watermarked text.},
   author = {Lean Wang and Wenkai Yang and Deli Chen and Hao Zhou and Yankai Lin and Fandong Meng and Jie Zhou and Xu Sun},
   booktitle = {The Twelfth International Conference on Learning Representations},
@@ -24927,7 +24927,7 @@
   year = {2024}
 }
 
-@inproceedings{wang2024neural,
+@inproceedings{wang2024neuralcommon,
   abstract = {In this work, we propose a novel link prediction model and further boost it by studying graph incompleteness. First, we introduce MPNN-then-SF, an innovative architecture leveraging structural feature (SF) to guide MPNN's representation pooling, with its implementation, namely Neural Common Neighbor (NCN). NCN exhibits superior expressiveness and scalability compared with existing models, which can be classified into two categories: SF-then-MPNN, augmenting MPNN's input with SF, and SF-and-MPNN, decoupling SF and MPNN. Second, we investigate the impact of graph incompleteness -- the phenomenon that some links are unobserved in the input graph -- on SF, like the common neighbor. Through dataset visualization, we observe that incompleteness reduces common neighbors and induces distribution shifts, significantly affecting model performance. To address this issue, we propose to use a link prediction model to complete the common neighbor structure.},
   author = {Xiyuan Wang and Haotong Yang and Muhan Zhang},
   booktitle = {The Twelfth International Conference on Learning Representations},
@@ -25005,7 +25005,7 @@
   year = {2024}
 }
 
-@inproceedings{2024efficient,
+@inproceedings{00042024efficient,
   abstract = {Sharpness-aware minimization (SAM) has received increasing attention in computer vision since it can effectively eliminate the sharp local minima from the training trajectory and mitigate generalization degradation. However, SAM requires two sequential gradient computations during the optimization of each step: one to obtain the perturbation gradient and the other to obtain the updating gradient. Compared with the base optimizer (e.g., Adam), SAM doubles the time overhead due to the additional perturbation gradient. By dissecting the theory of SAM and observing the training gradient of the molecular graph transformer, we propose a new algorithm named GraphSAM, which reduces the training cost of SAM and improves the generalization performance of graph transformer models.},
   author = {Yili Wang 0004 and Kaixiong Zhou and Ninghao Liu and Ying Wang 0009 and Xin Wang 0035},
   booktitle = {The Twelfth International Conference on Learning Representations},
@@ -25057,7 +25057,7 @@
   year = {2024}
 }
 
-@inproceedings{wang2024learning,
+@inproceedings{wang2024learningrobust,
   abstract = {This paper introduces the first paradigm that constructs the generalizable neural field based on point-based rather than image-based rendering, which we call the Generalizable neural Point Field ({GPF}). The proposed approach addresses three main issues with previous generalizable {NeRF} approaches: occlusions often result in inconsistent feature matching, they deliver distortions and artifacts in geometric discontinuities and locally sharp shapes due to their individual process of sampled points and rough feature aggregation, and their image-based representations experience severe degradations when source views are not near enough to the target view. We explicitly model visibilities by geometric priors and augment them with neural features. We propose a novel nonuniform log sampling strategy to improve both rendering speed and reconstruction quality, and a learnable kernel spatially augmented with features for feature aggregations, mitigating distortions at places with drastically varying geometries. Experiments show that our model can deliver better geometries, view consistencies, and rendering quality than all counterparts and benchmarks on three datasets in both generalization and finetuning settings.},
   author = {Jiaxu Wang and Ziyi Zhang and Renjing Xu},
   booktitle = {The Twelfth International Conference on Learning Representations},
@@ -26396,7 +26396,7 @@
   year = {2024}
 }
 
-@inproceedings{xu2024towards,
+@inproceedings{xu2024few,
   abstract = {Foundation models have emerged as a powerful tool for many AI problems. Despite the tremendous success of foundation models, effective adaptation to new tasks, particularly those with limited labels, remains an open question and lacks theoretical understanding. An emerging solution with recent success in vision and NLP involves finetuning a foundation model on a selection of relevant tasks, before its adaptation to a target task with limited labeled samples. Our theoretical analysis reveals that with a diverse set of related tasks, this multitask finetuning leads to reduced error in the target task, in comparison to directly adapting the same pretrained model. We quantify the relationship between finetuning tasks and target tasks by diversity and consistency metrics, and further propose a practical task selection algorithm. We substantiate our theoretical claims with extensive empirical evidence. Further, we present results affirming our task selection algorithm adeptly chooses related finetuning tasks, providing advantages to the model performance on target tasks. We believe our study shed new light on the effective adaptation of foundation models to new tasks that lack abundant labels.},
   author = {Zhuoyan Xu and Zhenmei Shi and Junyi Wei and Fangzhou Mu and Yin Li and Yingyu Liang},
   booktitle = {The Twelfth International Conference on Learning Representations},
@@ -28432,7 +28432,7 @@
   year = {2024}
 }
 
-@inproceedings{zhan2024provable,
+@inproceedings{zhan2024provableoffline,
   abstract = {In this paper, we investigate the problem of offline Preference-based Reinforcement Learning (PbRL) with human feedback where feedback is available in the form of preference between trajectory pairs rather than explicit rewards. Our proposed algorithm consists of two main steps: (1) estimate the implicit reward using Maximum Likelihood Estimation (MLE) with general function approximation from offline data and (2) solve a distributionally robust planning problem over a confidence set around the MLE. This algorithm is sample-efficient and provably learns optimal policies from preference feedback in the offline setting.},
   author = {Wenhao Zhan and Masatoshi Uehara and Nathan Kallus and Jason D. Lee and Wen Sun},
   booktitle = {The Twelfth International Conference on Learning Representations},
@@ -28932,7 +28932,7 @@
   year = {2024}
 }
 
-@inproceedings{zhang2024enhancing,
+@inproceedings{zhang2024enhancingsmall,
   abstract = {Large language models (LLMs) demonstrate remarkable medical expertise, but data privacy concerns impede their direct use in healthcare environments. Although offering improved data privacy protection, domain-specific small language models (SLMs) often underperform LLMs, emphasizing the need for methods that reduce this performance gap while alleviating privacy concerns. In this paper, we present a simple yet effective method that harnesses LLMs' medical proficiency to boost SLM performance in medical tasks under privacy-restricted scenarios. Specifically, we mitigate patient privacy issues by extracting keywords from medical data and prompting the LLM to generate a medical knowledge-intensive context by simulating clinicians' thought processes. This context serves as additional input for SLMs, augmenting their decision-making capabilities.},
   author = {Xinlu Zhang and Shiyang Li and Xianjun Yang and Chenxin Tian and Yao Qin and Linda Ruth Petzold},
   booktitle = {The Twelfth International Conference on Learning Representations},
@@ -28945,7 +28945,7 @@
   year = {2024}
 }
 
-@inproceedings{zhang2024learning,
+@inproceedings{zhang2024learningthresholds,
   abstract = {In this paper, we investigate a problem of actively learning threshold in latent space, where the unknown reward g(γ, v) depends on the proposed threshold γ and latent value v and it can be only achieved if the threshold is lower than or equal to the unknown latent value. This problem has broad applications in practical scenarios, e.g., reserve price optimization in online auctions, online task assignments in crowdsourcing, setting recruiting bars in hiring, etc. We first characterize the query complexity of learning a threshold with the expected reward at most ε smaller than the optimum and prove that the number of queries needed can be infinitely large even when g(γ, v) is monotone with respect to both γ and v. On the positive side, we provide a tight query complexity Õ(1/ε³) when g is monotone and the CDF of value distribution is Lipschitz.},
   author = {Jiahao Zhang and Tao Lin and Weiqiang Zheng and Zhe Feng and Yifeng Teng and Xiaotie Deng},
   booktitle = {The Twelfth International Conference on Learning Representations},
@@ -28984,7 +28984,7 @@
   year = {2024}
 }
 
-@inproceedings{zhang2024towards,
+@inproceedings{zhang2024imitation,
   abstract = {Branch-and-bound (B\&B) has long been favored for tackling complex Mixed Integer Programming (MIP) problems, where the choice of branching strategy plays a pivotal role. Recently, Imitation Learning (IL)-based policies have emerged as potent alternatives to traditional rule-based approaches. However, it is nontrivial to acquire high-quality training samples, and IL often converges to suboptimal variable choices for branching, restricting the overall performance. In response to these challenges, we propose a novel hybrid online and offline reinforcement learning (RL) approach to enhance the branching policy by cost-effective training sample augmentation. In the online phase, we train an online RL agent to dynamically decide the sample generation processes, drawing from either the learning-based policy or the expert policy. The objective is to strike a balance between exploration and exploitation of the sample generation process.},
   author = {Changwen Zhang and Wenli Ouyang and Hao Yuan and Liming Gong and Yong Sun and Ziao Guo and Zhichen Dong and Junchi Yan},
   booktitle = {The Twelfth International Conference on Learning Representations},
@@ -28997,7 +28997,7 @@
   year = {2024}
 }
 
-@inproceedings{zhang2024deep,
+@inproceedings{zhang2024deeporthogonal,
   abstract = {Many well-known and effective anomaly detection methods assume that a reasonable decision boundary has a hypersphere shape, which however is difficult to obtain in practice and is not sufficiently compact, especially when the data are in high-dimensional spaces. In this paper, we first propose a novel deep anomaly detection model that improves the original hypersphere learning through an orthogonal projection layer, which ensures that the training data distribution is consistent with the hypersphere hypothesis, thereby increasing the true positive rate and decreasing the false negative rate. Moreover, we propose a bi-hypersphere compression method to obtain a hyperspherical shell that yields a more compact decision region than a hyperball, which is demonstrated theoretically and numerically. The proposed methods are not confined to common datasets such as image and tabular data, but are also extended to a more challenging but promising scenario, graph-level anomaly detection, which learns graph representation with maximum mutual information between the substructure and global structure features while exploring orthogonal single- or bi-hypersphere anomaly decision boundaries. The numerical and visualization results on benchmark datasets demonstrate the superiority of our methods in comparison to many baselines and state-of-the-art methods.},
   author = {Yunhe Zhang and Yan Sun and Jinyu Cai and Jicong Fan},
   booktitle = {The Twelfth International Conference on Learning Representations},
@@ -29282,7 +29282,7 @@
   year = {2024}
 }
 
-@inproceedings{zhang2024s,
+@inproceedings{zhang2024peech,
   abstract = {Current speech large language models build upon discrete speech representations, which can be categorized into semantic tokens and acoustic tokens. However, existing speech tokens are not specifically designed for speech language modeling. To assess the suitability of speech tokens for building speech language models, we established the first benchmark, SLMTokBench. Our results indicate that neither semantic nor acoustic tokens are ideal for this purpose. Therefore, we propose SpeechTokenizer, a unified speech tokenizer for speech large language models. SpeechTokenizer adopts the Encoder-Decoder architecture with residual vector quantization (RVQ). Unifying semantic and acoustic tokens, SpeechTokenizer disentangles different aspects of speech information hierarchically across different RVQ layers.},
   author = {Xin Zhang and Dong Zhang and Shimin Li and Yaqian Zhou and Xipeng Qiu},
   booktitle = {The Twelfth International Conference on Learning Representations},
@@ -29508,7 +29508,7 @@
   year = {2024}
 }
 
-@inproceedings{zhao2024towards,
+@inproceedings{zhao2024fundamental,
   abstract = {We characterize the statistical efficiency of knowledge transfer through n samples from a teacher to a probabilistic student classifier with input space S over labels A. We show that privileged information at three progressive levels accelerates the transfer. At the first level, only samples with hard labels are known, via which the maximum likelihood estimator attains the minimax rate √(|S||A|/n). The second level has the teacher probabilities of sampled labels available in addition, which turns out to boost the convergence rate lower bound to |S||A|/n. However, under this data acquisition protocol, minimizing a naive adaptation of the cross-entropy loss results in an asymptotically biased student. We overcome this limitation and achieve the fundamental limit by using a novel empirical variant of the squared error logit loss.},
   author = {Qingyue Zhao and Banghua Zhu},
   booktitle = {The Twelfth International Conference on Learning Representations},
@@ -30407,7 +30407,7 @@
   year = {2024}
 }
 
-@inproceedings{zhu2024learning,
+@inproceedings{zhu2024learningenergy,
   abstract = {Training energy-based models (EBMs) on high-dimensional data can be both challenging and time-consuming, and there exists a noticeable gap in sample quality between EBMs and other generative frameworks like GANs and diffusion models. To close this gap, inspired by the recent efforts of learning EBMs by maximizing diffusion recovery likelihood (DRL), we propose cooperative diffusion recovery likelihood (CDRL), an effective approach to tractably learn and sample from a series of EBMs defined on increasingly noisy versions of a dataset, paired with an initializer model for each EBM. At each noise level, the two models are jointly estimated within a cooperative training framework: samples from the initializer serve as starting points that are refined by a few MCMC sampling steps from the EBM.},
   author = {Yaxuan Zhu and Jianwen Xie and Ying Nian Wu and Ruiqi Gao},
   booktitle = {The Twelfth International Conference on Learning Representations},

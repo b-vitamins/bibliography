@@ -862,7 +862,7 @@
   year = {2023}
 }
 
-@inproceedings{song2023sketching,
+@inproceedings{song2023sketchingfirst,
   abstract = {Sketching is a fundamental tool in large-scale machine learning that compresses high-dimensional problems into lower dimensions. In this work, we propose a novel sketching scheme for first-order methods in distributed learning that reduces communication costs while maintaining algorithmic convergence. By using a sketching matrix to compress gradient information from dimension d to a smaller dimension s, agents can communicate more efficiently in low-bandwidth channels. However, we also demonstrate that this method does not inherently protect data privacy and can be vulnerable to gradient attacks. To address this vulnerability, we show that adding random noise can make the algorithm differentially private, creating a communication-efficient and privacy-preserving approach for federated learning.},
   author = {Zhao Song and Yitan Wang and Zheng Yu and Lichen Zhang},
   booktitle = {Proceedings of the 40th International Conference on Machine Learning},
@@ -4527,7 +4527,7 @@
   year = {2023}
 }
 
-@inproceedings{chen2023bidirectional,
+@inproceedings{chen2023bidirectionallooking,
   abstract = {The paper addresses the importance of optimizers in deep learning, noting that {SGD} and {Adam} are classical effective optimizers with many proposed variants like {SGDM} and {RAdam}. The authors innovatively combine the backward-looking and forward-looking aspects of the optimizer algorithm and propose a novel {Admeta} (A Double exponential Moving averagE To Adaptive and non-adaptive momentum) optimizer framework. The backward-looking component proposes a {DEMA} variant scheme, which is motivated by a metric in the stock market, to replace the common exponential moving average scheme. The forward-looking component presents a dynamic lookahead strategy which asymptotically approaches a set value, maintaining its speed at early stage and high convergence performance at final stage.},
   author = {Yineng Chen and Zuchao Li and Lefei Zhang and Bo Du 0001 and Hai Zhao 0001},
   booktitle = {International Conference on Machine Learning},
@@ -4646,7 +4646,7 @@
   year = {2023}
 }
 
-@inproceedings{chen2023learning,
+@inproceedings{chen2023learningoptimize,
   abstract = {Many machine learning problems can be abstracted as solving game theory formulations and boil down to optimizing nested objectives, such as generative adversarial networks (GANs) and multi-agent reinforcement learning. Solving these games requires finding their stable fixed points or Nash equilibrium. However, existing algorithms for solving games suffer from empirical instability, hence demanding heavy ad-hoc tuning in practice. To tackle these challenges, we resort to the emerging scheme of Learning to Optimize (L2O), which discovers problem-specific efficient optimization algorithms through data-driven training. Our customized L2O framework for differentiable game theory problems, dubbed Learning to Play Games (L2PG), seeks a stable fixed point solution by predicting the fast update direction from the past trajectory, with a novel gradient stability-aware, sign-based loss function.},
   author = {Xuxi Chen and Nelson Vadori and Tianlong Chen and Zhangyang Wang},
   booktitle = {Proceedings of the 40th International Conference on Machine Learning},
@@ -4714,7 +4714,7 @@
   year = {2023}
 }
 
-@inproceedings{chen2023learning,
+@inproceedings{chen2023learningincentivize,
   abstract = {We study the incentivized information acquisition problem, where a principal hires an agent to gather information on her behalf. Such a problem is modeled as a Stackelberg game between the principal and the agent, where the principal announces a scoring rule that specifies the payment, and then the agent chooses an effort level that maximizes her own profit and reports the information. We study the online setting of such a problem from the principal's perspective, i.e., designing the optimal scoring rule by repeatedly interacting with the strategic agent. We design a provably sample efficient algorithm that tailors the UCB algorithm to our model, which achieves a $\mathcal{O}(K^2 \cdot T^{2/3})$ regret after $T$ iterations, where $K$ is the number of effort levels of the agent.},
   author = {Siyu Chen and Jibang Wu and Yifan Wu and Zhuoran Yang},
   booktitle = {Proceedings of the 40th International Conference on Machine Learning},
@@ -4782,7 +4782,7 @@
   year = {2023}
 }
 
-@inproceedings{chen2023efficient,
+@inproceedings{chen2023efficientpersonalized,
   abstract = {Federated Learning (FL) aims to train machine learning models for multiple clients without sharing their own private data. Due to the heterogeneity of clients' local data distribution, recent studies explore the personalized FL that learns and deploys distinct local models with the help of auxiliary global models. However, the clients can be heterogeneous in terms of not only local data distribution, but also their computation and communication resources. The capacity and efficiency of personalized models are restricted by the lowest-resource clients, leading to sub-optimal performance and limited practicality of personalized FL. To overcome these challenges, we propose a novel approach named pFedGate for efficient personalized FL by adaptively and efficiently learning sparse local models.},
   author = {Daoyuan Chen and Liuyi Yao and Dawei Gao and Bolin Ding and Yaliang Li},
   booktitle = {Proceedings of the 40th International Conference on Machine Learning},
@@ -4799,7 +4799,7 @@
   year = {2023}
 }
 
-@inproceedings{chen2023learning,
+@inproceedings{chen2023learningjump,
   abstract = {Learning to denoise has emerged as a prominent paradigm to design state-of-the-art deep generative models for natural images. How to use it to model the distributions of both continuous real-valued data and categorical data has been well studied in recently proposed diffusion models. However, it is found in this paper to have limited ability in modeling some other types of data, such as count and non-negative continuous data, that are often highly sparse, skewed, heavy-tailed, and/or overdispersed. To this end, we propose learning to jump as a general recipe for generative modeling of various types of data. Using a forward count thinning process to construct learning objectives to train a deep neural network, it employs a reverse count thickening process to iteratively refine its generation through that network.},
   author = {Tianqi Chen and Mingyuan Zhou},
   booktitle = {Proceedings of the 40th International Conference on Machine Learning},
@@ -14894,7 +14894,7 @@
   year = {2023}
 }
 
-@inproceedings{li2023optimal,
+@inproceedings{li2023optimalconvergence,
   abstract = {{N}ystr\"{o}m low-rank approximation has shown great potential in processing large-scale kernel matrix and neural networks. However, there lacks a unified analysis for {N}ystr\"{o}m approximation, and the asymptotical minimax optimality for {N}ystr\"{o}m methods usually require a strict condition, assuming that the target regression lies exactly in the hypothesis space. To tackle these problems, we provide a refined generalization analysis for {N}ystr\"{o}m approximation in the agnostic setting, where the target regression may be out of the hypothesis space. Specifically, we show {N}ystr\"{o}m approximation can still achieve the capacity-dependent optimal rates in the agnostic setting. We first prove the capacity-dependent optimal guarantees of {N}ystr\"{o}m approximation with the standard uniform sampling, which covers both loss functions and applies to some agnostic settings. Then, using data-dependent sampling, for example, leverage scores sampling, we derive the capacity-dependent optimal rates that apply to the whole range of the agnostic setting. To our best knowledge, the capacity-dependent optimality for the whole range of the agnostic setting is first achieved and novel in {N}ystr\"{o}m approximation.},
   author = {Jian Li and Yong Liu and Weiping Wang},
   booktitle = {Proceedings of the 40th International Conference on Machine Learning},
@@ -14945,7 +14945,7 @@
   year = {2023}
 }
 
-@inproceedings{li2023how,
+@inproceedings{li2023howpowerful,
   abstract = {We investigate the expressive power of depth-2 bandlimited random neural networks. A random net is a neural network where the hidden layer parameters are frozen with random assignment, and only the output layer parameters are trained by loss minimization. Using random weights for a hidden layer is an effective method to avoid non-convex optimization in standard gradient descent learning. It has also been adopted in recent deep learning theories. Despite the well-known fact that a neural network is a universal approximator, in this study, we mathematically show that when hidden parameters are distributed in a bounded domain, the network may not achieve zero approximation error. In particular, we derive a new nontrivial approximation error lower bound. The proof utilizes the technique of ridgelet analysis, a harmonic analysis method designed for neural networks. This method is inspired by fundamental principles in classical signal processing, specifically the idea that signals with limited bandwidth may not always be able to perfectly reconstruct the original signal. We corroborate our theoretical results with various simulation studies, and generally, two main take-home messages are offered: (i) Not any distribution for selecting random weights is feasible to build a universal approximator; (ii) A suitable assignment of random weights exists but to some degree is associated with the complexity of the target function.},
   author = {Ming Li and Sho Sonoda and Feilong Cao and Yu Guang Wang and Jiye Liang},
   booktitle = {Proceedings of the 40th International Conference on Machine Learning},
@@ -15217,7 +15217,7 @@
   year = {2023}
 }
 
-@inproceedings{li2023learning,
+@inproceedings{li2023learningedge,
   abstract = {Many problems, such as online ad display, can be formulated as online bipartite matching. The crucial challenge lies in the nature of sequentially-revealed online item information, based on which we make irreversible matching decisions at each step. While numerous expert online algorithms have been proposed with bounded worst-case competitive ratios, they may not offer satisfactory performance in average cases. On the other hand, reinforcement learning (RL) has been applied to improve the average performance, but it lacks robustness and can perform arbitrarily poorly. In this paper, we propose a novel RL-based approach to edge-weighted online bipartite matching with robustness guarantees (LOMAR), achieving both good average-case and worst-case performance. The key novelty of LOMAR is a new online switching operation which, based on a judicious condition to hedge against future uncertainties, decides whether to follow the expert's decision or the RL decision for each online item.},
   author = {Pengfei Li and Jianyi Yang and Shaolei Ren},
   booktitle = {Proceedings of the 40th International Conference on Machine Learning},
@@ -16124,7 +16124,7 @@
   year = {2023}
 }
 
-@inproceedings{liu2023towards,
+@inproceedings{liu2023robust,
   abstract = {Previous work demonstrates that the optimal safe reinforcement learning policy in a noise-free environment is vulnerable and could be unsafe under observational attacks. While adversarial training effectively improves robustness and safety, collecting samples by attacking the behavior agent online could be expensive or prohibitively dangerous in many applications. The paper addresses the challenge of making safe reinforcement learning policies more robust to observational attacks without requiring expensive or dangerous online adversarial sample collection.},
   author = {Zuxin Liu and Zijian Guo and Zhepeng Cen and Huan Zhang and Yihang Yao and Hanjiang Hu and Ding Zhao},
   booktitle = {Proceedings of the 40th International Conference on Machine Learning},
@@ -16282,7 +16282,7 @@
   year = {2023}
 }
 
-@inproceedings{liu2023understanding,
+@inproceedings{liu2023understandingdistillation,
   abstract = {Probabilistic Circuits (PCs) are a general and unified computational framework for tractable probabilistic models that support efficient computation of various inference tasks (e.g., computing marginal probabilities). Towards enabling such reasoning capabilities in complex real-world tasks, Liu et al. (2022) propose to distill knowledge (through latent variable assignments) from less tractable but more expressive deep generative models. However, it is still unclear what factors make this distillation work well. In this paper, we theoretically and empirically discover that the performance of a PC can exceed that of its teacher model. Therefore, instead of performing distillation from the most expressive deep generative model, we study what properties the teacher model and the PC should have in order to achieve good distillation performance. This leads to a generic algorithmic improvement as well as other data-type-specific ones over the existing latent variable distillation pipeline. Empirically, we outperform SoTA TPMs by a large margin on challenging image modeling benchmarks. In particular, on ImageNet32, PCs achieve 4.06 bits-per-dimension, which is only 0.34 behind variational diffusion models (Kingma et al., 2021).},
   author = {Xuejie Liu and Anji Liu and Guy Van den Broeck and Yitao Liang},
   booktitle = {Proceedings of the 40th International Conference on Machine Learning},
@@ -16669,7 +16669,7 @@
   year = {2023}
 }
 
-@inproceedings{liu2023online,
+@inproceedings{liu2023onlinenonstochastic,
   abstract = {This paper studies online nonstochastic control problems with adversarial and static constraints. We propose online nonstochastic control algorithms that achieve both sublinear regret and sublinear adversarial constraint violation while keeping static constraint violation minimal against the optimal constrained linear control policy in hindsight. To establish the results, we introduce an online convex optimization with memory framework under adversarial and static constraints, which serves as a subroutine for the constrained online nonstochastic control algorithms. This subroutine also achieves the state-of-the-art regret and constraint violation bounds for constrained online convex optimization problems, which is of independent interest. Our experiments demonstrate the proposed control algorithms are adaptive to adversarial constraints and achieve smaller cumulative costs and violations. Moreover, our algorithms are less conservative and achieve significantly smaller cumulative costs than the state-of-the-art algorithm.},
   author = {Xin Liu and Zixian Yang and Lei Ying},
   booktitle = {Proceedings of the 40th International Conference on Machine Learning},
@@ -17305,7 +17305,7 @@
   year = {2023}
 }
 
-@inproceedings{ma2023learning,
+@inproceedings{ma2023learningsigned,
   abstract = {Learning signed distance functions (SDFs) from 3D point clouds is an important task in 3D computer vision. However, without ground truth signed distances, point normals or clean point clouds, current methods still struggle from learning SDFs from noisy point clouds. To overcome this challenge, we propose to learn SDFs via a noise to noise mapping, which does not require any clean point cloud or ground truth supervision for training. Our novelty lies in the noise to noise mapping which can infer a highly accurate SDF of a single object or scene from its multiple or even single noisy point cloud observations. Our novel learning manner is supported by modern Lidar systems which capture multiple noisy observations per second. We achieve this by a novel loss which enables statistical reasoning on point clouds and maintains geometric consistency although point clouds are irregular, unordered and have no point correspondence. Our evaluation under the widely used benchmarks demonstrates our superiority over the state-of-the-art methods in surface reconstruction, point cloud denoising and upsampling.},
   author = {Baorui Ma and Yu-Shen Liu and Zhizhong Han},
   booktitle = {Proceedings of the 40th International Conference on Machine Learning},
@@ -17322,7 +17322,7 @@
   year = {2023}
 }
 
-@inproceedings{ma2023learning,
+@inproceedings{ma2023learningintuitive,
   abstract = {An unaddressed challenge in multi-agent coordination is to enable AI agents to exploit the semantic relationships between the features of actions and the features of observations. Humans take advantage of these relationships in highly intuitive ways. For instance, in the absence of a shared language, we might point to the object we desire or hold up our fingers to indicate how many objects we want. To address this challenge, we investigate the effect of network architecture on the propensity of learning algorithms to exploit these semantic relationships. Across a procedurally generated coordination task, we find that attention-based architectures that jointly process a featurized representation of observations and actions have a better inductive bias for learning intuitive policies.},
   author = {Mingwei Ma and Jizhou Liu and Samuel Sokota and Max Kleiman-Weiner and Jakob Nicolaus Foerster},
   booktitle = {Proceedings of the 40th International Conference on Machine Learning},
@@ -19957,7 +19957,7 @@
   year = {2023}
 }
 
-@inproceedings{park2023learning,
+@inproceedings{park2023learningcontrollable,
   abstract = {Recent deep-learning-based super-resolution ({SR}) methods have been successful in recovering high-resolution ({HR}) images from their low-resolution ({LR}) counterparts, albeit on the synthetic and simple degradation setting: bicubic downscaling. On the other hand, super-resolution on real-world images demands the capability to handle complex downscaling mechanism which produces different artifacts (e.g., noise, blur, color distortion) upon downscaling factors. To account for complex downscaling mechanism in real-world {LR} images, there have been a few efforts in constructing datasets consisting of {LR} images with real-world downsampling degradation. However, making such datasets entails a tremendous amount of time and effort, thereby resorting to very few number of downscaling factors (e.g., $\times2, \times3, \times4$). To remedy the issue, we propose to generate realistic {SR} datasets for unseen degradation levels by exploring the latent space of real {LR} images and thereby producing more diverse yet realistic {LR} images with complex real-world artifacts. Our quantitative and qualitative experiments demonstrate the accuracy of the generated {LR} images, and we show that the various conventional {SR} networks trained with our newly generated {SR} datasets can produce much better {HR} images.},
   author = {Seobin Park and Dongjin Kim 0004 and Sungyong Baik and Tae Hyun Kim 0006},
   booktitle = {Proceedings of the 40th International Conference on Machine Learning},
@@ -24428,7 +24428,7 @@
   year = {2023}
 }
 
-@inproceedings{tang2023towards,
+@inproceedings{tang2023better,
   abstract = {TD-learning is a foundation reinforcement learning (RL) algorithm for value prediction. Critical to the accuracy of value predictions is the quality of state representations. In this work, we consider the question: how does end-to-end TD-learning impact the representation over time? Complementary to prior work, we provide a set of analysis that sheds further light on the representation dynamics under TD-learning. We first show that when the environments are reversible, end-to-end TD-learning strictly decreases the value approximation error over time. Under further assumptions on the environments, we can connect the representation dynamics with spectral decomposition over the transition matrix. This latter finding establishes fitting multiple value functions from randomly generated rewards as a useful auxiliary task for representation learning, as we empirically validate on both tabular and Atari game suites.},
   author = {Yunhao Tang and R{\'{e}}mi Munos},
   booktitle = {Proceedings of the 40th International Conference on Machine Learning},
@@ -26191,7 +26191,7 @@
   year = {2023}
 }
 
-@inproceedings{2023learning,
+@inproceedings{00252023learning,
   abstract = {Budget management strategies in repeated auctions have received growing attention in online advertising markets. However, previous work on budget management in online bidding mainly focused on second-price auctions. The rapid shift from second-price auctions to first-price auctions for online ads in recent years has motivated the challenging question of how to bid in repeated first-price auctions while controlling budgets. In this work, we study the problem of learning in repeated first-price auctions with budgets. We design a dual-based algorithm that can achieve a near-optimal $\widetilde{O}(\sqrt{T})$ regret with full information feedback where the maximum competing bid is always revealed after each auction. We further consider the setting with one-sided information feedback where only the winning bid is revealed after each auction. We show that our modified algorithm can still achieve an $\widetilde{O}(\sqrt{T})$ regret with mild assumptions on the bidder's value distribution. Finally, we complement the theoretical results with numerical experiments to confirm the effectiveness of our budget management policy.},
   author = {Qian Wang 0025 and Zongjun Yang and Xiaotie Deng and Yuqing Kong},
   booktitle = {Proceedings of the 40th International Conference on Machine Learning},
@@ -27517,7 +27517,7 @@
   year = {2023}
 }
 
-@inproceedings{2023probabilistic,
+@inproceedings{00022023probabilistic,
   abstract = {The studies on adversarial attacks and defenses have greatly improved the robustness of Deep Neural Networks (DNNs). Most advanced approaches have been overwhelmingly designed for continuous data such as images. However, these achievements are still hard to be generalized to categorical data. To bridge this gap, we propose a novel framework, Probabilistic Categorical Adversarial Attack (PCAA). It transfers the discrete optimization problem of finding categorical adversarial examples to a continuous problem that can be solved via gradient-based methods. We also propose a defense method, Probabilistic Categorical Adversarial Training (PCAT), based on PCAA. Extensive experiments on three real-world datasets demonstrate the effectiveness of our methods.},
   author = {Han Xu 0002 and Pengfei He and Jie Ren 0019 and Yuxuan Wan and Zitao Liu 0001 and Hui Liu 0031 and Jiliang Tang},
   booktitle = {Proceedings of the 40th International Conference on Machine Learning},
@@ -28044,7 +28044,7 @@
   year = {2023}
 }
 
-@inproceedings{yang2023towards,
+@inproceedings{yang2023better,
   abstract = {Proposing an effective and flexible matrix to represent a graph is a fundamental challenge that has been explored from multiple perspectives, e.g., filtering in Graph Fourier Transforms. In this work, we develop a novel and general framework which unifies many existing {GNN} models from the view of parameterized decomposition and filtering, and show how it helps to enhance the flexibility of {GNNs} while alleviating the smoothness and amplification issues of existing models. Essentially, we show that the extensively studied spectral graph convolutions with learnable polynomial filters are constrained variants of this formulation, and releasing these constraints enables our model to express the desired decomposition and filtering simultaneously. The proposed method is simple to implement but achieves significant improvements in graph learning tasks.},
   author = {Mingqi Yang and Wenjie Feng and Yanming Shen and Bryan Hooi},
   booktitle = {Proceedings of the 40th International Conference on Machine Learning},
@@ -28129,7 +28129,7 @@
   year = {2023}
 }
 
-@inproceedings{yang2023improving,
+@inproceedings{yang2023improvingadversarial,
   abstract = {Deep equilibrium ({DEQ}) models replace the multiple-layer stacking of conventional deep networks with a fixed-point iteration of a single-layer transformation. Having been demonstrated to be competitive in a variety of real-world scenarios, the adversarial robustness of general {DEQs} becomes increasingly crucial for their reliable deployment. Existing works improve the robustness of general {DEQ} models with the widely-used adversarial training ({AT}) framework, but they fail to exploit the structural uniquenesses of {DEQ} models. To this end, we interpret {DEQs} through the lens of neural dynamics and find that {AT} under-regulates intermediate states. Besides, the intermediate states typically provide predictions with a high prediction entropy. Informed by the correlation between the entropy of dynamical systems and their stability properties, we propose reducing prediction entropy by progressively updating inputs along the neural dynamics. During {AT}, we also utilize random intermediate states to compute the loss function. Our methods regulate the neural dynamics of {DEQ} models in this manner. Extensive experiments demonstrate that our methods substantially increase the robustness of {DEQ} models and even outperform the strong deep network baselines.},
   author = {Zonghan Yang and Peng Li and Tianyu Pang and Yang Liu},
   booktitle = {Proceedings of the 40th International Conference on Machine Learning},
@@ -28231,7 +28231,7 @@
   year = {2023}
 }
 
-@inproceedings{yang2023towards,
+@inproceedings{yang2023controlled,
   abstract = {The mission of active learning is to identify the most valuable data samples, thus attaining decent performance with much fewer samples. The data augmentation techniques seem straightforward yet promising to enhance active learning by extending the exploration of the input space, which helps locate more valuable samples. In this work, we thoroughly study the coupling of data augmentation and active learning, thereby proposing Controllable Augmentation ManiPulator for Active Learning. In contrast to the few prior works that touched on this line, CAMPAL emphasizes a purposeful, tighten, and better-controlled integration of data augmentation into active learning in three folds: (i) carefully designed augmentation policies applied separately on labeled and unlabeled data pools; (ii) controlled and quantifiably optimizable augmentation strengths; (iii) full and flexible coverage for most (if not all) active learning schemes. Theories are proposed and associated with the development of key components in CAMPAL. Through extensive empirical experiments, we bring the performance of active learning methods to a new level: an absolute performance boost of 16.99% on CIFAR-10 and 12.25% on SVHN with 1,000 annotated samples.},
   author = {Jianan Yang and Haobo Wang and Sai Wu and Gang Chen and Junbo Zhao},
   booktitle = {Proceedings of the 40th International Conference on Machine Learning},
@@ -29275,7 +29275,7 @@
   year = {2023}
 }
 
-@inproceedings{zhang2023learning,
+@inproceedings{zhang2023learninguseful,
   abstract = {We investigate whether the dominant approach to learn representations (as a side effect of optimizing an expected cost for a single training distribution) remains a good approach when dealing with multiple distributions. We argue that such scenarios are better served by representations that are richer than those obtained with a single optimization episode. We support this thesis with experiments utilizing an apparently naive ensembling technique: concatenating the representations obtained from multiple training episodes using the same data, model, algorithm, and hyper-parameters, but different random seeds. We find that merely training with different random seeds provides sufficient diversity to achieve excellent performances for a variety of problems involving changes in data distribution, revealing the limitations of representations constructed with a single training run.},
   author = {Jianyu Zhang and L{\'e}on Bottou},
   booktitle = {Proceedings of the 40th International Conference on Machine Learning},
@@ -29785,7 +29785,7 @@
   year = {2023}
 }
 
-@inproceedings{zhang2023learning,
+@inproceedings{zhang2023learningregions,
   abstract = {This paper studies Bayesian optimization (BO) in high-dimensional and non-stationary scenarios. Existing algorithms for such scenarios typically require extensive hyperparameter tuning, which limits their practical effectiveness. The authors propose a framework called BALLET, which adaptively filters for a high-confidence region of interest (ROI) as a superlevel-set of a nonparametric probabilistic model such as a Gaussian process (GP). Their approach is easy to tune and is able to focus on local regions of the optimization space that can be tackled by existing BO methods. The key idea is to use two probabilistic models: a coarse GP to identify the ROI, and a localized GP for optimization within the ROI. They show theoretically that BALLET can efficiently shrink the search space, and can exhibit a tighter regret bound than standard BO without ROI filtering. They demonstrate empirically the effectiveness of BALLET on both synthetic and real-world optimization tasks.},
   author = {Fengxue Zhang and Jialin Song and James C. Bowden and Alexander Ladd and Yisong Yue and Thomas Desautels and Yuxin Chen},
   booktitle = {Proceedings of the 40th International Conference on Machine Learning},
@@ -29870,7 +29870,7 @@
   year = {2023}
 }
 
-@inproceedings{zhang2023towards,
+@inproceedings{zhang2023trustworthy,
   abstract = {With recent advances in natural language processing, rationalization becomes an essential self-explaining diagram to disentangle the black box by selecting a subset of input texts to account for the major variation in prediction. Yet, existing association-based approaches on rationalization cannot identify true rationales when two or more snippets are highly inter-correlated and thus provide a similar contribution to prediction accuracy, so-called spuriousness. To address this limitation, we novelly leverage two causal desiderata, non-spuriousness and efficiency, into rationalization from the causal inference perspective. We formally define a series of probabilities of causation based on a newly proposed structural causal model of rationalization, with its theoretical identification established as the main component of learning necessary and sufficient rationales.},
   author = {Wenbo Zhang and Tong Wu and Yunlong Wang and Yong Cai and Hengrui Cai},
   booktitle = {Proceedings of the 40th International Conference on Machine Learning},
@@ -30022,7 +30022,7 @@
   year = {2023}
 }
 
-@inproceedings{zhang2023optimal,
+@inproceedings{zhang2023optimalhorizon,
   abstract = {We study reward-free reinforcement learning (RL) with linear function approximation, where the agent works in two phases: (1) in the exploration phase, the agent interacts with the environment but cannot access the reward; and (2) in the planning phase, the agent is given a reward function and is expected to find a near-optimal policy based on samples collected in the exploration phase. The sample complexities of existing reward-free algorithms have a polynomial dependence on the planning horizon, which makes them intractable for long planning horizon RL problems. In this paper, we propose a new reward-free algorithm for learning linear mixture Markov decision processes (MDPs), where the transition probability can be parameterized as a linear combination of known feature mappings. Our algorithm achieves a sample complexity that is independent of the planning horizon for both the exploration and planning phases. To our knowledge, this is the first horizon-free sample complexity bound for reward-free RL with function approximation.},
   author = {Junkai Zhang and Weitong Zhang and Quanquan Gu},
   booktitle = {Proceedings of the 40th International Conference on Machine Learning},
@@ -30056,7 +30056,7 @@
   year = {2023}
 }
 
-@inproceedings{2023towards,
+@inproceedings{00032023persistence,
   abstract = {Recent works have identified that existing methods, which construct persistence diagrams in Topological Data Analysis (TDA), are not robust to noise and varied densities in a point cloud. We analyze the necessary properties of an approach that can address these two issues, and propose a new filter function for TDA based on a new data-dependent kernel which possesses these properties. Our empirical evaluation reveals that the proposed filter function provides a better means for t-SNE visualization and SVM classification than three existing methods of TDA.},
   author = {Hang Zhang 0003 and Kaifeng Zhang and Kai Ming Ting and Ye Zhu 0002},
   booktitle = {Proceedings of the 40th International Conference on Machine Learning},
@@ -30226,7 +30226,7 @@
   year = {2023}
 }
 
-@inproceedings{zhao2023revisiting,
+@inproceedings{zhao2023revisitingsimple,
   abstract = {Simple regret is a natural and parameter-free performance criterion for pure exploration in multi-armed bandits yet is less popular than the probability of missing the best arm or an $\varepsilon$-good arm, perhaps due to lack of easy ways to characterize it. In this paper, we make significant progress on minimizing simple regret in both data-rich ($T \geq n$) and data-poor regime ($T \leq n$) where $n$ is the number of arms, and $T$ is the number of samples. At its heart is our improved instance-dependent analysis of the well-known Sequential Halving (SH) algorithm, where we bound the probability of returning an arm whose mean reward is not within $\varepsilon$ from the best (i.e., not $\varepsilon$-good) for any choice of $\varepsilon > 0$, although $\varepsilon$ is not an input to SH. Our bound not only leads to an optimal worst-case simple regret bound of $\sqrt{n/T}$ up to logarithmic factors but also essentially matches the instance-dependent lower bound for returning an $\varepsilon$-good arm.},
   author = {Yao Zhao and Connor Stephens and Csaba Szepesv{\'a}ri and Kwang-Sung Jun},
   booktitle = {Proceedings of the 40th International Conference on Machine Learning},

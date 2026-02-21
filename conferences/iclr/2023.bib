@@ -1009,7 +1009,7 @@
   year = {2023}
 }
 
-@inproceedings{yu2023learning,
+@inproceedings{yu2023learningzero,
   abstract = {There is a recent trend of applying multi-agent reinforcement learning (MARL) to train an agent that can cooperate with humans in a zero-shot fashion without using any human data. The typical workflow is to first repeatedly run self-play (SP) to build a policy pool and then train the final adaptive policy against this pool. A crucial limitation of this framework is that every policy in the pool is optimized w.r.t. the environment reward function, which implicitly assumes that the testing partners of the adaptive policy will be precisely optimizing the same reward function as well. However, human objectives are often substantially biased according to their own preferences, which can differ greatly from the environment reward. We propose a more general framework, Hidden-Utility Self-Play (HSP), which explicitly models human biases as hidden reward functions in the self-play objective.},
   author = {Chao Yu and Jiaxuan Gao and Weilin Liu and Botian Xu and Hao Tang and Jiaqi Yang and Yu Wang and Yi Wu},
   booktitle = {The Eleventh International Conference on Learning Representations},
@@ -1373,7 +1373,7 @@
   year = {2023}
 }
 
-@inproceedings{wang2023learning,
+@inproceedings{wang2023learningdecompose,
   abstract = {Recent advances in pre-training vision-language models like {CLIP} have shown great potential in learning transferable visual representations. Nonetheless, for downstream inference, {CLIP}-like models suffer from either 1) degraded accuracy and robustness in the case of inaccurate text descriptions during retrieval-based inference (the challenge for zero-shot protocol); or 2) breaking the well-established vision-language alignment (the challenge for linear probing).},
   author = {Feng Wang and Manling Li and Xudong Lin and Hairong Lv and Alexander G. Schwing and Heng Ji},
   booktitle = {The Eleventh International Conference on Learning Representations},
@@ -3185,7 +3185,7 @@
   year = {2023}
 }
 
-@inproceedings{chen2023representing,
+@inproceedings{chen2023representingmixed,
   abstract = {While Mixed-integer linear programming ({MILP}) is {NP}-hard in general, practical {MILP} has received roughly 100-fold speedup in the past twenty years. Still, many classes of {MILPs} quickly become unsolvable as their sizes increase, motivating researchers to seek new acceleration techniques for {MILPs}. With deep learning, they have obtained strong empirical results, and many results were obtained by applying graph neural networks ({GNNs}) to making decisions in various stages of {MILP} solution processes. This work discovers a fundamental limitation: there exist feasible and infeasible {MILPs} that all {GNNs} will, however, treat equally, indicating {GNN}'s lacking power to express general {MILPs}. Then, we show that, by restricting the {MILPs} to unfoldable ones or by adding random features, there exist {GNNs} that can reliably predict {MILP} feasibility, optimal objective values, and optimal solutions up to prescribed precision.},
   author = {Ziang Chen and Jialin Liu and Xinshang Wang and Wotao Yin},
   booktitle = {The Eleventh International Conference on Learning Representations},
@@ -3211,7 +3211,7 @@
   year = {2023}
 }
 
-@inproceedings{chen2023learning,
+@inproceedings{chen2023learninglanguage,
   abstract = {Transformer architectures have achieved great success in solving natural language tasks, which learn strong language representations from large-scale unlabeled texts. In this paper, we seek to go further beyond and explore a new logical inductive bias for better language representation learning. Logic reasoning is known as a formal methodology to reach answers from given knowledge and facts. Inspired by such a view, we develop a novel neural architecture named {FOLNet} (First-Order Logic Network), to encode this new inductive bias. We construct a set of neural logic operators as learnable Horn clauses, which are further forward-chained into a fully differentiable neural architecture ({FOLNet}). Interestingly, we find that the self-attention module in transformers can be composed by two of our neural logic operators, which probably explains their strong reasoning performance. Experimental results on several language understanding tasks show that the pretrained {FOLNet} model outperforms the existing strong transformer-based approaches and learns language representations that have much stronger transfer capabilities.},
   author = {Jianshu Chen},
   booktitle = {The Eleventh International Conference on Learning Representations},
@@ -3341,7 +3341,7 @@
   year = {2023}
 }
 
-@inproceedings{chen2023learning,
+@inproceedings{chen2023learningiterative,
   abstract = {Image steganography is the process of concealing secret information in images through imperceptible changes. Recent work has formulated this task as a classic constrained optimization problem. In this paper, we argue that image steganography is inherently performed on the (elusive) manifold of natural images, and propose an iterative neural network trained to perform the optimization steps. In contrast to classical optimization methods like L-BFGS or projected gradient descent, we train the neural network to also stay close to the manifold of natural images throughout the optimization. We show that our learned neural optimization is faster and more reliable than classical optimization approaches. In comparison to previous state-of-the-art encoder-decoder-based steganography methods, it reduces the recovery error rate by multiple orders of magnitude and achieves zero error up to 3 bits per pixel (bpp) without the need for error-correcting codes.},
   author = {Xiangyu Chen and Varsha Kishore and Kilian Q. Weinberger},
   booktitle = {The Eleventh International Conference on Learning Representations},
@@ -4321,7 +4321,7 @@
   year = {2023}
 }
 
-@inproceedings{dai2023f,
+@inproceedings{dai2023ederated,
   abstract = {Recent works on neural contextual bandits have achieved compelling performances due to their ability to leverage the strong representation power of neural networks (NNs) for reward prediction. Many applications of contextual bandits involve multiple agents who collaborate without sharing raw observations, thus giving rise to the setting of federated contextual bandits. Existing works on federated contextual bandits rely on linear or kernelized bandits, which may fall short when modeling complex real-world reward functions. So, this paper introduces the federated neural-upper confidence bound (FN-UCB) algorithm. FN-UCB adopts a weighted combination of two UCBs: UCB^a allows every agent to additionally use the observations from the other agents to accelerate exploration (without sharing raw observations), while UCB^b uses an NN with aggregated parameters for reward prediction in a similar way to federated averaging.},
   author = {Zhongxiang Dai and Yao Shu and Arun Verma and Flint Xiaofeng Fan and Bryan Kian Hsiang Low and Patrick Jaillet},
   booktitle = {The Eleventh International Conference on Learning Representations},
@@ -5221,7 +5221,7 @@
   year = {2023}
 }
 
-@inproceedings{feng2023towards,
+@inproceedings{feng2023open,
   abstract = {Graph neural networks (GNNs) for temporal graphs have recently attracted increasing attentions, where a common assumption is that the class set for nodes is closed. However, in real-world scenarios, it often faces the open set problem with the dynamically increased class set as the time passes by. This will bring two big challenges to the existing dynamic GNN methods: (i) How to dynamically propagate appropriate information in an open temporal graph, where new class nodes are often linked to old class nodes. This case will lead to a sharp contradiction. This is because typical GNNs are prone to make the embeddings of connected nodes become similar, while we expect the embeddings of these two interactive nodes to be distinguishable since they belong to different classes. (ii) How to avoid catastrophic knowledge forgetting over old classes when learning new classes occurred in temporal graphs. In this paper, we propose a general and principled learning approach for open temporal graphs, called OTGNet, with the goal of addressing the above two challenges. We assume the knowledge of a node can be disentangled into class-relevant and class-agnostic one, and thus explore a new message passing mechanism by extending the information bottleneck principle to only propagate class-agnostic knowledge between nodes of different classes, avoiding aggregating conflictive information. Moreover, we devise a strategy to select both important and diverse triad sub-graph structures for effective class-incremental learning. Extensive experiments on three real-world datasets of different domains demonstrate the superiority of our method, compared to the baselines.},
   author = {Kaituo Feng and Changsheng Li and Xiaolu Zhang and Jun Zhou},
   booktitle = {The Eleventh International Conference on Learning Representations},
@@ -6457,7 +6457,7 @@
   year = {2023}
 }
 
-@inproceedings{hao2023b,
+@inproceedings{hao2023oosting,
   abstract = {The state space in Multiagent Reinforcement Learning (MARL) grows exponentially with the agent number. Such a curse of dimensionality results in poor scalability and low sample efficiency, inhibiting MARL for decades. To break this curse, we propose a unified agent permutation framework that exploits the permutation invariance (PI) and permutation equivariance (PE) inductive biases to reduce the multiagent state space. Our insight is that permuting the order of entities in the factored multiagent state space does not change the information. Specifically, we propose two novel implementations: a Dynamic Permutation Network (DPN) and a Hyper Policy Network (HPN). The core idea is to build separate entity-wise PI input and PE output network modules to connect the entity-factored state space and action space in an end-to-end way. DPN achieves such connections by two separate module selection networks, which consistently assign the same input module to the same input entity (guarantee PI) and assign the same output module to the same entity-related output (guarantee PE). To enhance the representation capability, HPN replaces the module selection networks of DPN with hypernetworks to directly generate the corresponding module weights. Extensive experiments in SMAC, Google Research Football and MPE validate that the proposed methods significantly boost the performance and the learning efficiency of existing MARL algorithms. Remarkably, in SMAC, we achieve 100% win rates in almost all hard and super-hard scenarios (never achieved before).},
   author = {Jianye Hao and Xiaotian Hao and Hangyu Mao and Weixun Wang and Yaodong Yang and Dong Li and Yan Zheng and Zhen Wang},
   booktitle = {The Eleventh International Conference on Learning Representations},
@@ -6481,7 +6481,7 @@
   year = {2023}
 }
 
-@inproceedings{hao2023b,
+@inproceedings{hao2023level,
   abstract = {Deep learning based approaches like Physics-informed neural networks (PINNs) and DeepONets have shown promise on solving PDE constrained optimization (PDECO) problems. However, existing methods are insufficient to handle those PDE constraints that have a complicated or nonlinear dependency on optimization targets. In this paper, we present a novel bi-level optimization framework to resolve the challenge by decoupling the optimization of the targets and constraints. For the inner loop optimization, we adopt PINNs to solve the PDE constraints only. For the outer loop, we design a novel method by using Broyden's method based on the Implicit Function Theorem (IFT), which is efficient and accurate for approximating hypergradients. We further present theoretical explanations and error analysis of the hypergradients computation. Extensive experiments on multiple large-scale and nonlinear PDE constrained optimization problems demonstrate that our method achieves state-of-the-art results compared with strong baselines.},
   author = {Zhongkai Hao and Chengyang Ying and Hang Su and Jun Zhu and Jian Song and Ze Cheng},
   booktitle = {The Eleventh International Conference on Learning Representations},
@@ -6933,7 +6933,7 @@
   year = {2023}
 }
 
-@inproceedings{hu2023provable,
+@inproceedings{hu2023provablesim,
   abstract = {Sim-to-real transfer, which trains {RL} agents in the simulated environments and then deploys them in the real world, has been widely used to overcome the limitations of gathering samples in the real world. Despite the empirical success of the sim-to-real transfer, its theoretical foundation is much less understood. In this paper, we study the sim-to-real transfer in continuous domain with partial observations, where the simulated environments and real-world environments are modeled by linear quadratic {Gaussian} ({LQG}) systems. We show that a popular robust adversarial training algorithm is capable of learning a policy from the simulated environment that is competitive to the optimal policy in the real-world environment. To achieve our results, we design a new algorithm for infinite-horizon average-cost {LQG}s and establish a regret bound that depends on the intrinsic complexity of the model class. Our algorithm crucially relies on a novel history clipping scheme, which might be of independent interest.},
   author = {Jiachen Hu and Han Zhong and Chi Jin and Liwei Wang},
   booktitle = {The Eleventh International Conference on Learning Representations},
@@ -8411,7 +8411,7 @@
   year = {2023}
 }
 
-@inproceedings{kim2023learning,
+@inproceedings{kim2023learningcross,
   abstract = {CROSS exchange (CE), a meta-heuristic that solves various vehicle routing problems (VRPs), improves the solutions of VRPs by swapping the sub-tours of the vehicles. Inspired by CE, we propose Neuro CE (NCE), a fundamental operator of learned meta-heuristic, to solve various min-max VRPs while overcoming the limitations of CE, i.e., the expensive O(n^4) search cost. NCE employs graph neural network to predict the cost-decrements (i.e., results of CE searches) and utilizes the predicted cost-decrements to guide the selection of sub-tours for swapping, while reducing the search cost to O(n^2). The training approach is straightforward: the learning objective of NCE is to predict the cost-decrement, the training can be simply done in a supervised fashion, whose training samples can be easily collected. To show the effectiveness of NCE, we conduct experiments on min-max flexible multi-depot VRP (min-max FMDVRP) and show that the NCE trained with min-max FMDVRP outperforms the meta-heuristic baselines. Moreover, we show that NCE can be generalized to other types of VRPs without any additional training.},
   author = {Minjun Kim and Junyoung Park and Jinkyoo Park},
   booktitle = {The Eleventh International Conference on Learning Representations},
@@ -9483,7 +9483,7 @@
   year = {2023}
 }
 
-@inproceedings{li2023learning,
+@inproceedings{li2023learningroximal,
   abstract = {Finding multiple solutions of non-convex optimization problems is a ubiquitous yet challenging task. Most past algorithms either apply single-solution optimization methods from multiple random initial guesses or search in the vicinity of found solutions using ad hoc heuristics. We present an end-to-end method to learn the proximal operator of a family of training problems so that multiple local minima can be quickly obtained from initial guesses by iterating the learned operator, emulating the proximal-point algorithm that has fast convergence. The learned proximal operator can be further generalized to recover multiple optima for unseen problems at test time, enabling applications such as object detection. The key ingredient in our formulation is a proximal regularization term, which elevates the convexity of our training loss: by applying recent theoretical results, we show that for weakly-convex objectives with {L}ipschitz gradients, training of the proximal operator converges globally with a practical degree of over-parameterization. We further present an exhaustive benchmark for multi-solution optimization to demonstrate the effectiveness of our method.},
   author = {Lingxiao Li and Noam Aigerman and Vladimir G. Kim and Jiajin Li and Kristjan H. Greenewald and Mikhail Yurochkin and Justin Solomon},
   booktitle = {The Eleventh International Conference on Learning Representations},
@@ -9647,7 +9647,7 @@
   year = {2023}
 }
 
-@inproceedings{li2023learning,
+@inproceedings{li2023learninglogical,
   abstract = {Recent studies in neuro-symbolic learning have explored the integration of logical knowledge into deep learning via encoding logical constraints as an additional loss function. However, existing approaches tend to vacuously satisfy logical constraints through shortcuts, failing to fully exploit the knowledge. In this paper, we present a new framework for learning with logical constraints. Specifically, we address the shortcut satisfaction issue by introducing dual variables for logical connectives, encoding how the constraint is satisfied.},
   author = {Zenan Li and Zehua Liu and Yuan Yao and Jingwei Xu and Taolue Chen and Xiaoxing Ma and Jian Lü},
   booktitle = {The Eleventh International Conference on Learning Representations},
@@ -9935,7 +9935,7 @@
   year = {2023}
 }
 
-@inproceedings{li2023learning,
+@inproceedings{li2023learningkernelized,
   author = {Chuanhao Li and Huazheng Wang and Mengdi Wang and Hongning Wang},
   booktitle = {The Eleventh International Conference on Learning Representations},
   file = {:/home/b/documents/inproceedings/li2023learning.pdf:pdf},
@@ -9946,7 +9946,7 @@
   year = {2023}
 }
 
-@inproceedings{li2023learning,
+@inproceedings{li2023learningdata,
   abstract = {Feature engineering is widely acknowledged to be pivotal in tabular data analysis and prediction. Automated feature engineering (AutoFE) emerged to automate this process managed by experienced data scientists and engineers conventionally. In this area, most — if not all — prior work adopted an identical framework from the neural architecture search (NAS) method. While feasible, we posit that the NAS framework very much contradicts the way how human experts cope with the data since the inherent Markov decision process (MDP) setup differs. We point out that its data-unobserved setup consequentially results in an incapability to generalize across different datasets as well as also high computational cost. This paper proposes a novel AutoFE framework Feature Set Data-Driven Search (FETCH), a pipeline mainly for feature generation and selection. FETCH is built on a brand-new data-driven MDP setup using the tabular dataset as the state fed into the policy network. Further, we posit that the crucial merit of FETCH is its transferability where the yielded policy network trained on a variety of datasets is indeed capable to enact feature engineering on unseen data, without requiring additional exploration. To the best of our knowledge, this is a pioneer attempt to build a tabular data pre-training paradigm via AutoFE. Extensive experiments show that FETCH systematically surpasses the current state-of-the-art AutoFE methods and validates the transferability of AutoFE pre-training.},
   author = {Liyao Li and Haobo Wang and Liangyu Zha and Qingyi Huang and Sai Wu and Gang Chen and Junbo Zhao},
   booktitle = {The Eleventh International Conference on Learning Representations},
@@ -10793,7 +10793,7 @@
   year = {2023}
 }
 
-@inproceedings{liu2023robust,
+@inproceedings{liu2023robustmultivariate,
   abstract = {This work studies the threats of adversarial attack on multivariate probabilistic forecasting models and viable defense mechanisms. Our studies discover a new attack pattern that negatively impact the forecasting of a target time series via making strategic, sparse (imperceptible) modifications to the past observations of a small number of other time series. To mitigate the impact of such attack, we have developed two defense strategies. First, we extend a previously developed randomized smoothing technique in classification to multivariate forecasting scenarios. Second, we develop an adversarial training algorithm that learns to create adversarial examples and at the same time optimizes the forecasting model to improve its robustness against such adversarial simulation. Extensive experiments on real-world datasets confirm that our attack schemes are powerful and our defense algorithms are more effective compared with baseline defense mechanisms.},
   author = {Linbo Liu and Youngsuk Park and Trong Nghia Hoang and Hilaf Hasson and Luke Huan},
   booktitle = {The Eleventh International Conference on Learning Representations},
@@ -10832,7 +10832,7 @@
   year = {2023}
 }
 
-@inproceedings{liu2023learning,
+@inproceedings{liu2023learninghuman,
   abstract = {Algorithmic case-based decision support systems provide examples to help humans understand predicted labels. However, representations learned by supervised models may not align with human intuitions - what models consider similar examples can be perceived as distinct by humans, limiting their effectiveness in decision support. We incorporate ideas from metric learning with supervised learning, using human-provided triplet judgments in addition to instance-level labels to learn human-compatible decision-focused representations. The human-compatible representations identify nearest neighbors that are perceived as more similar by humans and allow humans to make more accurate predictions, leading to substantial improvements in human decision accuracies: 17.8\% improvement in butterfly vs. moth classification and 13.2\% improvement in pneumonia classification.},
   author = {Han Liu and Yizhou Tian and Chacha Chen and Shi Feng and Yuxin Chen and Chenhao Tan},
   booktitle = {The Eleventh International Conference on Learning Representations},
@@ -10845,7 +10845,7 @@
   year = {2023}
 }
 
-@inproceedings{liu2023learning,
+@inproceedings{liu2023learningdiffusion,
   abstract = {Diffusion models have achieved promising results on generative learning recently. However, because diffusion processes are most naturally applied on the unconstrained Euclidean space, key challenges arise for developing diffusion based models for learning data on constrained and structured domains. In this work, we present a simple and unified framework that can be easily adopted to various types of domains, including product spaces of any type (be it bounded/unbounded, continuous/discrete, categorical/ordinal, or their mix). In our model, the diffusion process is driven by a drift force that is a sum of two terms: one singular force designed by Doob's h-transform that ensures all outcomes of the process belong to the desirable domain, and one non-singular neural force field that is trained to make sure the outcome follows the data distribution statistically. Experiments show that our methods perform superbly on generating tabular data, images, semantic segments and 3D point clouds.},
   author = {Xingchao Liu and Lemeng Wu and Mao Ye and Qiang Liu},
   booktitle = {The Eleventh International Conference on Learning Representations},
@@ -15784,7 +15784,7 @@
   year = {2023}
 }
 
-@inproceedings{wang2023learning,
+@inproceedings{wang2023learningdomain,
   abstract = {Disease-related features are often entangled with center-effects, disabling robust transferring to unseen centers/domains. To solve this, we leverage structural causal modeling to explicitly model disease-related and center-effects that are provable to be disentangled from each other, and propose a novel Domain Agnostic Representation Model ({DarMo}) based on variational Auto-Encoder. We propose a disentanglement model in medical imaging diagnosis to achieve robustness across multiple medical centers. We design domain-agnostic and domain-aware encoders to respectively capture disease-related features and varied center-effects by incorporating a domain-aware batch normalization layer. Additionally, we constrain disease-related features to predict both disease labels and clinical attributes by leveraging Graph Convolutional Network ({GCN}) into the decoder. The effectiveness and utility of our method are demonstrated by superior performance over others on both public datasets and in-house datasets.},
   author = {Churan Wang and Jing Li and Xinwei Sun and Fandong Zhang and Yizhou Yu and Yizhou Wang},
   booktitle = {The Eleventh International Conference on Learning Representations},
@@ -16093,7 +16093,7 @@ s, which can be used to guide task predictions made by either the same {LM} or a
   year = {2023}
 }
 
-@inproceedings{wang2023learning,
+@inproceedings{wang2023learningcut,
   abstract = {Cutting planes (cuts) are important for solving mixed-integer linear programs ({MILPs}), which formulate a wide range of important real-world applications. Cut selection---which aims to select a proper subset of the candidate cuts to improve the efficiency of solving {MILPs}---heavily depends on ({P1}) which cuts should be preferred, and ({P2}) how many cuts should be selected. Although many modern {MILP} solvers tackle ({P1})-({P2}) by manually designed heuristics, machine learning offers a promising approach to learn more effective heuristics from {MILPs} collected from specific applications. However, many existing learning-based methods focus on learning which cuts should be preferred, neglecting the importance of learning the number of cuts that should be selected. Moreover, we observe from extensive empirical results that ({P3}) what order of selected cuts should be preferred has a significant impact on the efficiency of solving {MILPs} as well. To address this challenge, we propose a novel hierarchical sequence model ({HEM}) to learn cut selection policies via reinforcement learning.},
   author = {Zhihai Wang and Xijun Li and Jie Wang and Yufei Kuang and Mingxuan Yuan and Jia Zeng and Yongdong Zhang and Feng Wu},
   booktitle = {The Eleventh International Conference on Learning Representations},
@@ -16129,7 +16129,7 @@ s, which can be used to guide task predictions made by either the same {LM} or a
   year = {2023}
 }
 
-@inproceedings{wang2023learning,
+@inproceedings{wang2023learninghierarchical,
   abstract = {We consider representation learning for proteins with {3D} structures. We build {3D} graphs based on protein structures and develop graph networks to learn their representations. Existing work often uses graph networks to capture relations among amino acids. We propose a novel hierarchical graph network called {ProNet} to capture hierarchical relations among different levels of protein structures. {ProNet} is very flexible and can be used to compute protein representations at different levels of granularity, including amino acid level, backbone level, and all-atom level. We observe that there exist hierarchical relations among different levels, which {ProNet} can capture effectively. This enables {ProNet} to use information from different levels for downstream tasks, which is essential since different downstream tasks may require different levels of information. We conduct extensive experiments on enzyme function prediction, fold classification, and reaction classification tasks. Results show that {ProNet} outperforms recent methods on most datasets. We also conduct ablation studies to validate our design choices and analyze the hierarchical relations learned by {ProNet}.},
   author = {Limei Wang and Haoran Liu and Yi Liu and Jerry Kurtin and Shuiwang Ji},
   booktitle = {The Eleventh International Conference on Learning Representations},
@@ -16203,7 +16203,7 @@ s, which can be used to guide task predictions made by either the same {LM} or a
   year = {2023}
 }
 
-@inproceedings{wang2023learning,
+@inproceedings{wang2023learninggrow,
   abstract = {Scaling transformers has led to significant breakthroughs in many domains, leading to a paradigm in which larger versions of existing models are trained and released on a periodic basis. New instances of such models are typically trained completely from scratch, despite the fact that they are often just scaled-up versions of their smaller counterparts. How can we use the implicit knowledge in the parameters of smaller, extant models to enable faster training of newer, larger models? This paper describes an approach for accelerating transformer training by learning to grow pretrained transformers, where we learn to linearly map the parameters of the smaller model to initialize the larger model. For tractable learning, we factorize the linear transformation as a composition of (linear) width- and depth-growth operators, and further employ a Kronecker factorization of these growth operators to encode architectural knowledge.},
   author = {Peihao Wang and Rameswar Panda and Lucas Torroba Hennigen and Philip Greengard and Leonid Karlinsky and Rogerio Feris and David Daniel Cox and Zhangyang Wang and Yoon Kim},
   booktitle = {The Eleventh International Conference on Learning Representations},
@@ -16242,7 +16242,7 @@ s, which can be used to guide task predictions made by either the same {LM} or a
   year = {2023}
 }
 
-@inproceedings{wang2023learning,
+@inproceedings{wang2023learningharmonic,
   abstract = {Molecular representation learning plays a crucial role in {AI}-assisted drug discovery research. Encoding {3D} molecular structures through Euclidean neural networks has become the prevailing method in the geometric deep learning community. However, the equivariance constraints and message passing in Euclidean space may limit the network expressive power. In this work, we propose a Harmonic Molecular Representation learning ({HMR}) framework, which represents a molecule using the Laplace-Beltrami eigenfunctions of its molecular surface. {HMR} offers a multi-resolution representation of molecular geometric and chemical features on {2D} Riemannian manifold. We also introduce a harmonic message passing method to realize efficient spectral message passing over the surface manifold for better molecular encoding. Our proposed method shows comparable predictive power to current models in small molecule property prediction, and outperforms the state-of-the-art deep learning models for ligand-binding protein pocket classification and the rigid protein docking challenge, demonstrating its versatility in molecular representation learning.},
   author = {Yiqun Wang and Yuning Shen and Shi Chen and Lihao Wang and Fei Ye and Hao Zhou},
   booktitle = {The Eleventh International Conference on Learning Representations},
@@ -16359,7 +16359,7 @@ s, which can be used to guide task predictions made by either the same {LM} or a
   year = {2023}
 }
 
-@inproceedings{wang2023towards,
+@inproceedings{wang2023understanding,
   abstract = {We consider a setting that a model needs to adapt to a new domain under distribution shifts, given that only unlabeled test samples from the new domain are accessible at test time. A common idea in most of the related works is constructing pseudo-labels for the unlabeled test samples and applying gradient descent ({GD}) to a loss function with the pseudo-labels. Recently, Goyal et al. (2022) propose conjugate labels, which is a new kind of pseudo-labels for self-training at test time. They empirically show that the conjugate label outperforms other ways of pseudo-labeling on many domain adaptation benchmarks. However, provably showing that {GD} with conjugate labels learns a good classifier for test-time adaptation remains open. In this work, we aim at theoretically understanding {GD} with hard and conjugate labels for a binary classification problem. We show that for square loss, {GD} with conjugate labels converges to an $\epsilon$-optimal predictor under a {G}aussian model for any arbitrarily small $\epsilon$, while {GD} with hard pseudo-labels fails in this task.},
   author = {Jun-Kun Wang and Andre Wibisono},
   booktitle = {The Eleventh International Conference on Learning Representations},
@@ -16509,7 +16509,7 @@ s, which can be used to guide task predictions made by either the same {LM} or a
   year = {2023}
 }
 
-@inproceedings{wang2023learning,
+@inproceedings{wang2023learningsparse,
   abstract = {The paper introduces an efficient algorithmic framework for learning sparse group models formulated as the natural convex relaxation of a cardinality-constrained program with Boolean variables. The authors provide theoretical techniques to characterize the equivalent condition when the relaxation achieves the exact integral optimal solution, as well as a rounding algorithm to produce a feasible integral solution once the optimal relaxation solution is fractional. They demonstrate the power of their equivalent condition by applying it to two ensembles of random problem instances that are challenging and popularly used in literature and prove that their method achieves exactness with overwhelming probability and nearly optimal sample complexity. Empirically, they use synthetic datasets to demonstrate that their proposed method significantly outperforms the state-of-the-art group sparse learning models in terms of individual and group support recovery when the number of samples is small. Furthermore, they show the out-performance of their method in cancer drug response prediction.},
   author = {Yijie Wang and Yuan Zhou and Xiaoqing Huang and Kun Huang and Jie Zhang and Jianzhu Ma},
   booktitle = {The Eleventh International Conference on Learning Representations},
@@ -16862,7 +16862,7 @@ s, which can be used to guide task predictions made by either the same {LM} or a
   year = {2023}
 }
 
-@inproceedings{wu2023learning,
+@inproceedings{wu2023learninghyper,
   abstract = {To reduce the human annotation efforts, the programmatic weak supervision ({PWS}) paradigm abstracts weak supervision sources as labeling functions ({LF}s) and involves a label model to aggregate the output of multiple {LF}s to produce training labels. Most existing label models require a parameter learning step for each dataset. In this work, we present a hyper label model that (once learned) infers the ground-truth labels for each dataset in a single forward pass without dataset-specific parameter learning. The hyper label model approximates an optimal analytical (yet computationally intractable) solution of the ground-truth labels. We train the model on synthetic data generated in the way that ensures the model approximates the analytical optimal solution, and build the model upon Graph Neural Network ({GNN}) to ensure the model prediction being invariant (or equivariant) to the permutation of {LF}s (or data points). On 14 real-world datasets, our hyper label model outperforms the best existing methods in both accuracy (by 1.4 points on average) and efficiency (by six times on average). Our code is available at https://github.com/wurenzhi/hyper_label_model},
   author = {Renzhi Wu and Shen-En Chen and Jieyu Zhang and Xu Chu},
   booktitle = {The Eleventh International Conference on Learning Representations},
@@ -16927,7 +16927,7 @@ s, which can be used to guide task predictions made by either the same {LM} or a
   year = {2023}
 }
 
-@inproceedings{wu2023learning,
+@inproceedings{wu2023learningcontrollable,
   abstract = {Simulating the time evolution of physical systems is pivotal in many scientific and engineering problems. An open challenge in simulating such systems is their multi-resolution dynamics: a small fraction of the system is extremely dynamic, and requires very fine-grained resolution, while a majority of the system is changing slowly and can be modeled by coarser spatial scales. Typical learning-based surrogate models use a uniform spatial scale, which needs to resolve to the finest required scale and can waste a huge compute to achieve required accuracy. In this work, we introduce Learning controllable Adaptive simulation for Multi-resolution Physics ({LAMP}) as the first full deep learning-based surrogate model that jointly learns the evolution model and optimizes appropriate spatial resolutions that devote more compute to the highly dynamic regions. We introduce learning techniques that optimizes {LAMP} with weighted sum of error and computational cost as objective, allowing {LAMP} to adapt to varying relative importance of error vs. computation tradeoff at inference time. We evaluate our method in a 1{D} benchmark of nonlinear {PDEs} and a challenging 2{D} mesh-based simulation. We demonstrate that our {LAMP} outperforms state-of-the-art deep learning surrogate models, and can adaptively trade-off computation to improve long-term prediction error: it achieves an average of 33.7\% error reduction for 1{D} nonlinear {PDEs}, and outperforms {MeshGraphNets} + classical Adaptive Mesh Refinement ({AMR}) in 2{D} mesh-based simulations.},
   author = {Tailin Wu and Takashi Maruyama and Qingqing Zhao and Gordon Wetzstein and Jure Leskovec},
   booktitle = {The Eleventh International Conference on Learning Representations},
@@ -18268,7 +18268,7 @@ s, which can be used to guide task predictions made by either the same {LM} or a
   year = {2023}
 }
 
-@inproceedings{yu2023s,
+@inproceedings{yu2023emi,
   abstract = {Semi-implicit variational inference (SIVI) greatly enriches the expressiveness of variational families by considering implicit variational distributions defined in a hierarchical manner. However, due to the intractable densities of variational distributions, current SIVI approaches often use surrogate evidence lower bounds (ELBOs) or employ expensive inner-loop MCMC runs for unbiased ELBOs for training. We propose SIVI-SM, a new method for SIVI based on an alternative training objective via score matching. Leveraging the hierarchical structure of semi-implicit variational families, the score matching objective allows a minimax formulation where the intractable variational densities can be naturally handled with denoising score matching. We show that SIVI-SM closely matches the accuracy of MCMC and outperforms ELBO-based SIVI methods in a variety of Bayesian inference tasks.},
   author = {Longlin Yu and Cheng Zhang},
   booktitle = {The Eleventh International Conference on Learning Representations},
@@ -19015,7 +19015,7 @@ s, which can be used to guide task predictions made by either the same {LM} or a
   year = {2023}
 }
 
-@inproceedings{zhang2023robust,
+@inproceedings{zhang2023robustscheduling,
   abstract = {Finding the best way to schedule operations in a computation graph is a classical {NP-hard} problem which is central to compiler optimization. However, evaluating the goodness of a schedule on the target hardware can be very time-consuming. Traditional approaches as well as previous machine learning ones typically optimize proxy metrics, which are fast to evaluate but can lead to bad schedules when tested on the target hardware. In this work, we propose a new approach to scheduling by sampling proportionally to the proxy metric using a novel {GFlowNet} method. We introduce a technique to control the trade-off between diversity and goodness of the proposed schedules at inference time and demonstrate empirically that the pure optimization baselines can lead to subpar performance with respect to our approach when tested on a target model. Furthermore, we show that conditioning the {GFlowNet} on the computation graph enables generalization to unseen scheduling problems for both synthetic and real-world compiler datasets.},
   author = {David W. Zhang and Corrado Rainone and Markus Peschl and Roberto Bondesan},
   booktitle = {The Eleventh International Conference on Learning Representations},
@@ -19210,7 +19210,7 @@ s, which can be used to guide task predictions made by either the same {LM} or a
   year = {2023}
 }
 
-@inproceedings{zhang2023towards,
+@inproceedings{zhang2023lightweight,
   abstract = {Active Anomaly Discovery ({AAD}) is flourishing in the anomaly detection research area, which aims to incorporate analysts' feedback into unsupervised anomaly detectors. However, existing {AAD} approaches usually prioritize the samples with the highest anomaly scores for user labeling, which hinders the exploration of anomalies that were initially ranked lower. Besides, most existing {AAD} approaches are specially tailored for a certain unsupervised detector, making it difficult to extend to other detection models. To tackle these problems, we propose a lightweight, model-agnostic and diversity-aware {AAD} method, named {LMADA}. In {LMADA}, we design a diversity-aware sample selector powered by Determinantal Point Process ({DPP}). It considers the diversity of samples in addition to their anomaly scores for feedback querying. Furthermore, we propose a model-agnostic tuner. It approximates diverse unsupervised detectors with a unified proxy model, based on which the feedback information is incorporated by a lightweight non-linear representation adjuster. Through extensive experiments on 8 public datasets, {LMADA} achieved 74\% {F1}-Score improvement on average, outperforming other comparative {AAD} approaches. Besides, {LMADA} can also achieve significant performance boosting under any unsupervised detectors.},
   author = {Xu Zhang and Yuan Zhao and Ziang Cui and Liqun Li and Shilin He and Qingwei Lin and Yingnong Dang and Saravan Rajmohan and Dongmei Zhang},
   booktitle = {The Eleventh International Conference on Learning Representations},
@@ -19405,7 +19405,7 @@ s, which can be used to guide task predictions made by either the same {LM} or a
   year = {2023}
 }
 
-@inproceedings{zhao2023learning,
+@inproceedings{zhao2023learningadversarial,
   abstract = {We study reinforcement learning ({RL}) with linear function approximation, unknown transition, and adversarial losses in the bandit feedback setting. Specifically, the unknown transition probability function is a linear mixture model with a given feature mapping, and the learner only observes the losses of the experienced state-action pairs instead of the whole loss function. We propose an efficient algorithm {LSUOB-REPS} which achieves $\widetilde{O}(dS^2\sqrt{K}+\sqrt{HSAK})$ regret guarantee with high probability, where $d$ is the ambient dimension of the feature mapping, $S$ is the size of the state space, $A$ is the size of the action space, $H$ is the episode length and $K$ is the number of episodes. Furthermore, we also prove a lower bound of order $\Omega(dH\sqrt{K}+\sqrt{HSAK})$ for this setting. To the best of our knowledge, we make the first step to establish a provably efficient algorithm with a sublinear regret guarantee in this challenging setting and solve the open problem of previous researchers.},
   author = {Canzhe Zhao and Ruofeng Yang and Baoxiang Wang and Shuai Li},
   booktitle = {The Eleventh International Conference on Learning Representations},
