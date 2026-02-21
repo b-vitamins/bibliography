@@ -71,6 +71,8 @@ class EntryResult:
     entry_type: str
     year: str
     title_norm: str
+    doi_raw: str
+    url_fp: str
     has_author: bool
     has_title: bool
     has_booktitle: bool
@@ -498,6 +500,8 @@ def run_scan(cfg: OpsConfig) -> tuple[list[FileResult], list[EntryResult], list[
                         entry_type=str(e.get("ENTRYTYPE", "")),
                         year=str(e.get("year", "")),
                         title_norm=norm_title(str(e.get("title", ""))),
+                        doi_raw=str(e.get("doi", "")).strip().lower(),
+                        url_fp=url_fingerprint(str(e.get("url", ""))),
                         has_author=bool(e.get("author")),
                         has_title=bool(e.get("title")),
                         has_booktitle=bool(e.get("booktitle")),
@@ -554,6 +558,14 @@ def run_lint(cfg: OpsConfig, file_rows: list[FileResult], entry_rows: list[Entry
     issues: list[Issue] = []
     issue_counts: dict[str, int] = {}
     suppressed_counts: dict[str, int] = {}
+    generic_duplicate_titles = {
+        "editorial",
+        "announcement",
+        "erratum",
+        "publisher s note",
+        "corrigendum",
+        "addendum",
+    }
 
     def add_issue(issue: Issue) -> None:
         c = issue_counts.get(issue.issue_type, 0)
@@ -610,6 +622,11 @@ def run_lint(cfg: OpsConfig, file_rows: list[FileResult], entry_rows: list[Entry
 
         for (t, sig), ts in local_title_author_map.items():
             if len(ts) > 1:
+                if t in generic_duplicate_titles:
+                    continue
+                ids = [(r.doi_raw or r.url_fp) for r in ts]
+                if all(ids) and len(set(ids)) == len(ids):
+                    continue
                 add_issue(
                     Issue(
                         file_path=file_path,
@@ -628,6 +645,11 @@ def run_lint(cfg: OpsConfig, file_rows: list[FileResult], entry_rows: list[Entry
 
         for (t, y), ts in local_title_year_map.items():
             if len(ts) > 1:
+                if t in generic_duplicate_titles:
+                    continue
+                ids = [(r.doi_raw or r.url_fp) for r in ts]
+                if all(ids) and len(set(ids)) == len(ids):
+                    continue
                 add_issue(
                     Issue(
                         file_path=file_path,
