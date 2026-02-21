@@ -266,6 +266,58 @@ def run_battle_tests(mode: str) -> dict[str, object]:
         ok = int(f.get("planned_entries", 0)) > 0 and int(f.get("proposed_entries", 0)) >= 0
     record(results, "run_neurips_2024_dry", cmd, proc, dur, ok, details)
 
+    # 4b) NeurIPS stale URL recovery (single-key targeted check)
+    neurips_file = (REPO / "conferences/neurips/2024.bib").read_text(encoding="utf-8")
+    stale_candidates = [
+        "zhang2024gliding",
+        "tian2024reinforcement",
+        "bai2024faster",
+        "livni2024credit",
+    ]
+    stale_key = ""
+    for candidate in stale_candidates:
+        if f"@inproceedings{{{candidate}," in neurips_file:
+            stale_key = candidate
+            break
+
+    if stale_key:
+        cmd = [
+            "python3",
+            "scripts/enrich-pipeline.py",
+            "run",
+            "conferences/neurips/2024.bib",
+            "--entry-key",
+            stale_key,
+            "--json",
+        ]
+        proc, dur = run_cmd(cmd, timeout=1800)
+        ok = False
+        details = {"entry_key": stale_key}
+        if proc.returncode == 0:
+            payload = parse_json_output(proc)
+            f = payload["files"][0]
+            details.update(
+                {
+                    "planned_entries": f.get("planned_entries"),
+                    "proposed_entries": f.get("proposed_entries"),
+                    "unresolved_entries": f.get("unresolved_entries"),
+                }
+            )
+            ok = int(f.get("planned_entries", 0)) >= 1 and int(f.get("unresolved_entries", 1)) == 0
+        record(results, "neurips_stale_url_recovery", cmd, proc, dur, ok, details)
+    else:
+        cmd = ["echo", "neurips stale key candidate not present; skipping check"]
+        fake = subprocess.CompletedProcess(cmd, 0, "skip", "")
+        record(
+            results,
+            "neurips_stale_url_recovery",
+            cmd,
+            fake,
+            0.0,
+            True,
+            {"skipped": True},
+        )
+
     if unresolved_path:
         p = REPO / unresolved_path
         parse_ok = True

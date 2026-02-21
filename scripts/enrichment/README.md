@@ -16,7 +16,8 @@ Or through `bibops`:
 ## Current adapters
 
 - `openreview`: extracts canonical OpenReview metadata for ICLR-style entries.
-- `neurips_proceedings`: extracts canonical NeurIPS proceedings metadata.
+- `neurips_proceedings`: extracts canonical NeurIPS proceedings metadata, including
+  a stale-URL recovery path via yearly proceedings index lookup (hash first, then title match).
 
 ## Outputs
 
