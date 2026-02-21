@@ -37,6 +37,9 @@ python3 scripts/enrich-pipeline.py plan conferences/iclr/2024.bib
 # Run enrichment in dry mode (writes report + unresolved queue)
 python3 scripts/enrich-pipeline.py run conferences/iclr/2024.bib
 
+# Battle-test enrichment pipeline behavior on real workloads
+python3 scripts/enrichment/battle_test.py --mode standard
+
 # Release profile (hooks + lint + tracking export)
 python3 scripts/bibops.py run-profile --profile ops/profiles/release.toml
 
@@ -51,6 +54,7 @@ make doctor
 make daily
 make orals
 make enrich-arxiv-orals
+make enrich-battle
 make release
 make full-audit
 ```

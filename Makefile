@@ -1,4 +1,4 @@
-.PHONY: doctor lint scan report daily release full-audit orals enrich-arxiv-orals enrich-plan enrich-run hooks export-tracking validate-skills
+.PHONY: doctor lint scan report daily release full-audit orals enrich-arxiv-orals enrich-plan enrich-run enrich-battle hooks export-tracking validate-skills
 
 doctor:
 	python3 scripts/bibops.py doctor
@@ -34,6 +34,9 @@ enrich-plan:
 enrich-run:
 	@[ -n "$(FILE)" ] || (echo "Usage: make enrich-run FILE=conferences/iclr/2024.bib" && exit 1)
 	python3 scripts/enrich-pipeline.py run "$(FILE)"
+
+enrich-battle:
+	python3 scripts/enrichment/battle_test.py --mode $(or $(MODE),standard)
 
 hooks:
 	python3 scripts/bibops.py install-hooks

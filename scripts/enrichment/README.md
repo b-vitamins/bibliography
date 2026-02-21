@@ -24,6 +24,14 @@ Or through `bibops`:
 - Unresolved triage queue JSONL: `ops/unresolved/enrichment/`
 - HTTP response cache: `ops/enrichment-source-cache.json`
 
+## Battle Testing
+
+Run systematic workload and surface checks:
+
+- `python3 scripts/enrichment/battle_test.py --mode quick`
+- `python3 scripts/enrichment/battle_test.py --mode standard`
+- `python3 scripts/enrichment/battle_test.py --mode stress`
+
 ## Configuration
 
 Default config path: `ops/enrichment-pipeline.toml`

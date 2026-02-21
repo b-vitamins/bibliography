@@ -23,7 +23,7 @@ class OpenReviewAdapter:
     def supports(self, file_path: Path, entry: dict[str, Any]) -> bool:
         url = str(entry.get("url", "")).lower()
         pdf = str(entry.get("pdf", "")).lower()
-        return "openreview.net" in url or "openreview.net" in pdf or "conferences/iclr/" in str(file_path)
+        return "openreview.net" in url or "openreview.net" in pdf
 
     @staticmethod
     def _meta_value(page: str, name: str) -> str:

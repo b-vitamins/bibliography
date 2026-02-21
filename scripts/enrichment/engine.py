@@ -75,6 +75,8 @@ class EnrichmentEngine:
                 continue
 
             adapter = self._adapter_for_item(file_path, entry, venue.adapter if venue else None)
+            if adapter is None:
+                continue
             target_fields = self._fields_supported_by_adapter(target_fields, adapter)
             if not target_fields:
                 continue
@@ -304,7 +306,7 @@ class EnrichmentEngine:
         summary = FileRunSummary(
             file_path=str(file_path),
             planned_entries=len(work_items),
-            proposed_entries=sum(1 for d in decisions if d.status == "planned_update"),
+            proposed_entries=sum(1 for d in decisions if d.proposals),
             updated_entries=sum(1 for d in decisions if d.status == "updated"),
             unresolved_entries=sum(1 for d in decisions if d.status == "unresolved"),
             skipped_entries=sum(1 for d in decisions if d.status == "skipped"),
