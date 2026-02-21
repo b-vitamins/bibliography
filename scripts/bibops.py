@@ -225,6 +225,15 @@ def parse_bib(path: Path):
         return bibtexparser.loads(data, parser=parser_fallback)
 
 
+def file_is_dblp_generated(path: Path) -> bool:
+    try:
+        with path.open("r", encoding="utf-8") as f:
+            head = "".join([next(f, "") for _ in range(8)]).lower()
+    except OSError:
+        return False
+    return "generated from dblp xml dump" in head
+
+
 def init_db(db_path: Path) -> None:
     conn = sqlite3.connect(db_path)
     cur = conn.cursor()
@@ -530,7 +539,7 @@ def key_format_issues(key: str, year: str) -> list[str]:
         return ["missing key"]
     if not re.match(r"^[a-z0-9]+$", key):
         out.append("key must be lowercase alphanumeric only")
-    m = re.search(r"(19|20)\d{2}", key)
+    m = re.search(r"\d{4}", key)
     if not m:
         out.append("key must include year")
     else:
@@ -561,6 +570,16 @@ def run_lint(cfg: OpsConfig, file_rows: list[FileResult], entry_rows: list[Entry
     by_key_global: dict[str, list[EntryResult]] = {}
     for r in entry_rows:
         by_key_global.setdefault(r.entry_key, []).append(r)
+
+    generated_file_cache: dict[str, bool] = {}
+
+    def is_generated_file(file_path: str) -> bool:
+        cached = generated_file_cache.get(file_path)
+        if cached is not None:
+            return cached
+        generated = file_is_dblp_generated(Path(file_path))
+        generated_file_cache[file_path] = generated
+        return generated
 
     for file_path, rows in by_file.items():
         local_key_map: dict[str, list[EntryResult]] = {}
@@ -627,15 +646,27 @@ def run_lint(cfg: OpsConfig, file_rows: list[FileResult], entry_rows: list[Entry
 
     for k, rows in by_key_global.items():
         file_set = {r.file_path for r in rows}
-        if k and len(file_set) > 1:
+        if not k or len(file_set) <= 1:
+            continue
+
+        # Only flag global key duplicates when they collide across distinct
+        # entry signatures; mirrored subsets intentionally re-use keys.
+        signatures = {
+            (r.year, r.title_norm, author_signature(r.author_raw))
+            for r in rows
+        }
+        if len(signatures) > 1:
             add_issue(
                 Issue(
                     file_path="*",
                     entry_key=k,
                     issue_type="duplicate_key_global",
                     severity="warning",
-                    message="Key appears in multiple files",
-                    details={"files": ", ".join(sorted(file_set))},
+                    message="Key maps to multiple distinct entries across files",
+                    details={
+                        "files": ", ".join(sorted(file_set)),
+                        "distinct_signatures": str(len(signatures)),
+                    },
                 )
             )
 
@@ -644,17 +675,18 @@ def run_lint(cfg: OpsConfig, file_rows: list[FileResult], entry_rows: list[Entry
         entry_type = r.entry_type.lower()
         year = r.year
 
-        for msg in key_format_issues(key, year):
-            add_issue(
-                Issue(
-                    file_path=r.file_path,
-                    entry_key=key,
-                    issue_type="key_format",
-                    severity="warning",
-                    message=msg,
-                    details={"key": key, "year": year},
+        if not is_generated_file(r.file_path):
+            for msg in key_format_issues(key, year):
+                add_issue(
+                    Issue(
+                        file_path=r.file_path,
+                        entry_key=key,
+                        issue_type="key_format",
+                        severity="warning",
+                        message=msg,
+                        details={"key": key, "year": year},
+                    )
                 )
-            )
 
         if entry_type == "inproceedings":
             missing: list[str] = []
