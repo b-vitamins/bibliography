@@ -101,6 +101,16 @@ This allows post-hoc audits and reproducibility checks.
 
 Any entry with unresolved conflicts is written to a queue file under `ops/unresolved/enrichment/` with machine-readable reasons.
 
+### Resilience and Source Safety
+
+- Shared HTTP layer enforces polite host pacing and adaptive backoff.
+- Source fetches use adapter-level content validation (`require_any`/`reject_any`) so error pages are not mistaken for canonical records.
+- Rate-limit/challenge pages are treated as poisoned payloads:
+  - not accepted as source data,
+  - not persisted into cache,
+  - purged from existing cache snapshots on load/access.
+- Run reports include HTTP diagnostics to support post-run audits.
+
 ## Extension Strategy
 
 ### Add a New Venue

@@ -30,8 +30,12 @@ class EnrichmentEngine:
         self.http_client = CachedHttpClient(
             timeout_seconds=cfg.timeout_seconds,
             max_retries=cfg.max_retries,
+            max_validation_retries=cfg.max_validation_retries,
+            backoff_base_seconds=cfg.backoff_base_seconds,
+            backoff_max_seconds=cfg.backoff_max_seconds,
             user_agent=cfg.user_agent,
             cache_path=cfg.source_cache_path,
+            host_min_interval=cfg.host_min_interval_seconds,
         )
         self.adapters = build_adapter_registry(self.http_client)
 
@@ -324,6 +328,7 @@ class EnrichmentEngine:
             config_path=str(self.cfg.config_path),
             files=[summary],
             decisions=decisions,
+            http_stats=self.http_client.stats(),
         )
         report_path.write_text(json.dumps(envelope.to_json(), indent=2, sort_keys=True), encoding="utf-8")
 

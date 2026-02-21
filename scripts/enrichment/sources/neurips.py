@@ -11,6 +11,8 @@ from ..models import SourceRecord, now_iso
 from ..normalization import normalize_text
 from .base import AdapterContext
 
+_NEURIPS_PAPER_REQUIRED_MARKERS = ('class="paper-abstract"', "-Paper-")
+
 
 class NeuripsProceedingsAdapter:
     name = "neurips_proceedings"
@@ -103,7 +105,10 @@ class NeuripsProceedingsAdapter:
             return cached
 
         listing_url = f"https://proceedings.neurips.cc/paper_files/paper/{year}"
-        response = self.http_client.get_text(listing_url)
+        response = self.http_client.get_text(
+            listing_url,
+            require_any=[f"/paper_files/paper/{year}/hash/"],
+        )
         if response.status_code != 200:
             self._year_index_cache[year] = []
             return []
@@ -152,13 +157,19 @@ class NeuripsProceedingsAdapter:
             if not source_url:
                 return None
 
-        response = self.http_client.get_text(source_url)
+        response = self.http_client.get_text(
+            source_url,
+            require_any=_NEURIPS_PAPER_REQUIRED_MARKERS,
+        )
         if response.status_code != 200:
             fallback = self._resolve_fallback_source_url(context.entry, source_url)
             if not fallback or fallback == source_url:
                 return None
             source_url = fallback
-            response = self.http_client.get_text(source_url)
+            response = self.http_client.get_text(
+                source_url,
+                require_any=_NEURIPS_PAPER_REQUIRED_MARKERS,
+            )
             if response.status_code != 200:
                 return None
 
@@ -189,6 +200,8 @@ class NeuripsProceedingsAdapter:
             fields["doi"] = doi
         if pdf:
             fields["pdf"] = pdf
+        if len(fields) <= 1:
+            return None
 
         return SourceRecord(
             adapter=self.name,

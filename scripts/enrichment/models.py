@@ -92,9 +92,10 @@ class RunEnvelope:
     config_path: str
     files: list[FileRunSummary]
     decisions: list[EntryDecision]
+    http_stats: dict[str, int | float] | None = None
 
     def to_json(self) -> dict[str, Any]:
-        return {
+        payload: dict[str, Any] = {
             "run_id": self.run_id,
             "started_at": self.started_at,
             "finished_at": self.finished_at,
@@ -103,3 +104,6 @@ class RunEnvelope:
             "files": [dataclasses.asdict(f) for f in self.files],
             "decisions": [dataclasses.asdict(d) for d in self.decisions],
         }
+        if self.http_stats:
+            payload["http_stats"] = self.http_stats
+        return payload

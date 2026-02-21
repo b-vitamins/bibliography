@@ -11,6 +11,11 @@ from ..models import SourceRecord, now_iso
 from .base import AdapterContext
 
 _META_RE_TEMPLATE = r'name="{name}" content="([^"]+)"'
+_OPENREVIEW_REQUIRED_MARKERS = ('name="citation_title"',)
+_OPENREVIEW_REJECT_MARKERS = (
+    "the server responded with the following message",
+    "too many requests:",
+)
 
 
 class OpenReviewAdapter:
@@ -63,11 +68,17 @@ class OpenReviewAdapter:
             return None
 
         source_url = f"https://openreview.net/forum?id={forum_id}"
-        response = self.http_client.get_text(source_url)
+        response = self.http_client.get_text(
+            source_url,
+            require_any=_OPENREVIEW_REQUIRED_MARKERS,
+            reject_any=_OPENREVIEW_REJECT_MARKERS,
+        )
         if response.status_code != 200:
             return None
 
         title = self._meta_value(response.text, "citation_title")
+        if not title:
+            return None
         abstract = self._meta_value(response.text, "citation_abstract")
         pdf = self._meta_value(response.text, "citation_pdf_url")
         booktitle = self._meta_value(response.text, "citation_conference_title")

@@ -31,6 +31,10 @@ class PipelineConfig:
     source_cache_path: Path
     timeout_seconds: float
     max_retries: int
+    max_validation_retries: int
+    host_min_interval_seconds: float
+    backoff_base_seconds: float
+    backoff_max_seconds: float
     user_agent: str
     venues: list[VenuePolicy]
 
@@ -54,6 +58,10 @@ def _default_config(path: Path) -> PipelineConfig:
         source_cache_path=Path("ops/enrichment-source-cache.json"),
         timeout_seconds=20.0,
         max_retries=2,
+        max_validation_retries=4,
+        host_min_interval_seconds=1.0,
+        backoff_base_seconds=1.0,
+        backoff_max_seconds=30.0,
         user_agent="bibliography-enrichment-pipeline/1.0",
         venues=[
             VenuePolicy(
@@ -113,6 +121,14 @@ def load_pipeline_config(path: Path | None = None) -> PipelineConfig:
             cfg.timeout_seconds = float(defaults["timeout_seconds"])
         if isinstance(defaults.get("max_retries"), int) and defaults["max_retries"] >= 0:
             cfg.max_retries = defaults["max_retries"]
+        if isinstance(defaults.get("max_validation_retries"), int) and defaults["max_validation_retries"] >= 0:
+            cfg.max_validation_retries = defaults["max_validation_retries"]
+        if isinstance(defaults.get("host_min_interval_seconds"), (int, float)):
+            cfg.host_min_interval_seconds = max(0.0, float(defaults["host_min_interval_seconds"]))
+        if isinstance(defaults.get("backoff_base_seconds"), (int, float)):
+            cfg.backoff_base_seconds = max(0.1, float(defaults["backoff_base_seconds"]))
+        if isinstance(defaults.get("backoff_max_seconds"), (int, float)):
+            cfg.backoff_max_seconds = max(cfg.backoff_base_seconds, float(defaults["backoff_max_seconds"]))
         if isinstance(defaults.get("user_agent"), str) and defaults["user_agent"].strip():
             cfg.user_agent = defaults["user_agent"].strip()
 
