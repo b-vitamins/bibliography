@@ -5,6 +5,7 @@ from __future__ import annotations
 
 import argparse
 import dataclasses
+import hashlib
 import json
 import shlex
 import subprocess
@@ -730,7 +731,167 @@ allowed_domains = ["example.com"]
         details = {"expected_rc": 2, "actual_rc": proc.returncode}
         record(results, "fail_on_unresolved_rc", cmd, proc, dur, ok, details)
 
-    # 9) Makefile command surfaces
+    # 9) Exception-ledger handling for known irrecoverable entries
+    cmd = [
+        "python3",
+        "scripts/enrich-pipeline.py",
+        "run",
+        "conferences/icml/2020.bib",
+        "--entry-key",
+        "DBLP:conf:icml:Wei20",
+        "--json",
+    ]
+    proc, dur = run_cmd(cmd, timeout=1800)
+    ok = False
+    details = {}
+    if proc.returncode == 0:
+        payload = parse_json_output(proc)
+        f = payload["files"][0]
+        report_path = Path(str(f.get("report_path", "")))
+        details = {
+            "planned_entries": f.get("planned_entries"),
+            "unresolved_entries": f.get("unresolved_entries"),
+            "skipped_entries": f.get("skipped_entries"),
+        }
+        if report_path.exists():
+            rep = json.loads(report_path.read_text(encoding="utf-8"))
+            decision = next(
+                (d for d in rep.get("decisions", []) if d.get("entry_key") == "DBLP:conf:icml:Wei20"),
+                None,
+            )
+            reasons = decision.get("reasons", []) if isinstance(decision, dict) else []
+            details["decision_reasons"] = reasons
+            ok = (
+                int(f.get("planned_entries", 0)) == 1
+                and int(f.get("unresolved_entries", 1)) == 0
+                and int(f.get("skipped_entries", 0)) == 1
+                and any("exception ledger skip:" in str(r).lower() for r in reasons)
+            )
+    record(results, "exception_ledger_icml_wei20", cmd, proc, dur, ok, details)
+
+    # 10) Resume checkpoint skip behavior
+    with tempfile.TemporaryDirectory(prefix="enrich-resume-") as td:
+        tmp_root = Path(td)
+        src = REPO / "conferences/icml/2020.bib"
+        copy = tmp_root / "icml2020-copy.bib"
+        copy.write_text(src.read_text(encoding="utf-8"), encoding="utf-8")
+        checkpoint = tmp_root / "checkpoint.json"
+        key = "DBLP:conf:icml:0001AKP20"
+        base_sha = hashlib.sha256(copy.read_bytes()).hexdigest()
+        checkpoint.write_text(
+            json.dumps(
+                {
+                    "version": 1,
+                    "file_path": str(copy),
+                    "base_file_sha256": base_sha,
+                    "completed_success_keys": [key],
+                    "applied_updates_by_key": {},
+                    "last_successful_key": key,
+                    "updated_at": "2026-01-01T00:00:00+00:00",
+                },
+                indent=2,
+                sort_keys=True,
+            ),
+            encoding="utf-8",
+        )
+        cmd = [
+            "python3",
+            "scripts/enrich-pipeline.py",
+            "run",
+            str(copy),
+            "--entry-key",
+            key,
+            "--resume",
+            "--checkpoint-path",
+            str(checkpoint),
+            "--json",
+        ]
+        proc, dur = run_cmd(cmd, timeout=1800)
+        ok = False
+        details = {}
+        if proc.returncode == 0:
+            payload = parse_json_output(proc)
+            f = payload["files"][0]
+            details = {
+                "planned_entries": f.get("planned_entries"),
+                "proposed_entries": f.get("proposed_entries"),
+                "unresolved_entries": f.get("unresolved_entries"),
+                "checkpoint_removed": not checkpoint.exists(),
+            }
+            ok = (
+                int(f.get("planned_entries", 1)) == 0
+                and int(f.get("proposed_entries", 1)) == 0
+                and int(f.get("unresolved_entries", 1)) == 0
+                and not checkpoint.exists()
+            )
+        record(results, "resume_checkpoint_skip", cmd, proc, dur, ok, details)
+
+    # 11) Circuit breaker behavior for repeated transient host failures
+    cmd = [
+        "python3",
+        "-c",
+        (
+            "from pathlib import Path; "
+            "from scripts.enrichment.http_client import CachedHttpClient; "
+            "c=CachedHttpClient(timeout_seconds=1,max_retries=0,max_validation_retries=0,"
+            "backoff_base_seconds=0.1,backoff_max_seconds=0.2,user_agent='test',"
+            "cache_path=Path('/tmp/enrich-cb-cache.json'),host_min_interval=0.0,"
+            "host_circuit_breaker_threshold=1,host_circuit_breaker_cooldown_seconds=60.0); "
+            "u='http://127.0.0.1:9/nope'; c.get_text(u,use_cache=False); c.get_text(u,use_cache=False); "
+            "s=c.stats(); c.close(); "
+            "import sys; sys.exit(0 if int(s.get('circuit_breaker_trips',0))>=1 and "
+            "int(s.get('circuit_breaker_short_circuits',0))>=1 else 1)"
+        ),
+    ]
+    proc, dur = run_cmd(cmd, timeout=120)
+    record(results, "circuit_breaker_trips", cmd, proc, dur, proc.returncode == 0)
+
+    # 12) Transactional write guard catches parse/integrity regressions
+    cmd = [
+        "bash",
+        "-lc",
+        (
+            "python3 - <<'PY'\n"
+            "from pathlib import Path\n"
+            "import tempfile\n"
+            "from scripts.enrichment.bibtex_io import (\n"
+            "    BibWriteIntegrityError,\n"
+            "    parse_bib_text,\n"
+            "    transactional_write_bib_file,\n"
+            ")\n"
+            "\n"
+            "text = \"\"\"@inproceedings{k,\n"
+            "  author={A},\n"
+            "  title={T},\n"
+            "  booktitle={ICML},\n"
+            "  year={2020},\n"
+            "  abstract={bad \\\\{ text}\n"
+            "}\n"
+            "\"\"\"\n"
+            "ok = False\n"
+            "with tempfile.TemporaryDirectory(prefix='enrich-write-guard-') as td:\n"
+            "    p = Path(td) / 'x.bib'\n"
+            "    p.write_text(text, encoding='utf-8')\n"
+            "    db = parse_bib_text(text)\n"
+            "    try:\n"
+            "        transactional_write_bib_file(\n"
+            "            p,\n"
+            "            db,\n"
+            "            baseline_entries=1,\n"
+            "            baseline_comments=0,\n"
+            "            max_comment_increase=0,\n"
+            "            rollback_dir=Path(td) / 'roll',\n"
+            "        )\n"
+            "    except BibWriteIntegrityError as e:\n"
+            "        ok = 'rollback_original=' in str(e) and 'rollback_candidate=' in str(e)\n"
+            "raise SystemExit(0 if ok else 1)\n"
+            "PY"
+        ),
+    ]
+    proc, dur = run_cmd(cmd, timeout=120)
+    record(results, "transactional_write_guard", cmd, proc, dur, proc.returncode == 0)
+
+    # 13) Makefile command surfaces
     for name, cmd in [
         ("make_enrich_plan", ["make", "enrich-plan", "FILE=conferences/iclr/2024.bib"]),
         ("make_enrich_run", ["make", "enrich-run", "FILE=conferences/iclr/2024.bib"]),
@@ -738,7 +899,7 @@ allowed_domains = ["example.com"]
         proc, dur = run_cmd(cmd, timeout=1800)
         record(results, name, cmd, proc, dur, proc.returncode == 0)
 
-    # 10) Optional heavy end-to-end health check
+    # 14) Optional heavy end-to-end health check
     if mode == "stress":
         cmd = ["python3", "scripts/bibops.py", "lint", "--fail-on-error"]
         proc, dur = run_cmd(cmd, timeout=3600)

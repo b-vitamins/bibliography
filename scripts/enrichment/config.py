@@ -1,10 +1,12 @@
 from __future__ import annotations
 
 import dataclasses
+import datetime as dt
 import tomllib
 from pathlib import Path
 
 DEFAULT_CONFIG_PATH = Path("ops/enrichment-pipeline.toml")
+DEFAULT_EXCEPTIONS_PATH = Path("ops/enrichment-exceptions.toml")
 
 
 @dataclasses.dataclass
@@ -19,8 +21,33 @@ class VenuePolicy:
 
 
 @dataclasses.dataclass
+class ExceptionRule:
+    entry_key: str
+    action: str
+    reason_code: str
+    evidence: str
+    review_after: dt.date | None = None
+    file_path_contains: str | None = None
+    adapter: str | None = None
+    note: str | None = None
+
+    def matches(self, file_path: Path, entry_key: str, adapter: str | None) -> bool:
+        if self.entry_key != entry_key:
+            return False
+        if self.file_path_contains and self.file_path_contains not in str(file_path):
+            return False
+        if self.adapter and (adapter or "") != self.adapter:
+            return False
+        return True
+
+    def is_expired(self) -> bool:
+        return bool(self.review_after and dt.date.today() > self.review_after)
+
+
+@dataclasses.dataclass
 class PipelineConfig:
     config_path: Path
+    exceptions_path: Path
     target_fields_by_type: dict[str, list[str]]
     protected_fields: set[str]
     overwrite_existing: bool
@@ -34,10 +61,15 @@ class PipelineConfig:
     max_validation_retries: int
     host_min_interval_seconds: float
     host_min_interval_by_host: dict[str, float]
+    host_circuit_breaker_threshold: int
+    host_circuit_breaker_cooldown_seconds: float
     backoff_base_seconds: float
     backoff_max_seconds: float
     user_agent: str
+    checkpoint_dir: Path
+    checkpoint_flush_every: int
     venues: list[VenuePolicy]
+    exceptions: list[ExceptionRule]
 
     def venue_for_file(self, file_path: Path) -> VenuePolicy | None:
         for venue in self.venues:
@@ -45,10 +77,62 @@ class PipelineConfig:
                 return venue
         return None
 
+    def exception_for(self, file_path: Path, entry_key: str, adapter: str | None) -> ExceptionRule | None:
+        for rule in self.exceptions:
+            if rule.matches(file_path, entry_key, adapter):
+                return rule
+        return None
+
+
+def _parse_date(value: object) -> dt.date | None:
+    if not isinstance(value, str) or not value.strip():
+        return None
+    try:
+        return dt.date.fromisoformat(value.strip())
+    except Exception:
+        return None
+
+
+def _load_exception_rules(path: Path) -> list[ExceptionRule]:
+    if not path.exists():
+        return []
+    try:
+        data = tomllib.loads(path.read_text(encoding="utf-8"))
+    except Exception:
+        return []
+    rows = data.get("exceptions")
+    if not isinstance(rows, list):
+        return []
+
+    out: list[ExceptionRule] = []
+    for raw in rows:
+        if not isinstance(raw, dict):
+            continue
+        entry_key = raw.get("entry_key")
+        action = raw.get("action")
+        reason_code = raw.get("reason_code")
+        evidence = raw.get("evidence")
+        if not all(isinstance(x, str) and x.strip() for x in [entry_key, action, reason_code, evidence]):
+            continue
+
+        rule = ExceptionRule(
+            entry_key=entry_key.strip(),
+            action=action.strip().lower(),
+            reason_code=reason_code.strip(),
+            evidence=evidence.strip(),
+            review_after=_parse_date(raw.get("review_after")),
+            file_path_contains=raw.get("file_path_contains").strip() if isinstance(raw.get("file_path_contains"), str) and raw.get("file_path_contains").strip() else None,
+            adapter=raw.get("adapter").strip() if isinstance(raw.get("adapter"), str) and raw.get("adapter").strip() else None,
+            note=raw.get("note").strip() if isinstance(raw.get("note"), str) and raw.get("note").strip() else None,
+        )
+        out.append(rule)
+    return out
+
 
 def _default_config(path: Path) -> PipelineConfig:
     return PipelineConfig(
         config_path=path,
+        exceptions_path=DEFAULT_EXCEPTIONS_PATH,
         target_fields_by_type={"inproceedings": ["url", "pdf", "abstract"]},
         protected_fields={"author", "title", "booktitle", "year"},
         overwrite_existing=False,
@@ -66,9 +150,13 @@ def _default_config(path: Path) -> PipelineConfig:
             "proceedings.neurips.cc": 0.2,
             "proceedings.mlr.press": 0.2,
         },
+        host_circuit_breaker_threshold=4,
+        host_circuit_breaker_cooldown_seconds=120.0,
         backoff_base_seconds=1.0,
         backoff_max_seconds=30.0,
         user_agent="bibliography-enrichment-pipeline/1.0",
+        checkpoint_dir=Path("ops/enrichment-checkpoints"),
+        checkpoint_flush_every=20,
         venues=[
             VenuePolicy(
                 name="iclr",
@@ -95,6 +183,7 @@ def _default_config(path: Path) -> PipelineConfig:
                 },
             ),
         ],
+        exceptions=_load_exception_rules(DEFAULT_EXCEPTIONS_PATH),
     )
 
 
@@ -119,6 +208,8 @@ def load_pipeline_config(path: Path | None = None) -> PipelineConfig:
 
     defaults = data.get("defaults")
     if isinstance(defaults, dict):
+        if isinstance(defaults.get("exceptions_path"), str) and defaults["exceptions_path"].strip():
+            cfg.exceptions_path = Path(defaults["exceptions_path"].strip())
         if isinstance(defaults.get("overwrite_existing"), bool):
             cfg.overwrite_existing = defaults["overwrite_existing"]
         if isinstance(defaults.get("min_abstract_words"), int) and defaults["min_abstract_words"] > 0:
@@ -139,6 +230,10 @@ def load_pipeline_config(path: Path | None = None) -> PipelineConfig:
             cfg.max_validation_retries = defaults["max_validation_retries"]
         if isinstance(defaults.get("host_min_interval_seconds"), (int, float)):
             cfg.host_min_interval_seconds = max(0.0, float(defaults["host_min_interval_seconds"]))
+        if isinstance(defaults.get("host_circuit_breaker_threshold"), int):
+            cfg.host_circuit_breaker_threshold = max(0, defaults["host_circuit_breaker_threshold"])
+        if isinstance(defaults.get("host_circuit_breaker_cooldown_seconds"), (int, float)):
+            cfg.host_circuit_breaker_cooldown_seconds = max(0.0, float(defaults["host_circuit_breaker_cooldown_seconds"]))
         host_pacing = defaults.get("host_min_interval_by_host")
         if isinstance(host_pacing, dict):
             parsed_host_pacing: dict[str, float] = {}
@@ -156,6 +251,10 @@ def load_pipeline_config(path: Path | None = None) -> PipelineConfig:
             cfg.backoff_max_seconds = max(cfg.backoff_base_seconds, float(defaults["backoff_max_seconds"]))
         if isinstance(defaults.get("user_agent"), str) and defaults["user_agent"].strip():
             cfg.user_agent = defaults["user_agent"].strip()
+        if isinstance(defaults.get("checkpoint_dir"), str) and defaults["checkpoint_dir"].strip():
+            cfg.checkpoint_dir = Path(defaults["checkpoint_dir"].strip())
+        if isinstance(defaults.get("checkpoint_flush_every"), int) and defaults["checkpoint_flush_every"] > 0:
+            cfg.checkpoint_flush_every = defaults["checkpoint_flush_every"]
 
     targets = data.get("targets")
     if isinstance(targets, dict):
@@ -196,5 +295,7 @@ def load_pipeline_config(path: Path | None = None) -> PipelineConfig:
             )
         if parsed_venues:
             cfg.venues = parsed_venues
+
+    cfg.exceptions = _load_exception_rules(cfg.exceptions_path)
 
     return cfg

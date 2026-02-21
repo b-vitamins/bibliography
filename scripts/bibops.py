@@ -1413,6 +1413,10 @@ def command_enrich_pipeline(args: argparse.Namespace) -> int:
         cmd.append("--overwrite")
     if args.write:
         cmd.append("--write")
+    if args.resume:
+        cmd.append("--resume")
+    if args.checkpoint_path:
+        cmd.extend(["--checkpoint-path", args.checkpoint_path])
     if args.fail_on_unresolved:
         cmd.append("--fail-on-unresolved")
     if args.json:
@@ -1561,6 +1565,11 @@ def build_parser() -> argparse.ArgumentParser:
     enrich.add_argument("--max-entries", type=int, default=0, help="Cap processed entries per file")
     enrich.add_argument("--overwrite", action="store_true", help="Allow non-protected field overwrites")
     enrich.add_argument("--write", action="store_true", help="Write approved updates (run mode only)")
+    enrich.add_argument("--resume", action="store_true", help="Resume from checkpoint state (run mode only)")
+    enrich.add_argument(
+        "--checkpoint-path",
+        help="Optional checkpoint file path (single target) or checkpoint directory (multi-target)",
+    )
     enrich.add_argument(
         "--fail-on-unresolved",
         action="store_true",

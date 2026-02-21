@@ -45,11 +45,11 @@ Each stage has stable interfaces and independent outputs so failures are observa
 - `scripts/enrichment/bibtex_io.py`
   - Parse/update/write BibTeX files deterministically.
 - `scripts/enrichment/http_client.py`
-  - Retry, timeout, and host-throttled HTTP retrieval.
+  - Retry, timeout, host-throttled retrieval, and host circuit-breakers.
 - `scripts/enrichment/sources/`
   - Adapter interface + source implementations (`openreview`, `neurips`, `pmlr`).
 - `scripts/enrichment/engine.py`
-  - Orchestration for `plan` and `run`, provider dispatch, triage/report emission.
+  - Orchestration for `plan` and `run`, provider dispatch, triage/report emission, resume checkpoints, and transactional write guards.
 - `scripts/enrich-pipeline.py`
   - CLI for repeatable operations.
 
@@ -100,6 +100,7 @@ This allows post-hoc audits and reproducibility checks.
 ### Triage-First Failure Mode
 
 Any entry with unresolved conflicts is written to a queue file under `ops/unresolved/enrichment/` with machine-readable reasons.
+Known irrecoverable exceptions can be declared in `ops/enrichment-exceptions.toml` with evidence and review dates.
 
 ### Resilience and Source Safety
 
@@ -111,6 +112,10 @@ Any entry with unresolved conflicts is written to a queue file under `ops/unreso
   - not accepted as source data,
   - not persisted into cache,
   - purged from existing cache snapshots on load/access.
+- Repeated transient host failures can trip a circuit breaker to avoid request storms.
+- Writes are transactional: render to temp file, re-parse, validate integrity, then atomic replace.
+- On transactional validation failure, rollback artifacts are preserved for audit/recovery.
+- Resume checkpoints under `ops/enrichment-checkpoints/` allow continuation after interruption.
 - Run reports include HTTP diagnostics to support post-run audits.
 
 ## Extension Strategy

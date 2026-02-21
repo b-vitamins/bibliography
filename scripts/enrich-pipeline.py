@@ -38,6 +38,15 @@ def build_parser() -> argparse.ArgumentParser:
     run.add_argument("--max-entries", type=int, default=0, help="Cap processed entries per file")
     run.add_argument("--overwrite", action="store_true", help="Allow non-protected field overwrite")
     run.add_argument("--write", action="store_true", help="Write approved updates to target file")
+    run.add_argument(
+        "--resume",
+        action="store_true",
+        help="Resume from checkpoint state if available",
+    )
+    run.add_argument(
+        "--checkpoint-path",
+        help="Optional checkpoint file path (single target) or directory (multi-target)",
+    )
     run.add_argument("--json", action="store_true", help="Emit JSON")
     run.add_argument(
         "--fail-on-unresolved",
@@ -108,12 +117,22 @@ def cmd_run(args: argparse.Namespace) -> int:
         error_total = 0
 
         for file_path in files:
+            checkpoint_path: Path | None = None
+            if args.resume and args.checkpoint_path:
+                candidate = Path(args.checkpoint_path)
+                if len(files) == 1 or candidate.suffix:
+                    checkpoint_path = candidate
+                else:
+                    checkpoint_path = candidate / f"{file_path.stem}.json"
+
             summary, _decisions = engine.run_file(
                 file_path=file_path,
                 entry_keys=entry_keys,
                 max_entries=args.max_entries,
                 write=args.write,
                 overwrite_existing=args.overwrite,
+                resume=args.resume,
+                checkpoint_path=checkpoint_path,
             )
             summaries.append(dataclasses.asdict(summary))
             unresolved_total += summary.unresolved_entries
@@ -132,6 +151,10 @@ def cmd_run(args: argparse.Namespace) -> int:
                 print(f"  report: {summary['report_path']}")
                 if summary["unresolved_path"]:
                     print(f"  unresolved: {summary['unresolved_path']}")
+                if summary.get("checkpoint_path"):
+                    print(f"  checkpoint: {summary['checkpoint_path']}")
+                if summary.get("write_error"):
+                    print(f"  write_error: {summary['write_error']}")
 
         if args.fail_on_unresolved and (unresolved_total > 0 or error_total > 0):
             return 2

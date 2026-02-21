@@ -58,6 +58,8 @@ class CachedHttpClient:
         cache_path: Path,
         host_min_interval: float = 0.2,
         host_min_interval_by_host: dict[str, float] | None = None,
+        host_circuit_breaker_threshold: int = 0,
+        host_circuit_breaker_cooldown_seconds: float = 0.0,
     ) -> None:
         self.timeout_seconds = timeout_seconds
         self.max_retries = max(0, max_retries)
@@ -71,6 +73,8 @@ class CachedHttpClient:
             for host, interval in (host_min_interval_by_host or {}).items()
             if str(host).strip()
         }
+        self.host_circuit_breaker_threshold = max(0, int(host_circuit_breaker_threshold))
+        self.host_circuit_breaker_cooldown_seconds = max(0.0, float(host_circuit_breaker_cooldown_seconds))
         self._cache_dirty = False
         self._stats: dict[str, int | float] = {
             "cache_entries_loaded": 0,
@@ -86,11 +90,15 @@ class CachedHttpClient:
             "retry_sleep_seconds": 0.0,
             "poison_responses_discarded": 0,
             "request_exceptions": 0,
+            "circuit_breaker_trips": 0,
+            "circuit_breaker_short_circuits": 0,
         }
         self._cache: dict[str, dict[str, str | int]] = {}
         self._load_cache(cache_path)
         self._last_request_by_host: dict[str, float] = {}
         self._host_cooldown_until_by_host: dict[str, float] = {}
+        self._host_failure_streak_by_host: dict[str, int] = {}
+        self._host_breaker_until_by_host: dict[str, float] = {}
 
         self.session = requests.Session()
         retry = Retry(
@@ -218,6 +226,40 @@ class CachedHttpClient:
         existing = self._host_cooldown_until_by_host.get(host, 0.0)
         self._host_cooldown_until_by_host[host] = max(existing, until)
 
+    def _record_host_success(self, host: str) -> None:
+        if not host:
+            return
+        self._host_failure_streak_by_host[host] = 0
+
+    def _record_host_transient_failure(self, host: str) -> None:
+        if not host:
+            return
+        streak = self._host_failure_streak_by_host.get(host, 0) + 1
+        self._host_failure_streak_by_host[host] = streak
+        if self.host_circuit_breaker_threshold <= 0:
+            return
+        if streak < self.host_circuit_breaker_threshold:
+            return
+        if self.host_circuit_breaker_cooldown_seconds <= 0:
+            return
+        until = time.monotonic() + self.host_circuit_breaker_cooldown_seconds
+        existing = self._host_breaker_until_by_host.get(host, 0.0)
+        if until > existing:
+            self._host_breaker_until_by_host[host] = until
+            self._stats["circuit_breaker_trips"] = int(self._stats["circuit_breaker_trips"]) + 1
+
+    def _breaker_is_open(self, host: str) -> bool:
+        if not host:
+            return False
+        until = self._host_breaker_until_by_host.get(host, 0.0)
+        if until <= 0.0:
+            return False
+        now = time.monotonic()
+        if now < until:
+            return True
+        self._host_breaker_until_by_host[host] = 0.0
+        return False
+
     @staticmethod
     def _parse_retry_after_header(value: str | None) -> float | None:
         if not value:
@@ -294,6 +336,7 @@ class CachedHttpClient:
         require_any: list[str] | tuple[str, ...] | None = None,
         reject_any: list[str] | tuple[str, ...] | None = None,
     ) -> HttpResponse:
+        host = urlparse(url).netloc.lower()
         required_markers = self._normalize_markers(require_any)
         rejected_markers = self._normalize_markers(reject_any)
 
@@ -330,7 +373,28 @@ class CachedHttpClient:
         last_text = ""
         last_fetched_at = now_iso()
 
+        if self._breaker_is_open(host):
+            self._stats["circuit_breaker_short_circuits"] = int(self._stats["circuit_breaker_short_circuits"]) + 1
+            return HttpResponse(
+                url=url,
+                status_code=0,
+                text="",
+                fetched_at=last_fetched_at,
+                from_cache=False,
+            )
+
         for attempt in range(1, max_attempts + 1):
+            if self._breaker_is_open(host):
+                self._stats["circuit_breaker_short_circuits"] = int(
+                    self._stats["circuit_breaker_short_circuits"]
+                ) + 1
+                return HttpResponse(
+                    url=url,
+                    status_code=0,
+                    text="",
+                    fetched_at=now_iso(),
+                    from_cache=False,
+                )
             retry_after_header: str | None = None
             try:
                 self._respect_host_interval(url)
@@ -342,6 +406,7 @@ class CachedHttpClient:
                 last_fetched_at = now_iso()
             except requests.RequestException:
                 self._stats["request_exceptions"] = int(self._stats["request_exceptions"]) + 1
+                self._record_host_transient_failure(host)
                 last_status = 0
                 last_text = ""
                 last_fetched_at = now_iso()
@@ -367,6 +432,7 @@ class CachedHttpClient:
                 reject_any=rejected_markers,
             )
             if failure is None:
+                self._record_host_success(host)
                 self._cache_payload(url, last_status, last_text, last_fetched_at)
                 return HttpResponse(
                     url=url,
@@ -383,6 +449,15 @@ class CachedHttpClient:
 
             if self._is_poisoned_response(last_status, last_text):
                 self._stats["poison_responses_discarded"] = int(self._stats["poison_responses_discarded"]) + 1
+
+            if (
+                last_status in _RETRYABLE_STATUS_CODES
+                or failure in {"poison_body", "rejected_marker", "missing_required_marker"}
+                or is_rate_limit
+            ):
+                self._record_host_transient_failure(host)
+            else:
+                self._record_host_success(host)
 
             retryable = (
                 attempt < max_attempts

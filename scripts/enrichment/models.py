@@ -81,6 +81,8 @@ class FileRunSummary:
     written: bool
     report_path: str
     unresolved_path: str | None
+    checkpoint_path: str | None = None
+    write_error: str | None = None
 
 
 @dataclasses.dataclass
