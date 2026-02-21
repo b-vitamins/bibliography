@@ -564,12 +564,17 @@ def run_lint(cfg: OpsConfig, file_rows: list[FileResult], entry_rows: list[Entry
 
     for file_path, rows in by_file.items():
         local_key_map: dict[str, list[EntryResult]] = {}
-        local_title_map: dict[str, list[EntryResult]] = {}
+        local_title_author_map: dict[tuple[str, str], list[EntryResult]] = {}
+        local_title_year_map: dict[tuple[str, str], list[EntryResult]] = {}
 
         for r in rows:
             local_key_map.setdefault(r.entry_key, []).append(r)
             if r.title_norm:
-                local_title_map.setdefault(r.title_norm, []).append(r)
+                sig = author_signature(r.author_raw)
+                if sig:
+                    local_title_author_map.setdefault((r.title_norm, sig), []).append(r)
+                elif r.year:
+                    local_title_year_map.setdefault((r.title_norm, r.year), []).append(r)
 
         for k, ks in local_key_map.items():
             if k and len(ks) > 1:
@@ -584,7 +589,7 @@ def run_lint(cfg: OpsConfig, file_rows: list[FileResult], entry_rows: list[Entry
                     )
                 )
 
-        for t, ts in local_title_map.items():
+        for (t, sig), ts in local_title_author_map.items():
             if len(ts) > 1:
                 add_issue(
                     Issue(
@@ -593,7 +598,30 @@ def run_lint(cfg: OpsConfig, file_rows: list[FileResult], entry_rows: list[Entry
                         issue_type="duplicate_title_in_file",
                         severity="warning",
                         message="Duplicate normalized title in file",
-                        details={"title": t, "count": str(len(ts))},
+                        details={
+                            "title": t,
+                            "count": str(len(ts)),
+                            "match_basis": "title+author_signature",
+                            "author_signature": sig,
+                        },
+                    )
+                )
+
+        for (t, y), ts in local_title_year_map.items():
+            if len(ts) > 1:
+                add_issue(
+                    Issue(
+                        file_path=file_path,
+                        entry_key=ts[0].entry_key,
+                        issue_type="duplicate_title_in_file",
+                        severity="warning",
+                        message="Duplicate normalized title in file",
+                        details={
+                            "title": t,
+                            "count": str(len(ts)),
+                            "match_basis": "title+year(no_author)",
+                            "year": y,
+                        },
                     )
                 )
 
