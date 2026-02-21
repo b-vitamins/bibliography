@@ -28,7 +28,7 @@ Convenience targets:
 1. BibTeX must parse cleanly for managed files.
 2. Keys should follow lowercase alnum `<author><year><keyword>` convention.
 3. `inproceedings` entries must include `author`, `title`, `booktitle`, `year`.
-4. Placeholder authors like `and others` are not acceptable in curated results.
+4. Placeholder authors like `and others` are not acceptable in managed collection results.
 5. Large operations should be profile-driven and repeatable.
 6. `collections/orals/` is a derived subset layer; canonical source remains `conferences/`.
 
@@ -38,7 +38,7 @@ Convenience targets:
 Default `ops/bibops.toml` scope:
 - `books/`
 - `conferences/`
-- `curated/`
+- `collections/`
 - `references/`
 - `courses/`
 - `theses/`

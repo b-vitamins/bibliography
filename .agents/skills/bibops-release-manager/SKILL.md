@@ -1,6 +1,6 @@
 ---
 name: bibops-release-manager
-description: Execute the release workflow with hooks, linting, tracking export, and milestone commit checks. Use when preparing release-quality bibliography updates or finalizing a curated change set.
+description: Execute the release workflow with hooks, linting, tracking export, and milestone commit checks. Use when preparing release-quality bibliography updates or finalizing a collection change set.
 ---
 
 Run the release checklist and produce commit-ready status.

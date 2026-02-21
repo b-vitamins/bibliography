@@ -66,7 +66,7 @@ make full-audit
 - Orals subset config: `ops/bibops-orals.toml`
 
 Default scope is tuned for speed and active curation:
-- `books/`, `conferences/`, `curated/`, `references/`, `courses/`, `theses/`, `presentations/`
+- `books/`, `conferences/`, `collections/`, `references/`, `courses/`, `theses/`, `presentations/`
 
 Full scope additionally includes:
 - `journals/`
@@ -88,7 +88,7 @@ These are designed with progressive disclosure and can be invoked explicitly or 
 
 ## Data and state
 
-- Bibliography files live across domain folders (`books/`, `conferences/`, `curated/`, etc.).
+- Bibliography files live across domain folders (`books/`, `conferences/`, `collections/`, etc.).
 - Derived oral subsets live in `collections/orals/<venue>/<year>.bib`.
 - Local operational state and enrichment tracking use `bibliography.db`.
 - Version-controlled tracking snapshot is `tracking.json`.

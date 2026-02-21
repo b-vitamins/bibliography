@@ -103,7 +103,7 @@ def find_all_bib_files() -> list[Path]:
         "books",
         "conferences",
         "courses",
-        "curated",
+        "collections",
         "journals",
         "presentations",
         "references",

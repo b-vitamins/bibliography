@@ -53,7 +53,6 @@ def iter_bib_files(patterns: list[str], only_orals: bool) -> list[Path]:
                 "collections",
                 "conferences",
                 "courses",
-                "curated",
                 "journals",
                 "presentations",
                 "references",

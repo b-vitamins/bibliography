@@ -9,7 +9,7 @@ Usage:
     python3 scripts/export-bibliography.py <bib_file> <output_dir>
 
 Example:
-    python3 scripts/export-bibliography.py curated/simulation.bib /home/b/downloads
+    python3 scripts/export-bibliography.py collections/simulation.bib /home/b/downloads
 
 This creates:
     /home/b/downloads/simulation/

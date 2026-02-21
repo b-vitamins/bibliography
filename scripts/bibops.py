@@ -91,7 +91,7 @@ def default_config() -> OpsConfig:
         roots=[
             "books",
             "conferences",
-            "curated",
+            "collections",
             "references",
             "courses",
             "theses",
@@ -102,6 +102,7 @@ def default_config() -> OpsConfig:
             "**/__pycache__/**",
             "**/*.backup",
             "**/*.bak",
+            "collections/orals/**/*.bib",
         ],
         db_path=str(DEFAULT_DB_PATH),
         tracking_export="tracking.json",

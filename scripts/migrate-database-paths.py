@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 Migrate database file paths from old structure to new structure.
-Maps by-domain/* to curated/* and handles other reorganizations.
+Maps by-domain/* to collections/* and handles other reorganizations.
 """
 
 import sqlite3
@@ -9,37 +9,37 @@ from pathlib import Path
 
 # Path mappings from old to new structure
 PATH_MAPPINGS = {
-    # Most by-domain files moved to curated/
-    "by-domain/autoencoder.bib": "curated/autoencoder.bib",
-    "by-domain/continual.bib": "curated/continual.bib",
-    "by-domain/diffusion.bib": "curated/diffusion.bib",
-    "by-domain/ebm.bib": "curated/ebm.bib",
-    "by-domain/flows.bib": "curated/flows.bib",
-    "by-domain/gan.bib": "curated/gan.bib",
-    "by-domain/generalization.bib": "curated/generalization.bib",
-    "by-domain/geometric.bib": "curated/geometric.bib",
-    "by-domain/gnn.bib": "curated/gnn.bib",
-    "by-domain/hopfield.bib": "curated/hopfield.bib",
-    "by-domain/incontext.bib": "curated/incontext.bib",
-    "by-domain/information-theory.bib": "curated/information-theory.bib",
-    "by-domain/information.bib": "curated/information.bib",
-    "by-domain/llm.bib": "curated/llm.bib",
-    "by-domain/ml-theory.bib": "curated/ml-theory.bib",
-    "by-domain/moe.bib": "curated/moe.bib",
-    "by-domain/neurosymbolic.bib": "curated/neurosymbolic.bib",
-    "by-domain/oscillation.bib": "curated/oscillation.bib",
-    "by-domain/quantumml.bib": "curated/quantumml.bib",
-    "by-domain/rl.bib": "curated/rl.bib",
-    "by-domain/sciml.bib": "curated/sciml.bib",
-    "by-domain/spnn.bib": "curated/spnn.bib",
-    "by-domain/ssm.bib": "curated/ssm.bib",
-    "by-domain/training.bib": "curated/training.bib",
-    "by-domain/transformers.bib": "curated/transformers.bib",
-    "by-domain/worldmodel.bib": "curated/worldmodel.bib",
+    # Most by-domain files moved to collections/
+    "by-domain/autoencoder.bib": "collections/autoencoder.bib",
+    "by-domain/continual.bib": "collections/continual.bib",
+    "by-domain/diffusion.bib": "collections/diffusion.bib",
+    "by-domain/ebm.bib": "collections/ebm.bib",
+    "by-domain/flows.bib": "collections/flows.bib",
+    "by-domain/gan.bib": "collections/gan.bib",
+    "by-domain/generalization.bib": "collections/generalization.bib",
+    "by-domain/geometric.bib": "collections/geometric.bib",
+    "by-domain/gnn.bib": "collections/gnn.bib",
+    "by-domain/hopfield.bib": "collections/hopfield.bib",
+    "by-domain/incontext.bib": "collections/incontext.bib",
+    "by-domain/information-theory.bib": "collections/information-theory.bib",
+    "by-domain/information.bib": "collections/information.bib",
+    "by-domain/llm.bib": "collections/llm.bib",
+    "by-domain/ml-theory.bib": "collections/ml-theory.bib",
+    "by-domain/moe.bib": "collections/moe.bib",
+    "by-domain/neurosymbolic.bib": "collections/neurosymbolic.bib",
+    "by-domain/oscillation.bib": "collections/oscillation.bib",
+    "by-domain/quantumml.bib": "collections/quantumml.bib",
+    "by-domain/rl.bib": "collections/rl.bib",
+    "by-domain/sciml.bib": "collections/sciml.bib",
+    "by-domain/spnn.bib": "collections/spnn.bib",
+    "by-domain/ssm.bib": "collections/ssm.bib",
+    "by-domain/training.bib": "collections/training.bib",
+    "by-domain/transformers.bib": "collections/transformers.bib",
+    "by-domain/worldmodel.bib": "collections/worldmodel.bib",
     # Special moves
     "by-domain/physics-computational.bib": "courses/physics-computational.bib",
     "by-domain/infophyscomp.bib": "references/infophyscomp.bib",
-    "by-domain/award.bib": "curated/award.bib",  # or wherever it went
+    "by-domain/award.bib": "collections/award.bib",  # or wherever it went
     # by-format moves
     "by-format/courses/course-notes.bib": "courses/course-notes.bib",
     "by-format/courses/coursework-exams.bib": "courses/coursework-exams.bib",
@@ -56,7 +56,7 @@ PATH_MAPPINGS = {
     "by-format/references/tutorials.bib": "references/tutorials.bib",
     "by-format/references/udl.bib": "references/udl.bib",
     "by-format/references/whitepapers.bib": "references/whitepapers.bib",
-    "by-format/references/award.bib": "curated/award.bib",
+    "by-format/references/award.bib": "collections/award.bib",
     "by-format/theses/dissertations.bib": "theses/dissertations.bib",
     "by-format/theses/theses.bib": "theses/theses.bib",
 }

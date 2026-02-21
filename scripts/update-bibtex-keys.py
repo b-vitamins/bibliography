@@ -116,11 +116,11 @@ def main():
     else:
         # Default files
         files = [
-            'curated/distributed-graphics.bib',
-            'curated/embodiment.bib',
-            'curated/semantic-communication.bib',
-            'curated/simulation.bib',
-            'curated/visual-reasoning.bib'
+            'collections/distributed-graphics.bib',
+            'collections/embodiment.bib',
+            'collections/semantic-communication.bib',
+            'collections/simulation.bib',
+            'collections/visual-reasoning.bib'
         ]
     
     for filepath in files:

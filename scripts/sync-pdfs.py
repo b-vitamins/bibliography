@@ -555,7 +555,7 @@ Examples:
   %(prog)s --interactive file.bib
   
   # Process all files in a directory
-  %(prog)s curated/*.bib
+  %(prog)s collections/*.bib
         """,
     )
 
