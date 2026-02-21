@@ -28,6 +28,10 @@
 ops/arxiv-lookup-cache.json
 ops/arxiv-enrichment-report.jsonl
 
+# Runtime artifacts from DOI enrichment helper
+ops/doi-lookup-cache.json
+ops/doi-enrichment-report.jsonl
+
 # Runtime artifacts from modular enrichment pipeline
 ops/enrichment-source-cache.json
 ops/enrichment-runs/
