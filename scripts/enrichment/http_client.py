@@ -57,6 +57,7 @@ class CachedHttpClient:
         user_agent: str,
         cache_path: Path,
         host_min_interval: float = 0.2,
+        host_min_interval_by_host: dict[str, float] | None = None,
     ) -> None:
         self.timeout_seconds = timeout_seconds
         self.max_retries = max(0, max_retries)
@@ -65,6 +66,11 @@ class CachedHttpClient:
         self.backoff_max_seconds = max(self.backoff_base_seconds, backoff_max_seconds)
         self.cache_path = cache_path
         self.host_min_interval = max(0.0, host_min_interval)
+        self.host_min_interval_by_host = {
+            str(host).strip().lower(): max(0.0, float(interval))
+            for host, interval in (host_min_interval_by_host or {}).items()
+            if str(host).strip()
+        }
         self._cache_dirty = False
         self._stats: dict[str, int | float] = {
             "cache_entries_loaded": 0,
@@ -102,6 +108,22 @@ class CachedHttpClient:
         self.session.mount("https://", adapter)
         self.session.mount("http://", adapter)
         self.session.headers.update({"User-Agent": user_agent})
+
+    def _host_interval(self, host: str) -> float:
+        if not host:
+            return self.host_min_interval
+        if host in self.host_min_interval_by_host:
+            return self.host_min_interval_by_host[host]
+        # Support parent-domain rules such as "openreview.net".
+        match = 0.0
+        best_len = -1
+        for domain, interval in self.host_min_interval_by_host.items():
+            if host.endswith(f".{domain}") and len(domain) > best_len:
+                match = interval
+                best_len = len(domain)
+        if best_len >= 0:
+            return match
+        return self.host_min_interval
 
     @staticmethod
     def _normalize_markers(markers: list[str] | tuple[str, ...] | None) -> tuple[str, ...]:
@@ -178,11 +200,12 @@ class CachedHttpClient:
         host = urlparse(url).netloc.lower()
         if not host:
             return
+        host_min_interval = self._host_interval(host)
         now = time.monotonic()
         target = self._host_cooldown_until_by_host.get(host, 0.0)
         last = self._last_request_by_host.get(host)
         if last is not None:
-            target = max(target, last + self.host_min_interval)
+            target = max(target, last + host_min_interval)
         if now < target:
             time.sleep(target - now)
         self._last_request_by_host[host] = time.monotonic()

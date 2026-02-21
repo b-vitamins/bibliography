@@ -28,6 +28,8 @@ Or through `bibops`:
 ## Resilience Guarantees
 
 - Host-level politeness throttling (`host_min_interval_seconds`).
+- Optional per-host pacing overrides (`host_min_interval_by_host`), e.g. stricter
+  pacing for OpenReview and faster-but-polite pacing for proceedings mirrors.
 - Retry/backoff for transport and content-validation failures.
 - Rate-limit awareness via `Retry-After` and body hints (e.g., "try again in N seconds").
 - Poison-cache defense: known throttling/challenge pages are never reused as valid source payloads.
@@ -52,3 +54,6 @@ It controls:
 - venue-to-adapter mapping
 - domain allowlists
 - operational output locations
+
+Note: DOI enrichment is intentionally handled by `scripts/enrich-doi.py` to avoid
+high-noise no-op planning in venue adapters that rarely expose DOI.

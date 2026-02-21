@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import html
 import re
+from difflib import SequenceMatcher
 from pathlib import Path
 from typing import Any
 from urllib.parse import urljoin, urlparse
@@ -11,12 +12,15 @@ from ..models import SourceRecord, now_iso
 from ..normalization import normalize_text
 from .base import AdapterContext
 
-_NEURIPS_PAPER_REQUIRED_MARKERS = ('class="paper-abstract"', "-Paper-")
+_NEURIPS_PAPER_REQUIRED_MARKERS = ('class="paper-abstract"',)
 
 
 class NeuripsProceedingsAdapter:
     name = "neurips_proceedings"
     provided_fields = {"url", "pdf", "abstract", "title", "doi"}
+    fuzzy_title_min_score = 0.90
+    fuzzy_title_min_gap = 0.12
+    fuzzy_title_second_max = 0.80
 
     def __init__(self, http_client: CachedHttpClient):
         self.http_client = http_client
@@ -25,20 +29,18 @@ class NeuripsProceedingsAdapter:
     def supports(self, file_path: Path, entry: dict[str, Any]) -> bool:
         url = str(entry.get("url", "")).lower()
         pdf = str(entry.get("pdf", "")).lower()
-        file_hint = str(file_path).lower()
         booktitle = str(entry.get("booktitle", "")).lower()
         year_raw = str(entry.get("year", "")).strip()
-        year_ok = year_raw.isdigit() and int(year_raw) >= 2020
+        year_ok = year_raw.isdigit() and int(year_raw) >= 2018
         return (
             "proceedings.neurips.cc" in url
             or "neurips.cc" in url
             or "papers.nips.cc" in url
             or "proceedings.neurips.cc" in pdf
             or "neurips.cc" in pdf
+            or "papers.nips.cc" in pdf
             or (
-                "conferences/neurips/" in file_hint
-                and "advances in neural information processing systems" in booktitle
-                and year_ok
+                "advances in neural information processing systems" in booktitle and year_ok
             )
         )
 
@@ -49,27 +51,39 @@ class NeuripsProceedingsAdapter:
         return re.sub(r"\s+", " ", text).strip()
 
     @staticmethod
+    def _meta_value(page: str, name: str) -> str:
+        match = re.search(rf'name="{re.escape(name)}" content="([^"]+)"', page)
+        return html.unescape(match.group(1)).strip() if match else ""
+
+    @staticmethod
     def _abstract_url_from_pdf(pdf_url: str) -> str | None:
         parsed = urlparse(pdf_url)
         if not parsed.netloc:
             return None
-        match = re.search(r"/file/([0-9a-f]{32})-Paper-([A-Za-z0-9_]+)\.pdf", parsed.path)
+        match = re.search(
+            r"/file/([0-9a-f]{32})-Paper(?:-([A-Za-z0-9_]+))?\.pdf",
+            parsed.path,
+        )
         if not match:
             return None
         paper_hash = match.group(1)
-        track = match.group(2)
+        track = match.group(2) or ""
         year_match = re.search(r"/paper/(\d{4})/", parsed.path)
         if not year_match:
             return None
         year = year_match.group(1)
+        suffix = f"-{track}" if track else ""
         return (
             f"https://proceedings.neurips.cc/paper_files/paper/{year}/hash/"
-            f"{paper_hash}-Abstract-{track}.html"
+            f"{paper_hash}-Abstract{suffix}.html"
         )
 
     def _source_url_from_entry(self, entry: dict[str, Any]) -> str | None:
         url = str(entry.get("url", "")).strip()
-        if "paper_files/paper/" in url and "-Abstract-" in url and url.endswith(".html"):
+        if re.search(
+            r"/paper(?:_files)?/paper/\d{4}/hash/[0-9a-f]{32}-Abstract(?:-[A-Za-z0-9_]+)?\.html$",
+            url,
+        ):
             return url
 
         pdf = str(entry.get("pdf", "")).strip()
@@ -94,7 +108,7 @@ class NeuripsProceedingsAdapter:
     def _hash_from_url(url: str | None) -> str | None:
         if not url:
             return None
-        match = re.search(r"/hash/([0-9a-f]{32})-Abstract-", url)
+        match = re.search(r"/hash/([0-9a-f]{32})-Abstract(?:-[^/]+)?\.html", url)
         if match:
             return match.group(1)
         return None
@@ -114,7 +128,7 @@ class NeuripsProceedingsAdapter:
             return []
 
         pattern = re.compile(
-            rf'href="(/paper_files/paper/{re.escape(year)}/hash/[0-9a-f]{{32}}-Abstract-[^"]+\.html)"[^>]*>(.*?)</a>',
+            rf'href="(/paper_files/paper/{re.escape(year)}/hash/[0-9a-f]{{32}}-Abstract(?:-[^"]+)?\.html)"[^>]*>(.*?)</a>',
             flags=re.S,
         )
         rows: list[tuple[str, str]] = []
@@ -139,7 +153,10 @@ class NeuripsProceedingsAdapter:
         attempted_hash = self._hash_from_url(attempted_url)
         if attempted_hash:
             for href, _title in rows:
-                if f"/hash/{attempted_hash}-Abstract-" in href:
+                if re.search(
+                    rf"/hash/{re.escape(attempted_hash)}-Abstract(?:-[^/]+)?\.html$",
+                    href,
+                ):
                     return href
 
         entry_title = normalize_text(str(entry.get("title", "")))
@@ -147,6 +164,23 @@ class NeuripsProceedingsAdapter:
             matches = [href for href, title in rows if normalize_text(title) == entry_title]
             if len(matches) == 1:
                 return matches[0]
+            if not matches:
+                scored: list[tuple[float, str]] = []
+                for href, title in rows:
+                    score = SequenceMatcher(a=entry_title, b=normalize_text(title)).ratio()
+                    scored.append((score, href))
+                scored.sort(reverse=True)
+                if scored:
+                    top_score, top_href = scored[0]
+                    second_score = scored[1][0] if len(scored) > 1 else 0.0
+                    if (
+                        top_score >= self.fuzzy_title_min_score
+                        and (
+                            (top_score - second_score) >= self.fuzzy_title_min_gap
+                            or second_score <= self.fuzzy_title_second_max
+                        )
+                    ):
+                        return top_href
 
         return None
 
@@ -175,8 +209,10 @@ class NeuripsProceedingsAdapter:
 
         text = response.text
 
-        title_match = re.search(r"<h4>(.*?)</h4>", text, flags=re.S)
-        title = self._normalize_text(title_match.group(1)) if title_match else ""
+        title = self._meta_value(text, "citation_title")
+        if not title:
+            title_match = re.search(r"<h4>(.*?)</h4>", text, flags=re.S)
+            title = self._normalize_text(title_match.group(1)) if title_match else ""
 
         abstract_match = re.search(
             r'<p class="paper-abstract">\s*(?:<p>)?(.*?)(?:</p>\s*</p>|</p>)',
@@ -185,11 +221,15 @@ class NeuripsProceedingsAdapter:
         )
         abstract = self._normalize_text(abstract_match.group(1)) if abstract_match else ""
 
-        doi_match = re.search(r'class="paper-doi">([^<]+)</a>', text)
-        doi = self._normalize_text(doi_match.group(1)) if doi_match else ""
+        doi = self._meta_value(text, "citation_doi")
+        if not doi:
+            doi_match = re.search(r'class="paper-doi">([^<]+)</a>', text)
+            doi = self._normalize_text(doi_match.group(1)) if doi_match else ""
 
-        pdf_match = re.search(r'href="([^"]+-Paper-[^"]+\.pdf)"', text)
-        pdf = urljoin(source_url, pdf_match.group(1)) if pdf_match else ""
+        pdf = self._meta_value(text, "citation_pdf_url")
+        if not pdf:
+            pdf_match = re.search(r'href="([^"]+-Paper(?:-[^"]+)?\.pdf)"', text)
+            pdf = urljoin(source_url, pdf_match.group(1)) if pdf_match else ""
 
         fields: dict[str, str] = {"url": source_url}
         if title:

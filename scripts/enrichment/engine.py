@@ -19,7 +19,7 @@ from .models import (
     WorkItem,
     now_iso,
 )
-from .normalization import equivalent_text, is_prefix_equivalent, word_count
+from .normalization import equivalent_text, is_prefix_equivalent, sanitize_bibtex_text, word_count
 from .sources import build_adapter_registry
 from .sources.base import AdapterContext
 
@@ -36,6 +36,7 @@ class EnrichmentEngine:
             user_agent=cfg.user_agent,
             cache_path=cfg.source_cache_path,
             host_min_interval=cfg.host_min_interval_seconds,
+            host_min_interval_by_host=cfg.host_min_interval_by_host,
         )
         self.adapters = build_adapter_registry(self.http_client)
 
@@ -136,7 +137,7 @@ class EnrichmentEngine:
         skipped_fields: list[str] = []
 
         for field in item.target_fields:
-            source_value = str(source.fields.get(field, "")).strip()
+            source_value = sanitize_bibtex_text(str(source.fields.get(field, "")).strip())
             if not source_value:
                 skipped_fields.append(field)
                 continue
@@ -145,11 +146,13 @@ class EnrichmentEngine:
 
             if field in {"url", "pdf"} and not self._domain_allowed(source_value, allowed_domains):
                 reasons.append(f"field {field}: domain outside allowlist")
+                skipped_fields.append(field)
                 continue
 
             if field == "abstract":
                 if word_count(source_value) < self.cfg.min_abstract_words:
                     reasons.append("field abstract: source abstract too short")
+                    skipped_fields.append(field)
                     continue
 
             if field in self.cfg.protected_fields and current_value:
@@ -158,6 +161,7 @@ class EnrichmentEngine:
                     equivalent = is_prefix_equivalent(current_value, source_value)
                 if not equivalent:
                     reasons.append(f"field {field}: protected field mismatch")
+                    skipped_fields.append(field)
                     continue
 
             if current_value:
@@ -178,10 +182,10 @@ class EnrichmentEngine:
                 )
             )
 
-        if reasons:
-            status = "unresolved"
-        elif proposals:
+        if proposals:
             status = "planned_update"
+        elif reasons:
+            status = "unresolved"
         else:
             status = "skipped"
 

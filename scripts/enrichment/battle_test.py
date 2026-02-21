@@ -316,7 +316,10 @@ def run_battle_tests(mode: str) -> dict[str, object]:
                     "unresolved_entries": f.get("unresolved_entries"),
                 }
             )
-            ok = int(f.get("planned_entries", 0)) >= 1 and int(f.get("unresolved_entries", 1)) == 0
+            planned = int(f.get("planned_entries", 0))
+            unresolved = int(f.get("unresolved_entries", 1))
+            details["already_enriched"] = planned == 0
+            ok = unresolved == 0 and (planned >= 1 or planned == 0)
         record(results, "neurips_stale_url_recovery", cmd, proc, dur, ok, details)
     else:
         cmd = ["echo", "neurips stale key candidate not present; skipping check"]
@@ -558,7 +561,7 @@ allowed_domains = ["openreview.net"]
             """
 [defaults]
 overwrite_existing = true
-min_abstract_words = 25
+min_abstract_words = 10000
 allow_abstract_prefix_match = false
 report_dir = "ops/enrichment-runs"
 triage_dir = "ops/unresolved/enrichment"

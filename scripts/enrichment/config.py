@@ -33,6 +33,7 @@ class PipelineConfig:
     max_retries: int
     max_validation_retries: int
     host_min_interval_seconds: float
+    host_min_interval_by_host: dict[str, float]
     backoff_base_seconds: float
     backoff_max_seconds: float
     user_agent: str
@@ -48,7 +49,7 @@ class PipelineConfig:
 def _default_config(path: Path) -> PipelineConfig:
     return PipelineConfig(
         config_path=path,
-        target_fields_by_type={"inproceedings": ["url", "pdf", "abstract", "doi"]},
+        target_fields_by_type={"inproceedings": ["url", "pdf", "abstract"]},
         protected_fields={"author", "title", "booktitle", "year"},
         overwrite_existing=False,
         min_abstract_words=25,
@@ -60,6 +61,10 @@ def _default_config(path: Path) -> PipelineConfig:
         max_retries=2,
         max_validation_retries=4,
         host_min_interval_seconds=1.0,
+        host_min_interval_by_host={
+            "openreview.net": 1.0,
+            "proceedings.neurips.cc": 0.2,
+        },
         backoff_base_seconds=1.0,
         backoff_max_seconds=30.0,
         user_agent="bibliography-enrichment-pipeline/1.0",
@@ -125,6 +130,17 @@ def load_pipeline_config(path: Path | None = None) -> PipelineConfig:
             cfg.max_validation_retries = defaults["max_validation_retries"]
         if isinstance(defaults.get("host_min_interval_seconds"), (int, float)):
             cfg.host_min_interval_seconds = max(0.0, float(defaults["host_min_interval_seconds"]))
+        host_pacing = defaults.get("host_min_interval_by_host")
+        if isinstance(host_pacing, dict):
+            parsed_host_pacing: dict[str, float] = {}
+            for host, interval in host_pacing.items():
+                if not isinstance(host, str) or not host.strip():
+                    continue
+                if not isinstance(interval, (int, float)):
+                    continue
+                parsed_host_pacing[host.strip().lower()] = max(0.0, float(interval))
+            if parsed_host_pacing:
+                cfg.host_min_interval_by_host = parsed_host_pacing
         if isinstance(defaults.get("backoff_base_seconds"), (int, float)):
             cfg.backoff_base_seconds = max(0.1, float(defaults["backoff_base_seconds"]))
         if isinstance(defaults.get("backoff_max_seconds"), (int, float)):

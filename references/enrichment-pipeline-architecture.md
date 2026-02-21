@@ -104,6 +104,8 @@ Any entry with unresolved conflicts is written to a queue file under `ops/unreso
 ### Resilience and Source Safety
 
 - Shared HTTP layer enforces polite host pacing and adaptive backoff.
+- Host pacing can be tuned per domain so conservative sources and bulk proceedings
+  mirrors are handled with different request cadences.
 - Source fetches use adapter-level content validation (`require_any`/`reject_any`) so error pages are not mistaken for canonical records.
 - Rate-limit/challenge pages are treated as poisoned payloads:
   - not accepted as source data,

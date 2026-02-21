@@ -26,6 +26,43 @@ def normalize_text(value: str) -> str:
     return normalize_spaces(text)
 
 
+def sanitize_bibtex_text(value: str) -> str:
+    """Drop unbalanced braces so serialized BibTeX remains parse-stable."""
+    text = value or ""
+    chars = list(text)
+    unmatched_open: list[int] = []
+    unmatched_close: list[int] = []
+    stack: list[int] = []
+
+    for idx, ch in enumerate(chars):
+        if ch not in {"{", "}"}:
+            continue
+        if idx > 0 and chars[idx - 1] == "\\":
+            continue
+        if ch == "{":
+            stack.append(idx)
+            continue
+        # ch == "}"
+        if stack:
+            stack.pop()
+        else:
+            unmatched_close.append(idx)
+
+    unmatched_open = stack
+    if not unmatched_open and not unmatched_close:
+        return text
+
+    # Escaping as \{ or \} is still interpreted structurally by some BibTeX
+    # parsers during round-trip, so remove only unmatched braces.
+    to_drop = set(unmatched_open + unmatched_close)
+    out: list[str] = []
+    for idx, ch in enumerate(chars):
+        if idx in to_drop:
+            continue
+        out.append(ch)
+    return "".join(out)
+
+
 def equivalent_text(left: str, right: str) -> bool:
     return normalize_text(left) == normalize_text(right)
 

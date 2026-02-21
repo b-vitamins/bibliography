@@ -9,12 +9,13 @@ timeout_seconds = 20
 max_retries = 2
 max_validation_retries = 4
 host_min_interval_seconds = 1.0
+host_min_interval_by_host = { "openreview.net" = 1.0, "proceedings.neurips.cc" = 0.2 }
 backoff_base_seconds = 1.0
 backoff_max_seconds = 30.0
 user_agent = "bibliography-enrichment-pipeline/1.0"
 
 [targets]
-inproceedings = ["url", "pdf", "abstract", "doi"]
+inproceedings = ["url", "pdf", "abstract"]
 
 [policy]
 protected_fields = ["author", "title", "booktitle", "year"]
