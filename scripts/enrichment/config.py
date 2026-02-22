@@ -8,6 +8,8 @@ from pathlib import Path
 
 DEFAULT_CONFIG_PATH = Path("ops/enrichment-pipeline.toml")
 DEFAULT_EXCEPTIONS_PATH = Path("ops/enrichment-exceptions.toml")
+DEFAULT_DOTENV_PATH = Path(".env")
+_DOTENV_CACHE: dict[str, str] | None = None
 
 
 @dataclasses.dataclass
@@ -62,6 +64,9 @@ class PipelineConfig:
     source_cache_path: Path
     openalex_mailto: str
     openalex_api_key: str
+    semantic_scholar_api_key: str
+    semantic_scholar_min_title_score: float
+    semantic_scholar_min_confidence: float
     arxiv_min_title_score: float
     arxiv_min_confidence: float
     arxiv_openalex_max_results: int
@@ -101,6 +106,42 @@ def _parse_date(value: object) -> dt.date | None:
         return dt.date.fromisoformat(value.strip())
     except Exception:
         return None
+
+
+def _load_dotenv(path: Path = DEFAULT_DOTENV_PATH) -> dict[str, str]:
+    global _DOTENV_CACHE
+    if _DOTENV_CACHE is not None:
+        return _DOTENV_CACHE
+    values: dict[str, str] = {}
+    if not path.exists():
+        _DOTENV_CACHE = values
+        return values
+    try:
+        text = path.read_text(encoding="utf-8")
+    except Exception:
+        _DOTENV_CACHE = values
+        return values
+    for raw_line in text.splitlines():
+        line = raw_line.strip()
+        if not line or line.startswith("#") or "=" not in line:
+            continue
+        key, value = line.split("=", 1)
+        key = key.strip()
+        if not key:
+            continue
+        value = value.strip()
+        if len(value) >= 2 and value[0] == value[-1] and value[0] in {"'", '"'}:
+            value = value[1:-1]
+        values[key] = value
+    _DOTENV_CACHE = values
+    return values
+
+
+def _env_or_dotenv(key: str, default: str = "") -> str:
+    value = os.environ.get(key)
+    if value is not None and value != "":
+        return value
+    return _load_dotenv().get(key, default)
 
 
 def _load_exception_rules(path: Path) -> list[ExceptionRule]:
@@ -152,7 +193,10 @@ def _default_config(path: Path) -> PipelineConfig:
         triage_dir=Path("ops/unresolved/enrichment"),
         source_cache_path=Path("ops/enrichment-source-cache.json"),
         openalex_mailto="",
-        openalex_api_key=os.environ.get("OPENALEX_API_KEY", ""),
+        openalex_api_key=_env_or_dotenv("OPENALEX_API_KEY", ""),
+        semantic_scholar_api_key=_env_or_dotenv("SEMANTIC_SCHOLAR_API_KEY", ""),
+        semantic_scholar_min_title_score=0.94,
+        semantic_scholar_min_confidence=0.91,
         arxiv_min_title_score=0.92,
         arxiv_min_confidence=0.90,
         arxiv_openalex_max_results=15,
@@ -162,6 +206,7 @@ def _default_config(path: Path) -> PipelineConfig:
         max_validation_retries=4,
         host_min_interval_seconds=1.0,
         host_min_interval_by_host={
+            "api.semanticscholar.org": 1.0,
             "api.openalex.org": 0.1,
             "export.arxiv.org": 3.0,
             "openreview.net": 0.5,
@@ -255,7 +300,23 @@ def load_pipeline_config(path: Path | None = None) -> PipelineConfig:
         if isinstance(defaults.get("openalex_mailto"), str):
             cfg.openalex_mailto = defaults["openalex_mailto"].strip()
         if isinstance(defaults.get("openalex_api_key"), str):
-            cfg.openalex_api_key = defaults["openalex_api_key"].strip()
+            candidate = defaults["openalex_api_key"].strip()
+            if candidate:
+                cfg.openalex_api_key = candidate
+        if isinstance(defaults.get("semantic_scholar_api_key"), str):
+            candidate = defaults["semantic_scholar_api_key"].strip()
+            if candidate:
+                cfg.semantic_scholar_api_key = candidate
+        if isinstance(defaults.get("semantic_scholar_min_title_score"), (int, float)):
+            cfg.semantic_scholar_min_title_score = max(
+                0.0,
+                min(1.0, float(defaults["semantic_scholar_min_title_score"])),
+            )
+        if isinstance(defaults.get("semantic_scholar_min_confidence"), (int, float)):
+            cfg.semantic_scholar_min_confidence = max(
+                0.0,
+                min(1.0, float(defaults["semantic_scholar_min_confidence"])),
+            )
         if isinstance(defaults.get("arxiv_min_title_score"), (int, float)):
             cfg.arxiv_min_title_score = max(0.0, min(1.0, float(defaults["arxiv_min_title_score"])))
         if isinstance(defaults.get("arxiv_min_confidence"), (int, float)):

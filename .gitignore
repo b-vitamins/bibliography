@@ -39,6 +39,10 @@ ops/intake-runs/
 ops/intake-snapshots/
 ops/unresolved/intake/
 
+# Local secrets / environment overrides
+.env
+.env.*
+
 ## Bibliography auxiliary files (bibtex/biblatex/biber):
 *.bbl
 *.bbl-SAVE-ERROR

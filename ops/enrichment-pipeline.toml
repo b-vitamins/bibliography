@@ -10,7 +10,7 @@ timeout_seconds = 20
 max_retries = 2
 max_validation_retries = 4
 host_min_interval_seconds = 1.0
-host_min_interval_by_host = { "export.arxiv.org" = 3.0, "api.openalex.org" = 0.1, "openreview.net" = 0.5, "api.openreview.net" = 1.1, "api2.openreview.net" = 1.1, "proceedings.neurips.cc" = 0.2, "proceedings.mlr.press" = 0.2 }
+host_min_interval_by_host = { "api.semanticscholar.org" = 1.0, "export.arxiv.org" = 3.0, "api.openalex.org" = 0.1, "openreview.net" = 0.5, "api.openreview.net" = 1.1, "api2.openreview.net" = 1.1, "proceedings.neurips.cc" = 0.2, "proceedings.mlr.press" = 0.2 }
 host_circuit_breaker_threshold = 0
 host_circuit_breaker_cooldown_seconds = 0.0
 backoff_base_seconds = 1.0

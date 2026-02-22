@@ -1,0 +1,43 @@
+[defaults]
+overwrite_existing = false
+min_abstract_words = 25
+allow_abstract_prefix_match = false
+report_dir = "ops/enrichment-runs"
+triage_dir = "ops/unresolved/enrichment"
+source_cache_path = "ops/enrichment-source-cache.json"
+exceptions_path = "ops/enrichment-exceptions.toml"
+timeout_seconds = 20
+max_retries = 2
+max_validation_retries = 4
+host_min_interval_seconds = 1.0
+host_min_interval_by_host = { "api.semanticscholar.org" = 1.0 }
+host_circuit_breaker_threshold = 0
+host_circuit_breaker_cooldown_seconds = 0.0
+backoff_base_seconds = 1.0
+backoff_max_seconds = 30.0
+user_agent = "bibliography-enrichment-pipeline/1.0"
+checkpoint_dir = "ops/enrichment-checkpoints"
+checkpoint_flush_every = 20
+semantic_scholar_api_key = ""
+semantic_scholar_min_title_score = 0.94
+semantic_scholar_min_confidence = 0.91
+
+[targets]
+inproceedings = ["author", "doi", "abstract", "note", "keywords", "year", "month", "booktitle", "url", "pdf"]
+article = ["author", "doi", "abstract", "note", "keywords", "year", "month", "journal", "volume", "number", "pages", "url", "pdf"]
+misc = ["author", "doi", "abstract", "note", "keywords", "year", "month", "url", "pdf"]
+unpublished = ["author", "doi", "abstract", "note", "keywords", "year", "month", "url", "pdf"]
+techreport = ["author", "doi", "abstract", "note", "keywords", "year", "month", "institution", "url", "pdf"]
+incollection = ["author", "doi", "abstract", "note", "keywords", "year", "month", "booktitle", "url", "pdf"]
+book = ["author", "doi", "abstract", "note", "keywords", "year", "month", "url", "pdf"]
+phdthesis = ["author", "doi", "abstract", "note", "keywords", "year", "month", "url", "pdf"]
+mastersthesis = ["author", "doi", "abstract", "note", "keywords", "year", "month", "url", "pdf"]
+
+[policy]
+protected_fields = ["author", "title", "booktitle", "year"]
+
+[[venues]]
+name = "semanticscholar"
+path_contains = ""
+adapter = "semanticscholar"
+allowed_domains = []

@@ -6,6 +6,7 @@ from .arxiv import ArxivAdapter
 from .neurips import NeuripsProceedingsAdapter
 from .openreview import OpenReviewAdapter
 from .pmlr import PmlrAdapter
+from .semanticscholar import SemanticScholarAdapter
 
 
 def build_adapter_registry(http_client: CachedHttpClient, cfg: PipelineConfig) -> dict[str, object]:
@@ -21,6 +22,12 @@ def build_adapter_registry(http_client: CachedHttpClient, cfg: PipelineConfig) -
             arxiv_max_results=cfg.arxiv_max_results,
             openalex_mailto=cfg.openalex_mailto,
             openalex_api_key=cfg.openalex_api_key,
+        ),
+        SemanticScholarAdapter(
+            http_client=http_client,
+            min_title_score=cfg.semantic_scholar_min_title_score,
+            min_confidence=cfg.semantic_scholar_min_confidence,
+            api_key=cfg.semantic_scholar_api_key,
         ),
     ]
     return {adapter.name: adapter for adapter in adapters}

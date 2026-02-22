@@ -1,4 +1,4 @@
-.PHONY: doctor lint scan report daily release full-audit orals intake-watch intake-discover intake-plan intake-run enrich-arxiv-orals enrich-plan enrich-run enrich-battle hooks export-tracking validate-skills
+.PHONY: doctor lint scan report daily release full-audit orals intake-watch intake-discover intake-plan intake-run enrich-arxiv-orals enrich-semanticscholar enrich-plan enrich-run enrich-battle hooks export-tracking validate-skills
 
 doctor:
 	python3 scripts/bibops.py doctor
@@ -41,6 +41,10 @@ intake-run:
 
 enrich-arxiv-orals:
 	python3 scripts/bibops.py enrich run collections/orals/*/*.bib --enrichment-config ops/enrichment-arxiv.toml --write --fail-on-unresolved
+
+enrich-semanticscholar:
+	@[ -n "$(FILE)" ] || (echo "Usage: make enrich-semanticscholar FILE=conferences/neurips/2025.bib" && exit 1)
+	python3 scripts/bibops.py enrich run "$(FILE)" --enrichment-config ops/enrichment-semanticscholar.toml --write
 
 enrich-plan:
 	@[ -n "$(FILE)" ] || (echo "Usage: make enrich-plan FILE=conferences/iclr/2024.bib" && exit 1)

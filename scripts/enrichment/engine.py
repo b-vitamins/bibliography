@@ -27,7 +27,13 @@ from .models import (
     WorkItem,
     now_iso,
 )
-from .normalization import equivalent_text, is_prefix_equivalent, sanitize_bibtex_text, word_count
+from .normalization import (
+    equivalent_text,
+    is_prefix_equivalent,
+    normalize_text,
+    sanitize_bibtex_text,
+    word_count,
+)
 from .sources import build_adapter_registry
 from .sources.base import AdapterContext
 
@@ -262,6 +268,27 @@ class EnrichmentEngine:
             return False
         return equivalent_text(entry_title, source_title)
 
+    @staticmethod
+    def _is_placeholder_author(value: str) -> bool:
+        normalized = normalize_text(value)
+        if not normalized:
+            return False
+        if normalized in {"others", "and others", "et al", "et al."}:
+            return True
+        if " and others" in normalized:
+            return True
+        if normalized.endswith(" et al") or normalized.endswith(" et al."):
+            return True
+        return False
+
+    @classmethod
+    def _safe_author_repair(cls, current_author: str, source_author: str) -> bool:
+        if not current_author or not source_author:
+            return False
+        if not cls._is_placeholder_author(current_author):
+            return False
+        return bool(" and " in source_author.lower() or "," in source_author)
+
     def _build_decision(
         self,
         file_path: Path,
@@ -298,6 +325,8 @@ class EnrichmentEngine:
                 equivalent = equivalent_text(current_value, source_value)
                 if not equivalent and self.cfg.allow_abstract_prefix_match and field == "abstract":
                     equivalent = is_prefix_equivalent(current_value, source_value)
+                if not equivalent and field == "author" and self._is_placeholder_author(current_value):
+                    equivalent = True
                 if not equivalent:
                     reasons.append(f"field {field}: protected field mismatch")
                     skipped_fields.append(field)
@@ -310,6 +339,10 @@ class EnrichmentEngine:
                 if not overwrite_existing and not (
                     field == "url"
                     and self._safe_url_repair(entry, source.fields, current_value, source_value)
+                    or (
+                        field == "author"
+                        and self._safe_author_repair(current_value, source_value)
+                    )
                 ):
                     skipped_fields.append(field)
                     continue

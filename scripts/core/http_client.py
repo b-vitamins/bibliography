@@ -345,6 +345,7 @@ class CachedHttpClient:
         self,
         url: str,
         use_cache: bool = True,
+        headers: dict[str, str] | None = None,
         require_any: list[str] | tuple[str, ...] | None = None,
         reject_any: list[str] | tuple[str, ...] | None = None,
     ) -> HttpResponse:
@@ -401,7 +402,7 @@ class CachedHttpClient:
             try:
                 self._respect_host_interval(url)
                 self._stats["network_requests"] = int(self._stats["network_requests"]) + 1
-                response = self.session.get(url, timeout=self.timeout_seconds)
+                response = self.session.get(url, timeout=self.timeout_seconds, headers=headers)
                 retry_after_header = response.headers.get("Retry-After")
                 last_status = int(response.status_code)
                 last_text = response.text or ""

@@ -31,6 +31,9 @@ python3 scripts/bibops.py --config ops/bibops-orals.toml run-profile --profile o
 # Enrich oral subsets with arXiv IDs (keeps existing url/pdf untouched)
 python3 scripts/bibops.py enrich run collections/orals/*/*.bib --enrichment-config ops/enrichment-arxiv.toml --write --fail-on-unresolved
 
+# Semantic Scholar-mode enrichment for BibTeX quality fields (author/doi/abstract/note/etc.)
+python3 scripts/bibops.py enrich run conferences/neurips/2025.bib --enrichment-config ops/enrichment-semanticscholar.toml --write
+
 # Plan venue-grounded enrichment for a conference file
 python3 scripts/enrich-pipeline.py plan conferences/iclr/2024.bib
 

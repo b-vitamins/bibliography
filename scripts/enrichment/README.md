@@ -22,6 +22,8 @@ Or through `bibops`:
 - `pmlr`: extracts canonical PMLR paper-page metadata for ICML entries.
 - `arxiv`: resolves arXiv identifiers and metadata fields (`eprint`, `archiveprefix`,
   `primaryclass`, `arxiv`) using OpenAlex-first lookup with arXiv API fallback.
+- `semanticscholar`: enriches BibTeX-standard metadata from Semantic Scholar Graph API
+  (high-confidence author/doi/abstract/note/booktitle-journal/year/keywords repairs).
 
 ## Outputs
 
@@ -57,6 +59,7 @@ Run systematic workload and surface checks:
 Default config path: `ops/enrichment-pipeline.toml`
 
 Dedicated arXiv-mode config: `ops/enrichment-arxiv.toml`
+Dedicated Semantic Scholar mode config: `ops/enrichment-semanticscholar.toml`
 
 It controls:
 
@@ -65,6 +68,11 @@ It controls:
 - venue-to-adapter mapping
 - domain allowlists
 - operational output locations
+
+Credentials:
+
+- `OPENALEX_API_KEY` and `SEMANTIC_SCHOLAR_API_KEY` are read from environment
+  variables, with local `.env` fallback support.
 
 Note: DOI enrichment is intentionally handled by `scripts/enrich-doi.py` to avoid
 high-noise no-op planning in venue adapters that rarely expose DOI.
