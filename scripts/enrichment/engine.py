@@ -399,14 +399,14 @@ class EnrichmentEngine:
         file_sha256 = self._file_sha256(file_path) if file_path.exists() else ""
 
         checkpoint_path_used: Path | None = None
-        completed_success_keys: set[str] = set()
+        completed_keys: set[str] = set()
         applied_updates_by_key: dict[str, dict[str, str]] = {}
-        last_successful_key: str | None = None
-        successful_since_flush = 0
+        last_processed_key: str | None = None
+        processed_since_flush = 0
 
         if resume:
             checkpoint_path_used = checkpoint_path or self._default_checkpoint_path(file_path)
-            completed_success_keys, applied_updates_by_key, last_successful_key = self._load_checkpoint(
+            completed_keys, applied_updates_by_key, last_processed_key = self._load_checkpoint(
                 checkpoint_path=checkpoint_path_used,
                 file_path=file_path,
                 file_sha256=file_sha256,
@@ -423,34 +423,34 @@ class EnrichmentEngine:
             entry_keys=entry_keys,
             max_entries=max_entries,
             overwrite_existing=overwrite,
-            skip_entry_keys=completed_success_keys,
+            skip_entry_keys=completed_keys,
         )
 
         decisions: list[EntryDecision] = []
 
-        def mark_success_for_checkpoint(
+        def mark_progress_for_checkpoint(
             key: str,
             applied_fields: dict[str, str] | None = None,
         ) -> None:
-            nonlocal successful_since_flush, last_successful_key
+            nonlocal processed_since_flush, last_processed_key
             if not resume or checkpoint_path_used is None:
                 return
-            completed_success_keys.add(key)
+            completed_keys.add(key)
             if applied_fields:
                 stored = applied_updates_by_key.setdefault(key, {})
                 stored.update(applied_fields)
-            last_successful_key = key
-            successful_since_flush += 1
-            if successful_since_flush >= self.cfg.checkpoint_flush_every:
+            last_processed_key = key
+            processed_since_flush += 1
+            if processed_since_flush >= self.cfg.checkpoint_flush_every:
                 self._flush_checkpoint(
                     checkpoint_path=checkpoint_path_used,
                     file_path=file_path,
                     file_sha256=file_sha256,
-                    completed_success_keys=completed_success_keys,
+                    completed_success_keys=completed_keys,
                     applied_updates_by_key=applied_updates_by_key,
-                    last_successful_key=last_successful_key,
+                    last_successful_key=last_processed_key,
                 )
-                successful_since_flush = 0
+                processed_since_flush = 0
 
         for item in work_items:
             entry = entry_map.get(item.entry_key)
@@ -467,6 +467,7 @@ class EnrichmentEngine:
                         proposals=[],
                     )
                 )
+                mark_progress_for_checkpoint(item.entry_key)
                 continue
 
             adapter = self._adapter_for_item(file_path, entry, item.provider)
@@ -483,6 +484,7 @@ class EnrichmentEngine:
                         proposals=[],
                     )
                 )
+                mark_progress_for_checkpoint(item.entry_key)
                 continue
 
             exception_rule = self.cfg.exception_for(file_path, item.entry_key, adapter.name)
@@ -502,6 +504,7 @@ class EnrichmentEngine:
                             proposals=[],
                         )
                     )
+                    mark_progress_for_checkpoint(item.entry_key)
                     continue
                 if exception_rule.action == "skip":
                     reason_parts = [
@@ -524,7 +527,7 @@ class EnrichmentEngine:
                             proposals=[],
                         )
                     )
-                    mark_success_for_checkpoint(item.entry_key)
+                    mark_progress_for_checkpoint(item.entry_key)
                     continue
 
             source = adapter.fetch(
@@ -546,7 +549,7 @@ class EnrichmentEngine:
                             proposals=[],
                         )
                     )
-                    mark_success_for_checkpoint(item.entry_key)
+                    mark_progress_for_checkpoint(item.entry_key)
                     continue
                 decisions.append(
                     EntryDecision(
@@ -560,6 +563,7 @@ class EnrichmentEngine:
                         proposals=[],
                     )
                 )
+                mark_progress_for_checkpoint(item.entry_key)
                 continue
 
             decision = self._build_decision(
@@ -576,22 +580,22 @@ class EnrichmentEngine:
                 for proposal in decision.proposals:
                     entry[proposal.field] = proposal.value
                     applied_fields[proposal.field] = proposal.value
-                mark_success_for_checkpoint(item.entry_key, applied_fields=applied_fields)
-            elif decision.status in {"planned_update", "skipped"}:
-                mark_success_for_checkpoint(item.entry_key)
+                mark_progress_for_checkpoint(item.entry_key, applied_fields=applied_fields)
+            else:
+                mark_progress_for_checkpoint(item.entry_key)
 
             decisions.append(decision)
 
-        if resume and checkpoint_path_used is not None and successful_since_flush > 0:
+        if resume and checkpoint_path_used is not None and processed_since_flush > 0:
             self._flush_checkpoint(
                 checkpoint_path=checkpoint_path_used,
                 file_path=file_path,
                 file_sha256=file_sha256,
-                completed_success_keys=completed_success_keys,
+                completed_success_keys=completed_keys,
                 applied_updates_by_key=applied_updates_by_key,
-                last_successful_key=last_successful_key,
+                last_successful_key=last_processed_key,
             )
-            successful_since_flush = 0
+            processed_since_flush = 0
 
         wrote = False
         write_error: str | None = None
@@ -696,9 +700,9 @@ class EnrichmentEngine:
                     checkpoint_path=checkpoint_path_used,
                     file_path=file_path,
                     file_sha256=file_sha256,
-                    completed_success_keys=completed_success_keys,
+                    completed_success_keys=completed_keys,
                     applied_updates_by_key=applied_updates_by_key,
-                    last_successful_key=last_successful_key,
+                    last_successful_key=last_processed_key,
                 )
 
         return summary, decisions
