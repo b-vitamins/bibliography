@@ -1,20 +1,22 @@
 from __future__ import annotations
 
+import copy
 import dataclasses
 import json
+import re
 import tempfile
 from pathlib import Path
 from typing import Any
 
 import bibtexparser
 
-from core.bibtex_io import parse_bib_file, parse_bib_text, write_bib_file
+from core.bibtex_io import parse_bib_file, parse_bib_text, resolve_bib_paths, write_bib_file
 from core.http_client import CachedHttpClient
 from core.normalization import normalize_text, sanitize_bibtex_text
 from core.time_utils import now_iso
 
 from .config import IntakeConfig, VenuePolicy
-from .keygen import generate_bib_key
+from .keygen import entry_signature, generate_bib_key
 from .models import (
     CatalogSnapshot,
     IntakeIssue,
@@ -45,6 +47,7 @@ class IntakeEngine:
             host_circuit_breaker_cooldown_seconds=cfg.host_circuit_breaker_cooldown_seconds,
         )
         self.adapters = build_catalog_adapter_registry(self.http_client)
+        self._global_key_signatures_cache: dict[str, set[str]] | None = None
 
     def close(self) -> None:
         self.http_client.close()
@@ -119,19 +122,122 @@ class IntakeEngine:
     def _sort_records(records: list[IntakeRecord]) -> list[IntakeRecord]:
         return sorted(records, key=lambda r: (normalize_text(r.title), r.source_id))
 
+    @staticmethod
+    def _extract_bib_value(body: str, field: str) -> str:
+        match = re.search(rf"(?im)^\s*{re.escape(field)}\s*=\s*", body)
+        if not match:
+            return ""
+        idx = match.end()
+        while idx < len(body) and body[idx].isspace():
+            idx += 1
+        if idx >= len(body):
+            return ""
+
+        lead = body[idx]
+        if lead == "{":
+            depth = 0
+            out: list[str] = []
+            i = idx
+            while i < len(body):
+                ch = body[i]
+                if ch == "{":
+                    depth += 1
+                    if depth > 1:
+                        out.append(ch)
+                elif ch == "}":
+                    depth -= 1
+                    if depth == 0:
+                        return "".join(out).strip()
+                    if depth > 0:
+                        out.append(ch)
+                else:
+                    if depth > 0:
+                        out.append(ch)
+                i += 1
+            return "".join(out).strip()
+        if lead == '"':
+            i = idx + 1
+            out: list[str] = []
+            escaped = False
+            while i < len(body):
+                ch = body[i]
+                if escaped:
+                    out.append(ch)
+                    escaped = False
+                elif ch == "\\":
+                    escaped = True
+                elif ch == '"':
+                    return "".join(out).strip()
+                else:
+                    out.append(ch)
+                i += 1
+            return "".join(out).strip()
+
+        i = idx
+        out: list[str] = []
+        while i < len(body):
+            ch = body[i]
+            if ch in {",", "\n", "\r"}:
+                break
+            out.append(ch)
+            i += 1
+        return "".join(out).strip()
+
+    def _global_key_signatures(self) -> dict[str, set[str]]:
+        if self._global_key_signatures_cache is None:
+            signatures: dict[str, set[str]] = {}
+            entry_start = re.compile(r"(?im)^\s*@\w+\s*\{\s*([^,\s]+)\s*,")
+            for path in resolve_bib_paths(self.cfg.global_key_globs):
+                posix_path = path.as_posix()
+                if "/collections/orals/" in f"/{posix_path}/":
+                    continue
+                try:
+                    text = path.read_text(encoding="utf-8")
+                except Exception:
+                    continue
+                starts = list(entry_start.finditer(text))
+                for idx, found in enumerate(starts):
+                    key = found.group(1).strip()
+                    if not key:
+                        continue
+                    start = found.end()
+                    end = starts[idx + 1].start() if idx + 1 < len(starts) else len(text)
+                    body = text[start:end]
+                    sig = entry_signature(
+                        year=self._extract_bib_value(body, "year"),
+                        title=self._extract_bib_value(body, "title"),
+                        author=self._extract_bib_value(body, "author"),
+                    )
+                    signatures.setdefault(key, set()).add(sig)
+            self._global_key_signatures_cache = signatures
+        return copy.deepcopy(self._global_key_signatures_cache)
+
     def _entry_from_record(
         self,
         record: IntakeRecord,
         adapter_name: str,
         existing_entry: dict[str, Any] | None,
         existing_keys: set[str],
+        global_key_signatures: dict[str, set[str]] | None = None,
     ) -> dict[str, Any]:
         key = ""
         if existing_entry is not None:
             key = str(existing_entry.get("ID", "")).strip()
         if not key:
             first_author = record.authors[0] if record.authors else "paper"
-            key = generate_bib_key(first_author=first_author, year=record.year, title=record.title, existing_keys=existing_keys)
+            candidate_sig = entry_signature(
+                year=record.year,
+                title=record.title,
+                author=record.authors,
+            )
+            key = generate_bib_key(
+                first_author=first_author,
+                year=record.year,
+                title=record.title,
+                existing_keys=existing_keys,
+                global_key_signatures=global_key_signatures,
+                candidate_signature=candidate_sig,
+            )
         elif key not in existing_keys:
             existing_keys.add(key)
 
@@ -390,6 +496,10 @@ class IntakeEngine:
                     if key:
                         existing_keys.add(key)
 
+                global_key_signatures: dict[str, set[str]] | None = None
+                if missing_ids:
+                    global_key_signatures = self._global_key_signatures()
+
                 built_entries: list[dict[str, Any]] = []
                 for source_id in sorted(source_by_id):
                     record = source_by_id[source_id]
@@ -400,6 +510,7 @@ class IntakeEngine:
                             adapter_name=snapshot.adapter,
                             existing_entry=existing,
                             existing_keys=existing_keys,
+                            global_key_signatures=global_key_signatures,
                         )
                     )
 

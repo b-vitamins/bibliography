@@ -3,6 +3,7 @@ report_dir = "ops/intake-runs"
 triage_dir = "ops/unresolved/intake"
 snapshot_dir = "ops/intake-snapshots"
 source_cache_path = "ops/intake-source-cache.json"
+global_key_globs = ["books/**/*.bib", "conferences/**/*.bib", "collections/**/*.bib", "references/**/*.bib", "courses/**/*.bib", "theses/**/*.bib", "presentations/**/*.bib"]
 timeout_seconds = 20.0
 max_retries = 2
 max_validation_retries = 4
@@ -71,4 +72,3 @@ name = "pmlr_volume_catalog"
 booktitle = "ICML"
 publisher = "PMLR"
 volume_by_year = { "2013" = "28", "2014" = "32", "2015" = "37", "2016" = "48", "2017" = "70", "2018" = "80", "2019" = "97", "2020" = "119", "2021" = "139", "2022" = "162", "2023" = "202", "2024" = "235" }
-

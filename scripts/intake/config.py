@@ -45,6 +45,7 @@ class IntakeConfig:
     report_dir: Path
     triage_dir: Path
     snapshot_dir: Path
+    global_key_globs: list[str]
     source_cache_path: Path
     timeout_seconds: float
     max_retries: int
@@ -156,6 +157,15 @@ def _default_config(path: Path) -> IntakeConfig:
         report_dir=Path("ops/intake-runs"),
         triage_dir=Path("ops/unresolved/intake"),
         snapshot_dir=Path("ops/intake-snapshots"),
+        global_key_globs=[
+            "books/**/*.bib",
+            "conferences/**/*.bib",
+            "collections/**/*.bib",
+            "references/**/*.bib",
+            "courses/**/*.bib",
+            "theses/**/*.bib",
+            "presentations/**/*.bib",
+        ],
         source_cache_path=Path("ops/intake-source-cache.json"),
         timeout_seconds=20.0,
         max_retries=2,
@@ -192,6 +202,9 @@ def load_intake_config(path: Path | None = None) -> IntakeConfig:
             cfg.triage_dir = Path(defaults["triage_dir"].strip())
         if isinstance(defaults.get("snapshot_dir"), str) and defaults["snapshot_dir"].strip():
             cfg.snapshot_dir = Path(defaults["snapshot_dir"].strip())
+        global_key_globs = _as_str_list(defaults.get("global_key_globs"))
+        if global_key_globs:
+            cfg.global_key_globs = global_key_globs
         if isinstance(defaults.get("source_cache_path"), str) and defaults["source_cache_path"].strip():
             cfg.source_cache_path = Path(defaults["source_cache_path"].strip())
         if isinstance(defaults.get("timeout_seconds"), (int, float)):
@@ -286,4 +299,3 @@ def parse_target_tokens(tokens: list[str]) -> list[tuple[str, int]]:
             raise ValueError(f"target year out of bounds in `{token}`")
         out.append((venue, year))
     return out
-

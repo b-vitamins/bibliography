@@ -28,7 +28,7 @@ class BibWriteIntegrityError(RuntimeError):
 def resolve_bib_paths(paths_or_globs: list[str]) -> list[Path]:
     out: set[Path] = set()
     for item in paths_or_globs:
-        matched = glob.glob(item)
+        matched = glob.glob(item, recursive=True)
         if matched:
             for path in matched:
                 p = Path(path)

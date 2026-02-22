@@ -1434,6 +1434,9 @@ def command_intake_pipeline(args: argparse.Namespace) -> int:
         cmd.append("--write")
     if args.mode in {"plan", "run"} and args.fail_on_gap:
         cmd.append("--fail-on-gap")
+    out_path = getattr(args, "out", None)
+    if out_path:
+        cmd.extend(["--out", str(out_path)])
     if args.json:
         cmd.append("--json")
     proc = subprocess.run(cmd, check=False)
@@ -1563,6 +1566,7 @@ def command_profile(cfg: OpsConfig, profile_path: Path) -> int:
                 max_records=max_records,
                 write=bool(step_payload.get("write", False)),
                 fail_on_gap=bool(step_payload.get("fail_on_gap", False)),
+                out=str(step_payload.get("out", "")).strip() or None,
                 json=bool(step_payload.get("json", False)),
             )
             rc = command_intake_pipeline(intake_args)
@@ -1682,6 +1686,7 @@ def build_parser() -> argparse.ArgumentParser:
         action="store_true",
         help="Return non-zero when gaps/issues remain",
     )
+    intake.add_argument("--out", help="Optional output JSON path")
     intake.add_argument("--json", action="store_true", help="Emit JSON output")
 
     profile = sub.add_parser("run-profile", help="Run declarative ops profile")
