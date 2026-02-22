@@ -120,7 +120,10 @@ class OpenReviewAdapter:
     def _canonical_pdf_url(pdf_value: str, forum_id: str) -> str:
         value = (pdf_value or "").strip()
         if value.startswith("https://") or value.startswith("http://"):
-            return value
+            host = urlparse(value).netloc.lower()
+            if host == "openreview.net" or host.endswith(".openreview.net"):
+                return value
+            return f"https://openreview.net/pdf?id={forum_id}"
         if value.startswith("/"):
             return f"https://openreview.net{value}"
         if value:
