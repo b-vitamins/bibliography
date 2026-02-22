@@ -182,6 +182,7 @@ def _default_config(path: Path) -> PipelineConfig:
                 adapter="pmlr",
                 allowed_domains={
                     "proceedings.mlr.press",
+                    "raw.githubusercontent.com",
                 },
             ),
         ],

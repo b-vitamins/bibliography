@@ -25,7 +25,9 @@ def strip_latex(value: str) -> str:
             break
         text = updated
     text = re.sub(r"\\[a-zA-Z]+\*?(?:\[[^\]]*\])?", " ", text)
-    text = text.replace("{", " ").replace("}", " ")
+    # Keep brace-grouped acronyms glued (e.g., "{LLM}s", "{R}obo{C}ode{X}") so
+    # normalized-title matching can recover canonical tokens.
+    text = text.replace("{", "").replace("}", "")
     return text.replace("\\", " ")
 
 
