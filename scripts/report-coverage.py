@@ -84,7 +84,12 @@ def load_entries(path: Path) -> list[dict[str, Any]]:
     parser.customization = convert_to_unicode
     parser.ignore_nonstandard_types = False
     text = path.read_text(encoding="utf-8")
-    db = bibtexparser.loads(text, parser=parser)
+    try:
+        db = bibtexparser.loads(text, parser=parser)
+    except Exception:
+        fallback = BibTexParser(common_strings=True)
+        fallback.ignore_nonstandard_types = False
+        db = bibtexparser.loads(text, parser=fallback)
     return list(db.entries)
 
 

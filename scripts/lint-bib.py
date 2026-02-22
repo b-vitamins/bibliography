@@ -97,7 +97,12 @@ def parse_bib(path: Path) -> Any:
     parser.customization = convert_to_unicode
     parser.ignore_nonstandard_types = False
     data = path.read_text(encoding="utf-8")
-    return bibtexparser.loads(data, parser=parser)
+    try:
+        return bibtexparser.loads(data, parser=parser)
+    except Exception:
+        fallback = BibTexParser(common_strings=True)
+        fallback.ignore_nonstandard_types = False
+        return bibtexparser.loads(data, parser=fallback)
 
 
 def normalize_spaces(s: str) -> str:
