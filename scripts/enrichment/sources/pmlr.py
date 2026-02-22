@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import html
+import json
 import re
 from difflib import SequenceMatcher
 from pathlib import Path
@@ -44,6 +45,7 @@ class PmlrAdapter:
         self._volume_bib_by_url: dict[str, dict[str, SourceRecord]] = {}
         self._volume_bib_by_title: dict[str, dict[str, SourceRecord | None]] = {}
         self._volume_bib_by_compact_title: dict[str, dict[str, SourceRecord | None]] = {}
+        self._wikidata_doi_cache: dict[str, str | None] = {}
 
     def supports(self, file_path: Path, entry: dict[str, Any]) -> bool:
         url = str(entry.get("url", "")).lower()
@@ -78,6 +80,87 @@ class PmlrAdapter:
         if not parsed.path.lower().endswith(".pdf"):
             return None
         return url
+
+    @staticmethod
+    def _wikidata_entity_id(url: str) -> str | None:
+        parsed = urlparse(url)
+        host = parsed.netloc.lower()
+        if host not in {"wikidata.org", "www.wikidata.org"}:
+            return None
+        parts = [p for p in parsed.path.split("/") if p]
+        if not parts:
+            return None
+        candidate = parts[-1].strip()
+        if candidate.upper().startswith("Q") and candidate[1:].isdigit():
+            return candidate.upper()
+        return None
+
+    def _doi_from_wikidata_url(self, url: str) -> str | None:
+        cached = self._wikidata_doi_cache.get(url)
+        if cached is not None or url in self._wikidata_doi_cache:
+            return cached
+        entity_id = self._wikidata_entity_id(url)
+        if not entity_id:
+            self._wikidata_doi_cache[url] = None
+            return None
+        endpoint = f"https://www.wikidata.org/wiki/Special:EntityData/{entity_id}.json"
+        response = self.http_client.get_text(endpoint, require_any=[entity_id])
+        if response.status_code != 200:
+            self._wikidata_doi_cache[url] = None
+            return None
+        try:
+            payload = json.loads(response.text)
+        except json.JSONDecodeError:
+            self._wikidata_doi_cache[url] = None
+            return None
+        entity = (payload.get("entities") or {}).get(entity_id)
+        claims = (entity or {}).get("claims") if isinstance(entity, dict) else None
+        rows = claims.get("P356") if isinstance(claims, dict) else None
+        if not isinstance(rows, list):
+            self._wikidata_doi_cache[url] = None
+            return None
+        for row in rows:
+            mainsnak = row.get("mainsnak") if isinstance(row, dict) else None
+            datavalue = mainsnak.get("datavalue") if isinstance(mainsnak, dict) else None
+            value = datavalue.get("value") if isinstance(datavalue, dict) else None
+            doi = str(value).strip() if isinstance(value, str) else ""
+            if doi:
+                self._wikidata_doi_cache[url] = doi
+                return doi
+        self._wikidata_doi_cache[url] = None
+        return None
+
+    def _legacy_icml_link_record(self, url: str) -> SourceRecord | None:
+        source_url = self._canonicalize_https(url)
+        if not source_url:
+            return None
+        parsed = urlparse(source_url)
+        host = parsed.netloc.lower()
+        if host not in {
+            "doi.org",
+            "dx.doi.org",
+            "wikidata.org",
+            "www.wikidata.org",
+            "aaai.org",
+            "www.aaai.org",
+            "orkg.org",
+        }:
+            return None
+
+        fields: dict[str, str] = {"url": source_url}
+        if host in {"doi.org", "dx.doi.org", "aaai.org", "www.aaai.org", "orkg.org"}:
+            fields["pdf"] = source_url
+        elif host in {"wikidata.org", "www.wikidata.org"}:
+            doi = self._doi_from_wikidata_url(source_url)
+            if doi:
+                fields["pdf"] = f"https://doi.org/{doi}"
+
+        return SourceRecord(
+            adapter=self.name,
+            source_url=source_url,
+            fetched_at=now_iso(),
+            fields=fields,
+        )
 
     @staticmethod
     def _meta_value(page: str, name: str) -> str:
@@ -291,6 +374,9 @@ class PmlrAdapter:
                     "pdf": legacy_pdf_url,
                 },
             )
+        legacy_link_record = self._legacy_icml_link_record(raw_entry_url)
+        if legacy_link_record is not None:
+            return legacy_link_record
         source_url = self._source_url_from_entry(context.entry)
         fast_record = self._lookup_volume_bib_record(context.entry, source_url)
         if fast_record is not None and "abstract" in fast_record.fields and "pdf" in fast_record.fields:

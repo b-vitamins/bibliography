@@ -498,6 +498,23 @@ class EnrichmentEngine:
                 AdapterContext(file_path=file_path, entry_key=item.entry_key, entry=entry)
             )
             if source is None:
+                raw_url = str(entry.get("url", "")).strip()
+                raw_pdf = str(entry.get("pdf", "")).strip()
+                if adapter.name == "pmlr" and not raw_url and not raw_pdf:
+                    decisions.append(
+                        EntryDecision(
+                            file_path=str(file_path),
+                            entry_key=item.entry_key,
+                            status="skipped",
+                            adapter=adapter.name,
+                            applied_fields=[],
+                            skipped_fields=item.target_fields,
+                            reasons=["no source locator present"],
+                            proposals=[],
+                        )
+                    )
+                    mark_success_for_checkpoint(item.entry_key)
+                    continue
                 decisions.append(
                     EntryDecision(
                         file_path=str(file_path),
