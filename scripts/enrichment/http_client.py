@@ -260,6 +260,18 @@ class CachedHttpClient:
         self._host_breaker_until_by_host[host] = 0.0
         return False
 
+    def _breaker_remaining_seconds(self, host: str) -> float:
+        if not host:
+            return 0.0
+        until = self._host_breaker_until_by_host.get(host, 0.0)
+        if until <= 0.0:
+            return 0.0
+        now = time.monotonic()
+        if now >= until:
+            self._host_breaker_until_by_host[host] = 0.0
+            return 0.0
+        return until - now
+
     @staticmethod
     def _parse_retry_after_header(value: str | None) -> float | None:
         if not value:
@@ -373,28 +385,18 @@ class CachedHttpClient:
         last_text = ""
         last_fetched_at = now_iso()
 
-        if self._breaker_is_open(host):
+        initial_breaker_wait = self._breaker_remaining_seconds(host)
+        if initial_breaker_wait > 0.0:
             self._stats["circuit_breaker_short_circuits"] = int(self._stats["circuit_breaker_short_circuits"]) + 1
-            return HttpResponse(
-                url=url,
-                status_code=0,
-                text="",
-                fetched_at=last_fetched_at,
-                from_cache=False,
-            )
+            time.sleep(initial_breaker_wait)
 
         for attempt in range(1, max_attempts + 1):
-            if self._breaker_is_open(host):
+            breaker_wait = self._breaker_remaining_seconds(host)
+            if breaker_wait > 0.0:
                 self._stats["circuit_breaker_short_circuits"] = int(
                     self._stats["circuit_breaker_short_circuits"]
                 ) + 1
-                return HttpResponse(
-                    url=url,
-                    status_code=0,
-                    text="",
-                    fetched_at=now_iso(),
-                    from_cache=False,
-                )
+                time.sleep(breaker_wait)
             retry_after_header: str | None = None
             try:
                 self._respect_host_interval(url)

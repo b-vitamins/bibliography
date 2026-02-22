@@ -7,6 +7,15 @@ import unicodedata
 
 def strip_latex(value: str) -> str:
     text = value or ""
+    # Some upstream dumps escape LaTeX commands as "\textbackslash cmd\lbrace...\rbrace".
+    # Rehydrate those forms so command stripping can preserve meaningful content.
+    text = text.replace(r"\textbackslash", "\\")
+    text = text.replace(r"\lbrace", "{").replace(r"\rbrace", "}")
+    text = text.replace("łbrace", "{").replace("Łbrace", "{")
+    text = text.replace("ŕbrace", "}").replace("Ŕbrace", "}")
+    text = re.sub(r"\\\s+", r"\\", text)
+    text = re.sub(r"\\\^\s*\{\s*\}", " ", text)
+    text = re.sub(r"\b(?:lbrace|rbrace|brace)\b", " ", text, flags=re.I)
     text = text.replace("{", "").replace("}", "")
     text = text.replace("\\&", "&")
     text = re.sub(r"\\[a-zA-Z]+\*?(?:\[[^\]]*\])?", " ", text)
