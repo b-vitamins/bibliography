@@ -183,6 +183,8 @@ def _default_config(path: Path) -> PipelineConfig:
                 allowed_domains={
                     "proceedings.mlr.press",
                     "raw.githubusercontent.com",
+                    "icml.cc",
+                    "www.icml.cc",
                 },
             ),
         ],

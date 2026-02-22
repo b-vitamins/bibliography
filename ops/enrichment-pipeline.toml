@@ -41,4 +41,4 @@ allowed_domains = ["proceedings.neurips.cc", "neurips.cc", "papers.nips.cc"]
 name = "icml"
 path_contains = "conferences/icml/"
 adapter = "pmlr"
-allowed_domains = ["proceedings.mlr.press", "raw.githubusercontent.com"]
+allowed_domains = ["proceedings.mlr.press", "raw.githubusercontent.com", "icml.cc", "www.icml.cc"]

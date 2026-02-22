@@ -60,6 +60,23 @@ class PmlrAdapter:
         url = (value or "").strip()
         if url.startswith("http://proceedings.mlr.press/"):
             return "https://" + url[len("http://") :]
+        if url.startswith("http://icml.cc/"):
+            return "https://" + url[len("http://") :]
+        if url.startswith("http://www.icml.cc/"):
+            return "https://" + url[len("http://") :]
+        return url
+
+    @staticmethod
+    def _legacy_icml_pdf_source_url(value: str) -> str | None:
+        url = PmlrAdapter._canonicalize_https(value)
+        if not url:
+            return None
+        parsed = urlparse(url)
+        host = parsed.netloc.lower()
+        if host not in {"icml.cc", "www.icml.cc"}:
+            return None
+        if not parsed.path.lower().endswith(".pdf"):
+            return None
         return url
 
     @staticmethod
@@ -262,6 +279,18 @@ class PmlrAdapter:
 
     def fetch(self, context: AdapterContext) -> SourceRecord | None:
         fast_record: SourceRecord | None = None
+        raw_entry_url = str(context.entry.get("url", "")).strip()
+        legacy_pdf_url = self._legacy_icml_pdf_source_url(raw_entry_url)
+        if legacy_pdf_url:
+            return SourceRecord(
+                adapter=self.name,
+                source_url=legacy_pdf_url,
+                fetched_at=now_iso(),
+                fields={
+                    "url": legacy_pdf_url,
+                    "pdf": legacy_pdf_url,
+                },
+            )
         source_url = self._source_url_from_entry(context.entry)
         fast_record = self._lookup_volume_bib_record(context.entry, source_url)
         if fast_record is not None and "abstract" in fast_record.fields and "pdf" in fast_record.fields:
