@@ -27,3 +27,13 @@ reason_code = "source_abstract_unusable"
 evidence = "https://proceedings.mlr.press/v139/sodhani21a.html"
 review_after = "2027-01-01"
 note = "Canonical PMLR page exposes a non-abstract external link string in abstract field; keep as triage exception."
+
+[[exceptions]]
+entry_key = "DBLP:conf:icml:SafaviB19"
+file_path_contains = "conferences/icml/2019.bib"
+adapter = "pmlr"
+action = "skip"
+reason_code = "canonical_source_missing"
+evidence = "http://proceedings.mlr.press/v97/safavi19a.html"
+review_after = "2027-01-01"
+note = "Canonical DBLP-linked PMLR page returns 404 and no matching record exists in volume bibliography; keep as triage exception."
