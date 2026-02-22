@@ -24,6 +24,28 @@ Each run emits:
 
 Use this pipeline for future enrichment work where source fidelity and repeatability are primary concerns.
 
+## New Intake Pipeline (`scripts/intake`)
+
+For de novo year bootstrap from canonical venue catalogs, use:
+
+- `python3 scripts/intake-pipeline.py discover <venue:year> [more targets...]`
+- `python3 scripts/intake-pipeline.py plan <venue:year> [more targets...]`
+- `python3 scripts/intake-pipeline.py run <venue:year> [more targets...] --write --fail-on-gap`
+
+Control-plane wrapper:
+
+- `python3 scripts/bibops.py intake discover <venue:year> ...`
+- `python3 scripts/bibops.py intake plan <venue:year> ...`
+- `python3 scripts/bibops.py intake run <venue:year> ... --write --fail-on-gap`
+
+Configuration lives in `ops/intake-pipeline.toml`.
+
+The intake pipeline emits:
+
+- Per-run report under `ops/intake-runs/`
+- Source snapshots under `ops/intake-snapshots/`
+- Unresolved queue under `ops/unresolved/intake/`
+
 ## Scripts Overview
 
 ### enrich-entry-with-tracking.py

@@ -1426,6 +1426,20 @@ def command_enrich_pipeline(args: argparse.Namespace) -> int:
     return proc.returncode
 
 
+def command_intake_pipeline(args: argparse.Namespace) -> int:
+    cmd = [sys.executable, "scripts/intake-pipeline.py", "--config", args.intake_config, args.mode, *args.targets]
+    if args.mode in {"plan", "run"} and args.max_records:
+        cmd.extend(["--max-records", str(args.max_records)])
+    if args.mode == "run" and args.write:
+        cmd.append("--write")
+    if args.mode in {"plan", "run"} and args.fail_on_gap:
+        cmd.append("--fail-on-gap")
+    if args.json:
+        cmd.append("--json")
+    proc = subprocess.run(cmd, check=False)
+    return proc.returncode
+
+
 def command_verify_orals(cfg: OpsConfig, recorder: RunRecorder, as_json: bool, fail_on_error: bool) -> int:
     files_scanned, entries_scanned, issues = run_verify_orals(cfg)
     write_issues(Path(cfg.db_path), recorder.run_id, issues)
@@ -1486,38 +1500,113 @@ def command_profile(cfg: OpsConfig, profile_path: Path) -> int:
 
     data = tomllib.loads(profile_path.read_text(encoding="utf-8"))
     steps = data.get("steps")
-    if not isinstance(steps, list) or not all(isinstance(x, str) for x in steps):
+    if not isinstance(steps, list):
         print("Invalid profile: expected `steps = [..]`")
         return 1
 
     for step in steps:
-        print(f"[profile] step: {step}")
-        if step == "doctor":
+        step_name = ""
+        step_payload: dict[str, object] = {}
+        if isinstance(step, str):
+            step_name = step
+        elif isinstance(step, dict):
+            raw_name = step.get("command")
+            if isinstance(raw_name, str):
+                step_name = raw_name.strip()
+                step_payload = step
+        if not step_name:
+            print(f"Invalid profile step: {step!r}")
+            return 1
+
+        print(f"[profile] step: {step_name}")
+        if step_name == "doctor":
             rc = command_doctor(cfg)
-        elif step == "scan":
+        elif step_name == "scan":
             recorder = RunRecorder(Path(cfg.db_path), command="scan")
             recorder.start()
             rc = command_scan(cfg, recorder, as_json=False)
-        elif step == "lint":
+        elif step_name == "lint":
             recorder = RunRecorder(Path(cfg.db_path), command="lint")
             recorder.start()
             rc = command_lint(cfg, recorder, as_json=False, fail_on_error=False)
-        elif step == "verify-orals":
+        elif step_name == "verify-orals":
             recorder = RunRecorder(Path(cfg.db_path), command="verify-orals")
             recorder.start()
             rc = command_verify_orals(cfg, recorder, as_json=False, fail_on_error=False)
-        elif step == "report":
+        elif step_name == "report":
             rc = command_report(cfg, run_id=None, as_json=False)
-        elif step == "install-hooks":
+        elif step_name == "install-hooks":
             rc = command_install_hooks()
-        elif step == "export-tracking":
+        elif step_name == "export-tracking":
             rc = command_export_tracking(cfg)
+        elif step_name == "intake":
+            targets_raw = step_payload.get("targets")
+            targets: list[str] = []
+            if isinstance(targets_raw, list):
+                for target in targets_raw:
+                    if isinstance(target, str) and target.strip():
+                        targets.append(target.strip())
+            if not targets:
+                print("Profile intake step requires `targets = [\"venue:year\", ...]`")
+                return 1
+            mode = str(step_payload.get("mode", "plan")).strip().lower()
+            if mode not in {"discover", "plan", "run"}:
+                print(f"Unsupported intake mode in profile: {mode}")
+                return 1
+            max_records = 0
+            if isinstance(step_payload.get("max_records"), int):
+                max_records = max(0, int(step_payload["max_records"]))
+            intake_args = argparse.Namespace(
+                mode=mode,
+                targets=targets,
+                intake_config=str(step_payload.get("intake_config", "ops/intake-pipeline.toml")),
+                max_records=max_records,
+                write=bool(step_payload.get("write", False)),
+                fail_on_gap=bool(step_payload.get("fail_on_gap", False)),
+                json=bool(step_payload.get("json", False)),
+            )
+            rc = command_intake_pipeline(intake_args)
+        elif step_name == "enrich":
+            targets_raw = step_payload.get("targets")
+            targets: list[str] = []
+            if isinstance(targets_raw, list):
+                for target in targets_raw:
+                    if isinstance(target, str) and target.strip():
+                        targets.append(target.strip())
+            if not targets:
+                print("Profile enrich step requires `targets = [\"file.bib\", ...]`")
+                return 1
+            mode = str(step_payload.get("mode", "run")).strip().lower()
+            if mode not in {"plan", "run"}:
+                print(f"Unsupported enrich mode in profile: {mode}")
+                return 1
+            max_entries = 0
+            if isinstance(step_payload.get("max_entries"), int):
+                max_entries = max(0, int(step_payload["max_entries"]))
+            checkpoint_path = None
+            raw_checkpoint = step_payload.get("checkpoint_path")
+            if isinstance(raw_checkpoint, str) and raw_checkpoint.strip():
+                checkpoint_path = raw_checkpoint.strip()
+            enrich_args = argparse.Namespace(
+                mode=mode,
+                targets=targets,
+                enrichment_config=str(step_payload.get("enrichment_config", "ops/enrichment-pipeline.toml")),
+                entry_key=[],
+                max_entries=max_entries,
+                overwrite=bool(step_payload.get("overwrite", False)),
+                write=bool(step_payload.get("write", False)),
+                resume=bool(step_payload.get("resume", False)),
+                checkpoint_path=checkpoint_path,
+                fail_on_unresolved=bool(step_payload.get("fail_on_unresolved", False)),
+                json=bool(step_payload.get("json", False)),
+            )
+            rc = command_enrich_pipeline(enrich_args)
         else:
-            print(f"Unknown profile step: {step}")
+            print(f"Unknown profile step: {step_name}")
             return 1
 
         if rc != 0:
-            print(f"[profile] step failed: {step} (rc={rc})")
+            print(f"[profile] step failed: {step_name} (rc={rc})")
             return rc
 
     return 0
@@ -1578,6 +1667,23 @@ def build_parser() -> argparse.ArgumentParser:
     )
     enrich.add_argument("--json", action="store_true", help="Emit JSON output")
 
+    intake = sub.add_parser("intake", help="Run modular intake pipeline for venue/year targets")
+    intake.add_argument("mode", choices=["discover", "plan", "run"], help="Pipeline mode")
+    intake.add_argument("targets", nargs="+", help="Targets in venue:year format (e.g., iclr:2025)")
+    intake.add_argument(
+        "--intake-config",
+        default="ops/intake-pipeline.toml",
+        help="Intake pipeline config path",
+    )
+    intake.add_argument("--max-records", type=int, default=0, help="Cap source records per target")
+    intake.add_argument("--write", action="store_true", help="Write merged target .bib files (run mode only)")
+    intake.add_argument(
+        "--fail-on-gap",
+        action="store_true",
+        help="Return non-zero when gaps/issues remain",
+    )
+    intake.add_argument("--json", action="store_true", help="Emit JSON output")
+
     profile = sub.add_parser("run-profile", help="Run declarative ops profile")
     profile.add_argument("--profile", required=True, help="Path to profile TOML")
 
@@ -1611,6 +1717,10 @@ def main() -> int:
     if args.command == "enrich":
         with run_lock():
             return command_enrich_pipeline(args)
+
+    if args.command == "intake":
+        with run_lock():
+            return command_intake_pipeline(args)
 
     if args.command == "run-profile":
         with run_lock():

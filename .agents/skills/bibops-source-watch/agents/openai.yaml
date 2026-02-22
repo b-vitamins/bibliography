@@ -1,0 +1,5 @@
+interface:
+  display_name: "Source Watch"
+  short_description: "Monitor source catalogs and trigger intake updates"
+  default_prompt: "Check watched venue-year source catalogs, report deltas, and run fail-closed intake when new records appear."
+

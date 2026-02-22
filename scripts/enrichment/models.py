@@ -1,17 +1,9 @@
 from __future__ import annotations
 
 import dataclasses
-import datetime as dt
-import hashlib
 from typing import Any
 
-
-def now_iso() -> str:
-    return dt.datetime.now(dt.timezone.utc).isoformat()
-
-
-def text_sha256(value: str) -> str:
-    return hashlib.sha256((value or "").encode("utf-8")).hexdigest()
+from core.time_utils import now_iso, text_sha256
 
 
 @dataclasses.dataclass

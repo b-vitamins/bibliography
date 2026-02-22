@@ -1,0 +1,74 @@
+[defaults]
+report_dir = "ops/intake-runs"
+triage_dir = "ops/unresolved/intake"
+snapshot_dir = "ops/intake-snapshots"
+source_cache_path = "ops/intake-source-cache.json"
+timeout_seconds = 20.0
+max_retries = 2
+max_validation_retries = 4
+host_min_interval_seconds = 1.0
+host_min_interval_by_host = { "openreview.net" = 0.5, "api.openreview.net" = 1.1, "api2.openreview.net" = 1.1, "proceedings.neurips.cc" = 0.2, "proceedings.mlr.press" = 0.2 }
+host_circuit_breaker_threshold = 0
+host_circuit_breaker_cooldown_seconds = 0.0
+backoff_base_seconds = 1.0
+backoff_max_seconds = 30.0
+user_agent = "bibliography-intake-pipeline/1.0"
+
+[[venues]]
+name = "iclr"
+file_path_template = "conferences/iclr/{year}.bib"
+default_booktitle = "ICLR"
+default_publisher = "OpenReview.net"
+
+[[venues.adapters]]
+name = "openreview_conference"
+[venues.adapters.params]
+conference_prefix = "ICLR.cc"
+conference_track = "Conference"
+booktitle = "ICLR"
+publisher = "OpenReview.net"
+require_venue = true
+
+[[venues]]
+name = "neurips"
+file_path_template = "conferences/neurips/{year}.bib"
+default_booktitle = "Advances in Neural Information Processing Systems"
+default_publisher = "Curran Associates, Inc."
+
+[[venues.adapters]]
+name = "neurips_proceedings_catalog"
+[venues.adapters.params]
+booktitle = "Advances in Neural Information Processing Systems"
+publisher = "Curran Associates, Inc."
+
+[[venues.adapters]]
+name = "openreview_conference"
+[venues.adapters.params]
+conference_prefix = "NeurIPS.cc"
+conference_track = "Conference"
+booktitle = "Advances in Neural Information Processing Systems"
+publisher = "OpenReview.net"
+require_venue = true
+
+[[venues]]
+name = "icml"
+file_path_template = "conferences/icml/{year}.bib"
+default_booktitle = "ICML"
+default_publisher = "OpenReview.net"
+
+[[venues.adapters]]
+name = "openreview_conference"
+[venues.adapters.params]
+conference_prefix = "ICML.cc"
+conference_track = "Conference"
+booktitle = "ICML"
+publisher = "OpenReview.net"
+require_venue = true
+
+[[venues.adapters]]
+name = "pmlr_volume_catalog"
+[venues.adapters.params]
+booktitle = "ICML"
+publisher = "PMLR"
+volume_by_year = { "2013" = "28", "2014" = "32", "2015" = "37", "2016" = "48", "2017" = "70", "2018" = "80", "2019" = "97", "2020" = "119", "2021" = "139", "2022" = "162", "2023" = "202", "2024" = "235" }
+

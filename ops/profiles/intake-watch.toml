@@ -1,0 +1,6 @@
+steps = [
+  "doctor",
+  { command = "intake", mode = "discover", targets = ["iclr:2025", "neurips:2025", "icml:2025"] },
+  { command = "intake", mode = "plan", targets = ["iclr:2025", "neurips:2025", "icml:2025"], fail_on_gap = true },
+]
+

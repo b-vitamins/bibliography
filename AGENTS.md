@@ -12,6 +12,10 @@ Core commands:
 - `python3 scripts/bibops.py scan`
 - `python3 scripts/bibops.py lint`
 - `python3 scripts/bibops.py report`
+- `python3 scripts/bibops.py intake discover <venue:year> [more targets...]`
+- `python3 scripts/bibops.py intake plan <venue:year> [more targets...]`
+- `python3 scripts/bibops.py intake run <venue:year> [more targets...] --write --fail-on-gap`
+- `python3 scripts/bibops.py run-profile --profile ops/profiles/intake-watch.toml`
 - `python3 scripts/bibops.py run-profile --profile ops/profiles/daily.toml`
 - `python3 scripts/bibops.py run-profile --profile ops/profiles/release.toml`
 - `python3 scripts/bibops.py --config ops/bibops-full.toml run-profile --profile ops/profiles/full-audit.toml`
@@ -78,6 +82,8 @@ Codex should prefer these over ad-hoc behavior when tasks match:
 - `bibops-quality-gate`
 - `bibops-release-manager`
 - `bibops-enrichment-pipeline`
+- `bibops-year-intake`
+- `bibops-source-watch`
 
 If new capability is needed:
 1. Create/update a skill in `.agents/skills`.

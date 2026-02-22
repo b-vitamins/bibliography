@@ -1,4 +1,4 @@
-.PHONY: doctor lint scan report daily release full-audit orals enrich-arxiv-orals enrich-plan enrich-run enrich-battle hooks export-tracking validate-skills
+.PHONY: doctor lint scan report daily release full-audit orals intake-watch intake-discover intake-plan intake-run enrich-arxiv-orals enrich-plan enrich-run enrich-battle hooks export-tracking validate-skills
 
 doctor:
 	python3 scripts/bibops.py doctor
@@ -23,6 +23,21 @@ full-audit:
 
 orals:
 	python3 scripts/bibops.py --config ops/bibops-orals.toml run-profile --profile ops/profiles/orals.toml
+
+intake-watch:
+	python3 scripts/bibops.py run-profile --profile ops/profiles/intake-watch.toml
+
+intake-discover:
+	@[ -n "$(TARGETS)" ] || (echo "Usage: make intake-discover TARGETS='iclr:2025 neurips:2025'" && exit 1)
+	python3 scripts/bibops.py intake discover $(TARGETS)
+
+intake-plan:
+	@[ -n "$(TARGETS)" ] || (echo "Usage: make intake-plan TARGETS='iclr:2025 neurips:2025'" && exit 1)
+	python3 scripts/bibops.py intake plan $(TARGETS)
+
+intake-run:
+	@[ -n "$(TARGETS)" ] || (echo "Usage: make intake-run TARGETS='iclr:2025 neurips:2025'" && exit 1)
+	python3 scripts/bibops.py intake run $(TARGETS) --write --fail-on-gap
 
 enrich-arxiv-orals:
 	python3 scripts/enrich-arxiv.py collections/orals/*/*.bib

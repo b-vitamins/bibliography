@@ -1,0 +1,5 @@
+interface:
+  display_name: "Year Intake"
+  short_description: "Bootstrap conference year bibliographies from canonical catalogs"
+  default_prompt: "Discover, reconcile, and write a complete new-year bibliography with fail-closed intake checks, then run enrichment and lint."
+

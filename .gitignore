@@ -37,6 +37,12 @@ ops/enrichment-source-cache.json
 ops/enrichment-runs/
 ops/unresolved/enrichment/
 
+# Runtime artifacts from intake pipeline
+ops/intake-source-cache.json
+ops/intake-runs/
+ops/intake-snapshots/
+ops/unresolved/intake/
+
 ## Bibliography auxiliary files (bibtex/biblatex/biber):
 *.bbl
 *.bbl-SAVE-ERROR
