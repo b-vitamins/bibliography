@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import dataclasses
 import datetime as dt
+import os
 import tomllib
 from pathlib import Path
 
@@ -17,6 +18,9 @@ class VenuePolicy:
     allowed_domains: set[str]
 
     def matches(self, file_path: Path) -> bool:
+        # Allow explicit "match all files" venue policies for mode-specific configs.
+        if self.path_contains in {"", "*"}:
+            return True
         return self.path_contains in str(file_path)
 
 
@@ -56,6 +60,12 @@ class PipelineConfig:
     report_dir: Path
     triage_dir: Path
     source_cache_path: Path
+    openalex_mailto: str
+    openalex_api_key: str
+    arxiv_min_title_score: float
+    arxiv_min_confidence: float
+    arxiv_openalex_max_results: int
+    arxiv_max_results: int
     timeout_seconds: float
     max_retries: int
     max_validation_retries: int
@@ -141,11 +151,19 @@ def _default_config(path: Path) -> PipelineConfig:
         report_dir=Path("ops/enrichment-runs"),
         triage_dir=Path("ops/unresolved/enrichment"),
         source_cache_path=Path("ops/enrichment-source-cache.json"),
+        openalex_mailto="",
+        openalex_api_key=os.environ.get("OPENALEX_API_KEY", ""),
+        arxiv_min_title_score=0.92,
+        arxiv_min_confidence=0.90,
+        arxiv_openalex_max_results=15,
+        arxiv_max_results=12,
         timeout_seconds=20.0,
         max_retries=2,
         max_validation_retries=4,
         host_min_interval_seconds=1.0,
         host_min_interval_by_host={
+            "api.openalex.org": 0.1,
+            "export.arxiv.org": 3.0,
             "openreview.net": 0.5,
             "api.openreview.net": 1.1,
             "api2.openreview.net": 1.1,
@@ -234,6 +252,18 @@ def load_pipeline_config(path: Path | None = None) -> PipelineConfig:
             cfg.triage_dir = Path(defaults["triage_dir"].strip())
         if isinstance(defaults.get("source_cache_path"), str) and defaults["source_cache_path"].strip():
             cfg.source_cache_path = Path(defaults["source_cache_path"].strip())
+        if isinstance(defaults.get("openalex_mailto"), str):
+            cfg.openalex_mailto = defaults["openalex_mailto"].strip()
+        if isinstance(defaults.get("openalex_api_key"), str):
+            cfg.openalex_api_key = defaults["openalex_api_key"].strip()
+        if isinstance(defaults.get("arxiv_min_title_score"), (int, float)):
+            cfg.arxiv_min_title_score = max(0.0, min(1.0, float(defaults["arxiv_min_title_score"])))
+        if isinstance(defaults.get("arxiv_min_confidence"), (int, float)):
+            cfg.arxiv_min_confidence = max(0.0, min(1.0, float(defaults["arxiv_min_confidence"])))
+        if isinstance(defaults.get("arxiv_openalex_max_results"), int):
+            cfg.arxiv_openalex_max_results = max(1, min(100, int(defaults["arxiv_openalex_max_results"])))
+        if isinstance(defaults.get("arxiv_max_results"), int):
+            cfg.arxiv_max_results = max(1, min(100, int(defaults["arxiv_max_results"])))
         if isinstance(defaults.get("timeout_seconds"), (int, float)):
             cfg.timeout_seconds = float(defaults["timeout_seconds"])
         if isinstance(defaults.get("max_retries"), int) and defaults["max_retries"] >= 0:
@@ -295,12 +325,19 @@ def load_pipeline_config(path: Path | None = None) -> PipelineConfig:
             path_contains = raw.get("path_contains")
             adapter = raw.get("adapter")
             allowed_domains = _as_str_list(raw.get("allowed_domains"))
-            if not all(isinstance(x, str) and x.strip() for x in [name, path_contains, adapter]):
+            if not (
+                isinstance(name, str)
+                and name.strip()
+                and isinstance(adapter, str)
+                and adapter.strip()
+                and isinstance(path_contains, str)
+            ):
                 continue
+            normalized_path_contains = path_contains.strip()
             parsed_venues.append(
                 VenuePolicy(
                     name=name.strip(),
-                    path_contains=path_contains.strip(),
+                    path_contains=normalized_path_contains,
                     adapter=adapter.strip(),
                     allowed_domains={d.strip().lower() for d in allowed_domains if d.strip()},
                 )

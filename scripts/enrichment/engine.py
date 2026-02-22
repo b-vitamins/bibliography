@@ -48,7 +48,7 @@ class EnrichmentEngine:
             host_circuit_breaker_threshold=cfg.host_circuit_breaker_threshold,
             host_circuit_breaker_cooldown_seconds=cfg.host_circuit_breaker_cooldown_seconds,
         )
-        self.adapters = build_adapter_registry(self.http_client)
+        self.adapters = build_adapter_registry(self.http_client, cfg)
 
     def close(self) -> None:
         self.http_client.close()

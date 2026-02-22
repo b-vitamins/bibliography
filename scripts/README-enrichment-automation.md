@@ -16,6 +16,8 @@ The new pipeline is adapter-based and currently includes:
 
 - OpenReview adapter for ICLR-style entries.
 - Official NeurIPS proceedings adapter for NeurIPS-style entries.
+- PMLR adapter for ICML-style entries.
+- arXiv adapter for `eprint/archiveprefix/primaryclass/arxiv` field enrichment.
 
 Each run emits:
 
@@ -23,6 +25,10 @@ Each run emits:
 - Unresolved triage queue under `ops/unresolved/enrichment/`
 
 Use this pipeline for future enrichment work where source fidelity and repeatability are primary concerns.
+
+For arXiv-focused runs (without touching canonical `url/pdf` venue links), use:
+
+- `python3 scripts/enrich-pipeline.py run <file.bib> --config ops/enrichment-arxiv.toml --write`
 
 ## New Intake Pipeline (`scripts/intake`)
 

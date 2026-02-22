@@ -1,0 +1,46 @@
+[defaults]
+overwrite_existing = false
+min_abstract_words = 25
+allow_abstract_prefix_match = false
+report_dir = "ops/enrichment-runs"
+triage_dir = "ops/unresolved/enrichment"
+source_cache_path = "ops/enrichment-source-cache.json"
+exceptions_path = "ops/enrichment-exceptions.toml"
+timeout_seconds = 20
+max_retries = 2
+max_validation_retries = 4
+host_min_interval_seconds = 1.0
+host_min_interval_by_host = { "export.arxiv.org" = 3.0, "api.openalex.org" = 0.1 }
+host_circuit_breaker_threshold = 0
+host_circuit_breaker_cooldown_seconds = 0.0
+backoff_base_seconds = 1.0
+backoff_max_seconds = 30.0
+user_agent = "bibliography-enrichment-pipeline/1.0"
+checkpoint_dir = "ops/enrichment-checkpoints"
+checkpoint_flush_every = 20
+openalex_mailto = ""
+openalex_api_key = ""
+arxiv_min_title_score = 0.92
+arxiv_min_confidence = 0.90
+arxiv_openalex_max_results = 15
+arxiv_max_results = 12
+
+[targets]
+inproceedings = ["eprint", "archiveprefix", "primaryclass", "arxiv"]
+article = ["eprint", "archiveprefix", "primaryclass", "arxiv"]
+misc = ["eprint", "archiveprefix", "primaryclass", "arxiv"]
+unpublished = ["eprint", "archiveprefix", "primaryclass", "arxiv"]
+techreport = ["eprint", "archiveprefix", "primaryclass", "arxiv"]
+incollection = ["eprint", "archiveprefix", "primaryclass", "arxiv"]
+book = ["eprint", "archiveprefix", "primaryclass", "arxiv"]
+phdthesis = ["eprint", "archiveprefix", "primaryclass", "arxiv"]
+mastersthesis = ["eprint", "archiveprefix", "primaryclass", "arxiv"]
+
+[policy]
+protected_fields = ["author", "title", "booktitle", "year"]
+
+[[venues]]
+name = "arxiv"
+path_contains = ""
+adapter = "arxiv"
+allowed_domains = ["arxiv.org"]

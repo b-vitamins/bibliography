@@ -40,7 +40,7 @@ intake-run:
 	python3 scripts/bibops.py intake run $(TARGETS) --write --fail-on-gap
 
 enrich-arxiv-orals:
-	python3 scripts/enrich-arxiv.py collections/orals/*/*.bib
+	python3 scripts/bibops.py enrich run collections/orals/*/*.bib --enrichment-config ops/enrichment-arxiv.toml --write --fail-on-unresolved
 
 enrich-plan:
 	@[ -n "$(FILE)" ] || (echo "Usage: make enrich-plan FILE=conferences/iclr/2024.bib" && exit 1)

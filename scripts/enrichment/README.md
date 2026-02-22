@@ -20,6 +20,8 @@ Or through `bibops`:
 - `neurips_proceedings`: extracts canonical NeurIPS proceedings metadata, including
   a stale-URL recovery path via yearly proceedings index lookup (hash first, then title match).
 - `pmlr`: extracts canonical PMLR paper-page metadata for ICML entries.
+- `arxiv`: resolves arXiv identifiers and metadata fields (`eprint`, `archiveprefix`,
+  `primaryclass`, `arxiv`) using OpenAlex-first lookup with arXiv API fallback.
 
 ## Outputs
 
@@ -53,6 +55,8 @@ Run systematic workload and surface checks:
 ## Configuration
 
 Default config path: `ops/enrichment-pipeline.toml`
+
+Dedicated arXiv-mode config: `ops/enrichment-arxiv.toml`
 
 It controls:
 

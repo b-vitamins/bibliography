@@ -29,7 +29,7 @@ python3 scripts/bibops.py run-profile --profile ops/profiles/daily.toml
 python3 scripts/bibops.py --config ops/bibops-orals.toml run-profile --profile ops/profiles/orals.toml
 
 # Enrich oral subsets with arXiv IDs (keeps existing url/pdf untouched)
-python3 scripts/enrich-arxiv.py collections/orals/*/*.bib
+python3 scripts/bibops.py enrich run collections/orals/*/*.bib --enrichment-config ops/enrichment-arxiv.toml --write --fail-on-unresolved
 
 # Plan venue-grounded enrichment for a conference file
 python3 scripts/enrich-pipeline.py plan conferences/iclr/2024.bib
