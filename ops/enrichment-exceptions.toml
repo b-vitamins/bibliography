@@ -7,3 +7,13 @@ reason_code = "canonical_source_missing"
 evidence = "https://proceedings.mlr.press/v119/wei20a.html"
 review_after = "2027-01-01"
 note = "Canonical PMLR page returns 404 and no exact title match exists in volume index; keep as triage exception."
+
+[[exceptions]]
+entry_key = "DBLP:conf:icml:MajumdarSPTBS22"
+file_path_contains = "conferences/icml/2022.bib"
+adapter = "pmlr"
+action = "skip"
+reason_code = "canonical_source_missing"
+evidence = "https://proceedings.mlr.press/v162/majumdar22b.html"
+review_after = "2027-01-01"
+note = "Canonical DBLP-linked PMLR page returns 404 and no matching record exists in volume bibliography; keep as triage exception."
