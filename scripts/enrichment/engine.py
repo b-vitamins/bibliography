@@ -324,8 +324,14 @@ class EnrichmentEngine:
                 )
             )
 
+        only_short_abstract_rejections = bool(reasons) and all(
+            reason == "field abstract: source abstract too short" for reason in reasons
+        )
+
         if proposals:
             status = "planned_update"
+        elif only_short_abstract_rejections:
+            status = "skipped"
         elif reasons:
             status = "unresolved"
         else:
