@@ -16,9 +16,16 @@ def strip_latex(value: str) -> str:
     text = re.sub(r"\\\s+", r"\\", text)
     text = re.sub(r"\\\^\s*\{\s*\}", " ", text)
     text = re.sub(r"\b(?:lbrace|rbrace|brace)\b", " ", text, flags=re.I)
-    text = text.replace("{", "").replace("}", "")
     text = text.replace("\\&", "&")
+    # Preserve command arguments: "\texttt{LeadCache}" -> "LeadCache".
+    wrapped_cmd = re.compile(r"\\[a-zA-Z]+\*?(?:\[[^\]]*\])?\s*\{([^{}]*)\}")
+    while True:
+        updated = wrapped_cmd.sub(r" \1 ", text)
+        if updated == text:
+            break
+        text = updated
     text = re.sub(r"\\[a-zA-Z]+\*?(?:\[[^\]]*\])?", " ", text)
+    text = text.replace("{", " ").replace("}", " ")
     return text.replace("\\", " ")
 
 
