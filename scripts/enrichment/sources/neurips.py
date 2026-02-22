@@ -31,7 +31,7 @@ class NeuripsProceedingsAdapter:
         pdf = str(entry.get("pdf", "")).lower()
         booktitle = str(entry.get("booktitle", "")).lower()
         year_raw = str(entry.get("year", "")).strip()
-        year_ok = year_raw.isdigit() and int(year_raw) >= 2018
+        year_ok = year_raw.isdigit() and int(year_raw) >= 1987
         return (
             "proceedings.neurips.cc" in url
             or "neurips.cc" in url

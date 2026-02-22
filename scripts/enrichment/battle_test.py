@@ -159,9 +159,8 @@ def run_battle_tests(mode: str) -> dict[str, object]:
         if isinstance(files, list) and files:
             planned = int(files[0].get("planned_entries", -1))
             details["planned_entries"] = planned
-            # Expect very low planned volume for old years (adapter noise should be near-zero).
-            ok = planned <= 5
-    record(results, "plan_neurips_1987_low_noise", cmd, proc, dur, ok, details)
+            ok = planned > 0
+    record(results, "plan_neurips_1987_supported", cmd, proc, dur, ok, details)
 
     cmd = [
         "python3",
