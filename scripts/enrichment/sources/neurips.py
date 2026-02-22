@@ -42,6 +42,7 @@ class NeuripsProceedingsAdapter:
             or (
                 "advances in neural information processing systems" in booktitle and year_ok
             )
+            or ("neural information processing systems" in booktitle and year_ok)
         )
 
     @staticmethod
