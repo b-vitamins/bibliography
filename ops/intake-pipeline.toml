@@ -4,6 +4,7 @@ triage_dir = "ops/unresolved/intake"
 snapshot_dir = "ops/intake-snapshots"
 source_cache_path = "ops/intake-source-cache.json"
 global_key_globs = ["books/**/*.bib", "conferences/**/*.bib", "collections/**/*.bib", "references/**/*.bib", "courses/**/*.bib", "theses/**/*.bib", "presentations/**/*.bib"]
+inline_issue_limit = 200
 timeout_seconds = 20.0
 max_retries = 2
 max_validation_retries = 4

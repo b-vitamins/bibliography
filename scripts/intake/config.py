@@ -46,6 +46,7 @@ class IntakeConfig:
     triage_dir: Path
     snapshot_dir: Path
     global_key_globs: list[str]
+    inline_issue_limit: int
     source_cache_path: Path
     timeout_seconds: float
     max_retries: int
@@ -166,6 +167,7 @@ def _default_config(path: Path) -> IntakeConfig:
             "theses/**/*.bib",
             "presentations/**/*.bib",
         ],
+        inline_issue_limit=200,
         source_cache_path=Path("ops/intake-source-cache.json"),
         timeout_seconds=20.0,
         max_retries=2,
@@ -205,6 +207,8 @@ def load_intake_config(path: Path | None = None) -> IntakeConfig:
         global_key_globs = _as_str_list(defaults.get("global_key_globs"))
         if global_key_globs:
             cfg.global_key_globs = global_key_globs
+        if isinstance(defaults.get("inline_issue_limit"), int):
+            cfg.inline_issue_limit = max(0, int(defaults["inline_issue_limit"]))
         if isinstance(defaults.get("source_cache_path"), str) and defaults["source_cache_path"].strip():
             cfg.source_cache_path = Path(defaults["source_cache_path"].strip())
         if isinstance(defaults.get("timeout_seconds"), (int, float)):

@@ -122,6 +122,51 @@ class IntakeEngine:
     def _sort_records(records: list[IntakeRecord]) -> list[IntakeRecord]:
         return sorted(records, key=lambda r: (normalize_text(r.title), r.source_id))
 
+    def _append_source_gap_issues(
+        self,
+        *,
+        issues: list[IntakeIssue],
+        source_ids: set[str],
+        code: str,
+        message: str,
+        entry_keys: dict[str, str | None] | None = None,
+    ) -> None:
+        ordered = sorted(source_ids)
+        limit = max(0, int(self.cfg.inline_issue_limit))
+        reported = ordered
+        if limit > 0 and len(ordered) > limit:
+            reported = ordered[:limit]
+
+        for source_id in reported:
+            issues.append(
+                IntakeIssue(
+                    severity="warning",
+                    code=code,
+                    message=message,
+                    source_id=source_id,
+                    entry_key=entry_keys.get(source_id) if entry_keys else None,
+                )
+            )
+
+        omitted = len(ordered) - len(reported)
+        if omitted > 0:
+            issues.append(
+                IntakeIssue(
+                    severity="warning",
+                    code=f"{code}_truncated",
+                    message=(
+                        f"{omitted} additional {code} issues omitted from inline output; "
+                        "use report/snapshot artifacts for full reconciliation context"
+                    ),
+                    details={
+                        "total": str(len(ordered)),
+                        "reported": str(len(reported)),
+                        "omitted": str(omitted),
+                        "inline_issue_limit": str(limit),
+                    },
+                )
+            )
+
     @staticmethod
     def _extract_bib_value(body: str, field: str) -> str:
         match = re.search(rf"(?im)^\s*{re.escape(field)}\s*=\s*", body)
@@ -446,25 +491,23 @@ class IntakeEngine:
         post_write_verified = False
 
         if not write:
-            for source_id in sorted(missing_ids):
-                issues.append(
-                    IntakeIssue(
-                        severity="warning",
-                        code="missing_existing_entry",
-                        message="source paper missing from current file",
-                        source_id=source_id,
-                    )
-                )
-            for source_id in sorted(extra_ids):
-                issues.append(
-                    IntakeIssue(
-                        severity="warning",
-                        code="extra_existing_entry",
-                        message="entry exists locally but not in current source snapshot",
-                        source_id=source_id,
-                        entry_key=str(existing_by_source[source_id].get("ID", "")).strip() or None,
-                    )
-                )
+            self._append_source_gap_issues(
+                issues=issues,
+                source_ids=missing_ids,
+                code="missing_existing_entry",
+                message="source paper missing from current file",
+            )
+            extra_entry_keys = {
+                source_id: str(existing_by_source[source_id].get("ID", "")).strip() or None
+                for source_id in extra_ids
+            }
+            self._append_source_gap_issues(
+                issues=issues,
+                source_ids=extra_ids,
+                code="extra_existing_entry",
+                message="entry exists locally but not in current source snapshot",
+                entry_keys=extra_entry_keys,
+            )
         elif extra_ids:
             issues.append(
                 IntakeIssue(
