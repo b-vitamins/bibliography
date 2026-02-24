@@ -5,7 +5,7 @@ import hashlib
 import json
 import uuid
 from pathlib import Path
-from typing import Any
+from typing import Any, Callable
 from urllib.parse import urlparse
 
 from .bibtex_io import (
@@ -390,6 +390,7 @@ class EnrichmentEngine:
         overwrite_existing: bool | None = None,
         resume: bool = False,
         checkpoint_path: Path | None = None,
+        progress_callback: Callable[[dict[str, Any]], None] | None = None,
     ) -> tuple[FileRunSummary, list[EntryDecision]]:
         run_started_at = now_iso()
         overwrite = self.cfg.overwrite_existing if overwrite_existing is None else overwrite_existing
@@ -427,6 +428,34 @@ class EnrichmentEngine:
         )
 
         decisions: list[EntryDecision] = []
+        total_items = len(work_items)
+
+        def emit_progress(
+            item: WorkItem,
+            stage: str,
+            decision: EntryDecision | None = None,
+        ) -> None:
+            if progress_callback is None:
+                return
+            payload: dict[str, Any] = {
+                "timestamp": now_iso(),
+                "stage": stage,
+                "file_path": str(file_path),
+                "entry_key": item.entry_key,
+                "processed_entries": len(decisions),
+                "planned_entries": total_items,
+                "provider": item.provider,
+            }
+            if stage == "start":
+                payload["target_fields"] = list(item.target_fields)
+                payload["missing_fields"] = list(item.missing_fields)
+            if decision is not None:
+                payload["status"] = decision.status
+                payload["adapter"] = decision.adapter
+                payload["applied_fields"] = list(decision.applied_fields)
+                payload["skipped_fields"] = list(decision.skipped_fields)
+                payload["reason_count"] = len(decision.reasons)
+            progress_callback(payload)
 
         def mark_progress_for_checkpoint(
             key: str,
@@ -453,57 +482,58 @@ class EnrichmentEngine:
                 processed_since_flush = 0
 
         for item in work_items:
+            emit_progress(item, stage="start")
             entry = entry_map.get(item.entry_key)
             if entry is None:
-                decisions.append(
-                    EntryDecision(
-                        file_path=str(file_path),
-                        entry_key=item.entry_key,
-                        status="error",
-                        adapter=None,
-                        applied_fields=[],
-                        skipped_fields=[],
-                        reasons=["entry missing during run"],
-                        proposals=[],
-                    )
+                decision = EntryDecision(
+                    file_path=str(file_path),
+                    entry_key=item.entry_key,
+                    status="error",
+                    adapter=None,
+                    applied_fields=[],
+                    skipped_fields=[],
+                    reasons=["entry missing during run"],
+                    proposals=[],
                 )
+                decisions.append(decision)
+                emit_progress(item, stage="decision", decision=decision)
                 mark_progress_for_checkpoint(item.entry_key)
                 continue
 
             adapter = self._adapter_for_item(file_path, entry, item.provider)
             if adapter is None:
-                decisions.append(
-                    EntryDecision(
-                        file_path=str(file_path),
-                        entry_key=item.entry_key,
-                        status="unresolved",
-                        adapter=None,
-                        applied_fields=[],
-                        skipped_fields=[],
-                        reasons=["no compatible source adapter"],
-                        proposals=[],
-                    )
+                decision = EntryDecision(
+                    file_path=str(file_path),
+                    entry_key=item.entry_key,
+                    status="unresolved",
+                    adapter=None,
+                    applied_fields=[],
+                    skipped_fields=[],
+                    reasons=["no compatible source adapter"],
+                    proposals=[],
                 )
+                decisions.append(decision)
+                emit_progress(item, stage="decision", decision=decision)
                 mark_progress_for_checkpoint(item.entry_key)
                 continue
 
             exception_rule = self.cfg.exception_for(file_path, item.entry_key, adapter.name)
             if exception_rule is not None:
                 if exception_rule.is_expired():
-                    decisions.append(
-                        EntryDecision(
-                            file_path=str(file_path),
-                            entry_key=item.entry_key,
-                            status="unresolved",
-                            adapter=adapter.name,
-                            applied_fields=[],
-                            skipped_fields=item.target_fields,
-                            reasons=[
-                                f"exception rule expired: {exception_rule.reason_code}",
-                            ],
-                            proposals=[],
-                        )
+                    decision = EntryDecision(
+                        file_path=str(file_path),
+                        entry_key=item.entry_key,
+                        status="unresolved",
+                        adapter=adapter.name,
+                        applied_fields=[],
+                        skipped_fields=item.target_fields,
+                        reasons=[
+                            f"exception rule expired: {exception_rule.reason_code}",
+                        ],
+                        proposals=[],
                     )
+                    decisions.append(decision)
+                    emit_progress(item, stage="decision", decision=decision)
                     mark_progress_for_checkpoint(item.entry_key)
                     continue
                 if exception_rule.action == "skip":
@@ -515,18 +545,18 @@ class EnrichmentEngine:
                         reason_parts.append(f"review_after: {exception_rule.review_after.isoformat()}")
                     if exception_rule.note:
                         reason_parts.append(f"note: {exception_rule.note}")
-                    decisions.append(
-                        EntryDecision(
-                            file_path=str(file_path),
-                            entry_key=item.entry_key,
-                            status="skipped",
-                            adapter=adapter.name,
-                            applied_fields=[],
-                            skipped_fields=item.target_fields,
-                            reasons=reason_parts,
-                            proposals=[],
-                        )
+                    decision = EntryDecision(
+                        file_path=str(file_path),
+                        entry_key=item.entry_key,
+                        status="skipped",
+                        adapter=adapter.name,
+                        applied_fields=[],
+                        skipped_fields=item.target_fields,
+                        reasons=reason_parts,
+                        proposals=[],
                     )
+                    decisions.append(decision)
+                    emit_progress(item, stage="decision", decision=decision)
                     mark_progress_for_checkpoint(item.entry_key)
                     continue
 
@@ -537,32 +567,32 @@ class EnrichmentEngine:
                 raw_url = str(entry.get("url", "")).strip()
                 raw_pdf = str(entry.get("pdf", "")).strip()
                 if adapter.name == "pmlr" and not raw_url and not raw_pdf:
-                    decisions.append(
-                        EntryDecision(
-                            file_path=str(file_path),
-                            entry_key=item.entry_key,
-                            status="skipped",
-                            adapter=adapter.name,
-                            applied_fields=[],
-                            skipped_fields=item.target_fields,
-                            reasons=["no source locator present"],
-                            proposals=[],
-                        )
-                    )
-                    mark_progress_for_checkpoint(item.entry_key)
-                    continue
-                decisions.append(
-                    EntryDecision(
+                    decision = EntryDecision(
                         file_path=str(file_path),
                         entry_key=item.entry_key,
-                        status="unresolved",
+                        status="skipped",
                         adapter=adapter.name,
                         applied_fields=[],
-                        skipped_fields=[],
-                        reasons=["no source record returned"],
+                        skipped_fields=item.target_fields,
+                        reasons=["no source locator present"],
                         proposals=[],
                     )
+                    decisions.append(decision)
+                    emit_progress(item, stage="decision", decision=decision)
+                    mark_progress_for_checkpoint(item.entry_key)
+                    continue
+                decision = EntryDecision(
+                    file_path=str(file_path),
+                    entry_key=item.entry_key,
+                    status="unresolved",
+                    adapter=adapter.name,
+                    applied_fields=[],
+                    skipped_fields=[],
+                    reasons=["no source record returned"],
+                    proposals=[],
                 )
+                decisions.append(decision)
+                emit_progress(item, stage="decision", decision=decision)
                 mark_progress_for_checkpoint(item.entry_key)
                 continue
 
@@ -585,6 +615,7 @@ class EnrichmentEngine:
                 mark_progress_for_checkpoint(item.entry_key)
 
             decisions.append(decision)
+            emit_progress(item, stage="decision", decision=decision)
 
         if resume and checkpoint_path_used is not None and processed_since_flush > 0:
             self._flush_checkpoint(

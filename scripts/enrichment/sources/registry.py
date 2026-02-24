@@ -18,6 +18,7 @@ def build_adapter_registry(http_client: CachedHttpClient, cfg: PipelineConfig) -
             http_client=http_client,
             min_title_score=cfg.arxiv_min_title_score,
             min_confidence=cfg.arxiv_min_confidence,
+            enable_openalex=cfg.arxiv_enable_openalex,
             openalex_max_results=cfg.arxiv_openalex_max_results,
             arxiv_max_results=cfg.arxiv_max_results,
             openalex_mailto=cfg.openalex_mailto,

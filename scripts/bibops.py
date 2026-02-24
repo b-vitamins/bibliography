@@ -1420,6 +1420,10 @@ def command_enrich_pipeline(args: argparse.Namespace) -> int:
         cmd.extend(["--checkpoint-path", args.checkpoint_path])
     if args.fail_on_unresolved:
         cmd.append("--fail-on-unresolved")
+    if args.verbose_entry_log:
+        cmd.append("--verbose-entry-log")
+    if args.progress_log:
+        cmd.extend(["--progress-log", args.progress_log])
     if args.json:
         cmd.append("--json")
     proc = subprocess.run(cmd, check=False)
@@ -1602,6 +1606,8 @@ def command_profile(cfg: OpsConfig, profile_path: Path) -> int:
                 resume=bool(step_payload.get("resume", False)),
                 checkpoint_path=checkpoint_path,
                 fail_on_unresolved=bool(step_payload.get("fail_on_unresolved", False)),
+                verbose_entry_log=bool(step_payload.get("verbose_entry_log", False)),
+                progress_log=str(step_payload.get("progress_log", "")).strip() or None,
                 json=bool(step_payload.get("json", False)),
             )
             rc = command_enrich_pipeline(enrich_args)
@@ -1668,6 +1674,15 @@ def build_parser() -> argparse.ArgumentParser:
         "--fail-on-unresolved",
         action="store_true",
         help="Return non-zero when unresolved decisions exist (run mode only)",
+    )
+    enrich.add_argument(
+        "--verbose-entry-log",
+        action="store_true",
+        help="Print per-entry progress lines while running",
+    )
+    enrich.add_argument(
+        "--progress-log",
+        help="Optional JSONL path for per-entry progress events",
     )
     enrich.add_argument("--json", action="store_true", help="Emit JSON output")
 

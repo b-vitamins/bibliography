@@ -32,6 +32,7 @@ ops/doi-enrichment-report.jsonl
 ops/enrichment-source-cache.json
 ops/enrichment-runs/
 ops/unresolved/enrichment/
+ops/enrichment-checkpoints/
 
 # Runtime artifacts from intake pipeline
 ops/intake-source-cache.json

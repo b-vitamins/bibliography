@@ -109,7 +109,9 @@ class CachedHttpClient:
             backoff_max=5,
             status_forcelist=sorted(_RETRYABLE_STATUS_CODES),
             allowed_methods=["GET"],
-            respect_retry_after_header=True,
+            # Bound retry pacing in our explicit retry loop; do not let transport-layer
+            # Retry-After directives induce multi-hour blocking sleeps.
+            respect_retry_after_header=False,
             raise_on_status=False,
         )
         adapter = HTTPAdapter(max_retries=retry)

@@ -22,6 +22,7 @@ openalex_mailto = ""
 openalex_api_key = ""
 arxiv_min_title_score = 0.92
 arxiv_min_confidence = 0.90
+arxiv_enable_openalex = false
 arxiv_openalex_max_results = 15
 arxiv_max_results = 12
 

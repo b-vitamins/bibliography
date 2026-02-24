@@ -8,6 +8,8 @@ This package implements a modular metadata enrichment pipeline with venue-specif
 - Run dry mode: `python3 scripts/enrich-pipeline.py run <file.bib>`
 - Apply approved updates: `python3 scripts/enrich-pipeline.py run <file.bib> --write`
 - Resume interrupted run state: `python3 scripts/enrich-pipeline.py run <file.bib> --resume`
+- Live per-entry logs: `python3 scripts/enrich-pipeline.py run <file.bib> --verbose-entry-log`
+- Persist per-entry JSONL progress: `python3 scripts/enrich-pipeline.py run <file.bib> --progress-log /tmp/enrich-progress.jsonl`
 
 Or through `bibops`:
 
@@ -21,7 +23,7 @@ Or through `bibops`:
   a stale-URL recovery path via yearly proceedings index lookup (hash first, then title match).
 - `pmlr`: extracts canonical PMLR paper-page metadata for ICML entries.
 - `arxiv`: resolves arXiv identifiers and metadata fields (`eprint`, `archiveprefix`,
-  `primaryclass`, `arxiv`) using OpenAlex-first lookup with arXiv API fallback.
+  `primaryclass`, `arxiv`) using arXiv API lookup, with optional OpenAlex augmentation.
 - `semanticscholar`: enriches BibTeX-standard metadata from Semantic Scholar Graph API
   (high-confidence author/doi/abstract/note/booktitle-journal/year/keywords repairs).
 

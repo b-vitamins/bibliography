@@ -54,6 +54,7 @@ class ArxivAdapter:
         http_client: CachedHttpClient,
         min_title_score: float = 0.92,
         min_confidence: float = 0.90,
+        enable_openalex: bool = True,
         openalex_max_results: int = 15,
         arxiv_max_results: int = 12,
         openalex_mailto: str = "",
@@ -62,6 +63,7 @@ class ArxivAdapter:
         self.http_client = http_client
         self.min_title_score = max(0.0, min(1.0, float(min_title_score)))
         self.min_confidence = max(0.0, min(1.0, float(min_confidence)))
+        self.enable_openalex = bool(enable_openalex)
         self.openalex_max_results = max(1, min(100, int(openalex_max_results)))
         self.arxiv_max_results = max(1, min(100, int(arxiv_max_results)))
         self.openalex_mailto = openalex_mailto.strip()
@@ -407,7 +409,9 @@ class ArxivAdapter:
         if not title:
             return None
 
-        openalex_candidates = self._query_openalex(title)
+        openalex_candidates: list[_Candidate] = []
+        if self.enable_openalex:
+            openalex_candidates = self._query_openalex(title)
         match = self._pick_best_match(context.entry, openalex_candidates)
         if match is None:
             arxiv_candidates = self._query_arxiv(

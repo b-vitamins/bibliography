@@ -49,6 +49,15 @@ def build_parser() -> argparse.ArgumentParser:
     )
     run.add_argument("--json", action="store_true", help="Emit JSON")
     run.add_argument(
+        "--verbose-entry-log",
+        action="store_true",
+        help="Print per-entry progress lines while running",
+    )
+    run.add_argument(
+        "--progress-log",
+        help="Optional JSONL path for per-entry progress events",
+    )
+    run.add_argument(
         "--fail-on-unresolved",
         action="store_true",
         help="Return non-zero when unresolved/error decisions exist",
@@ -110,7 +119,43 @@ def cmd_run(args: argparse.Namespace) -> int:
         return 1
 
     engine = EnrichmentEngine(cfg)
+    progress_fp = None
     try:
+        if args.progress_log:
+            progress_path = Path(args.progress_log)
+            progress_path.parent.mkdir(parents=True, exist_ok=True)
+            progress_fp = progress_path.open("a", encoding="utf-8")
+
+        def progress_logger(payload: dict[str, object]) -> None:
+            if progress_fp is not None:
+                progress_fp.write(json.dumps(payload, sort_keys=True) + "\n")
+                progress_fp.flush()
+            if not args.verbose_entry_log:
+                return
+            stage = str(payload.get("stage", ""))
+            file_path = str(payload.get("file_path", ""))
+            entry_key = str(payload.get("entry_key", ""))
+            processed = int(payload.get("processed_entries", 0))
+            planned = int(payload.get("planned_entries", 0))
+            if stage == "start":
+                print(
+                    f"[progress] {file_path}: {processed + 1}/{planned} start key={entry_key}",
+                    flush=True,
+                )
+                return
+            status = str(payload.get("status", ""))
+            adapter = str(payload.get("adapter", ""))
+            applied_fields = payload.get("applied_fields") or []
+            if isinstance(applied_fields, list):
+                applied = ",".join(str(field) for field in applied_fields if str(field).strip())
+            else:
+                applied = ""
+            applied_part = f" applied={applied}" if applied else ""
+            print(
+                f"[progress] {file_path}: {processed}/{planned} {status} key={entry_key} adapter={adapter}{applied_part}",
+                flush=True,
+            )
+
         entry_keys = set(args.entry_key) if args.entry_key else None
         summaries = []
         unresolved_total = 0
@@ -133,6 +178,7 @@ def cmd_run(args: argparse.Namespace) -> int:
                 overwrite_existing=args.overwrite,
                 resume=args.resume,
                 checkpoint_path=checkpoint_path,
+                progress_callback=progress_logger,
             )
             summaries.append(dataclasses.asdict(summary))
             unresolved_total += summary.unresolved_entries
@@ -160,6 +206,8 @@ def cmd_run(args: argparse.Namespace) -> int:
             return 2
         return 0
     finally:
+        if progress_fp is not None:
+            progress_fp.close()
         engine.close()
 
 

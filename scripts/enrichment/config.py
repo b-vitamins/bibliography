@@ -69,6 +69,7 @@ class PipelineConfig:
     semantic_scholar_min_confidence: float
     arxiv_min_title_score: float
     arxiv_min_confidence: float
+    arxiv_enable_openalex: bool
     arxiv_openalex_max_results: int
     arxiv_max_results: int
     timeout_seconds: float
@@ -199,6 +200,7 @@ def _default_config(path: Path) -> PipelineConfig:
         semantic_scholar_min_confidence=0.91,
         arxiv_min_title_score=0.92,
         arxiv_min_confidence=0.90,
+        arxiv_enable_openalex=True,
         arxiv_openalex_max_results=15,
         arxiv_max_results=12,
         timeout_seconds=20.0,
@@ -321,6 +323,8 @@ def load_pipeline_config(path: Path | None = None) -> PipelineConfig:
             cfg.arxiv_min_title_score = max(0.0, min(1.0, float(defaults["arxiv_min_title_score"])))
         if isinstance(defaults.get("arxiv_min_confidence"), (int, float)):
             cfg.arxiv_min_confidence = max(0.0, min(1.0, float(defaults["arxiv_min_confidence"])))
+        if isinstance(defaults.get("arxiv_enable_openalex"), bool):
+            cfg.arxiv_enable_openalex = defaults["arxiv_enable_openalex"]
         if isinstance(defaults.get("arxiv_openalex_max_results"), int):
             cfg.arxiv_openalex_max_results = max(1, min(100, int(defaults["arxiv_openalex_max_results"])))
         if isinstance(defaults.get("arxiv_max_results"), int):
