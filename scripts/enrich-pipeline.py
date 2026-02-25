@@ -151,8 +151,10 @@ def cmd_run(args: argparse.Namespace) -> int:
             else:
                 applied = ""
             applied_part = f" applied={applied}" if applied else ""
+            reason = str(payload.get("first_reason", "")).strip()
+            reason_part = f" reason={reason}" if reason else ""
             print(
-                f"[progress] {file_path}: {processed}/{planned} {status} key={entry_key} adapter={adapter}{applied_part}",
+                f"[progress] {file_path}: {processed}/{planned} {status} key={entry_key} adapter={adapter}{applied_part}{reason_part}",
                 flush=True,
             )
 
@@ -202,7 +204,9 @@ def cmd_run(args: argparse.Namespace) -> int:
                 if summary.get("write_error"):
                     print(f"  write_error: {summary['write_error']}")
 
-        if args.fail_on_unresolved and (unresolved_total > 0 or error_total > 0):
+        if error_total > 0:
+            return 3
+        if args.fail_on_unresolved and unresolved_total > 0:
             return 2
         return 0
     finally:

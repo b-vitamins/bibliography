@@ -14,7 +14,7 @@ from xml.etree import ElementTree as ET
 from ..http_client import CachedHttpClient
 from ..models import SourceRecord, now_iso
 from ..normalization import normalize_text, normalize_spaces, strip_latex
-from .base import AdapterContext
+from .base import AdapterContext, TransientSourceError
 
 OPENALEX_WORKS_URL = "https://api.openalex.org/works"
 ARXIV_API_URL = "https://export.arxiv.org/api/query"
@@ -22,6 +22,11 @@ ARXIV_API_URL = "https://export.arxiv.org/api/query"
 _MAX_TITLE_QUERY_CHARS = 256
 _OPENALEX_REQUIRED_MARKERS = ('"results"',)
 _ARXIV_REQUIRED_MARKERS = ("<feed", "<entry")
+_RATE_LIMIT_BODY_MARKERS = (
+    "too many requests",
+    "surpassing the limit of",
+    "please try again in",
+)
 
 
 @dataclasses.dataclass
@@ -286,6 +291,13 @@ class ArxivAdapter:
             return None
         return top
 
+    @staticmethod
+    def _looks_rate_limited(status_code: int, body: str) -> bool:
+        if status_code == 429:
+            return True
+        lowered = (body or "").lower()
+        return any(marker in lowered for marker in _RATE_LIMIT_BODY_MARKERS)
+
     def _query_openalex(self, title: str) -> list[_Candidate]:
         norm_key = hashlib.sha1(self._normalize_title(title).encode("utf-8")).hexdigest()
         cached = self._openalex_query_cache.get(norm_key)
@@ -305,6 +317,16 @@ class ArxivAdapter:
             url,
             require_any=_OPENALEX_REQUIRED_MARKERS,
         )
+        if self._looks_rate_limited(response.status_code, response.text):
+            raise TransientSourceError(
+                adapter=self.name,
+                message="openalex rate limited while resolving arxiv id",
+            )
+        if response.status_code >= 500 or response.status_code in {408, 425}:
+            raise TransientSourceError(
+                adapter=self.name,
+                message=f"openalex transient http status {response.status_code}",
+            )
         if response.status_code != 200:
             self._openalex_query_cache[norm_key] = []
             return []
@@ -396,9 +418,24 @@ class ArxivAdapter:
             url,
             require_any=_ARXIV_REQUIRED_MARKERS,
         )
+        if self._looks_rate_limited(response.status_code, response.text):
+            raise TransientSourceError(
+                adapter=self.name,
+                message="arxiv rate limited",
+            )
+        if response.status_code >= 500 or response.status_code in {408, 425}:
+            raise TransientSourceError(
+                adapter=self.name,
+                message=f"arxiv transient http status {response.status_code}",
+            )
         if response.status_code != 200:
             self._arxiv_query_cache[cache_key] = []
             return []
+        if "<feed" not in response.text and "<entry" not in response.text:
+            raise TransientSourceError(
+                adapter=self.name,
+                message="arxiv response missing expected feed markers",
+            )
 
         candidates = self._parse_arxiv_feed(response.text)
         self._arxiv_query_cache[cache_key] = candidates

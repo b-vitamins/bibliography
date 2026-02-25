@@ -391,7 +391,13 @@ class CachedHttpClient:
         initial_breaker_wait = self._breaker_remaining_seconds(host)
         if initial_breaker_wait > 0.0:
             self._stats["circuit_breaker_short_circuits"] = int(self._stats["circuit_breaker_short_circuits"]) + 1
-            time.sleep(initial_breaker_wait)
+            return HttpResponse(
+                url=url,
+                status_code=429,
+                text=f"circuit breaker open for {initial_breaker_wait:.1f}s",
+                fetched_at=now_iso(),
+                from_cache=False,
+            )
 
         for attempt in range(1, max_attempts + 1):
             breaker_wait = self._breaker_remaining_seconds(host)
@@ -399,7 +405,13 @@ class CachedHttpClient:
                 self._stats["circuit_breaker_short_circuits"] = int(
                     self._stats["circuit_breaker_short_circuits"]
                 ) + 1
-                time.sleep(breaker_wait)
+                return HttpResponse(
+                    url=url,
+                    status_code=429,
+                    text=f"circuit breaker open for {breaker_wait:.1f}s",
+                    fetched_at=now_iso(),
+                    from_cache=False,
+                )
             retry_after_header: str | None = None
             try:
                 self._respect_host_interval(url)
@@ -454,6 +466,18 @@ class CachedHttpClient:
 
             if self._is_poisoned_response(last_status, last_text):
                 self._stats["poison_responses_discarded"] = int(self._stats["poison_responses_discarded"]) + 1
+
+            if is_rate_limit:
+                self._record_host_transient_failure(host)
+                delay = self._retry_delay_seconds(retry_after_header, last_text, attempt)
+                self._set_host_cooldown(url, delay)
+                return HttpResponse(
+                    url=url,
+                    status_code=last_status,
+                    text=last_text,
+                    fetched_at=last_fetched_at,
+                    from_cache=False,
+                )
 
             if (
                 last_status in _RETRYABLE_STATUS_CODES

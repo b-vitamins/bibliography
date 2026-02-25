@@ -14,6 +14,15 @@ class AdapterContext:
     entry: dict[str, Any]
 
 
+class TransientSourceError(RuntimeError):
+    """Retryable source error (rate limiting, transient upstream failure)."""
+
+    def __init__(self, adapter: str, message: str) -> None:
+        super().__init__(message)
+        self.adapter = adapter
+        self.message = message
+
+
 class SourceAdapter(Protocol):
     name: str
 

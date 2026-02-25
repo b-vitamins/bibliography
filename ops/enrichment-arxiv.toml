@@ -10,9 +10,9 @@ timeout_seconds = 20
 max_retries = 2
 max_validation_retries = 4
 host_min_interval_seconds = 1.0
-host_min_interval_by_host = { "export.arxiv.org" = 3.0, "api.openalex.org" = 0.1 }
-host_circuit_breaker_threshold = 0
-host_circuit_breaker_cooldown_seconds = 0.0
+host_min_interval_by_host = { "export.arxiv.org" = 5.0, "api.openalex.org" = 0.1 }
+host_circuit_breaker_threshold = 3
+host_circuit_breaker_cooldown_seconds = 180.0
 backoff_base_seconds = 1.0
 backoff_max_seconds = 30.0
 user_agent = "bibliography-enrichment-pipeline/1.0"
