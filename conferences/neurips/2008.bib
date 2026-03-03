@@ -175,7 +175,7 @@
   volume = {21},
   url = {https://proceedings.neurips.cc/paper_files/paper/2008/hash/0777d5c17d4066b82ab86dff8a46af6f-Abstract.html},
   pdf = {https://proceedings.neurips.cc/paper_files/paper/2008/file/0777d5c17d4066b82ab86dff8a46af6f-Paper.pdf},
-  abstract = {We provide a new analysis of an efficient margin-based algorithm for selective sampling in classification problems. Using the so-called Tsybakov low noise condition to parametrize the instance distribution, we show bounds on the convergence rate to the Bayes risk of both the fully supervised and the selective sampling versions of the basic algorithm. Our analysis reveals that, excluding logarithmic factors, the average risk of the selective sampler converges to the Bayes risk at rate $n^{-(1+\alpha)/(3+\alpha)}$, with labels being sampled at the same rate (here $n$ denotes the sample size, and $\alpha > 0$ is the exponent in the low noise condition). We compare this convergence rate to the rate $n^{-(1+\alpha)/(2+\alpha)}$ achieved by the fully supervised algorithm using all labels. Experiments on textual data reveal that simple variants of the proposed selective sampler perform much better than popular and similarly efficient competitors.},
+  abstract = {We provide a new analysis of an efficient margin-based algorithm for selective sampling in classification problems. Using the so-called Tsybakov low noise condition to parametrize the instance distribution, we show bounds on the convergence rate to the Bayes risk of both the fully supervised and the selective sampling versions of the basic algorithm. Our analysis reveals that, excluding logarithmic factors, the average risk of the selective sampler converges to the Bayes risk at rate $n^-(1+α)/(3+α)$, with labels being sampled at the same rate (here $n$ denotes the sample size, and $α > 0$ is the exponent in the low noise condition). We compare this convergence rate to the rate $n^-(1+α)/(2+α)$ achieved by the fully supervised algorithm using all labels. Experiments on textual data reveal that simple variants of the proposed selective sampler perform much better than popular and similarly efficient competitors.},
   file = {:/home/b/data/neurips/pdfs/ywm7g2usbkdkaenikizkx3xeu6wdhhannfrj6vke4earfj2rubta.pdf:pdf},
   editor = {D. Koller and D. Schuurmans and Y. Bengio and L. Bottou}
 }
@@ -371,7 +371,7 @@
   volume = {21},
   url = {https://proceedings.neurips.cc/paper_files/paper/2008/hash/0e65972dce68dad4d52d063967f0a705-Abstract.html},
   pdf = {https://proceedings.neurips.cc/paper_files/paper/2008/file/0e65972dce68dad4d52d063967f0a705-Paper.pdf},
-  abstract = {This paper presents a theoretical analysis of the problem of adaptation with multiple sources. For each source domain, the distribution over the input points as well as a hypothesis with error at most \epsilon are given. The problem consists of combining these hypotheses to derive a hypothesis with small error with respect to the target domain. We present several theoretical results relating to this problem. In particular, we prove that standard convex combinations of the source hypotheses may in fact perform very poorly and that, instead, combinations weighted by the source distributions benefit from favorable theoretical guarantees. Our main result shows that, remarkably, for any fixed target function, there exists a distribution weighted combining rule that has a loss of at most \epsilon with respect to any target mixture of the source distributions. We further generalize the setting from a single target function to multiple consistent target functions and show the existence of a combining rule with error at most 3\epsilon. Finally, we report empirical results for a multiple source adaptation problem with a real-world dataset.},
+  abstract = {This paper presents a theoretical analysis of the problem of adaptation with multiple sources. For each source domain, the distribution over the input points as well as a hypothesis with error at most ε are given. The problem consists of combining these hypotheses to derive a hypothesis with small error with respect to the target domain. We present several theoretical results relating to this problem. In particular, we prove that standard convex combinations of the source hypotheses may in fact perform very poorly and that, instead, combinations weighted by the source distributions benefit from favorable theoretical guarantees. Our main result shows that, remarkably, for any fixed target function, there exists a distribution weighted combining rule that has a loss of at most ε with respect to any target mixture of the source distributions. We further generalize the setting from a single target function to multiple consistent target functions and show the existence of a combining rule with error at most 3ε. Finally, we report empirical results for a multiple source adaptation problem with a real-world dataset.},
   file = {:/home/b/data/neurips/pdfs/ijziosdhnrnh3vmymdmoles5hzvnjuytgfnbei4ocwaid3pitrga.pdf:pdf},
   editor = {D. Koller and D. Schuurmans and Y. Bengio and L. Bottou}
 }
@@ -625,7 +625,11 @@
   pdf = {https://proceedings.neurips.cc/paper_files/paper/2008/file/24681928425f5a9133504de568f5f6df-Paper.pdf},
   abstract = {We consider robust least-squares regression with feature-wise disturbance. We show that this formulation leads to tractable convex optimization problems, and we exhibit a particular uncertainty set for which the robust problem is equivalent to $\ell_1$ regularized regression (Lasso). This provides an interpretation of Lasso from a robust optimization perspective. We generalize this robust formulation to consider more general uncertainty sets, which all lead to tractable convex optimization problems. Therefore, we provide a new methodology for designing regression algorithms, which generalize known formulations. The advantage is that robustness to disturbance is a physical property that can be exploited: in addition to obtaining new formulations, we use it directly to show sparsity properties of Lasso, as well as to prove a general consistency result for robust regression problems, including Lasso, from a unified robustness perspective.},
   file = {:/home/b/data/neurips/pdfs/yht5ezuq55es3xeh6dvb4uplanehgritt4mneb6noh6fslrewdka.pdf:pdf},
-  editor = {D. Koller and D. Schuurmans and Y. Bengio and L. Bottou}
+  archiveprefix = {arXiv},
+  arxiv = {https://arxiv.org/abs/0811.1790},
+  editor = {D. Koller and D. Schuurmans and Y. Bengio and L. Bottou},
+  eprint = {0811.1790},
+  primaryclass = {cs.IT}
 }
 
 @inproceedings{guo2008supervised,
@@ -779,7 +783,11 @@
   pdf = {https://proceedings.neurips.cc/paper_files/paper/2008/file/2bf283c05b601f21364d052ca0ec798d-Paper.pdf},
   abstract = {We propose a nonparametric Bayesian factor regression model that accounts for uncertainty in the number of factors, and the relationship between factors. To accomplish this, we propose a sparse variant of the Indian Buffet Process and couple this with a hierarchical model over factors, based on Kingman's coalescent. We apply this model to two problems (factor analysis and factor regression) in gene-expression data analysis.},
   file = {:/home/b/data/neurips/pdfs/5cakbwj7sui3bbkxrbhdlubqb7eyfioug2vpk6ufqqevnpyrf5tq.pdf:pdf},
-  editor = {D. Koller and D. Schuurmans and Y. Bengio and L. Bottou}
+  archiveprefix = {arXiv},
+  arxiv = {https://arxiv.org/abs/0908.0570},
+  editor = {D. Koller and D. Schuurmans and Y. Bengio and L. Bottou},
+  eprint = {0908.0570},
+  primaryclass = {cs.LG}
 }
 
 @inproceedings{haefner2008improved,
@@ -973,7 +981,7 @@
   volume = {21},
   url = {https://proceedings.neurips.cc/paper_files/paper/2008/hash/3416a75f4cea9109507cacd8e2f2aefc-Abstract.html},
   pdf = {https://proceedings.neurips.cc/paper_files/paper/2008/file/3416a75f4cea9109507cacd8e2f2aefc-Paper.pdf},
-  abstract = {Detecting underlying clusters from large-scale data plays a central role in machine learning research. In this paper, we attempt to tackle clustering problems for complex data of multiple distributions and large multi-scales. To this end, we develop an algorithm named Zeta $l$-links, or Zell which consists of two parts: Zeta merging with a similarity graph and an initial set of small clusters derived from local $l$-links of the graph. More specifically, we propose to structurize a cluster using cycles in the associated subgraph. A mathematical tool, Zeta function of a graph, is introduced for the integration of all cycles, leading to a structural descriptor of the cluster in determinantal form. The popularity character of the cluster is conceptualized as the global fusion of variations of the structural descriptor by means of the leave-one-out strategy in the cluster. Zeta merging proceeds, in the agglomerative fashion, according to the maximum incremental popularity among all pairwise clusters. Experiments on toy data, real imagery data, and real sensory data show the promising performance of Zell. The $98.1\%$ accuracy, in the sense of the normalized mutual information, is obtained on the FRGC face data of 16028 samples and 466 facial clusters. The MATLAB codes of Zell will be made publicly available for peer evaluation.},
+  abstract = {Detecting underlying clusters from large-scale data plays a central role in machine learning research. In this paper, we attempt to tackle clustering problems for complex data of multiple distributions and large multi-scales. To this end, we develop an algorithm named Zeta $l$-links, or Zell which consists of two parts: Zeta merging with a similarity graph and an initial set of small clusters derived from local $l$-links of the graph. More specifically, we propose to structurize a cluster using cycles in the associated subgraph. A mathematical tool, Zeta function of a graph, is introduced for the integration of all cycles, leading to a structural descriptor of the cluster in determinantal form. The popularity character of the cluster is conceptualized as the global fusion of variations of the structural descriptor by means of the leave-one-out strategy in the cluster. Zeta merging proceeds, in the agglomerative fashion, according to the maximum incremental popularity among all pairwise clusters. Experiments on toy data, real imagery data, and real sensory data show the promising performance of Zell. The $98.1%$ accuracy, in the sense of the normalized mutual information, is obtained on the FRGC face data of 16028 samples and 466 facial clusters. The MATLAB codes of Zell will be made publicly available for peer evaluation.},
   file = {:/home/b/data/neurips/pdfs/wce6kusjnazyucl6rob2boqx73tyoyz4rvcgmtp3flq7g2er25kq.pdf:pdf},
   editor = {D. Koller and D. Schuurmans and Y. Bengio and L. Bottou}
 }
@@ -1127,7 +1135,7 @@
   volume = {21},
   url = {https://proceedings.neurips.cc/paper_files/paper/2008/hash/500e75a036dc2d7d2fec5da1b71d36cc-Abstract.html},
   pdf = {https://proceedings.neurips.cc/paper_files/paper/2008/file/500e75a036dc2d7d2fec5da1b71d36cc-Paper.pdf},
-  abstract = {We propose a multiplicative approximation scheme (MAS) for inference problems in graphical models, which can be applied to various inference algorithms. The method uses $\epsilon$-decompositions which decompose functions used throughout the inference procedure into functions over smaller sets of variables with a known error $\epsilon$. MAS translates these local approximations into bounds on the accuracy of the results. We show how to optimize $\epsilon$-decompositions and provide a fast closed-form solution for an $L_2$ approximation. Applying MAS to the Variable Elimination inference algorithm, we introduce an algorithm we call DynaDecomp which is extremely fast in practice and provides guaranteed error bounds on the result. The superior accuracy and efficiency of DynaDecomp is demonstrated.},
+  abstract = {We propose a multiplicative approximation scheme (MAS) for inference problems in graphical models, which can be applied to various inference algorithms. The method uses $ε$-decompositions which decompose functions used throughout the inference procedure into functions over smaller sets of variables with a known error $ε$. MAS translates these local approximations into bounds on the accuracy of the results. We show how to optimize $ε$-decompositions and provide a fast closed-form solution for an $L_2$ approximation. Applying MAS to the Variable Elimination inference algorithm, we introduce an algorithm we call DynaDecomp which is extremely fast in practice and provides guaranteed error bounds on the result. The superior accuracy and efficiency of DynaDecomp is demonstrated.},
   file = {:/home/b/data/neurips/pdfs/nbrgm6i6ctox2czcge2hxohhseocta5tzctbagfoohtq4fr4e67q.pdf:pdf},
   editor = {D. Koller and D. Schuurmans and Y. Bengio and L. Bottou}
 }
@@ -1295,7 +1303,7 @@
   volume = {21},
   url = {https://proceedings.neurips.cc/paper_files/paper/2008/hash/6602294be910b1e3c4571bd98c4d5484-Abstract.html},
   pdf = {https://proceedings.neurips.cc/paper_files/paper/2008/file/6602294be910b1e3c4571bd98c4d5484-Paper.pdf},
-  abstract = {We define a metric for measuring behavior similarity between states in a Markov decision process (MDP), in which action similarity is taken into account. We show that the kernel of our metric corresponds exactly to the classes of states defined by MDP homomorphisms (Ravindran \& Barto, 2003). We prove that the difference in the optimal value function of different states can be upper-bounded by the value of this metric, and that the bound is tighter than that provided by bisimulation metrics (Ferns et al. 2004, 2005). Our results hold both for discrete and for continuous actions. We provide an algorithm for constructing approximate homomorphisms, by using this metric to identify states that can be grouped together, as well as actions that can be matched. Previous research on this topic is based mainly on heuristics.},
+  abstract = {We define a metric for measuring behavior similarity between states in a Markov decision process (MDP), in which action similarity is taken into account. We show that the kernel of our metric corresponds exactly to the classes of states defined by MDP homomorphisms (Ravindran & Barto, 2003). We prove that the difference in the optimal value function of different states can be upper-bounded by the value of this metric, and that the bound is tighter than that provided by bisimulation metrics (Ferns et al. 2004, 2005). Our results hold both for discrete and for continuous actions. We provide an algorithm for constructing approximate homomorphisms, by using this metric to identify states that can be grouped together, as well as actions that can be matched. Previous research on this topic is based mainly on heuristics.},
   file = {:/home/b/data/neurips/pdfs/g5jub4sczh3rbqum3hniz5uutewagdwc6vmbhc64xjg7ctvi4sza.pdf:pdf},
   editor = {D. Koller and D. Schuurmans and Y. Bengio and L. Bottou}
 }
@@ -1409,7 +1417,11 @@
   pdf = {https://proceedings.neurips.cc/paper_files/paper/2008/file/66f041e16a60928b05a7e228a89c3799-Paper.pdf},
   abstract = {Models for near-rigid shape matching are typically based on distance-related features, in order to infer matches that are consistent with the isometric assumption. However, real shapes from image datasets, even when expected to be related by almost isometric" transformations, are actually subject not only to noise but also, to some limited degree, to variations in appearance and scale. In this paper, we introduce a graphical model that parameterises appearance, distance, and angle features and we learn all of the involved parameters via structured prediction. The outcome is a model for near-rigid shape matching which is robust in the sense that it is able to capture the possibly limited but still important scale and appearance variations. Our experimental results reveal substantial improvements upon recent successful models, while maintaining similar running times."},
   file = {:/home/b/data/neurips/pdfs/rtjzgz2zaaroxzng75lfoqhmtwd5qmu5u23z75mtntvkczoy2wka.pdf:pdf},
-  editor = {D. Koller and D. Schuurmans and Y. Bengio and L. Bottou}
+  archiveprefix = {arXiv},
+  arxiv = {https://arxiv.org/abs/0809.3618},
+  editor = {D. Koller and D. Schuurmans and Y. Bengio and L. Bottou},
+  eprint = {0809.3618},
+  primaryclass = {cs.CV}
 }
 
 @inproceedings{zettlemoyer2008multiagent,
@@ -1547,7 +1559,7 @@
   volume = {21},
   url = {https://proceedings.neurips.cc/paper_files/paper/2008/hash/704afe073992cbe4813cae2f7715336f-Abstract.html},
   pdf = {https://proceedings.neurips.cc/paper_files/paper/2008/file/704afe073992cbe4813cae2f7715336f-Paper.pdf},
-  abstract = {Metal binding is important for the structural and functional characterization of proteins. Previous prediction efforts have only focused on bonding state, i.e. deciding which protein residues act as metal ligands in some binding site. Identifying the geometry of metal-binding sites, i.e. deciding which residues are jointly involved in the coordination of a metal ion is a new prediction problem that has been never attempted before from protein sequence alone. In this paper, we formulate it in the framework of learning with structured outputs. Our solution relies on the fact that, from a graph theoretical perspective, metal binding has the algebraic properties of a matroid, enabling the application of greedy algorithms for learning structured outputs. On a data set of 199 non-redundant metalloproteins, we obtained precision/recall levels of 75\%/46\% correct ligand-ion assignments, which improves to 88\%/88\% in the setting where the metal binding state is known.},
+  abstract = {Metal binding is important for the structural and functional characterization of proteins. Previous prediction efforts have only focused on bonding state, i.e. deciding which protein residues act as metal ligands in some binding site. Identifying the geometry of metal-binding sites, i.e. deciding which residues are jointly involved in the coordination of a metal ion is a new prediction problem that has been never attempted before from protein sequence alone. In this paper, we formulate it in the framework of learning with structured outputs. Our solution relies on the fact that, from a graph theoretical perspective, metal binding has the algebraic properties of a matroid, enabling the application of greedy algorithms for learning structured outputs. On a data set of 199 non-redundant metalloproteins, we obtained precision/recall levels of 75%/46% correct ligand-ion assignments, which improves to 88%/88% in the setting where the metal binding state is known.},
   file = {:/home/b/data/neurips/pdfs/7unsqkeurra5ghl3c5mvq73wf7r27rn36vbte2qtnh43ubf2jewq.pdf:pdf},
   editor = {D. Koller and D. Schuurmans and Y. Bengio and L. Bottou}
 }
@@ -1729,7 +1741,7 @@
   volume = {21},
   url = {https://proceedings.neurips.cc/paper_files/paper/2008/hash/7f975a56c761db6506eca0b37ce6ec87-Abstract.html},
   pdf = {https://proceedings.neurips.cc/paper_files/paper/2008/file/7f975a56c761db6506eca0b37ce6ec87-Paper.pdf},
-  abstract = {Recent research suggests that neural systems employ sparse coding. However, there is limited theoretical understanding of fundamental resolution limits in such sparse coding. This paper considers a general sparse estimation problem of detecting the sparsity pattern of a $k$-sparse vector in $\R^n$ from $m$ random noisy measurements. Our main results provide necessary and sufficient conditions on the problem dimensions, $m$, $n$ and $k$, and the signal-to-noise ratio (SNR) for asymptotically-reliable detection. We show a necessary condition for perfect recovery at any given SNR for all algorithms, regardless of complexity, is $m = \Omega(k\log(n-k))$ measurements. This is considerably stronger than all previous necessary conditions. We also show that the scaling of $\Omega(k\log(n-k))$ measurements is sufficient for a trivial ``maximum correlation'' estimator to succeed. Hence this scaling is optimal and does not require lasso, matching pursuit, or more sophisticated methods, and the optimal scaling can thus be biologically plausible.},
+  abstract = {Recent research suggests that neural systems employ sparse coding. However, there is limited theoretical understanding of fundamental resolution limits in such sparse coding. This paper considers a general sparse estimation problem of detecting the sparsity pattern of a $k$-sparse vector in $\R^n$ from $m$ random noisy measurements. Our main results provide necessary and sufficient conditions on the problem dimensions, $m$, $n$ and $k$, and the signal-to-noise ratio (SNR) for asymptotically-reliable detection. We show a necessary condition for perfect recovery at any given SNR for all algorithms, regardless of complexity, is $m = Ømega(kłog(n-k))$ measurements. This is considerably stronger than all previous necessary conditions. We also show that the scaling of $Ømega(kłog(n-k))$ measurements is sufficient for a trivial ``maximum correlation'' estimator to succeed. Hence this scaling is optimal and does not require lasso, matching pursuit, or more sophisticated methods, and the optimal scaling can thus be biologically plausible.},
   file = {:/home/b/data/neurips/pdfs/2njri77nvjs6xjrzvcprmwyviz4ksf2laj445ctshgfhd2yc2nuq.pdf:pdf},
   editor = {D. Koller and D. Schuurmans and Y. Bengio and L. Bottou}
 }
@@ -1773,7 +1785,11 @@
   pdf = {https://proceedings.neurips.cc/paper_files/paper/2008/file/816b112c6105b3ebd537828a39af4818-Paper.pdf},
   abstract = {We present polynomial-time algorithms for the exact computation of lowest- energy states, worst margin violators, partition functions, and marginals in binary undirected graphical models. Our approach provides an interesting alternative to the well-known graph cut paradigm in that it does not impose any submodularity constraints; instead we require planarity to establish a correspondence with perfect matchings in an expanded dual graph. Maximum-margin parameter estimation for a boundary detection task shows our approach to be efﬁcient and effective.},
   file = {:/home/b/data/neurips/pdfs/4b45hxbapj36hvmgsrjlbdvrnhjkhivlkn3lraqcui3dqfblp5sq.pdf:pdf},
-  editor = {D. Koller and D. Schuurmans and Y. Bengio and L. Bottou}
+  archiveprefix = {arXiv},
+  arxiv = {https://arxiv.org/abs/0810.4401},
+  editor = {D. Koller and D. Schuurmans and Y. Bengio and L. Bottou},
+  eprint = {0810.4401},
+  primaryclass = {cs.LG}
 }
 
 @inproceedings{mackey2008deflation,
@@ -1829,7 +1845,11 @@
   pdf = {https://proceedings.neurips.cc/paper_files/paper/2008/file/8613985ec49eb8f757ae6439e879bb2a-Paper.pdf},
   abstract = {Observations consisting of measurements on relationships for pairs of objects arise in many settings, such as protein interaction and gene regulatory networks, collections of author-recipient email, and social networks. Analyzing such data with probabilisic models can be delicate because the simple exchangeability assumptions underlying many boilerplate models no longer hold. In this paper, we describe a class of latent variable models of such data called Mixed Membership Stochastic Blockmodels. This model extends blockmodels for relational data to ones which capture mixed membership latent relational structure, thus providing an object-specific low-dimensional representation. We develop a general variational inference algorithm for fast approximate posterior inference. We explore applications to social networks and protein interaction networks.},
   file = {:/home/b/data/neurips/pdfs/ubym7g2rcca3d6ypw5rgibs7nkahuo7wt4kwgmf2ruvspl5d5t7q.pdf:pdf},
-  editor = {D. Koller and D. Schuurmans and Y. Bengio and L. Bottou}
+  archiveprefix = {arXiv},
+  arxiv = {https://arxiv.org/abs/0705.4485},
+  editor = {D. Koller and D. Schuurmans and Y. Bengio and L. Bottou},
+  eprint = {0705.4485},
+  primaryclass = {stat.ME}
 }
 
 @inproceedings{sudderth2008shared,
@@ -1955,7 +1975,11 @@
   pdf = {https://proceedings.neurips.cc/paper_files/paper/2008/file/92c8c96e4c37100777c7190b76d28233-Paper.pdf},
   abstract = {We propose a general method called truncated gradient to induce sparsity in the weights of online-learning algorithms with convex loss. This method has several essential properties. First, the degree of sparsity is continuous---a parameter controls the rate of sparsification from no sparsification to total sparsification. Second, the approach is theoretically motivated, and an instance of it can be regarded as an online counterpart of the popular $L_1$-regularization method in the batch setting. We prove that small rates of sparsification result in only small additional regret with respect to typical online-learning guarantees. Finally, the approach works well empirically. We apply it to several datasets and find that for datasets with large numbers of features, substantial sparsity is discoverable.},
   file = {:/home/b/data/neurips/pdfs/jtmwfm2aftvm5mqedyy4qetluty3iwwpkwxarnrb6vlypx6u7o6a.pdf:pdf;:/home/b/data/neurips/pdfs/5skhuookqkhzg43gvhuddepelojjetw7cw7v45vjsjhhifmkq4jq.zip:zip},
-  editor = {D. Koller and D. Schuurmans and Y. Bengio and L. Bottou}
+  archiveprefix = {arXiv},
+  arxiv = {https://arxiv.org/abs/0806.4686},
+  editor = {D. Koller and D. Schuurmans and Y. Bengio and L. Bottou},
+  eprint = {0806.4686},
+  primaryclass = {cs.LG}
 }
 
 @inproceedings{boydgraber2008syntactic,
@@ -2037,7 +2061,7 @@
   volume = {21},
   url = {https://proceedings.neurips.cc/paper_files/paper/2008/hash/941e1aaaba585b952b62c14a3a175a61-Abstract.html},
   pdf = {https://proceedings.neurips.cc/paper_files/paper/2008/file/941e1aaaba585b952b62c14a3a175a61-Paper.pdf},
-  abstract = {We consider the problem of obtaining the approximate maximum a posteriori estimate of a discrete random field characterized by pairwise potentials that form a truncated convex model. For this problem, we propose an improved st-mincut based move making algorithm. Unlike previous move making approaches, which either provide a loose bound or no bound on the quality of the solution (in terms of the corresponding Gibbs energy), our algorithm achieves the same guarantees as the standard linear programming (LP) relaxation. Compared to previous approaches based on the LP relaxation, e.g. interior-point algorithms or tree-reweighted message passing (TRW), our method is faster as it uses only the efficient st-mincut algorithm in its design. Furthermore, it directly provides us with a primal solution (unlike TRW and other related methods which attempt to solve the dual of the LP). We demonstrate the effectiveness of the proposed approach on both synthetic and standard real data problems. Our analysis also opens up an interesting question regarding the relationship between move making algorithms (such as $\alpha$-expansion and the algorithms presented in this paper) and the randomized rounding schemes used with convex relaxations. We believe that further explorations in this direction would help design efficient algorithms for more complex relaxations.},
+  abstract = {We consider the problem of obtaining the approximate maximum a posteriori estimate of a discrete random field characterized by pairwise potentials that form a truncated convex model. For this problem, we propose an improved st-mincut based move making algorithm. Unlike previous move making approaches, which either provide a loose bound or no bound on the quality of the solution (in terms of the corresponding Gibbs energy), our algorithm achieves the same guarantees as the standard linear programming (LP) relaxation. Compared to previous approaches based on the LP relaxation, e.g. interior-point algorithms or tree-reweighted message passing (TRW), our method is faster as it uses only the efficient st-mincut algorithm in its design. Furthermore, it directly provides us with a primal solution (unlike TRW and other related methods which attempt to solve the dual of the LP). We demonstrate the effectiveness of the proposed approach on both synthetic and standard real data problems. Our analysis also opens up an interesting question regarding the relationship between move making algorithms (such as $α$-expansion and the algorithms presented in this paper) and the randomized rounding schemes used with convex relaxations. We believe that further explorations in this direction would help design efficient algorithms for more complex relaxations.},
   file = {:/home/b/data/neurips/pdfs/6ni2w3e5qyb5dqvavo5viav32bh3732qew3lnlsynztrrrwjfjgq.pdf:pdf;:/home/b/data/neurips/pdfs/qjbgpgbnp7kmutwpjqyh473kdgdqor7lrm52s7geqq3obqndonuq.zip:zip},
   editor = {D. Koller and D. Schuurmans and Y. Bengio and L. Bottou}
 }
@@ -2193,7 +2217,11 @@
   pdf = {https://proceedings.neurips.cc/paper_files/paper/2008/file/a4a042cf4fd6bfb47701cbc8a1653ada-Paper.pdf},
   abstract = {For supervised and unsupervised learning, positive definite kernels allow to use large and potentially infinite dimensional feature spaces with a computational cost that only depends on the number of observations. This is usually done through the penalization of predictor functions by Euclidean or Hilbertian norms. In this paper, we explore penalizing by sparsity-inducing norms such as the L1-norm or the block L1-norm. We assume that the kernel decomposes into a large sum of individual basis kernels which can be embedded in a directed acyclic graph; we show that it is then possible to perform kernel selection through a hierarchical multiple kernel learning framework, in polynomial time in the number of selected kernels. This framework is naturally applied to non linear variable selection; our extensive simulations on synthetic datasets and datasets from the UCI repository show that efficiently exploring the large feature space through sparsity-inducing norms leads to state-of-the-art predictive performance.},
   file = {:/home/b/data/neurips/pdfs/s5ypd5mmmp37achcqtoq56eewvhtgo6bmiyap5tnndjp7mluekaa.pdf:pdf},
-  editor = {D. Koller and D. Schuurmans and Y. Bengio and L. Bottou}
+  archiveprefix = {arXiv},
+  arxiv = {https://arxiv.org/abs/0809.1493},
+  editor = {D. Koller and D. Schuurmans and Y. Bengio and L. Bottou},
+  eprint = {0809.1493},
+  primaryclass = {cs.LG}
 }
 
 @inproceedings{csimcsek2008skill,
@@ -2219,7 +2247,7 @@
   volume = {21},
   url = {https://proceedings.neurips.cc/paper_files/paper/2008/hash/aa169b49b583a2b5af89203c2b78c67c-Abstract.html},
   pdf = {https://proceedings.neurips.cc/paper_files/paper/2008/file/aa169b49b583a2b5af89203c2b78c67c-Paper.pdf},
-  abstract = {We consider the following instance of transfer learning: given a pair of regression problems, suppose that the regression coefficients share a partially common support, parameterized by the overlap fraction $\overlap$ between the two supports. This set-up suggests the use of $1, \infty$-regularized linear regression for recovering the support sets of both regression vectors. Our main contribution is to provide a sharp characterization of the sample complexity of this $1,\infty$ relaxation, exactly pinning down the minimal sample size $n$ required for joint support recovery as a function of the model dimension $\pdim$, support size $\spindex$ and overlap $\overlap \in [0,1]$. For measurement matrices drawn from standard Gaussian ensembles, we prove that the joint $1,\infty$-regularized method undergoes a phase transition characterized by order parameter $\orpar(\numobs, \pdim, \spindex, \overlap) = \numobs{(4 - 3 \overlap) s \log(p-(2-\overlap)s)}$. More precisely, the probability of successfully recovering both supports converges to $1$ for scalings such that $\orpar > 1$, and converges to $0$ to scalings for which $\orpar 2/3$), but performs worse than a naive approach if $\overlap < 2/3$. We illustrate the close agreement between these theoretical predictions, and the actual behavior in simulations. Thus, our results illustrate both the benefits and dangers associated with block-$1,\infty$ regularization in high-dimensional inference.},
+  abstract = {We consider the following instance of transfer learning: given a pair of regression problems, suppose that the regression coefficients share a partially common support, parameterized by the overlap fraction $øverlap$ between the two supports. This set-up suggests the use of $1, ınfty$-regularized linear regression for recovering the support sets of both regression vectors. Our main contribution is to provide a sharp characterization of the sample complexity of this $1,ınfty$ relaxation, exactly pinning down the minimal sample size $n$ required for joint support recovery as a function of the model dimension $\pdim$, support size $\spindex$ and overlap $øverlap ın [0,1]$. For measurement matrices drawn from standard Gaussian ensembles, we prove that the joint $1,ınfty$-regularized method undergoes a phase transition characterized by order parameter $ørpar(νmobs, \pdim, \spindex, øverlap) = νmobs(4 - 3 øverlap) s łog(p-(2-øverlap)s)$. More precisely, the probability of successfully recovering both supports converges to $1$ for scalings such that $ørpar > 1$, and converges to $0$ to scalings for which $ørpar 2/3$), but performs worse than a naive approach if $øverlap < 2/3$. We illustrate the close agreement between these theoretical predictions, and the actual behavior in simulations. Thus, our results illustrate both the benefits and dangers associated with block-$1,ınfty$ regularization in high-dimensional inference.},
   file = {:/home/b/data/neurips/pdfs/v4h6se7jr3t2cj2zjmchgqzexo66cjusonlq2oc3aza576nr635a.pdf:pdf},
   editor = {D. Koller and D. Schuurmans and Y. Bengio and L. Bottou}
 }
@@ -2275,7 +2303,7 @@
   volume = {21},
   url = {https://proceedings.neurips.cc/paper_files/paper/2008/hash/a49e9411d64ff53eccfdd09ad10a15b3-Abstract.html},
   pdf = {https://proceedings.neurips.cc/paper_files/paper/2008/file/a49e9411d64ff53eccfdd09ad10a15b3-Paper.pdf},
-  abstract = {Hierarchical probabilistic modeling of discrete data has emerged as a powerful tool for text analysis. Posterior inference in such models is intractable, and practitioners rely on approximate posterior inference methods such as variational inference or Gibbs sampling. There has been much research in designing better approximations, but there is yet little theoretical understanding of which of the available techniques are appropriate, and in which data analysis settings. In this paper we provide the beginnings of such understanding. We analyze the improvement that the recently proposed collapsed variational inference (CVB) provides over mean field variational inference (VB) in latent Dirichlet allocation. We prove that the difference in the tightness of the bound on the likelihood of a document decreases as $O(k-1) + \log m /m$, where $k$ is the number of topics in the model and $m$ is the number of words in a document. As a consequence, the advantage of CVB over VB is lost for long documents but increases with the number of topics. We demonstrate empirically that the theory holds, using simulated text data and two text corpora. We provide practical guidelines for choosing an approximation.},
+  abstract = {Hierarchical probabilistic modeling of discrete data has emerged as a powerful tool for text analysis. Posterior inference in such models is intractable, and practitioners rely on approximate posterior inference methods such as variational inference or Gibbs sampling. There has been much research in designing better approximations, but there is yet little theoretical understanding of which of the available techniques are appropriate, and in which data analysis settings. In this paper we provide the beginnings of such understanding. We analyze the improvement that the recently proposed collapsed variational inference (CVB) provides over mean field variational inference (VB) in latent Dirichlet allocation. We prove that the difference in the tightness of the bound on the likelihood of a document decreases as $O(k-1) + łog m /m$, where $k$ is the number of topics in the model and $m$ is the number of words in a document. As a consequence, the advantage of CVB over VB is lost for long documents but increases with the number of topics. We demonstrate empirically that the theory holds, using simulated text data and two text corpora. We provide practical guidelines for choosing an approximation.},
   file = {:/home/b/data/neurips/pdfs/kopo7r3rqj3h27hzm53h7lfjhcux72srrwlkr3od3reb7xwjku5a.pdf:pdf;:/home/b/data/neurips/pdfs/jxkzqzcmclhv67olgpqyibjfaq5wbha4dw24ovn7yb3onile6q6a.zip:zip},
   editor = {D. Koller and D. Schuurmans and Y. Bengio and L. Bottou}
 }
@@ -2543,7 +2571,11 @@
   pdf = {https://proceedings.neurips.cc/paper_files/paper/2008/file/c0f168ce8900fa56e57789e2a2f2c9d0-Paper.pdf},
   abstract = {It is now well established that sparse signal models are well suited to restoration tasks and can effectively be learned from audio, image, and video data. Recent research has been aimed at learning discriminative sparse models instead of purely reconstructive ones. This paper proposes a new step in that direction with a novel sparse representation for signals belonging to different classes in terms of a shared dictionary and multiple decision functions. It is shown that the linear variant of the model admits a simple probabilistic interpretation, and that its most general variant also admits a simple interpretation in terms of kernels. An optimization framework for learning all the components of the proposed model is presented, along with experiments on standard handwritten digit and texture classification tasks.},
   file = {:/home/b/data/neurips/pdfs/exg7mqvl4esrsdwps3qk7t6peygru73umi4araa6lfhldkfxaqsa.pdf:pdf},
-  editor = {D. Koller and D. Schuurmans and Y. Bengio and L. Bottou}
+  archiveprefix = {arXiv},
+  arxiv = {https://arxiv.org/abs/0809.3083},
+  editor = {D. Koller and D. Schuurmans and Y. Bengio and L. Bottou},
+  eprint = {0809.3083},
+  primaryclass = {cs.CV}
 }
 
 @inproceedings{truyen2008hierarchical,
@@ -2557,7 +2589,11 @@
   pdf = {https://proceedings.neurips.cc/paper_files/paper/2008/file/be1bc7997695495f756312886f566110-Paper.pdf},
   abstract = {Inspired by the hierarchical hidden Markov models (HHMM), we present the hierarchical semi-Markov conditional random field (HSCRF), a generalisation of embedded undirected Markov chains to model complex hierarchical, nested Markov processes. It is parameterised in a discriminative framework and has polynomial time algorithms for learning and inference. Importantly, we develop efficient algorithms for learning and constrained inference in a partially-supervised setting, which is important issue in practice where labels can only be obtained sparsely. We demonstrate the HSCRF in two applications: (i) recognising human activities of daily living (ADLs) from indoor surveillance cameras, and (ii) noun-phrase chunking. We show that the HSCRF is capable of learning rich hierarchical models with reasonable accuracy in both fully and partially observed data cases.},
   file = {:/home/b/data/neurips/pdfs/lnampihgxopppudte6aengz3ovmatvqdmjlph5mapyfhf7er2wpq.pdf:pdf;:/home/b/data/neurips/pdfs/futvyjqob5mvv6hnzsi5llcz42ycn74ttcznl3ganctfdn23knna.zip:zip},
-  editor = {D. Koller and D. Schuurmans and Y. Bengio and L. Bottou}
+  archiveprefix = {arXiv},
+  arxiv = {https://arxiv.org/abs/1009.2009},
+  editor = {D. Koller and D. Schuurmans and Y. Bengio and L. Bottou},
+  eprint = {1009.2009},
+  primaryclass = {stat.ML}
 }
 
 @inproceedings{schrauwen2008computational,
@@ -2653,7 +2689,7 @@
   volume = {21},
   url = {https://proceedings.neurips.cc/paper_files/paper/2008/hash/cfa0860e83a4c3a763a7e62d825349f7-Abstract.html},
   pdf = {https://proceedings.neurips.cc/paper_files/paper/2008/file/cfa0860e83a4c3a763a7e62d825349f7-Paper.pdf},
-  abstract = {We describe a way of learning matrix representations of objects and relationships. The goal of learning is to allow multiplication of matrices to represent symbolic relationships between objects and symbolic relationships between relationships, which is the main novelty of the method. We demonstrate that this leads to excellent generalization in two different domains: modular arithmetic and family relationships. We show that the same system can learn first-order propositions such as $(2, 5) \member +\!3$ or $(Christopher, Penelope)\member has\_wife$, and higher-order propositions such as $(3, +\!3) \member plus$ and $(+\!3, -\!3) \member inverse$ or $(has\_husband, has\_wife)\in higher\_oppsex$. We further demonstrate that the system understands how higher-order propositions are related to first-order ones by showing that it can correctly answer questions about first-order propositions involving the relations $+\!3$ or $has\_wife$ even though it has not been trained on any first-order examples involving these relations.},
+  abstract = {We describe a way of learning matrix representations of objects and relationships. The goal of learning is to allow multiplication of matrices to represent symbolic relationships between objects and symbolic relationships between relationships, which is the main novelty of the method. We demonstrate that this leads to excellent generalization in two different domains: modular arithmetic and family relationships. We show that the same system can learn first-order propositions such as $(2, 5) \member +\!3$ or $(Christopher, Penelope)\member has_wife$, and higher-order propositions such as $(3, +\!3) \member plus$ and $(+\!3, -\!3) \member inverse$ or $(has_husband, has_wife)ın higher_oppsex$. We further demonstrate that the system understands how higher-order propositions are related to first-order ones by showing that it can correctly answer questions about first-order propositions involving the relations $+\!3$ or $has_wife$ even though it has not been trained on any first-order examples involving these relations.},
   file = {:/home/b/data/neurips/pdfs/ltto2cdr62vvinlqetlaaopchsjoudxmp2wup64kta4ddig6jnqq.pdf:pdf},
   editor = {D. Koller and D. Schuurmans and Y. Bengio and L. Bottou}
 }
@@ -3089,7 +3125,11 @@
   pdf = {https://proceedings.neurips.cc/paper_files/paper/2008/file/e8a642ed6a9ad20fb159472950db3d65-Paper.pdf},
   abstract = {Large networks of spiking neurons show abrupt changes in their collective dynamics resembling phase transitions studied in statistical physics. An example of this phenomenon is the transition from irregular, noise-driven dynamics to regular, self-sustained behavior observed in networks of integrate-and-fire neurons as the interaction strength between the neurons increases. In this work we show how a network of spiking neurons is able to self-organize towards a critical state for which the range of possible inter-spike-intervals (dynamic range) is maximized. Self-organization occurs via synaptic dynamics that we analytically derive. The resulting plasticity rule is defined locally so that global homeostasis near the critical state is achieved by local regulation of individual synapses.},
   file = {:/home/b/data/neurips/pdfs/zrszetss5a2nmaigzom3ovtz7lr3qrsixk5uimeikukxi7eeie4q.pdf:pdf},
-  editor = {D. Koller and D. Schuurmans and Y. Bengio and L. Bottou}
+  archiveprefix = {arXiv},
+  arxiv = {https://arxiv.org/abs/0808.3129},
+  editor = {D. Koller and D. Schuurmans and Y. Bengio and L. Bottou},
+  eprint = {0808.3129},
+  primaryclass = {nlin.AO}
 }
 
 @inproceedings{qin2008global,
@@ -3339,7 +3379,7 @@
   volume = {21},
   url = {https://proceedings.neurips.cc/paper_files/paper/2008/hash/f90f2aca5c640289d0a29417bcb63a37-Abstract.html},
   pdf = {https://proceedings.neurips.cc/paper_files/paper/2008/file/f90f2aca5c640289d0a29417bcb63a37-Paper.pdf},
-  abstract = {This paper examines the generalization properties of online convex programming algorithms when the loss function is Lipschitz and strongly convex. Our main result is a sharp bound, that holds with high probability, on the excess risk of the output of an online algorithm in terms of the average regret. This allows one to use recent algorithms with logarithmic cumulative regret guarantees to achieve fast convergence rates for the excess risk with high probability. The bound also solves an open problem regarding the convergence rate of {\pegasos}, a recently proposed method for solving the SVM optimization problem.},
+  abstract = {This paper examines the generalization properties of online convex programming algorithms when the loss function is Lipschitz and strongly convex. Our main result is a sharp bound, that holds with high probability, on the excess risk of the output of an online algorithm in terms of the average regret. This allows one to use recent algorithms with logarithmic cumulative regret guarantees to achieve fast convergence rates for the excess risk with high probability. The bound also solves an open problem regarding the convergence rate of \pegasos, a recently proposed method for solving the SVM optimization problem.},
   file = {:/home/b/data/neurips/pdfs/ymofarfatnjy2wyio547towsehblomtryqdgb5j5phom2vthpb5a.pdf:pdf},
   editor = {D. Koller and D. Schuurmans and Y. Bengio and L. Bottou}
 }
@@ -3397,7 +3437,11 @@
   pdf = {https://proceedings.neurips.cc/paper_files/paper/2008/file/fccb3cdc9acc14a6e70a12f74560c026-Paper.pdf},
   abstract = {In multi-task learning several related tasks are considered simultaneously, with the hope that by an appropriate sharing of information across tasks, each task may benefit from the others. In the context of learning linear functions for supervised classification or regression, this can be achieved by including a priori information about the weight vectors associated with the tasks, and how they are expected to be related to each other. In this paper, we assume that tasks are clustered into groups, which are unknown beforehand, and that tasks within a group have similar weight vectors. We design a new spectral norm that encodes this a priori assumption, without the prior knowledge of the partition of tasks into groups, resulting in a new convex optimization formulation for multi-task learning. We show in simulations on synthetic examples and on the iedb MHC-I binding dataset, that our approach outperforms well-known convex methods for multi-task learning, as well as related non convex methods dedicated to the same problem.},
   file = {:/home/b/data/neurips/pdfs/rwc4gyuo3apwndjrygo2jgg75bb6xdjjqvbnj2lf2c5xzme7uawa.pdf:pdf},
-  editor = {D. Koller and D. Schuurmans and Y. Bengio and L. Bottou}
+  archiveprefix = {arXiv},
+  arxiv = {https://arxiv.org/abs/0809.2085},
+  editor = {D. Koller and D. Schuurmans and Y. Bengio and L. Bottou},
+  eprint = {0809.2085},
+  primaryclass = {cs.LG}
 }
 
 @inproceedings{onken2008modeling,
@@ -3465,7 +3509,7 @@
   volume = {21},
   url = {https://proceedings.neurips.cc/paper_files/paper/2008/hash/fe7ee8fc1959cc7214fa21c4840dff0a-Abstract.html},
   pdf = {https://proceedings.neurips.cc/paper_files/paper/2008/file/fe7ee8fc1959cc7214fa21c4840dff0a-Paper.pdf},
-  abstract = {Conditional Random Sampling (CRS) was originally proposed for efficiently computing pairwise ($l_2$, $l_1$) distances, in static, large-scale, and sparse data sets such as text and Web data. It was previously presented using a heuristic argument. This study extends CRS to handle dynamic or streaming data, which much better reflect the real-world situation than assuming static data. Compared with other known sketching algorithms for dimension reductions such as stable random projections, CRS exhibits a significant advantage in that it is ``one-sketch-for-all.'' In particular, we demonstrate that CRS can be applied to efficiently compute the $l_p$ distance and the Hilbertian metrics, both are popular in machine learning. Although a fully rigorous analysis of CRS is difficult, we prove that, with a simple modification, CRS is rigorous at least for an important application of computing Hamming norms. A generic estimator and an approximate variance formula are provided and tested on various applications, for computing Hamming norms, Hamming distances, and $\chi^2$ distances.},
+  abstract = {Conditional Random Sampling (CRS) was originally proposed for efficiently computing pairwise ($l_2$, $l_1$) distances, in static, large-scale, and sparse data sets such as text and Web data. It was previously presented using a heuristic argument. This study extends CRS to handle dynamic or streaming data, which much better reflect the real-world situation than assuming static data. Compared with other known sketching algorithms for dimension reductions such as stable random projections, CRS exhibits a significant advantage in that it is ``one-sketch-for-all.'' In particular, we demonstrate that CRS can be applied to efficiently compute the $l_p$ distance and the Hilbertian metrics, both are popular in machine learning. Although a fully rigorous analysis of CRS is difficult, we prove that, with a simple modification, CRS is rigorous at least for an important application of computing Hamming norms. A generic estimator and an approximate variance formula are provided and tested on various applications, for computing Hamming norms, Hamming distances, and $χ^2$ distances.},
   file = {:/home/b/data/neurips/pdfs/yxjkryad6xh2rdkm65gqbslvdowpo6rzv2tl7hrk5ki7c3zfadhq.pdf:pdf},
   editor = {D. Koller and D. Schuurmans and Y. Bengio and L. Bottou}
 }
