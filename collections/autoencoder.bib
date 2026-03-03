@@ -1,7 +1,7 @@
 @COMMENT{folio: topics = autoencoders}
 
 % Scope (highly selective):
-% - Autoencoders as generative models: VAEs and discrete-latent autoencoders (VQ-VAE/VQGAN family).
+% - Autoencoders as generative models: VAEs, WAE/AAE-style aggregated-posterior matching, and discrete-latent autoencoders (VQ-VAE/VQGAN family).
 % - Includes a small number of representation/disentanglement touchstones where they shaped the VAE canon.
 % - Includes a small number of modern "tokenizer" autoencoders used in diffusion/DiT-era generation.
 % - Excludes masked autoencoders for SSL, sparse autoencoders for interpretability, etc.
@@ -63,6 +63,18 @@
   eprint = {1509.00519}
 }
 
+@inproceedings{makhzani2016aae,
+  author = {Makhzani, Alireza and Shlens, Jonathon and Jaitly, Navdeep and Goodfellow, Ian and Frey, Brendan},
+  title = {Adversarial Autoencoders},
+  booktitle = {International Conference on Learning Representations},
+  year = {2016},
+  note = {AAE: matches the aggregated posterior to a prior via adversarial training (a key alternative to KL-regularized VAEs).},
+  url = {https://openreview.net/forum?id=2xwp4Zwr3TpKBZvXtWoj},
+  pdf = {https://openreview.net/pdf?id=2xwp4Zwr3TpKBZvXtWoj},
+  archiveprefix = {arXiv},
+  eprint = {1511.05644}
+}
+
 @article{kingma2019vaetutorial,
   author = {Kingma, Diederik P. and Welling, Max},
   title = {An Introduction to Variational Autoencoders},
@@ -94,6 +106,18 @@
   pdf = {https://proceedings.neurips.cc/paper_files/paper/2018/file/1ee3dfcd8a0645a25a35977997223d22-Paper.pdf},
   archiveprefix = {arXiv},
   eprint = {1802.04942}
+}
+
+@inproceedings{tolstikhin2018wae,
+  author = {Tolstikhin, Ilya O. and Bousquet, Olivier and Gelly, Sylvain and Sch{\"o}lkopf, Bernhard},
+  title = {Wasserstein Auto-Encoders},
+  booktitle = {International Conference on Learning Representations},
+  year = {2018},
+  note = {WAE: an optimal-transport view of generative autoencoders; generalizes adversarial autoencoders and changes the regularization geometry vs. VAEs.},
+  url = {https://openreview.net/forum?id=HkL7n1-0b},
+  pdf = {https://openreview.net/pdf?id=HkL7n1-0b},
+  archiveprefix = {arXiv},
+  eprint = {1711.01558}
 }
 
 @inproceedings{oord2017vqvae,
