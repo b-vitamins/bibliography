@@ -13,6 +13,7 @@ exclude_globs = [
   "**/__pycache__/**",
   "**/*.backup",
   "**/*.bak",
+  "collections/_archive/**/*.bib",
   "collections/orals/**/*.bib",
 ]
 
