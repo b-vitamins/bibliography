@@ -1,0 +1,258 @@
+@COMMENT{folio: topics = world-models}
+
+% Scope (highly selective):
+% - World models for sequential decision making: learning environment dynamics and using them for planning/imagination/control.
+% - Includes a small number of "foundation" interactive simulators trained on broad data (Genie, UniSim).
+% - Excludes most domain-specific world model variants and most "LLMs have world models" papers.
+%
+% Updated: 2026-03-03
+
+@inproceedings{sutton1990dyna,
+  author = {Sutton, Richard S.},
+  title = {Integrated Architectures for Learning, Planning, and Reacting Based on Approximating Dynamic Programming},
+  booktitle = {International Conference on Machine Learning},
+  year = {1990},
+  note = {A core early reference for Dyna-style reinforcement learning: interleaving model learning and planning updates.},
+  doi = {10.1016/B978-1-55860-141-3.50030-4},
+  url = {https://doi.org/10.1016/B978-1-55860-141-3.50030-4}
+}
+
+@inproceedings{deisenroth2011pilco,
+  author = {Deisenroth, Marc Peter and Rasmussen, Carl Edward},
+  title = {{PILCO}: A Model-Based and Data-Efficient Approach to Policy Search},
+  booktitle = {International Conference on Machine Learning},
+  year = {2011},
+  note = {Classic data-efficient model-based RL with Gaussian process dynamics; a long-running sample-efficiency touchstone.},
+  url = {https://icml.cc/2011/papers/323_icmlpaper.pdf},
+  pdf = {https://icml.cc/2011/papers/323_icmlpaper.pdf}
+}
+
+@inproceedings{watter2015embed,
+  author = {Watter, Manuel and Springenberg, Jost and Boedecker, Joschka and Riedmiller, Martin},
+  title = {Embed to Control: A Locally Linear Latent Dynamics Model for Control from Raw Images},
+  booktitle = {Advances in Neural Information Processing Systems},
+  year = {2015},
+  note = {A landmark latent-dynamics model for control from pixels (E2C): locally linear latent transitions to enable planning/control.},
+  url = {https://proceedings.neurips.cc/paper_files/paper/2015/hash/a1afc58c6ca9540d057299ec3016d726-Abstract.html},
+  pdf = {https://proceedings.neurips.cc/paper_files/paper/2015/file/a1afc58c6ca9540d057299ec3016d726-Paper.pdf},
+  archiveprefix = {arXiv},
+  eprint = {1506.07365}
+}
+
+@inproceedings{racaniere2017imagination,
+  author = {Racani{\`e}re, S{\'e}bastien and Weber, Theophane and Reichert, David and Buesing, Lars and Guez, Arthur and Jimenez Rezende, Danilo and Puigdom{\`e}nech Badia, Adri{\'a} and Vinyals, Oriol and Heess, Nicolas and Li, Yujia and Pascanu, Razvan and Battaglia, Peter and Hassabis, Demis and Silver, David and Wierstra, Daan},
+  title = {Imagination-Augmented Agents for Deep Reinforcement Learning},
+  booktitle = {Advances in Neural Information Processing Systems},
+  year = {2017},
+  note = {Imagination-augmented agents (I2A): a canonical neural architecture that learns to use rollouts from a learned environment model.},
+  url = {https://proceedings.neurips.cc/paper_files/paper/2017/hash/9e82757e9a1c12cb710ad680db11f6f1-Abstract.html},
+  pdf = {https://proceedings.neurips.cc/paper_files/paper/2017/file/9e82757e9a1c12cb710ad680db11f6f1-Paper.pdf},
+  archiveprefix = {arXiv},
+  eprint = {1707.06203}
+}
+
+@inproceedings{ha2018worldmodel,
+  author = {Ha, David and Schmidhuber, J{\"u}rgen},
+  title = {Recurrent World Models Facilitate Policy Evolution},
+  booktitle = {Advances in Neural Information Processing Systems},
+  year = {2018},
+  note = {Popularized "world models" in deep RL: train a VAE+RNN environment model and learn policies in the model's dreamed rollouts.},
+  url = {https://proceedings.neurips.cc/paper_files/paper/2018/hash/2de5d16682c3c35007e4e92982f1a2ba-Abstract.html},
+  pdf = {https://proceedings.neurips.cc/paper_files/paper/2018/file/2de5d16682c3c35007e4e92982f1a2ba-Paper.pdf},
+  archiveprefix = {arXiv},
+  eprint = {1809.01999}
+}
+
+@inproceedings{chua2018pets,
+  author = {Chua, Kurtland and Calandra, Roberto and McAllister, Rowan and Levine, Sergey},
+  title = {Deep Reinforcement Learning in a Handful of Trials using Probabilistic Dynamics Models},
+  booktitle = {Advances in Neural Information Processing Systems},
+  year = {2018},
+  note = {{PETS}: probabilistic ensembles + trajectory sampling; a canonical uncertainty-aware deep dynamics model for sample-efficient MBRL.},
+  url = {https://proceedings.neurips.cc/paper_files/paper/2018/hash/3de568f8597b94bda53149c7d7f5958c-Abstract.html},
+  pdf = {https://proceedings.neurips.cc/paper_files/paper/2018/file/3de568f8597b94bda53149c7d7f5958c-Paper.pdf},
+  archiveprefix = {arXiv},
+  eprint = {1805.12114}
+}
+
+@inproceedings{hafner2019planet,
+  author = {Hafner, Danijar and Lillicrap, Timothy P. and Fischer, Ian and Villegas, Ruben and Ha, David and Lee, Honglak and Davidson, James},
+  title = {Learning Latent Dynamics for Planning from Pixels},
+  booktitle = {International Conference on Machine Learning},
+  year = {2019},
+  note = {{PlaNet}: latent dynamics + planning from pixels; introduced latent overshooting and set a template for modern deep world model agents.},
+  url = {https://proceedings.mlr.press/v97/hafner19a.html},
+  pdf = {https://proceedings.mlr.press/v97/hafner19a/hafner19a.pdf}
+}
+
+@inproceedings{janner2019mbpo,
+  author = {Janner, Michael and Fu, Justin and Zhang, Marvin and Levine, Sergey},
+  title = {When to Trust Your Model: Model-Based Policy Optimization},
+  booktitle = {Advances in Neural Information Processing Systems},
+  year = {2019},
+  note = {{MBPO}: a highly influential practical recipe for combining real data with short model rollouts branched from real states.},
+  url = {https://proceedings.neurips.cc/paper_files/paper/2019/hash/5faf461eff3099671ad63c6f3f094f7f-Abstract.html},
+  pdf = {https://proceedings.neurips.cc/paper_files/paper/2019/file/5faf461eff3099671ad63c6f3f094f7f-Paper.pdf},
+  archiveprefix = {arXiv},
+  eprint = {1906.08253}
+}
+
+@inproceedings{hafner2020dreamer,
+  author = {Hafner, Danijar and Lillicrap, Timothy P. and Ba, Jimmy and Norouzi, Mohammad},
+  title = {Dream to Control: Learning Behaviors by Latent Imagination},
+  booktitle = {International Conference on Learning Representations},
+  year = {2020},
+  note = {{Dreamer}: learns behaviors by backpropagating value gradients through imagined trajectories in a learned latent world model.},
+  url = {https://openreview.net/forum?id=S1lOTC4tDS},
+  pdf = {https://openreview.net/pdf?id=S1lOTC4tDS}
+}
+
+@inproceedings{kaiser2020simple,
+  author = {Kaiser, Lukasz and Babaeizadeh, Mohammad and Milos, Piotr and Osinski, Blazej and Campbell, Roy H. and Czechowski, Konrad and Erhan, Dumitru and Finn, Chelsea and Kozakowski, Piotr and Levine, Sergey and Mohiuddin, Afroz and Sepassi, Ryan and Tucker, George and Michalewski, Henryk},
+  title = {Model-Based Reinforcement Learning for Atari},
+  booktitle = {International Conference on Learning Representations},
+  year = {2020},
+  note = {{SimPLe}: a landmark model-based Atari result (Atari-100k) using video-prediction world models for sample-efficient control.},
+  url = {https://openreview.net/forum?id=S1xCPJHtDB},
+  pdf = {https://openreview.net/pdf?id=S1xCPJHtDB}
+}
+
+@article{schrittwieser2020muzero,
+  author = {Schrittwieser, Julian and Antonoglou, Ioannis and Hubert, Thomas and Simonyan, Karen and Sifre, Laurent and Schmitt, Simon and Guez, Arthur and Lockhart, Edward and Hassabis, Demis and Graepel, Thore and Lillicrap, Timothy and Silver, David},
+  title = {Mastering Atari, Go, Chess and Shogi by Planning with a Learned Model},
+  journal = {Nature},
+  year = {2020},
+  note = {{MuZero}: a seminal implicit world model trained end-to-end to support planning (predicting reward, value, and policy for MCTS).},
+  volume = {588},
+  number = {7839},
+  pages = {604--609},
+  doi = {10.1038/s41586-020-03051-4},
+  url = {https://www.nature.com/articles/s41586-020-03051-4},
+  pdf = {https://arxiv.org/pdf/1911.08265.pdf},
+  archiveprefix = {arXiv},
+  eprint = {1911.08265}
+}
+
+@inproceedings{hafner2021dreamerv2,
+  author = {Hafner, Danijar and Lillicrap, Timothy P. and Norouzi, Mohammad and Ba, Jimmy},
+  title = {Mastering Atari with Discrete World Models},
+  booktitle = {International Conference on Learning Representations},
+  year = {2021},
+  note = {{DreamerV2}: discrete latent world models; an influential breakthrough for human-level Atari from a learned world model.},
+  url = {https://openreview.net/forum?id=0oabwyZbOu},
+  pdf = {https://openreview.net/pdf?id=0oabwyZbOu}
+}
+
+@inproceedings{hansen2022tdmpc,
+  author = {Hansen, Nicklas and Su, Hao and Wang, Xiaolong},
+  title = {Temporal Difference Learning for Model Predictive Control},
+  booktitle = {International Conference on Machine Learning},
+  year = {2022},
+  note = {{TD-MPC}: learned latent dynamics for short-horizon planning plus value bootstrapping; a modern high-impact MBRL/MPC template.},
+  url = {https://proceedings.mlr.press/v162/hansen22a.html},
+  pdf = {https://proceedings.mlr.press/v162/hansen22a/hansen22a.pdf}
+}
+
+@inproceedings{micheli2023iris,
+  author = {Micheli, Vincent and Alonso, Eloi and Fleuret, Fran{\c{c}}ois},
+  title = {Transformers are Sample-Efficient World Models},
+  booktitle = {International Conference on Learning Representations},
+  year = {2023},
+  note = {{IRIS}: learns a discrete tokenizer + autoregressive Transformer world model and trains behavior in imagination; a key Transformer world-model milestone.},
+  url = {https://openreview.net/forum?id=vhFu1Acb0xb},
+  pdf = {https://openreview.net/pdf?id=vhFu1Acb0xb}
+}
+
+@misc{hafner2023dreamerv3,
+  author = {Hafner, Danijar and Pa{\v{s}}ukonis, Jurgis and Ba, Jimmy and Lillicrap, Timothy P.},
+  title = {Mastering Diverse Domains through World Models},
+  howpublished = {arXiv preprint},
+  year = {2023},
+  note = {{DreamerV3}: a generalist world-model agent that works out-of-the-box across 150+ diverse tasks; famous for Minecraft "diamond" from scratch.},
+  doi = {10.48550/arXiv.2301.04104},
+  url = {https://arxiv.org/abs/2301.04104},
+  pdf = {https://arxiv.org/pdf/2301.04104.pdf},
+  archiveprefix = {arXiv},
+  eprint = {2301.04104}
+}
+
+@inproceedings{zhang2023storm,
+  author = {Zhang, Weipu and Wang, Gang and Sun, Jian and Yuan, Yetian and Huang, Gao},
+  title = {{STORM}: Efficient Stochastic Transformer based World Models for Reinforcement Learning},
+  booktitle = {Advances in Neural Information Processing Systems},
+  year = {2023},
+  note = {{STORM}: a strong stochastic Transformer world model for Atari-100k-style sample-efficient RL; a key step beyond RNN world models.},
+  url = {https://proceedings.neurips.cc/paper_files/paper/2023/hash/5647763d4245b23e6a1cb0a8947b38c9-Abstract-Conference.html},
+  pdf = {https://proceedings.neurips.cc/paper_files/paper/2023/file/5647763d4245b23e6a1cb0a8947b38c9-Paper-Conference.pdf},
+  archiveprefix = {arXiv},
+  eprint = {2310.09615}
+}
+
+@misc{hu2023gaia1,
+  author = {Hu, Anthony and Russell, Lloyd and Yeo, Hudson and Murez, Zak and Fedoseev, George and Kendall, Alex and Shotton, Jamie and Corrado, Gianluca},
+  title = {{GAIA}-1: A Generative World Model for Autonomous Driving},
+  howpublished = {arXiv preprint},
+  year = {2023},
+  note = {A representative large-scale real-world generative world model for autonomous driving (video + text + action conditioned).},
+  url = {https://arxiv.org/abs/2309.17080},
+  pdf = {https://arxiv.org/pdf/2309.17080.pdf},
+  archiveprefix = {arXiv},
+  eprint = {2309.17080}
+}
+
+@inproceedings{hansen2024tdmpc2,
+  author = {Hansen, Nicklas and Su, Hao and Wang, Xiaolong},
+  title = {{TD-MPC2}: Scalable, Robust World Models for Continuous Control},
+  booktitle = {International Conference on Learning Representations},
+  year = {2024},
+  note = {{TD-MPC2}: scales latent world models for continuous control with strong robustness and a single hyperparameter setting across many tasks.},
+  url = {https://openreview.net/forum?id=Oxh5CstDJU},
+  pdf = {https://openreview.net/pdf?id=Oxh5CstDJU}
+}
+
+@inproceedings{yang2024unisim,
+  author = {Yang, Sherry and Du, Yilun and Ghasemipour, Seyed Kamyar Seyed and Tompson, Jonathan and Kaelbling, Leslie Pack and Schuurmans, Dale and Abbeel, Pieter},
+  title = {Learning Interactive Real-World Simulators},
+  booktitle = {International Conference on Learning Representations},
+  year = {2024},
+  note = {{UniSim} (ICLR 2024 Outstanding Paper): orchestrates diverse real-world datasets to learn an interaction-capable simulator for training agents in-the-loop.},
+  url = {https://openreview.net/forum?id=sFyTZEqmUY},
+  pdf = {https://openreview.net/pdf?id=sFyTZEqmUY}
+}
+
+@inproceedings{bruce2024genie,
+  author = {Bruce, Jake and Dennis, Michael D. and Edwards, Ashley and Parker-Holder, Jack and Shi, Yuge and Hughes, Edward and Lai, Matthew and Mavalankar, Aditi and Steigerwald, Richie and Apps, Chris and Aytar, Yusuf and Bechtle, Sarah and Behbahani, Feryal M. P. and Chan, Stephanie C. Y. and Heess, Nicolas and Gonzalez, Lucy and Osindero, Simon and Ozair, Sherjil and Reed, Scott E. and Zhang, Jingwei and Zolna, Konrad and Clune, Jeff and de Freitas, Nando and Singh, Satinder and Rockt{\"a}schel, Tim},
+  title = {Genie: Generative Interactive Environments},
+  booktitle = {International Conference on Machine Learning},
+  year = {2024},
+  note = {ICML 2024 Best Paper. A foundation world model: action-controllable interactive environments learned unsupervised from unlabeled internet videos.},
+  url = {https://proceedings.mlr.press/v235/bruce24a.html},
+  pdf = {https://raw.githubusercontent.com/mlresearch/v235/main/assets/bruce24a/bruce24a.pdf},
+  archiveprefix = {arXiv},
+  eprint = {2402.15391}
+}
+
+@inproceedings{burchi2025twister,
+  author = {Burchi, Maxime and Timofte, Radu},
+  title = {Learning Transformer-based World Models with Contrastive Predictive Coding},
+  booktitle = {International Conference on Learning Representations},
+  year = {2025},
+  note = {{TWISTER} (ICLR 2025 Spotlight): contrastive predictive coding for long-horizon Transformer world models; state-of-the-art Atari-100k without lookahead search.},
+  url = {https://openreview.net/forum?id=YK9G4Htdew},
+  pdf = {https://openreview.net/pdf?id=YK9G4Htdew},
+  archiveprefix = {arXiv},
+  eprint = {2503.04416}
+}
+
+% Survey / "start here"
+@article{moerland2023mbrlsurvey,
+  author = {Moerland, Thomas M. and Broekens, Joost and Plaat, Aske and Jonker, Catholijn M.},
+  title = {Model-based Reinforcement Learning: A Survey},
+  journal = {Foundations and Trends in Machine Learning},
+  year = {2023},
+  note = {A comprehensive modern survey of model-based reinforcement learning; an excellent entry point and map of the field.},
+  url = {https://arxiv.org/abs/2006.16712},
+  pdf = {https://arxiv.org/pdf/2006.16712.pdf},
+  archiveprefix = {arXiv},
+  eprint = {2006.16712}
+}
