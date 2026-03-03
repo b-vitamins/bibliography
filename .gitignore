@@ -350,6 +350,8 @@ TSWLatexianTemp*
 
 # Temporary directories and files for BibTeX processing
 tmp/
+.bibops.lock
+**/.bibops.lock
 *.bib.enriched
 *.bib.backup
 *.bib.clean
