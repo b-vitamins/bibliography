@@ -2,7 +2,7 @@
 
 % Scope (highly selective):
 % - World models for sequential decision making: learning environment dynamics and using them for planning/imagination/control.
-% - Includes a small number of "foundation" interactive simulators trained on broad data (Genie, UniSim).
+% - Includes representation-centric world models in the JEPA line (LeCun's "Path" paper; I-JEPA/V-JEPA/V-JEPA 2) plus a small number of "foundation" interactive simulators trained on broad data (Genie, UniSim).
 % - Excludes most domain-specific world model variants and most "LLMs have world models" papers.
 %
 % Updated: 2026-03-03
@@ -153,6 +153,29 @@
   pdf = {https://proceedings.mlr.press/v162/hansen22a/hansen22a.pdf}
 }
 
+@techreport{lecun2022path,
+  author = {LeCun, Yann},
+  title = {A Path Towards Autonomous Machine Intelligence},
+  institution = {Meta AI},
+  year = {2022},
+  note = {Position paper introducing Joint-Embedding Predictive Architecture (JEPA) and Hierarchical JEPA as a representation-centric world model for prediction, reasoning, and planning.},
+  url = {https://openreview.net/forum?id=BZ5a1r-kVsf},
+  pdf = {https://openreview.net/pdf?id=BZ5a1r-kVsf}
+}
+
+@misc{assran2023ijepa,
+  author = {Assran, Mahmoud and Duval, Quentin and Misra, Ishan and Bojanowski, Piotr and Vincent, Pascal and Rabbat, Michael and LeCun, Yann and Ballas, Nicolas},
+  title = {Self-Supervised Learning from Images with a Joint-Embedding Predictive Architecture},
+  howpublished = {arXiv preprint},
+  year = {2023},
+  note = {{I-JEPA}: a canonical JEPA instantiation for images via masked prediction in representation space (avoiding pixel-level reconstruction).},
+  doi = {10.48550/arXiv.2301.08243},
+  url = {https://arxiv.org/abs/2301.08243},
+  pdf = {https://arxiv.org/pdf/2301.08243.pdf},
+  archiveprefix = {arXiv},
+  eprint = {2301.08243}
+}
+
 @inproceedings{micheli2023iris,
   author = {Micheli, Vincent and Alonso, Eloi and Fleuret, Fran{\c{c}}ois},
   title = {Transformers are Sample-Efficient World Models},
@@ -210,6 +233,19 @@
   pdf = {https://openreview.net/pdf?id=Oxh5CstDJU}
 }
 
+@misc{bardes2024vjepa,
+  author = {Bardes, Adrien and Garrido, Quentin and Ponce, Jean and Chen, Xinlei and Rabbat, Michael and LeCun, Yann and Assran, Mahmoud and Ballas, Nicolas},
+  title = {Revisiting Feature Prediction for Learning Visual Representations from Video},
+  howpublished = {arXiv preprint},
+  year = {2024},
+  note = {{V-JEPA}: adapts JEPA-style feature prediction to video; a key step toward scalable predictive video world models without pixel reconstruction.},
+  doi = {10.48550/arXiv.2404.08471},
+  url = {https://arxiv.org/abs/2404.08471},
+  pdf = {https://arxiv.org/pdf/2404.08471.pdf},
+  archiveprefix = {arXiv},
+  eprint = {2404.08471}
+}
+
 @inproceedings{yang2024unisim,
   author = {Yang, Sherry and Du, Yilun and Ghasemipour, Seyed Kamyar Seyed and Tompson, Jonathan and Kaelbling, Leslie Pack and Schuurmans, Dale and Abbeel, Pieter},
   title = {Learning Interactive Real-World Simulators},
@@ -232,6 +268,19 @@
   eprint = {2402.15391}
 }
 
+@misc{assran2025vjepa2,
+  author = {Assran, Mido and Bardes, Adrien and Fan, David and Garrido, Quentin and Howes, Russell and Komeili, Mojtaba and Muckley, Matthew and Rizvi, Ammar and Roberts, Claire and Sinha, Koustuv and Zholus, Artem and Arnaud, Sergio and Gejji, Abha and Martin, Ada and Hogan, Francois Robert and Dugas, Daniel and Bojanowski, Piotr and Khalidov, Vasil and Labatut, Patrick and Massa, Francisco and Szafraniec, Marc and Krishnakumar, Kapil and Li, Yong and Ma, Xiaodong and Chandar, Sarath and Meier, Franziska and LeCun, Yann and Rabbat, Michael and Ballas, Nicolas},
+  title = {{V-JEPA} 2: Self-Supervised Video Models Enable Understanding, Prediction and Planning},
+  howpublished = {arXiv preprint},
+  year = {2025},
+  note = {{V-JEPA} 2: scales self-supervised video world models and demonstrates understanding, prediction, and planning from video in a JEPA-style latent space.},
+  doi = {10.48550/arXiv.2506.09985},
+  url = {https://arxiv.org/abs/2506.09985},
+  pdf = {https://arxiv.org/pdf/2506.09985.pdf},
+  archiveprefix = {arXiv},
+  eprint = {2506.09985}
+}
+
 @inproceedings{burchi2025twister,
   author = {Burchi, Maxime and Timofte, Radu},
   title = {Learning Transformer-based World Models with Contrastive Predictive Coding},
@@ -242,6 +291,19 @@
   pdf = {https://openreview.net/pdf?id=YK9G4Htdew},
   archiveprefix = {arXiv},
   eprint = {2503.04416}
+}
+
+@misc{zhang2026geoworld,
+  author = {Zhang, Zeyu and Li, Danning and Reid, Ian and Hartley, Richard},
+  title = {GeoWorld: Geometric World Models},
+  howpublished = {arXiv preprint},
+  year = {2026},
+  note = {Early 2026: energy-based predictive world model for multi-step visual planning using a Hyperbolic JEPA latent space.},
+  doi = {10.48550/arXiv.2602.23058},
+  url = {https://arxiv.org/abs/2602.23058},
+  pdf = {https://arxiv.org/pdf/2602.23058.pdf},
+  archiveprefix = {arXiv},
+  eprint = {2602.23058}
 }
 
 % Survey / "start here"
