@@ -1,0 +1,160 @@
+@COMMENT{folio: topics = normalizing-flows}
+
+% Scope (highly selective):
+% - Foundations + canonical architectural building blocks for exact-likelihood normalizing flows.
+% - Includes one modern CNF training paradigm (flow matching), one "flows are back" result (TarFlow, 2025), and one survey.
+% - Excludes most domain-specific flow applications (RL, physics, etc.).
+%
+% Updated: 2026-03-03
+
+@inproceedings{dinh2015niceflow,
+  author = {Dinh, Laurent and Krueger, David and Bengio, Yoshua},
+  title = {NICE: Non-linear Independent Components Estimation},
+  booktitle = {International Conference on Learning Representations},
+  year = {2015},
+  note = {A foundational coupling-layer flow (NICE) enabling exact likelihood and efficient inversion.},
+  url = {https://arxiv.org/abs/1410.8516},
+  pdf = {https://arxiv.org/pdf/1410.8516.pdf},
+  archiveprefix = {arXiv},
+  eprint = {1410.8516}
+}
+
+@inproceedings{rezende2015vinf,
+  author = {Rezende, Danilo Jimenez and Mohamed, Shakir},
+  title = {Variational Inference with Normalizing Flows},
+  booktitle = {International Conference on Machine Learning},
+  year = {2015},
+  note = {Introduced normalizing flows as flexible variational posteriors; kicked off modern flow literature.},
+  url = {https://proceedings.mlr.press/v37/rezende15.html},
+  pdf = {https://proceedings.mlr.press/v37/rezende15.pdf}
+}
+
+@inproceedings{kingma2016iaf,
+  author = {Kingma, Durk P. and Salimans, Tim and Jozefowicz, Rafal and Chen, Xi and Sutskever, Ilya and Welling, Max},
+  title = {Improved Variational Inference with Inverse Autoregressive Flow},
+  booktitle = {Advances in Neural Information Processing Systems},
+  year = {2016},
+  note = {IAF: an expressive, scalable flow for high-dimensional latents; influential in VAEs and beyond.},
+  url = {https://proceedings.neurips.cc/paper_files/paper/2016/hash/ddeebdeefdb7e7e7a697e1c3e3d8ef54-Abstract.html},
+  pdf = {https://proceedings.neurips.cc/paper_files/paper/2016/file/ddeebdeefdb7e7e7a697e1c3e3d8ef54-Paper.pdf},
+  archiveprefix = {arXiv},
+  eprint = {1606.04934}
+}
+
+@inproceedings{dinh2017realnvpflow,
+  author = {Dinh, Laurent and Sohl-Dickstein, Jascha and Bengio, Samy},
+  title = {Density estimation using Real NVP},
+  booktitle = {International Conference on Learning Representations},
+  year = {2017},
+  note = {Real NVP: affine coupling with multi-scale architecture; a canonical exact-likelihood image flow.},
+  url = {https://openreview.net/forum?id=HkpbnH9lx},
+  pdf = {https://openreview.net/pdf?id=HkpbnH9lx},
+  archiveprefix = {arXiv},
+  eprint = {1605.08803}
+}
+
+@inproceedings{papamakarios2017maf,
+  author = {Papamakarios, George and Pavlakou, Theo and Murray, Iain},
+  title = {Masked Autoregressive Flow for Density Estimation},
+  booktitle = {Advances in Neural Information Processing Systems},
+  year = {2017},
+  note = {MAF: an autoregressive-flow workhorse for tabular density estimation and VI.},
+  url = {https://proceedings.neurips.cc/paper_files/paper/2017/hash/6c1da886822c67822bcf3679d04369fa-Abstract.html},
+  pdf = {https://proceedings.neurips.cc/paper_files/paper/2017/file/6c1da886822c67822bcf3679d04369fa-Paper.pdf},
+  archiveprefix = {arXiv},
+  eprint = {1705.07057}
+}
+
+@inproceedings{kingma2018glowflow,
+  author = {Kingma, Durk P. and Dhariwal, Prafulla},
+  title = {Glow: Generative Flow with Invertible 1x1 Convolutions},
+  booktitle = {Advances in Neural Information Processing Systems},
+  year = {2018},
+  note = {Glow: a clean, scalable multi-scale flow for images (invertible 1x1 conv).},
+  url = {https://proceedings.neurips.cc/paper_files/paper/2018/hash/d139db6a236200b21cc7f752979132d0-Abstract.html},
+  pdf = {https://proceedings.neurips.cc/paper_files/paper/2018/file/d139db6a236200b21cc7f752979132d0-Paper.pdf},
+  archiveprefix = {arXiv},
+  eprint = {1807.03039}
+}
+
+@inproceedings{chen2018neuralodeflow,
+  author = {Chen, Ricky T. Q. and Rubanova, Yulia and Bettencourt, Jesse and Duvenaud, David K.},
+  title = {Neural Ordinary Differential Equations},
+  booktitle = {Advances in Neural Information Processing Systems},
+  year = {2018},
+  note = {Continuous-depth modeling; introduced continuous normalizing flows as an ODE-based likelihood model.},
+  url = {https://proceedings.neurips.cc/paper/2018/hash/69386f6bb1dfed68692a24c8686939b9-Abstract.html},
+  pdf = {https://proceedings.neurips.cc/paper/2018/file/69386f6bb1dfed68692a24c8686939b9-Paper.pdf},
+  archiveprefix = {arXiv},
+  eprint = {1806.07366}
+}
+
+@inproceedings{grathwohl2019ffjord,
+  author = {Grathwohl, Will and Chen, Ricky T. Q. and Bettencourt, Jesse and Sutskever, Ilya and Duvenaud, David},
+  title = {FFJORD: Free-form Continuous Dynamics for Scalable Reversible Generative Models},
+  booktitle = {International Conference on Learning Representations},
+  year = {2019},
+  note = {A scalable continuous-time flow (CNF) using Hutchinson trace estimator for log-density.},
+  url = {https://openreview.net/forum?id=rJxgknCcK7},
+  pdf = {https://openreview.net/pdf?id=rJxgknCcK7},
+  archiveprefix = {arXiv},
+  eprint = {1810.01367}
+}
+
+@inproceedings{durkan2019splineflow,
+  author = {Durkan, Conor and Bekasov, Artur and Murray, Iain and Papamakarios, George},
+  title = {Neural Spline Flows},
+  booktitle = {Advances in Neural Information Processing Systems},
+  year = {2019},
+  note = {Rational-quadratic spline transforms: a major expressivity upgrade over affine couplings.},
+  url = {https://proceedings.neurips.cc/paper_files/paper/2019/hash/7ac71d433f282034e088473244df8c02-Abstract.html},
+  pdf = {https://proceedings.neurips.cc/paper_files/paper/2019/file/7ac71d433f282034e088473244df8c02-Paper.pdf},
+  archiveprefix = {arXiv},
+  eprint = {1906.04032}
+}
+
+@inproceedings{ho2019flowplusplus,
+  author = {Ho, Jonathan and Chen, Xi and Srinivas, Aravind and Duan, Yan and Abbeel, Pieter},
+  title = {Flow++: Improving Flow-Based Generative Models with Variational Dequantization and Architecture Design},
+  booktitle = {International Conference on Machine Learning},
+  year = {2019},
+  note = {A strong image-flow baseline that improved dequantization and coupling architectures.},
+  url = {https://proceedings.mlr.press/v97/ho19a.html},
+  pdf = {https://proceedings.mlr.press/v97/ho19a/ho19a.pdf}
+}
+
+@article{kobyzev2021flowsreview,
+  author = {Kobyzev, Ivan and Prince, Simon J. D. and Brubaker, Marcus A.},
+  title = {Normalizing Flows: An Introduction and Review of Current Methods},
+  journal = {IEEE Transactions on Pattern Analysis and Machine Intelligence},
+  year = {2021},
+  note = {A widely cited survey; good for orienting on coupling/autoregressive/CNF design space.},
+  doi = {10.1109/TPAMI.2020.2992934},
+  url = {https://arxiv.org/abs/1908.09257},
+  pdf = {https://arxiv.org/pdf/1908.09257.pdf}
+}
+
+@inproceedings{lipman2023flowmatching,
+  author = {Lipman, Yaron and Chen, Ricky T. Q. and Ben-Hamu, Heli and Nickel, Maximilian and Le, Matthew},
+  title = {Flow Matching for Generative Modeling},
+  booktitle = {International Conference on Learning Representations},
+  year = {2023},
+  note = {Flow matching: simulation-free training of CNFs; unifies diffusion paths and ODE-based flows.},
+  url = {https://openreview.net/forum?id=xgB1SSwH8f},
+  pdf = {https://openreview.net/pdf?id=xgB1SSwH8f},
+  archiveprefix = {arXiv},
+  eprint = {2210.02747}
+}
+
+@inproceedings{zhai2025tarflow,
+  author = {Zhai, Shuangfei and Zhang, Ruixiang and Nakkiran, Preetum and Berthelot, David and Gu, Jiatao and Zheng, Huangjie and Chen, Tianrong and Bautista, Miguel {\'A}ngel and Jaitly, Navdeep and Susskind, Joshua M.},
+  title = {Normalizing Flows are Capable Generative Models},
+  booktitle = {International Conference on Machine Learning},
+  year = {2025},
+  note = {TarFlow: a modern Transformer-ish MAF variant arguing NFs can match diffusion-level sample quality.},
+  url = {https://proceedings.mlr.press/v267/zhai25d.html},
+  pdf = {https://raw.githubusercontent.com/mlresearch/v267/main/assets/zhai25d/zhai25d.pdf},
+  doi = {10.48550/arxiv.2412.06329},
+  archiveprefix = {arXiv},
+  eprint = {2412.06329}
+}

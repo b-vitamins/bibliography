@@ -1,0 +1,220 @@
+@COMMENT{folio: topics = diffusion}
+
+% Scope (highly selective):
+% - Foundations for score-based + diffusion probabilistic modeling.
+% - Canonical DDPM line + key improvements (guidance, samplers, latent diffusion, EDM).
+% - Includes a small number of fast-generation successors (consistency models, rectified flow).
+% - Excludes most downstream application papers (3D, editing, robotics, etc.).
+%
+% Updated: 2026-03-03
+
+@article{hyvarinen2005scorematching,
+  author = {Hyv{\"a}rinen, Aapo},
+  title = {Estimation of Non-Normalized Statistical Models by Score Matching},
+  journal = {Journal of Machine Learning Research},
+  year = {2005},
+  note = {Score matching: the core objective later reused (in denoising form) by score-based diffusion.},
+  url = {https://jmlr.org/papers/v6/hyvarinen05a.html},
+  pdf = {https://www.jmlr.org/papers/volume6/hyvarinen05a/hyvarinen05a.pdf}
+}
+
+@article{vincent2011smdae,
+  author = {Vincent, Pascal},
+  title = {A Connection Between Score Matching and Denoising Autoencoders},
+  journal = {Neural Computation},
+  year = {2011},
+  note = {A key conceptual bridge: denoising objectives as score matching.},
+  doi = {10.1162/NECO_a_00142},
+  url = {https://www.iro.umontreal.ca/~vincentp/Publications/smdae_techreport.pdf},
+  pdf = {https://www.iro.umontreal.ca/~vincentp/Publications/smdae_techreport.pdf}
+}
+
+@inproceedings{sohldickstein2015diffusion,
+  author = {Sohl-Dickstein, Jascha and Weiss, Eric A. and Maheswaranathan, Niru and Ganguli, Surya},
+  title = {Deep Unsupervised Learning using Nonequilibrium Thermodynamics},
+  booktitle = {International Conference on Machine Learning},
+  year = {2015},
+  note = {The original diffusion-probabilistic modeling paper.},
+  url = {https://proceedings.mlr.press/v37/sohl-dickstein15.html},
+  pdf = {http://proceedings.mlr.press/v37/sohl-dickstein15.pdf},
+  archiveprefix = {arXiv},
+  eprint = {1503.03585}
+}
+
+@inproceedings{song2019scorebased,
+  author = {Song, Yang and Ermon, Stefano},
+  title = {Generative Modeling by Estimating Gradients of the Data Distribution},
+  booktitle = {Advances in Neural Information Processing Systems},
+  year = {2019},
+  note = {Modern score-based generative modeling (annealed Langevin dynamics).},
+  url = {https://papers.nips.cc/paper/2019/hash/3001ef257407d5a371a96dcd947c7d93-Abstract.html},
+  pdf = {https://papers.nips.cc/paper_files/paper/2019/file/3001ef257407d5a371a96dcd947c7d93-Paper.pdf},
+  archiveprefix = {arXiv},
+  eprint = {1907.05600}
+}
+
+@inproceedings{ho2020ddpm,
+  author = {Ho, Jonathan and Jain, Ajay and Abbeel, Pieter},
+  title = {Denoising Diffusion Probabilistic Models},
+  booktitle = {Advances in Neural Information Processing Systems},
+  year = {2020},
+  note = {DDPM: the canonical modern diffusion baseline (simple objective + strong samples).},
+  url = {https://proceedings.neurips.cc/paper/2020/hash/4c5bcfec8584af0d967f1ab10179ca4b-Abstract.html},
+  pdf = {https://proceedings.neurips.cc/paper/2020/file/4c5bcfec8584af0d967f1ab10179ca4b-Paper.pdf},
+  archiveprefix = {arXiv},
+  eprint = {2006.11239}
+}
+
+@inproceedings{song2021ddim,
+  author = {Song, Jiaming and Meng, Chenlin and Ermon, Stefano},
+  title = {Denoising Diffusion Implicit Models},
+  booktitle = {International Conference on Learning Representations},
+  year = {2021},
+  note = {DDIM: a widely used deterministic sampler and viewpoint on diffusion trajectories.},
+  url = {https://openreview.net/forum?id=St1giarCHLP},
+  pdf = {https://arxiv.org/pdf/2010.02502.pdf},
+  archiveprefix = {arXiv},
+  eprint = {2010.02502}
+}
+
+@inproceedings{song2021sde,
+  author = {Song, Yang and Sohl-Dickstein, Jascha and Kingma, Diederik P. and Kumar, Abhishek and Ermon, Stefano and Poole, Ben},
+  title = {Score-Based Generative Modeling through Stochastic Differential Equations},
+  booktitle = {International Conference on Learning Representations},
+  year = {2021},
+  note = {Unified score-based and diffusion viewpoints via SDEs; probability flow ODE + likelihoods.},
+  url = {https://openreview.net/forum?id=PxTIG12RRHS},
+  pdf = {https://openreview.net/pdf?id=PxTIG12RRHS},
+  archiveprefix = {arXiv},
+  eprint = {2011.13456}
+}
+
+@inproceedings{nichol2021improvedddpm,
+  author = {Nichol, Alexander Quinn and Dhariwal, Prafulla},
+  title = {Improved Denoising Diffusion Probabilistic Models},
+  booktitle = {International Conference on Machine Learning},
+  year = {2021},
+  note = {Practical improvements to DDPM (noise schedules, hybrid objectives) with better likelihoods.},
+  url = {https://proceedings.mlr.press/v139/nichol21a.html},
+  pdf = {https://proceedings.mlr.press/v139/nichol21a/nichol21a.pdf},
+  archiveprefix = {arXiv},
+  eprint = {2102.09672}
+}
+
+@inproceedings{dhariwal2021guideddiffusion,
+  author = {Dhariwal, Prafulla and Nichol, Alexander},
+  title = {Diffusion Models Beat GANs on Image Synthesis},
+  booktitle = {Advances in Neural Information Processing Systems},
+  year = {2021},
+  note = {Classifier guidance + architecture ablations; a decisive ImageNet-quality milestone.},
+  url = {https://papers.nips.cc/paper/2021/hash/49ad23d1ec9fa4bd8d77d02681df5cfa-Abstract.html},
+  pdf = {https://proceedings.neurips.cc/paper/2021/file/49ad23d1ec9fa4bd8d77d02681df5cfa-Paper.pdf}
+}
+
+@techreport{luo2022diffusiontutorial,
+  author = {Luo, Calvin},
+  title = {Understanding Diffusion Models: A Unified Perspective},
+  howpublished = {arXiv preprint},
+  year = {2022},
+  note = {A clean tutorial unifying variational and score-based derivations (good PhD onboarding doc).},
+  url = {https://arxiv.org/abs/2208.11970},
+  pdf = {https://arxiv.org/pdf/2208.11970.pdf},
+  archiveprefix = {arXiv},
+  eprint = {2208.11970}
+}
+
+@inproceedings{karras2022edm,
+  author = {Karras, Tero and Aittala, Miika and Aila, Timo and Laine, Samuli},
+  title = {Elucidating the Design Space of Diffusion-Based Generative Models},
+  booktitle = {Advances in Neural Information Processing Systems},
+  year = {2022},
+  note = {EDM: clarified design choices; strong training/sampling recipe that became a reference baseline.},
+  url = {https://proceedings.neurips.cc/paper_files/paper/2022/hash/a98846e9d9cc01cfb87eb694d946ce6b-Abstract-Conference.html},
+  pdf = {https://proceedings.neurips.cc/paper_files/paper/2022/file/a98846e9d9cc01cfb87eb694d946ce6b-Paper-Conference.pdf},
+  archiveprefix = {arXiv},
+  eprint = {2206.00364}
+}
+
+@inproceedings{rombach2022latentdiffusion,
+  author = {Rombach, Robin and Blattmann, Andreas and Lorenz, Dominik and Esser, Patrick and Ommer, Bj{\"o}rn},
+  title = {High-Resolution Image Synthesis with Latent Diffusion Models},
+  booktitle = {Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)},
+  year = {2022},
+  note = {LDM: diffusion in an autoencoder latent space; the technical backbone for Stable Diffusion-era work.},
+  url = {https://openaccess.thecvf.com/content/CVPR2022/html/Rombach_High-Resolution_Image_Synthesis_With_Latent_Diffusion_Models_CVPR_2022_paper.html},
+  pdf = {https://openaccess.thecvf.com/content/CVPR2022/papers/Rombach_High-Resolution_Image_Synthesis_With_Latent_Diffusion_Models_CVPR_2022_paper.pdf},
+  archiveprefix = {arXiv},
+  eprint = {2112.10752}
+}
+
+@inproceedings{saharia2022imagen,
+  author = {Saharia, Chitwan and Chan, William and Saxena, Saurabh and Li, Lala and Whang, Jay and Denton, Emily L. and Seyed Ghasemipour, Seyed Kamyar and Karagol Ayan, Burcu and Mahdavi, S. Sara and Lopes, Rapha Gontijo and Salimans, Tim and Ho, Jonathan and Fleet, David J. and Norouzi, Mohammad},
+  title = {Photorealistic Text-to-Image Diffusion Models with Deep Language Understanding},
+  booktitle = {Advances in Neural Information Processing Systems},
+  year = {2022},
+  note = {Imagen: a flagship text-to-image diffusion paper emphasizing large text encoder scaling.},
+  url = {https://proceedings.neurips.cc/paper_files/paper/2022/hash/ec795aeadae0b7d230fa35cbaf04c041-Abstract-Conference.html},
+  pdf = {https://proceedings.neurips.cc/paper_files/paper/2022/file/ec795aeadae0b7d230fa35cbaf04c041-Paper-Conference.pdf},
+  archiveprefix = {arXiv},
+  eprint = {2205.11487}
+}
+
+@inproceedings{nichol2022glidepaper,
+  author = {Nichol, Alexander Quinn and Dhariwal, Prafulla and Ramesh, Aditya and Shyam, Pranav and Mishkin, Pamela and McGrew, Bob and Sutskever, Ilya and Chen, Mark},
+  title = {GLIDE: Towards Photorealistic Image Generation and Editing with Text-Guided Diffusion Models},
+  booktitle = {International Conference on Machine Learning},
+  year = {2022},
+  note = {A key text-to-image diffusion model; popularized classifier-free guidance in practice.},
+  url = {https://proceedings.mlr.press/v162/nichol22a.html},
+  pdf = {https://proceedings.mlr.press/v162/nichol22a/nichol22a.pdf},
+  archiveprefix = {arXiv},
+  eprint = {2112.10741}
+}
+
+@inproceedings{lu2022dpmsolverpaper,
+  author = {Lu, Cheng and Zhou, Yuhao and Bao, Fan and Chen, Jianfei and Li, Chongxuan and Zhu, Jun},
+  title = {DPM-Solver: A Fast ODE Solver for Diffusion Probabilistic Model Sampling in Around 10 Steps},
+  booktitle = {Advances in Neural Information Processing Systems},
+  year = {2022},
+  note = {The most-cited family of fast, training-free diffusion samplers (DPM-Solver).},
+  url = {https://proceedings.neurips.cc/paper_files/paper/2022/hash/260a14acce2a89dad36adc8eefe7c59e-Abstract-Conference.html},
+  pdf = {https://proceedings.neurips.cc/paper_files/paper/2022/file/260a14acce2a89dad36adc8eefe7c59e-Paper-Conference.pdf},
+  archiveprefix = {arXiv},
+  eprint = {2206.00927}
+}
+
+@misc{peebles2022dit,
+  author = {Peebles, William and Xie, Saining},
+  title = {Scalable Diffusion Models with Transformers},
+  howpublished = {arXiv preprint},
+  year = {2022},
+  note = {DiT: a Transformer backbone for diffusion that scaled well and influenced later diffusion transformers.},
+  url = {https://arxiv.org/abs/2212.09748},
+  pdf = {https://arxiv.org/pdf/2212.09748.pdf},
+  archiveprefix = {arXiv},
+  eprint = {2212.09748}
+}
+
+@inproceedings{liu2023rectifiedflow,
+  author = {Liu, Xingchao and Gong, Chengyue and Liu, Qiang},
+  title = {Flow Straight and Fast: Learning to Generate and Transfer Data with Rectified Flow},
+  booktitle = {International Conference on Learning Representations},
+  year = {2023},
+  note = {Rectified flow: a fast ODE-based generator that became a major post-diffusion direction.},
+  url = {https://openreview.net/forum?id=XVjTT1nw5z},
+  pdf = {https://openreview.net/pdf?id=XVjTT1nw5z},
+  archiveprefix = {arXiv},
+  eprint = {2209.03003}
+}
+
+@inproceedings{song2023consistencymodels,
+  author = {Song, Yang and Dhariwal, Prafulla and Chen, Mark and Sutskever, Ilya},
+  title = {Consistency Models},
+  booktitle = {International Conference on Machine Learning},
+  year = {2023},
+  note = {One-step/few-step distillation family that accelerated diffusion-style sampling substantially.},
+  url = {https://proceedings.mlr.press/v202/song23a.html},
+  pdf = {https://proceedings.mlr.press/v202/song23a/song23a.pdf},
+  archiveprefix = {arXiv},
+  eprint = {2303.01469}
+}
