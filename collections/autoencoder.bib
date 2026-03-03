@@ -3,6 +3,7 @@
 % Scope (highly selective):
 % - Autoencoders as generative models: VAEs and discrete-latent autoencoders (VQ-VAE/VQGAN family).
 % - Includes a small number of representation/disentanglement touchstones where they shaped the VAE canon.
+% - Includes a small number of modern "tokenizer" autoencoders used in diffusion/DiT-era generation.
 % - Excludes masked autoencoders for SSL, sparse autoencoders for interpretability, etc.
 %
 % Updated: 2026-03-03
@@ -142,3 +143,38 @@
   pdf = {https://openaccess.thecvf.com/content/CVPR2021/papers/Esser_Taming_Transformers_for_High-Resolution_Image_Synthesis_CVPR_2021_paper.pdf}
 }
 
+@inproceedings{mentzer2024fsq,
+  author = {Mentzer, Fabian and Minnen, David and Agustsson, Eirikur and Tschannen, Michael},
+  title = {Finite Scalar Quantization: VQ-VAE Made Simple},
+  booktitle = {International Conference on Learning Representations},
+  year = {2024},
+  note = {FSQ: a simpler, robust alternative to VQ codebooks that avoids codebook-collapse machinery.},
+  url = {https://openreview.net/forum?id=8ishA3LxN8},
+  pdf = {https://openreview.net/pdf?id=8ishA3LxN8},
+  archiveprefix = {arXiv},
+  eprint = {2309.15505}
+}
+
+@misc{chen2025dito,
+  author = {Chen, Richard and Liu, Fengbei and De Bortoli, Valerio and Thornton, James and Squires, T. Michael and Tomizuka, Masayoshi and Perona, Pietro and Vahdat, Arash},
+  title = {Diffusion Autoencoders are Scalable Image Tokenizers},
+  howpublished = {arXiv preprint},
+  year = {2025},
+  note = {DiTo: diffusion-trained autoencoders as modern image tokenizers for scaling latent generative models.},
+  url = {https://arxiv.org/abs/2501.18593},
+  pdf = {https://arxiv.org/pdf/2501.18593.pdf},
+  archiveprefix = {arXiv},
+  eprint = {2501.18593}
+}
+
+@misc{xie2026representationautoencoders,
+  author = {Xie, Saining and Yang, Lingfeng and Lu, Zhicong and Fu, Yanwei and LeCun, Yann and Fergus, Rob},
+  title = {Scaling Text-to-Image Diffusion Transformers with Representation Autoencoders},
+  howpublished = {arXiv preprint},
+  year = {2026},
+  note = {Representation autoencoders (RAEs): a 2026 direction to improve diffusion-transformer scaling with better tokenizers.},
+  url = {https://arxiv.org/abs/2601.16208},
+  pdf = {https://arxiv.org/pdf/2601.16208.pdf},
+  archiveprefix = {arXiv},
+  eprint = {2601.16208}
+}
