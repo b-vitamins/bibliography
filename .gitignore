@@ -44,6 +44,9 @@ ops/unresolved/intake/
 ops/pdf-sync-checkpoint.json
 ops/pdf-sync-*.jsonl
 
+# Runtime artifacts from key normalization workflow
+ops/key-normalize-rollbacks/
+
 # Local secrets / environment overrides
 .env
 .env.*

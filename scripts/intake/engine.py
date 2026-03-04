@@ -11,12 +11,12 @@ from typing import Any
 import bibtexparser
 
 from core.bibtex_io import parse_bib_file, parse_bib_text, resolve_bib_paths, write_bib_file
+from core.bibkey import entry_signature, generate_bib_key
 from core.http_client import CachedHttpClient
 from core.normalization import normalize_text, sanitize_bibtex_text
 from core.time_utils import now_iso
 
 from .config import IntakeConfig, VenuePolicy
-from .keygen import entry_signature, generate_bib_key
 from .models import (
     CatalogSnapshot,
     IntakeIssue,

@@ -7,7 +7,7 @@ if [ "$#" -lt 1 ]; then
 fi
 
 python3 scripts/verify-bib.py "$@"
-python3 scripts/check-bibkey-format.py "$@"
+python3 scripts/bibops.py key-normalize "$@" --global-scope none --fail-on-issues
 
 bad=0
 for f in "$@"; do

@@ -50,6 +50,9 @@ python3 scripts/bibops.py pdf-sync conferences/aistats/2024.bib \
   --pdf-sync-policy ops/pdf-sync-policy.toml \
   --dry-run --max-entries 500
 
+# Validate/normalize BibTeX keys in <author><year><keyword> shape
+python3 scripts/bibops.py key-normalize conferences/iclr/2025.bib --fail-on-issues
+
 # Battle-test enrichment pipeline behavior on real workloads
 python3 scripts/enrichment/battle_test.py --mode standard
 
@@ -69,6 +72,7 @@ make orals
 make enrich-arxiv-orals
 make enrich-battle
 make pdf-sync TARGETS='conferences/iclr/2025.bib'
+make key-normalize TARGETS='conferences/iclr/2025.bib'
 make release
 make full-audit
 ```
@@ -115,6 +119,6 @@ Hook behavior:
 
 ## Legacy scripts
 
-Existing scripts in `scripts/` remain available for specialized operations (enrichment, export, key updates, etc.).
+Existing scripts in `scripts/` remain available for specialized operations (enrichment, export, etc.).
 
 Use `bibops` for orchestration and health checks; use specialized scripts for targeted actions.

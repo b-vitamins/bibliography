@@ -1,4 +1,4 @@
-.PHONY: doctor lint scan report daily release full-audit orals intake-watch intake-discover intake-plan intake-run enrich-arxiv-orals enrich-semanticscholar enrich-plan enrich-run enrich-battle pdf-sync hooks export-tracking validate-skills
+.PHONY: doctor lint scan report daily release full-audit orals intake-watch intake-discover intake-plan intake-run enrich-arxiv-orals enrich-semanticscholar enrich-plan enrich-run enrich-battle pdf-sync key-normalize hooks export-tracking validate-skills
 
 doctor:
 	python3 scripts/bibops.py doctor
@@ -60,6 +60,10 @@ enrich-battle:
 pdf-sync:
 	@[ -n "$(TARGETS)" ] || (echo "Usage: make pdf-sync TARGETS='conferences/iclr/2025.bib collections/orals/iclr/2025.bib'" && exit 1)
 	python3 scripts/bibops.py pdf-sync $(TARGETS) --pdf-sync-policy ops/pdf-sync-policy.toml
+
+key-normalize:
+	@[ -n "$(TARGETS)" ] || (echo "Usage: make key-normalize TARGETS='conferences/iclr/2025.bib'" && exit 1)
+	python3 scripts/bibops.py key-normalize $(TARGETS) --fail-on-issues
 
 hooks:
 	python3 scripts/bibops.py install-hooks

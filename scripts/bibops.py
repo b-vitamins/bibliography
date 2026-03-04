@@ -25,6 +25,7 @@ from typing import Iterable
 import bibtexparser
 from bibtexparser.bparser import BibTexParser
 from bibtexparser.customization import convert_to_unicode
+from bibops_key_manager import KeyNormalizeOptions, result_to_json, run_key_normalize
 from bibops_pdf_sync import PdfSyncOptions, parse_host_interval_overrides, run_pdf_sync
 
 DEFAULT_CONFIG_PATH = Path("ops/bibops.toml")
@@ -310,6 +311,20 @@ def init_db(db_path: Path) -> None:
     conn.close()
 
 
+def _pid_looks_like_bibops(pid: int) -> bool:
+    proc_cmdline = Path(f"/proc/{pid}/cmdline")
+    if not proc_cmdline.exists():
+        return False
+    try:
+        raw = proc_cmdline.read_bytes()
+    except Exception:
+        return True
+    if not raw:
+        return False
+    text = raw.replace(b"\x00", b" ").decode("utf-8", errors="ignore").lower()
+    return "bibops.py" in text or "bibops" in text
+
+
 @contextlib.contextmanager
 def run_lock() -> Iterable[None]:
     LOCK_PATH.parent.mkdir(parents=True, exist_ok=True)
@@ -326,7 +341,9 @@ def run_lock() -> Iterable[None]:
             if pid > 0:
                 try:
                     os.kill(pid, 0)
-                    raise RuntimeError(f"Another bibops process is running (pid={pid})")
+                    if _pid_looks_like_bibops(pid):
+                        raise RuntimeError(f"Another bibops process is running (pid={pid})")
+                    LOCK_PATH.unlink(missing_ok=True)
                 except ProcessLookupError:
                     LOCK_PATH.unlink(missing_ok=True)
             else:
@@ -1523,6 +1540,62 @@ def command_pdf_sync(args: argparse.Namespace) -> int:
     return 0
 
 
+def command_key_normalize(cfg: OpsConfig, args: argparse.Namespace) -> int:
+    global_paths: list[Path] = []
+    if args.global_scope == "config":
+        global_paths = discover_bib_files(cfg)
+
+    options = KeyNormalizeOptions(
+        targets=args.targets,
+        write=args.write,
+        canonicalize_all=args.canonicalize_all,
+        max_entries=max(0, args.max_entries),
+        global_scope=args.global_scope,
+        global_paths=global_paths,
+        fail_on_issues=args.fail_on_issues,
+        detail_limit=max(1, args.detail_limit),
+        backup=not args.no_backup,
+        rollback_dir=Path(args.rollback_dir) if args.rollback_dir else None,
+    )
+
+    try:
+        result = run_key_normalize(options)
+    except Exception as ex:
+        print(f"key-normalize failed: {ex}")
+        if args.json:
+            print(json.dumps({"status": "failed", "error": str(ex)}, indent=2, sort_keys=True))
+        return 1
+
+    summary = result.summary
+    changed = int(summary.get("entries_renamed", 0))
+    parse_errors = int(summary.get("parse_errors", 0))
+    unresolved_targets = int(summary.get("unresolved_targets", 0))
+
+    if args.json:
+        print(result_to_json(result, detail_limit=max(1, args.detail_limit)))
+    else:
+        action = "applied" if args.write else "planned"
+        print(f"key-normalize summary ({action}):")
+        for key in sorted(summary):
+            print(f"  {key}: {summary[key]}")
+
+        if result.issue_counts:
+            print("issue_counts:")
+            for key in sorted(result.issue_counts):
+                print(f"  {key}: {result.issue_counts[key]}")
+
+        if result.changes:
+            print("key_changes:")
+            for change in result.changes[:25]:
+                print(f"  {change.file_path} :: {change.old_key or '<missing>'} -> {change.new_key}")
+            if len(result.changes) > 25:
+                print(f"  ... and {len(result.changes) - 25} more")
+
+    if args.fail_on_issues and (changed > 0 or parse_errors > 0 or unresolved_targets > 0):
+        return 4
+    return 0
+
+
 def command_verify_orals(cfg: OpsConfig, recorder: RunRecorder, as_json: bool, fail_on_error: bool) -> int:
     files_scanned, entries_scanned, issues = run_verify_orals(cfg)
     write_issues(Path(cfg.db_path), recorder.run_id, issues)
@@ -1734,6 +1807,30 @@ def command_profile(cfg: OpsConfig, profile_path: Path) -> int:
                 json=bool(step_payload.get("json", False)),
             )
             rc = command_pdf_sync(pdf_sync_args)
+        elif step_name == "key-normalize":
+            targets_raw = step_payload.get("targets")
+            targets: list[str] = []
+            if isinstance(targets_raw, list):
+                for target in targets_raw:
+                    if isinstance(target, str) and target.strip():
+                        targets.append(target.strip())
+            if not targets:
+                print("Profile key-normalize step requires `targets = [\"file.bib\", ...]`")
+                return 1
+
+            key_args = argparse.Namespace(
+                targets=targets,
+                write=bool(step_payload.get("write", False)),
+                canonicalize_all=bool(step_payload.get("canonicalize_all", False)),
+                max_entries=int(step_payload.get("max_entries", 0) or 0),
+                global_scope=str(step_payload.get("global_scope", "targets")),
+                fail_on_issues=bool(step_payload.get("fail_on_issues", False)),
+                detail_limit=int(step_payload.get("detail_limit", 200) or 200),
+                no_backup=bool(step_payload.get("no_backup", False)),
+                rollback_dir=str(step_payload.get("rollback_dir", "ops/key-normalize-rollbacks")),
+                json=bool(step_payload.get("json", False)),
+            )
+            rc = command_key_normalize(cfg, key_args)
         else:
             print(f"Unknown profile step: {step_name}")
             return 1
@@ -1901,6 +1998,35 @@ def build_parser() -> argparse.ArgumentParser:
     pdf_sync.add_argument("--fail-on-error", action="store_true", help="Return non-zero on download failures")
     pdf_sync.add_argument("--json", action="store_true", help="Emit JSON output")
 
+    key_norm = sub.add_parser("key-normalize", help="Validate and normalize BibTeX keys")
+    key_norm.add_argument("targets", nargs="+", help="BibTeX file(s) or glob(s)")
+    key_norm.add_argument("--write", action="store_true", help="Write normalized keys back to files")
+    key_norm.add_argument(
+        "--canonicalize-all",
+        action="store_true",
+        help="Rewrite all keys to canonical generated form, even when already valid",
+    )
+    key_norm.add_argument("--max-entries", type=int, default=0, help="Cap entries processed per file")
+    key_norm.add_argument(
+        "--global-scope",
+        choices=["none", "targets", "config"],
+        default="targets",
+        help="Collision scope: none, only targets, or full config roots",
+    )
+    key_norm.add_argument(
+        "--fail-on-issues",
+        action="store_true",
+        help="Return non-zero when key updates would be required or parse/unresolved issues exist",
+    )
+    key_norm.add_argument("--detail-limit", type=int, default=200, help="Max detailed changes/issues in output")
+    key_norm.add_argument("--no-backup", action="store_true", help="Skip writing .backup files when --write")
+    key_norm.add_argument(
+        "--rollback-dir",
+        default="ops/key-normalize-rollbacks",
+        help="Rollback artifact directory for transactional write guardrails",
+    )
+    key_norm.add_argument("--json", action="store_true", help="Emit JSON output")
+
     profile = sub.add_parser("run-profile", help="Run declarative ops profile")
     profile.add_argument("--profile", required=True, help="Path to profile TOML")
 
@@ -1942,6 +2068,10 @@ def main() -> int:
     if args.command == "pdf-sync":
         with run_lock():
             return command_pdf_sync(args)
+
+    if args.command == "key-normalize":
+        with run_lock():
+            return command_key_normalize(cfg, args)
 
     if args.command == "run-profile":
         with run_lock():

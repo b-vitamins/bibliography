@@ -13,6 +13,7 @@ Core commands:
 - `python3 scripts/bibops.py lint`
 - `python3 scripts/bibops.py report`
 - `python3 scripts/bibops.py pdf-sync <file.bib|glob ...> --pdf-sync-policy ops/pdf-sync-policy.toml [--fail-on-error]`
+- `python3 scripts/bibops.py key-normalize <file.bib|glob ...> [--write] [--fail-on-issues]`
 - `python3 scripts/bibops.py intake discover <venue:year> [more targets...]`
 - `python3 scripts/bibops.py intake plan <venue:year> [more targets...]`
 - `python3 scripts/bibops.py intake run <venue:year> [more targets...] --write --fail-on-gap`
@@ -26,6 +27,7 @@ Convenience targets:
 - `make lint`
 - `make daily`
 - `make pdf-sync TARGETS='conferences/iclr/2025.bib'`
+- `make key-normalize TARGETS='conferences/iclr/2025.bib'`
 - `make release`
 - `make full-audit`
 

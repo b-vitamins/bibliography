@@ -22,6 +22,21 @@ from .normalization import (
     strip_latex,
     word_count,
 )
+from .bibkey import (
+    author_signature,
+    author_token,
+    entry_signature,
+    generate_bib_key,
+    is_key_format_valid,
+    key_expected_year,
+    keyword_candidates,
+    keyword_token,
+    normalize_year,
+    parse_key_parts,
+    suggest_bib_keys,
+    synthesize_bib_key,
+    validate_bib_key,
+)
 from .time_utils import now_iso, text_sha256
 
 __all__ = [
@@ -44,6 +59,19 @@ __all__ = [
     "sanitize_bibtex_text",
     "strip_latex",
     "word_count",
+    "author_signature",
+    "author_token",
+    "entry_signature",
+    "generate_bib_key",
+    "is_key_format_valid",
+    "key_expected_year",
+    "keyword_candidates",
+    "keyword_token",
+    "normalize_year",
+    "parse_key_parts",
+    "suggest_bib_keys",
+    "synthesize_bib_key",
+    "validate_bib_key",
     "now_iso",
     "text_sha256",
 ]
