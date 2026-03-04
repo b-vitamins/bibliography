@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+from datetime import date
 import re
 import unicodedata
 from typing import Any
@@ -43,6 +44,11 @@ _GENERIC_KEYWORDS = {
 }
 
 _KEY_PATTERN = re.compile(r"^[a-z][a-z0-9]*\d{4}[a-z0-9]+$")
+_KEY_YEAR_CANDIDATE_PATTERN = re.compile(r"\d{4}")
+_AUTHOR_TOKEN_PATTERN = re.compile(r"^[a-z][a-z0-9]*$")
+_KEYWORD_TOKEN_PATTERN = re.compile(r"^[a-z0-9]+$")
+_MIN_REASONABLE_YEAR = 1500
+_MAX_REASONABLE_YEAR = date.today().year + 5
 
 
 def _ascii_alnum(value: str) -> str:
@@ -67,10 +73,31 @@ def _split_authors(author: str | list[str]) -> list[str]:
 
 def parse_key_parts(key: str) -> tuple[str, str, str] | None:
     value = (key or "").strip().lower()
-    match = re.match(r"^([a-z][a-z0-9]*?)(\d{4})([a-z0-9]+)$", value)
-    if not match:
+    if not _KEY_PATTERN.fullmatch(value):
         return None
-    return match.group(1), match.group(2), match.group(3)
+
+    candidates: list[tuple[str, str, str]] = []
+    for match in _KEY_YEAR_CANDIDATE_PATTERN.finditer(value):
+        author = value[: match.start()]
+        year = match.group(0)
+        keyword = value[match.end() :]
+        if not author or not keyword:
+            continue
+        if not _AUTHOR_TOKEN_PATTERN.fullmatch(author):
+            continue
+        if not _KEYWORD_TOKEN_PATTERN.fullmatch(keyword):
+            continue
+        candidates.append((author, year, keyword))
+
+    if not candidates:
+        return None
+
+    for author, year, keyword in candidates:
+        year_num = int(year)
+        if _MIN_REASONABLE_YEAR <= year_num <= _MAX_REASONABLE_YEAR:
+            return author, year, keyword
+
+    return candidates[0]
 
 
 def is_key_format_valid(key: str, *, expected_year: str | None = None) -> bool:

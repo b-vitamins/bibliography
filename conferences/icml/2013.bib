@@ -5,7 +5,7 @@
 % Total entries: 283
 % Generated from DBLP XML dump}
 
-@inproceedings{DBLP:conf:icml:0002T13,
+@inproceedings{p00022013differentially,
   author = {Prateek Jain 0002 and Abhradeep Thakurta},
   title = {Differentially Private Learning with Kernels},
   booktitle = {ICML (3)},
@@ -14,13 +14,13 @@
   pages = {118-126},
   url = {https://proceedings.mlr.press/v28/jain13.html},
   pdf = {https://proceedings.mlr.press/v28/jain13.pdf},
-  abstract = {In this paper, we consider the problem of differentially private learning where access to the training features is through a kernel function only. Existing work on this problem is restricted to translation invariant kernels only, where (approximate) training features are available explicitly.  In fact, for general class of kernel functions and in general setting of releasing different private predictor (\w^*), the problem is impossible to solve \citeCMS11. In this work, we relax the problem setting into three different easier but practical settings. In our first problem setting, we consider an interactive model where the user sends its test set to a trusted learner who sends back differentially private predictions over the test points. This setting is prevalent in modern online systems like search engines, ad engines etc. In the second model, the learner sends back a differentially private version of the optimal parameter vector \w^* but requires access to a small subset of unlabeled test set beforehand. This also is a practical setting that involves two parties interacting through trusted third party. Our third model is similar to the traditional model, where learner is oblivious to the test set and needs to send a differentially private version of \w^*, but the kernels are restricted to efficiently computable functions over low-dimensional vector spaces. For each of the models, we derive differentially private learning algorithms with provable “utlity” or error bounds. Moreover, we  show that our methods can also be applied to the traditional setting of \cite Rubinstein09, CMS11. Here, our sample complexity bounds have only O(d^1/3) dependence on the dimensionality d while existing methods require O(d^1/2) samples to achieve same generalization error.},
+  abstract = {In this paper, we consider the problem of differentially private learning where access to the training features is through a kernel function only. Existing work on this problem is restricted to translation invariant kernels only, where (approximate) training features are available explicitly.  In fact, for general class of kernel functions and in general setting of releasing different private predictor (\w^*), the problem is impossible to solve i̧teCMS11. In this work, we relax the problem setting into three different easier but practical settings. In our first problem setting, we consider an interactive model where the user sends its test set to a trusted learner who sends back differentially private predictions over the test points. This setting is prevalent in modern online systems like search engines, ad engines etc. In the second model, the learner sends back a differentially private version of the optimal parameter vector \w^* but requires access to a small subset of unlabeled test set beforehand. This also is a practical setting that involves two parties interacting through trusted third party. Our third model is similar to the traditional model, where learner is oblivious to the test set and needs to send a differentially private version of \w^*, but the kernels are restricted to efficiently computable functions over low-dimensional vector spaces. For each of the models, we derive differentially private learning algorithms with provable “utlity” or error bounds. Moreover, we  show that our methods can also be applied to the traditional setting of \ţe Rubinstein09, CMS11. Here, our sample complexity bounds have only O(d^1/3) dependence on the dimensionality d while existing methods require O(d^1/2) samples to achieve same generalization error.},
   mdate = {2019-05-29},
   series = {JMLR Workshop and Conference Proceedings},
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:0002YY13,
+@inproceedings{p00022013guaranteed,
   author = {Ji Liu 0002 and Lei Yuan 0001 and Jieping Ye},
   title = {Guaranteed Sparse Recovery under Linear Transformation},
   booktitle = {ICML (3)},
@@ -29,13 +29,13 @@
   pages = {91-99},
   url = {https://proceedings.mlr.press/v28/liu13.html},
   pdf = {https://proceedings.mlr.press/v28/liu13.pdf},
-  abstract = {We consider the following signal recovery problem: given a  measurement matrix Φ∈\mathbbR^n\times p and a noisy  observation vector c∈\mathbbR^n constructed from c =  Φθ^* + εwhere ε∈\mathbbR^n is the  noise vector whose entries follow i.i.d. centered sub-Gaussian  distribution, how to recover the signal θ^* if Dθ^* is  sparse \rca under a linear transformation D∈\mathbbR^m\times  p? One natural method using convex optimization is to solve the  following problem: $\min_θ 1\over 2\|Φθ- c\|^2 +  λ\|Dθ\|_1. This paper provides an upper bound of the  estimate error and shows the consistency property of this method by  assuming that the design matrix Φis a Gaussian random matrix.  Specifically, we show 1) in the noiseless case, if the condition  number of D is bounded and the measurement number n≥Ω(s\log(p)) where s is the sparsity number, then the true  solution can be recovered with high probability; and 2) in the noisy  case, if the condition number of D is bounded and the measurement  increases faster than s\log(p), that is, s\log(p)=o(n), the  estimate error converges to zero with probability 1 when p and s  go to infinity. Our results are consistent with those for the  special case D=\boldI_p\times p (equivalently LASSO) and  improve the existing analysis. The condition number of D plays a  critical role in our analysis. We consider the condition numbers in  two cases including the fused LASSO and the random graph: the  condition number in the fused LASSO case is bounded by a constant,  while the condition number in the random graph case is bounded with  high probability if m\over p (i.e., #\textedge\over  #\textvertex$) is larger than a certain constant. Numerical  simulations are consistent with our theoretical results.},
+  abstract = {We consider the following signal recovery problem: given a  measurement matrix Φ∈\mathbbR^n\times p and a noisy  observation vector c∈\mathbbR^n constructed from c =  Φθ^* + εwhere ε∈\mathbbR^n is the  noise vector whose entries follow i.i.d. centered sub-Gaussian  distribution, how to recover the signal θ^* if Dθ^* is  sparse c̊a under a linear transformation D∈\mathbbR^m\times  p? One natural method using convex optimization is to solve the  following problem: $\min_θ 1øver 2\|Φθ- c\|^2 +  λ\|Dθ\|_1. This paper provides an upper bound of the  estimate error and shows the consistency property of this method by  assuming that the design matrix Φis a Gaussian random matrix.  Specifically, we show 1) in the noiseless case, if the condition  number of D is bounded and the measurement number n≥Ω(słog(p)) where s is the sparsity number, then the true  solution can be recovered with high probability; and 2) in the noisy  case, if the condition number of D is bounded and the measurement  increases faster than słog(p), that is, słog(p)=o(n), the  estimate error converges to zero with probability 1 when p and s  go to infinity. Our results are consistent with those for the  special case D=\boldI_p\times p (equivalently LASSO) and  improve the existing analysis. The condition number of D plays a  critical role in our analysis. We consider the condition numbers in  two cases including the fused LASSO and the random graph: the  condition number in the fused LASSO case is bounded by a constant,  while the condition number in the random graph case is bounded with  high probability if møver p (i.e., #\textedgeøver  #\textvertex$) is larger than a certain constant. Numerical  simulations are consistent with our theoretical results.},
   mdate = {2019-05-29},
   series = {JMLR Workshop and Conference Proceedings},
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:0005LSL13,
+@inproceedings{p00052013online,
   author = {Trung Thanh Nguyen 0005 and Zhuoru Li and Tomi Silander and Tze-Yun Leong},
   title = {Online Feature Selection for Model-based Reinforcement Learning},
   booktitle = {ICML (1)},
@@ -50,7 +50,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:AbernethyAKD13,
+@inproceedings{abernethy2013large,
   author = {Jacob D. Abernethy and Kareem Amin 0002 and Michael J. Kearns and Moez Draief},
   title = {Large-Scale Bandit Problems and KWIK Learning},
   booktitle = {ICML (1)},
@@ -65,7 +65,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:AfkanpourGSB13,
+@inproceedings{afkanpour2013randomized,
   author = {Arash Afkanpour and Andrs Gyrgy 0001 and Csaba Szepesvri and Michael Bowling},
   title = {A Randomized Mirror Descent Algorithm for Large Scale Multiple Kernel Learning},
   booktitle = {ICML (1)},
@@ -74,13 +74,13 @@
   pages = {374-382},
   url = {https://proceedings.mlr.press/v28/afkanpour13.html},
   pdf = {https://proceedings.mlr.press/v28/afkanpour13.pdf},
-  abstract = {We consider the problem of simultaneously learning to linearly combine a very large number of kernels and learn a good predictor based on the learnt kernel. When the number of kernels d to be combined is very large, multiple kernel learning methods whose computational cost scales linearly in d are intractable. We propose a randomized version of the mirror descent algorithm to overcome this issue, under the objective of minimizing the group p-norm penalized empirical risk. The key to achieve the required exponential speed-up is the computationally efficient construction of low-variance estimates of the gradient. We propose importance sampling based estimates, and find that the ideal distribution samples a coordinate with a probability proportional to the magnitude of the corresponding gradient. We show that in the case of learning the coefficients of a polynomial kernel, the combinatorial structure of the base kernels to be combined allows sampling from this distribution in O(\log(d)) time, making the total computational cost of the method to achieve an epsilon-optimal solution to be O(\log(d)/epsilon^2), thereby allowing our method to operate for very large values of d. Experiments with simulated and real data confirm that the new algorithm is computationally more efficient than its state-of-the-art alternatives.},
+  abstract = {We consider the problem of simultaneously learning to linearly combine a very large number of kernels and learn a good predictor based on the learnt kernel. When the number of kernels d to be combined is very large, multiple kernel learning methods whose computational cost scales linearly in d are intractable. We propose a randomized version of the mirror descent algorithm to overcome this issue, under the objective of minimizing the group p-norm penalized empirical risk. The key to achieve the required exponential speed-up is the computationally efficient construction of low-variance estimates of the gradient. We propose importance sampling based estimates, and find that the ideal distribution samples a coordinate with a probability proportional to the magnitude of the corresponding gradient. We show that in the case of learning the coefficients of a polynomial kernel, the combinatorial structure of the base kernels to be combined allows sampling from this distribution in O(łog(d)) time, making the total computational cost of the method to achieve an epsilon-optimal solution to be O(łog(d)/epsilon^2), thereby allowing our method to operate for very large values of d. Experiments with simulated and real data confirm that the new algorithm is computationally more efficient than its state-of-the-art alternatives.},
   mdate = {2020-05-19},
   series = {JMLR Workshop and Conference Proceedings},
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:Agarwal13,
+@inproceedings{agarwal2013selective,
   author = {Alekh Agarwal},
   title = {Selective sampling algorithms for cost-sensitive multiclass prediction},
   booktitle = {ICML (3)},
@@ -95,7 +95,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:AgrawalG13,
+@inproceedings{p00012013thompson,
   author = {Shipra Agrawal 0001 and Navin Goyal},
   title = {Thompson Sampling for Contextual Bandits with Linear Payoffs},
   booktitle = {ICML (3)},
@@ -110,7 +110,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:AhmedHS13,
+@inproceedings{p00012013nested,
   author = {Amr Ahmed 0001 and Liangjie Hong and Alexander J. Smola},
   title = {Nested Chinese Restaurant Franchise Process: Applications to User Tracking and Document Modeling},
   booktitle = {ICML (3)},
@@ -125,7 +125,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:AilonCX13,
+@inproceedings{ailon2013breaking,
   author = {Nir Ailon and Yudong Chen 0001 and Huan Xu 0001},
   title = {Breaking the Small Cluster Barrier of Graph Clustering},
   booktitle = {ICML (3)},
@@ -140,7 +140,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:AlainO13,
+@inproceedings{droniou2013gated,
   author = {Alain Droniou and Olivier Sigaud},
   title = {Gated Autoencoders with Tied Input Weights},
   booktitle = {ICML (2)},
@@ -155,7 +155,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:AlmingolML13,
+@inproceedings{almingol2013learning,
   author = {Javier Almingol and Luis Montesano and Manuel Lopes 0001},
   title = {Learning Multiple Behaviors from Unlabeled Demonstrations in a Latent Controller Space},
   booktitle = {ICML (3)},
@@ -170,7 +170,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:AnandkumarHJK13,
+@inproceedings{anandkumar2013learning,
   author = {Animashree Anandkumar and Daniel J. Hsu and Adel Javanmard and Sham M. Kakade},
   title = {Learning Linear Bayesian Networks with Latent Variables},
   booktitle = {ICML (1)},
@@ -185,7 +185,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:AndrewABL13,
+@inproceedings{andrew2013deep,
   author = {Galen Andrew and Raman Arora and Jeff A. Bilmes and Karen Livescu},
   title = {Deep Canonical Correlation Analysis},
   booktitle = {ICML (3)},
@@ -200,7 +200,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:AppelFDP13,
+@inproceedings{appel2013quickly,
   author = {Ron Appel and Thomas J. Fuchs and Piotr Dollr and Pietro Perona},
   title = {Quickly Boosting Decision Trees - Pruning Underachieving Features Early},
   booktitle = {ICML (3)},
@@ -215,7 +215,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:AroraGHMMSWZ13,
+@inproceedings{arora2013practical,
   author = {Sanjeev Arora and Rong Ge 0001 and Yonatan Halpern and David M. Mimno and Ankur Moitra and David A. Sontag and Yichen Wu and Michael Zhu},
   title = {A Practical Algorithm for Topic Modeling with Provable Guarantees},
   booktitle = {ICML (2)},
@@ -230,7 +230,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:AvronBTZ13,
+@inproceedings{avron2013efficient,
   author = {Haim Avron and Christos Boutsidis and Sivan Toledo and Anastasios Zouzias},
   title = {Efficient Dimensionality Reduction for Canonical Correlation Analysis},
   booktitle = {ICML (1)},
@@ -245,7 +245,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:BaktashmotlaghHBLS13,
+@inproceedings{baktashmotlagh2013non,
   author = {Mahsa Baktashmotlagh and Mehrtash Tafazzoli Harandi and Abbas Bigdeli and Brian C. Lovell and Mathieu Salzmann},
   title = {Non-Linear Stationary Subspace Analysis with Application to Video Classification},
   booktitle = {ICML (3)},
@@ -260,7 +260,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:BalasubramanianYL13,
+@inproceedings{p00022013smooth,
   author = {Krishnakumar Balasubramanian 0002 and Kai Yu 0001 and Guy Lebanon},
   title = {Smooth Sparse Coding via Marginal Regression for Learning Sparse Representations},
   booktitle = {ICML (3)},
@@ -275,7 +275,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:BalcanBEL13,
+@inproceedings{balcan2013efficient,
   author = {Nina Balcan and Christopher Berlind and Steven Ehrlich and Yingyu Liang},
   title = {Efficient Semi-supervised and Active Learning of Disjunctions},
   booktitle = {ICML (1)},
@@ -290,7 +290,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:BalcanBM13,
+@inproceedings{balcan2013exploiting,
   author = {Nina Balcan and Avrim Blum and Yishay Mansour},
   title = {Exploiting Ontology Structures and Unlabeled Data for Learning},
   booktitle = {ICML (3)},
@@ -305,7 +305,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:BardenetBKS13,
+@inproceedings{bardenet2013collaborative,
   author = {Rmi Bardenet and Mtys Brendel and Balzs Kgl and Michle Sebag},
   title = {Collaborative hyperparameter tuning},
   booktitle = {ICML (2)},
@@ -320,7 +320,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:BellemareVB13,
+@inproceedings{bellemare2013bayesian,
   author = {Marc G. Bellemare and Joel Veness and Michael Bowling},
   title = {Bayesian Learning of Recursively Factored Environments},
   booktitle = {ICML (3)},
@@ -335,7 +335,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:BengioMDR13,
+@inproceedings{bengio2013better,
   author = {Yoshua Bengio and Grgoire Mesnil and Yann N. Dauphin and Salah Rifai},
   title = {Better Mixing via Deep Representations},
   booktitle = {ICML (1)},
@@ -350,7 +350,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:BergstraYC13,
+@inproceedings{bergstra2013making,
   author = {James Bergstra and Daniel Yamins and David D. Cox},
   title = {Making a Science of Model Search: Hyperparameter Optimization in Hundreds of Dimensions for Vision Architectures},
   booktitle = {ICML (1)},
@@ -365,7 +365,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:BiK13,
+@inproceedings{bi2013efficient,
   author = {Wei Bi and James Tin-Yau Kwok},
   title = {Efficient Multi-label Classification with Many Labels},
   booktitle = {ICML (3)},
@@ -380,7 +380,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:BootsG13,
+@inproceedings{boots2013spectral,
   author = {Byron Boots and Geoffrey J. Gordon},
   title = {A Spectral Learning Approach to Range-Only SLAM},
   booktitle = {ICML (1)},
@@ -395,7 +395,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:BrechtelGD13,
+@inproceedings{brechtel2013solving,
   author = {Sebastian Brechtel and Tobias Gindele and Rdiger Dillmann},
   title = {Solving Continuous POMDPs: Value Iteration with Incremental Learning of an Efficient Space Representation},
   booktitle = {ICML (3)},
@@ -410,7 +410,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:BroderickKJ13,
+@inproceedings{broderick2013mad,
   author = {Tamara Broderick and Brian Kulis and Michael I. Jordan},
   title = {MAD-Bayes: MAP-based Asymptotic Derivations from Bayes},
   booktitle = {ICML (3)},
@@ -425,7 +425,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:BryanM13,
+@inproceedings{bryan2013efficient,
   author = {Nicholas J. Bryan and Gautham J. Mysore},
   title = {An Efficient Posterior Regularized Latent Variable Model for Interactive Sound Source Separation},
   booktitle = {ICML (3)},
@@ -440,7 +440,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:BubeckWV13,
+@inproceedings{bubeck2013multiple,
   author = {Sbastien Bubeck and Tengyao Wang and Nitin Viswanathan},
   title = {Multiple Identifications in Multi-Armed Bandits},
   booktitle = {ICML (1)},
@@ -455,7 +455,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:BuhlerRSH13,
+@inproceedings{bhler2013constrained,
   author = {Thomas Bhler and Syama Sundar Rangapuram and Simon Setzer and Matthias Hein 0001},
   title = {Constrained fractional set programs and their application in local clustering and community detection},
   booktitle = {ICML (1)},
@@ -470,7 +470,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:Busa-FeketeSCWH13,
+@inproceedings{busafekete2013top,
   author = {Rbert Busa-Fekete and Balzs Szrnyi and Weiwei Cheng and Paul Weng and Eyke Hllermeier},
   title = {Top-k Selection based on Adaptive Sampling of Noisy Preferences},
   booktitle = {ICML (3)},
@@ -485,7 +485,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:CaiZH13,
+@inproceedings{cai2013sada,
   author = {Ruichu Cai and Zhenjie Zhang and Zhifeng Hao},
   title = {SADA: A General Framework to Support Robust Causation Discovery},
   booktitle = {ICML (2)},
@@ -500,7 +500,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:CarpentierM13,
+@inproceedings{carpentier2013toward,
   author = {Alexandra Carpentier and Rmi Munos},
   title = {Toward Optimal Stratification for Stratified Monte-Carlo Integration},
   booktitle = {ICML (2)},
@@ -515,7 +515,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:ChagantyL13,
+@inproceedings{chaganty2013spectral,
   author = {Arun Tejasvi Chaganty and Percy Liang},
   title = {Spectral Experts for Estimating Mixtures of Linear Regressions},
   booktitle = {ICML (3)},
@@ -530,7 +530,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:ChangKKZ13,
+@inproceedings{chang2013canonical,
   author = {Billy Chang and Uwe Krger 0001 and Rafal Kustra and Junping Zhang},
   title = {Canonical Correlation Analysis based on Hilbert-Schmidt Independence Criterion and Centered Kernel Target Alignment},
   booktitle = {ICML (2)},
@@ -545,7 +545,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:ChattopadhyayFDPY13,
+@inproceedings{chattopadhyay2013joint,
   author = {Rita Chattopadhyay and Wei Fan 0001 and Ian Davidson and Sethuraman Panchanathan and Jieping Ye},
   title = {Joint Transfer and Batch-mode Active Learning},
   booktitle = {ICML (3)},
@@ -560,7 +560,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:Chatzis13,
+@inproceedings{chatzis2013infinite,
   author = {Sotirios Chatzis},
   title = {Infinite Markov-Switching Maximum Entropy Discrimination Machines},
   booktitle = {ICML (3)},
@@ -575,7 +575,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:ChenC13,
+@inproceedings{p00022013spectral,
   author = {Yuxin Chen 0002 and Yuejie Chi},
   title = {Spectral Compressed Sensing via Structured Matrix Completion},
   booktitle = {ICML (3)},
@@ -584,13 +584,13 @@
   pages = {414-422},
   url = {https://proceedings.mlr.press/v28/chen13g.html},
   pdf = {https://proceedings.mlr.press/v28/chen13g.pdf},
-  abstract = {The paper studies the problem of recovering a spectrally sparse object from a small number of time domain samples. Specifically, the object of interest with ambient dimension n is assumed to be a mixture of r complex multi-dimensional sinusoids, while the underlying frequencies can assume any value in the unit disk. Conventional compressed sensing paradigms suffer from the \em basis mismatch issue when imposing a discrete dictionary on the Fourier representation. To address this problem,  we develop a novel nonparametric algorithm, called enhanced matrix completion (EMaC), based on structured matrix completion. The algorithm starts by converting the data into a low-rank enhanced form with multi-fold Hankel structure, then attempts recovery via nuclear norm minimization. Under mild incoherence conditions, EMaC allows perfect recovery as soon as the number of samples exceeds the order of \mathcalO(r\log^2 n). We also show that, in many instances, accurate completion of a low-rank multi-fold Hankel matrix is possible when the number of observed entries is proportional to the information theoretical limits (except for a logarithmic gap). The robustness of EMaC against bounded noise and its applicability to super resolution are further demonstrated by numerical experiments.},
+  abstract = {The paper studies the problem of recovering a spectrally sparse object from a small number of time domain samples. Specifically, the object of interest with ambient dimension n is assumed to be a mixture of r complex multi-dimensional sinusoids, while the underlying frequencies can assume any value in the unit disk. Conventional compressed sensing paradigms suffer from the \em basis mismatch issue when imposing a discrete dictionary on the Fourier representation. To address this problem,  we develop a novel nonparametric algorithm, called enhanced matrix completion (EMaC), based on structured matrix completion. The algorithm starts by converting the data into a low-rank enhanced form with multi-fold Hankel structure, then attempts recovery via nuclear norm minimization. Under mild incoherence conditions, EMaC allows perfect recovery as soon as the number of samples exceeds the order of \mathcalO(rłog^2 n). We also show that, in many instances, accurate completion of a low-rank multi-fold Hankel matrix is possible when the number of observed entries is proportional to the information theoretical limits (except for a logarithmic gap). The robustness of EMaC against bounded noise and its applicability to super resolution are further demonstrated by numerical experiments.},
   mdate = {2019-05-29},
   series = {JMLR Workshop and Conference Proceedings},
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:ChenC13a,
+@inproceedings{p00012013noisy,
   author = {Yudong Chen 0001 and Constantine Caramanis},
   title = {Noisy and Missing Data Regression: Distribution-Oblivious Support Recovery},
   booktitle = {ICML (1)},
@@ -605,7 +605,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:ChenCM13,
+@inproceedings{p00012013robust,
   author = {Yudong Chen 0001 and Constantine Caramanis and Shie Mannor},
   title = {Robust Sparse Regression under Adversarial Corruption},
   booktitle = {ICML (3)},
@@ -620,7 +620,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:ChenK13,
+@inproceedings{p00012013near,
   author = {Yuxin Chen 0001 and Andreas Krause 0001},
   title = {Near-optimal Batch Mode Active Learning and Adaptive Submodular Optimization},
   booktitle = {ICML (1)},
@@ -635,7 +635,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:ChenLYY13,
+@inproceedings{p00012013general,
   author = {Tianqi Chen 0001 and Hang Li 0001 and Qiang Yang 0001 and Yong Yu 0001},
   title = {General Functional Matrix Factorization Using Gradient Boosting},
   booktitle = {ICML (1)},
@@ -650,7 +650,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:ChenLZ13,
+@inproceedings{chen2013optimistic,
   author = {Xi Chen and Qihang Lin and Dengyong Zhou},
   title = {Optimistic Knowledge Gradient Policy for Optimal Budget Allocation in Crowdsourcing},
   booktitle = {ICML (3)},
@@ -665,7 +665,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:ChenRBT13,
+@inproceedings{chen2013dependent,
   author = {Changyou Chen and Vinayak A. Rao and Wray L. Buntine and Yee Whye Teh},
   title = {Dependent Normalized Random Measures},
   booktitle = {ICML (3)},
@@ -680,7 +680,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:ChenWC13,
+@inproceedings{chen2013maximum,
   author = {Wenlin Chen and Kilian Q. Weinberger and Yixin Chen 0001},
   title = {Maximum Variance Correction with Application to A* Search},
   booktitle = {ICML (1)},
@@ -695,7 +695,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:ChenWY13,
+@inproceedings{p00132013combinatorial,
   author = {Wei Chen 0013 and Yajun Wang 0001 and Yang Yuan},
   title = {Combinatorial Multi-Armed Bandit: General Framework and Applications},
   booktitle = {ICML (1)},
@@ -704,13 +704,13 @@
   pages = {151-159},
   url = {https://proceedings.mlr.press/v28/chen13a.html},
   pdf = {https://proceedings.mlr.press/v28/chen13a.pdf},
-  abstract = {We define a general framework for a large class of combinatorial multi-armed bandit (CMAB) problems, where simple arms with unknown istributions  form \em super arms. In each round, a super arm is played and the outcomes of its related simple arms are observed, which helps the selection of super arms in future rounds. The reward of the super arm depends on the outcomes of played arms, and it only needs to satisfy two mild assumptions, which allow a large class of nonlinear reward instances. We assume the availability of an (α,β)-approximation oracle that takes the  means of the distributions of arms and outputs a super arm that with probability βgenerates  an αfraction of the optimal expected reward. The objective of a CMAB algorithm is to minimize \em (α,β)-approximation regret, which is the difference in total expected reward between the αβfraction of expected reward when always playing the optimal super arm, and the expected reward of playing super arms according to the algorithm. We provide CUCB algorithm that achieves O(\log n) regret, where n is the number of rounds played, and we further provide distribution-independent bounds for a large class of reward functions. Our regret analysis is tight in that it matches the bound for classical MAB problem up to a constant factor, and it significantly improves the regret bound in a recent paper on combinatorial bandits with linear rewards. We apply our CMAB framework to two new applications, probabilistic maximum coverage (PMC) for online advertising and social influence maximization for viral marketing, both having nonlinear reward structures.},
+  abstract = {We define a general framework for a large class of combinatorial multi-armed bandit (CMAB) problems, where simple arms with unknown istributions  form \em super arms. In each round, a super arm is played and the outcomes of its related simple arms are observed, which helps the selection of super arms in future rounds. The reward of the super arm depends on the outcomes of played arms, and it only needs to satisfy two mild assumptions, which allow a large class of nonlinear reward instances. We assume the availability of an (α,β)-approximation oracle that takes the  means of the distributions of arms and outputs a super arm that with probability βgenerates  an αfraction of the optimal expected reward. The objective of a CMAB algorithm is to minimize \em (α,β)-approximation regret, which is the difference in total expected reward between the αβfraction of expected reward when always playing the optimal super arm, and the expected reward of playing super arms according to the algorithm. We provide CUCB algorithm that achieves O(łog n) regret, where n is the number of rounds played, and we further provide distribution-independent bounds for a large class of reward functions. Our regret analysis is tight in that it matches the bound for classical MAB problem up to a constant factor, and it significantly improves the regret bound in a recent paper on combinatorial bandits with linear rewards. We apply our CMAB framework to two new applications, probabilistic maximum coverage (PMC) for online advertising and social influence maximization for viral marketing, both having nonlinear reward structures.},
   mdate = {2019-05-29},
   series = {JMLR Workshop and Conference Proceedings},
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:ChenZW13,
+@inproceedings{chen2013fast,
   author = {Minmin Chen and Alice X. Zheng and Kilian Q. Weinberger},
   title = {Fast Image Tagging},
   booktitle = {ICML (3)},
@@ -725,7 +725,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:Cheng13,
+@inproceedings{cheng2013riemannian,
   author = {Li Cheng},
   title = {Riemannian Similarity Learning},
   booktitle = {ICML (3)},
@@ -740,7 +740,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:ChevaleyreKZ13,
+@inproceedings{chevaleyre2013rounding,
   author = {Yann Chevaleyre and Frdric Koriche and Jean-Daniel Zucker},
   title = {Rounding Methods for Discrete Linear Classification},
   booktitle = {ICML (1)},
@@ -755,7 +755,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:Cho13,
+@inproceedings{cho2013simple,
   author = {Kyunghyun Cho},
   title = {Simple Sparsification Improves Sparse Denoising Autoencoders in Denoising Highly Corrupted Images},
   booktitle = {ICML (3)},
@@ -770,7 +770,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:ChuangGMH13,
+@inproceedings{chuang2013topic,
   author = {Jason Chuang and Sonal Gupta and Christopher D. Manning and Jeffrey Heer},
   title = {Topic Model Diagnostics: Assessing Domain Relevance via Topical Alignment},
   booktitle = {ICML (3)},
@@ -785,7 +785,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:CoatesHWWCN13,
+@inproceedings{p00022013deep,
   author = {Adam Coates 0002 and Brody Huval and Tao Wang and David J. Wu 0001 and Bryan Catanzaro and Andrew Y. Ng},
   title = {Deep learning with COTS HPC systems},
   booktitle = {ICML (3)},
@@ -800,7 +800,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:CortesMR13,
+@inproceedings{cortes2013multi,
   author = {Corinna Cortes and Mehryar Mohri and Afshin Rostamizadeh},
   title = {Multi-Class Classification with Maximum Margin Multiple Kernel},
   booktitle = {ICML (3)},
@@ -815,7 +815,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:CotterSS13,
+@inproceedings{cotter2013learning,
   author = {Andrew Cotter and Shai Shalev-Shwartz and Nati Srebro},
   title = {Learning Optimally Sparse Support Vector Machines},
   booktitle = {ICML (1)},
@@ -830,7 +830,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:CovielloMCL13,
+@inproceedings{coviello2013that,
   author = {Emanuele Coviello and Adeel Mumtaz and Antoni B. Chan and Gert R. G. Lanckriet},
   title = {That was fast! Speeding up NN search of high dimensional distributions},
   booktitle = {ICML (3)},
@@ -845,7 +845,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:CurtinMRAGI13,
+@inproceedings{curtin2013tree,
   author = {Ryan R. Curtin and William B. March and Parikshit Ram and David V. Anderson and Alexander G. Gray and Charles L. Isbell Jr.},
   title = {Tree-Independent Dual-Tree Algorithms},
   booktitle = {ICML (3)},
@@ -860,7 +860,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:Cuturid13,
+@inproceedings{cuturi2013mean,
   author = {Marco Cuturi and Alexandre d'Aspremont},
   title = {Mean Reversion with a Variance Threshold},
   booktitle = {ICML (3)},
@@ -875,7 +875,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:DalalyanHMS13,
+@inproceedings{dalalyan2013learning,
   author = {Arnak S. Dalalyan and Mohamed Hebiri and Katia Meziani and Joseph Salmon},
   title = {Learning Heteroscedastic Models by Convex Programming under Group Sparsity},
   booktitle = {ICML (3)},
@@ -890,7 +890,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:DasBBG13,
+@inproceedings{das2013subtle,
   author = {Mrinal Kanti Das and Suparna Bhattacharya and Chiranjib Bhattacharyya and Kanchi Gopinath},
   title = {Subtle Topic Models and Discovering Subtly Manifested Software Concerns Automatically},
   booktitle = {ICML (2)},
@@ -905,7 +905,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:DekelH13,
+@inproceedings{dekel2013better,
   author = {Ofer Dekel and Elad Hazan},
   title = {Better Rates for Any Adversarial Deterministic MDP},
   booktitle = {ICML (3)},
@@ -920,7 +920,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:DembczynskiJKWH13,
+@inproceedings{dembczynski2013optimizing,
   author = {Krzysztof Dembczynski and Arkadiusz Jachnik and Wojciech Kotlowski and Willem Waegeman and Eyke Hllermeier},
   title = {Optimizing the F-Measure in Multi-Label Classification: Plug-in Rule Approach versus Structured Loss Minimization},
   booktitle = {ICML (3)},
@@ -935,7 +935,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:DenilMF13,
+@inproceedings{denil2013consistency,
   author = {Misha Denil and David Matheson and Nando de Freitas},
   title = {Consistency of Online Random Forests},
   booktitle = {ICML (3)},
@@ -950,7 +950,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:DimitrakakisT13,
+@inproceedings{dimitrakakis2013abc,
   author = {Christos Dimitrakakis and Nikolaos Tziortziotis},
   title = {ABC Reinforcement Learning},
   booktitle = {ICML (3)},
@@ -965,7 +965,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:DingRIS13,
+@inproceedings{ding2013topic,
   author = {Weicong Ding and Mohammad Hossein Rohban and Prakash Ishwar and Venkatesh Saligrama},
   title = {Topic Discovery through Data Dependent and Random Projections},
   booktitle = {ICML (3)},
@@ -980,7 +980,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:DoK13,
+@inproceedings{do2013convex,
   author = {Huyen Do and Alexandros Kalousis},
   title = {Convex formulations of radius-margin based Support Vector Machines},
   booktitle = {ICML (1)},
@@ -995,7 +995,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:DurrantK13,
+@inproceedings{durrant2013sharp,
   author = {Robert J. Durrant and Ata Kabn},
   title = {Sharp Generalization Error Bounds for Randomly-projected Classifiers},
   booktitle = {ICML (3)},
@@ -1010,7 +1010,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:DuvenaudLGTG13,
+@inproceedings{duvenaud2013structure,
   author = {David Duvenaud and James Robert Lloyd and Roger B. Grosse and Joshua B. Tenenbaum and Zoubin Ghahramani},
   title = {Structure Discovery in Nonparametric Regression through Compositional Kernel Search},
   booktitle = {ICML (3)},
@@ -1025,7 +1025,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:ErmonGSS13,
+@inproceedings{ermon2013taming,
   author = {Stefano Ermon and Carla P. Gomes and Ashish Sabharwal and Bart Selman},
   title = {Taming the Curse of Dimensionality: Discrete Integration by Hashing and Optimization},
   booktitle = {ICML (2)},
@@ -1040,7 +1040,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:ErolLRR13,
+@inproceedings{erol2013extended,
   author = {Yusuf Erol and Lei Li 0005 and Bharath Ramsundar and Stuart Russell 0001},
   title = {The Extended Parameter Filter},
   booktitle = {ICML (3)},
@@ -1055,7 +1055,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:FriedlandJL13,
+@inproceedings{friedland2013copy,
   author = {Lisa Friedland and David D. Jensen and Michael Lavine},
   title = {Copy or Coincidence? A Model for Detecting Social Influence and Duplication Events},
   booktitle = {ICML (3)},
@@ -1070,7 +1070,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:GaneshapillaiGL13,
+@inproceedings{ganeshapillai2013learning,
   author = {Gartheeban Ganeshapillai and John V. Guttag and Andrew Lo},
   title = {Learning Connections in Financial Time Series},
   booktitle = {ICML (2)},
@@ -1085,7 +1085,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:GaoJZZ13,
+@inproceedings{p00082013one,
   author = {Wei Gao 0008 and Rong Jin 0001 and Shenghuo Zhu and Zhi-Hua Zhou},
   title = {One-Pass AUC Optimization},
   booktitle = {ICML (3)},
@@ -1100,7 +1100,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:GensD13,
+@inproceedings{gens2013learning,
   author = {Robert Gens and Pedro M. Domingos},
   title = {Learning the Structure of Sum-Product Networks},
   booktitle = {ICML (3)},
@@ -1115,7 +1115,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:GeorgievN13,
+@inproceedings{georgiev2013non,
   author = {Kostadin Georgiev and Preslav Nakov},
   title = {A non-IID Framework for Collaborative Filtering with Restricted Boltzmann Machines},
   booktitle = {ICML (3)},
@@ -1130,7 +1130,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:GerasS13,
+@inproceedings{geras2013multiple,
   author = {Krzysztof J. Geras and Charles Sutton},
   title = {Multiple-source cross-validation},
   booktitle = {ICML (3)},
@@ -1145,7 +1145,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:GermainHLM13,
+@inproceedings{germain2013pac,
   author = {Pascal Germain and Amaury Habrard and Franois Laviolette and Emilie Morvant},
   title = {A PAC-Bayesian Approach for Domain Adaptation with Specialization to Linear Classifiers},
   booktitle = {ICML (3)},
@@ -1160,7 +1160,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:GiguereLMS13,
+@inproceedings{gigure2013risk,
   author = {Sbastien Gigure and Franois Laviolette and Mario Marchand and Khadidja Sylla},
   title = {Risk Bounds and Learning Algorithms for the Regression Approach to Structured Output Prediction},
   booktitle = {ICML (1)},
@@ -1175,7 +1175,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:GilboaSCG13,
+@inproceedings{gilboa2013scaling,
   author = {Elad Gilboa and Yunus Saati and John P. Cunningham},
   title = {Scaling Multidimensional Gaussian Processes using Projected Additive Approximations},
   booktitle = {ICML (1)},
@@ -1190,7 +1190,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:GirshickSD13,
+@inproceedings{girshick2013discriminatively,
   author = {Ross B. Girshick and Hyun Oh Song and Trevor Darrell},
   title = {Discriminatively Activated Sparselets},
   booktitle = {ICML (1)},
@@ -1205,7 +1205,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:GittensM13,
+@inproceedings{gittens2013revisiting,
   author = {Alex Gittens and Michael W. Mahoney},
   title = {Revisiting the Nystrom method for improved large-scale machine learning},
   booktitle = {ICML (3)},
@@ -1220,7 +1220,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:Goerg13,
+@inproceedings{goerg2013forecastable,
   author = {Georg M. Goerg},
   title = {Forecastable Component Analysis},
   booktitle = {ICML (2)},
@@ -1235,7 +1235,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:GolovinSMY13,
+@inproceedings{golovin2013large,
   author = {Daniel Golovin and D. Sculley and H. Brendan McMahan and Michael Young},
   title = {Large-Scale Learning with Less RAM via Randomization},
   booktitle = {ICML (2)},
@@ -1250,7 +1250,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:GolubCY13,
+@inproceedings{golub2013learning,
   author = {Matthew D. Golub and Steven M. Chase and Byron M. Yu},
   title = {Learning an Internal Dynamics Model from Control Demonstration},
   booktitle = {ICML (1)},
@@ -1265,7 +1265,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:Gomez-RodriguezLS13,
+@inproceedings{gomezrodriguez2013modeling,
   author = {Manuel Gomez-Rodriguez and Jure Leskovec and Bernhard Schlkopf},
   title = {Modeling Information Propagation with Survival Theory},
   booktitle = {ICML (3)},
@@ -1280,7 +1280,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:GonenKK13,
+@inproceedings{gnen2013kernelized,
   author = {Mehmet Gnen and Suleiman A. Khan and Samuel Kaski},
   title = {Kernelized Bayesian Matrix Factorization},
   booktitle = {ICML (3)},
@@ -1295,7 +1295,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:GonenSS13,
+@inproceedings{gonen2013efficient,
   author = {Alon Gonen and Sivan Sabato and Shai Shalev-Shwartz},
   title = {Efficient Active Learning of Halfspaces: an Aggressive Approach},
   booktitle = {ICML (1)},
@@ -1310,7 +1310,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:GongGS13,
+@inproceedings{gong2013connecting,
   author = {Boqing Gong and Kristen Grauman and Fei Sha},
   title = {Connecting the Dots with Landmarks: Discriminatively Learning Domain-Invariant Features for Unsupervised Domain Adaptation},
   booktitle = {ICML (1)},
@@ -1325,7 +1325,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:GongZLHY13,
+@inproceedings{gong2013general,
   author = {Pinghua Gong and Changshui Zhang and Zhaosong Lu and Jianhua Huang and Jieping Ye},
   title = {A General Iterative Shrinkage and Thresholding Algorithm for Non-convex Regularized Optimization Problems},
   booktitle = {ICML (2)},
@@ -1340,7 +1340,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:GoodfellowWMCB13,
+@inproceedings{goodfellow2013maxout,
   author = {Ian J. Goodfellow and David Warde-Farley and Mehdi Mirza and Aaron C. Courville and Yoshua Bengio},
   title = {Maxout Networks},
   booktitle = {ICML (3)},
@@ -1355,7 +1355,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:GopalY13,
+@inproceedings{gopal2013distributed,
   author = {Siddharth Gopal and Yiming Yang},
   title = {Distributed training of Large-scale Logistic models},
   booktitle = {ICML (2)},
@@ -1370,7 +1370,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:GopiN0N13,
+@inproceedings{gopi2013one,
   author = {Sivakanth Gopi and Praneeth Netrapalli and Prateek Jain 0002 and Aditya V. Nori},
   title = {One-Bit Compressed Sensing: Provable Support and Vector Recovery},
   booktitle = {ICML (3)},
@@ -1379,13 +1379,13 @@
   pages = {154-162},
   url = {https://proceedings.mlr.press/v28/gopi13.html},
   pdf = {https://proceedings.mlr.press/v28/gopi13.pdf},
-  abstract = {In this paper, we study the problem of one-bit compressed sensing (1-bit CS), where the goal is to design a measurement matrix A and a recovery algorithm s.t. a k-sparse vector \x^* can be efficiently recovered back from signed linear measurements, i.e., b=\sign(A\x^*). This is an important problem in the signal acquisition area and has several learning applications as well, e.g., multi-label classification \citeHsuKLZ10. We study this problem in two settings: a) support recovery: recover \supp(\x^*), b) approximate vector recovery: recover a unit vector \hx s.t. || \hatx-\x^*/||\x^*|| ||_2≤ε. For support recovery, we propose two novel and efficient solutions based on two combinatorial structures: union free family of sets and expanders. In contrast to  existing methods for  support recovery, our methods are universal i.e. a single measurement matrix A can recover almost all the signals. For approximate recovery, we propose the first  method to recover sparse vector using a near optimal number of measurements.  We also empirically demonstrate  effectiveness of our algorithms; we show that our algorithms are able to recover signals with smaller number of measurements than several existing methods.},
+  abstract = {In this paper, we study the problem of one-bit compressed sensing (1-bit CS), where the goal is to design a measurement matrix A and a recovery algorithm s.t. a k-sparse vector \x^* can be efficiently recovered back from signed linear measurements, i.e., b=\sign(A\x^*). This is an important problem in the signal acquisition area and has several learning applications as well, e.g., multi-label classification i̧teHsuKLZ10. We study this problem in two settings: a) support recovery: recover \supp(\x^*), b) approximate vector recovery: recover a unit vector \hx s.t. || \hatx-\x^*/||\x^*|| ||_2≤ε. For support recovery, we propose two novel and efficient solutions based on two combinatorial structures: union free family of sets and expanders. In contrast to  existing methods for  support recovery, our methods are universal i.e. a single measurement matrix A can recover almost all the signals. For approximate recovery, we propose the first  method to recover sparse vector using a near optimal number of measurements.  We also empirically demonstrate  effectiveness of our algorithms; we show that our algorithms are able to recover signals with smaller number of measurements than several existing methods.},
   mdate = {2022-11-07},
   series = {JMLR Workshop and Conference Proceedings},
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:GoschinWL13,
+@inproceedings{goschin2013cross,
   author = {Sergiu Goschin and Ari Weinstein and Michael L. Littman},
   title = {The Cross-Entropy Method Optimizes for Quantiles},
   booktitle = {ICML (3)},
@@ -1400,7 +1400,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:GrinbergP13,
+@inproceedings{grinberg2013average,
   author = {Yuri Grinberg and Doina Precup},
   title = {Average Reward Optimization Objective In Partially Observable Domains},
   booktitle = {ICML (1)},
@@ -1415,7 +1415,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:GrosshansSBS13,
+@inproceedings{grohans2013bayesian,
   author = {Michael Grohans and Christoph Sawade and Michael Brckner and Tobias Scheffer},
   title = {Bayesian Games for Adversarial Regression Problems},
   booktitle = {ICML (3)},
@@ -1430,7 +1430,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:GrunewalderAS13,
+@inproceedings{grnewlder2013smooth,
   author = {Steffen Grnewlder and Arthur Gretton and John Shawe-Taylor},
   title = {Smooth Operators},
   booktitle = {ICML (3)},
@@ -1445,7 +1445,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:GuptaAM13,
+@inproceedings{gupta2013natural,
   author = {Ashish Gupta and Murat Ayhan and Anthony Maida},
   title = {Natural Image Bases to Represent Neuroimaging Data},
   booktitle = {ICML (3)},
@@ -1460,7 +1460,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:GuptaPV13,
+@inproceedings{p00012013factorial,
   author = {Sunil Kumar Gupta 0001 and Dinh Q. Phung and Svetha Venkatesh},
   title = {Factorial Multi-Task Learning : A Bayesian Nonparametric Approach},
   booktitle = {ICML (3)},
@@ -1475,7 +1475,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:HallW13,
+@inproceedings{hall2013dynamical,
   author = {Eric C. Hall and Rebecca Willett},
   title = {Dynamical Models and tracking regret in online convex programming},
   booktitle = {ICML (1)},
@@ -1490,7 +1490,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:HamiltonFP13,
+@inproceedings{hamilton2013modelling,
   author = {William L. Hamilton and Mahdi Milani Fard and Joelle Pineau},
   title = {Modelling Sparse Dynamical Systems with Compressed Predictive State Representations},
   booktitle = {ICML (1)},
@@ -1505,7 +1505,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:HanL13,
+@inproceedings{han2013transition,
   author = {Fang Han and Han Liu 0001},
   title = {Transition Matrix Estimation in High Dimensional Time Series},
   booktitle = {ICML (2)},
@@ -1520,7 +1520,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:HanL13a,
+@inproceedings{han2013principal,
   author = {Fang Han and Han Liu 0001},
   title = {Principal Component Analysis on non-Gaussian Dependent Data},
   booktitle = {ICML (1)},
@@ -1529,13 +1529,13 @@
   pages = {240-248},
   url = {https://proceedings.mlr.press/v28/han13.html},
   pdf = {https://proceedings.mlr.press/v28/han13.pdf},
-  abstract = {In this paper, we analyze the performance of a semiparametric principal component analysis named Copula Component Analysis (COCA) (Han & Liu, 2012) when the data are dependent. The semiparametric model assumes that, after unspecified marginally monotone transformations, the distributions are multivariate Gaussian. We study the scenario where the observations are drawn from non-i.i.d. processes ($m$-dependency or a more general $\phi$-mixing case). We show that COCA can allow weak dependence. In particular, we provide the generalization bounds of convergence for both support recovery and parameter estimation of COCA for the dependent data. We provide explicit sufficient conditions on the degree of dependence, under which the parametric rate can be maintained. To our knowledge, this is the first work analyzing the theoretical performance of PCA for the dependent data in high dimensional settings. Our results strictly generalize the analysis in Han & Liu (2012) and the techniques we used have the separate interest for analyzing a variety of other multivariate statistical methods.},
+  abstract = {In this paper, we analyze the performance of a semiparametric principal component analysis named Copula Component Analysis (COCA) (Han & Liu, 2012) when the data are dependent. The semiparametric model assumes that, after unspecified marginally monotone transformations, the distributions are multivariate Gaussian. We study the scenario where the observations are drawn from non-i.i.d. processes ($m$-dependency or a more general $ϕ$-mixing case). We show that COCA can allow weak dependence. In particular, we provide the generalization bounds of convergence for both support recovery and parameter estimation of COCA for the dependent data. We provide explicit sufficient conditions on the degree of dependence, under which the parametric rate can be maintained. To our knowledge, this is the first work analyzing the theoretical performance of PCA for the dependent data in high dimensional settings. Our results strictly generalize the analysis in Han & Liu (2012) and the techniques we used have the separate interest for analyzing a variety of other multivariate statistical methods.},
   mdate = {2019-05-29},
   series = {JMLR Workshop and Conference Proceedings},
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:HanczarN13,
+@inproceedings{hanczar2013precision,
   author = {Blaise Hanczar and Mohamed Nadif},
   title = {Precision-recall space to correct external indices for biclustering},
   booktitle = {ICML (2)},
@@ -1550,7 +1550,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:HeaukulaniG13,
+@inproceedings{heaukulani2013dynamic,
   author = {Creighton Heaukulani and Zoubin Ghahramani},
   title = {Dynamic Probabilistic Models for Latent Feature Propagation in Social Networks},
   booktitle = {ICML (1)},
@@ -1565,7 +1565,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:Hennig13,
+@inproceedings{hennig2013fast,
   author = {Philipp Hennig},
   title = {Fast Probabilistic Optimization from Noisy Gradients},
   booktitle = {ICML (1)},
@@ -1580,7 +1580,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:HerlauMS13,
+@inproceedings{herlau2013modeling,
   author = {Tue Herlau and Morten Mrup and Mikkel N. Schmidt},
   title = {Modeling Temporal Evolution and Multiscale Structure in Networks},
   booktitle = {ICML (3)},
@@ -1595,7 +1595,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:HoJV13,
+@inproceedings{ho2013adaptive,
   author = {Chien-Ju Ho and Shahin Jabbari and Jennifer Wortman Vaughan},
   title = {Adaptive Task Assignment for Crowdsourced Classification},
   booktitle = {ICML (1)},
@@ -1610,7 +1610,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:HoXV13,
+@inproceedings{ho2013nonlinear,
   author = {Jeffrey Ho and Yuchen Xie and Baba C. Vemuri},
   title = {On A Nonlinear Generalization of Sparse Coding and Dictionary Learning},
   booktitle = {ICML (3)},
@@ -1625,7 +1625,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:HockingRVB13,
+@inproceedings{hocking2013learning,
   author = {Toby Hocking and Guillem Rigaill and Jean-Philippe Vert and Francis R. Bach},
   title = {Learning Sparse Penalties for Change-point Detection using Max Margin Interval Regression},
   booktitle = {ICML (3)},
@@ -1640,7 +1640,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:HomrighausenM13,
+@inproceedings{homrighausen2013lasso,
   author = {Darren Homrighausen and Daniel J. McDonald},
   title = {The lasso, persistence, and cross-validation},
   booktitle = {ICML (3)},
@@ -1655,7 +1655,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:HonorioJ13,
+@inproceedings{honorio2013two,
   author = {Jean Honorio and Tommi S. Jaakkola},
   title = {Two-Sided Exponential Concentration Bounds for Bayes Error Rate and Shannon Entropy},
   booktitle = {ICML (3)},
@@ -1670,7 +1670,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:HuangS13,
+@inproceedings{huang2013spectral,
   author = {Tzu-Kuo Huang and Jeff G. Schneider},
   title = {Spectral Learning of Hidden Markov Models from Dynamic and Static Data},
   booktitle = {ICML (3)},
@@ -1685,7 +1685,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:Hui13,
+@inproceedings{hui2013direct,
   author = {Ka Yu Hui},
   title = {Direct Modeling of Complex Invariances for Visual Object Features},
   booktitle = {ICML (2)},
@@ -1700,7 +1700,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:HwangGS13,
+@inproceedings{hwang2013analogy,
   author = {Sung Ju Hwang and Kristen Grauman and Fei Sha},
   title = {Analogy-preserving Semantic Embedding for Visual Object Categorization},
   booktitle = {ICML (3)},
@@ -1715,7 +1715,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:IshtevaPS13,
+@inproceedings{ishteva2013unfolding,
   author = {Mariya Ishteva and Haesun Park and Le Song},
   title = {Unfolding Latent Tree Structures using 4th Order Tensors},
   booktitle = {ICML (3)},
@@ -1730,7 +1730,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:IyerJB13,
+@inproceedings{iyer2013fast,
   author = {Rishabh K. Iyer and Stefanie Jegelka and Jeff A. Bilmes},
   title = {Fast Semidifferential-based Submodular Function Optimization},
   booktitle = {ICML (3)},
@@ -1745,7 +1745,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:Izbicki13,
+@inproceedings{izbicki2013algebraic,
   author = {Michael Izbicki},
   title = {Algebraic classifiers: a generic approach to fast cross-validation, online training, and parallel training},
   booktitle = {ICML (3)},
@@ -1760,7 +1760,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:Jaggi13,
+@inproceedings{jaggi2013revisiting,
   author = {Martin Jaggi},
   title = {Revisiting Frank-Wolfe: Projection-Free Sparse Convex Optimization},
   booktitle = {ICML (1)},
@@ -1775,7 +1775,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:JancsaryNR13,
+@inproceedings{jancsary2013learning,
   author = {Jeremy Jancsary and Sebastian Nowozin and Carsten Rother},
   title = {Learning Convex QP Relaxations for Structured Prediction},
   booktitle = {ICML (3)},
@@ -1790,7 +1790,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:JiaVD13,
+@inproceedings{jia2013compact,
   author = {Yangqing Jia and Oriol Vinyals and Trevor Darrell},
   title = {On Compact Codes for Spatially Pooled Features},
   booktitle = {ICML (3)},
@@ -1805,7 +1805,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:JoseGAV13,
+@inproceedings{jose2013local,
   author = {Cijo Jose and Prasoon Goyal and Parv Aggrwal and Manik Varma},
   title = {Local Deep Kernel Learning for Efficient Non-linear SVM Prediction},
   booktitle = {ICML (3)},
@@ -1820,7 +1820,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:JoulaniGS13,
+@inproceedings{joulani2013online,
   author = {Pooria Joulani and Andrs Gyrgy 0001 and Csaba Szepesvri},
   title = {Online Learning under Delayed Feedback},
   booktitle = {ICML (3)},
@@ -1835,7 +1835,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:JunZSR13,
+@inproceedings{jun2013learning,
   author = {Kwang-Sung Jun and Xiaojin (Jerry) Zhu and Burr Settles and Timothy T. Rogers},
   title = {Learning from Human-Generated Lists},
   booktitle = {ICML (3)},
@@ -1850,7 +1850,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:KadriGP13,
+@inproceedings{kadri2013generalized,
   author = {Hachem Kadri and Mohammad Ghavamzadeh and Philippe Preux},
   title = {A Generalized Kernel Approach to Structured Output Learning},
   booktitle = {ICML (1)},
@@ -1865,7 +1865,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:KalaitzisLLZ13,
+@inproceedings{kalaitzis2013bigraphical,
   author = {Alfredo A. Kalaitzis and John D. Lafferty and Neil D. Lawrence and Shuheng Zhou 0002},
   title = {The Bigraphical Lasso},
   booktitle = {ICML (3)},
@@ -1880,7 +1880,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:KamyshanskaM13,
+@inproceedings{kamyshanska2013autoencoder,
   author = {Hanna Kamyshanska and Roland Memisevic},
   title = {On autoencoder scoring},
   booktitle = {ICML (3)},
@@ -1895,7 +1895,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:KarS0K13,
+@inproceedings{kar2013generalization,
   author = {Purushottam Kar and Bharath K. Sriperumbudur and Prateek Jain 0002 and Harish Karnick},
   title = {On the Generalization Ability of Online Learning Algorithms for Pairwise Loss Functions},
   booktitle = {ICML (3)},
@@ -1910,7 +1910,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:KarbasiSS13,
+@inproceedings{karbasi2013iterative,
   author = {Amin Karbasi and Amir Hesam Salavati and Amin Shokrollahi},
   title = {Iterative Learning and Denoising in Convolutional Neural Associative Memories},
   booktitle = {ICML (1)},
@@ -1925,7 +1925,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:KarninKS13,
+@inproceedings{karnin2013almost,
   author = {Zohar Shay Karnin and Tomer Koren and Oren Somekh},
   title = {Almost Optimal Exploration in Multi-Armed Bandits},
   booktitle = {ICML (3)},
@@ -1940,7 +1940,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:KhanAFS13,
+@inproceedings{khan2013fast,
   author = {Mohammad Emtiyaz Khan and Aleksandr Y. Aravkin and Michael P. Friedlander and Matthias W. Seeger},
   title = {Fast Dual Variational Inference for Non-Conjugate Latent Gaussian Models},
   booktitle = {ICML (3)},
@@ -1955,7 +1955,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:KimS13,
+@inproceedings{kim2013manifold,
   author = {Minje Kim and Paris Smaragdis},
   title = {Manifold Preserving Hierarchical Topic Models for Quantization and Approximation},
   booktitle = {ICML (3)},
@@ -1970,7 +1970,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:KimVS13,
+@inproceedings{kim2013variational,
   author = {Do-kyum Kim and Geoffrey M. Voelker and Lawrence K. Saul},
   title = {A Variational Approximation for Topic Modeling of Hierarchical Corpora},
   booktitle = {ICML (2)},
@@ -1985,7 +1985,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:KolarL13,
+@inproceedings{kolar2013feature,
   author = {Mladen Kolar and Han Liu 0001},
   title = {Feature Selection in High-Dimensional Classification},
   booktitle = {ICML (1)},
@@ -2000,7 +2000,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:KolarLX13,
+@inproceedings{kolar2013markov,
   author = {Mladen Kolar and Han Liu 0001 and Eric P. Xing},
   title = {Markov Network Estimation From Multi-attribute Data},
   booktitle = {ICML (3)},
@@ -2015,7 +2015,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:KolmogorovT13,
+@inproceedings{takhanov2013inference,
   author = {Rustem Takhanov and Vladimir Kolmogorov},
   title = {Inference algorithms for pattern-based CRFs on sequence data},
   booktitle = {ICML (3)},
@@ -2024,13 +2024,13 @@
   pages = {145-153},
   url = {https://proceedings.mlr.press/v28/takhanov13.html},
   pdf = {https://proceedings.mlr.press/v28/takhanov13.pdf},
-  abstract = {We consider \em Conditional Random Fields (CRFs) with pattern-based potentials  defined on a chain. In this model the energy of a string (labeling) x_1\ldots x_n  is the sum of terms over intervals [i,j] where each term is non-zero only if the substring x_i\ldots x_j  equals a prespecified pattern α. Such CRFs can be naturally applied to many sequence tagging problems. We present efficient algorithms for the three standard inference tasks in a CRF, namely  computing (i) the partition function, (ii) marginals, and (iii) computing the MAP.  Their complexities are respectively  O(n L), O(n L \ell_\max) and  O(n L \min{|D|,\log (\ell_\max + 1)})  where L is the combined length of input patterns, \ell_\max is the maximum length of a pattern,  and D is the input alphabet.  This improves on the previous algorithms of \citeYe:NIPS09 whose complexities are respectively O(n L |D|),  O\left(n |Γ| L^2 \ell_\max^2\right) and O(n L |D|),  where |Γ| is the number of input patterns. In addition, we give an efficient algorithm for sampling,  and revisit the case of MAP with non-positive weights. Finally, we apply pattern-based CRFs to the problem of the protein dihedral angles prediction.},
+  abstract = {We consider \em Conditional Random Fields (CRFs) with pattern-based potentials  defined on a chain. In this model the energy of a string (labeling) x_1łdots x_n  is the sum of terms over intervals [i,j] where each term is non-zero only if the substring x_iłdots x_j  equals a prespecified pattern α. Such CRFs can be naturally applied to many sequence tagging problems. We present efficient algorithms for the three standard inference tasks in a CRF, namely  computing (i) the partition function, (ii) marginals, and (iii) computing the MAP.  Their complexities are respectively  O(n L), O(n L \ell_\max) and  O(n L \min|D|,łog (\ell_\max + 1))  where L is the combined length of input patterns, \ell_\max is the maximum length of a pattern,  and D is the input alphabet.  This improves on the previous algorithms of i̧teYe:NIPS09 whose complexities are respectively O(n L |D|),  Ołeft(n |Γ| L^2 \ell_\max^2i̊ght) and O(n L |D|),  where |Γ| is the number of input patterns. In addition, we give an efficient algorithm for sampling,  and revisit the case of MAP with non-positive weights. Finally, we apply pattern-based CRFs to the problem of the protein dihedral angles prediction.},
   mdate = {2019-05-29},
   series = {JMLR Workshop and Conference Proceedings},
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:KontorovichNW13,
+@inproceedings{kontorovich2013learning,
   author = {Aryeh Kontorovich and Boaz Nadler and Roi Weiss},
   title = {On learning parametric-output HMMs},
   booktitle = {ICML (3)},
@@ -2045,7 +2045,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:KoppulaS13,
+@inproceedings{koppula2013learning,
   author = {Hema Swetha Koppula and Ashutosh Saxena},
   title = {Learning Spatio-Temporal Structure from RGB-D Videos for Human Activity Detection and Anticipation},
   booktitle = {ICML (3)},
@@ -2060,7 +2060,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:KraehenbuehlK13,
+@inproceedings{krhenbhl2013parameter,
   author = {Philipp Krhenbhl and Vladlen Koltun},
   title = {Parameter Learning and Convergent Inference for Dense Random Fields},
   booktitle = {ICML (3)},
@@ -2075,7 +2075,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:KrauseFGI13,
+@inproceedings{krause2013approximation,
   author = {Oswin Krause and Asja Fischer and Tobias Glasmachers and Christian Igel},
   title = {Approximation properties of DBNs with binary hidden units and real-valued visible units},
   booktitle = {ICML (1)},
@@ -2090,7 +2090,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:KrummenacherOB13,
+@inproceedings{krummenacher2013ellipsoidal,
   author = {Gabriel Krummenacher and Cheng Soon Ong and Joachim M. Buhmann},
   title = {Ellipsoidal Multiple Instance Learning},
   booktitle = {ICML (2)},
@@ -2105,7 +2105,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:Kuleshov13,
+@inproceedings{kuleshov2013fast,
   author = {Volodymyr Kuleshov},
   title = {Fast algorithms for sparse principal component analysis based on Rayleigh quotient iteration},
   booktitle = {ICML (3)},
@@ -2120,7 +2120,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:KumarB13,
+@inproceedings{kumar2013convex,
   author = {K. S. Sesh Kumar and Francis R. Bach},
   title = {Convex Relaxations for Learning Bounded-Treewidth Decomposable Graphs},
   booktitle = {ICML (1)},
@@ -2129,13 +2129,13 @@
   pages = {525-533},
   url = {https://proceedings.mlr.press/v28/kumar13c.html},
   pdf = {https://proceedings.mlr.press/v28/kumar13c.pdf},
-  abstract = {We consider the problem of learning the structure of undirected graphical models with bounded treewidth, within the maximum likelihood framework. This is an NP-hard problem and most approaches consider local search techniques. In this paper, we pose it as a combinatorial optimization problem, which is then relaxed to a convex optimization problem that involves searching over the forest and hyperforest polytopes with special structures. A supergradient method is used to solve the dual problem, with a run-time complexity of O(k^3 n^k+2 \log n) for each iteration, where n is the number of variables and k is a bound on the treewidth. We compare our approach to state-of-the-art methods on synthetic datasets and classical benchmarks, showing the gains of the novel convex approach.},
+  abstract = {We consider the problem of learning the structure of undirected graphical models with bounded treewidth, within the maximum likelihood framework. This is an NP-hard problem and most approaches consider local search techniques. In this paper, we pose it as a combinatorial optimization problem, which is then relaxed to a convex optimization problem that involves searching over the forest and hyperforest polytopes with special structures. A supergradient method is used to solve the dual problem, with a run-time complexity of O(k^3 n^k+2 łog n) for each iteration, where n is the number of variables and k is a bound on the treewidth. We compare our approach to state-of-the-art methods on synthetic datasets and classical benchmarks, showing the gains of the novel convex approach.},
   mdate = {2019-05-29},
   series = {JMLR Workshop and Conference Proceedings},
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:KumarLVV13,
+@inproceedings{p00012013near1,
   author = {Ravi Kumar 0001 and Daniel Lokshtanov and Sergei Vassilvitskii and Andrea Vattani},
   title = {Near-Optimal Bounds for Cross-Validation via Loss Stability},
   booktitle = {ICML (1)},
@@ -2150,7 +2150,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:KumarSK13,
+@inproceedings{p00012013fast,
   author = {Abhishek Kumar 0001 and Vikas Sindhwani and Prabhanjan Kambadur},
   title = {Fast Conical Hull Algorithms for Near-separable Non-negative Matrix Factorization},
   booktitle = {ICML (1)},
@@ -2165,7 +2165,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:KuzborskijO13,
+@inproceedings{kuzborskij2013stability,
   author = {Ilja Kuzborskij and Francesco Orabona},
   title = {Stability and Hypothesis Transfer Learning},
   booktitle = {ICML (3)},
@@ -2180,7 +2180,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:KyrillidisBCK13,
+@inproceedings{kyrillidis2013sparse,
   author = {Anastasios Kyrillidis and Stephen Becker and Volkan Cevher and Christoph Koch 0001},
   title = {Sparse projections onto the simplex},
   booktitle = {ICML (2)},
@@ -2195,7 +2195,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:Lacoste-JulienJSP13,
+@inproceedings{lacostejulien2013block,
   author = {Simon Lacoste-Julien and Martin Jaggi and Mark Schmidt 0001 and Patrick Pletscher},
   title = {Block-Coordinate Frank-Wolfe Optimization for Structural SVMs},
   booktitle = {ICML (1)},
@@ -2210,7 +2210,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:LakshminarayananRT13,
+@inproceedings{lakshminarayanan2013top,
   author = {Balaji Lakshminarayanan and Daniel M. Roy 0001 and Yee Whye Teh},
   title = {Top-down particle filtering for Bayesian decision trees},
   booktitle = {ICML (3)},
@@ -2225,7 +2225,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:LattimoreHS13,
+@inproceedings{lattimore2013sample,
   author = {Tor Lattimore and Marcus Hutter and Peter Sunehag},
   title = {The Sample-Complexity of General Reinforcement Learning},
   booktitle = {ICML (3)},
@@ -2240,7 +2240,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:LeSS13,
+@inproceedings{le2013fastfood,
   author = {Quoc V. Le and Tams Sarls and Alexander J. Smola},
   title = {Fastfood - Computing Hilbert Space Expansions in loglinear time},
   booktitle = {ICML (3)},
@@ -2255,7 +2255,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:LeeKLS13,
+@inproceedings{lee2013local,
   author = {Joonseok Lee and Seungyeon Kim 0001 and Guy Lebanon and Yoram Singer},
   title = {Local Low-Rank Matrix Approximation},
   booktitle = {ICML (2)},
@@ -2270,7 +2270,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:LevineK13,
+@inproceedings{levine2013guided,
   author = {Sergey Levine and Vladlen Koltun},
   title = {Guided Policy Search},
   booktitle = {ICML (3)},
@@ -2285,7 +2285,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:LiLSHD13,
+@inproceedings{p00012013learning,
   author = {Xi Li 0001 and Guosheng Lin and Chunhua Shen and Anton van den Hengel and Anthony R. Dick},
   title = {Learning Hash Functions Using Column Generation},
   booktitle = {ICML (1)},
@@ -2300,7 +2300,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:LiWWT13,
+@inproceedings{li2013fixed,
   author = {Quannan Li and Jingdong Wang 0001 and David P. Wipf and Zhuowen Tu},
   title = {Fixed-Point Model For Structured Labeling},
   booktitle = {ICML (1)},
@@ -2315,7 +2315,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:LimLM13,
+@inproceedings{lim2013robust,
   author = {Daryl Lim and Gert R. G. Lanckriet and Brian McFee},
   title = {Robust Structural Metric Learning},
   booktitle = {ICML (1)},
@@ -2330,7 +2330,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:LivniLSNSG13,
+@inproceedings{livni2013vanishing,
   author = {Roi Livni and David Lehavi and Sagi Schein and Hila Nachlieli and Shai Shalev-Shwartz and Amir Globerson},
   title = {Vanishing Component Analysis},
   booktitle = {ICML (1)},
@@ -2345,7 +2345,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:LondonHTG13,
+@inproceedings{p00012013collective,
   author = {Ben London 0001 and Bert Huang and Ben Taskar and Lise Getoor},
   title = {Collective Stability in Structured Prediction: Generalization from One Example},
   booktitle = {ICML (3)},
@@ -2360,7 +2360,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:LongS13,
+@inproceedings{long2013consistency,
   author = {Philip M. Long and Rocco A. Servedio},
   title = {Consistency versus Realizable H-Consistency for Multiclass Classification},
   booktitle = {ICML (3)},
@@ -2375,7 +2375,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:Lopes13,
+@inproceedings{lopes2013estimating,
   author = {Miles Lopes},
   title = {Estimating Unknown Sparsity in Compressed Sensing},
   booktitle = {ICML (3)},
@@ -2384,13 +2384,13 @@
   pages = {217-225},
   url = {https://proceedings.mlr.press/v28/lopes13.html},
   pdf = {https://proceedings.mlr.press/v28/lopes13.pdf},
-  abstract = {In the theory of compressed sensing (CS), the sparsity \|x\|_0 of the unknown signal x∈\R^p is commonly assumed to be a known parameter. However, it is typically unknown in practice. Due to the fact that many aspects of  CS depend on knowing \|x\|_0, it is important to estimate this parameter in a data-driven way. A second practical concern is that \|x\|_0 is a highly unstable function of x. In particular, for real signals with entries not exactly equal to 0, the value \|x\|_0=p is not a useful description of the effective number of coordinates. In this paper, we propose to estimate a stable measure of sparsity s(x):=\|x\|_1^2/\|x\|_2^2, which is a sharp lower bound on \|x\|_0. Our estimation procedure uses only a small number of linear measurements, does not rely on any sparsity assumptions, and requires very little computation. A confidence interval for s(x) is  provided, and its width is shown to have no dependence on the signal dimension p. Moreover, this result extends naturally to the matrix recovery setting, where a soft version of matrix rank can be estimated with analogous guarantees. Finally, we show that the use of randomized measurements is essential to estimating s(x). This is accomplished by proving that the minimax risk for estimating s(x) with deterministic measurements is large when n≪p.},
+  abstract = {In the theory of compressed sensing (CS), the sparsity \|x\|_0 of the unknown signal x∈\R^p is commonly assumed to be a known parameter. However, it is typically unknown in practice. Due to the fact that many aspects of  CS depend on knowing \|x\|_0, it is important to estimate this parameter in a data-driven way. A second practical concern is that \|x\|_0 is a highly unstable function of x. In particular, for real signals with entries not exactly equal to 0, the value \|x\|_0=p is not a useful description of the effective number of coordinates. In this paper, we propose to estimate a stable measure of sparsity s(x)≔\|x\|_1^2/\|x\|_2^2, which is a sharp lower bound on \|x\|_0. Our estimation procedure uses only a small number of linear measurements, does not rely on any sparsity assumptions, and requires very little computation. A confidence interval for s(x) is  provided, and its width is shown to have no dependence on the signal dimension p. Moreover, this result extends naturally to the matrix recovery setting, where a soft version of matrix rank can be estimated with analogous guarantees. Finally, we show that the use of randomized measurements is essential to estimating s(x). This is accomplished by proving that the minimax risk for estimating s(x) with deterministic measurements is large when n≪p.},
   mdate = {2019-05-29},
   series = {JMLR Workshop and Conference Proceedings},
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:Lopez-PazHG13,
+@inproceedings{lopezpaz2013gaussian,
   author = {David Lopez-Paz and Jos Miguel Hernndez-Lobato and Zoubin Ghahramani},
   title = {Gaussian Process Vine Copulas for Multivariate Dependence},
   booktitle = {ICML (2)},
@@ -2405,7 +2405,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:MaatenCTW13,
+@inproceedings{maaten2013learning,
   author = {Laurens van der Maaten and Minmin Chen and Stephen Tyree and Kilian Q. Weinberger},
   title = {Learning with Marginalized Corrupted Features},
   booktitle = {ICML (1)},
@@ -2420,7 +2420,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:MaillardNOR13,
+@inproceedings{maillard2013optimal,
   author = {Odalric-Ambrym Maillard and Phuong Nguyen and Ronald Ortner and Daniil Ryabko},
   title = {Optimal Regret Bounds for Selecting the State Representation in Reinforcement Learning},
   booktitle = {ICML (1)},
@@ -2435,7 +2435,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:Mairal13,
+@inproceedings{mairal2013optimization,
   author = {Julien Mairal},
   title = {Optimization with First-Order Surrogate Functions},
   booktitle = {ICML (3)},
@@ -2450,7 +2450,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:MalioutovV13,
+@inproceedings{malioutov2013exact,
   author = {Dmitry M. Malioutov and Kush R. Varshney},
   title = {Exact Rule Learning via Boolean Compressed Sensing},
   booktitle = {ICML (3)},
@@ -2465,7 +2465,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:MaurerPR13,
+@inproceedings{maurer2013sparse,
   author = {Andreas Maurer and Massimiliano Pontil and Bernardino Romera-Paredes},
   title = {Sparse coding for multitask and transfer learning},
   booktitle = {ICML (2)},
@@ -2480,7 +2480,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:MeentBWGW13,
+@inproceedings{meent2013hierarchically,
   author = {Jan-Willem van de Meent and Jonathan E. Bronson and Frank D. Wood and Ruben L. Gonzalez and Chris Wiggins 0001},
   title = {Hierarchically-coupled hidden Markov models for learning kinetic rates from single-molecule data},
   booktitle = {ICML (2)},
@@ -2495,7 +2495,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:MehtaG13,
+@inproceedings{mehta2013sparsity,
   author = {Nishant Ajay Mehta and Alexander G. Gray},
   title = {Sparsity-Based Generalization Bounds for Predictive Sparse Coding},
   booktitle = {ICML (1)},
@@ -2510,7 +2510,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:MemisevicE13,
+@inproceedings{memisevic2013learning,
   author = {Roland Memisevic and Georgios Exarchakis},
   title = {Learning invariant features by harnessing the aperture problem},
   booktitle = {ICML (3)},
@@ -2525,7 +2525,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:Meng13,
+@inproceedings{meng2013scalable,
   author = {Xiangrui Meng},
   title = {Scalable Simple Random Sampling and Stratified Sampling},
   booktitle = {ICML (3)},
@@ -2540,7 +2540,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:MengM13,
+@inproceedings{meng2013robust,
   author = {Xiangrui Meng and Michael W. Mahoney},
   title = {Robust Regression on MapReduce},
   booktitle = {ICML (3)},
@@ -2555,7 +2555,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:MenonNAC13,
+@inproceedings{menon2013statistical,
   author = {Aditya Krishna Menon and Harikrishna Narasimhan and Shivani Agarwal 0001 and Sanjay Chawla},
   title = {On the Statistical Consistency of Algorithms for Binary Classification under Class Imbalance},
   booktitle = {ICML (3)},
@@ -2570,7 +2570,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:MenonTGLK13,
+@inproceedings{menon2013machine,
   author = {Aditya Krishna Menon and Omer Tamuz and Sumit Gulwani and Butler W. Lampson and Adam Kalai},
   title = {A Machine Learning Framework for Programming by Example},
   booktitle = {ICML (1)},
@@ -2585,7 +2585,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:MineiroK13,
+@inproceedings{mineiro2013loss,
   author = {Paul Mineiro and Nikos Karampatziakis},
   title = {Loss-Proportional Subsampling for Subsequent ERM},
   booktitle = {ICML (3)},
@@ -2600,7 +2600,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:MinhBM13,
+@inproceedings{minh2013unifying,
   author = {Ha Quang Minh and Loris Bazzani and Vittorio Murino},
   title = {A unifying framework for vector-valued manifold regularization and multi-view learning},
   booktitle = {ICML (2)},
@@ -2615,7 +2615,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:MuandetBS13,
+@inproceedings{muandet2013domain,
   author = {Krikamol Muandet and David Balduzzi and Bernhard Schlkopf},
   title = {Domain Generalization via Invariant Feature Representation},
   booktitle = {ICML (1)},
@@ -2630,7 +2630,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:NarasimhanA13,
+@inproceedings{narasimhan2013structural,
   author = {Harikrishna Narasimhan and Shivani Agarwal 0001},
   title = {A Structural SVM Based Approach for Optimizing Partial AUC},
   booktitle = {ICML (1)},
@@ -2645,7 +2645,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:NguyenS13,
+@inproceedings{nguyen2013algorithms,
   author = {Tan Nguyen and Scott Sanner},
   title = {Algorithms for Direct 0-1 Loss Optimization in Binary Classification},
   booktitle = {ICML (3)},
@@ -2660,7 +2660,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:NiuJDHS13,
+@inproceedings{p00012013squared,
   author = {Gang Niu 0001 and Wittawat Jitkrittum and Bo Dai 0001 and Hirotaka Hachiya and Masashi Sugiyama},
   title = {Squared-loss Mutual Information Regularization: A Novel Information-theoretic Approach to Semi-supervised Learning},
   booktitle = {ICML (3)},
@@ -2675,7 +2675,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:OgawaITS13,
+@inproceedings{ogawa2013infinitesimal,
   author = {Kohei Ogawa and Motoki Imamura and Ichiro Takeuchi and Masashi Sugiyama},
   title = {Infinitesimal Annealing for Training Semi-Supervised Support Vector Machines},
   booktitle = {ICML (3)},
@@ -2690,7 +2690,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:OgawaST13,
+@inproceedings{ogawa2013safe,
   author = {Kohei Ogawa and Yoshiki Suzuki and Ichiro Takeuchi},
   title = {Safe Screening of Non-Support Vectors in Pathwise SVM Computation},
   booktitle = {ICML (3)},
@@ -2705,7 +2705,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:OlivaPS13,
+@inproceedings{oliva2013distribution,
   author = {Junier B. Oliva and Barnabs Pczos and Jeff G. Schneider},
   title = {Distribution to Distribution Regression},
   booktitle = {ICML (3)},
@@ -2720,7 +2720,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:OstingBO13,
+@inproceedings{osting2013enhanced,
   author = {Braxton Osting and Christoph Brune and Stanley J. Osher},
   title = {Enhanced statistical rankings via targeted data collection},
   booktitle = {ICML (1)},
@@ -2735,7 +2735,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:OuyangHTG13,
+@inproceedings{ouyang2013stochastic,
   author = {Hua Ouyang and Niao He and Long Q. Tran and Alexander G. Gray},
   title = {Stochastic Alternating Direction Method of Multipliers},
   booktitle = {ICML (1)},
@@ -2744,13 +2744,13 @@
   pages = {80-88},
   url = {https://proceedings.mlr.press/v28/ouyang13.html},
   pdf = {https://proceedings.mlr.press/v28/ouyang13.pdf},
-  abstract = {The Alternating Direction Method of Multipliers (ADMM) has received lots of attention recently due to the tremendous demand from large-scale and data-distributed machine learning applications. In this paper, we present a stochastic setting for optimization problems with non-smooth composite objective functions. To solve this problem, we propose a stochastic ADMM algorithm. Our algorithm applies to a more general class of convex and nonsmooth objective functions, beyond the smooth and separable least squares loss used in lasso. We also demonstrate the rates of convergence for our algorithm under various structural assumptions of the stochastic function: O(1/\sqrtt) for convex functions and O(\log t/t) for strongly convex functions. Compared to previous literature, we establish the convergence rate of ADMM for convex problems in terms of both the objective value and the feasibility violation. A novel application named Graph-Guided SVM is proposed to demonstrate the usefulness of our algorithm.},
+  abstract = {The Alternating Direction Method of Multipliers (ADMM) has received lots of attention recently due to the tremendous demand from large-scale and data-distributed machine learning applications. In this paper, we present a stochastic setting for optimization problems with non-smooth composite objective functions. To solve this problem, we propose a stochastic ADMM algorithm. Our algorithm applies to a more general class of convex and nonsmooth objective functions, beyond the smooth and separable least squares loss used in lasso. We also demonstrate the rates of convergence for our algorithm under various structural assumptions of the stochastic function: O(1/\sqrtt) for convex functions and O(łog t/t) for strongly convex functions. Compared to previous literature, we establish the convergence rate of ADMM for convex problems in terms of both the objective value and the feasibility violation. A novel application named Graph-Guided SVM is proposed to demonstrate the usefulness of our algorithm.},
   mdate = {2022-02-28},
   series = {JMLR Workshop and Conference Proceedings},
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:PapailiopoulosDK13,
+@inproceedings{papailiopoulos2013sparse,
   author = {Dimitris S. Papailiopoulos and Alexandros G. Dimakis and Stavros Korokythakis},
   title = {Sparse PCA through Low-rank Approximations},
   booktitle = {ICML (3)},
@@ -2765,7 +2765,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:PareekR13,
+@inproceedings{pareek2013human,
   author = {Harsh H. Pareek and Pradeep Ravikumar},
   title = {Human Boosting},
   booktitle = {ICML (1)},
@@ -2780,7 +2780,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:PascanuMB13,
+@inproceedings{pascanu2013difficulty,
   author = {Razvan Pascanu and Toms Mikolov and Yoshua Bengio},
   title = {On the difficulty of training recurrent neural networks},
   booktitle = {ICML (3)},
@@ -2795,7 +2795,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:PeharzTP13,
+@inproceedings{peharz2013most,
   author = {Robert Peharz and Sebastian Tschiatschek and Franz Pernkopf},
   title = {The Most Generative Maximum Margin Bayesian Networks},
   booktitle = {ICML (3)},
@@ -2810,7 +2810,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:PeleTGW13,
+@inproceedings{pele2013pairwise,
   author = {Ofir Pele and Ben Taskar and Amir Globerson and Michael Werman},
   title = {The Pairwise Piecewise-Linear Embedding for Efficient Non-Linear Classification},
   booktitle = {ICML (1)},
@@ -2825,7 +2825,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:PiresSG13,
+@inproceedings{pires2013cost,
   author = {Bernardo vila Pires and Csaba Szepesvri and Mohammad Ghavamzadeh},
   title = {Cost-sensitive Multiclass Classification Risk Bounds},
   booktitle = {ICML (3)},
@@ -2840,7 +2840,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:PirottaRPC13,
+@inproceedings{pirotta2013safe,
   author = {Matteo Pirotta and Marcello Restelli and Alessio Pecorino and Daniele Calandriello},
   title = {Safe Policy Iteration},
   booktitle = {ICML (3)},
@@ -2855,7 +2855,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:QiG13,
+@inproceedings{qi2013message,
   author = {Yuan Qi and Yandong Guo},
   title = {Message passing with l1 penalized KL minimization},
   booktitle = {ICML (3)},
@@ -2870,7 +2870,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:RamanJSS13,
+@inproceedings{p00012013stable,
   author = {Karthik Raman 0001 and Thorsten Joachims and Pannaga Shivaswamy and Tobias Schnabel},
   title = {Stable Coactive Learning via Perturbation},
   booktitle = {ICML (3)},
@@ -2885,7 +2885,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:RamdasS13,
+@inproceedings{ramdas2013optimal,
   author = {Aaditya Ramdas and Aarti Singh},
   title = {Optimal rates for stochastic convex optimization under Tsybakov noise condition},
   booktitle = {ICML (1)},
@@ -2900,7 +2900,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:RanganathWBX13,
+@inproceedings{ranganath2013adaptive,
   author = {Rajesh Ranganath and Chong Wang 0002 and David M. Blei and Eric P. Xing},
   title = {An Adaptive Learning Rate for Stochastic Variational Inference},
   booktitle = {ICML (2)},
@@ -2915,7 +2915,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:RastegariCFHD13,
+@inproceedings{rastegari2013predictable,
   author = {Mohammad Rastegari and Jonghyun Choi and Shobeir Fakhraei and Hal Daum III and Larry S. Davis},
   title = {Predictable Dual-View Hashing},
   booktitle = {ICML (3)},
@@ -2930,7 +2930,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:Rebagliati13,
+@inproceedings{rebagliati2013strict,
   author = {Nicola Rebagliati},
   title = {Strict Monotonicity of Sum of Squares Error and Normalized Cut in the Lattice of Clusterings},
   booktitle = {ICML (2)},
@@ -2945,7 +2945,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:ReddiP13,
+@inproceedings{reddi2013scale,
   author = {Sashank J. Reddi and Barnabs Pczos},
   title = {Scale Invariant Conditional Dependence Measures},
   booktitle = {ICML (3)},
@@ -2960,7 +2960,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:ReedG13,
+@inproceedings{reed2013scaling,
   author = {Colorado Reed and Zoubin Ghahramani},
   title = {Scaling the Indian Buffet Process via Submodular Maximization},
   booktitle = {ICML (3)},
@@ -2975,7 +2975,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:RichardBV13,
+@inproceedings{richard2013intersecting,
   author = {Emile Richard and Francis R. Bach and Jean-Philippe Vert},
   title = {Intersecting singularities for multi-structured estimation},
   booktitle = {ICML (3)},
@@ -2990,7 +2990,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:Romera-ParedesABP13,
+@inproceedings{romeraparedes2013multilinear,
   author = {Bernardino Romera-Paredes and Hane Aung and Nadia Bianchi-Berthouze and Massimiliano Pontil},
   title = {Multilinear Multitask Learning},
   booktitle = {ICML (3)},
@@ -3005,7 +3005,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:RossD13,
+@inproceedings{ross2013nonparametric,
   author = {James C. Ross and Jennifer G. Dy},
   title = {Nonparametric Mixture of Gaussian Processes with Constraints},
   booktitle = {ICML (3)},
@@ -3020,7 +3020,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:RossZYDB13,
+@inproceedings{ross2013learning,
   author = {Stphane Ross and Jiaji Zhou and Yisong Yue and Debadeepta Dey and Drew Bagnell},
   title = {Learning Policies for Contextual Submodular Prediction},
   booktitle = {ICML (3)},
@@ -3035,7 +3035,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:RuvoloE13,
+@inproceedings{ruvolo2013ella,
   author = {Paul Ruvolo and Eric Eaton},
   title = {ELLA: An Efficient Lifelong Learning Algorithm},
   booktitle = {ICML (1)},
@@ -3050,7 +3050,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:SabatoK13,
+@inproceedings{sabato2013feature,
   author = {Sivan Sabato and Adam Kalai},
   title = {Feature Multi-Selection among Subjective Features},
   booktitle = {ICML (3)},
@@ -3065,7 +3065,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:SalazarBGHC13,
+@inproceedings{salazar2013exploring,
   author = {Esther Salazar and Ryan Bogdan and Adam Gorka and Ahmad Hariri and Lawrence Carin},
   title = {Exploring the Mind: Integrating Questionnaires and fMRI},
   booktitle = {ICML (2)},
@@ -3080,7 +3080,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:SchaulZL13,
+@inproceedings{schaul2013more,
   author = {Tom Schaul and Sixin Zhang and Yann LeCun},
   title = {No more pesky learning rates},
   booktitle = {ICML (3)},
@@ -3095,7 +3095,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:SeijenS13,
+@inproceedings{seijen2013planning,
   author = {Harm van Seijen and Richard S. Sutton},
   title = {Planning by Prioritized Sweeping with Small Backups},
   booktitle = {ICML (3)},
@@ -3110,7 +3110,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:ShalitWC13,
+@inproceedings{shalit2013modeling,
   author = {Uri Shalit and Daphna Weinshall and Gal Chechik},
   title = {Modeling Musical Influence with Topic Models},
   booktitle = {ICML (2)},
@@ -3125,7 +3125,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:Shamir013,
+@inproceedings{shamir2013stochastic,
   author = {Ohad Shamir and Tong Zhang 0001},
   title = {Stochastic Gradient Descent for Non-smooth Optimization: Convergence Results and Optimal Averaging Schemes},
   booktitle = {ICML (1)},
@@ -3134,13 +3134,13 @@
   pages = {71-79},
   url = {https://proceedings.mlr.press/v28/shamir13.html},
   pdf = {https://proceedings.mlr.press/v28/shamir13.pdf},
-  abstract = {Stochastic Gradient Descent (SGD) is one of the simplest and most popular stochastic optimization methods. While it has already been theoretically studied for decades, the classical analysis usually required non-trivial smoothness assumptions, which do not apply to many modern applications of SGD with non-smooth objective functions such as support vector machines.  In this paper, we investigate the performance of SGD \emphwithout such smoothness assumptions, as well as a running average scheme to convert the SGD iterates to a solution with optimal optimization accuracy. In this framework, we prove that after T rounds, the suboptimality of the \emphlast SGD iterate scales as O(\log(T)/\sqrtT) for non-smooth convex objective functions, and O(\log(T)/T) in the non-smooth strongly convex case. To the best of our knowledge, these are the first bounds of this kind, and almost match the minimax-optimal rates obtainable by appropriate averaging schemes. We also propose a new and simple averaging scheme, which not only attains optimal rates, but can also be easily computed on-the-fly (in contrast, the suffix averaging scheme proposed in \citetRakhShaSri12arxiv is not as simple to implement). Finally, we provide some experimental illustrations.},
+  abstract = {Stochastic Gradient Descent (SGD) is one of the simplest and most popular stochastic optimization methods. While it has already been theoretically studied for decades, the classical analysis usually required non-trivial smoothness assumptions, which do not apply to many modern applications of SGD with non-smooth objective functions such as support vector machines.  In this paper, we investigate the performance of SGD \emphwithout such smoothness assumptions, as well as a running average scheme to convert the SGD iterates to a solution with optimal optimization accuracy. In this framework, we prove that after T rounds, the suboptimality of the \emphlast SGD iterate scales as O(łog(T)/\sqrtT) for non-smooth convex objective functions, and O(łog(T)/T) in the non-smooth strongly convex case. To the best of our knowledge, these are the first bounds of this kind, and almost match the minimax-optimal rates obtainable by appropriate averaging schemes. We also propose a new and simple averaging scheme, which not only attains optimal rates, but can also be easily computed on-the-fly (in contrast, the suffix averaging scheme proposed in i̧tetRakhShaSri12arxiv is not as simple to implement). Finally, we provide some experimental illustrations.},
   mdate = {2019-05-29},
   series = {JMLR Workshop and Conference Proceedings},
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:SheldonSKD13,
+@inproceedings{sheldon2013approximate,
   author = {Daniel Sheldon and Tao Sun 0008 and Akshat Kumar and Thomas G. Dietterich},
   title = {Approximate Inference in Collective Graphical Models},
   booktitle = {ICML (3)},
@@ -3155,7 +3155,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:ShenderL13,
+@inproceedings{shender2013computation,
   author = {Dinah Shender and John D. Lafferty},
   title = {Computation-Risk Tradeoffs for Covariance-Thresholded Regression},
   booktitle = {ICML (3)},
@@ -3170,7 +3170,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:Shin13,
+@inproceedings{shin2013new,
   author = {Kilho Shin},
   title = {A New Frontier of Kernel Design for Structured Data},
   booktitle = {ICML (1)},
@@ -3185,7 +3185,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:SilverNBWM13,
+@inproceedings{silver2013concurrent,
   author = {David Silver and Leonard Newnham and David Barker and Suzanne Weller and Jason McFall},
   title = {Concurrent Reinforcement Learning from Customer Interactions},
   booktitle = {ICML (3)},
@@ -3200,7 +3200,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:SimsekliCY13,
+@inproceedings{simsekli2013learning,
   author = {Umut Simsekli and Ali Taylan Cemgil and Yusuf Kenan Yilmaz},
   title = {Learning the beta-Divergence in Tweedie Compound Poisson Matrix Factorization Models},
   booktitle = {ICML (3)},
@@ -3215,7 +3215,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:SodomkaHLG13,
+@inproceedings{sodomka2013coco,
   author = {Eric Sodomka and Elizabeth Hilliard and Michael L. Littman and Amy Greenwald},
   title = {Coco-Q: Learning in Stochastic Games with Side Payments},
   booktitle = {ICML (3)},
@@ -3230,7 +3230,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:SohnZLL13,
+@inproceedings{sohn2013learning,
   author = {Kihyuk Sohn and Guanyu Zhou and Chansoo Lee and Honglak Lee},
   title = {Learning and Selecting Features Jointly with Point-wise Gated Boltzmann Machines},
   booktitle = {ICML (2)},
@@ -3245,7 +3245,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:SongIPXP13,
+@inproceedings{song2013hierarchical,
   author = {Le Song and Mariya Ishteva and Ankur P. Parikh and Eric P. Xing and Haesun Park},
   title = {Hierarchical Tensor Decomposition of Latent Tree Graphical Models},
   booktitle = {ICML (3)},
@@ -3260,7 +3260,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:SunZ13,
+@inproceedings{p00112013saving,
   author = {Peng Sun 0011 and Jie Zhou 0001},
   title = {Saving Evaluation Time for the Decision Function in Boosting: Representation and Reordering Base Learner},
   booktitle = {ICML (3)},
@@ -3275,7 +3275,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:SutskeverMDH13,
+@inproceedings{sutskever2013importance,
   author = {Ilya Sutskever and James Martens and George E. Dahl and Geoffrey E. Hinton},
   title = {On the importance of initialization and momentum in deep learning},
   booktitle = {ICML (3)},
@@ -3290,7 +3290,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:Suzuki13,
+@inproceedings{suzuki2013dual,
   author = {Taiji Suzuki},
   title = {Dual Averaging and Proximal Gradient Descent for Online Alternating Direction Multiplier Method},
   booktitle = {ICML (1)},
@@ -3299,13 +3299,13 @@
   pages = {392-400},
   url = {https://proceedings.mlr.press/v28/suzuki13.html},
   pdf = {https://proceedings.mlr.press/v28/suzuki13.pdf},
-  abstract = {We develop new stochastic optimization methods that are applicable to   a wide range of structured regularizations.  Basically our methods are combinations of   basic stochastic optimization techniques and Alternating Direction Multiplier Method (ADMM).  ADMM is a general framework for optimizing a composite function,  and has a wide range of applications.  We propose two types of online variants of ADMM,   which correspond to online proximal gradient descent and regularized dual averaging respectively.  The proposed algorithms are computationally efficient and easy to implement.  Our methods yield O(1/\sqrtT) convergence of the expected risk.  Moreover, the online proximal gradient descent type method yields   O(\log(T)/T) convergence for a strongly convex loss.  Numerical experiments show effectiveness of our methods in learning tasks with structured sparsity  such as overlapped group lasso.},
+  abstract = {We develop new stochastic optimization methods that are applicable to   a wide range of structured regularizations.  Basically our methods are combinations of   basic stochastic optimization techniques and Alternating Direction Multiplier Method (ADMM).  ADMM is a general framework for optimizing a composite function,  and has a wide range of applications.  We propose two types of online variants of ADMM,   which correspond to online proximal gradient descent and regularized dual averaging respectively.  The proposed algorithms are computationally efficient and easy to implement.  Our methods yield O(1/\sqrtT) convergence of the expected risk.  Moreover, the online proximal gradient descent type method yields   O(łog(T)/T) convergence for a strongly convex loss.  Numerical experiments show effectiveness of our methods in learning tasks with structured sparsity  such as overlapped group lasso.},
   mdate = {2019-05-29},
   series = {JMLR Workshop and Conference Proceedings},
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:SznitmanLFJF13,
+@inproceedings{sznitman2013optimal,
   author = {Raphael Sznitman and Aurlien Lucchi and Peter I. Frazier and Bruno Jedynak and Pascal Fua},
   title = {An Optimal Policy for Target Localization with Application to Electron Microscopy},
   booktitle = {ICML (1)},
@@ -3320,7 +3320,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:SzorenyiBHOJK13,
+@inproceedings{szrnyi2013gossip,
   author = {Balzs Szrnyi and Rbert Busa-Fekete and Istvn Hegeds and Rbert Ormndi and Mrk Jelasity and Balzs Kgl},
   title = {Gossip-based distributed stochastic bandit algorithms},
   booktitle = {ICML (3)},
@@ -3329,13 +3329,13 @@
   pages = {19-27},
   url = {https://proceedings.mlr.press/v28/szorenyi13.html},
   pdf = {https://proceedings.mlr.press/v28/szorenyi13.pdf},
-  abstract = {The multi-armed bandit problem has attracted remarkable attention in the machine learning community and many efficient algorithms have been proposed to handle the so-called exploitation-exploration dilemma in various bandit setups. At the same time, significantly less effort has been devoted to adapting bandit algorithms to particular architectures, such as sensor networks, multi-core machines, or peer-to-peer (P2P) environments, which could potentially speed up their convergence. Our goal is to adapt stochastic bandit algorithms to P2P networks.  In our setup, the same set of arms is available in each peer. In every iteration each peer can pull one arm independently of the other peers, and then some limited communication is possible with a few random other peers.  As our main result, we show that our adaptation achieves a linear speedup in terms of the number of peers participating in the network.  More precisely, we show that the probability of playing a suboptimal arm at a peer in iteration t = Ω( \log N ) is proportional to 1/(Nt) where N denotes the number of peers.  The theoretical results are supported by simulation experiments showing that our algorithm scales gracefully with the size of network.},
+  abstract = {The multi-armed bandit problem has attracted remarkable attention in the machine learning community and many efficient algorithms have been proposed to handle the so-called exploitation-exploration dilemma in various bandit setups. At the same time, significantly less effort has been devoted to adapting bandit algorithms to particular architectures, such as sensor networks, multi-core machines, or peer-to-peer (P2P) environments, which could potentially speed up their convergence. Our goal is to adapt stochastic bandit algorithms to P2P networks.  In our setup, the same set of arms is available in each peer. In every iteration each peer can pull one arm independently of the other peers, and then some limited communication is possible with a few random other peers.  As our main result, we show that our adaptation achieves a linear speedup in terms of the number of peers participating in the network.  More precisely, we show that the probability of playing a suboptimal arm at a peer in iteration t = Ω( łog N ) is proportional to 1/(Nt) where N denotes the number of peers.  The theoretical results are supported by simulation experiments showing that our algorithm scales gracefully with the size of network.},
   mdate = {2019-05-29},
   series = {JMLR Workshop and Conference Proceedings},
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:TakacBRS13,
+@inproceedings{p00012013mini,
   author = {Martin Takc 0001 and Avleen Singh Bijral and Peter Richtrik and Nati Srebro},
   title = {Mini-Batch Primal and Dual Methods for SVMs},
   booktitle = {ICML (3)},
@@ -3350,7 +3350,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:TamarCM13,
+@inproceedings{tamar2013temporal,
   author = {Aviv Tamar and Dotan Di Castro and Shie Mannor},
   title = {Temporal Difference Methods for the Variance of the Reward To Go},
   booktitle = {ICML (3)},
@@ -3365,7 +3365,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:TangSH13,
+@inproceedings{tang2013tensor,
   author = {Yichuan Tang and Ruslan Salakhutdinov and Geoffrey E. Hinton},
   title = {Tensor Analyzers},
   booktitle = {ICML (3)},
@@ -3380,7 +3380,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:TarlowSCSZ13,
+@inproceedings{tarlow2013stochastic,
   author = {Daniel Tarlow and Kevin Swersky and Laurent Charlin and Ilya Sutskever and Richard S. Zemel},
   title = {Stochastic k-Neighborhood Selection for Supervised and Unsupervised Learning},
   booktitle = {ICML (3)},
@@ -3395,7 +3395,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:Telgarsky13,
+@inproceedings{telgarsky2013margins,
   author = {Matus Telgarsky},
   title = {Margins, Shrinkage, and Boosting},
   booktitle = {ICML (2)},
@@ -3410,7 +3410,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:TeschSC13,
+@inproceedings{tesch2013expensive,
   author = {Matthew Tesch and Jeff G. Schneider and Howie Choset},
   title = {Expensive Function Optimization with Stochastic Binary Outcomes},
   booktitle = {ICML (3)},
@@ -3425,7 +3425,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:TorkamaniL13,
+@inproceedings{torkamani2013convex,
   author = {MohamadAli Torkamani and Daniel Lowd},
   title = {Convex Adversarial Collective Classification},
   booktitle = {ICML (1)},
@@ -3440,7 +3440,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:ToulisK13,
+@inproceedings{toulis2013estimation,
   author = {Panos Toulis and Edward K. Kao},
   title = {Estimation of Causal Peer Influence Effects},
   booktitle = {ICML (3)},
@@ -3455,7 +3455,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:Tran-DinhKC13,
+@inproceedings{trandinh2013proximal,
   author = {Quoc Tran-Dinh and Anastasios Kyrillidis and Volkan Cevher},
   title = {A proximal Newton framework for composite minimization: Graph learning without Cholesky decompositions and matrix inversions},
   booktitle = {ICML (2)},
@@ -3470,7 +3470,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:TranPV13,
+@inproceedings{p00012013thurstonian,
   author = {Truyen Tran 0001 and Dinh Q. Phung and Svetha Venkatesh},
   title = {Thurstonian Boltzmann Machines: Learning from Multiple Inequalities},
   booktitle = {ICML (2)},
@@ -3485,7 +3485,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:UrvoyCFN13,
+@inproceedings{urvoy2013generic,
   author = {Tanguy Urvoy and Fabrice Clrot and Raphal Fraud and Sami Naamane},
   title = {Generic Exploration and K-armed Voting Bandits},
   booktitle = {ICML (2)},
@@ -3500,7 +3500,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:ValkoCM13,
+@inproceedings{valko2013stochastic,
   author = {Michal Valko and Alexandra Carpentier and Rmi Munos},
   title = {Stochastic Simultaneous Optimistic Optimization},
   booktitle = {ICML (2)},
@@ -3515,7 +3515,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:VladymyrovC13,
+@inproceedings{vladymyrov2013entropic,
   author = {Max Vladymyrov and Miguel . Carreira-Perpin},
   title = {Entropic Affinities: Properties and Efficient Numerical Computation},
   booktitle = {ICML (3)},
@@ -3530,7 +3530,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:WanZZLF13,
+@inproceedings{p00022013regularization,
   author = {Li Wan 0002 and Matthew D. Zeiler and Sixin Zhang and Yann LeCun and Rob Fergus},
   title = {Regularization of Neural Networks using DropConnect},
   booktitle = {ICML (3)},
@@ -3545,7 +3545,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:WangK13,
+@inproceedings{wang2013fast,
   author = {Huayan Wang and Daphne Koller},
   title = {A Fast and Exact Energy Minimization Algorithm for Cycle MRFs},
   booktitle = {ICML (3)},
@@ -3560,7 +3560,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:WangK13a,
+@inproceedings{wang2013subproblem,
   author = {Huayan Wang and Daphne Koller},
   title = {Subproblem-Tree Calibration: A Unified Approach to Max-Product Message Passing},
   booktitle = {ICML (2)},
@@ -3575,7 +3575,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:WangM13,
+@inproceedings{p00012013fast1,
   author = {Sida Wang 0001 and Christopher D. Manning},
   title = {Fast dropout training},
   booktitle = {ICML (2)},
@@ -3590,7 +3590,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:WangMF13,
+@inproceedings{p00012013adaptive,
   author = {Ziyu Wang 0001 and Shakir Mohamed and Nando de Freitas},
   title = {Adaptive Hamiltonian and Riemann Manifold Monte Carlo},
   booktitle = {ICML (3)},
@@ -3605,7 +3605,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:WangNH13,
+@inproceedings{p00072013robust,
   author = {Hua Wang 0007 and Feiping Nie 0001 and Heng Huang},
   title = {Robust and Discriminative Self-Taught Learning},
   booktitle = {ICML (3)},
@@ -3620,7 +3620,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:WangNH13a,
+@inproceedings{p00072013multi,
   author = {Hua Wang 0007 and Feiping Nie 0001 and Heng Huang},
   title = {Multi-View Clustering and Feature Learning via Structured Sparsity},
   booktitle = {ICML (3)},
@@ -3635,7 +3635,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:WangWBLT13,
+@inproceedings{wang2013max,
   author = {Xinggang Wang and Baoyuan Wang and Xiang Bai and Wenyu Liu 0001 and Zhuowen Tu},
   title = {Max-Margin Multiple-Instance Dictionary Learning},
   booktitle = {ICML (3)},
@@ -3650,7 +3650,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:WangX13,
+@inproceedings{p00032013noisy,
   author = {Yu-Xiang Wang 0003 and Huan Xu},
   title = {Noisy Sparse Subspace Clustering},
   booktitle = {ICML (1)},
@@ -3665,7 +3665,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:WauthierJJ13,
+@inproceedings{wauthier2013efficient,
   author = {Fabian L. Wauthier and Michael I. Jordan and Nebojsa Jojic},
   title = {Efficient Ranking from Pairwise Comparisons},
   booktitle = {ICML (3)},
@@ -3674,13 +3674,13 @@
   pages = {109-117},
   url = {https://proceedings.mlr.press/v28/wauthier13.html},
   pdf = {https://proceedings.mlr.press/v28/wauthier13.pdf},
-  abstract = {The ranking of n objects based on pairwise comparisons is a core machine learning problem, arising in recommender systems, ad placement, player ranking, biological applications and others. In many practical situations the true pairwise comparisons cannot be actively measured, but a subset of all n(n-1)/2 comparisons is passively and noisily observed. Optimization algorithms (e.g., the SVM) could be used to predict a ranking with fixed expected Kendall tau distance, while achieving an Ω(n) lower bound on the corresponding sample complexity. However, due to their centralized structure they are difficult to extend to online or distributed settings. In this paper we show that much simpler algorithms can match the same Ω(n) lower bound in expectation. Furthermore, if an average of O(n\log(n)) binary comparisons are measured, then one algorithm recovers the true ranking in a uniform sense, while the other predicts the ranking more accurately near the top than the bottom. We discuss extensions to online and distributed ranking, with benefits over traditional alternatives.},
+  abstract = {The ranking of n objects based on pairwise comparisons is a core machine learning problem, arising in recommender systems, ad placement, player ranking, biological applications and others. In many practical situations the true pairwise comparisons cannot be actively measured, but a subset of all n(n-1)/2 comparisons is passively and noisily observed. Optimization algorithms (e.g., the SVM) could be used to predict a ranking with fixed expected Kendall tau distance, while achieving an Ω(n) lower bound on the corresponding sample complexity. However, due to their centralized structure they are difficult to extend to online or distributed settings. In this paper we show that much simpler algorithms can match the same Ω(n) lower bound in expectation. Furthermore, if an average of O(nłog(n)) binary comparisons are measured, then one algorithm recovers the true ranking in a uniform sense, while the other predicts the ranking more accurately near the top than the bottom. We discuss extensions to online and distributed ranking, with benefits over traditional alternatives.},
   mdate = {2019-05-29},
   series = {JMLR Workshop and Conference Proceedings},
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:WeinshallLH13,
+@inproceedings{weinshall2013lda,
   author = {Daphna Weinshall and Gal Levi and Dmitri Hanukaev},
   title = {LDA Topic Model with Soft Assignment of Descriptors to Words},
   booktitle = {ICML (3)},
@@ -3695,7 +3695,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:WenKEB13,
+@inproceedings{wen2013sequential,
   author = {Zheng Wen and Branislav Kveton and Brian Eriksson and Sandilya Bhamidipati},
   title = {Sequential Bayesian Search},
   booktitle = {ICML (2)},
@@ -3710,7 +3710,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:WestonMY13,
+@inproceedings{weston2013label,
   author = {Jason Weston and Ameesh Makadia and Hector Yee},
   title = {Label Partitioning For Sublinear Ranking},
   booktitle = {ICML (2)},
@@ -3725,7 +3725,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:WilliamsonDX13,
+@inproceedings{williamson2013parallel,
   author = {Sinead Williamson and Avinava Dubey and Eric P. Xing},
   title = {Parallel Markov Chain Monte Carlo for Nonparametric Mixture Models},
   booktitle = {ICML (1)},
@@ -3740,7 +3740,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:WilsonA13,
+@inproceedings{wilson2013gaussian,
   author = {Andrew Gordon Wilson and Ryan Prescott Adams},
   title = {Gaussian Process Kernels for Pattern Discovery and Extrapolation},
   booktitle = {ICML (3)},
@@ -3755,7 +3755,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:WongAF13,
+@inproceedings{wong2013adaptive,
   author = {Eleanor Wong and Suyash P. Awate and P. Thomas Fletcher},
   title = {Adaptive Sparsity in Gaussian Graphical Models},
   booktitle = {ICML (1)},
@@ -3770,7 +3770,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:WuHG13,
+@inproceedings{wu2013dynamic,
   author = {Yue Wu and Jos Miguel Hernndez-Lobato and Zoubin Ghahramani},
   title = {Dynamic Covariance Models for Multivariate Financial Time Series},
   booktitle = {ICML (3)},
@@ -3785,7 +3785,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:WulffUB13,
+@inproceedings{wulff2013monochromatic,
   author = {Sharon Wulff and Ruth Urner and Shai Ben-David},
   title = {Monochromatic Bi-Clustering},
   booktitle = {ICML (2)},
@@ -3800,7 +3800,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:WulsinFL13,
+@inproceedings{wulsin2013parsing,
   author = {Drausin Wulsin and Emily B. Fox and Brian Litt},
   title = {Parsing epileptic events using a Markov switching process model for correlated time series},
   booktitle = {ICML (1)},
@@ -3815,7 +3815,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:WytockK13,
+@inproceedings{wytock2013sparse,
   author = {Matt Wytock and J. Zico Kolter},
   title = {Sparse Gaussian Conditional Random Fields: Algorithms, Theory, and Application to Energy Forecasting},
   booktitle = {ICML (3)},
@@ -3830,7 +3830,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:XiangTY13,
+@inproceedings{xiang2013efficient,
   author = {Shuo Xiang and Xiaoshen Tong and Jieping Ye},
   title = {Efficient Sparse Group Feature Selection via Nonconvex Optimization},
   booktitle = {ICML (1)},
@@ -3845,7 +3845,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:XiaoG13,
+@inproceedings{p00042013domain,
   author = {Min Xiao 0004 and Yuhong Guo},
   title = {Domain Adaptation for Sequence Labeling Tasks with a Probabilistic Language Adaptation Model},
   booktitle = {ICML (1)},
@@ -3860,7 +3860,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:XuKHW13,
+@inproceedings{xu2013anytime,
   author = {Zhixiang Eddie Xu and Matt J. Kusner and Gao Huang 0001 and Kilian Q. Weinberger},
   title = {Anytime Representation Learning},
   booktitle = {ICML (3)},
@@ -3875,7 +3875,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:XuKWC13,
+@inproceedings{xu2013cost,
   author = {Zhixiang Eddie Xu and Matt J. Kusner and Kilian Q. Weinberger and Minmin Chen},
   title = {Cost-Sensitive Tree of Classifiers},
   booktitle = {ICML (1)},
@@ -3890,7 +3890,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:XuZZ13,
+@inproceedings{xu2013fast,
   author = {Minjie Xu and Jun Zhu 0001 and Bo Zhang 0010},
   title = {Fast Max-Margin Matrix Factorization with Data Augmentation},
   booktitle = {ICML (3)},
@@ -3905,7 +3905,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:YangH13,
+@inproceedings{p00012013activized,
   author = {Liu Yang 0001 and Steve Hanneke},
   title = {Activized Learning with Uniform Classification Noise},
   booktitle = {ICML (2)},
@@ -3920,7 +3920,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:YangLZ13,
+@inproceedings{p00122013multi,
   author = {Ming Yang 0012 and Yingming Li and Zhongfei Zhang},
   title = {Multi-Task Learning with Gaussian Matrix Generalized Inverse Gaussian Model},
   booktitle = {ICML (3)},
@@ -3935,7 +3935,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:YangMM13,
+@inproceedings{yang2013quantile,
   author = {Jiyan Yang and Xiangrui Meng and Michael W. Mahoney},
   title = {Quantile Regression for Large-scale Applications},
   booktitle = {ICML (3)},
@@ -3950,7 +3950,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:YangPK13,
+@inproceedings{yang2013scalable,
   author = {Zhirong Yang and Jaakko Peltonen and Samuel Kaski},
   title = {Scalable Optimization of Neighbor Embedding for Visualization},
   booktitle = {ICML (2)},
@@ -3965,7 +3965,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:YangX13,
+@inproceedings{yang2013unified,
   author = {Wenzhuo Yang and Huan Xu 0001},
   title = {A Unified Robust Regression Model for Lasso-like Algorithms},
   booktitle = {ICML (3)},
@@ -3980,7 +3980,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:YangZ13,
+@inproceedings{yang2013mixture,
   author = {Shuang-Hong Yang and Hongyuan Zha},
   title = {Mixture of Mutually Exciting Processes for Viral Diffusion},
   booktitle = {ICML (2)},
@@ -3995,7 +3995,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:YiZJQJ13,
+@inproceedings{yi2013semi,
   author = {Jinfeng Yi and Lijun Zhang 0005 and Rong Jin 0001 and Qi Qian 0001 and Anil K. Jain 0001},
   title = {Semi-supervised Clustering by Input Pattern Assisted Pairwise Similarity Matrix Completion},
   booktitle = {ICML (3)},
@@ -4004,13 +4004,13 @@
   pages = {1400-1408},
   url = {https://proceedings.mlr.press/v28/yi13.html},
   pdf = {https://proceedings.mlr.press/v28/yi13.pdf},
-  abstract = {Many semi-supervised clustering algorithms have been proposed to improve the clustering accuracy by effectively exploring the available side information that is usually in the form of pairwise constraints. Despite the progress, there are two main shortcomings of the existing semi-supervised clustering algorithms. First, they have to deal with non-convex optimization problems, leading to clustering results that are sensitive to the initialization. Second, none of these algorithms is equipped with theoretical guarantee regarding the clustering performance. We address these limitations by developing a framework for semi-supervised clustering based on \it input pattern assisted matrix completion. The key idea is to cast clustering into a matrix completion problem, and solve it efficiently by exploiting the correlation between input patterns and cluster assignments. Our analysis shows that under appropriate conditions, only O(\log n) pairwise constraints are needed to accurately recover the true cluster partition. We verify the effectiveness of the proposed algorithm by comparing it to the state-of-the-art semi-supervised clustering algorithms on several benchmark datasets.},
+  abstract = {Many semi-supervised clustering algorithms have been proposed to improve the clustering accuracy by effectively exploring the available side information that is usually in the form of pairwise constraints. Despite the progress, there are two main shortcomings of the existing semi-supervised clustering algorithms. First, they have to deal with non-convex optimization problems, leading to clustering results that are sensitive to the initialization. Second, none of these algorithms is equipped with theoretical guarantee regarding the clustering performance. We address these limitations by developing a framework for semi-supervised clustering based on ıt input pattern assisted matrix completion. The key idea is to cast clustering into a matrix completion problem, and solve it efficiently by exploiting the correlation between input patterns and cluster assignments. Our analysis shows that under appropriate conditions, only O(łog n) pairwise constraints are needed to accurately recover the true cluster partition. We verify the effectiveness of the proposed algorithm by comparing it to the state-of-the-art semi-supervised clustering algorithms on several benchmark datasets.},
   mdate = {2022-02-04},
   series = {JMLR Workshop and Conference Proceedings},
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:YoshiiTMG13,
+@inproceedings{yoshii2013infinite,
   author = {Kazuyoshi Yoshii and Ryota Tomioka and Daichi Mochihashi and Masataka Goto},
   title = {Infinite Positive Semidefinite Tensor Factorization for Source Separation of Mixture Signals},
   booktitle = {ICML (3)},
@@ -4025,7 +4025,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:YuCSS13,
+@inproceedings{yu2013characterizing,
   author = {Yaoliang Yu and Hao Cheng 0002 and Dale Schuurmans and Csaba Szepesvri},
   title = {Characterizing the Representer Theorem},
   booktitle = {ICML (1)},
@@ -4040,22 +4040,22 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:YuLKJC13,
+@inproceedings{yu2013svm,
   author = {Felix X. Yu and Dong Liu 0001 and Sanjiv Kumar and Tony Jebara and Shih-Fu Chang},
-  title = {\(\propto\)SVM for Learning with Label Proportions},
+  title = {\(∝\)SVM for Learning with Label Proportions},
   booktitle = {ICML (3)},
   publisher = {JMLR.org},
   year = {2013},
   pages = {504-512},
   url = {https://proceedings.mlr.press/v28/yu13a.html},
   pdf = {https://proceedings.mlr.press/v28/yu13a.pdf},
-  abstract = {We study the problem of learning with label proportions in which the training data is provided in groups and only the proportion of each class in each group is known. We propose a new method called proportion-SVM, or \proptoSVM, which explicitly models the latent unknown instance labels together with the known group label proportions in a large-margin framework. Unlike the existing works, our approach avoids making restrictive assumptions about the data. The \proptoSVM model leads to a non-convex integer programming problem. In order to solve it efficiently, we propose two algorithms: one based on simple alternating optimization and the other based on a convex relaxation. Extensive experiments on standard datasets show that \proptoSVM outperforms the state-of-the-art, especially for larger group sizes.},
+  abstract = {We study the problem of learning with label proportions in which the training data is provided in groups and only the proportion of each class in each group is known. We propose a new method called proportion-SVM, or ∝SVM, which explicitly models the latent unknown instance labels together with the known group label proportions in a large-margin framework. Unlike the existing works, our approach avoids making restrictive assumptions about the data. The ∝SVM model leads to a non-convex integer programming problem. In order to solve it efficiently, we propose two algorithms: one based on simple alternating optimization and the other based on a convex relaxation. Extensive experiments on standard datasets show that ∝SVM outperforms the state-of-the-art, especially for larger group sizes.},
   mdate = {2019-05-29},
   series = {JMLR Workshop and Conference Proceedings},
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:ZemelWSPD13,
+@inproceedings{zemel2013learning,
   author = {Richard S. Zemel and Yu Wu and Kevin Swersky and Toniann Pitassi and Cynthia Dwork},
   title = {Learning Fair Representations},
   booktitle = {ICML (3)},
@@ -4070,7 +4070,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:ZhaiB13,
+@inproceedings{p00012013online,
   author = {Ke Zhai 0001 and Jordan L. Boyd-Graber},
   title = {Online Latent Dirichlet Allocation with Infinite Vocabulary},
   booktitle = {ICML (1)},
@@ -4085,7 +4085,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:ZhangC13,
+@inproceedings{p00022013sparse,
   author = {Xiaowei Zhang 0002 and Delin Chu},
   title = {Sparse Uncorrelated Linear Discriminant Analysis},
   booktitle = {ICML (1)},
@@ -4100,7 +4100,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:ZhangHSL13,
+@inproceedings{p00072013mileage,
   author = {Dan Zhang 0007 and Jingrui He and Luo Si and Richard D. Lawrence},
   title = {MILEAGE: Multiple Instance LEArning with Global Embedding},
   booktitle = {ICML (3)},
@@ -4115,7 +4115,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:ZhangSMW13,
+@inproceedings{p00012013domain,
   author = {Kun Zhang 0001 and Bernhard Schlkopf and Krikamol Muandet and Zhikun Wang},
   title = {Domain Adaptation under Target and Conditional Shift},
   booktitle = {ICML (3)},
@@ -4124,13 +4124,13 @@
   pages = {819-827},
   url = {https://proceedings.mlr.press/v28/zhang13d.html},
   pdf = {https://proceedings.mlr.press/v28/zhang13d.pdf},
-  abstract = {Let X denote the feature and Y the target. We consider domain adaptation under three possible scenarios: (1) the marginal P_Y changes, while the conditional P_X|Y stays the same (\it target shift), (2) the marginal P_Y is fixed, while the conditional P_X|Y changes with certain constraints (\it conditional shift), and (3) the marginal P_Y changes, and the conditional P_X|Y changes with constraints (\it generalized target shift). Using background knowledge, causal interpretations allow us to determine the correct situation for a problem at hand. We exploit importance reweighting or sample transformation to find the learning machine that works well on test data, and propose to estimate the weights or transformations by \it reweighting or transforming training data to reproduce the covariate distribution on the test domain. Thanks to kernel embedding of conditional as well as marginal distributions, the proposed approaches avoid distribution estimation, and are applicable for high-dimensional problems. Numerical evaluations on synthetic and real-world datasets demonstrate the effectiveness of the proposed framework.},
+  abstract = {Let X denote the feature and Y the target. We consider domain adaptation under three possible scenarios: (1) the marginal P_Y changes, while the conditional P_X|Y stays the same (ıt target shift), (2) the marginal P_Y is fixed, while the conditional P_X|Y changes with certain constraints (ıt conditional shift), and (3) the marginal P_Y changes, and the conditional P_X|Y changes with constraints (ıt generalized target shift). Using background knowledge, causal interpretations allow us to determine the correct situation for a problem at hand. We exploit importance reweighting or sample transformation to find the learning machine that works well on test data, and propose to estimate the weights or transformations by ıt reweighting or transforming training data to reproduce the covariate distribution on the test domain. Thanks to kernel embedding of conditional as well as marginal distributions, the proposed approaches avoid distribution estimation, and are applicable for high-dimensional problems. Numerical evaluations on synthetic and real-world datasets demonstrate the effectiveness of the proposed framework.},
   mdate = {2019-05-29},
   series = {JMLR Workshop and Conference Proceedings},
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:ZhangYJH13,
+@inproceedings{p00052013logt,
   author = {Lijun Zhang 0005 and Tianbao Yang and Rong Jin 0001 and Xiaofei He 0001},
   title = {O(logT) Projections for Stochastic Optimization of Smooth and Strongly Convex Functions},
   booktitle = {ICML (3)},
@@ -4145,7 +4145,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:ZhangYJLH13,
+@inproceedings{p00052013online1,
   author = {Lijun Zhang 0005 and Jinfeng Yi and Rong Jin 0001 and Ming Lin 0002 and Xiaofei He 0001},
   title = {Online Kernel Learning with a Near Optimal Sparsity Bound},
   booktitle = {ICML (3)},
@@ -4160,7 +4160,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:ZhangZWKYM13,
+@inproceedings{p00012013covariate,
   author = {Kai Zhang 0001 and Vincent Wenchen Zheng and Qiaojun Wang and James Tin-Yau Kwok and Qiang Yang 0001 and Ivan Marsic},
   title = {Covariate Shift in Hilbert Space: A Solution via Sorrogate Kernels},
   booktitle = {ICML (3)},
@@ -4175,7 +4175,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:ZhouZS13,
+@inproceedings{p00022013learning,
   author = {Ke Zhou 0002 and Hongyuan Zha and Le Song},
   title = {Learning Triggering Kernels for Multi-dimensional Hawkes Processes},
   booktitle = {ICML (3)},
@@ -4190,7 +4190,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:ZhuCPZ13,
+@inproceedings{p00012013gibbs,
   author = {Jun Zhu 0001 and Ning Chen 0002 and Hugh Perkins and Bo Zhang 0010},
   title = {Gibbs Max-Margin Topic Models with Fast Sampling Algorithms},
   booktitle = {ICML (1)},
@@ -4205,7 +4205,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:ZhuLM13,
+@inproceedings{zhu2013local,
   author = {Zeyuan Allen Zhu and Silvio Lattanzi and Vahab S. Mirrokni},
   title = {A Local Algorithm for Finding Well-Connected Clusters},
   booktitle = {ICML (3)},
@@ -4220,7 +4220,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:ZuluagaSKP13,
+@inproceedings{zuluaga2013active,
   author = {Marcela Zuluaga and Guillaume Sergent and Andreas Krause 0001 and Markus Pschel},
   title = {Active Learning for Multi-Objective Optimization},
   booktitle = {ICML (1)},
@@ -4235,7 +4235,7 @@
   urltype = {oa}
 }
 
-@inproceedings{DBLP:conf:icml:ZweigW13,
+@inproceedings{zweig2013hierarchical,
   author = {Alon Zweig and Daphna Weinshall},
   title = {Hierarchical Regularization Cascade for Joint Learning},
   booktitle = {ICML (3)},
