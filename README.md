@@ -40,6 +40,16 @@ python3 scripts/enrich-pipeline.py plan conferences/iclr/2024.bib
 # Run enrichment in dry mode (writes report + unresolved queue)
 python3 scripts/enrich-pipeline.py run conferences/iclr/2024.bib
 
+# Synchronize/download local PDFs for a target bibliography
+python3 scripts/bibops.py pdf-sync conferences/iclr/2025.bib \
+  --pdf-sync-policy ops/pdf-sync-policy.toml \
+  --fail-on-error
+
+# Preview a long-run workload without writes/downloads
+python3 scripts/bibops.py pdf-sync conferences/aistats/2024.bib \
+  --pdf-sync-policy ops/pdf-sync-policy.toml \
+  --dry-run --max-entries 500
+
 # Battle-test enrichment pipeline behavior on real workloads
 python3 scripts/enrichment/battle_test.py --mode standard
 
@@ -58,6 +68,7 @@ make daily
 make orals
 make enrich-arxiv-orals
 make enrich-battle
+make pdf-sync TARGETS='conferences/iclr/2025.bib'
 make release
 make full-audit
 ```
@@ -104,6 +115,6 @@ Hook behavior:
 
 ## Legacy scripts
 
-Existing scripts in `scripts/` remain available for specialized operations (enrichment, PDF sync, key updates, etc.).
+Existing scripts in `scripts/` remain available for specialized operations (enrichment, export, key updates, etc.).
 
 Use `bibops` for orchestration and health checks; use specialized scripts for targeted actions.

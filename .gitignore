@@ -40,6 +40,10 @@ ops/intake-runs/
 ops/intake-snapshots/
 ops/unresolved/intake/
 
+# Runtime artifacts from PDF sync workflow
+ops/pdf-sync-checkpoint.json
+ops/pdf-sync-*.jsonl
+
 # Local secrets / environment overrides
 .env
 .env.*

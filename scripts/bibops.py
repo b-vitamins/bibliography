@@ -25,6 +25,7 @@ from typing import Iterable
 import bibtexparser
 from bibtexparser.bparser import BibTexParser
 from bibtexparser.customization import convert_to_unicode
+from bibops_pdf_sync import PdfSyncOptions, parse_host_interval_overrides, run_pdf_sync
 
 DEFAULT_CONFIG_PATH = Path("ops/bibops.toml")
 DEFAULT_DB_PATH = Path("bibliography.db")
@@ -1447,6 +1448,81 @@ def command_intake_pipeline(args: argparse.Namespace) -> int:
     return proc.returncode
 
 
+def command_pdf_sync(args: argparse.Namespace) -> int:
+    try:
+        host_overrides = parse_host_interval_overrides(args.host_interval or [])
+    except ValueError as ex:
+        print(f"Invalid --host-interval value: {ex}")
+        return 2
+
+    options = PdfSyncOptions(
+        targets=args.targets,
+        base_dir=Path(args.base_dir),
+        download=not args.no_download,
+        fix_existing=not args.no_fix,
+        dry_run=args.dry_run,
+        verify_existing=not args.no_verify_existing,
+        smart_url_derivation=not args.no_smart_url_derivation,
+        max_entries=max(0, args.max_entries),
+        max_attempts=max(1, args.max_attempts),
+        timeout_connect_seconds=max(1.0, args.timeout_connect),
+        timeout_read_seconds=max(1.0, args.timeout_read),
+        max_pdf_size_mb=max(1, args.max_pdf_size_mb),
+        backoff_base_seconds=max(0.0, args.backoff_base_seconds),
+        backoff_max_seconds=max(0.0, args.backoff_max_seconds),
+        backoff_jitter_seconds=max(0.0, args.backoff_jitter_seconds),
+        host_default_min_interval_seconds=max(0.0, args.host_min_interval_seconds),
+        host_min_interval_seconds_by_host=host_overrides,
+        checkpoint_path=Path(args.checkpoint_path) if args.checkpoint_path else None,
+        resume=not args.no_resume,
+        retry_failures=args.retry_failures,
+        progress_log=Path(args.progress_log) if args.progress_log else None,
+        max_consecutive_failures=max(1, args.max_consecutive_failures),
+        user_agent=args.user_agent,
+        policy_path=Path(args.pdf_sync_policy) if args.pdf_sync_policy else None,
+    )
+
+    try:
+        result = run_pdf_sync(options)
+    except Exception as ex:
+        print(f"pdf-sync failed: {ex}")
+        if args.json:
+            print(json.dumps({"status": "failed", "error": str(ex)}, indent=2, sort_keys=True))
+        return 1
+
+    summary = result.summary
+    failed = int(summary.get("failed", 0))
+    unresolved_targets = int(summary.get("unresolved_targets", 0))
+    aborted = int(summary.get("aborted", 0))
+
+    if args.json:
+        print(
+            json.dumps(
+                {
+                    "summary": summary,
+                    "failures": [dataclasses.asdict(f) for f in result.failures],
+                },
+                indent=2,
+                sort_keys=True,
+            )
+        )
+    else:
+        print("pdf-sync summary:")
+        for key in sorted(summary):
+            print(f"  {key}: {summary[key]}")
+
+        if result.failures:
+            print("failed_entries:")
+            for failure in result.failures[:25]:
+                print(f"  {failure.bib_file} :: {failure.key} :: {failure.message}")
+            if len(result.failures) > 25:
+                print(f"  ... and {len(result.failures) - 25} more")
+
+    if args.fail_on_error and (failed > 0 or unresolved_targets > 0 or aborted > 0):
+        return 4
+    return 0
+
+
 def command_verify_orals(cfg: OpsConfig, recorder: RunRecorder, as_json: bool, fail_on_error: bool) -> int:
     files_scanned, entries_scanned, issues = run_verify_orals(cfg)
     write_issues(Path(cfg.db_path), recorder.run_id, issues)
@@ -1611,6 +1687,53 @@ def command_profile(cfg: OpsConfig, profile_path: Path) -> int:
                 json=bool(step_payload.get("json", False)),
             )
             rc = command_enrich_pipeline(enrich_args)
+        elif step_name == "pdf-sync":
+            targets_raw = step_payload.get("targets")
+            targets: list[str] = []
+            if isinstance(targets_raw, list):
+                for target in targets_raw:
+                    if isinstance(target, str) and target.strip():
+                        targets.append(target.strip())
+            if not targets:
+                print("Profile pdf-sync step requires `targets = [\"file.bib\", ...]`")
+                return 1
+
+            host_interval: list[str] = []
+            raw_host_interval = step_payload.get("host_interval")
+            if isinstance(raw_host_interval, list):
+                for item in raw_host_interval:
+                    if isinstance(item, str) and item.strip():
+                        host_interval.append(item.strip())
+
+            pdf_sync_args = argparse.Namespace(
+                targets=targets,
+                base_dir=str(step_payload.get("base_dir", "/home/b/documents")),
+                no_download=bool(step_payload.get("no_download", False)),
+                no_fix=bool(step_payload.get("no_fix", False)),
+                dry_run=bool(step_payload.get("dry_run", False)),
+                no_verify_existing=bool(step_payload.get("no_verify_existing", False)),
+                no_smart_url_derivation=bool(step_payload.get("no_smart_url_derivation", False)),
+                max_entries=int(step_payload.get("max_entries", 0) or 0),
+                max_attempts=int(step_payload.get("max_attempts", 6) or 6),
+                timeout_connect=float(step_payload.get("timeout_connect", 10.0) or 10.0),
+                timeout_read=float(step_payload.get("timeout_read", 90.0) or 90.0),
+                max_pdf_size_mb=int(step_payload.get("max_pdf_size_mb", 300) or 300),
+                backoff_base_seconds=float(step_payload.get("backoff_base_seconds", 1.0) or 1.0),
+                backoff_max_seconds=float(step_payload.get("backoff_max_seconds", 180.0) or 180.0),
+                backoff_jitter_seconds=float(step_payload.get("backoff_jitter_seconds", 0.4) or 0.4),
+                host_min_interval_seconds=float(step_payload.get("host_min_interval_seconds", 0.8) or 0.8),
+                host_interval=host_interval,
+                checkpoint_path=str(step_payload.get("checkpoint_path", "ops/pdf-sync-checkpoint.json")),
+                no_resume=bool(step_payload.get("no_resume", False)),
+                retry_failures=bool(step_payload.get("retry_failures", False)),
+                progress_log=str(step_payload.get("progress_log", "")).strip() or None,
+                max_consecutive_failures=int(step_payload.get("max_consecutive_failures", 50) or 50),
+                user_agent=str(step_payload.get("user_agent", "bibops-pdf-sync/1.0") or "bibops-pdf-sync/1.0"),
+                pdf_sync_policy=str(step_payload.get("pdf_sync_policy", "")).strip() or None,
+                fail_on_error=bool(step_payload.get("fail_on_error", False)),
+                json=bool(step_payload.get("json", False)),
+            )
+            rc = command_pdf_sync(pdf_sync_args)
         else:
             print(f"Unknown profile step: {step_name}")
             return 1
@@ -1704,6 +1827,80 @@ def build_parser() -> argparse.ArgumentParser:
     intake.add_argument("--out", help="Optional output JSON path")
     intake.add_argument("--json", action="store_true", help="Emit JSON output")
 
+    pdf_sync = sub.add_parser("pdf-sync", help="Synchronize local PDFs for BibTeX entries")
+    pdf_sync.add_argument("targets", nargs="+", help="BibTeX file(s) or glob(s)")
+    pdf_sync.add_argument("--base-dir", default="/home/b/documents", help="Local PDF root directory")
+    pdf_sync.add_argument("--no-download", action="store_true", help="Skip network downloads")
+    pdf_sync.add_argument("--no-fix", action="store_true", help="Skip fixing existing file fields/paths")
+    pdf_sync.add_argument("--dry-run", action="store_true", help="Preview actions without file/network writes")
+    pdf_sync.add_argument(
+        "--no-verify-existing",
+        action="store_true",
+        help="Do not validate existing PDF files before linking",
+    )
+    pdf_sync.add_argument(
+        "--no-smart-url-derivation",
+        action="store_true",
+        help="Disable venue/domain-aware URL derivation",
+    )
+    pdf_sync.add_argument("--max-entries", type=int, default=0, help="Cap entries processed per file")
+    pdf_sync.add_argument("--max-attempts", type=int, default=6, help="Max attempts per URL")
+    pdf_sync.add_argument("--timeout-connect", type=float, default=10.0, help="Connect timeout in seconds")
+    pdf_sync.add_argument("--timeout-read", type=float, default=90.0, help="Read timeout in seconds")
+    pdf_sync.add_argument("--max-pdf-size-mb", type=int, default=300, help="Max allowed PDF size in MB")
+    pdf_sync.add_argument(
+        "--backoff-base-seconds",
+        type=float,
+        default=1.0,
+        help="Base exponential backoff delay in seconds",
+    )
+    pdf_sync.add_argument(
+        "--backoff-max-seconds",
+        type=float,
+        default=180.0,
+        help="Max backoff delay in seconds",
+    )
+    pdf_sync.add_argument(
+        "--backoff-jitter-seconds",
+        type=float,
+        default=0.4,
+        help="Random jitter added to pacing/backoff in seconds",
+    )
+    pdf_sync.add_argument(
+        "--host-min-interval-seconds",
+        type=float,
+        default=0.8,
+        help="Default min delay between requests to the same host",
+    )
+    pdf_sync.add_argument(
+        "--host-interval",
+        action="append",
+        default=[],
+        help="Per-host min interval override in host=seconds format (repeatable)",
+    )
+    pdf_sync.add_argument(
+        "--checkpoint-path",
+        default="ops/pdf-sync-checkpoint.json",
+        help="Checkpoint JSON path for resume/retry state",
+    )
+    pdf_sync.add_argument("--no-resume", action="store_true", help="Ignore checkpoint skip state")
+    pdf_sync.add_argument(
+        "--retry-failures",
+        action="store_true",
+        help="Retry checkpointed failed entries when resuming",
+    )
+    pdf_sync.add_argument("--progress-log", help="Optional JSONL progress log path")
+    pdf_sync.add_argument(
+        "--max-consecutive-failures",
+        type=int,
+        default=50,
+        help="Abort run after this many consecutive entry failures",
+    )
+    pdf_sync.add_argument("--user-agent", default="bibops-pdf-sync/1.0", help="HTTP User-Agent value")
+    pdf_sync.add_argument("--pdf-sync-policy", help="Optional TOML policy file for downloader tuning")
+    pdf_sync.add_argument("--fail-on-error", action="store_true", help="Return non-zero on download failures")
+    pdf_sync.add_argument("--json", action="store_true", help="Emit JSON output")
+
     profile = sub.add_parser("run-profile", help="Run declarative ops profile")
     profile.add_argument("--profile", required=True, help="Path to profile TOML")
 
@@ -1741,6 +1938,10 @@ def main() -> int:
     if args.command == "intake":
         with run_lock():
             return command_intake_pipeline(args)
+
+    if args.command == "pdf-sync":
+        with run_lock():
+            return command_pdf_sync(args)
 
     if args.command == "run-profile":
         with run_lock():

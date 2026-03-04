@@ -1,0 +1,42 @@
+# Default policy for `python3 scripts/bibops.py pdf-sync ...`
+#
+# This policy is tuned for sustained, polite workloads across common
+# bibliography venues in this repository.
+
+# Retry / timeout envelope
+max_attempts = 6
+timeout_connect_seconds = 12.0
+timeout_read_seconds = 90.0
+max_pdf_size_mb = 300
+
+# Backoff behavior (exponential + jitter, honoring Retry-After when present)
+backoff_base_seconds = 1.0
+backoff_max_seconds = 180.0
+backoff_jitter_seconds = 0.4
+
+# Global per-host cadence floor in seconds
+host_default_min_interval_seconds = 1.0
+
+# Abort guardrail for sustained outage patterns
+max_consecutive_failures = 50
+
+# HTTP identity
+user_agent = "bibops-pdf-sync/1.0 (+https://github.com/b-projects/bibliography)"
+
+[host_min_interval_by_host]
+# OpenReview-based conference metadata / PDFs
+"openreview.net" = 1.0
+"api.openreview.net" = 1.2
+
+# arXiv endpoints are often stricter on request cadence
+"arxiv.org" = 2.0
+"export.arxiv.org" = 5.0
+
+# Proceedings / publishers frequently used in this repository
+"proceedings.mlr.press" = 1.0
+"proceedings.neurips.cc" = 1.4
+"papers.nips.cc" = 1.5
+"aclanthology.org" = 1.2
+"dl.acm.org" = 2.0
+"ieeexplore.ieee.org" = 2.0
+"link.springer.com" = 2.0
