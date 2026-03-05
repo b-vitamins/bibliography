@@ -1494,6 +1494,7 @@ def command_pdf_sync(args: argparse.Namespace) -> int:
         resume=not args.no_resume,
         retry_failures=args.retry_failures,
         progress_log=Path(args.progress_log) if args.progress_log else None,
+        console_progress=args.console_progress,
         max_consecutive_failures=max(1, args.max_consecutive_failures),
         user_agent=args.user_agent,
         policy_path=Path(args.pdf_sync_policy) if args.pdf_sync_policy else None,
@@ -1800,6 +1801,7 @@ def command_profile(cfg: OpsConfig, profile_path: Path) -> int:
                 no_resume=bool(step_payload.get("no_resume", False)),
                 retry_failures=bool(step_payload.get("retry_failures", False)),
                 progress_log=str(step_payload.get("progress_log", "")).strip() or None,
+                console_progress=bool(step_payload.get("console_progress", False)),
                 max_consecutive_failures=int(step_payload.get("max_consecutive_failures", 50) or 50),
                 user_agent=str(step_payload.get("user_agent", "bibops-pdf-sync/1.0") or "bibops-pdf-sync/1.0"),
                 pdf_sync_policy=str(step_payload.get("pdf_sync_policy", "")).strip() or None,
@@ -1987,6 +1989,11 @@ def build_parser() -> argparse.ArgumentParser:
         help="Retry checkpointed failed entries when resuming",
     )
     pdf_sync.add_argument("--progress-log", help="Optional JSONL progress log path")
+    pdf_sync.add_argument(
+        "--console-progress",
+        action="store_true",
+        help="Mirror progress events to stderr while running",
+    )
     pdf_sync.add_argument(
         "--max-consecutive-failures",
         type=int,

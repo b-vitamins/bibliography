@@ -12,6 +12,7 @@ import os
 import random
 import re
 import shutil
+import sys
 import tempfile
 import time
 import tomllib
@@ -91,6 +92,7 @@ class PdfSyncOptions:
     resume: bool = True
     retry_failures: bool = False
     progress_log: Path | None = None
+    console_progress: bool = False
     max_consecutive_failures: int = 50
     user_agent: str = "bibops-pdf-sync/1.0"
     policy_path: Path | None = None
@@ -553,19 +555,37 @@ class CheckpointStore:
 
 
 class ProgressLogger:
-    def __init__(self, path: Path | None):
+    def __init__(self, path: Path | None, *, console_progress: bool = False):
         self.path = path
+        self.console_progress = console_progress
         if self.path:
             self.path.parent.mkdir(parents=True, exist_ok=True)
 
     def emit(self, payload: dict[str, Any]) -> None:
-        if not self.path:
-            return
         event = dict(payload)
         event["timestamp"] = now_iso()
-        with self.path.open("a", encoding="utf-8") as handle:
-            handle.write(json.dumps(event, sort_keys=True))
-            handle.write("\n")
+
+        if self.path:
+            with self.path.open("a", encoding="utf-8") as handle:
+                handle.write(json.dumps(event, sort_keys=True))
+                handle.write("\n")
+
+        if self.console_progress:
+            ts = str(event.get("timestamp", ""))
+            status = str(event.get("status", "")).strip() or "event"
+            bib = str(event.get("bib_file", "")).strip()
+            key = str(event.get("key", "")).strip()
+            msg = str(event.get("message", "")).strip()
+            if bib:
+                bib = Path(bib).name
+            parts = [f"[{ts}]", status]
+            if bib:
+                parts.append(bib)
+            if key:
+                parts.append(key)
+            if msg:
+                parts.append(msg)
+            print(" | ".join(parts), file=sys.stderr, flush=True)
 
 
 def build_http_session(user_agent: str) -> requests.Session:
@@ -847,12 +867,14 @@ def process_entry(
             checkpoint.record(checkpoint_key, fingerprint, outcome)
 
     if checkpoint and options.resume and checkpoint.should_skip(checkpoint_key, fingerprint, options.retry_failures):
-        return EntryOutcome(
+        outcome = EntryOutcome(
             bib_file=str(bib_file),
             key=key,
             status="resumed_skip",
             message="checkpoint skip",
         )
+        progress.emit(dataclasses.asdict(outcome))
+        return outcome
 
     target_path = get_target_path(entry, options.base_dir)
 
@@ -1029,7 +1051,7 @@ def run_pdf_sync(options: PdfSyncOptions) -> PdfSyncResult:
         checkpoint = CheckpointStore(options.checkpoint_path)
         checkpoint.load()
 
-    progress = ProgressLogger(options.progress_log)
+    progress = ProgressLogger(options.progress_log, console_progress=options.console_progress)
     if unresolved:
         for raw in unresolved:
             progress.emit({"status": "unresolved_target", "target": raw})
