@@ -33,16 +33,26 @@ ops/enrichment-source-cache.json
 ops/enrichment-runs/
 ops/unresolved/enrichment/
 ops/enrichment-checkpoints/
+ops/enrichment-progress-*.jsonl
+ops/enrich-*-run.json
 
 # Runtime artifacts from intake pipeline
 ops/intake-source-cache.json
 ops/intake-runs/
 ops/intake-snapshots/
 ops/unresolved/intake/
+ops/intake-*-discover.json
+ops/intake-*-plan.json
+ops/intake-*-run.json
 
 # Runtime artifacts from PDF sync workflow
 ops/pdf-sync-checkpoint.json
+ops/pdf-sync-checkpoint-*.json
 ops/pdf-sync-*.jsonl
+
+# Runtime JSON reports / verifications
+ops/lint-*.json
+ops/verify-*.json
 
 # Runtime artifacts from key normalization workflow
 ops/key-normalize-rollbacks/
