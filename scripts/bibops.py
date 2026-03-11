@@ -1484,6 +1484,7 @@ def command_pdf_sync(args: argparse.Namespace) -> int:
         max_attempts=max(1, args.max_attempts),
         timeout_connect_seconds=max(1.0, args.timeout_connect),
         timeout_read_seconds=max(1.0, args.timeout_read),
+        max_attempt_wall_seconds=max(0.0, args.max_attempt_wall_seconds),
         max_pdf_size_mb=max(1, args.max_pdf_size_mb),
         backoff_base_seconds=max(0.0, args.backoff_base_seconds),
         backoff_max_seconds=max(0.0, args.backoff_max_seconds),
@@ -1495,6 +1496,7 @@ def command_pdf_sync(args: argparse.Namespace) -> int:
         retry_failures=args.retry_failures,
         progress_log=Path(args.progress_log) if args.progress_log else None,
         console_progress=args.console_progress,
+        checkpoint_flush_seconds=max(0.0, args.checkpoint_flush_seconds),
         max_consecutive_failures=max(1, args.max_consecutive_failures),
         user_agent=args.user_agent,
         policy_path=Path(args.pdf_sync_policy) if args.pdf_sync_policy else None,
@@ -1791,6 +1793,7 @@ def command_profile(cfg: OpsConfig, profile_path: Path) -> int:
                 max_attempts=int(step_payload.get("max_attempts", 6) or 6),
                 timeout_connect=float(step_payload.get("timeout_connect", 10.0) or 10.0),
                 timeout_read=float(step_payload.get("timeout_read", 90.0) or 90.0),
+                max_attempt_wall_seconds=float(step_payload.get("max_attempt_wall_seconds", 240.0) or 240.0),
                 max_pdf_size_mb=int(step_payload.get("max_pdf_size_mb", 300) or 300),
                 backoff_base_seconds=float(step_payload.get("backoff_base_seconds", 1.0) or 1.0),
                 backoff_max_seconds=float(step_payload.get("backoff_max_seconds", 180.0) or 180.0),
@@ -1802,6 +1805,7 @@ def command_profile(cfg: OpsConfig, profile_path: Path) -> int:
                 retry_failures=bool(step_payload.get("retry_failures", False)),
                 progress_log=str(step_payload.get("progress_log", "")).strip() or None,
                 console_progress=bool(step_payload.get("console_progress", False)),
+                checkpoint_flush_seconds=float(step_payload.get("checkpoint_flush_seconds", 20.0) or 20.0),
                 max_consecutive_failures=int(step_payload.get("max_consecutive_failures", 50) or 50),
                 user_agent=str(step_payload.get("user_agent", "bibops-pdf-sync/1.0") or "bibops-pdf-sync/1.0"),
                 pdf_sync_policy=str(step_payload.get("pdf_sync_policy", "")).strip() or None,
@@ -1946,6 +1950,12 @@ def build_parser() -> argparse.ArgumentParser:
     pdf_sync.add_argument("--max-attempts", type=int, default=6, help="Max attempts per URL")
     pdf_sync.add_argument("--timeout-connect", type=float, default=10.0, help="Connect timeout in seconds")
     pdf_sync.add_argument("--timeout-read", type=float, default=90.0, help="Read timeout in seconds")
+    pdf_sync.add_argument(
+        "--max-attempt-wall-seconds",
+        type=float,
+        default=240.0,
+        help="Hard wall-clock timeout for each download attempt (0 disables)",
+    )
     pdf_sync.add_argument("--max-pdf-size-mb", type=int, default=300, help="Max allowed PDF size in MB")
     pdf_sync.add_argument(
         "--backoff-base-seconds",
@@ -1993,6 +2003,12 @@ def build_parser() -> argparse.ArgumentParser:
         "--console-progress",
         action="store_true",
         help="Mirror progress events to stderr while running",
+    )
+    pdf_sync.add_argument(
+        "--checkpoint-flush-seconds",
+        type=float,
+        default=20.0,
+        help="Persist checkpoint at most this many seconds between entry updates (0 flushes every entry)",
     )
     pdf_sync.add_argument(
         "--max-consecutive-failures",

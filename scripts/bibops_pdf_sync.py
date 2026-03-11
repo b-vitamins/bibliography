@@ -11,15 +11,18 @@ import json
 import os
 import random
 import re
+import signal
 import shutil
 import sys
 import tempfile
+import threading
 import time
 import tomllib
+from contextlib import contextmanager
 from email.utils import parsedate_to_datetime
 from pathlib import Path
-from typing import Any
-from urllib.parse import parse_qs, urlparse
+from typing import Any, Callable
+from urllib.parse import parse_qs, quote, urlparse
 
 import bibtexparser
 import requests
@@ -31,7 +34,30 @@ from urllib3.util.retry import Retry
 
 DEFAULT_BASE_DIR = Path("/home/b/documents")
 CHECKPOINT_VERSION = 1
+FAILED_ENTRY_CLASSIFIER_VERSION = "2"
 RETRYABLE_STATUS_CODES = {408, 425, 429, 500, 502, 503, 504}
+SEMANTIC_SCHOLAR_PAPER_API = "https://api.semanticscholar.org/graph/v1/paper"
+_TRANSIENT_FAILURE_MARKERS = (
+    "http 408",
+    "http 425",
+    "http 429",
+    "http 500",
+    "http 502",
+    "http 503",
+    "http 504",
+    "timed out",
+    "timeout",
+    "temporar",
+    "connection",
+    "chunkedencodingerror",
+    "contentdecodingerror",
+    "name or service not known",
+    "temporary failure in name resolution",
+    "connection reset",
+    "connection aborted",
+    "broken pipe",
+    "ssl",
+)
 
 TYPE_TO_DIR = {
     "article": "article",
@@ -81,6 +107,7 @@ class PdfSyncOptions:
     max_attempts: int = 6
     timeout_connect_seconds: float = 10.0
     timeout_read_seconds: float = 90.0
+    max_attempt_wall_seconds: float = 240.0
     max_pdf_size_mb: int = 300
     min_pdf_size_bytes: int = 1024
     backoff_base_seconds: float = 1.0
@@ -93,6 +120,7 @@ class PdfSyncOptions:
     retry_failures: bool = False
     progress_log: Path | None = None
     console_progress: bool = False
+    checkpoint_flush_seconds: float = 20.0
     max_consecutive_failures: int = 50
     user_agent: str = "bibops-pdf-sync/1.0"
     policy_path: Path | None = None
@@ -204,6 +232,106 @@ def normalize_url(url: str, fallback_base_url: str | None = None) -> str:
         if base.scheme and base.netloc:
             return f"{base.scheme}://{base.netloc}{u}"
     return ""
+
+
+def normalize_doi(doi_raw: str) -> str:
+    raw = (doi_raw or "").strip()
+    if not raw:
+        return ""
+    lowered = raw.lower()
+    prefixes = (
+        "https://doi.org/",
+        "http://doi.org/",
+        "https://dx.doi.org/",
+        "http://dx.doi.org/",
+        "doi:",
+    )
+    for prefix in prefixes:
+        if lowered.startswith(prefix):
+            raw = raw[len(prefix) :].strip()
+            lowered = raw.lower()
+            break
+    return raw.strip().strip("/")
+
+
+def doi_from_url(url: str) -> str:
+    normalized = normalize_url(url)
+    if not normalized:
+        return ""
+    parsed = urlparse(normalized)
+    host = normalize_host(parsed.netloc)
+    if host not in {"doi.org", "dx.doi.org"}:
+        return ""
+    return normalize_doi(parsed.path.lstrip("/"))
+
+
+def entry_doi(entry: dict[str, Any]) -> str:
+    direct = normalize_doi(str(entry.get("doi", "")).strip())
+    if direct:
+        return direct
+    for field in ("pdf", "url"):
+        doi = doi_from_url(str(entry.get(field, "")).strip())
+        if doi:
+            return doi
+    return ""
+
+
+def maybe_set_pdf_field(entry: dict[str, Any], url: str, *, dry_run: bool) -> bool:
+    normalized = normalize_url(url, fallback_base_url=str(entry.get("url", "")).strip())
+    if not normalized or not looks_like_pdf_url(normalized):
+        return False
+
+    current_pdf = normalize_url(str(entry.get("pdf", "")).strip(), fallback_base_url=str(entry.get("url", "")).strip())
+    if current_pdf and canonicalize_url(current_pdf) == canonicalize_url(normalized):
+        return False
+
+    if dry_run:
+        return True
+    entry["pdf"] = normalized
+    return True
+
+
+def semantic_scholar_open_access_pdf_url(
+    session: requests.Session,
+    doi: str,
+    *,
+    timeout_connect: float,
+    timeout_read: float,
+    user_agent: str,
+) -> str:
+    token = normalize_doi(doi)
+    if not token:
+        return ""
+
+    # Semantic Scholar expects DOI path segment with slash separators preserved.
+    endpoint = f"{SEMANTIC_SCHOLAR_PAPER_API}/DOI:{quote(token, safe='/')}"
+    params = {"fields": "openAccessPdf,url,isOpenAccess,title"}
+    headers = {"User-Agent": user_agent}
+    try:
+        response = session.get(
+            endpoint,
+            params=params,
+            timeout=(timeout_connect, timeout_read),
+            allow_redirects=True,
+            headers=headers,
+        )
+    except Exception:
+        return ""
+    if response.status_code != 200:
+        return ""
+    try:
+        payload = response.json()
+    except Exception:
+        return ""
+    if not isinstance(payload, dict):
+        return ""
+    open_access = payload.get("openAccessPdf")
+    if not isinstance(open_access, dict):
+        return ""
+    candidate = normalize_url(str(open_access.get("url", "")).strip())
+    if not candidate:
+        return ""
+    return candidate
 
 
 def parse_retry_after_seconds(value: str | None) -> float | None:
@@ -318,6 +446,7 @@ def build_candidate_urls(entry: dict[str, Any], smart: bool) -> list[str]:
     pdf_url = str(entry.get("pdf", "")).strip()
     url_field = str(entry.get("url", "")).strip()
     arxiv_field = str(entry.get("arxiv", "")).strip()
+    doi_field = entry_doi(entry)
 
     strong_candidates: list[str] = []
     fallback_candidates: list[str] = []
@@ -338,13 +467,15 @@ def build_candidate_urls(entry: dict[str, Any], smart: bool) -> list[str]:
 
     if pdf_url:
         add(pdf_url, strong=True)
+    if doi_field:
+        add(f"https://doi.org/{doi_field}", strong=False)
 
     if smart:
-        for raw in (pdf_url, url_field, arxiv_field):
+        for raw in (pdf_url, url_field, arxiv_field, f"https://doi.org/{doi_field}" if doi_field else ""):
             for derived in derive_urls(raw, context_url=url_field):
                 add(derived, strong=True)
 
-    for raw in (url_field, arxiv_field):
+    for raw in (url_field, arxiv_field, f"https://doi.org/{doi_field}" if doi_field else ""):
         normalized = normalize_url(raw, fallback_base_url=url_field)
         if not normalized:
             continue
@@ -404,6 +535,24 @@ def derive_urls(raw: str, context_url: str = "") -> list[str]:
         doi_suffix = path[len("/doi/") :].strip("/")
         if doi_suffix:
             out.append(f"https://dl.acm.org/doi/pdf/{doi_suffix}")
+
+    if host in {"doi.org", "dx.doi.org"}:
+        doi_suffix = normalize_doi(path.lstrip("/"))
+        if doi_suffix:
+            lowered = doi_suffix.lower()
+            if lowered.startswith("10.1145/"):
+                out.append(f"https://dl.acm.org/doi/pdf/{doi_suffix}")
+            arxiv_match = re.match(r"10\.48550/arxiv\.(.+)$", lowered)
+            if arxiv_match:
+                arxiv_id = arxiv_match.group(1)
+                out.append(f"https://arxiv.org/pdf/{arxiv_id}.pdf")
+            pii_match = re.match(r"10\.1016/(b[0-9x\-.]+)$", lowered)
+            if pii_match:
+                pii = pii_match.group(1).replace("-", "").replace(".", "").upper()
+                if pii:
+                    out.append(
+                        f"https://www.sciencedirect.com/science/article/pii/{pii}/pdfft?isDTMRedir=true&download=true"
+                    )
 
     return out
 
@@ -522,8 +671,20 @@ class CheckpointStore:
             return False
         if status in {"no_source"}:
             return True
-        if status == "failed" and not retry_failures:
-            return True
+        if status == "failed":
+            if not retry_failures:
+                return True
+            classifier_version = str(item.get("failed_entry_classifier_version", "")).strip()
+            message = str(item.get("message", "")).strip()
+            # Legacy checkpoint entries (before classifier versioning) should still
+            # be skipped when the recorded failure is clearly permanent.
+            if classifier_version != FAILED_ENTRY_CLASSIFIER_VERSION:
+                if message and not failure_message_looks_transient(message):
+                    return True
+                return False
+            # With retry enabled, only retry transient operational failures.
+            if not failure_message_looks_transient(message):
+                return True
         return False
 
     def record(self, entry_id: str, fingerprint: str, outcome: EntryOutcome) -> None:
@@ -539,6 +700,7 @@ class CheckpointStore:
             "target_path": outcome.target_path or "",
             "attempts": outcome.attempts,
             "bytes_written": outcome.bytes_written,
+            "failed_entry_classifier_version": FAILED_ENTRY_CLASSIFIER_VERSION,
             "updated_at": now_iso(),
         }
         self.data["updated_at"] = now_iso()
@@ -607,12 +769,122 @@ def build_http_session(user_agent: str) -> requests.Session:
 
 def should_retry_error(exc: BaseException) -> bool:
     transient_types = (
+        TimeoutError,
         requests.exceptions.Timeout,
         requests.exceptions.ConnectionError,
         requests.exceptions.ChunkedEncodingError,
         requests.exceptions.ContentDecodingError,
     )
     return isinstance(exc, transient_types)
+
+
+@contextmanager
+def attempt_deadline(seconds: float):
+    """Best-effort wall-clock cap for a single HTTP attempt."""
+    if seconds <= 0:
+        yield
+        return
+
+    if not hasattr(signal, "SIGALRM") or not hasattr(signal, "setitimer"):
+        yield
+        return
+
+    if threading.current_thread() is not threading.main_thread():
+        yield
+        return
+
+    seconds = max(0.1, float(seconds))
+    previous_handler = signal.getsignal(signal.SIGALRM)
+
+    def _raise_timeout(signum, frame):  # type: ignore[unused-argument]
+        raise TimeoutError(f"attempt exceeded wall timeout ({seconds:.1f}s)")
+
+    signal.signal(signal.SIGALRM, _raise_timeout)
+    signal.setitimer(signal.ITIMER_REAL, seconds)
+    try:
+        yield
+    finally:
+        signal.setitimer(signal.ITIMER_REAL, 0.0)
+        signal.signal(signal.SIGALRM, previous_handler)
+
+
+def failure_message_looks_transient(message: str) -> bool:
+    msg = (message or "").lower()
+    if not msg:
+        return True
+    if re.search(r"\bhttp(?:\s+status)?\s+(408|425|429|500|502|503|504)\b", msg):
+        return True
+    for marker in _TRANSIENT_FAILURE_MARKERS:
+        if marker in msg:
+            return True
+    return False
+
+
+def counts_toward_abort_budget(outcome: EntryOutcome) -> bool:
+    """Return True when this failure likely indicates an operational outage."""
+    if outcome.status != "failed":
+        return False
+
+    message = (outcome.message or "").lower()
+    if not message:
+        return True
+
+    if failure_message_looks_transient(message):
+        return True
+
+    # Permanent source-level failures should not trip global outage aborts.
+    if "http 4" in message:
+        return False
+    if "unexpected content-type" in message:
+        return False
+    if "invalid pdf" in message:
+        return False
+    if "no candidate url" in message or "no candidate urls" in message:
+        return False
+
+    # Conservative default for unknown failure text.
+    return True
+
+
+def supplemental_open_access_candidates(
+    entry: dict[str, Any],
+    session: requests.Session,
+    options: PdfSyncOptions,
+    cache: dict[str, list[str]],
+) -> list[str]:
+    doi = entry_doi(entry)
+    if not doi:
+        return []
+    cached = cache.get(doi)
+    if cached is not None:
+        return list(cached)
+
+    discovered: list[str] = []
+    seen: set[str] = set()
+
+    def add(url: str) -> None:
+        normalized = normalize_url(url, fallback_base_url=str(entry.get("url", "")).strip())
+        if not normalized:
+            return
+        key = canonicalize_url(normalized)
+        if key in seen:
+            return
+        seen.add(key)
+        discovered.append(normalized)
+
+    # Semantic Scholar open-access pointer is a good low-cost fallback for DOI-based records.
+    s2_url = semantic_scholar_open_access_pdf_url(
+        session=session,
+        doi=doi,
+        timeout_connect=options.timeout_connect_seconds,
+        timeout_read=min(options.timeout_read_seconds, 30.0),
+        user_agent=options.user_agent,
+    )
+    if s2_url:
+        add(s2_url)
+
+    cache[doi] = list(discovered)
+    return list(discovered)
 
 
 def backoff_delay_seconds(options: PdfSyncOptions, attempt: int, retry_after: float | None) -> float:
@@ -630,6 +902,7 @@ def download_pdf(
     url: str,
     target_path: Path,
     options: PdfSyncOptions,
+    attempt_logger: Callable[[dict[str, Any]], None] | None = None,
 ) -> DownloadAttemptResult:
     max_bytes = int(options.max_pdf_size_mb * 1024 * 1024)
     host = host_of(url)
@@ -637,76 +910,98 @@ def download_pdf(
     for attempt in range(1, options.max_attempts + 1):
         temp_path: Path | None = None
         try:
+            if attempt_logger:
+                attempt_logger(
+                    {
+                        "status": "download_attempt",
+                        "message": f"attempt {attempt}/{options.max_attempts}",
+                        "url": url,
+                        "attempt": attempt,
+                        "max_attempts": options.max_attempts,
+                    }
+                )
             cadence.wait(host)
             cadence.mark_request(host)
 
-            with session.get(
-                url,
-                timeout=(options.timeout_connect_seconds, options.timeout_read_seconds),
-                stream=True,
-                allow_redirects=True,
-            ) as response:
-                status = response.status_code
-                if status in RETRYABLE_STATUS_CODES:
-                    retry_after = parse_retry_after_seconds(response.headers.get("Retry-After"))
-                    delay = backoff_delay_seconds(options, attempt, retry_after)
-                    cadence.penalize(host, delay)
-                    if attempt < options.max_attempts:
-                        time.sleep(delay)
-                        continue
-                    return DownloadAttemptResult(
-                        ok=False,
-                        message=f"retryable HTTP status {status} after {attempt} attempts",
-                        status_code=status,
-                        attempts=attempt,
-                    )
-
-                if status >= 400:
-                    return DownloadAttemptResult(
-                        ok=False,
-                        message=f"HTTP {status}",
-                        status_code=status,
-                        attempts=attempt,
-                    )
-
-                content_length = response.headers.get("Content-Length")
-                if content_length and content_length.isdigit() and int(content_length) > max_bytes:
-                    return DownloadAttemptResult(
-                        ok=False,
-                        message=f"content-length exceeds max size ({content_length} bytes)",
-                        status_code=status,
-                        attempts=attempt,
-                    )
-
-                content_type = response.headers.get("Content-Type", "").lower()
-                if "html" in content_type and not (
-                    url.lower().endswith(".pdf") or str(response.url).lower().endswith(".pdf")
-                ):
-                    return DownloadAttemptResult(
-                        ok=False,
-                        message=f"unexpected content-type `{content_type}`",
-                        status_code=status,
-                        attempts=attempt,
-                    )
-
-                target_path.parent.mkdir(parents=True, exist_ok=True)
-                fd, raw_temp = tempfile.mkstemp(
-                    prefix="pdf-sync-",
-                    suffix=".part",
-                    dir=str(target_path.parent),
-                )
-                os.close(fd)
-                temp_path = Path(raw_temp)
-
-                total = 0
-                with temp_path.open("wb") as out_handle:
-                    for chunk in response.iter_content(chunk_size=64 * 1024):
-                        if not chunk:
+            with attempt_deadline(options.max_attempt_wall_seconds):
+                with session.get(
+                    url,
+                    timeout=(options.timeout_connect_seconds, options.timeout_read_seconds),
+                    stream=True,
+                    allow_redirects=True,
+                ) as response:
+                    status = response.status_code
+                    if status in RETRYABLE_STATUS_CODES:
+                        retry_after = parse_retry_after_seconds(response.headers.get("Retry-After"))
+                        delay = backoff_delay_seconds(options, attempt, retry_after)
+                        cadence.penalize(host, delay)
+                        if attempt < options.max_attempts:
+                            if attempt_logger:
+                                attempt_logger(
+                                    {
+                                        "status": "download_retry",
+                                        "message": f"retryable HTTP {status}; sleeping {delay:.1f}s",
+                                        "url": str(response.url or url),
+                                        "attempt": attempt,
+                                        "max_attempts": options.max_attempts,
+                                        "delay_seconds": round(delay, 3),
+                                    }
+                                )
+                            time.sleep(delay)
                             continue
-                        total += len(chunk)
-                        if total > max_bytes:
-                            raise RuntimeError("download exceeded max configured size")
-                        out_handle.write(chunk)
+                        return DownloadAttemptResult(
+                            ok=False,
+                            message=f"retryable HTTP status {status} after {attempt} attempts",
+                            status_code=status,
+                            attempts=attempt,
+                        )
+
+                    if status >= 400:
+                        return DownloadAttemptResult(
+                            ok=False,
+                            message=f"HTTP {status}",
+                            status_code=status,
+                            attempts=attempt,
+                        )
+
+                    content_length = response.headers.get("Content-Length")
+                    if content_length and content_length.isdigit() and int(content_length) > max_bytes:
+                        return DownloadAttemptResult(
+                            ok=False,
+                            message=f"content-length exceeds max size ({content_length} bytes)",
+                            status_code=status,
+                            attempts=attempt,
+                        )
+
+                    content_type = response.headers.get("Content-Type", "").lower()
+                    if "html" in content_type and not (
+                        url.lower().endswith(".pdf") or str(response.url).lower().endswith(".pdf")
+                    ):
+                        return DownloadAttemptResult(
+                            ok=False,
+                            message=f"unexpected content-type `{content_type}`",
+                            status_code=status,
+                            attempts=attempt,
+                        )
+
+                    target_path.parent.mkdir(parents=True, exist_ok=True)
+                    fd, raw_temp = tempfile.mkstemp(
+                        prefix="pdf-sync-",
+                        suffix=".part",
+                        dir=str(target_path.parent),
+                    )
+                    os.close(fd)
+                    temp_path = Path(raw_temp)
+
+                    total = 0
+                    with temp_path.open("wb") as out_handle:
+                        for chunk in response.iter_content(chunk_size=16 * 1024):
+                            if not chunk:
+                                continue
+                            total += len(chunk)
+                            if total > max_bytes:
+                                raise RuntimeError("download exceeded max configured size")
+                            out_handle.write(chunk)
 
             is_valid, reason = verify_pdf(temp_path, min_size_bytes=options.min_pdf_size_bytes)
             if not is_valid:
@@ -735,6 +1030,17 @@ def download_pdf(
             if retryable and attempt < options.max_attempts:
                 delay = backoff_delay_seconds(options, attempt, retry_after=None)
                 cadence.penalize(host, delay)
+                if attempt_logger:
+                    attempt_logger(
+                        {
+                            "status": "download_retry",
+                            "message": f"{exc}; sleeping {delay:.1f}s",
+                            "url": url,
+                            "attempt": attempt,
+                            "max_attempts": options.max_attempts,
+                            "delay_seconds": round(delay, 3),
+                        }
+                    )
                 time.sleep(delay)
                 continue
 
@@ -766,6 +1072,8 @@ def apply_policy_overrides(options: PdfSyncOptions) -> PdfSyncOptions:
         options.timeout_connect_seconds = max(1.0, float(data["timeout_connect_seconds"]))
     if isinstance(data.get("timeout_read_seconds"), (int, float)):
         options.timeout_read_seconds = max(1.0, float(data["timeout_read_seconds"]))
+    if isinstance(data.get("max_attempt_wall_seconds"), (int, float)):
+        options.max_attempt_wall_seconds = max(0.0, float(data["max_attempt_wall_seconds"]))
     if isinstance(data.get("max_pdf_size_mb"), int):
         options.max_pdf_size_mb = max(1, int(data["max_pdf_size_mb"]))
     if isinstance(data.get("backoff_base_seconds"), (int, float)):
@@ -778,9 +1086,10 @@ def apply_policy_overrides(options: PdfSyncOptions) -> PdfSyncOptions:
         options.host_default_min_interval_seconds = max(0.0, float(data["host_default_min_interval_seconds"]))
     if isinstance(data.get("max_consecutive_failures"), int):
         options.max_consecutive_failures = max(1, int(data["max_consecutive_failures"]))
+    if isinstance(data.get("checkpoint_flush_seconds"), (int, float)):
+        options.checkpoint_flush_seconds = max(0.0, float(data["checkpoint_flush_seconds"]))
     if isinstance(data.get("user_agent"), str) and data["user_agent"].strip():
         options.user_agent = data["user_agent"].strip()
-
     raw_host = data.get("host_min_interval_by_host")
     if isinstance(raw_host, dict):
         for host, interval in raw_host.items():
@@ -857,6 +1166,7 @@ def process_entry(
     cadence: HostCadenceController,
     checkpoint: CheckpointStore | None,
     progress: ProgressLogger,
+    oa_lookup_cache: dict[str, list[str]],
 ) -> EntryOutcome:
     key = str(entry.get("ID", "")).strip() or "unknown"
     fingerprint = compute_entry_fingerprint(entry)
@@ -866,12 +1176,29 @@ def process_entry(
         if checkpoint and not options.dry_run:
             checkpoint.record(checkpoint_key, fingerprint, outcome)
 
+    def emit_download_event(payload: dict[str, Any]) -> None:
+        event = {
+            "bib_file": str(bib_file),
+            "key": key,
+            **payload,
+        }
+        progress.emit(event)
+
     if checkpoint and options.resume and checkpoint.should_skip(checkpoint_key, fingerprint, options.retry_failures):
+        repaired_from_checkpoint = False
+        if checkpoint and options.fix_existing:
+            existing = checkpoint.get(checkpoint_key)
+            if existing:
+                repaired_from_checkpoint = maybe_set_pdf_field(
+                    entry,
+                    str(existing.get("url", "")).strip(),
+                    dry_run=options.dry_run,
+                )
         outcome = EntryOutcome(
             bib_file=str(bib_file),
             key=key,
-            status="resumed_skip",
-            message="checkpoint skip",
+            status="resumed_skip_repaired" if repaired_from_checkpoint else "resumed_skip",
+            message="checkpoint skip (repaired pdf field)" if repaired_from_checkpoint else "checkpoint skip",
         )
         progress.emit(dataclasses.asdict(outcome))
         return outcome
@@ -980,7 +1307,14 @@ def process_entry(
     last_error = ""
     total_attempts = 0
     for candidate in candidates:
-        result = download_pdf(session, cadence, candidate, target_path, options)
+        result = download_pdf(
+            session,
+            cadence,
+            candidate,
+            target_path,
+            options,
+            attempt_logger=emit_download_event,
+        )
         total_attempts += result.attempts
         if result.ok:
             entry["file"] = format_file_field(target_path.resolve(), "pdf")
@@ -996,11 +1330,50 @@ def process_entry(
                 attempts=total_attempts,
                 bytes_written=result.bytes_written,
             )
+            maybe_set_pdf_field(entry, result.final_url or candidate, dry_run=options.dry_run)
             record_checkpoint(outcome)
             progress.emit(dataclasses.asdict(outcome))
             return outcome
 
         last_error = f"{candidate} -> {result.message}"
+
+    fallback_candidates = supplemental_open_access_candidates(
+        entry=entry,
+        session=session,
+        options=options,
+        cache=oa_lookup_cache,
+    )
+    if fallback_candidates:
+        seen = {canonicalize_url(u) for u in candidates}
+        for candidate in fallback_candidates:
+            if canonicalize_url(candidate) in seen:
+                continue
+            result = download_pdf(
+                session,
+                cadence,
+                candidate,
+                target_path,
+                options,
+                attempt_logger=emit_download_event,
+            )
+            total_attempts += result.attempts
+            if result.ok:
+                entry["file"] = format_file_field(target_path.resolve(), "pdf")
+                maybe_set_pdf_field(entry, result.final_url or candidate, dry_run=options.dry_run)
+                outcome = EntryOutcome(
+                    bib_file=str(bib_file),
+                    key=key,
+                    status="downloaded",
+                    message="downloaded and linked",
+                    url=result.final_url or candidate,
+                    target_path=str(target_path),
+                    attempts=total_attempts,
+                    bytes_written=result.bytes_written,
+                )
+                record_checkpoint(outcome)
+                progress.emit(dataclasses.asdict(outcome))
+                return outcome
+            last_error = f"{candidate} -> {result.message}"
 
     outcome = EntryOutcome(
         bib_file=str(bib_file),
@@ -1050,6 +1423,7 @@ def run_pdf_sync(options: PdfSyncOptions) -> PdfSyncResult:
     if options.checkpoint_path:
         checkpoint = CheckpointStore(options.checkpoint_path)
         checkpoint.load()
+    last_checkpoint_save_at = time.monotonic()
 
     progress = ProgressLogger(options.progress_log, console_progress=options.console_progress)
     if unresolved:
@@ -1062,6 +1436,7 @@ def run_pdf_sync(options: PdfSyncOptions) -> PdfSyncResult:
         jitter_seconds=options.backoff_jitter_seconds,
     )
     session = build_http_session(options.user_agent)
+    oa_lookup_cache: dict[str, list[str]] = {}
 
     consecutive_failures = 0
 
@@ -1102,6 +1477,7 @@ def run_pdf_sync(options: PdfSyncOptions) -> PdfSyncResult:
                     cadence=cadence,
                     checkpoint=checkpoint,
                     progress=progress,
+                    oa_lookup_cache=oa_lookup_cache,
                 )
                 after_entry = json.dumps(entry, sort_keys=True)
                 entry_changed = before_entry != after_entry
@@ -1115,7 +1491,10 @@ def run_pdf_sync(options: PdfSyncOptions) -> PdfSyncResult:
 
                 if status == "failed":
                     failures.append(outcome)
-                    consecutive_failures += 1
+                    if counts_toward_abort_budget(outcome):
+                        consecutive_failures += 1
+                    else:
+                        consecutive_failures = 0
                 elif status != "resumed_skip":
                     consecutive_failures = 0
 
@@ -1130,6 +1509,13 @@ def run_pdf_sync(options: PdfSyncOptions) -> PdfSyncResult:
                     )
                     break
 
+                if checkpoint and not options.dry_run:
+                    flush_seconds = max(0.0, options.checkpoint_flush_seconds)
+                    now = time.monotonic()
+                    if flush_seconds == 0.0 or (now - last_checkpoint_save_at) >= flush_seconds:
+                        checkpoint.save()
+                        last_checkpoint_save_at = now
+
             if file_changed and not options.dry_run:
                 backup = bib_file.with_suffix(bib_file.suffix + ".backup")
                 shutil.copy2(bib_file, backup)
@@ -1138,6 +1524,7 @@ def run_pdf_sync(options: PdfSyncOptions) -> PdfSyncResult:
 
             if checkpoint:
                 checkpoint.save()
+                last_checkpoint_save_at = time.monotonic()
 
             if int(summary["aborted"]) == 1:
                 break
