@@ -87,6 +87,7 @@ Codex should prefer these over ad-hoc behavior when tasks match:
 - `bibops-quality-gate`
 - `bibops-release-manager`
 - `bibops-enrichment-pipeline`
+- `bibops-research-notes-batch`
 - `bibops-year-intake`
 - `bibops-source-watch`
 
