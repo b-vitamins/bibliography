@@ -27,6 +27,7 @@ from bibtexparser.bparser import BibTexParser
 from bibtexparser.customization import convert_to_unicode
 from bibops_key_manager import KeyNormalizeOptions, result_to_json, run_key_normalize
 from bibops_pdf_sync import PdfSyncOptions, parse_host_interval_overrides, run_pdf_sync
+from core.bibmeta import validate_repo_bibmeta
 
 DEFAULT_CONFIG_PATH = Path("ops/bibops.toml")
 DEFAULT_DB_PATH = Path("bibliography.db")
@@ -1237,6 +1238,23 @@ def print_summary(run_id: str, file_rows: list[FileResult], entry_rows: list[Ent
             print(f"  {k}: {by_type[k]}")
 
 
+def collect_bibmeta_issues() -> list[Issue]:
+    _manifest, diagnostics, _resolved = validate_repo_bibmeta(Path("."))
+    issues: list[Issue] = []
+    for diag in diagnostics:
+        issues.append(
+            Issue(
+                file_path=diag.file_path,
+                entry_key=None,
+                issue_type=f"bibmeta_{diag.code}",
+                severity=diag.severity,
+                message=diag.message,
+                details=diag.details,
+            )
+        )
+    return issues
+
+
 def command_doctor(cfg: OpsConfig) -> int:
     problems: list[str] = []
     warnings: list[str] = []
@@ -1274,10 +1292,23 @@ def command_doctor(cfg: OpsConfig) -> int:
     if not discovered:
         problems.append("no .bib files discovered from configured roots")
 
+    bibmeta_issues = collect_bibmeta_issues()
+    bibmeta_errors = [issue for issue in bibmeta_issues if issue.severity == "error"]
+    if bibmeta_errors:
+        problems.append(
+            f"bibmeta validation failed with {len(bibmeta_errors)} error(s); see `python3 scripts/bibops.py lint --fail-on-error`"
+        )
+
     if problems:
         print("doctor: FAILED")
         for p in problems:
             print(f"- {p}")
+        if bibmeta_errors:
+            print("- bibmeta_errors:")
+            for issue in bibmeta_errors[:10]:
+                print(f"  - {issue.file_path}: {issue.message}")
+            if len(bibmeta_errors) > 10:
+                print(f"  - ... and {len(bibmeta_errors) - 10} more")
         return 2
 
     print("doctor: OK")
@@ -1317,7 +1348,8 @@ def command_scan(cfg: OpsConfig, recorder: RunRecorder, as_json: bool) -> int:
 def command_lint(cfg: OpsConfig, recorder: RunRecorder, as_json: bool, fail_on_error: bool) -> int:
     file_rows, entry_rows, scan_issues = run_scan(cfg)
     lint_issues = run_lint(cfg, file_rows, entry_rows)
-    issues = scan_issues + lint_issues
+    bibmeta_issues = collect_bibmeta_issues()
+    issues = scan_issues + lint_issues + bibmeta_issues
 
     write_file_stats(Path(cfg.db_path), recorder.run_id, file_rows)
     write_entry_stats(Path(cfg.db_path), recorder.run_id, entry_rows)

@@ -10,11 +10,11 @@ from pathlib import Path
 # Path mappings from old to new structure
 PATH_MAPPINGS = {
     # Most by-domain files moved to collections/
-    "by-domain/autoencoder.bib": "collections/autoencoder.bib",
+    "by-domain/autoencoder.bib": "collections/autoencoders.bib",
     "by-domain/continual.bib": "collections/continual.bib",
     "by-domain/diffusion.bib": "collections/diffusion.bib",
     "by-domain/ebm.bib": "collections/ebm.bib",
-    "by-domain/flows.bib": "collections/flows.bib",
+    "by-domain/flows.bib": "collections/normalizing-flows.bib",
     "by-domain/gan.bib": "collections/gan.bib",
     "by-domain/generalization.bib": "collections/generalization.bib",
     "by-domain/geometric.bib": "collections/geometric.bib",
@@ -35,11 +35,11 @@ PATH_MAPPINGS = {
     "by-domain/ssm.bib": "collections/ssm.bib",
     "by-domain/training.bib": "collections/training.bib",
     "by-domain/transformers.bib": "collections/transformers.bib",
-    "by-domain/worldmodel.bib": "collections/worldmodel.bib",
+    "by-domain/worldmodel.bib": "collections/world-models.bib",
     # Special moves
     "by-domain/physics-computational.bib": "courses/physics-computational.bib",
     "by-domain/infophyscomp.bib": "references/infophyscomp.bib",
-    "by-domain/award.bib": "collections/award.bib",  # or wherever it went
+    "by-domain/award.bib": "collections/award-papers.bib",
     # by-format moves
     "by-format/courses/course-notes.bib": "courses/course-notes.bib",
     "by-format/courses/coursework-exams.bib": "courses/coursework-exams.bib",
@@ -56,7 +56,7 @@ PATH_MAPPINGS = {
     "by-format/references/tutorials.bib": "references/tutorials.bib",
     "by-format/references/udl.bib": "references/udl.bib",
     "by-format/references/whitepapers.bib": "references/whitepapers.bib",
-    "by-format/references/award.bib": "collections/award.bib",
+    "by-format/references/award.bib": "collections/award-papers.bib",
     "by-format/theses/dissertations.bib": "theses/dissertations.bib",
     "by-format/theses/theses.bib": "theses/theses.bib",
 }

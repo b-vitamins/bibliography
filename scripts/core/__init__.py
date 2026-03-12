@@ -13,6 +13,17 @@ from .bibtex_io import (
     transactional_write_bib_file,
     write_bib_file,
 )
+from .bibmeta import (
+    BibmetaDiagnostic,
+    BibmetaManifest,
+    BibmetaManifestError,
+    ResolvedBibmeta,
+    discover_repo_bib_files,
+    load_manifest as load_bibmeta_manifest,
+    resolve_bibmeta,
+    validate_bib_file as validate_bibmeta_file,
+    validate_repo_bibmeta,
+)
 from .normalization import (
     equivalent_text,
     is_prefix_equivalent,
@@ -52,6 +63,15 @@ __all__ = [
     "resolve_bib_paths",
     "transactional_write_bib_file",
     "write_bib_file",
+    "BibmetaDiagnostic",
+    "BibmetaManifest",
+    "BibmetaManifestError",
+    "ResolvedBibmeta",
+    "discover_repo_bib_files",
+    "load_bibmeta_manifest",
+    "resolve_bibmeta",
+    "validate_bibmeta_file",
+    "validate_repo_bibmeta",
     "equivalent_text",
     "is_prefix_equivalent",
     "normalize_spaces",

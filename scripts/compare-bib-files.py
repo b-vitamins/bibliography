@@ -52,7 +52,10 @@ def find_missing_entries(
 def main() -> None:
     if len(sys.argv) != 3:
         print("Usage: python3 compare-bib-files.py <original.bib> <enriched.bib>")
-        print("Example: python3 compare-bib-files.py award.bib award.bib.enriched")
+        print(
+            "Example: python3 compare-bib-files.py "
+            "collections/award-papers.bib collections/award-papers.bib.enriched"
+        )
         sys.exit(1)
 
     original_file = sys.argv[1]

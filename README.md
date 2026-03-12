@@ -108,6 +108,8 @@ These are designed with progressive disclosure and can be invoked explicitly or 
 
 - Bibliography files live across domain folders (`books/`, `conferences/`, `collections/`, etc.).
 - Derived oral subsets live in `collections/orals/<venue>/<year>.bib`.
+- File-level repository metadata resolves through `meta/bibmeta.toml`; see
+  [`references/bibmeta-contract.md`](references/bibmeta-contract.md).
 - Local operational state and enrichment tracking use `bibliography.db`.
 - Version-controlled tracking snapshot is `tracking.json`.
 
@@ -116,6 +118,19 @@ Hook behavior:
 - Default commits do not auto-rewrite `tracking.json`.
 
 `bibops` stores run metadata and issue snapshots in `ops_*` tables inside `bibliography.db`.
+
+## Bibmeta
+
+This repository owns a neutral file-level metadata contract called `bibmeta`.
+
+- Path structure is the default metadata carrier.
+- Ordered path rules live in `meta/bibmeta.toml`.
+- Optional inline `@COMMENT{bibmeta: ...}` TOML blocks are supported for true
+  exceptions only.
+- Active files should derive cleanly from path and should not need inline
+  `bibmeta` blocks.
+- `python3 scripts/bibops.py doctor` and `python3 scripts/bibops.py lint`
+  validate the contract and reject legacy metadata namespaces.
 
 ## Legacy scripts
 

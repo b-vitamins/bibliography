@@ -39,6 +39,7 @@ Convenience targets:
 4. Placeholder authors like `and others` are not acceptable in managed collection results.
 5. Large operations should be profile-driven and repeatable.
 6. `collections/orals/` is a derived subset layer; canonical source remains `conferences/`.
+7. File-level repository metadata resolves via `meta/bibmeta.toml`; active files should prefer path-derived semantics over inline `@COMMENT{bibmeta: ...}` preambles.
 
 ## Scope tiers
 

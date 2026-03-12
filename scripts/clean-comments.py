@@ -15,6 +15,7 @@ from pathlib import Path
 
 import bibtexparser
 from bibtexparser.bwriter import BibTexWriter
+from core.bibmeta import find_inline_bibmeta_blocks
 
 
 def clean_file(filepath: Path, in_place: bool = False) -> bool:
@@ -22,6 +23,15 @@ def clean_file(filepath: Path, in_place: bool = False) -> bool:
     try:
         with open(filepath, "r", encoding="utf-8") as f:
             content = f.read()
+
+        bibmeta_blocks = find_inline_bibmeta_blocks(content)
+        if len(bibmeta_blocks) > 1:
+            print(
+                f"✗ {filepath}: multiple @COMMENT{{bibmeta: ...}} blocks found; refusing to rewrite",
+                file=sys.stderr,
+            )
+            return False
+        preserved_bibmeta = bibmeta_blocks[0].raw if bibmeta_blocks else ""
 
         # Parse BibTeX
         parser = bibtexparser.bparser.BibTexParser()
@@ -42,6 +52,8 @@ def clean_file(filepath: Path, in_place: bool = False) -> bool:
         writer.order_entries_by = None  # type: ignore  # Preserve existing order
         writer.align_values = False
         output = bibtexparser.dumps(bib_db, writer)
+        if preserved_bibmeta:
+            output = f"{preserved_bibmeta}\n\n{output.lstrip()}"
 
         if in_place:
             # Only modify if there were comments to remove

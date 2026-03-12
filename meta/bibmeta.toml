@@ -1,0 +1,65 @@
+# Bibliography-owned metadata contract for file-level role classification.
+#
+# Rules are evaluated in order against the path relative to the repository root.
+# The first matching rule wins. Optional inline @COMMENT{bibmeta: ...} TOML can
+# refine the resolved metadata, but active files should derive cleanly from path.
+
+version = 1
+
+[[rules]]
+name = "books"
+glob = "books/*.bib"
+role = "canonical"
+subject = "{stem}"
+
+[[rules]]
+name = "conferences"
+glob = "conferences/**/*.bib"
+role = "canonical"
+
+[[rules]]
+name = "journals"
+glob = "journals/**/*.bib"
+role = "canonical"
+
+[[rules]]
+name = "references"
+glob = "references/**/*.bib"
+role = "canonical"
+
+[[rules]]
+name = "theses"
+glob = "theses/**/*.bib"
+role = "canonical"
+
+[[rules]]
+name = "courses"
+glob = "courses/**/*.bib"
+role = "canonical"
+
+[[rules]]
+name = "presentations"
+glob = "presentations/**/*.bib"
+role = "canonical"
+
+[[rules]]
+name = "top-level-collections"
+glob = "collections/*.bib"
+exclude = ["collections/orals/**/*.bib", "collections/_archive/**/*.bib"]
+role = "curated"
+topics = ["{stem}"]
+
+[[rules]]
+name = "oral-subsets"
+glob = "collections/orals/*/*.bib"
+role = "derived"
+
+[[rules]]
+name = "collection-archives"
+glob = "collections/_archive/**/*.bib"
+role = "archive"
+
+[[rules]]
+name = "meta-bibs"
+glob = "meta/*.bib"
+role = "auxiliary"
