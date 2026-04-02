@@ -2,9 +2,10 @@
 % - Foundations for score-based + diffusion probabilistic modeling.
 % - Canonical DDPM line + key improvements (guidance, samplers, latent diffusion, EDM).
 % - Includes a small number of fast-generation successors (consistency models, rectified flow).
-% - Excludes most downstream application papers (3D, editing, robotics, etc.).
+% - Includes a few high-impact downstream/control papers (editing, video, 3D, conditioning).
+% - Excludes most other downstream application papers.
 %
-% Updated: 2026-03-03
+% Updated: 2026-04-02
 
 @article{hyvarinen2005scorematching,
   author = {Hyv{\"a}rinen, Aapo},
@@ -121,6 +122,18 @@
   pdf = {https://proceedings.neurips.cc/paper/2021/file/49ad23d1ec9fa4bd8d77d02681df5cfa-Paper.pdf}
 }
 
+@inproceedings{austin2021d3pm,
+  author = {Austin, Jacob and Johnson, Daniel D. and Ho, Jonathan and Tarlow, Daniel and van den Berg, Rianne},
+  title = {Structured Denoising Diffusion Models in Discrete State-Spaces},
+  booktitle = {Advances in Neural Information Processing Systems},
+  year = {2021},
+  note = {D3PM: the canonical discrete-state extension of diffusion with structured transition kernels.},
+  url = {https://proceedings.neurips.cc/paper/2021/hash/958c530554f78bcd8e97125b70e6973d-Abstract.html},
+  pdf = {https://proceedings.neurips.cc/paper/2021/file/958c530554f78bcd8e97125b70e6973d-Paper.pdf},
+  archiveprefix = {arXiv},
+  eprint = {2107.03006}
+}
+
 @inproceedings{kingma2021variationaldiffusion,
   author = {Kingma, Diederik and Salimans, Tim and Poole, Ben and Ho, Jonathan},
   title = {Variational Diffusion Models},
@@ -155,6 +168,42 @@
   pdf = {https://openreview.net/pdf?id=TIdIXIpzhoI},
   archiveprefix = {arXiv},
   eprint = {2202.00512}
+}
+
+@inproceedings{nichol2022glide,
+  author = {Nichol, Alexander Quinn and Dhariwal, Prafulla and Ramesh, Aditya and Shyam, Pranav and Mishkin, Pamela and McGrew, Bob and Sutskever, Ilya and Chen, Mark},
+  title = {GLIDE: Towards Photorealistic Image Generation and Editing with Text-Guided Diffusion Models},
+  booktitle = {International Conference on Machine Learning},
+  year = {2022},
+  note = {Early large-scale text-guided diffusion and editing system; compares guidance strategies in practice.},
+  url = {https://proceedings.mlr.press/v162/nichol22a.html},
+  pdf = {https://proceedings.mlr.press/v162/nichol22a/nichol22a.pdf},
+  archiveprefix = {arXiv},
+  eprint = {2112.10741}
+}
+
+@inproceedings{meng2022sdedit,
+  author = {Meng, Chenlin and He, Yutong and Song, Yang and Song, Jiaming and Wu, Jiajun and Zhu, Jun-Yan and Ermon, Stefano},
+  title = {SDEdit: Guided Image Synthesis and Editing with Stochastic Differential Equations},
+  booktitle = {International Conference on Learning Representations},
+  year = {2022},
+  note = {A practical diffusion editing method: noise-and-denoise for realism-faithfulness trade-offs without task-specific retraining.},
+  url = {https://openreview.net/forum?id=aBsCjcPu_tE},
+  pdf = {https://openreview.net/pdf?id=aBsCjcPu_tE},
+  archiveprefix = {arXiv},
+  eprint = {2108.01073}
+}
+
+@inproceedings{ho2022videodiffusion,
+  author = {Ho, Jonathan and Salimans, Tim and Gritsenko, Alexey and Chan, William and Norouzi, Mohammad and Fleet, David J.},
+  title = {Video Diffusion Models},
+  booktitle = {Advances in Neural Information Processing Systems},
+  year = {2022},
+  note = {A foundational extension of diffusion to video generation with temporal and spatial conditioning.},
+  url = {https://proceedings.neurips.cc/paper_files/paper/2022/hash/39235c56aef13fb05a6adc95eb9d8d66-Abstract-Conference.html},
+  pdf = {https://proceedings.neurips.cc/paper_files/paper/2022/file/39235c56aef13fb05a6adc95eb9d8d66-Paper-Conference.pdf},
+  archiveprefix = {arXiv},
+  eprint = {2204.03458}
 }
 
 @techreport{luo2022diffusiontutorial,
@@ -229,6 +278,30 @@
   eprint = {2212.09748}
 }
 
+@inproceedings{poole2023dreamfusion,
+  author = {Poole, Ben and Jain, Ajay and Barron, Jonathan T. and Mildenhall, Ben},
+  title = {DreamFusion: Text-to-3D using 2D Diffusion},
+  booktitle = {International Conference on Learning Representations},
+  year = {2023},
+  note = {Introduced score distillation sampling to optimize 3D generators from a pretrained 2D diffusion prior.},
+  url = {https://openreview.net/forum?id=FjNys5c7VyY},
+  pdf = {https://openreview.net/pdf?id=FjNys5c7VyY},
+  archiveprefix = {arXiv},
+  eprint = {2209.14988}
+}
+
+@inproceedings{zhang2023controlnet,
+  author = {Zhang, Lvmin and Rao, Anyi and Agrawala, Maneesh},
+  title = {Adding Conditional Control to Text-to-Image Diffusion Models},
+  booktitle = {Proceedings of the IEEE/CVF International Conference on Computer Vision (ICCV)},
+  year = {2023},
+  note = {ControlNet: a widely adopted architecture for adding spatial controls to pretrained text-to-image diffusion models.},
+  doi = {10.1109/ICCV51070.2023.00355},
+  url = {https://openaccess.thecvf.com/content/ICCV2023/html/Zhang_Adding_Conditional_Control_to_Text-to-Image_Diffusion_Models_ICCV_2023_paper.html},
+  pdf = {https://openaccess.thecvf.com/content/ICCV2023/papers/Zhang_Adding_Conditional_Control_to_Text-to-Image_Diffusion_Models_ICCV_2023_paper.pdf},
+  pages = {3836--3847}
+}
+
 @inproceedings{liu2023rectifiedflow,
   author = {Liu, Xingchao and Gong, Chengyue and Liu, Qiang},
   title = {Flow Straight and Fast: Learning to Generate and Transfer Data with Rectified Flow},
@@ -273,6 +346,16 @@
   pdf = {https://proceedings.neurips.cc/paper_files/paper/2024/file/54dcf25318f9de5a7a01f0a4125c541e-Paper-Conference.pdf},
   archiveprefix = {arXiv},
   eprint = {2405.14867}
+}
+
+@inproceedings{geng2025consistencymadeeasy,
+  author = {Geng, Zhengyang and Pokle, Ashwini and Luo, Weijian and Lin, Justin and Kolter, J Zico},
+  title = {Consistency Models Made Easy},
+  booktitle = {International Conference on Learning Representations},
+  year = {2025},
+  note = {Easy Consistency Tuning (ECT): an efficient recipe for training/fine-tuning consistency models from diffusion checkpoints.},
+  url = {https://openreview.net/forum?id=xQVxo9dSID},
+  pdf = {https://openreview.net/pdf?id=xQVxo9dSID}
 }
 
 @inproceedings{wang2025rectifieddiffusion,
