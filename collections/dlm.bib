@@ -1,0 +1,247 @@
+% Scope (highly selective):
+% - Core diffusion language modeling and discrete diffusion papers from the 20-paper reading list.
+% - Emphasizes discrete-state foundations, masked/absorbing models, scaling, hybrid AR-diffusion designs,
+%   guidance, theory, and one adjacent learned-noise paper that is useful for noise-schedule design.
+% - Includes the main papers only; excludes the three supplementary PDFs in the local folder.
+%
+% Updated: 2026-04-03
+
+@inproceedings{austin2021d3pm,
+  author = {Austin, Jacob and Johnson, Daniel D. and Ho, Jonathan and Tarlow, Daniel and van den Berg, Rianne},
+  title = {Structured Denoising Diffusion Models in Discrete State-Spaces},
+  booktitle = {Advances in Neural Information Processing Systems},
+  year = {2021},
+  note = {D3PM: the canonical discrete-state diffusion foundation, including absorbing-state transitions for text-like data.},
+  url = {https://proceedings.neurips.cc/paper/2021/hash/958c530554f78bcd8e97125b70e6973d-Abstract.html},
+  pdf = {https://proceedings.neurips.cc/paper/2021/file/958c530554f78bcd8e97125b70e6973d-Paper.pdf},
+  archiveprefix = {arXiv},
+  eprint = {2107.03006}
+}
+
+@inproceedings{campbell2022ctdd,
+  author = {Campbell, Andrew and Rainforth, Tom and Benton, Joe and De Bortoli, Valentin and Deligiannidis, George and Doucet, Arnaud},
+  title = {A Continuous Time Framework for Discrete Denoising Models},
+  booktitle = {Advances in Neural Information Processing Systems},
+  year = {2022},
+  note = {The CTMC formulation of discrete diffusion: the main continuous-time foundation for later discrete guidance and flow work.},
+  url = {https://proceedings.neurips.cc/paper_files/paper/2022/hash/b5b528767aa35f5b1a60fe0aaeca0563-Abstract-Conference.html},
+  pdf = {https://proceedings.neurips.cc/paper_files/paper/2022/file/b5b528767aa35f5b1a60fe0aaeca0563-Paper-Conference.pdf},
+  archiveprefix = {arXiv},
+  eprint = {2205.14987}
+}
+
+@inproceedings{li2022diffusionlm,
+  author = {Li, Xiang Lisa and Thickstun, John and Liang, Percy and Gulrajani, Ishaan and Hashimoto, Tatsunori B.},
+  title = {Diffusion-LM Improves Controllable Text Generation},
+  booktitle = {Advances in Neural Information Processing Systems},
+  year = {2022},
+  note = {An influential continuous-text diffusion paper centered on gradient-based controllable generation.},
+  url = {https://proceedings.neurips.cc/paper_files/paper/2022/hash/1be5bc25d50895ee656b8c2d9eb89d6a-Abstract-Conference.html},
+  pdf = {https://proceedings.neurips.cc/paper_files/paper/2022/file/1be5bc25d50895ee656b8c2d9eb89d6a-Paper-Conference.pdf},
+  archiveprefix = {arXiv},
+  eprint = {2205.14217}
+}
+
+@inproceedings{shi2024maskedgeneralized,
+  author = {Shi, Jiaxin and Han, Kehang and Wang, Zhe and Doucet, Arnaud and Titsias, Michalis K.},
+  title = {Simplified and Generalized Masked Diffusion for Discrete Data},
+  booktitle = {Advances in Neural Information Processing Systems},
+  year = {2024},
+  note = {A clean modern formulation of masked diffusion: simplified ELBO, unified view, and generalized masking schedules.},
+  url = {https://proceedings.neurips.cc/paper_files/paper/2024/hash/bad233b9849f019aead5e5cc60cef70f-Abstract-Conference.html},
+  pdf = {https://proceedings.neurips.cc/paper_files/paper/2024/file/bad233b9849f019aead5e5cc60cef70f-Paper-Conference.pdf},
+  archiveprefix = {arXiv},
+  eprint = {2406.04329}
+}
+
+@inproceedings{sahoo2024mdlm,
+  author = {Sahoo, Subham Sekhar and Arriola, Marianne and Schiff, Yair and Gokaslan, Aaron and Marroquin, Edgar and Chiu, Justin T. and Rush, Alexander and Kuleshov, Volodymyr},
+  title = {Simple and Effective Masked Diffusion Language Models},
+  booktitle = {Advances in Neural Information Processing Systems},
+  year = {2024},
+  note = {MDLM: a strong practical recipe for masked diffusion language modeling with a simplified Rao-Blackwellized objective.},
+  url = {https://proceedings.neurips.cc/paper_files/paper/2024/hash/eb0b13cc515724ab8015bc978fdde0ad-Abstract-Conference.html},
+  pdf = {https://proceedings.neurips.cc/paper_files/paper/2024/file/eb0b13cc515724ab8015bc978fdde0ad-Paper-Conference.pdf},
+  archiveprefix = {arXiv},
+  eprint = {2406.07524}
+}
+
+@inproceedings{lou2024sedd,
+  author = {Lou, Aaron and Meng, Chenlin and Ermon, Stefano},
+  title = {Discrete Diffusion Modeling by Estimating the Ratios of the Data Distribution},
+  booktitle = {International Conference on Machine Learning},
+  year = {2024},
+  note = {SEDD: discrete diffusion via score entropy and ratio estimation, a major likelihood-focused baseline for text diffusion.},
+  url = {https://proceedings.mlr.press/v235/lou24a.html},
+  pdf = {https://raw.githubusercontent.com/mlresearch/v235/main/assets/lou24a/lou24a.pdf},
+  archiveprefix = {arXiv},
+  eprint = {2310.16834}
+}
+
+@inproceedings{ou2025radd,
+  author = {Ou, Jingyang and Nie, Shen and Xue, Kaiwen and Zhu, Fengqi and Sun, Jiacheng and Li, Zhenguo and Li, Chongxuan},
+  title = {Your Absorbing Discrete Diffusion Secretly Models the Conditional Distributions of Clean Data},
+  booktitle = {International Conference on Learning Representations},
+  year = {2025},
+  note = {RADD: reinterprets absorbing diffusion via clean-data conditionals and connects it to any-order autoregressive models.},
+  url = {https://proceedings.iclr.cc/paper_files/paper/2025/hash/a365e37c18fb91af547a2f0012a89e98-Abstract-Conference.html},
+  pdf = {https://proceedings.iclr.cc/paper_files/paper/2025/file/a365e37c18fb91af547a2f0012a89e98-Paper-Conference.pdf},
+  archiveprefix = {arXiv},
+  eprint = {2406.03736}
+}
+
+@inproceedings{nie2025scalingmdm,
+  author = {Nie, Shen and Zhu, Fengqi and Du, Chao and Pang, Tianyu and Liu, Qian and Zeng, Guangtao and Lin, Min and Li, Chongxuan},
+  title = {Scaling Up Masked Diffusion Models on Text},
+  booktitle = {International Conference on Learning Representations},
+  year = {2025},
+  note = {The first focused scaling-law paper for masked diffusion text models, plus a strong large-scale MDM empirical study.},
+  url = {https://proceedings.iclr.cc/paper_files/paper/2025/hash/ce1c1ff5d94079dea348a2317a889281-Abstract-Conference.html},
+  pdf = {https://proceedings.iclr.cc/paper_files/paper/2025/file/ce1c1ff5d94079dea348a2317a889281-Paper-Conference.pdf},
+  archiveprefix = {arXiv},
+  eprint = {2410.18514}
+}
+
+@inproceedings{nie2025llada,
+  author = {Nie, Shen and Zhu, Fengqi and You, Zebin and Zhang, Xiaolu and Ou, Jingyang and Hu, Jun and Zhou, Jun and Lin, Yankai and Wen, Ji-Rong and Li, Chongxuan},
+  title = {Large Language Diffusion Models},
+  booktitle = {Advances in Neural Information Processing Systems},
+  year = {2025},
+  note = {LLaDA: a large masked diffusion language model trained from scratch and fine-tuned in an LLM-style pipeline.},
+  url = {https://nips.cc/virtual/2025/poster/118608},
+  pdf = {https://arxiv.org/pdf/2502.09992.pdf},
+  archiveprefix = {arXiv},
+  eprint = {2502.09992}
+}
+
+@inproceedings{gong2025diffullama,
+  author = {Gong, Shansan and Agarwal, Shivam and Zhang, Yizhe and Ye, Jiacheng and Zheng, Lin and Li, Mukai and An, Chenxin and Zhao, Peilin and Bi, Wei and Han, Jiawei and Peng, Hao and Kong, Lingpeng},
+  title = {Scaling Diffusion Language Models via Adaptation from Autoregressive Models},
+  booktitle = {International Conference on Learning Representations},
+  year = {2025},
+  note = {DiffuLLaMA: adapts pretrained autoregressive LMs into diffusion LMs instead of training large DLMs from scratch.},
+  url = {https://proceedings.iclr.cc/paper_files/paper/2025/hash/0fa81c3f0d57f95b8776de3a248ef0ed-Abstract-Conference.html},
+  pdf = {https://proceedings.iclr.cc/paper_files/paper/2025/file/0fa81c3f0d57f95b8776de3a248ef0ed-Paper-Conference.pdf},
+  archiveprefix = {arXiv},
+  eprint = {2410.17891}
+}
+
+@misc{ye2025dream7b,
+  author = {Ye, Jiacheng and Xie, Zhihui and Zheng, Lin and Gao, Jiahui and Wu, Zirui and Jiang, Xin and Li, Zhenguo and Kong, Lingpeng},
+  title = {Dream 7B: Diffusion Large Language Models},
+  howpublished = {arXiv preprint},
+  year = {2025},
+  note = {An open 7B-scale diffusion LLM emphasizing strong general-task performance, planning ability, and flexible inference.},
+  url = {https://arxiv.org/abs/2508.15487},
+  pdf = {https://arxiv.org/pdf/2508.15487.pdf},
+  archiveprefix = {arXiv},
+  eprint = {2508.15487}
+}
+
+@inproceedings{arriola2025blockdiffusion,
+  author = {Arriola, Marianne and Qi, Zhixuan and Gokaslan, Aaron Kerem and Han, Jiaqi and Chiu, Justin T. and Sahoo, Subham Sekhar and Yang, Zhihan and Kuleshov, Volodymyr},
+  title = {Block Diffusion: Interpolating Between Autoregressive and Diffusion Language Models},
+  booktitle = {International Conference on Learning Representations},
+  year = {2025},
+  note = {BD3-LMs: a semi-autoregressive blockwise hybrid that restores arbitrary-length generation and KV-cached inference.},
+  url = {https://proceedings.iclr.cc/paper_files/paper/2025/hash/7ede97c3e082c6df10a8d6103a2eebd2-Abstract-Conference.html},
+  pdf = {https://proceedings.iclr.cc/paper_files/paper/2025/file/7ede97c3e082c6df10a8d6103a2eebd2-Paper-Conference.pdf},
+  archiveprefix = {arXiv},
+  eprint = {2503.09573}
+}
+
+@misc{sahoo2026esolms,
+  author = {Sahoo, Subham Sekhar and Yang, Zhihan and Akhauri, Yash and Liu, Johnna and Singh, Deepansha and Cheng, Zhoujun and Liu, Zhengzhong and Xing, Eric and Thickstun, John and Vahdat, Arash},
+  title = {Esoteric Language Models: Bridging Autoregressive and Masked Diffusion LLMs},
+  howpublished = {arXiv preprint},
+  year = {2026},
+  note = {Eso-LMs: a causal-attention hybrid family that brings exact likelihoods and exact KV caching to masked diffusion LMs.},
+  url = {https://arxiv.org/abs/2506.01928},
+  pdf = {https://arxiv.org/pdf/2506.01928.pdf},
+  archiveprefix = {arXiv},
+  eprint = {2506.01928}
+}
+
+@misc{zhao2025d1,
+  author = {Zhao, Siyan and Gupta, Devaansh and Zheng, Qinqing and Grover, Aditya},
+  title = {d1: Scaling Reasoning in Diffusion Large Language Models via Reinforcement Learning},
+  howpublished = {arXiv preprint},
+  year = {2025},
+  note = {A post-training paper for diffusion LLM reasoning, introducing masked SFT and diffusion-aware GRPO-style RL.},
+  url = {https://arxiv.org/abs/2504.12216},
+  pdf = {https://arxiv.org/pdf/2504.12216.pdf},
+  archiveprefix = {arXiv},
+  eprint = {2504.12216}
+}
+
+@inproceedings{schiff2025simpleguidance,
+  author = {Schiff, Yair and Sahoo, Subham Sekhar and Phung, Hao and Wang, Guanghan and Rush, Alexander and Kuleshov, Volodymyr and Dalla-Torre, Hugo and Boshar, Sam and de Almeida, Bernardo P. and Pierrot, Thomas},
+  title = {Simple Guidance Mechanisms for Discrete Diffusion Models},
+  booktitle = {International Conference on Learning Representations},
+  year = {2025},
+  note = {A practical guidance paper for discrete diffusion, including classifier-free and classifier-based guidance plus uniform-noise models.},
+  url = {https://proceedings.iclr.cc/paper_files/paper/2025/hash/6cc31b44d88dce8380d36e81485cd07f-Abstract-Conference.html},
+  pdf = {https://proceedings.iclr.cc/paper_files/paper/2025/file/6cc31b44d88dce8380d36e81485cd07f-Paper-Conference.pdf},
+  archiveprefix = {arXiv},
+  eprint = {2412.10193}
+}
+
+@inproceedings{nisonoff2025discreteguidance,
+  author = {Nisonoff, Hunter and Xiong, Junhao and Allenspach, Stephan and Listgarten, Jennifer},
+  title = {Unlocking Guidance for Discrete State-Space Diffusion and Flow Models},
+  booktitle = {International Conference on Learning Representations},
+  year = {2025},
+  note = {A principled CTMC-based guidance framework for discrete diffusion and flow models, especially relevant in scientific domains.},
+  url = {https://proceedings.iclr.cc/paper_files/paper/2025/hash/597254dc45be8c166d3ccf0ba2d56325-Abstract-Conference.html},
+  pdf = {https://proceedings.iclr.cc/paper_files/paper/2025/file/597254dc45be8c166d3ccf0ba2d56325-Paper-Conference.pdf},
+  archiveprefix = {arXiv},
+  eprint = {2406.01572}
+}
+
+@misc{feng2025dlmtheory,
+  author = {Feng, Guhao and Geng, Yihan and Guan, Jian and Wu, Wei and Wang, Liwei and He, Di},
+  title = {Theoretical Benefit and Limitation of Diffusion Language Model},
+  howpublished = {arXiv preprint},
+  year = {2025},
+  note = {A theory paper on when masked diffusion can or cannot deliver an inference-efficiency advantage over autoregression.},
+  url = {https://arxiv.org/abs/2502.09622},
+  pdf = {https://arxiv.org/pdf/2502.09622.pdf},
+  archiveprefix = {arXiv},
+  eprint = {2502.09622}
+}
+
+@inproceedings{vonrutte2026scalingbehavior,
+  author = {von R{\"u}tte, Dimitri and Fluri, Janis and Pooladzandi, Omead and Sch{\"o}lkopf, Bernhard and Hofmann, Thomas and Orvieto, Antonio},
+  title = {Scaling Behavior of Discrete Diffusion Language Models},
+  booktitle = {International Conference on Learning Representations},
+  year = {2026},
+  note = {A scaling-laws paper contrasting masked and uniform diffusion and arguing that noise type materially changes DLM scaling behavior.},
+  url = {https://openreview.net/forum?id=GDYaNzxt9T},
+  pdf = {https://openreview.net/pdf?id=GDYaNzxt9T},
+  archiveprefix = {arXiv},
+  eprint = {2512.10858}
+}
+
+@inproceedings{sahoo2025duo,
+  author = {Sahoo, Subham Sekhar and Deschenaux, Justin and Gokaslan, Aaron and Wang, Guanghan and Chiu, Justin T. and Kuleshov, Volodymyr},
+  title = {The Diffusion Duality},
+  booktitle = {International Conference on Machine Learning},
+  year = {2025},
+  note = {Duo: links uniform-state discrete diffusion to underlying Gaussian diffusion and transfers training/distillation tricks across the bridge.},
+  url = {https://proceedings.mlr.press/v267/sahoo25a.html},
+  pdf = {https://raw.githubusercontent.com/mlresearch/v267/main/assets/sahoo25a/sahoo25a.pdf},
+  archiveprefix = {arXiv},
+  eprint = {2506.10892}
+}
+
+@inproceedings{sahoo2024mulan,
+  author = {Sahoo, Subham Sekhar and Gokaslan, Aaron and De Sa, Chris and Kuleshov, Volodymyr},
+  title = {Diffusion Models With Learned Adaptive Noise},
+  booktitle = {Advances in Neural Information Processing Systems},
+  year = {2024},
+  note = {MuLAN: an adjacent but useful paper on learned diffusion processes and adaptive noise schedules, relevant for later DLM noise-design ideas.},
+  url = {https://proceedings.neurips.cc/paper_files/paper/2024/hash/bee43378b65ec195a67f24709469dcaf-Abstract-Conference.html},
+  pdf = {https://proceedings.neurips.cc/paper_files/paper/2024/file/bee43378b65ec195a67f24709469dcaf-Paper-Conference.pdf},
+  archiveprefix = {arXiv},
+  eprint = {2312.13236}
+}
