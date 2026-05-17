@@ -5,6 +5,8 @@ import tomllib
 from pathlib import Path
 from typing import Any
 
+from core.runtime_paths import bibops_runtime_path
+
 from .models import IntakeTarget
 
 DEFAULT_CONFIG_PATH = Path("ops/intake-pipeline.toml")
@@ -147,7 +149,14 @@ def _default_config(path: Path) -> IntakeConfig:
                         "publisher": "OpenReview.net",
                         "require_venue": True,
                     },
-                )
+                ),
+                AdapterBinding(
+                    name="icml_virtual_catalog",
+                    params={
+                        "booktitle": "ICML",
+                        "publisher": "OpenReview.net",
+                    },
+                ),
             ],
             default_booktitle="ICML",
             default_publisher="OpenReview.net",
@@ -155,9 +164,9 @@ def _default_config(path: Path) -> IntakeConfig:
     }
     return IntakeConfig(
         config_path=path,
-        report_dir=Path("ops/intake-runs"),
-        triage_dir=Path("ops/unresolved/intake"),
-        snapshot_dir=Path("ops/intake-snapshots"),
+        report_dir=bibops_runtime_path("intake-runs"),
+        triage_dir=bibops_runtime_path("unresolved", "intake"),
+        snapshot_dir=bibops_runtime_path("intake-snapshots"),
         global_key_globs=[
             "books/**/*.bib",
             "conferences/**/*.bib",
@@ -168,7 +177,7 @@ def _default_config(path: Path) -> IntakeConfig:
             "presentations/**/*.bib",
         ],
         inline_issue_limit=200,
-        source_cache_path=Path("ops/intake-source-cache.json"),
+        source_cache_path=bibops_runtime_path("intake-source-cache.json"),
         timeout_seconds=20.0,
         max_retries=2,
         max_validation_retries=4,
@@ -177,6 +186,7 @@ def _default_config(path: Path) -> IntakeConfig:
             "openreview.net": 0.5,
             "api.openreview.net": 1.1,
             "api2.openreview.net": 1.1,
+            "icml.cc": 0.2,
             "proceedings.neurips.cc": 0.2,
             "proceedings.mlr.press": 0.2,
         },

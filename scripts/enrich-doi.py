@@ -16,19 +16,17 @@ from difflib import SequenceMatcher
 from pathlib import Path
 from typing import Any
 
-import bibtexparser
 import requests
-from bibtexparser.bparser import BibTexParser
-from bibtexparser.bwriter import BibTexWriter
-from bibtexparser.customization import convert_to_unicode
+from core.bibtex_io import parse_bib_file, write_bib_file
+from core.runtime_paths import bibops_runtime_path
 from requests.adapters import HTTPAdapter
 from urllib3.util import Retry
 
 CROSSREF_WORKS_URL = "https://api.crossref.org/works"
 OPENALEX_WORKS_URL = "https://api.openalex.org/works"
 
-DEFAULT_CACHE_PATH = Path("ops/doi-lookup-cache.json")
-DEFAULT_REPORT_PATH = Path("ops/doi-enrichment-report.jsonl")
+DEFAULT_CACHE_PATH = bibops_runtime_path("doi-lookup-cache.json")
+DEFAULT_REPORT_PATH = bibops_runtime_path("doi-enrichment-report.jsonl")
 
 MAX_TITLE_QUERY_CHARS = 256
 MAX_CROSSREF_RESULTS = 12
@@ -523,19 +521,11 @@ def set_doi_fields(entry: dict[str, Any], match: MatchResult) -> None:
 
 
 def load_bib(path: Path) -> Any:
-    parser = BibTexParser(common_strings=True)
-    parser.customization = convert_to_unicode
-    parser.ignore_nonstandard_types = False
-    with path.open("r", encoding="utf-8") as f:
-        return bibtexparser.load(f, parser=parser)
+    return parse_bib_file(path)
 
 
 def write_bib(path: Path, db: Any) -> None:
-    writer = BibTexWriter()
-    writer.indent = "  "
-    writer.order_entries_by = None
-    writer.align_values = False
-    path.write_text(writer.write(db), encoding="utf-8")
+    write_bib_file(path, db)
 
 
 def iter_file_paths(patterns: list[str]) -> list[Path]:

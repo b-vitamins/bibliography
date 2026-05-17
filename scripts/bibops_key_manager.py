@@ -20,6 +20,7 @@ from core.bibkey import (
     validate_bib_key,
 )
 from core.bibtex_io import parse_bib_file, transactional_write_bib_file
+from core.runtime_paths import bibops_runtime_path
 
 
 @dataclasses.dataclass
@@ -33,7 +34,9 @@ class KeyNormalizeOptions:
     fail_on_issues: bool = False
     detail_limit: int = 200
     backup: bool = True
-    rollback_dir: Path | None = Path("ops/key-normalize-rollbacks")
+    rollback_dir: Path | None = dataclasses.field(
+        default_factory=lambda: bibops_runtime_path("key-normalize-rollbacks")
+    )
 
 
 @dataclasses.dataclass

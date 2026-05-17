@@ -19,27 +19,18 @@ import sys
 import tempfile
 from pathlib import Path
 
-import bibtexparser
-from bibtexparser.bparser import BibTexParser
-from bibtexparser.customization import convert_to_unicode
+from core.bibtex_io import make_bib_database, parse_bib_file, render_bib_database
 
 
 def extract_entry_by_key(file_path: str, entry_key: str) -> str | None:
     """Extract a single entry from a BibTeX file by its key."""
-    parser = BibTexParser()
-    parser.customization = convert_to_unicode  # type: ignore[attr-defined]
-
     try:
-        with open(file_path, "r", encoding="utf-8") as f:
-            content = f.read()
-        bib_db = bibtexparser.loads(content, parser=parser)
+        bib_db = parse_bib_file(Path(file_path))
 
         for entry in bib_db.entries:
             if entry.get("ID") == entry_key:
-                # Create a temporary database with just this entry
-                temp_db = bibtexparser.bibdatabase.BibDatabase()
-                temp_db.entries = [entry]
-                return bibtexparser.dumps(temp_db)
+                temp_db = make_bib_database(entries=[entry])
+                return render_bib_database(temp_db)
 
         return None
     except Exception as e:

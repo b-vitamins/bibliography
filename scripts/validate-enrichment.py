@@ -24,9 +24,7 @@ from urllib.parse import urlparse
 from urllib.request import Request, urlopen
 from urllib.error import HTTPError, URLError
 
-import bibtexparser
-from bibtexparser.bparser import BibTexParser
-from bibtexparser.customization import convert_to_unicode  # type: ignore[import-untyped]
+from core.bibtex_io import parse_bib_file
 
 
 # Mandatory fields by entry type
@@ -390,19 +388,14 @@ def main() -> None:
 
     # Parse BibTeX file
     try:
-        parser_obj = BibTexParser(common_strings=True)
-        parser_obj.customization = convert_to_unicode  # type: ignore[attr-defined]
-        parser_obj.ignore_nonstandard_types = False  # type: ignore[attr-defined]
-
-        with open(file_path, "r", encoding="utf-8") as f:
-            bib_db = bibtexparser.load(f, parser=parser_obj)  # type: ignore[no-untyped-call]
+        bib_db = parse_bib_file(file_path)
     except Exception as e:
         print(f"Error parsing BibTeX file: {e}", file=sys.stderr)
         sys.exit(1)
 
     # Filter entries if specific key requested
     if args.entry_key:
-        entries = [e for e in bib_db.entries if e.get("ID") == args.entry_key]  # type: ignore[arg-type]
+        entries = [e for e in bib_db.entries if e.get("ID") == args.entry_key]
         if not entries:
             print(
                 f"Error: Entry '{args.entry_key}' not found in {file_path}",
@@ -410,7 +403,7 @@ def main() -> None:
             )
             sys.exit(1)
     else:
-        entries = bib_db.entries  # type: ignore[assignment]
+        entries = bib_db.entries
 
     # Validate entries
     results: list[ValidationResult] = []

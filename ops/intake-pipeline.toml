@@ -1,15 +1,11 @@
 [defaults]
-report_dir = "ops/intake-runs"
-triage_dir = "ops/unresolved/intake"
-snapshot_dir = "ops/intake-snapshots"
-source_cache_path = "ops/intake-source-cache.json"
 global_key_globs = ["books/**/*.bib", "conferences/**/*.bib", "collections/**/*.bib", "references/**/*.bib", "courses/**/*.bib", "theses/**/*.bib", "presentations/**/*.bib"]
 inline_issue_limit = 200
 timeout_seconds = 20.0
 max_retries = 2
 max_validation_retries = 4
 host_min_interval_seconds = 1.0
-host_min_interval_by_host = { "openreview.net" = 0.5, "api.openreview.net" = 1.1, "api2.openreview.net" = 1.1, "proceedings.neurips.cc" = 0.2, "proceedings.mlr.press" = 0.2 }
+host_min_interval_by_host = { "openreview.net" = 0.5, "api.openreview.net" = 1.1, "api2.openreview.net" = 1.1, "icml.cc" = 0.2, "proceedings.neurips.cc" = 0.2, "proceedings.mlr.press" = 0.2 }
 host_circuit_breaker_threshold = 0
 host_circuit_breaker_cooldown_seconds = 0.0
 backoff_base_seconds = 1.0
@@ -66,6 +62,12 @@ conference_track = "Conference"
 booktitle = "ICML"
 publisher = "OpenReview.net"
 require_venue = true
+
+[[venues.adapters]]
+name = "icml_virtual_catalog"
+[venues.adapters.params]
+booktitle = "ICML"
+publisher = "OpenReview.net"
 
 [[venues.adapters]]
 name = "pmlr_volume_catalog"

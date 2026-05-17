@@ -13,8 +13,7 @@ import argparse
 import sys
 from pathlib import Path
 
-import bibtexparser
-from bibtexparser.bwriter import BibTexWriter
+from core.bibtex_io import parse_bib_text, write_bib_file
 
 
 def get_entry_year(entry: dict) -> int:
@@ -40,11 +39,7 @@ def process_file(filepath: Path, in_place: bool = False) -> bool:
         with open(filepath, "r", encoding="utf-8") as f:
             content = f.read()
 
-        # Parse BibTeX
-        parser = bibtexparser.bparser.BibTexParser()
-        parser.ignore_nonstandard_types = False  # type: ignore
-        parser.homogenize_fields = False  # type: ignore
-        bib_db = bibtexparser.loads(content, parser)
+        bib_db = parse_bib_text(content)
 
         if not bib_db.entries:
             print(f"✓ {filepath}: No entries to sort", file=sys.stderr)
@@ -62,12 +57,10 @@ def process_file(filepath: Path, in_place: bool = False) -> bool:
         sorted_entries = sort_entries_by_year(bib_db.entries)
         bib_db.entries = sorted_entries
 
-        # Write output
-        writer = BibTexWriter()
-        writer.indent = "  "
-        writer.order_entries_by = None  # type: ignore  # Preserve our sort order
-        writer.align_values = False
-        output = bibtexparser.dumps(bib_db, writer)
+        temp_path = filepath.with_suffix(".bib.sort.tmp")
+        write_bib_file(temp_path, bib_db)
+        output = temp_path.read_text(encoding="utf-8")
+        temp_path.unlink(missing_ok=True)
 
         if in_place:
             # Create backup
@@ -160,10 +153,7 @@ def main():
             try:
                 with open(filepath, "r", encoding="utf-8") as f:
                     content = f.read()
-                parser = bibtexparser.bparser.BibTexParser()
-                parser.ignore_nonstandard_types = False  # type: ignore
-                parser.homogenize_fields = False  # type: ignore
-                bib_db = bibtexparser.loads(content, parser)
+                bib_db = parse_bib_text(content)
 
                 original_years = [get_entry_year(e) for e in bib_db.entries]
                 sorted_years = sorted(original_years, reverse=True)

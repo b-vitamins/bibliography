@@ -7,9 +7,9 @@ Use this when enriching conference bibliographies at scale while preserving sour
 
 ## Execute
 
-1. Plan candidate updates: `python3 scripts/enrich-pipeline.py plan <file.bib> --out ops/enrichment-plan.json`.
+1. Plan candidate updates: `python3 scripts/enrich-pipeline.py plan <file.bib> --out tmp/bibops/enrichment-plan.json`.
 2. Execute dry run first: `python3 scripts/enrich-pipeline.py run <file.bib> --fail-on-unresolved`.
-3. Review unresolved queue in `ops/unresolved/enrichment/` and resolve conflicts entry-by-entry.
+3. Review unresolved queue in `tmp/bibops/unresolved/enrichment/` and resolve conflicts entry-by-entry.
 4. Apply approved updates with write mode: `python3 scripts/enrich-pipeline.py run <file.bib> --write`.
 5. Finish with `python3 scripts/bibops.py lint`.
 
@@ -22,5 +22,5 @@ Use this when enriching conference bibliographies at scale while preserving sour
 ## Configuration
 
 - Default config: `ops/enrichment-pipeline.toml`
-- Report output: `ops/enrichment-runs/`
-- Unresolved queue: `ops/unresolved/enrichment/`
+- Report output: `tmp/bibops/enrichment-runs/`
+- Unresolved queue: `tmp/bibops/unresolved/enrichment/`

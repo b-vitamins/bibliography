@@ -14,9 +14,7 @@ from difflib import SequenceMatcher
 from pathlib import Path
 from typing import Any
 
-import bibtexparser
-from bibtexparser.bparser import BibTexParser
-from bibtexparser.customization import convert_to_unicode
+from core.bibtex_io import parse_bib_file
 
 PDF_HEADER = b"%PDF-"
 
@@ -72,11 +70,7 @@ def iter_bib_files(patterns: list[str]) -> list[Path]:
 
 
 def parse_bib(path: Path) -> Any:
-    parser = BibTexParser(common_strings=True)
-    parser.customization = convert_to_unicode
-    parser.ignore_nonstandard_types = False
-    text = path.read_text(encoding="utf-8")
-    return bibtexparser.loads(text, parser=parser)
+    return parse_bib_file(path)
 
 
 def normalize_text(s: str) -> str:

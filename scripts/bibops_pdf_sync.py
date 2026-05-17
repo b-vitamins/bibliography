@@ -24,11 +24,9 @@ from pathlib import Path
 from typing import Any, Callable
 from urllib.parse import parse_qs, quote, urlparse
 
-import bibtexparser
 import requests
-from bibtexparser.bparser import BibTexParser
-from bibtexparser.bwriter import BibTexWriter
-from bibtexparser.customization import convert_to_unicode
+from core.bibtex_io import parse_bib_file, write_bib_file
+from core.runtime_paths import bibops_runtime_path
 from requests.adapters import HTTPAdapter
 from urllib3.util.retry import Retry
 
@@ -115,7 +113,9 @@ class PdfSyncOptions:
     backoff_jitter_seconds: float = 0.4
     host_default_min_interval_seconds: float = 0.8
     host_min_interval_seconds_by_host: dict[str, float] = dataclasses.field(default_factory=dict)
-    checkpoint_path: Path | None = Path("ops/pdf-sync-checkpoint.json")
+    checkpoint_path: Path | None = dataclasses.field(
+        default_factory=lambda: bibops_runtime_path("pdf-sync-checkpoint.json")
+    )
     resume: bool = True
     retry_failures: bool = False
     progress_log: Path | None = None
@@ -159,24 +159,11 @@ def now_iso() -> str:
 
 
 def parse_bib(path: Path):
-    data = path.read_text(encoding="utf-8")
-    parser = BibTexParser(common_strings=True)
-    parser.customization = convert_to_unicode
-    parser.ignore_nonstandard_types = False
-    try:
-        return bibtexparser.loads(data, parser=parser)
-    except Exception:
-        parser_fallback = BibTexParser(common_strings=True)
-        parser_fallback.ignore_nonstandard_types = False
-        return bibtexparser.loads(data, parser=parser_fallback)
+    return parse_bib_file(path)
 
 
 def write_bib(path: Path, bib_db: Any) -> None:
-    writer = BibTexWriter()
-    writer.indent = "  "
-    writer.order_entries_by = None  # type: ignore[assignment]
-    writer.align_values = False
-    path.write_text(writer.write(bib_db), encoding="utf-8")
+    write_bib_file(path, bib_db)
 
 
 def parse_file_field(field_value: str | None) -> tuple[str | None, str | None]:
@@ -445,6 +432,7 @@ def looks_like_pdf_url(url: str) -> bool:
 def build_candidate_urls(entry: dict[str, Any], smart: bool) -> list[str]:
     pdf_url = str(entry.get("pdf", "")).strip()
     url_field = str(entry.get("url", "")).strip()
+    openreview_field = str(entry.get("openreview", "")).strip()
     arxiv_field = str(entry.get("arxiv", "")).strip()
     doi_field = entry_doi(entry)
 
@@ -471,11 +459,17 @@ def build_candidate_urls(entry: dict[str, Any], smart: bool) -> list[str]:
         add(f"https://doi.org/{doi_field}", strong=False)
 
     if smart:
-        for raw in (pdf_url, url_field, arxiv_field, f"https://doi.org/{doi_field}" if doi_field else ""):
+        for raw in (
+            pdf_url,
+            url_field,
+            openreview_field,
+            arxiv_field,
+            f"https://doi.org/{doi_field}" if doi_field else "",
+        ):
             for derived in derive_urls(raw, context_url=url_field):
                 add(derived, strong=True)
 
-    for raw in (url_field, arxiv_field, f"https://doi.org/{doi_field}" if doi_field else ""):
+    for raw in (url_field, openreview_field, arxiv_field, f"https://doi.org/{doi_field}" if doi_field else ""):
         normalized = normalize_url(raw, fallback_base_url=url_field)
         if not normalized:
             continue
@@ -1284,7 +1278,7 @@ def process_entry(
             bib_file=str(bib_file),
             key=key,
             status="no_source",
-            message="no candidate URLs from pdf/url/arxiv fields",
+            message="no candidate URLs from pdf/url/openreview/arxiv fields",
             target_path=str(target_path),
         )
         record_checkpoint(outcome)

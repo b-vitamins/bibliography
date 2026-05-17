@@ -6,6 +6,8 @@ import os
 import tomllib
 from pathlib import Path
 
+from core.runtime_paths import bibops_runtime_path
+
 DEFAULT_CONFIG_PATH = Path("ops/enrichment-pipeline.toml")
 DEFAULT_EXCEPTIONS_PATH = Path("ops/enrichment-exceptions.toml")
 DEFAULT_DOTENV_PATH = Path(".env")
@@ -190,9 +192,9 @@ def _default_config(path: Path) -> PipelineConfig:
         overwrite_existing=False,
         min_abstract_words=25,
         allow_abstract_prefix_match=False,
-        report_dir=Path("ops/enrichment-runs"),
-        triage_dir=Path("ops/unresolved/enrichment"),
-        source_cache_path=Path("ops/enrichment-source-cache.json"),
+        report_dir=bibops_runtime_path("enrichment-runs"),
+        triage_dir=bibops_runtime_path("unresolved", "enrichment"),
+        source_cache_path=bibops_runtime_path("enrichment-source-cache.json"),
         openalex_mailto="",
         openalex_api_key=_env_or_dotenv("OPENALEX_API_KEY", ""),
         semantic_scholar_api_key=_env_or_dotenv("SEMANTIC_SCHOLAR_API_KEY", ""),
@@ -222,7 +224,7 @@ def _default_config(path: Path) -> PipelineConfig:
         backoff_base_seconds=1.0,
         backoff_max_seconds=30.0,
         user_agent="bibliography-enrichment-pipeline/1.0",
-        checkpoint_dir=Path("ops/enrichment-checkpoints"),
+        checkpoint_dir=bibops_runtime_path("enrichment-checkpoints"),
         checkpoint_flush_every=20,
         venues=[
             VenuePolicy(

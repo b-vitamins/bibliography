@@ -13,9 +13,7 @@ import tempfile
 import time
 from pathlib import Path
 
-import bibtexparser
-from bibtexparser.bparser import BibTexParser
-from bibtexparser.bwriter import BibTexWriter
+from core.bibtex_io import parse_bib_file, write_bib_file
 
 REPO = Path(__file__).resolve().parents[2]
 
@@ -57,9 +55,7 @@ def parse_json_output(proc: subprocess.CompletedProcess[str]) -> dict[str, objec
 
 
 def entry_field(path: Path, entry_key: str, field: str) -> str:
-    parser = BibTexParser(common_strings=True)
-    parser.ignore_nonstandard_types = False
-    db = bibtexparser.loads(path.read_text(encoding="utf-8"), parser=parser)
+    db = parse_bib_file(path)
     for entry in db.entries:
         if str(entry.get("ID", "")) == entry_key:
             return str(entry.get(field, "")).strip()
@@ -387,9 +383,7 @@ def run_battle_tests(mode: str) -> dict[str, object]:
         stale_key = "DBLP:conf:icml:0001AKP20"
         stale_url = "https://proceedings.mlr.press/v119/zzzzzzzzzzzzzzzz.html"
 
-        parser = BibTexParser(common_strings=True)
-        parser.ignore_nonstandard_types = False
-        db = bibtexparser.loads((REPO / "conferences/icml/2020.bib").read_text(encoding="utf-8"), parser=parser)
+        db = parse_bib_file(REPO / "conferences/icml/2020.bib")
 
         found = False
         for entry in db.entries:
@@ -400,10 +394,7 @@ def run_battle_tests(mode: str) -> dict[str, object]:
                 found = True
                 break
 
-        writer = BibTexWriter()
-        writer.indent = "  "
-        writer.order_entries_by = None
-        icml_copy.write_text(writer.write(db), encoding="utf-8")
+        write_bib_file(icml_copy, db)
 
         if found:
             before_url = entry_field(icml_copy, stale_key, "url")
@@ -687,9 +678,9 @@ allowed_domains = ["openreview.net"]
 overwrite_existing = true
 min_abstract_words = 10000
 allow_abstract_prefix_match = false
-report_dir = "ops/enrichment-runs"
-triage_dir = "ops/unresolved/enrichment"
-source_cache_path = "ops/enrichment-source-cache.json"
+report_dir = "tmp/bibops/enrichment-runs"
+triage_dir = "tmp/bibops/unresolved/enrichment"
+source_cache_path = "tmp/bibops/enrichment-source-cache.json"
 timeout_seconds = 20
 max_retries = 2
 max_validation_retries = 4
@@ -930,7 +921,7 @@ def main() -> int:
     )
     parser.add_argument(
         "--out",
-        default="ops/enrichment-runs/battle-test-report.json",
+        default="tmp/bibops/enrichment-runs/battle-test-report.json",
         help="Report output path",
     )
     args = parser.parse_args()

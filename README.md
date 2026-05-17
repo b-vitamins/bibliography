@@ -110,6 +110,8 @@ These are designed with progressive disclosure and can be invoked explicitly or 
 - Derived oral subsets live in `collections/orals/<venue>/<year>.bib`.
 - File-level repository metadata resolves through `meta/bibmeta.toml`; see
   [`references/bibmeta-contract.md`](references/bibmeta-contract.md).
+- Reusable operations policy lives in `ops/`; transient run artifacts default
+  to `tmp/bibops/`.
 - Local operational state and enrichment tracking use `bibliography.db`.
 - Version-controlled tracking snapshot is `tracking.json`.
 

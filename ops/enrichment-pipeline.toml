@@ -2,9 +2,6 @@
 overwrite_existing = false
 min_abstract_words = 25
 allow_abstract_prefix_match = false
-report_dir = "ops/enrichment-runs"
-triage_dir = "ops/unresolved/enrichment"
-source_cache_path = "ops/enrichment-source-cache.json"
 exceptions_path = "ops/enrichment-exceptions.toml"
 timeout_seconds = 20
 max_retries = 2
@@ -16,7 +13,6 @@ host_circuit_breaker_cooldown_seconds = 0.0
 backoff_base_seconds = 1.0
 backoff_max_seconds = 30.0
 user_agent = "bibliography-enrichment-pipeline/1.0"
-checkpoint_dir = "ops/enrichment-checkpoints"
 checkpoint_flush_every = 20
 
 [targets]

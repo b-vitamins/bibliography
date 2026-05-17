@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 Remove all @comment entries and inline comments from BibTeX files.
-Uses bibtexparser to ensure clean, noise-free output.
+Uses the repository BibTeX parser to ensure clean, noise-free output.
 
 Usage:
     clean-comments.py file.bib [file2.bib ...]
@@ -13,8 +13,7 @@ import argparse
 import sys
 from pathlib import Path
 
-import bibtexparser
-from bibtexparser.bwriter import BibTexWriter
+from core.bibtex_io import parse_bib_text, write_bib_file
 from core.bibmeta import find_inline_bibmeta_blocks
 
 
@@ -33,11 +32,7 @@ def clean_file(filepath: Path, in_place: bool = False) -> bool:
             return False
         preserved_bibmeta = bibmeta_blocks[0].raw if bibmeta_blocks else ""
 
-        # Parse BibTeX
-        parser = bibtexparser.bparser.BibTexParser()
-        parser.ignore_nonstandard_types = False  # type: ignore
-        parser.homogenize_fields = False  # type: ignore
-        bib_db = bibtexparser.loads(content, parser)
+        bib_db = parse_bib_text(content)
 
         # Count original entries and comments
         original_count = len(bib_db.entries)
@@ -46,12 +41,10 @@ def clean_file(filepath: Path, in_place: bool = False) -> bool:
         # Clear all comments (both @comment entries and inline comments)
         bib_db.comments = []
 
-        # Write clean output
-        writer = BibTexWriter()
-        writer.indent = "  "
-        writer.order_entries_by = None  # type: ignore  # Preserve existing order
-        writer.align_values = False
-        output = bibtexparser.dumps(bib_db, writer)
+        temp_path = filepath.with_suffix(".bib.clean-comments.tmp")
+        write_bib_file(temp_path, bib_db)
+        output = temp_path.read_text(encoding="utf-8")
+        temp_path.unlink(missing_ok=True)
         if preserved_bibmeta:
             output = f"{preserved_bibmeta}\n\n{output.lstrip()}"
 

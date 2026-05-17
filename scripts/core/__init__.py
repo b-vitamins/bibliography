@@ -49,6 +49,7 @@ from .bibkey import (
     validate_bib_key,
 )
 from .time_utils import now_iso, text_sha256
+from .runtime_paths import RUNTIME_DIR_ENV, bibops_runtime_dir, bibops_runtime_path
 
 __all__ = [
     "CachedHttpClient",
@@ -94,4 +95,7 @@ __all__ = [
     "validate_bib_key",
     "now_iso",
     "text_sha256",
+    "RUNTIME_DIR_ENV",
+    "bibops_runtime_dir",
+    "bibops_runtime_path",
 ]

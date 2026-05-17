@@ -13,9 +13,7 @@ from dataclasses import asdict, dataclass
 from pathlib import Path
 from typing import Any
 
-import bibtexparser
-from bibtexparser.bparser import BibTexParser
-from bibtexparser.customization import convert_to_unicode
+from core.bibtex_io import parse_bib_file
 
 HTTP_URL_RE = re.compile(r"^https?://", re.IGNORECASE)
 OPENREVIEW_FORUM_RE = re.compile(r"https?://openreview\.net/forum\?id=([^&#]+)", re.IGNORECASE)
@@ -93,16 +91,7 @@ def iter_bib_files(patterns: list[str]) -> list[Path]:
 
 
 def parse_bib(path: Path) -> Any:
-    parser = BibTexParser(common_strings=True)
-    parser.customization = convert_to_unicode
-    parser.ignore_nonstandard_types = False
-    data = path.read_text(encoding="utf-8")
-    try:
-        return bibtexparser.loads(data, parser=parser)
-    except Exception:
-        fallback = BibTexParser(common_strings=True)
-        fallback.ignore_nonstandard_types = False
-        return bibtexparser.loads(data, parser=fallback)
+    return parse_bib_file(path)
 
 
 def normalize_spaces(s: str) -> str:

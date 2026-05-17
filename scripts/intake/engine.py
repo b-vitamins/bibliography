@@ -8,9 +8,7 @@ import tempfile
 from pathlib import Path
 from typing import Any
 
-import bibtexparser
-
-from core.bibtex_io import parse_bib_file, parse_bib_text, resolve_bib_paths, write_bib_file
+from core.bibtex_io import BibDatabase, make_bib_database, parse_bib_file, parse_bib_text, resolve_bib_paths, write_bib_file
 from core.bibkey import entry_signature, generate_bib_key
 from core.http_client import CachedHttpClient
 from core.normalization import normalize_text, sanitize_bibtex_text
@@ -330,7 +328,7 @@ class IntakeEngine:
                 entry[field] = value
         return entry
 
-    def _load_existing(self, file_path: Path) -> bibtexparser.bibdatabase.BibDatabase | None:
+    def _load_existing(self, file_path: Path) -> BibDatabase | None:
         if not file_path.exists():
             return None
         return parse_bib_file(file_path)
@@ -557,12 +555,13 @@ class IntakeEngine:
                         )
                     )
 
-                db = bibtexparser.bibdatabase.BibDatabase()
-                db.entries = sorted(
-                    built_entries,
-                    key=lambda e: (normalize_text(str(e.get("title", ""))), str(e.get("ID", ""))),
+                db = make_bib_database(
+                    entries=sorted(
+                        built_entries,
+                        key=lambda e: (normalize_text(str(e.get("title", ""))), str(e.get("ID", ""))),
+                    ),
+                    comments=existing_comments,
                 )
-                db.comments = existing_comments
 
                 file_path.parent.mkdir(parents=True, exist_ok=True)
                 with tempfile.NamedTemporaryFile(

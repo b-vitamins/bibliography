@@ -22,13 +22,12 @@ Use this when a new year is announced and you need `conferences/<venue>/<year>.b
 
 - Prefer canonical venue sources over derived mirrors.
 - Treat `missing/extra/duplicate/invalid` counts as blockers until triaged.
-- Keep runs traceable via `ops/intake-runs/`, `ops/intake-snapshots/`, and `ops/unresolved/intake/`.
+- Keep runs traceable via `tmp/bibops/intake-runs/`, `tmp/bibops/intake-snapshots/`, and `tmp/bibops/unresolved/intake/`.
 - Do not hand-edit large generated year files before running intake + enrichment.
 
 ## Configuration
 
 - Default config: `ops/intake-pipeline.toml`
-- Report output: `ops/intake-runs/`
-- Snapshot output: `ops/intake-snapshots/`
-- Unresolved queue: `ops/unresolved/intake/`
-
+- Report output: `tmp/bibops/intake-runs/`
+- Snapshot output: `tmp/bibops/intake-snapshots/`
+- Unresolved queue: `tmp/bibops/unresolved/intake/`

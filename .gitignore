@@ -24,6 +24,8 @@
 ## Generated if empty string is given at "Please type another file name for output:"
 .pdf
 
+# Legacy runtime artifacts. New defaults write transient bibops state under
+# tmp/bibops/, but keep these ignores for explicit old-path overrides.
 # Runtime artifacts from DOI enrichment helper
 ops/doi-lookup-cache.json
 ops/doi-enrichment-report.jsonl
@@ -48,6 +50,7 @@ ops/intake-*-run.json
 # Runtime artifacts from PDF sync workflow
 ops/pdf-sync-checkpoint.json
 ops/pdf-sync-checkpoint-*.json
+ops/pdf-sync-*.json
 ops/pdf-sync-*.jsonl
 
 # Runtime JSON reports / verifications

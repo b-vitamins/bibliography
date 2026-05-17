@@ -23,8 +23,8 @@ The new pipeline is adapter-based and currently includes:
 
 Each run emits:
 
-- Per-run report under `ops/enrichment-runs/`
-- Unresolved triage queue under `ops/unresolved/enrichment/`
+- Per-run report under `tmp/bibops/enrichment-runs/`
+- Unresolved triage queue under `tmp/bibops/unresolved/enrichment/`
 
 Use this pipeline for future enrichment work where source fidelity and repeatability are primary concerns.
 
@@ -54,9 +54,9 @@ Configuration lives in `ops/intake-pipeline.toml`.
 
 The intake pipeline emits:
 
-- Per-run report under `ops/intake-runs/`
-- Source snapshots under `ops/intake-snapshots/`
-- Unresolved queue under `ops/unresolved/intake/`
+- Per-run report under `tmp/bibops/intake-runs/`
+- Source snapshots under `tmp/bibops/intake-snapshots/`
+- Unresolved queue under `tmp/bibops/unresolved/intake/`
 
 ## Scripts Overview
 

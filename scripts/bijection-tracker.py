@@ -20,9 +20,8 @@ import hashlib
 import re
 from glob import glob
 from typing import Dict, List, Tuple, Optional, Any, Union
-import bibtexparser
-from bibtexparser.bparser import BibTexParser
-from bibtexparser.customization import convert_to_unicode
+
+from core.bibtex_io import parse_bib_file
 
 # Database file
 DB_FILE = "bibliography.db"
@@ -149,10 +148,7 @@ def update_bib_entries(bib_file: str) -> int:
     conn: sqlite3.Connection = sqlite3.connect(DB_FILE)
     c: sqlite3.Cursor = conn.cursor()
 
-    # Parse BibTeX file
-    with open(bib_file, "r", encoding="utf-8") as f:
-        parser = BibTexParser(common_strings=True, customization=convert_to_unicode)
-        bib_db = bibtexparser.load(f, parser=parser)
+    bib_db = parse_bib_file(Path(bib_file))
 
     # Update each entry
     for entry in bib_db.entries:

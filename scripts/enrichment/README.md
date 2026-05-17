@@ -29,10 +29,10 @@ Or through `bibops`:
 
 ## Outputs
 
-- Run report JSON: `ops/enrichment-runs/`
-- Unresolved triage queue JSONL: `ops/unresolved/enrichment/`
-- HTTP response cache: `ops/enrichment-source-cache.json`
-- Resume checkpoints: `ops/enrichment-checkpoints/`
+- Run report JSON: `tmp/bibops/enrichment-runs/`
+- Unresolved triage queue JSONL: `tmp/bibops/unresolved/enrichment/`
+- HTTP response cache: `tmp/bibops/enrichment-source-cache.json`
+- Resume checkpoints: `tmp/bibops/enrichment-checkpoints/`
 - Known irrecoverable exceptions: `ops/enrichment-exceptions.toml`
 
 ## Resilience Guarantees
@@ -69,7 +69,7 @@ It controls:
 - protected fields
 - venue-to-adapter mapping
 - domain allowlists
-- operational output locations
+- optional operational output overrides
 
 Credentials:
 

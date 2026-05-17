@@ -6,11 +6,7 @@ import sys
 from pathlib import Path
 from typing import Any
 
-import bibtexparser
-from bibtexparser.bibdatabase import BibDatabase
-from bibtexparser.bparser import BibTexParser
-from bibtexparser.bwriter import BibTexWriter
-from bibtexparser.customization import convert_to_unicode  # type: ignore[import-untyped]
+from core.bibtex_io import make_bib_database, parse_bib_text, write_bib_file
 
 
 def clean_entry_fields(entry: dict[str, Any]) -> dict[str, Any]:
@@ -54,11 +50,6 @@ def clean_bib_file(
             print(f"Created backup: {backup_path}")
 
     try:
-        # Configure parser for robust parsing
-        parser = BibTexParser(common_strings=True)
-        parser.customization = convert_to_unicode  # type: ignore[attr-defined]
-        parser.ignore_nonstandard_types = False  # type: ignore[attr-defined]
-
         # Read and parse the BibTeX file
         with open(input_path, "r", encoding="utf-8") as f:
             content = f.read()
@@ -69,8 +60,7 @@ def clean_bib_file(
         # Remove control characters except newlines and tabs
         content = re.sub(r"[\x00-\x08\x0B\x0C\x0E-\x1F\x7F]", "", content)
 
-        # Parse the cleaned content
-        bib_db = bibtexparser.loads(content, parser=parser)  # type: ignore[no-untyped-call]
+        bib_db = parse_bib_text(content)
 
         # Clean individual entries
         cleaned_entries: list[dict[str, Any]] = []
@@ -78,26 +68,15 @@ def clean_bib_file(
             cleaned_entry = clean_entry_fields(entry)  # type: ignore[arg-type]
             cleaned_entries.append(cleaned_entry)
 
-        # Create new database with cleaned entries
-        clean_db = BibDatabase()
-        clean_db.entries = cleaned_entries
-        clean_db.comments = bib_db.comments  # type: ignore[arg-type]
-        clean_db.preambles = bib_db.preambles  # type: ignore[arg-type]
-        clean_db.strings = bib_db.strings  # type: ignore[arg-type]
+        clean_db = make_bib_database(
+            entries=sorted(cleaned_entries, key=lambda entry: str(entry.get("ID", ""))),
+            comments=bib_db.comments,
+            preambles=bib_db.preambles,
+            strings=bib_db.strings,
+        )
+        write_bib_file(output_path, clean_db)
 
-        # Configure writer for clean output
-        writer = BibTexWriter()
-        writer.indent = "  "
-        writer.align_values = True
-        writer.order_entries_by = ("ID",)
-        writer.add_trailing_comma = False
-        writer.common_strings = False
-
-        # Write cleaned BibTeX
-        with open(output_path, "w", encoding="utf-8") as f:
-            f.write(writer.write(clean_db))  # type: ignore[no-untyped-call]
-
-        print(f"Cleaned {len(bib_db.entries)} entries: {input_path} → {output_path}")  # type: ignore[arg-type]
+        print(f"Cleaned {len(bib_db.entries)} entries: {input_path} → {output_path}")
         return True
 
     except Exception as e:

@@ -22,16 +22,17 @@ import uuid
 from pathlib import Path
 from typing import Iterable
 
-import bibtexparser
-from bibtexparser.bparser import BibTexParser
-from bibtexparser.customization import convert_to_unicode
 from bibops_key_manager import KeyNormalizeOptions, result_to_json, run_key_normalize
 from bibops_pdf_sync import PdfSyncOptions, parse_host_interval_overrides, run_pdf_sync
+from core.bibtex_io import parse_bib_file
 from core.bibmeta import validate_repo_bibmeta
+from core.runtime_paths import bibops_runtime_path
 
 DEFAULT_CONFIG_PATH = Path("ops/bibops.toml")
 DEFAULT_DB_PATH = Path("bibliography.db")
-LOCK_PATH = Path("ops/.bibops.lock")
+LOCK_PATH = bibops_runtime_path(".bibops.lock")
+DEFAULT_PDF_SYNC_CHECKPOINT_PATH = bibops_runtime_path("pdf-sync-checkpoint.json")
+DEFAULT_KEY_NORMALIZE_ROLLBACK_DIR = bibops_runtime_path("key-normalize-rollbacks")
 ORALS_ROOT = Path("collections/orals")
 CANONICAL_CONFERENCES_ROOT = Path("conferences")
 HTTP_URL_RE = re.compile(r"^https?://", re.IGNORECASE)
@@ -217,18 +218,7 @@ def discover_bib_files(cfg: OpsConfig) -> list[Path]:
 
 
 def parse_bib(path: Path):
-    data = path.read_text(encoding="utf-8")
-
-    parser = BibTexParser(common_strings=True)
-    parser.customization = convert_to_unicode
-    parser.ignore_nonstandard_types = False
-    try:
-        return bibtexparser.loads(data, parser=parser)
-    except Exception:
-        # Fallback for legacy files that break unicode customization.
-        parser_fallback = BibTexParser(common_strings=True)
-        parser_fallback.ignore_nonstandard_types = False
-        return bibtexparser.loads(data, parser=parser_fallback)
+    return parse_bib_file(path)
 
 
 def file_is_dblp_generated(path: Path) -> bool:
@@ -1832,7 +1822,7 @@ def command_profile(cfg: OpsConfig, profile_path: Path) -> int:
                 backoff_jitter_seconds=float(step_payload.get("backoff_jitter_seconds", 0.4) or 0.4),
                 host_min_interval_seconds=float(step_payload.get("host_min_interval_seconds", 0.8) or 0.8),
                 host_interval=host_interval,
-                checkpoint_path=str(step_payload.get("checkpoint_path", "ops/pdf-sync-checkpoint.json")),
+                checkpoint_path=str(step_payload.get("checkpoint_path", DEFAULT_PDF_SYNC_CHECKPOINT_PATH)),
                 no_resume=bool(step_payload.get("no_resume", False)),
                 retry_failures=bool(step_payload.get("retry_failures", False)),
                 progress_log=str(step_payload.get("progress_log", "")).strip() or None,
@@ -1865,7 +1855,7 @@ def command_profile(cfg: OpsConfig, profile_path: Path) -> int:
                 fail_on_issues=bool(step_payload.get("fail_on_issues", False)),
                 detail_limit=int(step_payload.get("detail_limit", 200) or 200),
                 no_backup=bool(step_payload.get("no_backup", False)),
-                rollback_dir=str(step_payload.get("rollback_dir", "ops/key-normalize-rollbacks")),
+                rollback_dir=str(step_payload.get("rollback_dir", DEFAULT_KEY_NORMALIZE_ROLLBACK_DIR)),
                 json=bool(step_payload.get("json", False)),
             )
             rc = command_key_normalize(cfg, key_args)
@@ -2021,7 +2011,7 @@ def build_parser() -> argparse.ArgumentParser:
     )
     pdf_sync.add_argument(
         "--checkpoint-path",
-        default="ops/pdf-sync-checkpoint.json",
+        default=str(DEFAULT_PDF_SYNC_CHECKPOINT_PATH),
         help="Checkpoint JSON path for resume/retry state",
     )
     pdf_sync.add_argument("--no-resume", action="store_true", help="Ignore checkpoint skip state")
@@ -2077,7 +2067,7 @@ def build_parser() -> argparse.ArgumentParser:
     key_norm.add_argument("--no-backup", action="store_true", help="Skip writing .backup files when --write")
     key_norm.add_argument(
         "--rollback-dir",
-        default="ops/key-normalize-rollbacks",
+        default=str(DEFAULT_KEY_NORMALIZE_ROLLBACK_DIR),
         help="Rollback artifact directory for transactional write guardrails",
     )
     key_norm.add_argument("--json", action="store_true", help="Emit JSON output")

@@ -1,16 +1,48 @@
 from __future__ import annotations
 
+import copy
 import glob
 import shutil
 import uuid
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Any
 
-import bibtexparser
-from bibtexparser.bparser import BibTexParser
-from bibtexparser.bwriter import BibTexWriter
-from bibtexparser.customization import convert_to_unicode
+import citerra
+
+
+DEFAULT_FIELD_ORDER = [
+    "author",
+    "title",
+    "booktitle",
+    "journal",
+    "publisher",
+    "year",
+    "volume",
+    "number",
+    "pages",
+    "doi",
+    "url",
+    "pdf",
+    "abstract",
+    "note",
+    "file",
+]
+
+
+@dataclass
+class BibDatabase:
+    entries: list[dict[str, Any]] = field(default_factory=list)
+    comments: list[Any] = field(default_factory=list)
+    preambles: list[Any] = field(default_factory=list)
+    strings: list[tuple[str, Any]] = field(default_factory=list)
+    document: Any | None = None
+    source_text: str = ""
+
+    _original_keys: list[str] = field(default_factory=list)
+    _original_comments: list[Any] = field(default_factory=list)
+    _original_preambles: list[Any] = field(default_factory=list)
+    _original_strings: list[tuple[str, Any]] = field(default_factory=list)
 
 
 @dataclass
@@ -41,21 +73,68 @@ def resolve_bib_paths(paths_or_globs: list[str]) -> list[Path]:
     return sorted(out)
 
 
-def parse_bib_text(text: str) -> bibtexparser.bibdatabase.BibDatabase:
-    parser = BibTexParser(common_strings=True)
-    parser.customization = convert_to_unicode  # type: ignore[attr-defined]
-    parser.ignore_nonstandard_types = False
-    try:
-        return bibtexparser.loads(text, parser=parser)
-    except Exception:
-        fallback = BibTexParser(common_strings=True)
-        fallback.ignore_nonstandard_types = False
-        return bibtexparser.loads(text, parser=fallback)
+def _comment_records(document: Any) -> list[str]:
+    return [str(getattr(comment, "raw", getattr(comment, "text", comment))) for comment in document.comments]
 
 
-def parse_bib_file(path: Path) -> bibtexparser.bibdatabase.BibDatabase:
-    text = path.read_text(encoding="utf-8")
-    return parse_bib_text(text)
+def _preamble_records(document: Any) -> list[Any]:
+    return [getattr(preamble, "value", getattr(preamble, "raw", preamble)) for preamble in document.preambles]
+
+
+def _string_records(document: Any) -> list[tuple[str, Any]]:
+    out: list[tuple[str, Any]] = []
+    for item in document.strings:
+        name = str(getattr(item, "name", "")).strip()
+        if name:
+            out.append((name, getattr(item, "value", "")))
+    return out
+
+
+def parse_bib_text(text: str) -> BibDatabase:
+    document = citerra.parse(
+        text,
+        tolerant=False,
+        capture_source=True,
+        preserve_raw=True,
+        expand_values=True,
+        latex_to_unicode=True,
+    )
+    entries = document.to_dicts()
+    comments = _comment_records(document)
+    preambles = _preamble_records(document)
+    strings = _string_records(document)
+    return BibDatabase(
+        entries=entries,
+        comments=comments,
+        preambles=preambles,
+        strings=strings,
+        document=document,
+        source_text=text,
+        _original_keys=[entry_key(entry) for entry in entries],
+        _original_comments=copy.deepcopy(comments),
+        _original_preambles=copy.deepcopy(preambles),
+        _original_strings=copy.deepcopy(strings),
+    )
+
+
+def parse_bib_file(path: Path) -> BibDatabase:
+    return parse_bib_text(path.read_text(encoding="utf-8"))
+
+
+def make_bib_database(
+    entries: list[dict[str, Any]] | None = None,
+    *,
+    comments: list[Any] | None = None,
+    preambles: list[Any] | None = None,
+    strings: list[tuple[str, Any]] | dict[str, Any] | None = None,
+) -> BibDatabase:
+    parsed_strings = list(strings.items()) if isinstance(strings, dict) else list(strings or [])
+    return BibDatabase(
+        entries=list(entries or []),
+        comments=list(comments or []),
+        preambles=list(preambles or []),
+        strings=parsed_strings,
+    )
 
 
 def entry_key(entry: dict[str, Any]) -> str:
@@ -66,7 +145,7 @@ def entry_type(entry: dict[str, Any]) -> str:
     return str(entry.get("ENTRYTYPE", "")).strip().lower()
 
 
-def get_entry_map(db: bibtexparser.bibdatabase.BibDatabase) -> dict[str, dict[str, Any]]:
+def get_entry_map(db: BibDatabase) -> dict[str, dict[str, Any]]:
     out: dict[str, dict[str, Any]] = {}
     for entry in db.entries:
         key = entry_key(entry)
@@ -75,39 +154,65 @@ def get_entry_map(db: bibtexparser.bibdatabase.BibDatabase) -> dict[str, dict[st
     return out
 
 
-def _make_writer() -> BibTexWriter:
-    writer = BibTexWriter()
-    writer.indent = "  "
-    writer.order_entries_by = None
-    writer.display_order = [
-        "author",
-        "title",
-        "booktitle",
-        "journal",
-        "publisher",
-        "year",
-        "volume",
-        "number",
-        "pages",
-        "doi",
-        "url",
-        "pdf",
-        "abstract",
-        "note",
-        "file",
-    ]
-    return writer
+def _can_preserve_raw(db: BibDatabase) -> bool:
+    if db.document is None:
+        return False
+    if [entry_key(entry) for entry in db.entries] != db._original_keys:
+        return False
+    if db.comments != db._original_comments:
+        return False
+    if db.preambles != db._original_preambles:
+        return False
+    if db.strings != db._original_strings:
+        return False
+    return True
 
 
-def write_bib_file(path: Path, db: bibtexparser.bibdatabase.BibDatabase) -> None:
-    writer = _make_writer()
-    rendered = writer.write(db)
-    path.write_text(rendered, encoding="utf-8")
+def render_bib_database(
+    db: BibDatabase,
+    *,
+    field_order: list[str] | tuple[str, ...] | None = None,
+    trailing_comma: bool = False,
+    preserve_raw: bool = True,
+    sort_by: list[str] | tuple[str, ...] | None = None,
+    reverse: bool = False,
+    entry_separator: str = "\n\n",
+) -> str:
+    order = list(field_order or DEFAULT_FIELD_ORDER)
+    if preserve_raw and _can_preserve_raw(db):
+        document = db.document
+        document.update_from_dicts(db.entries)
+        rendered = document.write(
+            citerra.WriterConfig(
+                preserve_raw=True,
+                trailing_comma=trailing_comma,
+                entry_separator=entry_separator,
+            )
+        )
+    else:
+        rendered = citerra.write_entries(
+            db.entries,
+            comments=db.comments,
+            preambles=db.preambles,
+            strings=db.strings,
+            field_order=order,
+            sort_by=sort_by,
+            reverse=reverse,
+            trailing_comma=trailing_comma,
+            entry_separator=entry_separator,
+        )
+    if rendered and not rendered.endswith("\n"):
+        rendered += "\n"
+    return rendered
+
+
+def write_bib_file(path: Path, db: BibDatabase) -> None:
+    path.write_text(render_bib_database(db), encoding="utf-8")
 
 
 def transactional_write_bib_file(
     path: Path,
-    db: bibtexparser.bibdatabase.BibDatabase,
+    db: BibDatabase,
     baseline_entries: int,
     baseline_comments: int,
     max_comment_increase: int = 0,
@@ -131,8 +236,7 @@ def transactional_write_bib_file(
             candidate_path=candidate_copy,
         )
 
-    writer = _make_writer()
-    rendered = writer.write(db)
+    rendered = render_bib_database(db)
 
     temp_path = path.parent / f".{path.name}.tmp-{uuid.uuid4().hex[:10]}"
     temp_path.write_text(rendered, encoding="utf-8")

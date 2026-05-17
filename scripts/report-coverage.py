@@ -11,9 +11,7 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import Any
 
-import bibtexparser
-from bibtexparser.bparser import BibTexParser
-from bibtexparser.customization import convert_to_unicode
+from core.bibtex_io import parse_bib_file
 
 DEFAULT_FIELDS = ["url", "pdf", "arxiv", "doi", "abstract", "file"]
 
@@ -80,17 +78,7 @@ def iter_bib_files(patterns: list[str], only_orals: bool) -> list[Path]:
 
 
 def load_entries(path: Path) -> list[dict[str, Any]]:
-    parser = BibTexParser(common_strings=True)
-    parser.customization = convert_to_unicode
-    parser.ignore_nonstandard_types = False
-    text = path.read_text(encoding="utf-8")
-    try:
-        db = bibtexparser.loads(text, parser=parser)
-    except Exception:
-        fallback = BibTexParser(common_strings=True)
-        fallback.ignore_nonstandard_types = False
-        db = bibtexparser.loads(text, parser=fallback)
-    return list(db.entries)
+    return list(parse_bib_file(path).entries)
 
 
 def classify_conference_year(path: Path) -> str:

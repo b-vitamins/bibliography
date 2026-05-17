@@ -17,6 +17,7 @@ from urllib3.util import Retry
 from .time_utils import now_iso
 
 _RETRYABLE_STATUS_CODES = {408, 425, 429, 500, 502, 503, 504}
+_TRANSPORT_RETRY_STATUS_CODES = _RETRYABLE_STATUS_CODES - {429}
 _RATE_LIMIT_BODY_MARKERS = (
     "too many requests",
     "surpassing the limit of",
@@ -107,7 +108,7 @@ class CachedHttpClient:
             read=self.max_retries,
             backoff_factor=0.3,
             backoff_max=5,
-            status_forcelist=sorted(_RETRYABLE_STATUS_CODES),
+            status_forcelist=sorted(_TRANSPORT_RETRY_STATUS_CODES),
             allowed_methods=["GET"],
             # Bound retry pacing in our explicit retry loop; do not let transport-layer
             # Retry-After directives induce multi-hour blocking sleeps.
@@ -227,6 +228,13 @@ class CachedHttpClient:
         until = time.monotonic() + max(0.0, delay_seconds)
         existing = self._host_cooldown_until_by_host.get(host, 0.0)
         self._host_cooldown_until_by_host[host] = max(existing, until)
+
+    def _sleep_for_retry(self, url: str, delay_seconds: float) -> None:
+        delay = max(0.0, delay_seconds)
+        self._stats["retry_count"] = int(self._stats["retry_count"]) + 1
+        self._stats["retry_sleep_seconds"] = float(self._stats["retry_sleep_seconds"]) + delay
+        self._set_host_cooldown(url, delay)
+        time.sleep(delay)
 
     def _record_host_success(self, host: str) -> None:
         if not host:
@@ -391,13 +399,15 @@ class CachedHttpClient:
         initial_breaker_wait = self._breaker_remaining_seconds(host)
         if initial_breaker_wait > 0.0:
             self._stats["circuit_breaker_short_circuits"] = int(self._stats["circuit_breaker_short_circuits"]) + 1
-            return HttpResponse(
-                url=url,
-                status_code=429,
-                text=f"circuit breaker open for {initial_breaker_wait:.1f}s",
-                fetched_at=now_iso(),
-                from_cache=False,
-            )
+            if max_attempts <= 1:
+                return HttpResponse(
+                    url=url,
+                    status_code=429,
+                    text=f"circuit breaker open for {initial_breaker_wait:.1f}s",
+                    fetched_at=now_iso(),
+                    from_cache=False,
+                )
+            self._sleep_for_retry(url, min(self.backoff_max_seconds, initial_breaker_wait))
 
         for attempt in range(1, max_attempts + 1):
             breaker_wait = self._breaker_remaining_seconds(host)
@@ -405,6 +415,9 @@ class CachedHttpClient:
                 self._stats["circuit_breaker_short_circuits"] = int(
                     self._stats["circuit_breaker_short_circuits"]
                 ) + 1
+                if attempt < max_attempts:
+                    self._sleep_for_retry(url, min(self.backoff_max_seconds, breaker_wait))
+                    continue
                 return HttpResponse(
                     url=url,
                     status_code=429,
@@ -429,10 +442,7 @@ class CachedHttpClient:
                 last_fetched_at = now_iso()
                 if attempt < max_attempts:
                     delay = self._retry_delay_seconds(None, "", attempt)
-                    self._stats["retry_count"] = int(self._stats["retry_count"]) + 1
-                    self._stats["retry_sleep_seconds"] = float(self._stats["retry_sleep_seconds"]) + delay
-                    self._set_host_cooldown(url, delay)
-                    time.sleep(delay)
+                    self._sleep_for_retry(url, delay)
                     continue
                 return HttpResponse(
                     url=url,
@@ -470,7 +480,9 @@ class CachedHttpClient:
             if is_rate_limit:
                 self._record_host_transient_failure(host)
                 delay = self._retry_delay_seconds(retry_after_header, last_text, attempt)
-                self._set_host_cooldown(url, delay)
+                if attempt < max_attempts:
+                    self._sleep_for_retry(url, delay)
+                    continue
                 return HttpResponse(
                     url=url,
                     status_code=last_status,
@@ -497,10 +509,7 @@ class CachedHttpClient:
             )
             if retryable:
                 delay = self._retry_delay_seconds(retry_after_header, last_text, attempt)
-                self._stats["retry_count"] = int(self._stats["retry_count"]) + 1
-                self._stats["retry_sleep_seconds"] = float(self._stats["retry_sleep_seconds"]) + delay
-                self._set_host_cooldown(url, delay)
-                time.sleep(delay)
+                self._sleep_for_retry(url, delay)
                 continue
 
             # Cache stable non-poison failures (e.g., 404), avoid caching transient/poison pages.

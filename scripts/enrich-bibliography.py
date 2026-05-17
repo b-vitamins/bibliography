@@ -29,9 +29,7 @@ from datetime import datetime
 from pathlib import Path
 from typing import Any, Dict, Optional
 
-import bibtexparser
-from bibtexparser.bparser import BibTexParser
-from bibtexparser.customization import convert_to_unicode
+from core.bibtex_io import parse_bib_file
 
 
 class EnrichmentOrchestrator:
@@ -175,10 +173,7 @@ class EnrichmentOrchestrator:
 
         # Parse file to get initial count
         try:
-            parser = BibTexParser()
-            parser.customization = convert_to_unicode  # type: ignore[attr-defined]
-            with open(self.file_path, "r", encoding="utf-8") as f:
-                bib_db = bibtexparser.load(f, parser=parser)
+            bib_db = parse_bib_file(self.file_path)
             self.original_count = len(bib_db.entries)
             self.log(f"Found {self.original_count} entries in {self.file_path}", "info")
         except Exception as e:

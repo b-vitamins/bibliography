@@ -429,7 +429,6 @@ class EnrichmentEngine:
 
         decisions: list[EntryDecision] = []
         total_items = len(work_items)
-        aborted_due_transient_error = False
 
         def emit_progress(
             item: WorkItem,
@@ -575,13 +574,12 @@ class EnrichmentEngine:
                     adapter=exc.adapter or adapter.name,
                     applied_fields=[],
                     skipped_fields=[],
-                    reasons=[f"transient source error: {exc.message}"],
+                    reasons=[f"transient source error after retry budget: {exc.message}"],
                     proposals=[],
                 )
                 decisions.append(decision)
                 emit_progress(item, stage="decision", decision=decision)
-                aborted_due_transient_error = True
-                break
+                continue
             except Exception as exc:
                 decision = EntryDecision(
                     file_path=str(file_path),
@@ -650,23 +648,6 @@ class EnrichmentEngine:
 
             decisions.append(decision)
             emit_progress(item, stage="decision", decision=decision)
-
-        if aborted_due_transient_error:
-            remaining = max(0, total_items - len(decisions))
-            decisions.append(
-                EntryDecision(
-                    file_path=str(file_path),
-                    entry_key="__run__",
-                    status="error",
-                    adapter=None,
-                    applied_fields=[],
-                    skipped_fields=[],
-                    reasons=[
-                        f"run aborted after transient source error; remaining_entries={remaining}"
-                    ],
-                    proposals=[],
-                )
-            )
 
         if resume and checkpoint_path_used is not None and processed_since_flush > 0:
             self._flush_checkpoint(

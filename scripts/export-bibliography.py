@@ -24,8 +24,7 @@ import sys
 from pathlib import Path
 from typing import List, Tuple
 
-import bibtexparser
-from bibtexparser.bparser import BibTexParser
+from core.bibtex_io import parse_bib_file as load_bib_database
 
 
 def setup_logging(verbose: bool = False) -> None:
@@ -41,10 +40,7 @@ def setup_logging(verbose: bool = False) -> None:
 def parse_bib_file(bib_path: Path) -> List[dict]:
     """Parse BibTeX file and return entries."""
     try:
-        with open(bib_path, "r", encoding="utf-8") as f:
-            parser = BibTexParser(common_strings=True)
-            bib_db = bibtexparser.load(f, parser=parser)
-            return bib_db.entries
+        return load_bib_database(bib_path).entries
     except Exception as e:
         logging.error(f"Failed to parse BibTeX file {bib_path}: {e}")
         sys.exit(1)

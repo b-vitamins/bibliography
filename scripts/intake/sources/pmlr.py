@@ -4,8 +4,7 @@ import html
 import re
 from typing import Any
 
-import bibtexparser
-
+from core.bibtex_io import parse_bib_text
 from core.http_client import CachedHttpClient
 from core.normalization import normalize_text
 from core.time_utils import now_iso
@@ -68,7 +67,7 @@ class PmlrVolumeCatalogAdapter:
             return None
 
         try:
-            library = bibtexparser.loads(response.text)
+            library = parse_bib_text(response.text)
         except Exception:
             return None
 

@@ -9,10 +9,7 @@ import sys
 from pathlib import Path
 from typing import Any
 
-import bibtexparser
-from bibtexparser.bparser import BibTexParser
-from bibtexparser.bwriter import BibTexWriter
-from bibtexparser.customization import convert_to_unicode
+from core.bibtex_io import parse_bib_file, render_bib_database
 
 DEFAULT_FIELD_ORDER = [
     "author",
@@ -89,11 +86,8 @@ def iter_bib_files(patterns: list[str]) -> list[Path]:
 
 
 def load_bib(path: Path) -> Any:
-    parser = BibTexParser(common_strings=True)
-    parser.customization = convert_to_unicode
-    parser.ignore_nonstandard_types = False
     text = path.read_text(encoding="utf-8")
-    return text, bibtexparser.loads(text, parser=parser)
+    return text, parse_bib_file(path)
 
 
 def sort_entries(entries: list[dict[str, Any]], sort_by: str) -> list[dict[str, Any]]:
@@ -129,22 +123,12 @@ def reorder_entry_fields(entry: dict[str, Any]) -> dict[str, Any]:
 
 def format_bib(db: Any, sort_by: str, trailing_comma: bool, line_width: int) -> str:
     db.entries = [reorder_entry_fields(e) for e in sort_entries(list(db.entries), sort_by)]
-
-    writer = BibTexWriter()
-    writer.indent = "  "
-    writer.align_values = False
-    writer.add_trailing_comma = trailing_comma
-    writer.order_entries_by = None
-    writer.display_order = tuple(DEFAULT_FIELD_ORDER)
-    writer.comma_first = False
-    writer.entry_separator = "\n\n"
-    writer.contents = ["comments", "preambles", "strings", "entries"]
-    writer._max_line_width = line_width  # pylint: disable=protected-access
-
-    text = writer.write(db)
-    if not text.endswith("\n"):
-        text += "\n"
-    return text
+    return render_bib_database(
+        db,
+        field_order=DEFAULT_FIELD_ORDER,
+        trailing_comma=trailing_comma,
+        preserve_raw=False,
+    )
 
 
 def main() -> int:

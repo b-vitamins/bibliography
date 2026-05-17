@@ -8,8 +8,7 @@ from pathlib import Path
 from typing import Any
 from urllib.parse import urljoin, urlparse
 
-import bibtexparser
-
+from ..bibtex_io import parse_bib_text
 from ..http_client import CachedHttpClient
 from ..models import SourceRecord, now_iso
 from ..normalization import normalize_text
@@ -236,7 +235,7 @@ class PmlrAdapter:
             return {}, {}, {}
 
         try:
-            library = bibtexparser.loads(response.text)
+            library = parse_bib_text(response.text)
         except Exception:
             self._volume_bib_by_url[volume] = {}
             self._volume_bib_by_title[volume] = {}
