@@ -58,19 +58,22 @@ class BibWriteIntegrityError(RuntimeError):
 
 
 def resolve_bib_paths(paths_or_globs: list[str]) -> list[Path]:
-    out: set[Path] = set()
+    out: list[Path] = []
+    seen: set[Path] = set()
     for item in paths_or_globs:
-        matched = glob.glob(item, recursive=True)
+        matched = sorted(glob.glob(item, recursive=True))
         if matched:
             for path in matched:
-                p = Path(path)
-                if p.exists() and p.is_file() and p.suffix.lower() == ".bib":
-                    out.add(p)
+                p = Path(path).resolve()
+                if p.exists() and p.is_file() and p.suffix.lower() == ".bib" and p not in seen:
+                    seen.add(p)
+                    out.append(p)
             continue
-        p = Path(item)
-        if p.exists() and p.is_file() and p.suffix.lower() == ".bib":
-            out.add(p)
-    return sorted(out)
+        p = Path(item).resolve()
+        if p.exists() and p.is_file() and p.suffix.lower() == ".bib" and p not in seen:
+            seen.add(p)
+            out.append(p)
+    return out
 
 
 def _comment_records(document: Any) -> list[str]:

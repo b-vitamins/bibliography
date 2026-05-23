@@ -25,10 +25,15 @@ from typing import Any, Callable
 from urllib.parse import parse_qs, quote, urlparse
 
 import requests
-from core.bibtex_io import parse_bib_file, write_bib_file
-from core.runtime_paths import bibops_runtime_path
 from requests.adapters import HTTPAdapter
 from urllib3.util.retry import Retry
+
+try:
+    from core.bibtex_io import parse_bib_file, write_bib_file
+    from core.runtime_paths import bibops_runtime_path
+except ModuleNotFoundError:  # pragma: no cover - package import path
+    from .core.bibtex_io import parse_bib_file, write_bib_file
+    from .core.runtime_paths import bibops_runtime_path
 
 DEFAULT_BASE_DIR = Path("/home/b/documents")
 CHECKPOINT_VERSION = 1
@@ -553,9 +558,10 @@ def derive_urls(raw: str, context_url: str = "") -> list[str]:
 
 def expand_targets(targets: list[str]) -> tuple[list[Path], list[str]]:
     paths: list[Path] = []
+    seen: set[Path] = set()
     unresolved: list[str] = []
     for target in targets:
-        matches = glob.glob(target, recursive=True)
+        matches = sorted(glob.glob(target, recursive=True))
         if not matches:
             p = Path(target)
             if p.exists():
@@ -566,20 +572,24 @@ def expand_targets(targets: list[str]) -> tuple[list[Path], list[str]]:
             continue
 
         for item in matches:
-            path = Path(item)
-            if path.is_file() and path.suffix.lower() == ".bib":
+            path = Path(item).resolve()
+            if path.is_file() and path.suffix.lower() == ".bib" and path not in seen:
+                seen.add(path)
                 paths.append(path)
 
-    deduped = sorted({p.resolve() for p in paths})
-    return deduped, unresolved
+    return paths, unresolved
 
 
-def get_target_path(entry: dict[str, Any], base_dir: Path) -> Path:
+def get_document_dir(entry: dict[str, Any], base_dir: Path) -> Path:
     entry_type = str(entry.get("ENTRYTYPE", "misc")).strip().lower() or "misc"
     subdir = TYPE_TO_DIR.get(entry_type, "misc")
     key = str(entry.get("ID", "unknown")).strip() or "unknown"
-    target_dir = base_dir / subdir
-    target_dir.mkdir(parents=True, exist_ok=True)
+    return base_dir / subdir / key
+
+
+def get_target_path(entry: dict[str, Any], base_dir: Path) -> Path:
+    key = str(entry.get("ID", "unknown")).strip() or "unknown"
+    target_dir = get_document_dir(entry, base_dir)
     return target_dir / f"{key}.pdf"
 
 
@@ -1142,6 +1152,16 @@ def maybe_relink_or_fix_existing(
             entry["file"] = normalized
             return True, "normalized_file_field"
         return False, ""
+
+    if target_path.exists():
+        target_valid = True
+        if options.verify_existing:
+            target_valid, _reason = verify_pdf(target_path, min_size_bytes=options.min_pdf_size_bytes)
+        if target_valid:
+            if options.dry_run:
+                return True, "would_relink_existing_target_file"
+            entry["file"] = format_file_field(target_path.resolve(), parsed_type or "pdf")
+            return True, "relinked_existing_target_file"
 
     if options.dry_run:
         return True, "would_move_existing_file"
