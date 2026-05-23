@@ -37,6 +37,7 @@
 }
 
 @inproceedings{assran2023self,
+  s2id = {ee57e4d7a125f4ca8916284a857c3760d7d378d3},
   abstract = {This paper demonstrates an approach for learning highly semantic image representations without relying on hand-crafted data-augmentations. We introduce the Image-based Joint-Embedding Predictive Architecture (I-JEPA), a non-generative approach for self-supervised learning from images. The idea behind I-JEPA is simple: from a single context block, predict the representations of various target blocks in the same image. A core design choice to guide I-JEPA towards producing semantic representations is the masking strategy; specifically, it is crucial to (a) sample target blocks with sufficiently large scale (semantic), and to (b) use a sufficiently informative (spatially distributed) context block. Empirically, when combined with Vision Transformers, we find I-JEPA to be highly scalable. For instance, we train a ViT-Huge/14 on ImageNet using 16 A100 GPUs in under 72 hours to achieve strong downstream performance across a wide range of tasks, from linear classification to object counting and depth prediction.},
   archiveprefix = {arXiv},
   arxiv = {https://arxiv.org/abs/2301.08243},
@@ -56,6 +57,7 @@
 }
 
 @article{dawid2024introduction,
+  s2id = {9502c180be0ebc92fcf2085ea90c3cb45280a6bc},
   abstract = {Current automated systems have crucial limitations that need to be addressed before artificial intelligence can reach human-like levels and bring new technological revolutions. Among others, our societies still lack level-5 self-driving cars, domestic robots, and virtual assistants that learn reliable world models, reason, and plan complex action sequences. In these notes, we summarize the main ideas behind the architecture of autonomous intelligence of the future proposed by Yann LeCun. In particular, we introduce energy-based and latent variable models and combine their advantages in the building block of LeCun’s proposal, that is, in the hierarchical joint-embedding predictive architecture.},
   archiveprefix = {arXiv},
   arxiv = {https://arxiv.org/abs/2306.02572},
@@ -76,6 +78,7 @@
 }
 
 @misc{bardes2023jepa,
+  s2id = {3c1e43b7d3f5fd42a06c65e3aafe6d8f4a606d5c},
   abstract = {Self-supervised learning of visual representations has been focusing on learning content features, which do not capture object motion or location, and focus on identifying and differentiating objects in images and videos. On the other hand, optical flow estimation is a task that does not involve understanding the content of the images on which it is estimated. We unify the two approaches and introduce MC-JEPA, a joint-embedding predictive architecture and self-supervised learning approach to jointly learn optical flow and content features within a shared encoder, demonstrating that the two associated objectives; the optical flow estimation objective and the self-supervised learning objective; benefit from each other and thus learn content features that incorporate motion information. The proposed approach achieves performance on-par with existing unsupervised optical flow benchmarks, as well as with common self-supervised learning approaches on downstream tasks such as semantic segmentation of images and videos.},
   archiveprefix = {arXiv},
   arxiv = {https://arxiv.org/abs/2307.12698},
@@ -94,6 +97,7 @@
 }
 
 @misc{fei2023jepa,
+  s2id = {497df1e854d1149dbcad51ca9f6bea2ae1000b5e},
   abstract = {This paper presents that the masked-modeling principle driving the success of large foundational vision models can be effectively applied to audio by making predictions in a latent space. We introduce Audio-based Joint-Embedding Predictive Architecture (A-JEPA), a simple extension method for self-supervised learning from the audio spectrum. Following the design of I-JEPA, our A-JEPA encodes visible audio spectrogram patches with a curriculum masking strategy via context encoder, and predicts the representations of regions sampled at well-designed locations. The target representations of those regions are extracted by the exponential moving average of context encoder, \emphi.e., target encoder, on the whole spectrogram. We find it beneficial to transfer random block masking into time-frequency aware masking in a curriculum manner, considering the complexity of highly correlated in local time and frequency in audio spectrograms. To enhance contextual semantic understanding and robustness, we fine-tune the encoder with a regularized masking on target datasets, instead of input dropping or zero. Empirically, when built with Vision Transformers structure, we find A-JEPA to be highly scalable and sets new state-of-the-art performance on multiple audio and speech classification tasks, outperforming other recent models that use externally supervised pre-training.},
   archiveprefix = {arXiv},
   arxiv = {https://arxiv.org/abs/2311.15830},
@@ -129,6 +133,7 @@
 }
 
 @article{sun2024jep,
+  s2id = {30d00ad11ff15fb5e8a3fb9bdd128880aa09cf58},
   abstract = {Visual Speech Recognition (VSR) tasks are generally recognized to have a lower theoretical performance ceiling than Automatic Speech Recognition (ASR), owing to the inherent limitations of conveying semantic information visually. To mitigate this challenge, this paper introduces an advanced knowledge distillation approach using a Joint-Embedding Predictive Architecture (JEPA), JEP-KD, designed to utilize audio features more effectively during model training. Central to JEP-KD is including a generative network within the embedding layer in the knowledge distillation structure, which enhances the video encoder's capacity for semantic feature extraction and brings it closer to the audio features from a pre-trained ASR model's encoder. This approach aims to reduce the performance gap between VSR and ASR progressively. Moreover, a comprehensive multimodal, multistage training regimen for the JEP-KD framework is established, bolstering the robustness and efficacy of the training process. Experiment results demonstrate that JEP-KD significantly improves the performance of VSR models and demonstrates versatility across different VSR platforms, indicating its potential for broader application within other multimodal tasks.},
   archiveprefix = {arXiv},
   arxiv = {https://arxiv.org/abs/2403.18843},
@@ -148,6 +153,7 @@
 }
 
 @article{guetschel2025jepa,
+  s2id = {9cb4d0d96e745f2712e5b8f8c63c29d842905b44},
   abstract = {Motivated by the challenge of seamless cross-dataset transfer in EEG signal processing, this article presents an exploratory study on the use of Joint Embedding Predictive Architectures (JEPAs). In recent years, self-supervised learning has emerged as a promising approach for transfer learning in various domains. However, its application to EEG signals remains largely unexplored. In this article, we introduce Signal-JEPA for representing EEG recordings which includes a novel domain-specific spatial block masking strategy and three novel architectures for downstream classification. The study is conducted on a 54 subjects dataset and the downstream performance of the models is evaluated on three different BCI paradigms: motor imagery, ERP and SSVEP. Our study provides preliminary evidence for the potential of JEPAs in EEG signal encoding. Notably, our results highlight the importance of spatial filtering for accurate downstream classification and reveal an influence of the length of the pre-training examples but not of the mask size on the downstream performance.},
   archiveprefix = {arXiv},
   arxiv = {https://arxiv.org/abs/2403.11772},
@@ -167,6 +173,7 @@
 }
 
 @misc{garrido2024learning,
+  s2id = {4d1eadaa9a04e86aef2278ae13eb9fce644c9fc5},
   abstract = {Joint-Embedding Predictive Architecture (JEPA) has emerged as a promising self-supervised approach that learns by leveraging a world model. While previously limited to predicting missing parts of an input, we explore how to generalize the JEPA prediction task to a broader set of corruptions. We introduce Image World Models, an approach that goes beyond masked image modeling and learns to predict the effect of global photometric transformations in latent space. We study the recipe of learning performant IWMs and show that it relies on three key aspects: conditioning, prediction difficulty, and capacity. Additionally, we show that the predictive world model learned by IWM can be adapted through finetuning to solve diverse tasks; a fine-tuned IWM world model matches or surpasses the performance of previous self-supervised methods. Finally, we show that learning with an IWM allows one to control the abstraction level of the learned representations, learning invariant representations such as contrastive methods, or equivariant representations such as masked image modelling.},
   archiveprefix = {arXiv},
   arxiv = {https://arxiv.org/abs/2403.00504},
@@ -183,6 +190,7 @@
 }
 
 @inproceedings{saito2025point,
+  s2id = {89ccd5034f2de029e0f63ebb1f8ab24023bfe1f5},
   abstract = {Recent advancements in self-supervised learning in the point cloud domain have demonstrated significant potential. However, these methods often suffer from drawbacks such as lengthy pre-training time, the necessity of reconstruction in the input space, and the necessity of additional modalities. In order to address these issues, we introduce Point-JEPA, a joint embedding predictive architecture designed specifically for point cloud data. To this end, we introduce a sequencer that orders point cloud patch embeddings to efficiently compute and utilize their proximity based on their indices during target and context selection. The sequencer also allows shared computations of the patch embeddings' proximity between context and target selection, further improving the efficiency. Experimentally, our method demonstrates state-of-the-art performance while avoiding the re-construction in the input space or additional modality. In particular, Point-JEPA attains a classification accuracy of 93.7 ±0.2 % for linear SVM on ModelNet40 surpassing all other self-supervised models. Moreover, Point-JEPA also establishes new state-of-the-art performance levels across all four few-shot learning evaluation frameworks. The code is available at https://github.com/Ayumu-J-S/Point-JEPA},
   archiveprefix = {arXiv},
   arxiv = {https://arxiv.org/abs/2404.16432},
@@ -202,6 +210,7 @@
 }
 
 @article{bardes2024revisiting,
+  s2id = {872d78c04c8fb115d492eea98199407991670533},
   abstract = {This paper explores feature prediction as a stand-alone objective for unsupervised learning from video and introduces V-JEPA, a collection of vision models trained solely using a feature prediction objective, without the use of pretrained image encoders, text, negative examples, reconstruction, or other sources of supervision. The models are trained on 2 million videos collected from public datasets and are evaluated on downstream image and video tasks. Our results show that learning by predicting video features leads to versatile visual representations that perform well on both motion and appearance-based tasks, without adaption of the model's parameters; e.g., using a frozen backbone. Our largest model, a ViT-H/16 trained only on videos, obtains 81.9% on Kinetics-400, 72.2% on Something-Something-v2, and 77.9% on ImageNet1K.},
   archiveprefix = {arXiv},
   arxiv = {https://arxiv.org/abs/2404.08471},
@@ -219,6 +228,7 @@
 }
 
 @inproceedings{verdenius2025lat,
+  s2id = {9591b27d4cc59490b8dea5b42e6529eef836a6e0},
   abstract = {We introduce LatentTimePFN (LaT-PFN), a foundational Time Series model with a strong embedding space that enables zero-shot forecasting. To achieve this, we perform in-context learning in latent space utilizing a novel integration of the Prior-data Fitted Networks (PFN) and Joint Embedding Predictive Architecture (JEPA) frameworks. We leverage the JEPA framework to create a prediction-optimized latent representation of the underlying stochastic process that generates time series and combines it with contextual learning, using a PFN. Furthermore, we improve on preceding works by utilizing related time series as a context and introducing a normalized abstract time axis. This reduces training time and increases the versatility of the model by allowing any time granularity and forecast horizon. We show that this results in superior zero-shot predictions compared to established baselines. We also demonstrate our latent space produces informative embeddings of both individual time steps and fixed-length summaries of entire series. Finally, we observe the emergence of multi-step patch embeddings without explicit training, suggesting the model actively learns discrete tokens that encode local structures in the data, analogous to vision transformers.},
   archiveprefix = {arXiv},
   arxiv = {https://arxiv.org/abs/2405.10093},
@@ -236,6 +246,7 @@
 }
 
 @inproceedings{riou2024investigating,
+  s2id = {9a740bee1bd1f7617ac17dbfd78fefc4ab33945f},
   abstract = {This paper addresses the problem of self-supervised general-purpose audio representation learning. We explore the use of Joint-Embedding Predictive Architectures (JEPA) for this task, which consists of splitting an input mel-spectrogram into two parts (context and target), computing neural representations for each, and training the neural network to predict the target representations from the context representations.We investigate several design choices within this framework and study their influence through extensive experiments by evaluating our models on various audio classification benchmarks, including environmental sounds, speech and music downstream tasks. We focus notably on which part of the input data is used as context or target and show experimentally that it significantly impacts the model’s quality. In particular, we notice that some effective design choices in the image domain lead to poor performance on audio, thus highlighting major differences between these two modalities.},
   archiveprefix = {arXiv},
   arxiv = {https://arxiv.org/abs/2405.08679},
@@ -253,6 +264,7 @@
 }
 
 @article{girgis2026time,
+  s2id = {2b01bab0902da79eaca5c6b606b61a45a527c55a},
   abstract = {In remote control systems, transmitting large data volumes (e.g., images, video frames) from wireless sensors to remote controllers is challenging when uplink capacity is limited (e.g., RedCap devices or massive wireless sensor networks). Furthermore, controllers often need only information-rich representations of the original data. To address this, we propose a semantic-driven predictive control combined with a channel-aware scheduling to enhance control performance for multiple devices under limited network capacity. At its core, the proposed framework, coined Time-Series Joint Embedding Predictive Architecture (TS-JEPA), encodes high-dimensional sensory data into low-dimensional semantic embeddings at the sensor, reducing communication overhead. Furthermore, TS-JEPA enables predictive inference by predicting future embeddings from current ones and predicted commands, which are directly used by a semantic actor model to compute control commands within the embedding space, eliminating the need to reconstruct raw data. To further enhance reliability and communication efficiency, a channel-aware scheduling is integrated to dynamically prioritize device transmissions based on channel conditions and age of information (AoI). Simulations on inverted cart-pole systems show that the proposed framework significantly outperforms conventional control baselines in communication efficiency, control cost, and predictive accuracy. It enables robust and scalable control under limited network capacity compared to traditional scheduling schemes.},
   archiveprefix = {arXiv},
   arxiv = {https://arxiv.org/abs/2406.04853},
@@ -270,6 +282,7 @@
 }
 
 @inproceedings{li2024jepa,
+  s2id = {37735a8a1c0b60af4449e7367f92e9740a10f03d},
   abstract = {Trajectory similarity computation is crucial for analyzing movement patterns in applications like traffic management and wildlife tracking. Recent self-supervised learning methods such as contrastive learning have made advancements in trajectory representation learning but rely on predefined data augmentation schemes, limiting generalized and robust high-level semantic understanding. We introduce T-JEPA, a self-supervised method using Joint-Embedding Predictive Architecture (JEPA) to enhance trajectory representation learning. By sampling and predicting in representation space, T-JEPA infers high-level trajectory semantics without manual intervention. Extensive experiments conducted on three urban and two Foursquare datasets verify the effectiveness of T-JEPA in trajectory similarity computation.},
   archiveprefix = {arXiv},
   arxiv = {https://arxiv.org/abs/2406.12913},
@@ -287,6 +300,7 @@
 }
 
 @inproceedings{kim2025joint,
+  s2id = {318c9e493287c502b92f16699e8a264e9eb1ae55},
   abstract = {In this work, we introduce Mask-JEPA, a self-supervised learning framework tailored for mask classification architectures (MCA), to overcome the traditional constraints associated with training segmentation models. Mask-JEPA combines a Joint Embedding Predictive Architecture with MCA to adeptly capture intricate semantics and precise object boundaries. Our approach addresses two critical challenges in self-supervised learning: 1) extracting comprehensive representations for universal image segmentation from a pixel decoder, and 2) effectively training the transformer decoder. The use of the transformer decoder as a predictor within the JEPA framework allows proficient training in universal image segmentation tasks. Through rigorous evaluations on datasets such as ADE20K, Cityscapes and COCO, Mask-JEPA demonstrates not only competitive results but also exceptional adaptability and robustness across various training scenarios. The architecture-agnostic nature of Mask-JEPA further underscores its versatility, allowing seamless adaptation to various mask classification family.},
   archiveprefix = {arXiv},
   arxiv = {https://arxiv.org/abs/2407.10733},
@@ -305,6 +319,7 @@
 }
 
 @inproceedings{fu2025jepa,
+  s2id = {00c9e757700b19b965545c594fef3d435d0d2cdc},
   abstract = {Generating user intent descriptions from a sequence of user interface (UI) snippets is a core challenge in comprehensive UI understanding and cross-modal text generation. Recent advancements in multi-modal large language models (MLLMs) have led to substantial progress in this area, but their demands for extensive model parameters, computing power, and high latency makes them impractical for scenarios requiring lightweight, on-device solutions with low latency or heightened privacy. Additionally, the lack of high-quality datasets has hindered the development of such lightweight models. To address these challenges, we propose UI-JEPA, a novel framework that employs masking strategies to learn abstract UI embeddings from unlabeled UI data through self-supervised learning, combined with an LLM decoder fine-tuned for user intent summarization. We also introduce two new UI-grounded multi-modal datasets, “Intent in the Wild” (IIW) and “Intent in the Tame” (IIT), designed for few-shot and zero-shot UI understanding tasks on mobile phones. IIW consists of 1.7K videos across 219 intent categories, while IIT contains ∼ 900 videos across 10 categories. We establish the first baselines for these datasets, showing that representations learned using a JEPA-style objective, combined with an LLM decoder, can achieve high-quality user intent summarization that match the performance of state-of-the-art large MLLMs, but with significantly reduced annotation and deployment resources. Measured by a scoring function that aggregates both n-gram overlap and embedding similarity, UI-JEPA outperforms GPT-4 Turbo and Claude 3.5 Sonnet by 10.0% and 7.2% respectively, averaged across the two datasets. Notably, UI-JEPA also accomplishes the performance with a 50.5x reduction in computational cost and a 6.6x improvement in latency in the IIW dataset. These results underscore the effectiveness of UI-JEPA, highlighting its potential for lightweight, high-performance UI understanding and intent summarization.},
   archiveprefix = {arXiv},
   arxiv = {https://arxiv.org/abs/2409.04081},
@@ -323,6 +338,7 @@
 }
 
 @article{chaaya2025learning,
+  s2id = {182e220efbf808c3b4243b0391afa5c2d48e83d1},
   abstract = {In this letter, we propose a novel data-driven machine learning (ML) technique to model and predict the dynamics of the wireless propagation environment in latent space. Leveraging the idea of channel charting, which learns compressed representations of high-dimensional channel state information (CSI), we incorporate a predictive component to capture the dynamics of the wireless system. Hence, we jointly learn a channel encoder that maps the estimated CSI to an appropriate latent space, and a predictor that models the relationships between such representations. Accordingly, our problem boils down to training a joint-embedding predictive architecture (JEPA) that simulates the latent dynamics of a wireless network from CSI. We present numerical evaluations on measured data and show that the proposed JEPA displays a two-fold increase in accuracy over benchmarks, for longer look-ahead prediction tasks.},
   archiveprefix = {arXiv},
   arxiv = {https://arxiv.org/abs/2409.10045},
@@ -341,6 +357,7 @@
 }
 
 @misc{hu2024jepa,
+  s2id = {6daacc7355c11540db71bdd3a883c970e0d5f0e7},
   abstract = {Invariance-based and generative methods have shown a conspicuous performance for 3D self-supervised representation learning (SSRL). However, the former relies on hand-crafted data augmentations that introduce bias not universally applicable to all downstream tasks, and the latter indiscriminately reconstructs masked regions, resulting in irrelevant details being saved in the representation space. To solve the problem above, we introduce 3D-JEPA, a novel non-generative 3D SSRL framework. Specifically, we propose a multi-block sampling strategy that produces a sufficiently informative context block and several representative target blocks. We present the context-aware decoder to enhance the reconstruction of the target blocks. Concretely, the context information is fed to the decoder continuously, facilitating the encoder in learning semantic modeling rather than memorizing the context information related to target blocks. Overall, 3D-JEPA predicts the representation of target blocks from a context block using the encoder and context-aware decoder architecture. Various downstream tasks on different datasets demonstrate 3D-JEPA's effectiveness and efficiency, achieving higher accuracy with fewer pretraining epochs, e.g., 88.65% accuracy on PB_T50_RS with 150 pretraining epochs.},
   archiveprefix = {arXiv},
   arxiv = {https://arxiv.org/abs/2409.15803},
@@ -357,6 +374,7 @@
 }
 
 @inproceedings{dong2024brain,
+  s2id = {0673ed89899a55ca10850edc6adab0a7cb08480a},
   abstract = {We introduce Brain-JEPA, a brain dynamics foundation model with the Joint-Embedding Predictive Architecture (JEPA). This pioneering model achieves state-of-the-art performance in demographic prediction, disease diagnosis/prognosis, and trait prediction through fine-tuning. Furthermore, it excels in off-the-shelf evaluations (e.g., linear probing) and demonstrates superior generalizability across different ethnic groups, surpassing the previous large model for brain activity significantly. Brain-JEPA incorporates two innovative techniques: Brain Gradient Positioning and Spatiotemporal Masking. Brain Gradient Positioning introduces a functional coordinate system for brain functional parcellation, enhancing the positional encoding of different Regions of Interest (ROIs). Spatiotemporal Masking, tailored to the unique characteristics of fMRI data, addresses the challenge of heterogeneous time-series patches. These methodologies enhance model performance and advance our understanding of the neural circuits underlying cognition. Overall, Brain-JEPA is paving the way to address pivotal questions of building brain functional coordinate system and masking brain activity at the AI-neuroscience interface, and setting a potentially new paradigm in brain activity analysis through downstream adaptation.},
   archiveprefix = {arXiv},
   arxiv = {https://arxiv.org/abs/2409.19407},
@@ -410,6 +428,7 @@
 }
 
 @article{weimann2025self,
+  s2id = {ee5febbfeddb3a8cf4ad3981695be59095819602},
   abstract = {Accurate diagnosis of heart arrhythmias requires the interpretation of electrocardiograms (ECG), which capture the electrical activity of the heart. Automating this process through machine learning is challenging due to the need for large annotated datasets, which are difficult and costly to collect. To address this issue, transfer learning is often employed, where models are pre-trained on large datasets and fine-tuned for specific ECG classification tasks with limited labeled data. Self-supervised learning has become a widely adopted pre-training method, enabling models to learn meaningful representations from unlabeled datasets. In this work, we explore the joint-embedding predictive architecture (JEPA) for self-supervised learning from ECG data. Unlike invariance-based methods, JEPA does not rely on hand-crafted data augmentations, and unlike generative methods, it predicts latent features rather than reconstructing input data. We create a large unsupervised pre-training dataset by combining ten public ECG databases, amounting to over one million records. We pre-train Vision Transformers using JEPA on this dataset and fine-tune them on various PTB-XL benchmarks. Our results show that JEPA outperforms existing invariance-based and generative approaches, achieving an AUC of 0.945 on the PTB-XL all statements task. JEPA consistently learns the highest quality representations, as demonstrated in frozen evaluations, and proves advantageous for pre-training even in the absence of additional data.},
   archiveprefix = {arXiv},
   arxiv = {https://arxiv.org/abs/2410.13867},
@@ -428,6 +447,7 @@
 }
 
 @misc{velarde2024recurrent,
+  s2id = {0480948ed512a2c21e137e11a31a43ef0668427e},
   abstract = {Conventional computer vision models rely on very deep, feedforward networks processing whole images and trained offline with extensive labeled data. In contrast, biological vision relies on comparatively shallow, recurrent networks that analyze sequences of fixated image patches, learning continuously in real-time without explicit supervision. This work introduces a vision network inspired by these biological principles. Specifically, it leverages a joint embedding predictive architecture incorporating recurrent gated circuits. The network learns by predicting the representation of the next image patch (fixation) based on the sequence of past fixations, a form of self-supervised learning. We show mathematical and empirically that the training algorithm avoids the problem of representational collapse. We also introduce \emphRecurrent-Forward Propagation, a learning algorithm that avoids biologically unrealistic backpropagation through time or memory-inefficient real-time recurrent learning. We show mathematically that the algorithm implements exact gradient descent for a large class of recurrent architectures, and confirm empirically that it learns efficiently. This paper focuses on these theoretical innovations and leaves empirical evaluation of performance in downstream tasks, and analysis of representational similarity with biological vision for future work.},
   archiveprefix = {arXiv},
   arxiv = {https://arxiv.org/abs/2411.16695},
@@ -444,6 +464,7 @@
 }
 
 @inproceedings{katel2024learning,
+  s2id = {f390fb85d70c427684e33ccff4de217f1efc2fc3},
   abstract = {In high energy physics, self-supervised learning (SSL) methods have the potential to aid in the creation of machine learning models without the need for labeled datasets for a variety of tasks, including those related to jets -- narrow sprays of particles produced by quarks and gluons in high energy particle collisions. This study introduces an approach to learning jet representations without hand-crafted augmentations using a jet-based joint embedding predictive architecture (J-JEPA), which aims to predict various physical targets from an informative context. As our method does not require hand-crafted augmentation like other common SSL techniques, J-JEPA avoids introducing biases that could harm downstream tasks. Since different tasks generally require invariance under different augmentations, this training without hand-crafted augmentation enables versatile applications, offering a pathway toward a cross-task foundation model. We finetune the representations learned by J-JEPA for jet tagging and benchmark them against task-specific representations.},
   archiveprefix = {arXiv},
   arxiv = {https://arxiv.org/abs/2412.05333},
@@ -460,6 +481,7 @@
 }
 
 @misc{drozdov2024video,
+  s2id = {8855ed01763594cd8b88989ff8b0fd1a40173e0c},
   abstract = {Video representation learning is an increasingly important topic in machine learning research. We present Video JEPA with Variance-Covariance Regularization (VJ-VCR): a joint-embedding predictive architecture for self-supervised video representation learning that employs variance and covariance regularization to avoid representation collapse. We show that hidden representations from our VJ-VCR contain abstract, high-level information about the input data. Specifically, they outperform representations obtained from a generative baseline on downstream tasks that require understanding of the underlying dynamics of moving objects in the videos. Additionally, we explore different ways to incorporate latent variables into the VJ-VCR framework that capture information about uncertainty in the future in non-deterministic settings.},
   archiveprefix = {arXiv},
   arxiv = {https://arxiv.org/abs/2412.10925},
@@ -478,6 +500,7 @@
 }
 
 @inproceedings{astruc2025anysat,
+  s2id = {923a6a64db292929e8cbce1ee03ad0f1c4697ab8},
   abstract = {Geospatial models must adapt to the diversity of Earth observation data in terms of resolutions, scales, and modalities. However, existing approaches expect fixed input configurations, which limits their practical applicability. We propose AnySat, a multimodal model based on joint embedding predictive architecture (JEPA) and scale-adaptive spatial encoders, allowing us to train a single model on highly heterogeneous data in a self-supervised manner. To demonstrate the advantages of this unified approach, we compile GeoPlex, a collection of 5 multimodal datasets with varying characteristics and $11$ distinct sensors. We then train a single powerful model on these diverse datasets simultaneously. Once fine-tuned or probed, we reach state-of-the-art results on the test sets of GeoPlex and for 6 external datasets across various environment monitoring tasks: land cover mapping, tree species identification, crop type classification, change detection, climate type classification, and segmentation of flood, burn scar, and deforestation. The code and models are available at https://github.com/gastruc/AnySat.},
   archiveprefix = {arXiv},
   arxiv = {https://arxiv.org/abs/2412.14123},
@@ -496,6 +519,7 @@
 }
 
 @inproceedings{zhu2026self,
+  s2id = {cc33476c5a8823eab74ce7ba7334ca1a9d7f11a0},
   abstract = {Recently, self-supervised representation learning relying on vast amounts of unlabeled data has been explored as a pre-training method for autonomous driving. However, directly applying popular contrastive or generative methods to this problem is insufficient and may even lead to negative transfer. In this paper, we present AD-L-JEPA, a novel self-supervised pre-training framework with a joint embedding predictive architecture (JEPA) for automotive LiDAR object detection. Unlike existing methods, AD-L-JEPA is neither generative nor contrastive. Instead of explicitly generating masked regions, our method predicts Bird's-Eye-View embeddings to capture the diverse nature of driving scenes. Furthermore, our approach eliminates the need to manually form contrastive pairs by employing explicit variance regularization to avoid representation collapse. Experimental results demonstrate consistent improvements on the LiDAR 3D object detection downstream task across the KITTI3D, Waymo, and ONCE datasets, while reducing GPU hours by 1.9x-2.7x and GPU memory by 2.8x-4x compared with the state-of-the-art method Occupancy-MAE. Notably, on the largest ONCE dataset, pre-training on 100K frames yields a 1.61 mAP gain, better than all other methods pre-trained on either 100K or 500K frames, and pre-training on 500K frames yields a 2.98 mAP gain, better than all other methods pre-trained on either 500K or 1M frames. AD-L-JEPA constitutes the first JEPA-based pre-training method for autonomous driving. It offers better quality, faster, and more GPU-memory-efficient self-supervised representation learning. The source code of AD-L-JEPA is ready to be released.},
   archiveprefix = {arXiv},
   arxiv = {https://arxiv.org/abs/2501.04969},
@@ -513,6 +537,7 @@
 }
 
 @misc{vujinovic2025act,
+  s2id = {c46f0114e99edefb42580106bd1080222d72e7d0},
   abstract = {Learning efficient representations for decision-making policies is a challenge in imitation learning (IL). Current IL methods require expert demonstrations, which are expensive to collect. Consequently, they often have underdeveloped world models. Self-supervised learning (SSL) offers an alternative by allowing models to learn from diverse, unlabeled data, including failures. However, SSL methods often operate in raw input space, making them inefficient. In this work, we propose ACT-JEPA, a novel architecture that integrates IL and SSL to enhance policy representations. We train a policy to predict (1) action sequences and (2) abstract observation sequences. The first objective uses action chunking to improve action prediction and reduce compounding errors. The second objective extends this idea of chunking by predicting abstract observation sequences. We utilize Joint-Embedding Predictive Architecture to predict in abstract representation space, allowing the model to filter out irrelevant details, improve efficiency, and develop a robust world model. Our experiments show that ACT-JEPA improves the quality of representations by learning temporal environment dynamics. Additionally, the model's ability to predict abstract observation sequences results in representations that effectively generalize to action sequence prediction. ACT-JEPA performs on par with established baselines across a range of decision-making tasks.},
   archiveprefix = {arXiv},
   arxiv = {https://arxiv.org/abs/2501.14622},
@@ -529,6 +554,7 @@
 }
 
 @inproceedings{bardhan2025hep,
+  s2id = {f039802b5bdb62e2c3bab16213df49a5205d49bc},
   abstract = {We present a transformer architecture-based foundation model for tasks at high-energy particle colliders such as the Large Hadron Collider. We train the model to classify jets using a self-supervised strategy inspired by the Joint Embedding Predictive Architecture. We use the JetClass dataset containing 100M jets of various known particles to pre-train the model with a data-centric approach -- the model uses a fraction of the jet constituents as the context to predict the embeddings of the unseen target constituents. Our pre-trained model fares well with other datasets for standard classification benchmark tasks. We test our model on two additional downstream tasks: top tagging and differentiating light-quark jets from gluon jets. We also evaluate our model with task-specific metrics and baselines and compare it with state-of-the-art models in high-energy physics. Project site: https://hep-jepa.github.io/},
   archiveprefix = {arXiv},
   arxiv = {https://arxiv.org/abs/2502.03933},
@@ -563,6 +589,7 @@
 }
 
 @inproceedings{choudhury2025rejepa,
+  s2id = {19ddc7dcb62688c9fa873fe03bba5af0c5630b8c},
   abstract = {The rapid expansion of remote sensing image archives demands the development of strong and efficient techniques for content-based image retrieval (RS-CBIR). This paper presents ReJEPA (Retrieval with JointEmbedding Predictive Architecture), an innovative self-supervised framework designed for unimodal RSCBIR. REJEPA utilises spatially distributed context token encoding to forecast abstract representations of target tokens, effectively capturing high-level semantic features and eliminating unnecessary pixel-level details. In contrast to generative methods that focus on pixel reconstruction or contrastive techniques that depend on negative pairs, ReJEPA functions within feature space, achieving a reduction in computational complexity of 40-60% when compared to pixel-reconstruction baselines like Masked Autoencoders (MAE). To guarantee strong and varied representations, REJEPA incorporates Variance-InvarianceCovariance Regularisation (VICReg), which prevents encoder collapse by promoting feature diversity and reducing redundancy. The method demonstrates an estimated enhancement in retrieval accuracy of 5.1% on BEN-14K (S1), 7.4% on BEN-14K (S2), 6.0% on FMoW-RGB, and 10.1% on FMoW-Sentinel compared to prominent SSL techniques, including CSMAESESD, Mask-VLM, SatMAE, ScaleMAE, and SatMAE++, on extensive RS benchmarks BEN-14K (multispectral and SAR data), FMoW-RGB, and FMoWSentinel. Through effective generalization across sensor modalities, REJEPA establishes itself as a sensoragnostic benchmark for efficient, scalable, and precise RS-CBIR, addressing challenges like varying resolutions, high object density, and complex backgrounds with computational efficiency.},
   archiveprefix = {arXiv},
   arxiv = {https://arxiv.org/abs/2504.03169},
@@ -581,6 +608,7 @@
 }
 
 @misc{hartman2025sparsejepa,
+  s2id = {b4e7f6a2fc750c98bd359107666800914e8c8bc0},
   abstract = {Joint Embedding Predictive Architectures (JEPA) have emerged as a powerful framework for learning general-purpose representations. However, these models often lack interpretability and suffer from inefficiencies due to dense embedding representations. We propose SparseJEPA, an extension that integrates sparse representation learning into the JEPA framework to enhance the quality of learned representations. SparseJEPA employs a penalty method that encourages latent space variables to be shared among data features with strong semantic relationships, while maintaining predictive performance. We demonstrate the effectiveness of SparseJEPA by training on the CIFAR-100 dataset and pre-training a lightweight Vision Transformer. The improved embeddings are utilized in linear-probe transfer learning for both image classification and low-level tasks, showcasing the architecture's versatility across different transfer tasks. Furthermore, we provide a theoretical proof that demonstrates that the grouping mechanism enhances representation quality. This was done by displaying that grouping reduces Multiinformation among latent-variables, including proofing the Data Processing Inequality for Multiinformation. Our results indicate that incorporating sparsity not only refines the latent space but also facilitates the learning of more meaningful and interpretable representations. In further work, hope to further extend this method by finding new ways to leverage the grouping mechanism through object-centric representation learning.},
   archiveprefix = {arXiv},
   arxiv = {https://arxiv.org/abs/2504.16140},
@@ -596,6 +624,7 @@
 }
 
 @inproceedings{kenneweg2025jepa,
+  s2id = {067b7dfc2515e7422e3c127685b0f130248e9b43},
   abstract = {Joint-Embedding Predictive Architectures (JEPA) have recently become popular as promising architectures for self-supervised learning. Vision transformers have been trained using JEPA to produce embeddings from images and videos, which have been shown to be highly suitable for downstream tasks like classification and segmentation. In this paper, we show how to adapt the JEPA architecture to reinforcement learning from images. We discuss model collapse, show how to prevent it, and provide exemplary data on the classical Cart Pole task.},
   archiveprefix = {arXiv},
   arxiv = {https://arxiv.org/abs/2504.16591},
@@ -613,6 +642,7 @@
 }
 
 @inproceedings{chaaya2025pixels,
+  s2id = {85a2e03465e8e1549f36086211a9e345050a9811},
   abstract = {In this work, we aim to optimize the radio resource management of a communication system between a remote controller and its device, whose state is represented through image frames, without compromising the performance of the control task. We propose a novel machine learning (ML) technique to jointly model and predict the dynamics of the control system as well as the wireless propagation environment in latent space. Our method leverages two coupled joint-embedding predictive architectures (JEPAs): a control JEPA models the control dynamics and guides the predictions of a wireless JEPA, which captures the dynamics of the device’s channel state information (CSI) through cross-modal conditioning. We then train a deep reinforcement learning (RL) algorithm to derive a control policy from latent control dynamics and a power predictor to estimate scheduling intervals with favorable channel conditions based on latent CSI representations. As such, the controller minimizes the usage of radio resources by utilizing the coupled JEPA networks to imagine the device’s trajectory in latent space. We present simulation results on synthetic multimodal data and show that our proposed approach reduces transmit power by over 50% while maintaining control performance comparable to baseline methods that do not account for wireless optimization.},
   archiveprefix = {arXiv},
   arxiv = {https://arxiv.org/abs/2506.16216},
@@ -629,6 +659,7 @@
 }
 
 @misc{assran2025jepa,
+  s2id = {b202faf38efbffcb26470c702e1140b047d6f6e7},
   abstract = {A major challenge for modern AI is to learn to understand the world and learn to act largely by observation. This paper explores a self-supervised approach that combines internet-scale video data with a small amount of interaction data (robot trajectories), to develop models capable of understanding, predicting, and planning in the physical world. We first pre-train an action-free joint-embedding-predictive architecture, V-JEPA 2, on a video and image dataset comprising over 1 million hours of internet video. V-JEPA 2 achieves strong performance on motion understanding (77.3 top-1 accuracy on Something-Something v2) and state-of-the-art performance on human action anticipation (39.7 recall-at-5 on Epic-Kitchens-100) surpassing previous task-specific models. Additionally, after aligning V-JEPA 2 with a large language model, we demonstrate state-of-the-art performance on multiple video question-answering tasks at the 8 billion parameter scale (e.g., 84.0 on PerceptionTest, 76.9 on TempCompass). Finally, we show how self-supervised learning can be applied to robotic planning tasks by post-training a latent action-conditioned world model, V-JEPA 2-AC, using less than 62 hours of unlabeled robot videos from the Droid dataset. We deploy V-JEPA 2-AC zero-shot on Franka arms in two different labs and enable picking and placing of objects using planning with image goals. Notably, this is achieved without collecting any data from the robots in these environments, and without any task-specific training or reward. This work demonstrates how self-supervised learning from web-scale data and a small amount of robot interaction data can yield a world model capable of planning in the physical world.},
   archiveprefix = {arXiv},
   arxiv = {https://arxiv.org/abs/2506.09985},
@@ -647,6 +678,7 @@
 }
 
 @misc{tuncay2025audio,
+  s2id = {29bda609222b796e30490d89769169de2add1c5a},
   abstract = {Building on the Joint-Embedding Predictive Architecture (JEPA) paradigm, a recent self-supervised learning framework that predicts latent representations of masked regions in high-level feature spaces, we propose Audio-JEPA (Audio Joint-Embedding Predictive Architecture), tailored specifically for audio data. Audio-JEPA uses a simple Vision Transformer backbone to predict latent representations of masked spectrogram patches rather than reconstructing raw audio. We pre-train on unlabeled AudioSet clips (10s, 32kHz) with random patch masking on mel-spectrograms. We evaluate on the X-ARES suite covering speech, music, and environmental sound tasks. Although our implementation is a straightforward translation of the original model to audio, the results still show comparable performance to wav2vec 2.0 and data2vec while using less than one-fifth of their training data and with no hyper-parameter tuning. All code and pretrained checkpoints will be released on GitHub.},
   archiveprefix = {arXiv},
   arxiv = {https://arxiv.org/abs/2507.02915},
@@ -682,6 +714,7 @@
 }
 
 @inproceedings{ennadir2024joint,
+  s2id = {e5efd2b0dab02c3e48425e3baa7aea1c2a21d4c0},
   abstract = {Self-supervised learning has seen great success recently in unsupervised representation learning, enabling breakthroughs in natural language and image processing. However, these methods often rely on autoregressive and masked modeling, which aim to reproduce masked information in the input, which can be vulnerable to the presence of noise or confounding variables. To address this problem, Joint-Embedding Predictive Architectures (JEPA) has been introduced with the aim to perform self-supervised learning in the latent space. To leverage these advancements in the domain of time series, we introduce Time Series JEPA (TS-JEPA), an architecture specifically adapted for time series representation learning. We validate TS-JEPA on both classification and forecasting, showing that it can match or surpass current state-of-the-art baselines on different standard datasets. Notably, our approach demonstrates a strong performance balance across diverse tasks, indicating its potential as a robust foundation for learning general representations. Thus, this work lays the groundwork for developing future time series foundation models based on Joint Embedding.},
   archiveprefix = {arXiv},
   arxiv = {https://arxiv.org/abs/2509.25449},
@@ -698,6 +731,7 @@
 }
 
 @misc{yuksel2025wavjepa,
+  s2id = {d0d5693107cfcc199e7c02986a17306dea5ce115},
   abstract = {Learning audio representations from raw waveforms overcomes key limitations of spectrogram-based audio representation learning, such as the long latency of spectrogram computation and the loss of phase information. Yet, while self-supervised speech representation learning from raw waveforms has been remarkably successful, these approaches have not achieved similar feats for general-purpose audio representation learning from waveforms. Here, we propose WavJEPA, a waveform-based version of the Joint-Embedding Predictive Architecture. WavJEPA leverages high-level semantic representation learning to tackle the shortcomings of representation learning at the speech unit or token level. We show that this approach substantially outperforms state-of-the-art time-domain audio foundation models across a wide variety of downstream benchmark tasks, while requiring considerably fewer computational resources. Additionally, to overcome the performance drop that time-domain models typically exhibit in noisy and reverberant real-world acoustic environments, we present WavJEPA-Nat. WavJEPA-Nat is a multi-channel extension of the WavJEPA architecture trained on simulated naturalistic scenes. We find that WavJEPA-Nat is highly robust to reverberation and noise. These results highlight the feasibility and computational efficiency of general-purpose audio representation learning from raw waveforms, showcasing the potential for low-latency, robust time-domain audio foundation models for real-world applications.},
   archiveprefix = {arXiv},
   arxiv = {https://arxiv.org/abs/2509.23238},
@@ -716,6 +750,7 @@
 }
 
 @misc{wan2025jepa,
+  s2id = {744b1350c7a13776ac420e4d957b81fcc32d9619},
   abstract = {Modern Text-to-Image (T2I) generation increasingly relies on token-centric architectures that are trained with self-supervision, yet effectively fusing text with visual tokens remains a challenge. We propose JEPA-T, a unified multimodal framework that encodes images and captions into discrete visual and textual tokens, processed by a joint-embedding predictive Transformer. To enhance fusion, we incorporate cross-attention after the feature predictor for conditional denoising while maintaining a task-agnostic backbone. Additionally, raw text embeddings are injected prior to the flow matching loss to improve alignment during training. During inference, the same network performs both class-conditional and free-text image generation by iteratively denoising visual tokens conditioned on text. Evaluations on ImageNet-1K demonstrate that JEPA-T achieves strong data efficiency, open-vocabulary generalization, and consistently outperforms non-fusion and late-fusion baselines. Our approach shows that late architectural fusion combined with objective-level alignment offers an effective balance between conditioning strength and backbone generality in token-based T2I. The code is now available: https://github.com/justin-herry/JEPA-T.git},
   archiveprefix = {arXiv},
   arxiv = {https://arxiv.org/abs/2510.00974},
@@ -734,6 +769,7 @@
 }
 
 @misc{litman2025genejepa,
+  s2id = {bb43de2ab4011779dd0a7d34d885c7c79f8e97bb},
   abstract = {We introduce GeneJepa , a self-supervised foundation model that learns a predictive world model of single-cell transcriptomes. Based on the Joint-Embedding Predictive Architecture, GeneJepa predicts latent representations of masked gene sets from visible context, a shift away from reconstructing noisy expression values and toward world-model style inference over cellular state. To realize this at scale, a Perceiver encoder handles variable gene sets at fixed cost, and a tokenizer jointly represents gene identity and continuous expression using Fourier features. Trained on the Tahoe-100M atlas, GeneJepa learns general representations that transfer across tissues and datasets. On downstream tasks, including drug response and perturbation prediction, it surpasses strong baselines and enables test-time scaling by progressively enlarging the cross-attention over the gene set, trading a small read cost for higher accuracy at inference. GeneJepa moves toward foundation models that reason over gene–gene relations, enabling applications in annotation, prediction, and in-silico discovery.},
   author = {Elon Litman and Tyler Myers and Vinayak Agarwal and Ekansh Mittal and Orion Li and Ashwin Gopinath and Timothy Kassis},
   doi = {10.1101/2025.10.14.682378},
@@ -746,6 +782,7 @@
 }
 
 @misc{balestriero2025lejepa,
+  s2id = {988ef01812555a4e2a5810bd245a71f31896b36c},
   abstract = {Learning manipulable representations of the world and its dynamics is central to AI. Joint-Embedding Predictive Architectures (JEPAs) offer a promising blueprint, but lack of practical guidance and theory has led to ad-hoc R&D. We present a comprehensive theory of JEPAs and instantiate it in LeJEPA, a lean, scalable, and theoretically grounded training objective. First, we identify the isotropic Gaussian as the optimal distribution that JEPAs' embeddings should follow to minimize downstream prediction risk. Second, we introduce a novel objective, Sketched Isotropic Gaussian Regularization (SIGReg), to constrain embeddings to reach that ideal distribution. Combining the JEPA predictive loss with SIGReg yields LeJEPA with numerous theoretical and practical benefits: (i) single trade-off hyperparameter, (ii) linear time and memory complexity, (iii) stability across hyper-parameters, architectures (ResNets, ViTs, ConvNets) and domains, (iv) heuristics-free design, e.g. no stop-gradient, no teacher-student, no hyper-parameter schedulers, and (v) distributed training-friendly implementation requiring only approximately 50 lines of code. Our empirical validation covers 10+ datasets and 60+ architectures across varying scales and domains. As an example, using ImageNet-1K for pretraining and linear evaluation with a frozen backbone, LeJEPA reaches 79% with a ViT-H/14. We hope that the simplicity and theory-friendly ecosystem offered by LeJEPA will reestablish self-supervised pre-training as a core pillar of AI research. GitHub repo: https://github.com/rbalestr-lab/lejepa},
   archiveprefix = {arXiv},
   arxiv = {https://arxiv.org/abs/2511.08544},
@@ -762,6 +799,7 @@
 }
 
 @misc{ruizmorales2025koopman,
+  s2id = {3a4ce2e113dbcad76a4436b4e7323c62cc0c9f1b},
   abstract = {Joint-Embedding Predictive Architectures (JEPAs), a powerful class of self-supervised models, exhibit an unexplained ability to cluster time-series data by their underlying dynamical regimes. We propose a novel theoretical explanation for this phenomenon, hypothesizing that JEPA's predictive objective implicitly drives it to learn the invariant subspace of the system's Koopman operator. We prove that an idealized JEPA loss is minimized when the encoder represents the system's regime indicator functions, which are Koopman eigenfunctions. This theory was validated on synthetic data with known dynamics, demonstrating that constraining the JEPA's linear predictor to be a near-identity operator is the key inductive bias that forces the encoder to learn these invariants. We further discuss that this constraint is critical for selecting this interpretable solution from a class of mathematically equivalent but entangled optima, revealing the predictor's role in representation disentanglement. This work demystifies a key behavior of JEPAs, provides a principled connection between modern self-supervised learning and dynamical systems theory, and informs the design of more robust and interpretable time-series models.},
   archiveprefix = {arXiv},
   arxiv = {https://arxiv.org/abs/2511.09783},
@@ -778,6 +816,7 @@
 }
 
 @misc{he2026dseq,
+  s2id = {cf3f719eb0ecd3ef0f63f4db559913e712cdbb64},
   abstract = {Image-based Joint-Embedding Predictive Architecture (I-JEPA) learns visual representations by predicting latent embeddings of masked regions from visible context. However, it treats all regions uniformly and independently, lacking an explicit notion of where or in what order predictions should be made. Inspired by human visual perception, which deploys attention selectively and sequentially from the most informative to secondary regions, we propose DSeq-JEPA, a Discriminative Sequential Joint-Embedding Predictive Architecture that bridges predictive and autoregressive self-supervised learning, integrating JEPA-style latent prediction with GPT-style sequential reasoning. Specifically, DSeq-JEPA (i) first identifies primary discriminative regions based on a transformer-derived saliency map, emphasizing the distribution of visual importance, and then (ii) predicts subsequent regions in this discriminative order, progressively forming a curriculum-like semantic progression from primary to secondary cues -- a form of GPT-style pre-training. Extensive experiments across diverse tasks, including image classification (ImageNet), fine-grained visual categorization (iNaturalist21, CUB-200-2011, Stanford-Cars), detection and segmentation (MS-COCO, ADE20K), and low-level reasoning tasks (Clevr/Count, Clevr/Dist), demonstrate that DSeq-JEPA consistently focuses on more discriminative and generalizable representations than I-JEPA variants. Project page: https://github.com/SkyShunsuke/DSeq-JEPA.},
   archiveprefix = {arXiv},
   arxiv = {https://arxiv.org/abs/2511.17354},
@@ -793,6 +832,7 @@
 }
 
 @misc{perera2025crossjepa,
+  s2id = {53275298f41a74e0d2395c6d96bc21cbd9d02d26},
   abstract = {Image-to-point cross-modal learning has emerged to address the scarcity of large-scale 3D datasets in 3D representation learning. However, current methods that leverage 2D data often result in large, slow-to-train models, making them computationally expensive and difficult to deploy in resource-constrained environments. The architecture design of such models is therefore critical, determining their performance, memory footprint, and compute efficiency. The Joint-embedding Predictive Architecture (JEPA) has gained wide popularity in self-supervised learning for its simplicity and efficiency, but has been under-explored in cross-modal settings, partly due to the misconception that masking is intrinsic to JEPA. In this light, we propose CrossJEPA, a simple Cross-modal Joint Embedding Predictive Architecture that harnesses the knowledge of an image foundation model and trains a predictor to infer embeddings of specific rendered 2D views from corresponding 3D point clouds, thereby introducing a JEPA-style pretraining strategy beyond masking. By conditioning the predictor on cross-domain projection information, CrossJEPA purifies the supervision signal from semantics exclusive to the target domain. We further exploit the frozen teacher design with a one-time target embedding caching mechanism, yielding amortized efficiency. CrossJEPA achieves a new state-of-the-art in linear probing on the synthetic ModelNet40 (94.2%) and the real-world ScanObjectNN (88.3%) benchmarks, using only 14.1M pretraining parameters (8.5M in the point encoder), and about 6 pretraining hours on a standard single GPU. These results position CrossJEPA as a performant, memory-efficient, and fast-to-train framework for 3D representation learning via knowledge distillation. We analyze CrossJEPA intuitively, theoretically, and empirically, and extensively ablate our design choices. Code will be made available.},
   archiveprefix = {arXiv},
   arxiv = {https://arxiv.org/abs/2511.18424},
@@ -809,6 +849,7 @@
 }
 
 @misc{ioannides2025jepa,
+  s2id = {b9cd560d320a1f677701f4060ae9dc9aa199d1ff},
   abstract = {We introduce a two-stage self-supervised framework that combines the Joint-Embedding Predictive Architecture (JEPA) with a Density Adaptive Attention Mechanism (DAAM) for learning robust speech representations. Stage~1 uses JEPA with DAAM to learn semantic audio features via masked prediction in latent space, fully decoupled from waveform reconstruction. Stage~2 leverages these representations for efficient tokenization using Finite Scalar Quantization (FSQ) and a mixed-radix packing scheme, followed by high-fidelity waveform reconstruction with a HiFi-GAN decoder. By integrating Gaussian mixture-based density-adaptive gating into the JEPA encoder, the model performs adaptive temporal feature selection and discovers hierarchical speech structure at a low frame rate of 2.5~Hz. The resulting tokens (47.5 tokens/sec) provide a reversible, highly compressed, and language-model-friendly representation that is competitive with, and often more efficient than, existing neural audio codecs.},
   archiveprefix = {arXiv},
   arxiv = {https://arxiv.org/abs/2512.07168},
@@ -842,6 +883,7 @@
 }
 
 @misc{terver2025what,
+  s2id = {35fc38884dacfaf54e87d739fdb4104bc49b63e5},
   abstract = {A long-standing challenge in AI is to develop agents capable of solving a wide range of physical tasks and generalizing to new, unseen tasks and environments. A popular recent approach involves training a world model from state-action trajectories and subsequently use it with a planning algorithm to solve new tasks. Planning is commonly performed in the input space, but a recent family of methods has introduced planning algorithms that optimize in the learned representation space of the world model, with the promise that abstracting irrelevant details yields more efficient planning. In this work, we characterize models from this family as JEPA-WMs and investigate the technical choices that make algorithms from this class work. We propose a comprehensive study of several key components with the objective of finding the optimal approach within the family. We conducted experiments using both simulated environments and real-world robotic data, and studied how the model architecture, the training objective, and the planning algorithm affect planning success. We combine our findings to propose a model that outperforms two established baselines, DINO-WM and V-JEPA-2-AC, in both navigation and manipulation tasks. Code, data and checkpoints are available at https://github.com/facebookresearch/jepa-wms.},
   archiveprefix = {arXiv},
   arxiv = {https://arxiv.org/abs/2512.24497},
@@ -860,6 +902,7 @@
 }
 
 @misc{destrade2026value,
+  s2id = {f2b50aa84f10b0f89293fc116e91f8a93f7f40e7},
   abstract = {Building deep learning models that can reason about their environment requires capturing its underlying dynamics. Joint-Embedded Predictive Architectures (JEPA) provide a promising framework to model such dynamics by learning representations and predictors through a self-supervised prediction objective. However, their ability to support effective action planning remains limited. We propose an approach to enhance planning with JEPA world models by shaping their representation space so that the negative goal-conditioned value function for a reaching cost in a given environment is approximated by a distance (or quasi-distance) between state embeddings. We introduce a practical method to enforce this constraint during training and show that it leads to significantly improved planning performance compared to standard JEPA models on simple control tasks.},
   archiveprefix = {arXiv},
   arxiv = {https://arxiv.org/abs/2601.00844},
@@ -876,6 +919,7 @@
 }
 
 @misc{wang2026drive,
+  s2id = {90ca5d95e55f8cb908e65bf76023ce0a47ffe7a8},
   abstract = {End-to-end autonomous driving increasingly leverages self-supervised video pretraining to learn transferable planning representations. However, pretraining video world models for scene understanding has so far brought only limited improvements. This limitation is compounded by the inherent ambiguity of driving: each scene typically provides only a single human trajectory, making it difficult to learn multimodal behaviors. In this work, we propose Drive-JEPA, a framework that integrates Video Joint-Embedding Predictive Architecture (V-JEPA) with multimodal trajectory distillation for end-to-end driving. First, we adapt V-JEPA for end-to-end driving, pretraining a ViT encoder on large-scale driving videos to produce predictive representations aligned with trajectory planning. Second, we introduce a proposal-centric planner that distills diverse simulator-generated trajectories alongside human trajectories, with a momentum-aware selection mechanism to promote stable and safe behavior. When evaluated on NAVSIM, the V-JEPA representation combined with a simple transformer-based decoder outperforms prior methods by 3 PDMS in the perception-free setting. The complete Drive-JEPA framework achieves 93.3 PDMS on v1 and 87.8 EPDMS on v2, setting a new state-of-the-art.},
   archiveprefix = {arXiv},
   arxiv = {https://arxiv.org/abs/2601.22032},
@@ -924,6 +968,7 @@
 }
 
 @misc{chu2026wirelessjepa,
+  s2id = {2a74fcbd75f5f31e54ed3d9dc2d6758938f0d979},
   abstract = {We propose WirelessJEPA, a novel wireless foundation model (WFM) that uses the Joint Embedding Predictive Architecture (JEPA). WirelessJEPA learns general-purpose representations directly from real-world multi-antenna IQ data by predicting latent representations of masked signal regions. This enables multiple diverse downstream tasks without reliance on carefully engineered contrastive augmentations. To adapt JEPA to wireless signals, we introduce a 2D antenna time representation that reshapes multi-antenna IQ streams into structured grids, allowing convolutional processing with block masking and efficient sparse computation over unmasked patches. Building on this representation, we propose novel spatio temporal mask geometries that encode inductive biases across antennas and time. We evaluate WirelessJEPA across six downstream tasks and demonstrate it's robust performance and strong task generalization. Our results establish that JEPA-based learning as a promising direction for building generalizable WFMs.},
   archiveprefix = {arXiv},
   arxiv = {https://arxiv.org/abs/2601.20190},
@@ -940,6 +985,7 @@
 }
 
 @misc{girgis2026hierarchical,
+  s2id = {aa57b3c150c8b99389817cb8c09385d0f2d31062},
   abstract = {In wireless networked control systems, ensuring timely and reliable state updates from distributed devices to remote controllers is essential for robust control performance. However, when multiple devices transmit high-dimensional states (e.g., images or video frames) over bandwidth-limited wireless networks, a critical trade-off emerges between communication efficiency and control performance. To address this challenge, we propose a Hierarchical Joint-Embedding Predictive Architecture (H-JEPA) for scalable predictive control. Instead of transmitting states, device observations are encoded into low-dimensional embeddings that preserve essential dynamics. The proposed architecture employs a three-level hierarchical prediction, with high-level, medium-level, and low-level predictors operating across different temporal resolutions, to achieve long-term prediction stability, intermediate interpolation, and fine-grained refinement, respectively. Control actions are derived within the embedding space, removing the need for state reconstruction. Simulation results on inverted cart-pole systems demonstrate that H-JEPA enables up to 42.83 % more devices to be supported under limited wireless capacity without compromising control performance.},
   archiveprefix = {arXiv},
   arxiv = {https://arxiv.org/abs/2602.07000},
@@ -956,6 +1002,7 @@
 }
 
 @misc{elsheikh2026cell,
+  s2id = {cd9bb5c0e5b2d8b6151c411745a7fae11b1b3e0a},
   abstract = {Single-cell foundation models learn by reconstructing masked gene expression, implicitly treating technical noise as signal. With dropout rates exceeding 90%, reconstruction objectives encourage models to encode measurement artifacts rather than stable cellular programs. We introduce Cell-JEPA, a joint-embedding predictive architecture that shifts learning from reconstructing sparse counts to predicting in latent space. The key insight is that cell identity is redundantly encoded across genes. We show predicting cell-level embeddings from partial observations forces the model to learn dropout-robust features. On cell-type clustering, Cell-JEPA achieves 0.72 AvgBIO in zero-shot transfer versus 0.53 for scGPT, a 36% relative improvement. On perturbation prediction within a single cell line, Cell-JEPA improves absolute-state reconstruction but not effect-size estimation, suggesting that representation learning and perturbation modeling address complementary aspects of cellular prediction.},
   archiveprefix = {arXiv},
   arxiv = {https://arxiv.org/abs/2602.02093},
@@ -972,6 +1019,7 @@
 }
 
 @inproceedings{terver2026lightweight,
+  s2id = {7e65d820f13cf94be083495fd2c433c0886f5a9b},
   abstract = {We present EB-JEPA, an open-source library for learning representations and world models using Joint-Embedding Predictive Architectures (JEPAs). JEPAs learn to predict in representation space rather than pixel space, avoiding the pitfalls of generative modeling while capturing semantically meaningful features suitable for downstream tasks. Our library provides modular, self-contained implementations that illustrate how representation learning techniques developed for image-level self-supervised learning can transfer to video, where temporal dynamics add complexity, and ultimately to action-conditioned world models, where the model must additionally learn to predict the effects of control inputs. Each example is designed for single-GPU training within a few hours, making energy-based self-supervised learning accessible for research and education. We provide ablations of JEA components on CIFAR-10. Probing these representations yields 91% accuracy, indicating that the model learns useful features. Extending to video, we include a multi-step prediction example on Moving MNIST that demonstrates how the same principles scale to temporal modeling. Finally, we show how these representations can drive action-conditioned world models, achieving a 97% planning success rate on the Two Rooms navigation task. Comprehensive ablations reveal the critical importance of each regularization component for preventing representation collapse. Code is available at https://github.com/facebookresearch/eb_jepa.},
   archiveprefix = {arXiv},
   arxiv = {https://arxiv.org/abs/2602.03604},
@@ -989,6 +1037,7 @@
 }
 
 @misc{he2026mts,
+  s2id = {d40faeaa2b2f94ae160cc1e1f6a9a32c6c2abf98},
   abstract = {Multivariate time series underpin modern critical infrastructure, making the prediction of anomalies a vital necessity for proactive risk mitigation. While Joint-Embedding Predictive Architectures (JEPA) offer a promising framework for modeling the latent evolution of these systems, their application is hindered by representation collapse and an inability to capture precursor signals across varying temporal scales. To address these limitations, we propose MTS-JEPA, a specialized architecture that integrates a multi-resolution predictive objective with a soft codebook bottleneck. This design explicitly decouples transient shocks from long-term trends, and utilizes the codebook to capture discrete regime transitions. Notably, we find this constraint also acts as an intrinsic regularizer to ensure optimization stability. Empirical evaluations on standard benchmarks confirm that our approach effectively prevents degenerate solutions and achieves state-of-the-art performance under the early-warning protocol.},
   archiveprefix = {arXiv},
   arxiv = {https://arxiv.org/abs/2602.04643},
@@ -1005,6 +1054,7 @@
 }
 
 @inproceedings{kobanda2026intrinsic,
+  s2id = {3e1bdae814f9caefc7f4ae5dea30fcd040baf62b},
   abstract = {Joint-Embedding Predictive Architectures (JEPAs) aim to learn representations by predicting target embeddings from context embeddings, inducing a scalar compatibility energy in a latent space. In contrast, Quasimetric Reinforcement Learning (QRL) studies goal-conditioned control through directed distance values (cost-to-go) that support reaching goals under asymmetric dynamics. In this short article, we connect these viewpoints by restricting attention to a principled class of JEPA energy functions : intrinsic (least-action) energies, defined as infima of accumulated local effort over admissible trajectories between two states. Under mild closure and additivity assumptions, any intrinsic energy is a quasimetric. In goal-reaching control, optimal cost-to-go functions admit exactly this intrinsic form ; inversely, JEPAs trained to model intrinsic energies lie in the quasimetric value class targeted by QRL. Moreover, we observe why symmetric finite energies are structurally mismatched with one-way reachability, motivating asymmetric (quasimetric) energies when directionality matters.},
   archiveprefix = {arXiv},
   arxiv = {https://arxiv.org/abs/2602.12245},
@@ -1038,6 +1088,7 @@
 }
 
 @misc{larey2026jepa,
+  s2id = {3156a6a92b92e578c0650b012577cec3a237f1e4},
   abstract = {Genomic Foundation Models (GFMs) have largely relied on Masked Language Modeling (MLM) or Next Token Prediction (NTP) to learn the language of life. While these paradigms excel at capturing local genomic syntax and fine-grained motif patterns, they often fail to capture the broader functional context, resulting in representations that lack a global biological perspective. We introduce JEPA-DNA, a novel pre-training framework that integrates the Joint-Embedding Predictive Architecture (JEPA) with traditional generative objectives. JEPA-DNA introduces latent grounding by coupling token-level recovery with a predictive objective in the latent space by supervising a CLS token. This forces the model to predict the high-level functional embeddings of masked genomic segments rather than focusing solely on individual nucleotides. JEPA-DNA extends both NTP and MLM paradigms and can be deployed either as a standalone from-scratch objective or as a continual pre-training enhancement for existing GFMs. Our evaluations across a diverse suite of genomic benchmarks demonstrate that JEPA-DNA consistently yields superior performance in supervised and zero-shot tasks compared to generative-only baselines. By providing a more robust and biologically grounded representation, JEPA-DNA offers a scalable path toward foundation models that understand not only the genomic alphabet, but also the underlying functional logic of the sequence.},
   archiveprefix = {arXiv},
   arxiv = {https://arxiv.org/abs/2602.17162},
@@ -1086,6 +1137,7 @@
 }
 
 @misc{radhachandran2026jepa,
+  s2id = {305d83fdb6ba24114cc0f8dc6b8a15be3b11ca6a},
   abstract = {Ultrasound (US) imaging poses unique challenges for representation learning due to its inherently noisy acquisition process. The low signal-to-noise ratio and stochastic speckle patterns hinder standard self-supervised learning methods relying on a pixel-level reconstruction objective. Joint-Embedding Predictive Architectures (JEPAs) address this drawback by predicting masked latent representations rather than raw pixels. However, standard approaches depend on hyperparameter-brittle and computationally expensive online teachers updated via exponential moving average. We propose US-JEPA, a self-supervised framework that adopts the Static-teacher Asymmetric Latent Training (SALT) objective. By using a frozen, domain-specific teacher to provide stable latent targets, US-JEPA decouples student-teacher optimization and pushes the student to expand upon the semantic priors of the teacher. In addition, we provide the first rigorous comparison of all publicly available state-of-the-art ultrasound foundation models on UltraBench, a public dataset benchmark spanning multiple organs and pathological conditions. Under linear probing for diverse classification tasks, US-JEPA achieves performance competitive with or superior to domain-specific and universal vision foundation model baselines. Our results demonstrate that masked latent prediction provides a stable and efficient path toward robust ultrasound representations.},
   archiveprefix = {arXiv},
   arxiv = {https://arxiv.org/abs/2602.19322},
@@ -1156,6 +1208,7 @@
 }
 
 @misc{maes2026leworldmodel,
+  s2id = {530dab86cb8034bc12a32d21508aaa3f2cc00aa1},
   abstract = {Joint Embedding Predictive Architectures (JEPAs) offer a compelling framework for learning world models in compact latent spaces, yet existing methods remain fragile, relying on complex multi-term losses, exponential moving averages, pre-trained encoders, or auxiliary supervision to avoid representation collapse. In this work, we introduce LeWorldModel (LeWM), the first JEPA that trains stably end-to-end from raw pixels using only two loss terms: a next-embedding prediction loss and a regularizer enforcing Gaussian-distributed latent embeddings. This reduces tunable loss hyperparameters from six to one compared to the only existing end-to-end alternative. With ~15M parameters trainable on a single GPU in a few hours, LeWM plans up to 48x faster than foundation-model-based world models while remaining competitive across diverse 2D and 3D control tasks. Beyond control, we show that LeWM's latent space encodes meaningful physical structure through probing of physical quantities. Surprise evaluation confirms that the model reliably detects physically implausible events.},
   archiveprefix = {arXiv},
   arxiv = {https://arxiv.org/abs/2603.19312},
@@ -1172,6 +1225,7 @@
 }
 
 @misc{komurcu2026satjepa,
+  s2id = {073b7e4cc9dba0ccb055d2e9d083bfdedb6b5bb0},
   abstract = {Predicting satellite imagery requires a balance between structural accuracy and textural detail. Standard deterministic methods like PredRNN or SimVP minimize pixel-based errors but suffer from the "regression to the mean" problem, producing blurry outputs that obscure subtle geographic-spatial features. Generative models provide realistic textures but often misleadingly reveal structural anomalies. To bridge this gap, we introduce Sat-JEPA-Diff, which combines Self-Supervised Learning (SSL) with Hidden Diffusion Models (LDM). An IJEPA module predicts stable semantic representations, which then route a frozen Stable Diffusion backbone via a lightweight cross-attention adapter. This ensures that the synthesized high-accuracy textures are based on absolutely accurate structural predictions. Evaluated on a global Sentinel-2 dataset, Sat-JEPA-Diff excels at resolving sharp boundaries. It achieves leading perceptual scores (GSSIM: 0.8984, FID: 0.1475) and significantly outperforms deterministic baselines, despite standard autoregressive stability limits. The code and dataset are publicly available on https://github.com/VU-AIML/SAT-JEPA-DIFF.},
   archiveprefix = {arXiv},
   arxiv = {https://arxiv.org/abs/2603.13943},
@@ -1187,6 +1241,7 @@
 }
 
 @misc{murlabadia2026vjepa,
+  s2id = {42ca8bd0ae408eff0d3bd9f5e121f792876e83ea},
   abstract = {We present V-JEPA 2.1, a family of self-supervised models that learn dense, high-quality visual representations for both images and videos while retaining strong global scene understanding. The approach combines four key components. First, a dense predictive loss uses a masking-based objective in which both visible and masked tokens contribute to the training signal, encouraging explicit spatial and temporal grounding. Second, deep self-supervision applies the self-supervised objective hierarchically across multiple intermediate encoder layers to improve representation quality. Third, multi-modal tokenizers enable unified training across images and videos. Finally, the model benefits from effective scaling in both model capacity and training data. Together, these design choices produce representations that are spatially structured, semantically coherent, and temporally consistent. Empirically, V-JEPA 2.1 achieves state-of-the-art performance on several challenging benchmarks, including 7.71 mAP on Ego4D for short-term object-interaction anticipation and 40.8 Recall@5 on EPIC-KITCHENS for high-level action anticipation, as well as a 20-point improvement in real-robot grasping success rate over V-JEPA-2 AC. The model also demonstrates strong performance in robotic navigation (5.687 ATE on TartanDrive), depth estimation (0.307 RMSE on NYUv2 with a linear probe), and global recognition (77.7 on Something-Something-V2). These results show that V-JEPA 2.1 significantly advances the state of the art in dense visual understanding and world modeling.},
   archiveprefix = {arXiv},
   arxiv = {https://arxiv.org/abs/2603.14482},
@@ -1202,6 +1257,7 @@
 }
 
 @misc{panchavati2026laya,
+  s2id = {f4218b97ef08877dd101bac6f2f3eec5379bbbab},
   abstract = {Electroencephalography (EEG) is a widely used tool for studying brain function, with applications in clinical neuroscience, diagnosis, and brain-computer interfaces (BCIs). Recent EEG foundation models trained on large unlabeled corpora aim to learn transferable representations, but their effectiveness remains unclear; reported improvements over smaller task-specific models are often modest, sensitive to downstream adaptation and fine-tuning strategies, and limited under linear probing. We hypothesize that one contributing factor is the reliance on signal reconstruction as the primary self-supervised learning (SSL) objective, which biases representations toward high-variance artifacts rather than task-relevant neural structure. To address this limitation, we explore an SSL paradigm based on Joint Embedding Predictive Architectures (JEPA), which learn by predicting latent representations instead of reconstructing raw signals. While earlier JEPA-style methods often rely on additional heuristics to ensure training stability, recent advances such as LeJEPA provide a more principled and stable formulation. We introduce Laya, the first EEG foundation model based on LeJEPA. Across a range of EEG benchmarks, Laya demonstrates improved performance under linear probing compared to reconstruction-based baselines, suggesting that latent predictive objectives offer a promising direction for learning transferable, high-level EEG representations.},
   archiveprefix = {arXiv},
   arxiv = {https://arxiv.org/abs/2603.16281},
@@ -1217,6 +1273,7 @@
 }
 
 @misc{gogl2026varjepa,
+  s2id = {ce1734119f79796205f417a6b61db8e6973c8cc6},
   abstract = {The Joint-Embedding Predictive Architecture (JEPA) is often seen as a non-generative alternative to likelihood-based self-supervised learning, emphasizing prediction in representation space rather than reconstruction in observation space. We argue that the resulting separation from probabilistic generative modeling is largely rhetorical rather than structural: the canonical JEPA design, coupled encoders with a context-to-target predictor, mirrors the variational posteriors and learned conditional priors obtained when variational inference is applied to a particular class of coupled latent-variable models, and standard JEPA can be viewed as a deterministic specialization in which regularization is imposed via architectural and training heuristics rather than an explicit likelihood. Building on this view, we derive the Variational JEPA (Var-JEPA), which makes the latent generative structure explicit by optimizing a single Evidence Lower Bound (ELBO). This yields meaningful representations without ad-hoc anti-collapse regularizers and allows principled uncertainty quantification in the latent space. We instantiate the framework for tabular data (Var-T-JEPA) and achieve strong representation learning and downstream performance, consistently improving over T-JEPA while remaining competitive with strong raw-feature baselines.},
   archiveprefix = {arXiv},
   arxiv = {https://arxiv.org/abs/2603.20111},
@@ -1232,6 +1289,7 @@
 }
 
 @misc{zhang2026thinkjepa,
+  s2id = {0e4d79be696cd29e60b405090e15e6b4735ede72},
   abstract = {Recent progress in latent world models (e.g., V-JEPA2) has shown promising capability in forecasting future world states from video observations. Nevertheless, dense prediction from a short observation window limits temporal context and can bias predictors toward local, low-level extrapolation, making it difficult to capture long-horizon semantics and reducing downstream utility. Vision--language models (VLMs), in contrast, provide strong semantic grounding and general knowledge by reasoning over uniformly sampled frames, but they are not ideal as standalone dense predictors due to compute-driven sparse sampling, a language-output bottleneck that compresses fine-grained interaction states into text-oriented representations, and a data-regime mismatch when adapting to small action-conditioned datasets. We propose a VLM-guided JEPA-style latent world modeling framework that combines dense-frame dynamics modeling with long-horizon semantic guidance via a dual-temporal pathway: a dense JEPA branch for fine-grained motion and interaction cues, and a uniformly sampled VLM \emph{thinker} branch with a larger temporal stride for knowledge-rich guidance. To transfer the VLM's progressive reasoning signals effectively, we introduce a hierarchical pyramid representation extraction module that aggregates multi-layer VLM representations into guidance features compatible with latent prediction. Experiments on hand-manipulation trajectory prediction show that our method outperforms both a strong VLM-only baseline and a JEPA-predictor baseline, and yields more robust long-horizon rollout behavior.},
   archiveprefix = {arXiv},
   arxiv = {https://arxiv.org/abs/2603.22281},
@@ -1247,6 +1305,7 @@
 }
 
 @misc{cornelissen2026mumojepa,
+  s2id = {a8a715715fe9c69e13dfc21072ec950e948384c7},
   abstract = {Self-supervised learning has emerged as a powerful paradigm for learning visual representations without manual annotations, yet most methods still operate on a single modality and therefore miss the complementary structure available from heterogeneous sensors. We present Le MuMo JEPA, a self-supervised framework that learns unified representations from RGB images and aligned companion modalities. In our driving experiments, the second modality is camera-aligned LiDAR depth; we also evaluate RGB-thermal training and transfer on the Teledyne FLIR ADAS benchmark. Our approach extends LeJEPA to the multi-modal setting by learning fusion tokens that act as a latent bottleneck between modality-specific patch stems inside a shared transformer. Our default model employs a pruned fusion strategy: after an initial cross-modal attention layer, modality-specific tokens are dropped, forcing cross-modal information into the shared fusion-token grid as an efficient latent bottleneck before Sketched Isotropic Gaussian Regularization (SIGReg) is applied to the joint multimodal CLS embedding. On Waymo, Le MuMo JEPA gives the strongest performance-efficiency trade-off on downstream patch probes among the from-scratch multimodal baselines, improving CenterNet detection and dense depth while remaining competitive on segmentation. Under from-scratch training on nuScenes, Le MuMo JEPA remains the strongest model, and it also gives the best FLIR results, especially after Waymo-initialized fine-tuning. It also retains the best overall accuracy-efficiency balance in our study at substantially lower compute, memory, and estimated training time.},
   archiveprefix = {arXiv},
   arxiv = {https://arxiv.org/abs/2603.24327},
@@ -1262,6 +1321,7 @@
 }
 
 @misc{zheng2026jepamsac,
+  s2id = {af58b0bdbae9f5d5fc2b871680d566cf7ca2081d},
   abstract = {Future wireless systems increasingly require predictive and transferable representations that can support multiple physical-layer (PHY) tasks under dynamic environments. However, most existing supervised learning-based methods are designed for a single task, which leads to high adaptation cost. To address this issue, we propose a joint-embedding predictive architecture for multimodal sensing-assisted communications (JEPA-MSAC), a self-supervised multimodal predictive representation learning framework for wireless environments. The proposed framework first maps multimodal sensing and communication measurements into a unified token space, and then pretrains a shared backbone using temporal block-masked JEPA to learn a predictive latent space that captures environment dynamics and cross-modal dependencies. After pretraining, the backbone is frozen and reused as a general future-feature generator, on top of which lightweight task heads are trained for localization, beam prediction, and received signal strength indicator (RSSI) prediction. Extensive experiments show the latent state supports accurate multi-task prediction with low adaptation cost. Additionally, ablation studies reveal its scaling behavior and the impact of key pretraining setups.},
   archiveprefix = {arXiv},
   arxiv = {https://arxiv.org/abs/2603.29796},

@@ -103,6 +103,7 @@
 }
 
 @techreport{mistral2025magistral,
+  s2id = {568dde53ebd55103129eb9cdbe86014d34d8a47d},
   abstract = {We introduce Magistral, Mistral's first reasoning model and our own scalable reinforcement learning (RL) pipeline. Instead of relying on existing implementations and RL traces distilled from prior models, we follow a ground up approach, relying solely on our own models and infrastructure. Notably, we demonstrate a stack that enabled us to explore the limits of pure RL training of LLMs, present a simple method to force the reasoning language of the model, and show that RL on text data alone maintains most of the initial checkpoint's capabilities. We find that RL on text maintains or improves multimodal understanding, instruction following and function calling. We present Magistral Medium, trained for reasoning on top of Mistral Medium 3 with RL alone, and we open-source Magistral Small (Apache 2.0) which further includes cold-start data from Magistral Medium.},
   archiveprefix = {arXiv},
   author = {Abhinav Rastogi and Albert Q. Jiang and Andy Lo and Gabrielle Berrada and Guillaume Lample and Jason Rute and Joep Barmentlo and Karmesh Yadav and Kartik Khandelwal and Khyathi Raghavi Chandu and Léonard Blier and Lucile Saulnier and Matthieu Dinot and Maxime Darrin and Neha Gupta and Roman Soletskyi and Sagar Vaze and Teven Le Scao and Yihan Wang and Adam Yang and Alexander H. Liu and Alexandre Sablayrolles and Amélie Héliou and Amélie Martin and Andy Ehrenberg and Anmol Agarwal and Antoine Roux and Arthur Darcet and Arthur Mensch and Baptiste Bout and Baptiste Rozière and Baudouin De Monicault and Chris Bamford and Christian Wallenwein and Christophe Renaudin and Clémence Lanfranchi and Darius Dabert and Devon Mizelle and Diego de las Casas and Elliot Chane-Sane and Emilien Fugier and Emma Bou Hanna and Gauthier Delerce and Gauthier Guinet and Georgii Novikov and Guillaume Martin and Himanshu Jaju and Jan Ludziejewski and Jean-Hadrien Chabran and Jean-Malo Delignon and Joachim Studnia and Jonas Amar and Josselin Somerville Roberts and Julien Denize and Karan Saxena and Kush Jain and Lingxiao Zhao and Louis Martin and Luyu Gao and Lélio Renard Lavaud and Marie Pellat and Mathilde Guillaumin and Mathis Felardos and Maximilian Augustin and Mickaël Seznec and Nikhil Raghuraman and Olivier Duchenne and Patricia Wang and Patrick von Platen and Patryk Saffer and Paul Jacob and Paul Wambergue and Paula Kurylowicz and Pavank},
@@ -289,6 +290,7 @@
 }
 
 @techreport{openai2023gpt4,
+  s2id = {163b4d6a79a5b19af88b8585456363340d9efd04},
   abstract = {We report the development of GPT-4, a large-scale, multimodal model which can accept image and text inputs and produce text outputs. While less capable than humans in many real-world scenarios, GPT-4 exhibits human-level performance on various professional and academic benchmarks, including passing a simulated bar exam with a score around the top 10% of test takers. GPT-4 is a Transformer-based model pre-trained to predict the next token in a document. The post-training alignment process results in improved performance on measures of factuality and adherence to desired behavior. A core component of this project was developing infrastructure and optimization methods that behave predictably across a wide range of scales. This allowed us to accurately predict some aspects of GPT-4's performance based on models trained with no more than 1/1,000th the compute of GPT-4.},
   author = {OpenAI},
   doi = {10.48550/arxiv.2303.08774},
@@ -306,6 +308,7 @@
 }
 
 @techreport{touvron2023llama,
+  s2id = {57e849d0de13ed5f91d086936296721d4ff75a75},
   abstract = {We introduce LLaMA, a collection of foundation language models ranging from 7B to 65B parameters. We train our models on trillions of tokens, and show that it is possible to train state-of-the-art models using publicly available datasets exclusively, without resorting to proprietary and inaccessible datasets. In particular, LLaMA-13B outperforms GPT-3 (175B) on most benchmarks, and LLaMA-65B is competitive with the best models, Chinchilla-70B and PaLM-540B. We release all our models to the research community.},
   author = {Touvron, Hugo and Lavril, Thibaut and Izacard, Gautier and Martinet, Xavier and Lachaux, Marie-Anne and Lacroix, Timothée and Rozière, Baptiste and Goyal, Naman and Hambro, Eric and Azhar, Faisal and Rodriguez, Aurelien and Joulin, Armand and Grave, Edouard and Lample, Guillaume},
   doi = {10.48550/arXiv.2302.13971},
@@ -322,6 +325,7 @@
 }
 
 @techreport{touvron2023llama2,
+  s2id = {104b0bb1da562d53cbda87aec79ef6a2827d191a},
   abstract = {In this work, we develop and release Llama 2, a collection of pretrained and fine-tuned large language models (LLMs) ranging in scale from 7 billion to 70 billion parameters. Our fine-tuned LLMs, called Llama 2-Chat, are optimized for dialogue use cases. Our models outperform open-source chat models on most benchmarks we tested, and based on our human evaluations for helpfulness and safety, may be a suitable substitute for closed-source models. We provide a detailed description of our approach to fine-tuning and safety improvements of Llama 2-Chat in order to enable the community to build on our work and contribute to the responsible development of LLMs.},
   author = {Touvron, Hugo and Martin, Louis and Stone, Kevin and Albert, Peter and Almahairi, Amjad and Babaei, Yasmine and Bashlykov, Nikolay and Batra, Soumya and Bhargava, Prajjwal and Bhosale, Shruti and Bikel, Dan and Blecher, Lukas and Canton Ferrer, Cristian and Chen, Moya and Cucurull, Guillem and Esiobu, David and Fernandes, Jude and Fu, Jeremy and Fu, Wenyin and Fuller, Brian and Gao, Cynthia and Goswami, Vedanuj and Goyal, Naman and Hartshorn, Anthony and Hosseini, Saghar and Hou, Rui and Inan, Hakan and Kardas, Marcin and Kerkez, Viktor and Khabsa, Madian and Kloumann, Isabel and Korenev, Artem and Koura, Punit Singh and Lachaux, Marie-Anne and Lavril, Thibaut and Lee, Jenya and Liskovich, Diana and Lu, Yinghai and Mao, Yuning and Martinet, Xavier and Mihaylov, Todor and Mishra, Pushkar and Molybog, Igor and Nie, Yixin and Poulton, Andrew and Reizenstein, Jeremy and Rungta, Rashi and Saladi, Kalyan and Schelten, Alan and Silva, Ruan and Smith, Eric Michael and Subramanian, Ranjan and Tan, Xiaoqing Ellen and Tang, Binh and Taylor, Ross and Williams, Adina and Kuan, Jian Xiang and Xu, Puxin and Yan, Zheng and Zarov, Iliyan and Zhang, Yuchen and Fan, Angela and Kambadur, Melanie and Narang, Sharan and Rodriguez, Aurelien and Stojnic, Robert and Edunov, Sergey and Scialom, Thomas},
   eprint = {2307.09288},
@@ -339,6 +343,7 @@
 }
 
 @techreport{jiang2023mistral,
+  s2id = {db633c6b1c286c0386f0078d8a2e6224e03a6227},
   abstract = {We introduce Mistral 7B v0.1, a 7-billion-parameter language model engineered for superior performance and efficiency. Mistral 7B outperforms Llama 2 13B across all evaluated benchmarks, and Llama 1 34B in reasoning, mathematics, and code generation.},
   archiveprefix = {arXiv},
   author = {Jiang, Albert Q. and Sablayrolles, Alexandre and Mensch, Arthur and Bamford, Chris and Chaplot, Devendra Singh and Casas, Diego de las and Bressand, Florian and Lengyel, Gianna and Lample, Guillaume and Saulnier, Lucile and Lavaud, Lélio Renard and Lachaux, Marie-Anne and Stock, Pierre and Scao, Teven Le and Lavril, Thibaut and Wang, Thomas and Lacroix, Timothée and Sayed, William El},
@@ -437,6 +442,7 @@
 }
 
 @techreport{ramesh2022dalle2,
+  s2id = {c57293882b2561e1ba03017902df9fc2f289dea2},
   abstract = {Contrastive models like CLIP have been shown to learn robust representations of images that capture both semantics and style. To leverage these representations for image generation, we propose a two-stage model: a prior that generates a CLIP image embedding given a text caption, and a decoder that generates an image conditioned on the image embedding. We show that explicitly generating image representations improves image diversity with minimal loss in photorealism and caption similarity. Our decoders conditioned on image representations can also produce variations of an image that preserve both its semantics and style, while varying the non-essential details absent from the image representation. Moreover, the joint embedding space of CLIP enables language-guided image manipulations in a zero-shot fashion. We use diffusion models for the decoder and experiment with both autoregressive and diffusion models for the prior, finding that the latter are computationally more efficient and produce higher-quality samples.},
   author = {Ramesh, Aditya and Dhariwal, Prafulla and Nichol, Alex and Chu, Casey and Chen, Mark},
   doi = {10.48550/arXiv.2204.06125},
@@ -648,6 +654,7 @@
 }
 
 @inproceedings{dwork2006differential,
+  s2id = {85983d70db7bef99103c3833793f503c18445546},
   abstract = {In 1977 Dalenius articulated a desideratum for statistical databases: nothing about an individual should be learnable from the database that cannot be learned without access to the database. We give a general impossibility result showing that a formalization of Dalenius' goal along the lines of semantic security cannot be achieved. Contrary to intuition, a variant of the result threatens the privacy even of someone not in the database. This state of affairs suggests a new measure, differential privacy, which, intuitively, captures the increased risk to one's privacy incurred by participating in a database. The techniques developed in a sequence of papers, culminating in those described in this paper, can achieve any desired level of privacy under this measure. In many cases, extremely accurate information about the database can be provided while simultaneously ensuring very high levels of privacy.},
   address = {Berlin, Heidelberg},
   author = {Dwork, Cynthia},

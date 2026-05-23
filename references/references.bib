@@ -1,4 +1,5 @@
 @misc{achilli2025capacity,
+  s2id = {8fc45e81d921e4fe443fcebf98ca7d854880156b},
   abstract = {We generalize the computation of the capacity of exponential Hopfield model from Lucibello and Mézard (2024) to more generic pattern ensembles, including binary patterns and patterns generated from a hidden manifold model.},
   archiveprefix = {arXiv},
   author = {Achilli, Beatrice and Ambrogioni, Luca and Lucibello, Carlo and Mézard, Marc and Ventura, Enrico},
@@ -16,6 +17,7 @@
 }
 
 @article{aguilera2025explosive,
+  s2id = {e8843f4f7092d77f0b3263bc253468237cd6dc00},
   abstract = {Higher-order interactions underlie complex phenomena in systems such as biological and artificial neural networks, but their study is challenging due to the scarcity of tractable models. We address this by leveraging a generalisation of the maximum entropy principle to introduce curved neural networks as a class of models with a limited number of parameters that are particularly well-suited for studying higher-order phenomena. We demonstrate that curved neural networks implement a self-regulating annealing process that can accelerate memory retrieval, leading to explosive order-disorder phase transitions with multi-stability and hysteresis effects. Additionally, by analytically exploring their memory-retrieval capacity using the replica trick, we demonstrate that these networks can enhance memory capacity and robustness of retrieval over classical associative-memory networks.},
   archiveprefix = {arXiv},
   author = {Aguilera, Miguel and Morales, Pablo A. and Rosas, Fernando E. and Shimazaki, Hideaki},
@@ -37,6 +39,7 @@
 }
 
 @misc{gladstone2025energybased,
+  s2id = {2da9163730998a4368c609972ccff0582518b36b},
   abstract = {Inference-time computation techniques, analogous to human System 2 Thinking, have recently become popular for improving model performances. However, most existing approaches suffer from several limitations: they are modality-specific (e.g., working only in text), problem-specific (e.g., verifiable domains like math and coding), or require additional supervision/training on top of unsupervised pretraining (e.g., verifiers or verifiable rewards). In this paper, we ask the question 'Is it possible to generalize these System 2 Thinking approaches, and develop models that learn to think solely from unsupervised learning?' Interestingly, we find the answer is yes, by learning to explicitly verify the compatibility between inputs and candidate-predictions, and then re-framing prediction problems as optimization with respect to this verifier. Specifically, we train Energy-Based Transformers (EBTs) -- a new class of Energy-Based Models (EBMs) -- to assign an energy value to every input and candidate-prediction pair, enabling predictions through gradient descent-based energy minimization until convergence. Across both discrete (text) and continuous (visual) modalities, we find EBTs scale faster than the dominant Transformer++ approach during training, achieving an up to 35% higher scaling rate with respect to data, batch size, parameters, FLOPs, and depth. During inference, EBTs improve performance with System 2 Thinking by 29% more than the Transformer++ on language tasks, and EBTs outperform Diffusion Transformers on image denoising while using fewer forward passes. Further, we find that EBTs achieve better results than existing models on most downstream tasks given the same or worse pretraining performance, suggesting that EBTs generalize better than existing approaches. Consequently, EBTs are a promising new paradigm for scaling both the learning and thinking capabilities of models},
   archiveprefix = {arXiv},
   author = {Alexi Gladstone and Ganesh Nanduru and Md Mofijul Islam and Peixuan Han and Hyeonjeong Ha and Aman Chadha and Yilun Du and Heng Ji and Jundong Li and Tariq Iqbal},
@@ -97,6 +100,7 @@
 }
 
 @misc{santos2025modern,
+  s2id = {82dfc976097510bf6398084fdfe25a1336d0f338},
   abstract = {Recent research has established a connection between modern Hopfield networks (HNs) and transformer attention heads, with guarantees of exponential storage capacity. However, these models still face challenges scaling storage efficiently. Inspired by psychological theories of continuous neural resource allocation in working memory, we propose an approach that compresses large discrete Hopfield memories into smaller, continuous-time memories. Leveraging continuous attention, our new energy function modifies the update rule of HNs, replacing the traditional softmax-based probability mass function with a probability density, over the continuous memory. This formulation aligns with modern perspectives on human executive function, offering a principled link between attractor dynamics in working memory and resource-efficient memory allocation. Our framework maintains competitive performance with HNs while leveraging a compressed memory, reducing computational costs across synthetic and video datasets.},
   archiveprefix = {arXiv},
   author = {Santos, Saul and Farinhas, António and McNamee, Daniel C. and Martins, André F. T.},
@@ -114,6 +118,7 @@
 }
 
 @inproceedings{smart2025incontext,
+  s2id = {d902afde66463c804c6b509017ed8a9cb0700c2e},
   abstract = {This paper introduces in-context denoising, demonstrating how a single-layer transformer can solve denoising problems by performing a single gradient descent update on a context-aware dense associative memory (DAM) energy landscape. Using a Bayesian framework, the authors show that context tokens serve as associative memories while the query token acts as an initial state, revealing deep connections between attention mechanisms and memory retrieval. The work provides theoretical and empirical evidence that certain restricted denoising problems can be solved optimally even by a single-layer transformer, with the trained attention layer processing each denoising prompt by performing one-step gradient descent updates that yield better solutions than exact retrieval.},
   address = {Vienna, Austria},
   archiveprefix = {arXiv},
@@ -156,6 +161,7 @@
 }
 
 @article{betteti2025inputdriven,
+  s2id = {69738f1642afdf04349818e7be9d2b0580f7b122},
   abstract = {The Hopfield model provides a mathematical framework for understanding the mechanisms of memory storage and retrieval in the human brain. This model has inspired decades of research on learning and retrieval dynamics, capacity estimates, and sequential transitions among memories. Notably, the role of external inputs has been largely underexplored, from their effects on neural dynamics to how they facilitate effective memory retrieval. To bridge this gap, we propose a dynamical system framework in which the external input directly influences the neural synapses and shapes the energy landscape of the Hopfield model. This plasticity-based mechanism provides a clear energetic interpretation of the memory retrieval process and proves effective at correctly classifying mixed inputs. Furthermore, we integrate this model within the framework of modern Hopfield architectures to elucidate how current and past information are combined during the retrieval process. Last, we embed both the classic and the proposed model in an environment disrupted by noise and compare their robustness during memory retrieval.},
   archiveprefix = {arXiv},
   author = {Betteti, Simone and Baggio, Giacomo and Bullo, Francesco and Zampieri, Sandro},
@@ -177,7 +183,7 @@
   year = {2025}
 }
 
-@misc{yampolskaya2025models,  abstract = {Hopfield models, originally developed to study memory retrieval in neural networks, have become versatile tools for modeling diverse biological systems in which function emerges from collective dynamics. This paper provides a pedagogical introduction to both classical and modern Hopfield networks from a biophysical perspective, offering three complementary interpretations of Hopfield dynamics: as noise discrimination, as a geometric construction defining a natural coordinate system in pattern space, and as gradient-like descent on an energy landscape},
+@misc{yampolskaya2025models, s2id = {7986c6044499eee223510dfef7d54b6e4e1353e2},  abstract = {Hopfield models, originally developed to study memory retrieval in neural networks, have become versatile tools for modeling diverse biological systems in which function emerges from collective dynamics. This paper provides a pedagogical introduction to both classical and modern Hopfield networks from a biophysical perspective, offering three complementary interpretations of Hopfield dynamics: as noise discrimination, as a geometric construction defining a natural coordinate system in pattern space, and as gradient-like descent on an energy landscape},
   archiveprefix = {arXiv},
   author = {Maria Yampolskaya and Pankaj Mehta},
   doi = {10.48550/arXiv.2506.13076},
@@ -227,6 +233,7 @@
 }
 
 @inproceedings{burns2024associative,
+  s2id = {ff26fb9b8e7250e544005b2dcce4ef7c2fca5b74},
   abstract = {Large language models (LLMs) demonstrate an impressive ability to utilise information within the context of their input sequences to appropriately respond to data unseen by the LLM during its training procedure. This ability is known as in-context learning (ICL). Humans and non-human animals demonstrate similar abilities, however their neural architectures differ substantially from LLMs. Despite this, a critical component within LLMs, the attention mechanism, resembles modern associative memory models, widely used in and influenced by the computational neuroscience community to model biological memory systems. Using this connection, we introduce an associative memory model capable of performing ICL. We use this as inspiration for a novel residual stream architecture which allows information to directly flow between attention heads. We test this architecture during training within a two-layer Transformer and show its ICL abilities manifest more quickly than without this modification. We then apply our architecture in small language models with 8 million parameters, focusing on attention head values, with results also indicating improved ICL performance at this larger and more naturalistic scale.},
   archiveprefix = {arXiv},
   author = {Thomas F. Burns and Tomoki Fukai and Christopher J. Earls},
@@ -245,6 +252,7 @@
 }
 
 @article{chaudhry2024long,
+  s2id = {fb6dde045c52fe46b409e221e7ef5dc139756d55},
   abstract = {Sequence memory is an essential attribute of natural and artificial intelligence that enables agents to encode, store, and retrieve complex sequences of stimuli and actions. Computational models of sequence memory have been proposed where recurrent Hopfield-like neural networks are trained with temporally asymmetric Hebbian rules. However, these networks suffer from limited sequence capacity due to interference between the memories. Inspired by recent work on Dense Associative Memories, we expand the sequence capacity by introducing a nonlinear interaction term, enhancing separation between patterns. We derive novel scaling laws for sequence capacity with respect to network size, significantly outperforming existing scaling laws for models based on traditional Hopfield networks, and verify these theoretical results with numerical simulation. Moreover, we introduce a generalized pseudoinverse rule to recall sequences of highly correlated patterns. Finally, we extend our model to store sequences with variable timing between states' transitions and describe a biologically-plausible implementation, with connections to motor neuroscience.},
   archiveprefix = {arXiv},
   author = {Chaudhry, Hamza Tahir and Zavatone-Veth, Jacob A. and Krotov, Dmitry and Pehlevan, Cengiz},
@@ -266,6 +274,7 @@
 }
 
 @misc{farooq2024framework,
+  s2id = {bbdb863e4c6a4b45c6eac735b3e2901acd3650bb},
   abstract = {In this work we propose an energy functional along the lines of Modern Hopfield Networks (MNH), the stationary points of which correspond to the attention due to Vaswani et al. [12], thus unifying both frameworks. The minima of this landscape form 'context wells' - stable configurations that encapsulate the contextual relationships among tokens. A compelling picture emerges: across $n$ token embeddings an energy landscape is defined whose gradient corresponds to the attention computation. Non-linear attention mechanisms offer a means to enhance the capabilities of transformer models for various sequence modeling tasks by improving the model's understanding of complex relationships, learning of representations, and overall efficiency and performance. A rough analogy can be seen via cubic splines which offer a richer representation of non-linear data where a simpler linear model may be inadequate. This approach can be used for the introduction of non-linear heads in transformer based models such as BERT, [6], etc.},
   archiveprefix = {arXiv},
   author = {Ahmed Farooq},
@@ -337,6 +346,7 @@
 }
 
 @misc{kashyap2024modern,
+  s2id = {dd958332848c270d08d88fa2b3092f906e51cf00},
   abstract = {Content-addressable memories such as Modern Hopfield Networks (MHN) have been studied as mathematical models of auto-association and storage/retrieval in the human declarative memory, yet their practical use for large-scale content storage faces challenges. Chief among them is the occurrence of meta-stable states, particularly when handling large amounts of high dimensional content. This paper introduces Hopfield Encoding Networks (HEN), a framework that integrates encoded neural representations into MHNs to improve pattern separability and reduce meta-stable states. We show that HEN can also be used for retrieval in the context of hetero association of images with natural language queries, thus removing the limitation of requiring access to partial content in the same domain. Experimental results demonstrate substantial reduction in meta-stable states and increased storage capacity while still enabling perfect recall of a significantly larger number of inputs advancing the practical utility of associative memory networks for real-world tasks.},
   archiveprefix = {arXiv},
   author = {Satyananda Kashyap and Niharika S. D'Souza and Luyao Shi and Ken C. L. Wong and Hongzhi Wang and Tanveer Syeda-Mahmood},
@@ -354,6 +364,7 @@
 }
 
 @article{kozachkov2024neuronastrocyte,
+  s2id = {a3a6ad2874b098d334117cf9d69907c0d5527999},
   abstract = {Astrocytes, the most abundant type of glial cell, play a fundamental role in memory. Despite most hippocampal synapses being contacted by an astrocyte, there are no current theories that explain how neurons, synapses, and astrocytes might collectively contribute to memory function. We demonstrate that fundamental aspects of astrocyte morphology and physiology naturally lead to a dynamic, high-capacity associative memory system. The neuron--astrocyte networks generated by our framework are closely related to popular machine learning architectures known as Dense Associative Memories. Adjusting the connectivity pattern, the model developed here leads to a family of associative memory networks that includes a Dense Associative Memory and a Transformer as two limiting cases. In the known biological implementations of Dense Associative Memories, the ratio of stored memories to the number of neurons remains constant, despite the growth of the network size. Our work demonstrates that neuron--astrocyte networks follow a superior memory scaling law, outperforming known biological implementations of Dense Associative Memory. Our model suggests an exciting and previously unnoticed possibility that memories could be stored, at least in part, within the network of astrocyte processes rather than solely in the synaptic weights between neurons.},
   author = {Kozachkov, Leo and Krotov, Dmitry and Slotine, Jean-Jacques},
   doi = {10.1073/pnas.2417788122},
@@ -371,6 +382,7 @@
 }
 
 @misc{li2024expressive,
+  s2id = {dbabdc85d4adfc6621c396932a1ca408a478760c},
   abstract = {Modern Hopfield networks (MHNs) have emerged as powerful tools in deep learning, capable of replacing components such as pooling layers, LSTMs, and attention mechanisms. Recent advancements have enhanced their storage capacity, retrieval speed, and error rates. However, the fundamental limits of their computational expressiveness remain unexplored. Understanding the expressive power of MHNs is crucial for optimizing their integration into deep learning architectures. In this work, we establish rigorous theoretical bounds on the computational capabilities of MHNs using circuit complexity theory. Our key contribution is that we show that MHNs are $\mathsfDLOGTIME$-uniform $\mathsfTC^0$. Hence, unless $\mathsfTC^0 = \mathsfNC^1$, a $\mathrmpoly(n)$-precision modern Hopfield networks with a constant number of layers and $O(n)$ hidden dimension cannot solve $\mathsfNC^1$-hard problems such as the undirected graph connectivity problem and the tree isomorphism problem. We also extended our results to Kernelized Hopfield Networks. These results demonstrate the limitation in the expressive power of the modern Hopfield networks. Moreover, Our theoretical analysis provides insights to guide the development of new Hopfield-based architectures.},
   archiveprefix = {arXiv},
   author = {Li, Xiaoyu and Li, Yuanpeng and Liang, Yingyu and Shi, Zhenmei and Song, Zhao},
@@ -387,6 +399,7 @@
 }
 
 @article{lucibello2024exponential,
+  s2id = {27029ad43dfb2a94e89feeec8a5bda39f3534477},
   abstract = {Recent generalizations of the Hopfield model associative memories are able to store a number of random patterns that grows exponentially with $N$ neurons, $P=\exp(α N)$. Besides huge storage capacity, another interesting feature of these networks is their connection attention mechanism which is part Transformer architecture widely applied in deep learning. In this work, we study a generic family of pattern ensembles using statistical mechanics analysis gives exact asymptotic thresholds for retrieval of a typical pattern, $α_1$, and lower bounds maximum load $α$ can be retrieved, $α_c$, as well sizes attraction basins. We discuss detail cases Gaussian spherical patterns, show they display rich qualitatively different phase diagrams.},
   archiveprefix = {arXiv},
   author = {Lucibello, Carlo and Mézard, Marc},
@@ -409,6 +422,7 @@
 }
 
 @article{mcalister2024prototype,
+  s2id = {b8721274f63ecf5fa6454710d422ad717c8cb12b},
   abstract = {We discuss prototype formation in the Hopfield network. Typically, Hebbian learning with highly correlated states leads to degraded memory performance. We show that this type of learning can lead to prototype formation, where unlearned states emerge as representatives of large correlated subsets of states, alleviating capacity woes. This process has similarities to prototype learning in human cognition. We provide a substantial literature review of prototype learning in associative memories, covering contributions from psychology, statistical physics, and computer science. We analyze prototype formation from a theoretical perspective and derive a stability condition for these states based on the number of examples of the prototype presented for learning, the noise in those examples, and the number of nonexample states presented. The stability condition is used to construct a probability of stability for a prototype state as the factors of stability change. We also note similarities to traditional network analysis, allowing us to find a prototype capacity. We corroborate these expectations of prototype formation with experiments using a simple Hopfield network with standard Hebbian learning. We extend our experiments to a Hopfield network trained on data with multiple prototypes and find the network is capable of stabilizing multiple prototypes concurrently. We measure the basins of attraction of the multiple prototype states, finding attractor strength grows with the number of examples and the agreement of examples. We link the stability and dominance of prototype states to the energy profile of these states, particularly when comparing the profile shape to target states or other spurious states.},
   author = {McAlister, Hayden and Robins, Anthony and Szymanski, Lech},
   doi = {10.1162/neco_a_01704},
@@ -427,6 +441,7 @@
 }
 
 @inproceedings{mcalister2024improved,
+  s2id = {bdd747a7df8c77fe5c656810520fc90f4138b741},
   abstract = {The Dense Associative Memory generalizes the Hopfield network by allowing for sharper interaction functions. This increases the capacity of the network as an autoassociative memory as nearby learned attractors will not interfere with one another. However, the implementation of the network relies on applying large exponents to the dot product of memory vectors and probe vectors. If the dimension of the data is large the calculation can be very large and result in imprecisions and overflow when using floating point numbers in a practical implementation. We describe the computational issues in detail, modify the original network description to mitigate the problem, and show the modification will not alter the networks' dynamics during update or training. We also show our modification greatly improves hyperparameter selection for the Dense Associative Memory, removing dependence on the interaction vertex and resulting in an optimal region of hyperparameters that does not significantly change with the interaction vertex as it does in the original network.},
   address = {Cham},
   archiveprefix = {arXiv},
@@ -448,6 +463,7 @@
 }
 
 @article{teixeira2024liquid,
+  s2id = {ffac972c8f50af9edc615886d8e8a930396a0c06},
   abstract = {The cellular cytoplasm is a liquid mixture of thousands of different components that interact in diverse ways. This mixture self-organizes into ordered structures, such as liquid phases with controlled composition. It remains unclear what types of interactions among components ensure the reliable assembly of these phases. To answer this question, we establish an analogy between neural networks and multicomponent liquid mixtures. This allows us to demonstrate that reliable assembly of target liquid phases is at odds with the tendency of mixtures to segregate into regions enriched in few components. This work unravels a trade-off between these types of phase behavior and constitutes a step toward linking the fields of neural networks to liquid mixtures. Biological mixtures, such as the cellular cytoplasm, are composed of a large number of different components. From this heterogeneity, ordered mesoscopic structures emerge, such as liquid phases with controlled composition. The competition of these structures for the same components raises several questions: what types of interactions allow the retrieval of multiple ordered mesoscopic structures, and what are the physical limitations for the retrieval of said structures. In this work, we develop an analytically tractable model for multicomponent liquids capable of retrieving states with target compositions. We name this model the liquid Hopfield model in reference to corresponding work in the theory of associative neural networks. In this model, we show that nonlinear repulsive interactions are a general requirement for retrieval of target structures. We demonstrate that this is because liquid mixtures at low temperatures tend to transition to phases with few components, a phenomenon that we term localization. Taken together, our results reveal a trade-off between retrieval and localization phenomena in liquid mixtures, and pave the way for other connections between the phenomenologies of neural computation and liquid mixtures.},
   author = {Rodrigo Braz Teixeira and Giorgio Carugno and Izaak Neri and Pablo Sartori},
   doi = {10.1073/pnas.2320504121},
@@ -488,6 +504,7 @@
 }
 
 @article{wang2024selflearning,
+  s2id = {93c720ba0a89725720c9001ea1e9c9450d85a9f8},
   abstract = {Physical neural networks (PNN) using physical materials and devices to mimic synapses and neurons offer an energy-efficient way to implement artificial neural networks. An emerging concept called physical self-learning uses intrinsic physical parameters as trainable weights, where training is achieved by the natural evolution of physical parameters that intrinsically adapt modern learning rules via an autonomous physical process, eliminating the requirements on external computation resources. However, existing PNN approaches still require external computational resources for training or rely on simple learning rules that limit their computational capability. Here, we demonstrate a physical self-learning Hopfield neural network using a magnetic thin film. The intrinsic magnetization evolution under external inputs naturally performs unsupervised learning via gradient descent adaptation. Our approach enables autonomous learning without external computational resources while maintaining the computational power of modern neural networks. Experimental results show successful pattern storage and retrieval, demonstrating the potential for energy-efficient neuromorphic computing applications.},
   author = {Niu, Chang and Zhang, Huanyu and Xu, Chuanlong and Hu, Wenjie and Wu, Yunzhuo and Wu, Yu and Wang, Yadi and Wu, Tong and Zhu, Yi and Zhu, Yinyan and Wang, Wenbin and Wu, Yizheng and Yin, Lifeng and Xiao, Jiang and Yu, Weichao and Guo, Hangwen and Shen, Jian},
   doi = {10.1073/pnas.2416294121},
@@ -562,6 +579,7 @@
 }
 
 @article{ambrogioni2024search,
+  s2id = {fa7bccd45859dc7492eac2b79946e1f8f506b5ff},
   abstract = {Uncovering the mechanisms behind long-term memory is one of the most fascinating open problems in neuroscience and artificial intelligence. Artificial associative memory networks have been used to formalize important aspects of biological memory. Generative diffusion models are a type of generative machine learning techniques that have shown great performance in many tasks. Similar to associative memory systems, these networks define a dynamical system that converges to a set of target states. In this work, we show that generative diffusion models can be interpreted as energy-based models and that, when trained on discrete patterns, their energy function is (asymptotically) identical to that of modern Hopfield networks. This equivalence allows us to interpret the supervised training of diffusion models as a synaptic learning process that encodes the associative dynamics of a modern Hopfield network in the weight structure of a deep neural network. Leveraging this connection, we formulate a generalized framework for understanding the formation of long-term memory, where creative generation and memory recall can be seen as parts of a unified continuum.},
   archiveprefix = {arXiv},
   author = {Ambrogioni, Luca},
@@ -581,7 +599,7 @@
   year = {2024}
 }
 
-@article{schimunek2024mhnfs,  abstract = {Today's drug discovery increasingly relies on computational and machine learning approaches to identify novel candidates, yet data scarcity remains a significant challenge. To address this limitation, we present MHNfs, an application specifically designed to predict molecular activity in low-data scenarios. At its core, MHNfs leverages a state-of-the-art few-shot activity prediction model, named MHNfs, which has demonstrated strong performance across a large set of prediction tasks in the benchmark data set FS-Mol. The application features an intuitive interface that enables users to prompt the model for precise activity predictions based on a small number of known active and inactive molecules, akin to interactive interfaces for large language models. To evaluate its efficacy, we simulate real-world scenarios by recasting PubChem bioassays as few-shot prediction tasks. MHNfs offers a streamlined and accessible solution for deploying advanced few-shot learning models, providing a valuable tool for accelerating drug discovery.},
+@article{schimunek2024mhnfs, s2id = {53d9c27eb3a974817d0f811fa1cce9c8436ce846},  abstract = {Today's drug discovery increasingly relies on computational and machine learning approaches to identify novel candidates, yet data scarcity remains a significant challenge. To address this limitation, we present MHNfs, an application specifically designed to predict molecular activity in low-data scenarios. At its core, MHNfs leverages a state-of-the-art few-shot activity prediction model, named MHNfs, which has demonstrated strong performance across a large set of prediction tasks in the benchmark data set FS-Mol. The application features an intuitive interface that enables users to prompt the model for precise activity predictions based on a small number of known active and inactive molecules, akin to interactive interfaces for large language models. To evaluate its efficacy, we simulate real-world scenarios by recasting PubChem bioassays as few-shot prediction tasks. MHNfs offers a streamlined and accessible solution for deploying advanced few-shot learning models, providing a valuable tool for accelerating drug discovery.},
   author = {Johannes Schimunek and Sohvi Luukkonen and Günter Klambauer},
   doi = {10.1021/acs.jcim.4c02373},
   journal = {Journal of Chemical Information and Modeling},
@@ -614,6 +632,7 @@
 }
 
 @article{kang2023hopfieldlike,
+  s2id = {7fbfdb935148554f6343a08605dad013c0b023a9},
   abstract = {We present a Hopfield-like autoassociative network for memories representing examples of concepts. Each memory is encoded by two activity patterns with complementary properties. The first is dense and correlated across examples within concepts, and the second is sparse and exhibits no correlation among examples. The network stores each memory as a linear combination of its encodings. During retrieval, the network recovers sparse or dense patterns with a high or low activity threshold, respectively. As more memories are stored, the dense representation at low threshold shifts from examples to concepts, which are learned from accumulating common example features. Meanwhile, the sparse representation at high threshold maintains distinctions between examples due to the high capacity of sparse, decorrelated patterns. Thus, a single network can retrieve memories at both example and concept scales and perform heteroassociation between them. We obtain our results by deriving macroscopic mean-field equations that yield capacity formulas for sparse examples, dense examples, and dense concepts. We also perform network simulations that verify our theoretical results and explicitly demonstrate the capabilities of the network.},
   author = {Kang, Louis and Toyoizumi, Taro},
   doi = {10.1103/PhysRevE.108.054410},
@@ -829,6 +848,7 @@
 }
 
 @misc{krotov2021hierarchical,
+  s2id = {3c5edd9eb4dcf4a0cff3250b32ede349c2edf63e},
   abstract = {Dense Associative Memories or Modern Hopfield Networks have many appealing properties of associative memory. They can do pattern completion, store a large number of memories, and can be described using a recurrent neural network with a degree of biological plausibility and rich feedback between the neurons. At the same time, up until now all the models of this class have had only one hidden layer, and have only been formulated with densely connected network architectures, two aspects that hinder their machine learning applications. This paper tackles this gap and describes a fully recurrent model of associative memory with an arbitrary large number of layers, some of which can be locally connected (convolutional), and a corresponding energy function that decreases on the dynamical trajectory of the neurons' activations. The memories of the full network are dynamically "assembled" using primitives encoded in the synaptic weights of the lower layers, with the "assembling rules" encoded in the synaptic weights of the higher layers. In addition to the bottom-up propagation of information, typical of commonly used feedforward neural networks, the model described has rich top-down feedback from higher layers that help the lower-layer neurons to decide on their response to the input stimuli.},
   archiveprefix = {arXiv},
   author = {Dmitry Krotov},
@@ -845,6 +865,7 @@
 }
 
 @article{jiang2021working,
+  s2id = {d61fedf3019894cb6f66d8b6abcb47f459905f97},
   abstract = {Conversion of temporal to spatial correlations in the cortex is one of the most intriguing functions in the brain. The learning at synapses triggering the correlation conversion can take place in a wide integration window, whose influence on the correlation conversion remains elusive. Here, we propose a generalized associative memory model with arbitrary Hebbian length. The model can be analytically solved, and predicts that a small Hebbian length can already significantly enhance the correlation conversion, i.e., the stimulus-induced attractor can be highly correlated with a significant number of patterns in the stored sequence, thereby facilitating state transitions in the neural representation space. Moreover, an anti-Hebbian component is able to reshape the energy landscape of memories, akin to the function of sleep. Our work thus establishes the fundamental connection between associative memory, Hebbian length, and correlation conversion in the brain.},
   archiveprefix = {arXiv},
   author = {Zijian Jiang and Jianwen Zhou and Tianqi Hou and K. Y. Michael Wong and Haiping Huang},
@@ -865,6 +886,7 @@
 }
 
 @article{zhou2021eigenvalue,
+  s2id = {8f485fe97e0c3327ec5ff729f6d4127ed132af7d},
   abstract = {Associative memory is a fundamental function in the brain. Here, we generalize the standard associative memory model to include long-range Hebbian interactions at the learning stage, corresponding to a large synaptic integration window. In our model, the Hebbian length can be arbitrarily large.},
   archiveprefix = {arXiv},
   author = {Zhou, Jianwen and Jiang, Zijian and Hou, Tianqi and Chen, Ziming and Wong, K. Y. Michael and Huang, Haiping},
@@ -885,7 +907,7 @@
   year = {2021}
 }
 
-@inproceedings{ramsauer2021hopfieldreferences,  abstract = {We introduce a modern Hopfield network with continuous states and a corresponding update rule. The new Hopfield network can store exponentially (with the dimension of the associative space) many patterns, retrieve the pattern with one update, and has exponentially small retrieval errors. The new update rule is equivalent to the attention mechanism used in transformers. This equivalence enables a characterization of the heads of transformer models. We show that the transformer attention heads operate by three types of (fixed-point) update rules: (1) averaging over all inputs, (2) making a piece-wise constant approximation, and (3) single-pattern retrieval. We further show empirically that modern Hopfield networks outperform LSTM networks on immune repertoire classification and achieve a new state-of-the-art on multiple instance learning benchmark datasets.},  archiveprefix = {arXiv},
+@inproceedings{ramsauer2021hopfieldreferences, s2id = {804a6d7c23335bbca6eec3b7d3c8366dcbe395a5},  abstract = {We introduce a modern Hopfield network with continuous states and a corresponding update rule. The new Hopfield network can store exponentially (with the dimension of the associative space) many patterns, retrieve the pattern with one update, and has exponentially small retrieval errors. The new update rule is equivalent to the attention mechanism used in transformers. This equivalence enables a characterization of the heads of transformer models. We show that the transformer attention heads operate by three types of (fixed-point) update rules: (1) averaging over all inputs, (2) making a piece-wise constant approximation, and (3) single-pattern retrieval. We further show empirically that modern Hopfield networks outperform LSTM networks on immune repertoire classification and achieve a new state-of-the-art on multiple instance learning benchmark datasets.},  archiveprefix = {arXiv},
   author = {Ramsauer, Hubert and Schäfl, Bernhard and Lehner, Johannes and Seidl, Philipp and Widrich, Michael and Gruber, Lukas and Holzleitner, Markus and Pavlović, Milena and Sandve, Geir Kjetil and Greiff, Victor and Kreil, David and Kopp, Michael and Klambauer, Günter and Brandstetter, Johannes and Hochreiter, Sepp},
   booktitle = {9th International Conference on Learning Representations, ICLR 2021},
   eprint = {2008.02217},
@@ -902,6 +924,7 @@
 }
 
 @misc{evans2021inference,
+  s2id = {8ad2a121eb486c9c60f31fb15d8ae4af64803b71},
   abstract = {This paper addresses the problem of making statistical inference about a population that can only be identified through classifier predictions. The problem is motivated by scientific studies in which human labels of a population are replaced by a classifier. For downstream analysis of the population based on classifier predictions to be sound, the predictions must generalize equally across experimental conditions. In this paper, we formalize the task of statistical inference using classifier predictions, and propose bootstrap procedures to allow inference with a generalizable classifier. We demonstrate our methods through simulations and a live cell imaging case study.},
   archiveprefix = {arXiv},
   author = {Ciaran Evans and Zara Y. Weinberg and Manojkumar A. Puthenveedu and Max G'Sell},
@@ -952,6 +975,7 @@
 }
 
 @article{fachechi2019dreaming,
+  s2id = {6d247a9eb45376e6b7bad641be7c444c34e8ea53},
   abstract = {The standard Hopfield model for associative neural networks accounts for biological Hebbian learning and acts as the harmonic oscillator for pattern recognition, however its maximal storage capacity is $α ∼ 0.14$, far from the theoretical bound for symmetric networks, i.e. $α =1$. Inspired by sleeping and dreaming mechanisms in mammal brains, we propose an extension of this model displaying the standard on-line (awake) learning mechanism (that allows the storage of external information in terms of patterns) and an off-line (sleep) unlearning$&$consolidating mechanism (that allows spurious-pattern removal and pure-pattern reinforcement): this obtained daily prescription is able to saturate the theoretical bound $α=1$, remaining also extremely robust against thermal noise. Both neural and synaptic features are analyzed both analytically and numerically. In particular, beyond obtaining a phase diagram for neural dynamics, we focus on synaptic plasticity and we give explicit prescriptions on the temporal evolution of the synaptic matrix. We analytically prove that our algorithm makes the Hebbian kernel converge with high probability to the projection matrix built over the pure stored patterns. Furthermore, we obtain a sharp and explicit estimate for the "sleep rate" in order to ensure such a convergence. Finally, we run extensive numerical simulations (mainly Monte Carlo sampling) to check the approximations underlying the analytical investigations (e.g., we developed the whole theory at the so called replica-symmetric level, as standard in the Amit-Gutfreund-Sompolinsky reference framework) and possible finite-size effects, finding overall full agreement with the theory.},
   author = {Fachechi, Alberto and Agliari, Elena and Barra, Adriano},
   doi = {10.1016/j.neunet.2019.01.004},
@@ -968,6 +992,7 @@
 }
 
 @article{krotov2018dense,
+  s2id = {aa52f05176380ac84294d7e941bc036d1665aaac},
   abstract = {Deep neural networks (DNN) trained in a supervised way suffer from two known problems. First, the minima of the objective function used in learning correspond to data points (also known as rubbish examples or fooling images) that lack semantic similarity with the training data. Second, a clean input can be changed by a small, and often imperceptible for human vision, perturbation, so that the resulting deformed input is misclassified by the network. These findings emphasize the differences between the ways DNN and humans classify patterns, and raise a question of designing learning algorithms that more accurately mimic human perception compared to the existing methods. The paper examines these questions within the framework of Dense Associative Memory (DAM) models, which are defined by an energy function with higher order interactions between neurons. When the power of the interaction vertex is sufficiently large, these models have three key properties: (1) The minima of the objective function are free from rubbish images, with each minimum being a semantically meaningful pattern. (2) Artificial patterns at the decision boundary look ambiguous to human subjects and share aspects of both separated classes. (3) Adversarial images constructed with small interaction vertex power fail to transfer and fool models with higher order interactions. The results suggest that DAM with higher order energy functions are closer to human visual perception than deep neural networks with ReLUs.},
   archiveprefix = {arXiv},
   author = {Krotov, Dmitry and Hopfield, John J.},
@@ -1009,6 +1034,7 @@
 }
 
 @article{demircigil2017model,
+  s2id = {84bad036fbe21a024975cefa71785930fdec758e},
   abstract = {In [7] Krotov and Hopfield suggest a generalized version of the well-known Hopfield model of associative memory. In their version they consider a polynomial interaction function and claim that this increases the storage capacity of the model. We prove this claim and take the 'limit' as the degree of the polynomial becomes infinite, i.e. an exponential interaction function. With this interaction we prove that model has an exponential storage capacity in the number of neurons, yet the basins of attraction are almost as large as in the standard Hopfield model.},
   archiveprefix = {arXiv},
   author = {Demircigil, Mete and Heusel, Judith and Löwe, Matthias and Upgang, Sven and Vermet, Franck},
@@ -1049,6 +1075,7 @@
 }
 
 @article{bittner2017behavioral,
+  s2id = {b0e8c9a57c8873abee1e62d959e45ee3bb9228cc},
   abstract = {Learning is primarily mediated by activity-dependent modifications of synaptic strength within neuronal circuits. We discovered that place fields in hippocampal area CA1 are produced by a synaptic potentiation notably different from Hebbian plasticity. Place fields could be produced in vivo in a single trial by potentiation of input that arrived seconds before and after complex spiking. This rule, named behavioral time scale synaptic plasticity, can rapidly store entire sequences of events within the synaptic weights of area CA1.},
   author = {Bittner, Katie C. and Milstein, Aaron D. and Grienberger, Christine and Romani, Sandro and Magee, Jeffrey C.},
   doi = {10.1126/science.aan3846},
@@ -1086,6 +1113,7 @@
 }
 
 @inproceedings{martins2016from,
+  s2id = {c1e3a26fb88c6720f4e84b7118e6f2df7dc8efa3},
   abstract = {We propose sparsemax, a new activation function similar to the traditional softmax, but able to output sparse probabilities. After deriving its properties, we show how its Jacobian can be efficiently computed, enabling use in network trained with backpropagation. Then, we reveal an unexpected connection between this smooth and convex loss and Huber classification, obtaining promising empirical results in multi-label problems and attention-based neural networks for natural language inference.},
   address = {New York, New York, USA},
   archiveprefix = {arXiv},
@@ -1110,6 +1138,7 @@
 }
 
 @article{huang2010reconstructing,
+  s2id = {2a6a832f259782e8f6632cb0a993b696dd55fd8e},
   abstract = {We test four fast mean-field-type algorithms on Hopfield networks as an inverse Ising problem. The equilibrium behavior of Hopfield networks is simulated through Glauber dynamics. In the retrieval phase favored when the network wants to memory one of stored patterns, all the reconstruction algorithms fail to extract interactions within a desired accuracy, and the same failure occurs in the spin-glass phase where spurious minima show up, while in the paramagnetic phase, albeit unfavored during the retrieval dynamics, the algorithms work well to reconstruct the network itself. This implies that as an inverse problem, the paramagnetic phase is conversely useful for reconstructing the network while the retrieval phase loses all the information about interactions in the network except for the case where only one pattern is stored. The performances of algorithms are studied with respect to the system size, memory load, and temperature, with sample-to-sample fluctuations also considered.},
   author = {Huang, Haiping},
   doi = {10.1103/PhysRevE.81.036104},
@@ -1129,6 +1158,7 @@
 }
 
 @article{huang2010message,
+  s2id = {f376d4c1ff2ebf02e9d264534b8fb03905d1c6ce},
   abstract = {The Hopfield network is reconstructed as an inverse Ising problem by passing messages. The applied susceptibility propagation algorithm is shown to improve significantly on other mean-field-type methods and extends well into the low-temperature region. However, this iterative algorithm is limited by the nature of the supplied data. Its performance deteriorates as the data become highly magnetized, and this method finally fails in the presence of the frozen type data where at least two of its magnetizations are equal to 1 in absolute value. On the other hand, a threshold behavior is observed for the susceptibility propagation algorithm and the transition from good reconstruction to poor one becomes sharper as the network size increases.},
   author = {Huang, Haiping},
   doi = {10.1103/PhysRevE.82.056111},
@@ -1146,7 +1176,7 @@
   year = {2010}
 }
 
-@article{gray2005entropy,  abstract = {The fundamental theorems on the asymptotic behavior of eigenvalues, inverses, and products of banded Toeplitz matrices and Toeplitz matrices with absolutely summable elements are derived in a tutorial manner. Mathematical elegance and generality are sacrificed for conceptual simplicity and insight in the hope of making these results available to engineers lacking either the background or endurance to attack the mathematical literature on the subject. As an application the results are applied to the study of the covariance matrices and their factors of linear models of discrete time random processes.},
+@article{gray2005entropy, s2id = {79d1b330f0ef51f63ecb9b291dd5a05de5a858c0},  abstract = {The fundamental theorems on the asymptotic behavior of eigenvalues, inverses, and products of banded Toeplitz matrices and Toeplitz matrices with absolutely summable elements are derived in a tutorial manner. Mathematical elegance and generality are sacrificed for conceptual simplicity and insight in the hope of making these results available to engineers lacking either the background or endurance to attack the mathematical literature on the subject. As an application the results are applied to the study of the covariance matrices and their factors of linear models of discrete time random processes.},
   author = {Gray, Robert M.},
   doi = {10.1561/0100000006},
   issn = {1567-2069},
@@ -1162,6 +1192,7 @@
 }
 
 @article{nokura1998spin,
+  s2id = {7ba2979079d27fd35afc9214d1506ecc788be003},
   abstract = {We study the Hopfield model with an opposite interactional sign by using a one-step replica symmetry breaking ansatz and the marginality condition. We show that this model belongs to spin glass models which have a dynamical phase transition, which is not associated with usual replica instability. Although this model is motivated by the observations about unlearning, it has various interesting aspects: correlations among interactions, a simple meaning as an optimization problem, and SK-like and non-SK-like spin glass phases depending on the number of 'memorized' patterns.},
   author = {Kazuo Nokura},
   doi = {10.1088/0305-4470/31/37/007},
@@ -1177,6 +1208,7 @@
 }
 
 @article{cugliandolo1994capacity,
+  s2id = {ebf7debe7f33ac23daa366f7759d0a0a30f0801a},
   abstract = {We analyse the extensive loading of a neural network model proposed to describe neurophysiological experiments in which correlated attractors associated with uncorrelated patterns are found. The phase diagram is obtained and discussed. Some generalizations of the original model are also considered. In all cases, we demonstrate the existence of a region with attractors. Results from numerical simulations confirm mean-field theory results presented.},
   author = {Cugliandolo, L. F. and Tsodyks, M. V.},
   doi = {10.1088/0305-4470/27/3/018},
@@ -1193,6 +1225,7 @@
 }
 
 @article{griniasty1993conversion,
+  s2id = {527dc2094a7d6518c393c3946b0892f87569b5b8},
   abstract = {It is shown that a simple modification of synaptic structures (of the Hopfield type) constructed to produce autoassociative attractors, produces neural networks whose attractors are correlated with several (learned) patterns used in the construction of the matrix. The modification stores in the matrix a fixed sequence of uncorrelated patterns. The network then has correlated attractors, provoked by the uncorrelated stimuli. Thus, the network converts the temporal order (or temporal correlation) expressed by the sequence of patterns, into spatial correlations expressed in the distributions of neural activities in attractors.},
   author = {Griniasty, Mauro and Tsodyks, Misha V. and Amit, Daniel J.},
   doi = {10.1162/neco.1993.5.1.1},
@@ -1209,6 +1242,7 @@
 }
 
 @article{dotsenko1991statistical,
+  s2id = {aca5e597f4f1fea0a758204e45af19e95fe0f982},
   abstract = {Statistical mechanics analysis of Hopfield-like neural networks with modified interactions using mean-field theory. The modifications are achieved through a special thermally noised iterative procedure, where the couplings have an intermediate form between Hebb-like learning and pseudo inverse rules. A replica-symmetric free energy analysis is performed and the phase diagram is studied across different parameters of the modified interaction scheme.},
   author = {Dotsenko, V. S. and Yarunin, N. D. and Dorotheyev, E. A.},
   doi = {10.1088/0305-4470/24/10/026},
@@ -1224,6 +1258,7 @@
 }
 
 @article{miyashita1988neuronallong,
+  s2id = {8db1bc9acabe201dc0ca6585759317579f279165},
   abstract = {In human long-term memory, ideas and concepts become associated in the learning process. No neuronal correlate for this cognitive function has so far been described, except that memory traces are thought to be localized in the cerebral cortex; the temporal lobe has been assigned as the site for visual experience because electric stimulation of this area results in imagery recall and lesions produce deficits in visual recognition of objects. We previously reported that in the anterior ventral temporal cortex of monkeys, individual neurons have a sustained activity that is highly selective for a few of the 100 coloured fractal patterns used in a visual working-memory task. Here I report the development of this selectivity through repeated trials involving the working memory. The few patterns for which a neuron was conjointly selective were frequently related to each other through stimulus-stimulus association imposed during training. The results indicate that the selectivity acquired by these cells represents a neuronal correlate of the associative long-term memory of pictures.},
   author = {Miyashita, Yasushi},
   doi = {10.1038/335817a0},
@@ -1243,6 +1278,7 @@
 }
 
 @article{miyashita1988neuronalshort,
+  s2id = {435ccda1ceb8d3b95e3dc3a745d963fc09847a54},
   abstract = {It has been proposed that visual-memory traces are located in the temporal lobes of the cerebral cortex, as electric stimulation of this area in humans results in recall of imagery. Lesions in this area also affect recognition of an object after a delay in both humans and monkeys, indicating a role in short-term memory of images. Single-unit recordings from the temporal cortex have shown that some neurons continue to fire when one of two or four colours are to be remembered temporarily. But neuronal responses selective to specific complex objects, including hands and faces, cease soon after the offset of stimulus presentation. These results led to the question of whether any of these neurons could serve the memory of complex objects. We report here a group of shape-selective neurons in an anterior ventral part of the temporal cortex of monkeys that exhibited sustained activity during the delay period of a visual short-term memory task. The activity was highly selective for the pictorial information to be memorized and was independent of the physical attributes such as size, orientation, colour or position of the object. These observations show that the delay activity represents the short-term memory of the categorized percept of a picture.},
   author = {Miyashita, Yasushi and Chang, Han Soo},
   doi = {10.1038/331068a0},
@@ -1261,6 +1297,7 @@
 }
 
 @article{amit1987statistical,
+  s2id = {246c25fc095891c1cb1a4dbb7b374b7b5cc7fe11},
   abstract = {The Hopfield model of a neural network is studied near its saturation, i.e., when the number p of stored patterns increases with the size of the network N, as p = $α$N. The mean-field theory for this system is described in detail. The system possesses, at low $α$, both a spin-glass phase and 2p dynamically stable degenerate ferromagnetic phases. The latter have essentially full macroscopic overlaps with the memorized patterns, and provide effective associative memory, despite the spin-glass features. One of the most important results is that the network can retrieve patterns, at T = 0, with an error of less than 1.5% for $α < α_c = 0.14$. At $α_c$ the ferromagnetic (FM) retrieval states disappear discontinuously.},
   author = {Amit, Daniel J. and Gutfreund, Hanoch and Sompolinsky, Haim},
   doi = {10.1016/0003-4916(87)90092-3},
@@ -1278,7 +1315,7 @@
   year = {1987}
 }
 
-@article{amit1985spinglassreferences,  abstract = {The Hopfield model for a neural network is studied in the limit when the number p of stored patterns increases with the size N of the network, as p=αN. It is shown that, despite its spin-glass features, the model exhibits associative memory for α<αc, αc≈0.14. This is due to the existence at low temperature of 2p dynamically stable degenerate states, each of which is almost fully correlated with one of the patterns. These states become ground states at α<0.05. The phase diagram of this rich spin-glass system is described.},
+@article{amit1985spinglassreferences, s2id = {b0f93cf5b155e9deccec9ddd6978fb3b4775878b},  abstract = {The Hopfield model for a neural network is studied in the limit when the number p of stored patterns increases with the size N of the network, as p=αN. It is shown that, despite its spin-glass features, the model exhibits associative memory for α<αc, αc≈0.14. This is due to the existence at low temperature of 2p dynamically stable degenerate states, each of which is almost fully correlated with one of the patterns. These states become ground states at α<0.05. The phase diagram of this rich spin-glass system is described.},
   author = {Amit, Daniel J. and Gutfreund, Hanoch and Sompolinsky, Haim},
   doi = {10.1103/PhysRevLett.55.1530},
   issn = {0031-9007},
@@ -1298,6 +1335,7 @@
 
 
 @article{hopfield1982neural,
+  s2id = {98b4d4e24aab57ab4e1124ff8106909050645cfa},
   abstract = {Computational properties of use of biological organisms or to the construction of computers can emerge as collective properties of systems having a large number of simple equivalent components (or neurons). The physical meaning of content-addressable memory is described by an appropriate phase space flow of the state of a system. A model of such a system is given, based on aspects of neurobiology but readily adapted to integrated circuits. The collective properties of this model produce a content-addressable memory which correctly yields an entire memory from any subpart of sufficient size. The algorithm for the time evolution of the state of the system is based on asynchronous parallel processing. Additional emergent collective properties include some capacity for generalization, familiarity recognition, categorization, error correction, and time sequence retention.},
   author = {Hopfield, John J.},
   doi = {10.1073/pnas.79.8.2554},
@@ -1316,6 +1354,7 @@
 }
 
 @article{amari1977dynamics,
+  s2id = {17f3e82330d9e94fb9f7f45549b80016c7f0e24f},
   author = {Amari, Shun-ichi},
   doi = {10.1007/BF00337259},
   journal = {Biological Cybernetics},
