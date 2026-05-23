@@ -1,0 +1,4 @@
+steps = [
+  { command = "pdf-sync", targets_file = "ops/fulltext-conference-targets.txt", no_download = true, progress_log = "tmp/bibops/pdf-layout-migration-conferences.jsonl", console_progress = true },
+  { command = "fulltext-sync", targets_file = "ops/fulltext-conference-targets.txt", workers = 0, timeout_read = 1200.0, progress_log = "tmp/bibops/fulltext-sync-conferences.jsonl", console_progress = true, fail_on_error = true },
+]

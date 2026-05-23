@@ -45,6 +45,9 @@ python3 scripts/bibops.py pdf-sync conferences/iclr/2025.bib \
   --pdf-sync-policy ops/pdf-sync-policy.toml \
   --fail-on-error
 
+# Migrate active cached PDFs to per-entry workspaces and extract GROBID TEI
+python3 scripts/bibops.py run-profile --profile ops/profiles/fulltext-active.toml
+
 # Preview a long-run workload without writes/downloads
 python3 scripts/bibops.py pdf-sync conferences/aistats/2024.bib \
   --pdf-sync-policy ops/pdf-sync-policy.toml \
@@ -112,6 +115,14 @@ These are designed with progressive disclosure and can be invoked explicitly or 
   [`references/bibmeta-contract.md`](references/bibmeta-contract.md).
 - Reusable operations policy lives in `ops/`; transient run artifacts default
   to `tmp/bibops/`.
+- Local document workspaces use `/home/b/documents/<entrytype>/<bibkey>/`,
+  with `<bibkey>.pdf` and derived full-text `<bibkey>.tei.xml` plus
+  `<bibkey>.grobid.json` provenance.
+- Full-text extraction classifies PDFs lazily by page count and uses
+  CPU-derived worker counts by default, with tighter concurrency and longer
+  timeouts for long-form PDFs. GROBID extraction defaults to the bulk TEI
+  profile: header consolidation, raw citations, sentence segmentation, and TEI
+  coordinates for figures, formulae, references, and bibliography structures.
 - Local operational state and enrichment tracking use `bibliography.db`.
 - Version-controlled tracking snapshot is `tracking.json`.
 
