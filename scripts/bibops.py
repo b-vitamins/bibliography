@@ -22,6 +22,7 @@ import uuid
 from pathlib import Path
 from typing import Iterable
 
+from bibops_fulltext_sync import DEFAULT_GROBID_URL, DEFAULT_TEI_COORDINATES, FulltextSyncOptions, run_fulltext_sync
 from bibops_key_manager import KeyNormalizeOptions, result_to_json, run_key_normalize
 from bibops_pdf_sync import PdfSyncOptions, parse_host_interval_overrides, run_pdf_sync
 from core.bibtex_io import parse_bib_file
@@ -1565,6 +1566,77 @@ def command_pdf_sync(args: argparse.Namespace) -> int:
     return 0
 
 
+def command_fulltext_sync(args: argparse.Namespace) -> int:
+    options = FulltextSyncOptions(
+        targets=args.targets,
+        base_dir=Path(args.base_dir),
+        grobid_url=args.grobid_url,
+        max_entries=max(0, args.max_entries),
+        workers=max(0, args.workers),
+        medium_workers=max(0, args.medium_workers),
+        long_workers=max(0, args.long_workers),
+        huge_workers=max(0, args.huge_workers),
+        force=args.force,
+        dry_run=args.dry_run,
+        generate_ids=args.generate_ids,
+        consolidate_header=not args.no_consolidate_header,
+        consolidate_citations=args.consolidate_citations,
+        consolidate_funders=args.consolidate_funders,
+        include_raw_citations=not args.no_include_raw_citations,
+        include_raw_affiliations=args.include_raw_affiliations,
+        include_raw_copyrights=args.include_raw_copyrights,
+        segment_sentences=not args.no_segment_sentences,
+        tei_coordinates=not args.no_tei_coordinates,
+        tei_coordinate_elements=tuple(args.tei_coordinate) if args.tei_coordinate else DEFAULT_TEI_COORDINATES,
+        timeout_connect_seconds=max(1.0, args.timeout_connect),
+        timeout_read_seconds=max(1.0, args.timeout_read),
+        medium_timeout_read_seconds=max(1.0, args.medium_timeout_read),
+        long_timeout_read_seconds=max(1.0, args.long_timeout_read),
+        huge_timeout_read_seconds=max(1.0, args.huge_timeout_read),
+        medium_page_threshold=max(1, args.medium_page_threshold),
+        long_page_threshold=max(1, args.long_page_threshold),
+        huge_page_threshold=max(1, args.huge_page_threshold),
+        pdfinfo_timeout_seconds=max(1.0, args.pdfinfo_timeout),
+        dispatch_batch_size=max(1, args.dispatch_batch_size),
+        grobid_max_attempts=max(1, args.grobid_max_attempts),
+        grobid_busy_sleep_seconds=max(0.0, args.grobid_busy_sleep),
+        progress_log=Path(args.progress_log) if args.progress_log else None,
+        console_progress=args.console_progress,
+    )
+    try:
+        result = run_fulltext_sync(options)
+    except Exception as ex:
+        print(f"fulltext-sync failed: {ex}")
+        if args.json:
+            print(json.dumps({"status": "failed", "error": str(ex)}, indent=2, sort_keys=True))
+        return 1
+
+    failed = int(result.summary.get("failed", 0))
+    if args.json:
+        print(
+            json.dumps(
+                {
+                    "summary": result.summary,
+                    "failures": [dataclasses.asdict(f) for f in result.failures[: args.detail_limit]],
+                },
+                indent=2,
+                sort_keys=True,
+            )
+        )
+    else:
+        print("fulltext-sync summary:")
+        for key in sorted(result.summary):
+            print(f"  {key}: {result.summary[key]}")
+        if result.failures:
+            print("failures:")
+            for failure in result.failures[: args.detail_limit]:
+                print(f"  {failure.bib_file} :: {failure.key} :: {failure.message}")
+
+    if args.fail_on_error and failed:
+        return 1
+    return 0
+
+
 def command_key_normalize(cfg: OpsConfig, args: argparse.Namespace) -> int:
     global_paths: list[Path] = []
     if args.global_scope == "config":
@@ -1672,6 +1744,33 @@ def command_verify_orals(cfg: OpsConfig, recorder: RunRecorder, as_json: bool, f
     if fail_on_error and error_count > 0:
         return 3
     return 0
+
+
+def profile_target_list(step_payload: dict[str, object], step_name: str) -> list[str] | None:
+    targets: list[str] = []
+    targets_raw = step_payload.get("targets")
+    if isinstance(targets_raw, list):
+        for target in targets_raw:
+            if isinstance(target, str) and target.strip():
+                targets.append(target.strip())
+
+    targets_file = step_payload.get("targets_file")
+    if isinstance(targets_file, str) and targets_file.strip():
+        path = Path(targets_file.strip())
+        try:
+            for raw_line in path.read_text(encoding="utf-8").splitlines():
+                line = raw_line.strip()
+                if not line or line.startswith("#"):
+                    continue
+                targets.append(line)
+        except OSError as exc:
+            print(f"Profile {step_name} step could not read targets_file `{path}`: {exc}")
+            return None
+
+    if not targets:
+        print(f"Profile {step_name} step requires `targets = [\"file.bib\", ...]` or `targets_file = \"...\"`")
+        return None
+    return targets
 
 
 def command_profile(cfg: OpsConfig, profile_path: Path) -> int:
@@ -1786,14 +1885,8 @@ def command_profile(cfg: OpsConfig, profile_path: Path) -> int:
             )
             rc = command_enrich_pipeline(enrich_args)
         elif step_name == "pdf-sync":
-            targets_raw = step_payload.get("targets")
-            targets: list[str] = []
-            if isinstance(targets_raw, list):
-                for target in targets_raw:
-                    if isinstance(target, str) and target.strip():
-                        targets.append(target.strip())
-            if not targets:
-                print("Profile pdf-sync step requires `targets = [\"file.bib\", ...]`")
+            targets = profile_target_list(step_payload, "pdf-sync")
+            if targets is None:
                 return 1
 
             host_interval: list[str] = []
@@ -1835,6 +1928,60 @@ def command_profile(cfg: OpsConfig, profile_path: Path) -> int:
                 json=bool(step_payload.get("json", False)),
             )
             rc = command_pdf_sync(pdf_sync_args)
+        elif step_name in {"fulltext-sync", "grobid-sync"}:
+            targets = profile_target_list(step_payload, "fulltext-sync")
+            if targets is None:
+                return 1
+
+            tei_coordinate: tuple[str, ...] = DEFAULT_TEI_COORDINATES
+            raw_tei_coordinate = step_payload.get("tei_coordinate")
+            if isinstance(raw_tei_coordinate, list):
+                values = [str(item).strip() for item in raw_tei_coordinate if str(item).strip()]
+                if values:
+                    tei_coordinate = tuple(values)
+            elif isinstance(raw_tei_coordinate, str) and raw_tei_coordinate.strip():
+                tei_coordinate = (raw_tei_coordinate.strip(),)
+
+            fulltext_args = argparse.Namespace(
+                targets=targets,
+                base_dir=str(step_payload.get("base_dir", "/home/b/documents")),
+                grobid_url=str(step_payload.get("grobid_url", DEFAULT_GROBID_URL) or DEFAULT_GROBID_URL),
+                max_entries=int(step_payload.get("max_entries", 0) or 0),
+                workers=int(step_payload.get("workers", 0) or 0),
+                medium_workers=int(step_payload.get("medium_workers", 0) or 0),
+                long_workers=int(step_payload.get("long_workers", 0) or 0),
+                huge_workers=int(step_payload.get("huge_workers", 0) or 0),
+                force=bool(step_payload.get("force", False)),
+                dry_run=bool(step_payload.get("dry_run", False)),
+                generate_ids=bool(step_payload.get("generate_ids", False)),
+                no_consolidate_header=bool(step_payload.get("no_consolidate_header", False)),
+                consolidate_citations=bool(step_payload.get("consolidate_citations", False)),
+                consolidate_funders=bool(step_payload.get("consolidate_funders", False)),
+                no_include_raw_citations=bool(step_payload.get("no_include_raw_citations", False)),
+                include_raw_affiliations=bool(step_payload.get("include_raw_affiliations", False)),
+                include_raw_copyrights=bool(step_payload.get("include_raw_copyrights", False)),
+                no_segment_sentences=bool(step_payload.get("no_segment_sentences", False)),
+                no_tei_coordinates=bool(step_payload.get("no_tei_coordinates", False)),
+                tei_coordinate=tei_coordinate,
+                timeout_connect=float(step_payload.get("timeout_connect", 10.0) or 10.0),
+                timeout_read=float(step_payload.get("timeout_read", 1200.0) or 1200.0),
+                medium_timeout_read=float(step_payload.get("medium_timeout_read", 1200.0) or 1200.0),
+                long_timeout_read=float(step_payload.get("long_timeout_read", 3600.0) or 3600.0),
+                huge_timeout_read=float(step_payload.get("huge_timeout_read", 7200.0) or 7200.0),
+                medium_page_threshold=int(step_payload.get("medium_page_threshold", 50) or 50),
+                long_page_threshold=int(step_payload.get("long_page_threshold", 150) or 150),
+                huge_page_threshold=int(step_payload.get("huge_page_threshold", 500) or 500),
+                pdfinfo_timeout=float(step_payload.get("pdfinfo_timeout", 15.0) or 15.0),
+                dispatch_batch_size=int(step_payload.get("dispatch_batch_size", 256) or 256),
+                grobid_max_attempts=int(step_payload.get("grobid_max_attempts", 3) or 3),
+                grobid_busy_sleep=float(step_payload.get("grobid_busy_sleep", 5.0) or 5.0),
+                progress_log=str(step_payload.get("progress_log", "")).strip() or None,
+                console_progress=bool(step_payload.get("console_progress", False)),
+                detail_limit=int(step_payload.get("detail_limit", 100) or 100),
+                fail_on_error=bool(step_payload.get("fail_on_error", False)),
+                json=bool(step_payload.get("json", False)),
+            )
+            rc = command_fulltext_sync(fulltext_args)
         elif step_name == "key-normalize":
             targets_raw = step_payload.get("targets")
             targets: list[str] = []
@@ -2043,6 +2190,87 @@ def build_parser() -> argparse.ArgumentParser:
     pdf_sync.add_argument("--fail-on-error", action="store_true", help="Return non-zero on download failures")
     pdf_sync.add_argument("--json", action="store_true", help="Emit JSON output")
 
+    fulltext_sync = sub.add_parser(
+        "fulltext-sync",
+        aliases=["grobid-sync"],
+        help="Extract full-text TEI XML for locally cached PDFs with GROBID",
+    )
+    fulltext_sync.add_argument("targets", nargs="+", help="BibTeX file(s) or glob(s)")
+    fulltext_sync.add_argument("--base-dir", default="/home/b/documents", help="Local document cache root")
+    fulltext_sync.add_argument("--grobid-url", default=DEFAULT_GROBID_URL, help="GROBID service base URL")
+    fulltext_sync.add_argument("--max-entries", type=int, default=0, help="Cap entries scanned per file")
+    fulltext_sync.add_argument(
+        "--workers",
+        type=int,
+        default=0,
+        help="Concurrent GROBID requests for article PDFs; 0 = CPU-based auto",
+    )
+    fulltext_sync.add_argument("--medium-workers", type=int, default=0, help="Workers for 51-150 page PDFs; 0 = auto")
+    fulltext_sync.add_argument("--long-workers", type=int, default=0, help="Workers for 151-500 page PDFs; 0 = auto")
+    fulltext_sync.add_argument("--huge-workers", type=int, default=0, help="Workers for PDFs over 500 pages; 0 = auto")
+    fulltext_sync.add_argument("--force", action="store_true", help="Re-extract even when TEI provenance is current")
+    fulltext_sync.add_argument("--dry-run", action="store_true", help="Plan extraction without writing TEI/provenance")
+    fulltext_sync.add_argument("--generate-ids", action="store_true", help="Ask GROBID to generate XML IDs")
+    fulltext_sync.add_argument(
+        "--no-consolidate-header",
+        action="store_true",
+        help="Disable header metadata consolidation",
+    )
+    fulltext_sync.add_argument(
+        "--consolidate-citations",
+        action="store_true",
+        help="Enable citation consolidation; disabled by default for bulk throughput",
+    )
+    fulltext_sync.add_argument(
+        "--consolidate-funders",
+        action="store_true",
+        help="Enable funder consolidation; disabled by default for bulk throughput",
+    )
+    fulltext_sync.add_argument("--no-include-raw-citations", action="store_true", help="Disable raw citation strings in TEI")
+    fulltext_sync.add_argument(
+        "--include-raw-affiliations",
+        action="store_true",
+        help="Include raw affiliation strings in TEI; disabled by default",
+    )
+    fulltext_sync.add_argument(
+        "--include-raw-copyrights",
+        action="store_true",
+        help="Include raw copyright statements in TEI; disabled by default",
+    )
+    fulltext_sync.add_argument("--no-segment-sentences", action="store_true", help="Disable GROBID sentence segmentation")
+    fulltext_sync.add_argument(
+        "--no-tei-coordinates",
+        action="store_true",
+        help="Disable TEI coordinates",
+    )
+    fulltext_sync.add_argument(
+        "--tei-coordinate",
+        action="append",
+        help="Coordinate element to request; repeatable; defaults to figure/formula/ref/biblStruct",
+    )
+    fulltext_sync.add_argument("--timeout-connect", type=float, default=10.0, help="GROBID connect timeout in seconds")
+    fulltext_sync.add_argument("--timeout-read", type=float, default=1200.0, help="Article-tier GROBID read timeout in seconds")
+    fulltext_sync.add_argument("--medium-timeout-read", type=float, default=1200.0, help="Medium-tier read timeout")
+    fulltext_sync.add_argument("--long-timeout-read", type=float, default=3600.0, help="Long-tier read timeout")
+    fulltext_sync.add_argument("--huge-timeout-read", type=float, default=7200.0, help="Huge-tier read timeout")
+    fulltext_sync.add_argument("--medium-page-threshold", type=int, default=50, help="Upper page count for article tier")
+    fulltext_sync.add_argument("--long-page-threshold", type=int, default=150, help="Upper page count for medium tier")
+    fulltext_sync.add_argument("--huge-page-threshold", type=int, default=500, help="Upper page count for long tier")
+    fulltext_sync.add_argument("--pdfinfo-timeout", type=float, default=15.0, help="Per-PDF page-count timeout")
+    fulltext_sync.add_argument(
+        "--dispatch-batch-size",
+        type=int,
+        default=256,
+        help="Prepare and dispatch this many PDFs at a time instead of classifying the whole corpus up front",
+    )
+    fulltext_sync.add_argument("--grobid-max-attempts", type=int, default=3, help="Max attempts for retryable GROBID 503 responses")
+    fulltext_sync.add_argument("--grobid-busy-sleep", type=float, default=5.0, help="Base sleep seconds after GROBID 503")
+    fulltext_sync.add_argument("--progress-log", help="Optional JSONL path for per-entry progress events")
+    fulltext_sync.add_argument("--console-progress", action="store_true", help="Mirror progress events to stdout")
+    fulltext_sync.add_argument("--detail-limit", type=int, default=100, help="Max failures to print")
+    fulltext_sync.add_argument("--fail-on-error", action="store_true", help="Return non-zero on extraction failures")
+    fulltext_sync.add_argument("--json", action="store_true", help="Emit JSON output")
+
     key_norm = sub.add_parser("key-normalize", help="Validate and normalize BibTeX keys")
     key_norm.add_argument("targets", nargs="+", help="BibTeX file(s) or glob(s)")
     key_norm.add_argument("--write", action="store_true", help="Write normalized keys back to files")
@@ -2113,6 +2341,10 @@ def main() -> int:
     if args.command == "pdf-sync":
         with run_lock():
             return command_pdf_sync(args)
+
+    if args.command in {"fulltext-sync", "grobid-sync"}:
+        with run_lock():
+            return command_fulltext_sync(args)
 
     if args.command == "key-normalize":
         with run_lock():
