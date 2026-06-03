@@ -1,0 +1,564 @@
+% Scope:
+% - Curated reading list for Vision-Language-Action (VLA) robot models.
+% - Entries are ordered by first public release date, recorded in the nonstandard
+%   released field, while year preserves the cited publication/preprint year.
+% - Includes pre-VLA language-conditioned imitation and benchmark papers only
+%   where they directly shaped later VLA model design, data, or evaluation.
+% - Includes a small number of backbone and action-interface prerequisites where
+%   they directly determine later VLA architectures or training recipes.
+% - Excludes generic ML, VLM, robotics, and manipulation prerequisites that are
+%   not repeatedly load-bearing in VLA systems.
+%
+% Entry count: 36
+% Updated: 2026-06-03
+
+@inproceedings{lynch2021language,
+  author = {Corey Lynch and Pierre Sermanet},
+  booktitle = {Proceedings of Robotics: Science and Systems},
+  doi = {10.15607/RSS.2021.XVII.047},
+  month = {July},
+  pdf = {https://www.roboticsproceedings.org/rss17/p047.pdf},
+  released = {2020-05-15},
+  title = {Language Conditioned Imitation Learning Over Unstructured Data},
+  url = {https://www.roboticsproceedings.org/rss17/p047.html},
+  year = {2021}
+}
+
+@article{mees2022calvin,
+  archiveprefix = {arXiv},
+  arxiv = {https://arxiv.org/abs/2112.03227},
+  author = {Oier Mees and Lukas Hermann and Erick Rosete-Beas and Wolfram Burgard},
+  doi = {10.1109/LRA.2022.3180108},
+  eprint = {2112.03227},
+  journal = {IEEE Robotics and Automation Letters},
+  number = {3},
+  pages = {7327--7334},
+  pdf = {https://arxiv.org/pdf/2112.03227},
+  primaryclass = {cs.RO},
+  released = {2021-12-06},
+  title = {{CALVIN}: A Benchmark for Language-Conditioned Policy Learning for Long-Horizon Robot Manipulation Tasks},
+  url = {https://doi.org/10.1109/LRA.2022.3180108},
+  volume = {7},
+  year = {2022}
+}
+
+@inproceedings{jang2022bcz,
+  archiveprefix = {arXiv},
+  arxiv = {https://arxiv.org/abs/2202.02005},
+  author = {Eric Jang and Alex Irpan and Mohi Khansari and Daniel Kappler and Frederik Ebert and Corey Lynch and Sergey Levine and Chelsea Finn},
+  booktitle = {Proceedings of the 5th Conference on Robot Learning},
+  eprint = {2202.02005},
+  pages = {991--1002},
+  pdf = {https://proceedings.mlr.press/v164/jang22a/jang22a.pdf},
+  primaryclass = {cs.RO},
+  publisher = {PMLR},
+  released = {2022-02-04},
+  series = {Proceedings of Machine Learning Research},
+  title = {{BC-Z}: Zero-Shot Task Generalization with Robotic Imitation Learning},
+  url = {https://proceedings.mlr.press/v164/jang22a.html},
+  volume = {164},
+  year = {2022}
+}
+
+@misc{ahn2022saycan,
+  archiveprefix = {arXiv},
+  arxiv = {https://arxiv.org/abs/2204.01691},
+  author = {Michael Ahn and Anthony Brohan and Noah Brown and Yevgen Chebotar and Omar Cortes and Byron David and Chelsea Finn and Chuyuan Fu and Keerthana Gopalakrishnan and Karol Hausman and Alex Herzog and Daniel Ho and Jasmine Hsu and Julian Ibarz and Brian Ichter and Alex Irpan and Eric Jang and Rosario Jauregui Ruano and Kyle Jeffrey and Sally Jesmonth and Nikhil J Joshi and Ryan Julian and Dmitry Kalashnikov and Yuheng Kuang and Kuang-Huei Lee and Sergey Levine and Yao Lu and Linda Luu and Carolina Parada and Peter Pastor and Jornell Quiambao and Kanishka Rao and Jarek Rettinghouse and Diego Reyes and Pierre Sermanet and Nicolas Sievers and Clayton Tan and Alexander Toshev and Vincent Vanhoucke and Fei Xia and Ted Xiao and Peng Xu and Sichun Xu and Mengyuan Yan and Andy Zeng},
+  doi = {10.48550/arXiv.2204.01691},
+  eprint = {2204.01691},
+  howpublished = {arXiv preprint},
+  pdf = {https://arxiv.org/pdf/2204.01691},
+  primaryclass = {cs.RO},
+  released = {2022-04-04},
+  title = {Do As I Can, Not As I Say: Grounding Language in Robotic Affordances},
+  url = {https://arxiv.org/abs/2204.01691},
+  year = {2022}
+}
+
+@article{chowdhery2023palm,
+  archiveprefix = {arXiv},
+  arxiv = {https://arxiv.org/abs/2204.02311},
+  author = {Aakanksha Chowdhery and Sharan Narang and Jacob Devlin and Maarten Bosma and Gaurav Mishra and Adam Roberts and Paul Barham and Hyung Won Chung and Charles Sutton and Sebastian Gehrmann and Parker Schuh and Kensen Shi and Sasha Tsvyashchenko and Joshua Maynez and Abhishek Rao and Parker Barnes and Yi Tay and Noam Shazeer and Vinodkumar Prabhakaran and Emily Reif and Nan Du and Ben Hutchinson and Reiner Pope and James Bradbury and Jacob Austin and Michael Isard and Guy Gur-Ari and Pengcheng Yin and Toju Duke and Anselm Levskaya and Sanjay Ghemawat and Sunipa Dev and Henryk Michalewski and Xavier Garcia and Vedant Misra and Kevin Robinson and Liam Fedus and Denny Zhou and Daphne Ippolito and David Luan and Hyeontaek Lim and Barret Zoph and Alexander Spiridonov and Ryan Sepassi and David Dohan and Shivani Agrawal and Mark Omernick and Andrew M. Dai and Thanumalayan Sankaranarayana Pillai and Marie Pellat and Aitor Lewkowycz and Erica Moreira and Rewon Child and Oleksandr Polozov and Katherine Lee and Zongwei Zhou and Xuezhi Wang and Brennan Saeta and Mark Diaz and Orhan Firat and Michele Catasta and Jason Wei and Kathy Meier-Hellstern and Douglas Eck and Jeff Dean and Slav Petrov and Noah Fiedel},
+  eprint = {2204.02311},
+  journal = {Journal of Machine Learning Research},
+  number = {240},
+  pages = {1--113},
+  pdf = {https://www.jmlr.org/papers/volume24/22-1144/22-1144.pdf},
+  primaryclass = {cs.CL},
+  released = {2022-04-05},
+  title = {{PaLM}: Scaling Language Modeling with Pathways},
+  url = {https://www.jmlr.org/papers/v24/22-1144.html},
+  volume = {24},
+  year = {2023}
+}
+
+@article{mees2022what,
+  archiveprefix = {arXiv},
+  arxiv = {https://arxiv.org/abs/2204.06252},
+  author = {Oier Mees and Lukas Hermann and Wolfram Burgard},
+  doi = {10.1109/LRA.2022.3196123},
+  eprint = {2204.06252},
+  journal = {IEEE Robotics and Automation Letters},
+  number = {4},
+  pages = {11205--11212},
+  pdf = {https://arxiv.org/pdf/2204.06252},
+  primaryclass = {cs.RO},
+  released = {2022-04-13},
+  title = {What Matters in Language Conditioned Robotic Imitation Learning Over Unstructured Data},
+  url = {https://doi.org/10.1109/LRA.2022.3196123},
+  volume = {7},
+  year = {2022}
+}
+
+@article{reed2022generalist,
+  archiveprefix = {arXiv},
+  arxiv = {https://arxiv.org/abs/2205.06175},
+  author = {Scott Reed and Konrad {\.Z}o{\l}na and Emilio Parisotto and Sergio G{\'o}mez Colmenarejo and Alexander Novikov and Gabriel Barth-Maron and Mai Gim{\'e}nez and Yury Sulsky and Jackie Kay and Jost Tobias Springenberg and Tom Eccles and Jake Bruce and Ali Razavi and Ashley Edwards and Nicolas Heess and Yutian Chen and Raia Hadsell and Oriol Vinyals and Mahyar Bordbar and Nando de Freitas},
+  eprint = {2205.06175},
+  journal = {Transactions on Machine Learning Research},
+  openreview = {https://openreview.net/forum?id=1ikK0kHjvj},
+  pdf = {https://openreview.net/pdf/a11e6601c3e6ea4fddfa784caac13c16d3344ed2.pdf},
+  primaryclass = {cs.AI},
+  released = {2022-05-12},
+  title = {A Generalist Agent},
+  url = {https://openreview.net/forum?id=1ikK0kHjvj},
+  year = {2022}
+}
+
+@inproceedings{shridhar2023perceiver,
+  archiveprefix = {arXiv},
+  arxiv = {https://arxiv.org/abs/2209.05451},
+  author = {Mohit Shridhar and Lucas Manuelli and Dieter Fox},
+  booktitle = {Proceedings of The 6th Conference on Robot Learning},
+  eprint = {2209.05451},
+  month = {14--18 Dec},
+  openreview = {https://openreview.net/forum?id=PS_eCS_WCvD},
+  pages = {785--799},
+  pdf = {https://proceedings.mlr.press/v205/shridhar23a/shridhar23a.pdf},
+  primaryclass = {cs.RO},
+  publisher = {PMLR},
+  released = {2022-09-12},
+  series = {Proceedings of Machine Learning Research},
+  title = {Perceiver-Actor: A Multi-Task Transformer for Robotic Manipulation},
+  url = {https://proceedings.mlr.press/v205/shridhar23a.html},
+  volume = {205},
+  year = {2023}
+}
+
+@inproceedings{jiang2023vima,
+  author = {Yunfan Jiang and Agrim Gupta and Zichen Zhang and Guanzhi Wang and Yongqiang Dou and Yanjun Chen and Li Fei-Fei and Anima Anandkumar and Yuke Zhu and Linxi Fan},
+  booktitle = {Proceedings of the 40th International Conference on Machine Learning},
+  pages = {14975--15022},
+  pdf = {https://proceedings.mlr.press/v202/jiang23b/jiang23b.pdf},
+  publisher = {PMLR},
+  released = {2022-10-06},
+  series = {Proceedings of Machine Learning Research},
+  title = {{VIMA}: Robot Manipulation with Multimodal Prompts},
+  url = {https://proceedings.mlr.press/v202/jiang23b.html},
+  volume = {202},
+  year = {2023}
+}
+
+@misc{brohan2022rt1,
+  archiveprefix = {arXiv},
+  arxiv = {https://arxiv.org/abs/2212.06817},
+  author = {Anthony Brohan and Noah Brown and Justice Carbajal and Yevgen Chebotar and Joseph Dabis and Chelsea Finn and Keerthana Gopalakrishnan and Karol Hausman and Alex Herzog and Jasmine Hsu and Julian Ibarz and Brian Ichter and Alex Irpan and Tomas Jackson and Sally Jesmonth and Nikhil J Joshi and Ryan Julian and Dmitry Kalashnikov and Yuheng Kuang and Isabel Leal and Kuang-Huei Lee and Sergey Levine and Yao Lu and Utsav Malla and Deeksha Manjunath and Igor Mordatch and Ofir Nachum and Carolina Parada and Jodilyn Peralta and Emily Perez and Karl Pertsch and Jornell Quiambao and Kanishka Rao and Michael Ryoo and Grecia Salazar and Pannag Sanketi and Kevin Sayed and Jaspiar Singh and Sumedh Sontakke and Austin Stone and Clayton Tan and Huong Tran and Vincent Vanhoucke and Steve Vega and Quan Vuong and Fei Xia and Ted Xiao and Peng Xu and Sichun Xu and Tianhe Yu and Brianna Zitkovich},
+  doi = {10.48550/arXiv.2212.06817},
+  eprint = {2212.06817},
+  howpublished = {arXiv preprint},
+  pdf = {https://arxiv.org/pdf/2212.06817},
+  primaryclass = {cs.RO},
+  released = {2022-12-13},
+  title = {{RT-1}: Robotics Transformer for Real-World Control at Scale},
+  url = {https://arxiv.org/abs/2212.06817},
+  year = {2022}
+}
+
+@inproceedings{driess2023palme,
+  author = {Danny Driess and Fei Xia and Mehdi S. M. Sajjadi and Corey Lynch and Aakanksha Chowdhery and Brian Ichter and Ayzaan Wahid and Jonathan Tompson and Quan Vuong and Tianhe Yu and Wenlong Huang and Yevgen Chebotar and Pierre Sermanet and Daniel Duckworth and Sergey Levine and Vincent Vanhoucke and Karol Hausman and Marc Toussaint and Klaus Greff and Andy Zeng and Igor Mordatch and Pete Florence},
+  booktitle = {Proceedings of the 40th International Conference on Machine Learning},
+  pages = {8469--8488},
+  pdf = {https://proceedings.mlr.press/v202/driess23a/driess23a.pdf},
+  publisher = {PMLR},
+  released = {2023-03-06},
+  series = {Proceedings of Machine Learning Research},
+  title = {{PaLM-E}: An Embodied Multimodal Language Model},
+  url = {https://proceedings.mlr.press/v202/driess23a.html},
+  volume = {202},
+  year = {2023}
+}
+
+@article{chi2025diffusion,
+  archiveprefix = {arXiv},
+  arxiv = {https://arxiv.org/abs/2303.04137},
+  author = {Cheng Chi and Zhenjia Xu and Siyuan Feng and Eric Cousineau and Yilun Du and Benjamin Burchfiel and Russ Tedrake and Shuran Song},
+  doi = {10.1177/02783649241273668},
+  eprint = {2303.04137},
+  journal = {The International Journal of Robotics Research},
+  number = {10-11},
+  pages = {1684--1704},
+  pdf = {https://arxiv.org/pdf/2303.04137},
+  primaryclass = {cs.RO},
+  released = {2023-03-07},
+  title = {Diffusion Policy: Visuomotor Policy Learning via Action Diffusion},
+  url = {https://doi.org/10.1177/02783649241273668},
+  volume = {44},
+  year = {2025}
+}
+
+@inproceedings{zitkovich2023rt2,
+  author = {Brianna Zitkovich and Tianhe Yu and Sichun Xu and Peng Xu and Ted Xiao and Fei Xia and Jialin Wu and Paul Wohlhart and Stefan Welker and Ayzaan Wahid and Quan Vuong and Vincent Vanhoucke and Huong Tran and Radu Soricut and Anikait Singh and Jaspiar Singh and Pierre Sermanet and Pannag R. Sanketi and Grecia Salazar and Michael S. Ryoo and Krista Reymann and Kanishka Rao and Karl Pertsch and Igor Mordatch and Henryk Michalewski and Yao Lu and Sergey Levine and Lisa Lee and Tsang-Wei Edward Lee and Isabel Leal and Yuheng Kuang and Dmitry Kalashnikov and Ryan Julian and Nikhil J. Joshi and Alex Irpan and Brian Ichter and Jasmine Hsu and Alexander Herzog and Karol Hausman and Keerthana Gopalakrishnan and Chuyuan Fu and Pete Florence and Chelsea Finn and Kumar Avinava Dubey and Danny Driess and Tianli Ding and Krzysztof Marcin Choromanski and Xi Chen and Yevgen Chebotar and Justice Carbajal and Noah Brown and Anthony Brohan and Montserrat Gonzalez Arenas and Kehang Han},
+  booktitle = {Proceedings of The 7th Conference on Robot Learning},
+  pages = {2165--2183},
+  pdf = {https://proceedings.mlr.press/v229/zitkovich23a/zitkovich23a.pdf},
+  publisher = {PMLR},
+  released = {2023-07-28},
+  series = {Proceedings of Machine Learning Research},
+  title = {{RT-2}: Vision-Language-Action Models Transfer Web Knowledge to Robotic Control},
+  url = {https://proceedings.mlr.press/v229/zitkovich23a.html},
+  volume = {229},
+  year = {2023}
+}
+
+@inproceedings{openx2024embodiment,
+  archiveprefix = {arXiv},
+  arxiv = {https://arxiv.org/abs/2310.08864},
+  author = {Abby O'Neill and Abdul Rehman and Abhiram Maddukuri and Abhishek Gupta and Abhishek Padalkar and Abraham Lee and Acorn Pooley and Agrim Gupta and Ajay Mandlekar and Ajinkya Jain and Albert Tung and Alex Bewley and Alex Herzog and Alex Irpan and Alexander Khazatsky and Anant Rai and Anchit Gupta and Andrew Wang and Anikait Singh and Animesh Garg and Aniruddha Kembhavi and Annie Xie and Anthony Brohan and Antonin Raffin and Archit Sharma and Arefeh Yavary and Arhan Jain and Ashwin Balakrishna and Ayzaan Wahid and Ben Burgess-Limerick and Beomjoon Kim and Bernhard Sch{\"o}lkopf and Blake Wulfe and Brian Ichter and Cewu Lu and Charles Xu and Charlotte Le and Chelsea Finn and Chen Wang and Chenfeng Xu and Cheng Chi and Chenguang Huang and Christine Chan and Christopher Agia and Chuer Pan and Chuyuan Fu and Coline Devin and Danfei Xu and Daniel Morton and Danny Driess and Daphne Chen and Deepak Pathak and Dhruv Shah and Dieter B{\"u}chler and Dinesh Jayaraman and Dmitry Kalashnikov and Dorsa Sadigh and Edward Johns and Ethan Foster and Fangchen Liu and Federico Ceola and Fei Xia and Feiyu Zhao and Freek Stulp and Gaoyue Zhou and Gaurav S. Sukhatme and Gautam Salhotra and Ge Yan and Gilbert Feng and Giulio Schiavi and Glen Berseth and Gregory Kahn and Guanzhi Wang and Hao Su and Hao-Shu Fang and Haochen Shi and Henghui Bao and Heni Ben Amor and Henrik I Christensen and Hiroki Furuta and Homer Walke and Hongjie Fang and Huy Ha and Igor Mordatch and Ilija Radosavovic and Isabel Leal and Jacky Liang and Jad Abou-Chakra and Jaehyung Kim and Jaimyn Drake and Jan Peters and Jan Schneider and Jasmine Hsu and Jeannette Bohg and Jeffrey Bingham and Jeffrey Wu and Jensen Gao and Jiaheng Hu and Jiajun Wu and Jialin Wu and Jiankai Sun and Jianlan Luo and Jiayuan Gu and Jie Tan and Jihoon Oh and Jimmy Wu and Jingpei Lu and Jingyun Yang and Jitendra Malik and Jo{\~a}o Silv{\'e}rio and Joey Hejna and Jonathan Booher and Jonathan Tompson and Jonathan Yang and Jordi Salvador and Joseph J. Lim and Junhyek Han and Kaiyuan Wang and Kanishka Rao and Karl Pertsch and Karol Hausman and Keegan Go and Keerthana Gopalakrishnan and Ken Goldberg and Kendra Byrne and Kenneth Oslund and Kento Kawaharazuka and Kevin Black and Kevin Lin and Kevin Zhang and Kiana Ehsani and Kiran Lekkala and Kirsty Ellis and Krishan Rana and Krishnan Srinivasan and Kuan Fang and Kunal Pratap Singh and Kuo-Hao Zeng and Kyle Hatch and Kyle Hsu and Laurent Itti and Lawrence Yunliang Chen and Lerrel Pinto and Li Fei-Fei and Liam Tan and Linxi Jim Fan and Lionel Ott and Lisa Lee and Luca Weihs and Magnum Chen and Marion Lepert and Marius Memmel and Masayoshi Tomizuka and Masha Itkina and Mateo Guaman Castro and Max Spero and Maximilian Du and Michael Ahn and Michael C. Yip and Mingtong Zhang and Mingyu Ding and Minho Heo and Mohan Kumar Srirama and Mohit Sharma and Moo Jin Kim and Naoaki Kanazawa and Nicklas Hansen and Nicolas Heess and Nikhil J Joshi and Niko Suenderhauf and Ning Liu and Norman Di Palo and Nur Muhammad Mahi Shafiullah and Oier Mees and Oliver Kroemer and Osbert Bastani and Pannag R Sanketi and Patrick Tree Miller and Patrick Yin and Paul Wohlhart and Peng Xu and Peter David Fagan and Peter Mitrano and Pierre Sermanet and Pieter Abbeel and Priya Sundaresan and Qiuyu Chen and Quan Vuong and Rafael Rafailov and Ran Tian and Ria Doshi and Roberto Mart{\'i}n-Mart{\'i}n and Rohan Baijal and Rosario Scalise and Rose Hendrix and Roy Lin and Runjia Qian and Ruohan Zhang and Russell Mendonca and Rutav Shah and Ryan Hoque and Ryan Julian and Samuel Bustamante and Sean Kirmani and Sergey Levine and Shan Lin and Sherry Moore and Shikhar Bahl and Shivin Dass and Shubham Sonawani and Shuran Song and Sichun Xu and Siddhant Haldar and Siddharth Karamcheti and Simeon Adebola and Simon Guist and Soroush Nasiriany and Stefan Schaal and Stefan Welker and Stephen Tian and Subramanian Ramamoorthy and Sudeep Dasari and Suneel Belkhale and Sungjae Park and Suraj Nair and Suvir Mirchandani and Takayuki Osa and Tanmay Gupta and Tatsuya Harada and Tatsuya Matsushima and Ted Xiao and Thomas Kollar and Tianhe Yu and Tianli Ding and Todor Davchev and Tony Z. Zhao and Travis Armstrong and Trevor Darrell and Trinity Chung and Vidhi Jain and Vincent Vanhoucke and Wei Zhan and Wenxuan Zhou and Wolfram Burgard and Xi Chen and Xiaolong Wang and Xinghao Zhu and Xinyang Geng and Xiyuan Liu and Xu Liangwei and Xuanlin Li and Yao Lu and Yecheng Jason Ma and Yejin Kim and Yevgen Chebotar and Yifan Zhou and Yifeng Zhu and Yilin Wu and Ying Xu and Yixuan Wang and Yonatan Bisk and Yoonyoung Cho and Youngwoon Lee and Yuchen Cui and Yue Cao and Yueh-Hua Wu and Yujin Tang and Yuke Zhu and Yunchu Zhang and Yunfan Jiang and Yunshuang Li and Yunzhu Li and Yusuke Iwasawa and Yutaka Matsuo and Zehan Ma and Zhuo Xu and Zichen Jeff Cui and Zichen Zhang and Zipeng Lin},
+  booktitle = {2024 IEEE International Conference on Robotics and Automation (ICRA)},
+  doi = {10.1109/ICRA57147.2024.10611477},
+  eprint = {2310.08864},
+  pages = {6892--6903},
+  pdf = {https://arxiv.org/pdf/2310.08864},
+  primaryclass = {cs.RO},
+  publisher = {IEEE},
+  released = {2023-10-13},
+  title = {Open X-Embodiment: Robotic Learning Datasets and {RT-X} Models},
+  url = {https://doi.org/10.1109/ICRA57147.2024.10611477},
+  year = {2024}
+}
+
+@inproceedings{li2024vision,
+  author = {Xinghang Li and Minghuan Liu and Hanbo Zhang and Cunjun Yu and Jie Xu and Hongtao Wu and Chilam Cheang and Ya Jing and Weinan Zhang and Huaping Liu and Hang Li and Tao Kong},
+  booktitle = {International Conference on Learning Representations},
+  pdf = {https://openreview.net/pdf?id=lFYj0oibGR},
+  publisher = {OpenReview.net},
+  released = {2023-11-02},
+  title = {Vision-Language Foundation Models as Effective Robot Imitators},
+  url = {https://openreview.net/forum?id=lFYj0oibGR},
+  year = {2024}
+}
+
+@inproceedings{wu2024unleashing,
+  author = {Hongtao Wu and Ya Jing and Chilam Cheang and Guangzeng Chen and Jiafeng Xu and Xinghang Li and Minghuan Liu and Hang Li and Tao Kong},
+  booktitle = {International Conference on Learning Representations},
+  pdf = {https://openreview.net/pdf?id=NxoFmGgWC9},
+  publisher = {OpenReview.net},
+  released = {2023-12-20},
+  title = {Unleashing Large-Scale Video Generative Pre-training for Visual Robot Manipulation},
+  url = {https://openreview.net/forum?id=NxoFmGgWC9},
+  year = {2024}
+}
+
+@misc{octomodelteam2024octo,
+  archiveprefix = {arXiv},
+  arxiv = {https://arxiv.org/abs/2405.12213},
+  author = {{Octo Model Team} and Dibya Ghosh and Homer Walke and Karl Pertsch and Kevin Black and Oier Mees and Sudeep Dasari and Joey Hejna and Tobias Kreiman and Charles Xu and Jianlan Luo and You Liang Tan and Lawrence Yunliang Chen and Pannag Sanketi and Quan Vuong and Ted Xiao and Dorsa Sadigh and Chelsea Finn and Sergey Levine},
+  doi = {10.48550/arXiv.2405.12213},
+  eprint = {2405.12213},
+  howpublished = {arXiv preprint},
+  pdf = {https://arxiv.org/pdf/2405.12213},
+  primaryclass = {cs.RO},
+  released = {2024-05-20},
+  title = {Octo: An Open-Source Generalist Robot Policy},
+  url = {https://arxiv.org/abs/2405.12213},
+  year = {2024}
+}
+
+@inproceedings{kim2025openvla,
+  archiveprefix = {arXiv},
+  arxiv = {https://arxiv.org/abs/2406.09246},
+  author = {Moo Jin Kim and Karl Pertsch and Siddharth Karamcheti and Ted Xiao and Ashwin Balakrishna and Suraj Nair and Rafael Rafailov and Ethan P Foster and Pannag R Sanketi and Quan Vuong and Thomas Kollar and Benjamin Burchfiel and Russ Tedrake and Dorsa Sadigh and Sergey Levine and Percy Liang and Chelsea Finn},
+  booktitle = {Proceedings of The 8th Conference on Robot Learning},
+  eprint = {2406.09246},
+  month = {06--09 Nov},
+  openreview = {https://openreview.net/forum?id=ZMnD6QZAE6},
+  pages = {2679--2713},
+  pdf = {https://raw.githubusercontent.com/mlresearch/v270/main/assets/kim25c/kim25c.pdf},
+  primaryclass = {cs.RO},
+  publisher = {PMLR},
+  released = {2024-06-13},
+  series = {Proceedings of Machine Learning Research},
+  title = {{OpenVLA}: An Open-Source Vision-Language-Action Model},
+  url = {https://proceedings.mlr.press/v270/kim25c.html},
+  volume = {270},
+  year = {2025}
+}
+
+@misc{beyer2024paligemma,
+  archiveprefix = {arXiv},
+  arxiv = {https://arxiv.org/abs/2407.07726},
+  author = {Lucas Beyer and Andreas Steiner and Andr{\'e} Susano Pinto and Alexander Kolesnikov and Xiao Wang and Daniel Salz and Maxim Neumann and Ibrahim Alabdulmohsin and Michael Tschannen and Emanuele Bugliarello and Thomas Unterthiner and Daniel Keysers and Skanda Koppula and Fangyu Liu and Adam Grycner and Alexey Gritsenko and Neil Houlsby and Manoj Kumar and Keran Rong and Julian Eisenschlos and Rishabh Kabra and Matthias Bauer and Matko Bo{\v{s}}njak and Xi Chen and Matthias Minderer and Paul Voigtlaender and Ioana Bica and Ivana Balazevic and Joan Puigcerver and Pinelopi Papalampidi and Olivier Henaff and Xi Xiong and Radu Soricut and Jeremiah Harmsen and Xiaohua Zhai},
+  doi = {10.48550/arXiv.2407.07726},
+  eprint = {2407.07726},
+  howpublished = {arXiv preprint},
+  pdf = {https://arxiv.org/pdf/2407.07726},
+  primaryclass = {cs.CV},
+  released = {2024-07-10},
+  title = {{PaliGemma}: A Versatile 3B {VLM} for Transfer},
+  url = {https://arxiv.org/abs/2407.07726},
+  year = {2024}
+}
+
+@inproceedings{zawalski2025robotic,
+  archiveprefix = {arXiv},
+  arxiv = {https://arxiv.org/abs/2407.08693},
+  author = {Micha{\l} Zawalski and William Chen and Karl Pertsch and Oier Mees and Chelsea Finn and Sergey Levine},
+  booktitle = {Proceedings of The 8th Conference on Robot Learning},
+  eprint = {2407.08693},
+  month = {06--09 Nov},
+  openreview = {https://openreview.net/forum?id=G4vdI1Sx6k},
+  pages = {3157--3181},
+  pdf = {https://raw.githubusercontent.com/mlresearch/v270/main/assets/zawalski25a/zawalski25a.pdf},
+  primaryclass = {cs.RO},
+  publisher = {PMLR},
+  released = {2024-07-11},
+  series = {Proceedings of Machine Learning Research},
+  title = {Robotic Control via Embodied Chain-of-Thought Reasoning},
+  url = {https://proceedings.mlr.press/v270/zawalski25a.html},
+  volume = {270},
+  year = {2025}
+}
+
+@misc{cheang2024gr2,
+  archiveprefix = {arXiv},
+  arxiv = {https://arxiv.org/abs/2410.06158},
+  author = {Chi-Lam Cheang and Guangzeng Chen and Ya Jing and Tao Kong and Hang Li and Yifeng Li and Yuxiao Liu and Hongtao Wu and Jiafeng Xu and Yichu Yang and Hanbo Zhang and Minzhao Zhu},
+  doi = {10.48550/arXiv.2410.06158},
+  eprint = {2410.06158},
+  howpublished = {arXiv preprint},
+  pdf = {https://arxiv.org/pdf/2410.06158},
+  primaryclass = {cs.RO},
+  released = {2024-10-08},
+  title = {{GR-2}: A Generative Video-Language-Action Model with Web-Scale Knowledge for Robot Manipulation},
+  url = {https://arxiv.org/abs/2410.06158},
+  year = {2024}
+}
+
+@inproceedings{liu2025rdt,
+  author = {Songming Liu and Lingxuan Wu and Bangguo Li and Hengkai Tan and Huayu Chen and Zhengyi Wang and Ke Xu and Hang Su and Jun Zhu},
+  booktitle = {International Conference on Learning Representations},
+  pdf = {https://openreview.net/pdf/29d56379d000b8c0e05906c5958e67e2e870ab0c.pdf},
+  publisher = {OpenReview.net},
+  released = {2024-10-10},
+  title = {{RDT-1B}: a Diffusion Foundation Model for Bimanual Manipulation},
+  url = {https://openreview.net/forum?id=yAzN4tz7oI},
+  year = {2025}
+}
+
+@misc{black2024pi0,
+  archiveprefix = {arXiv},
+  arxiv = {https://arxiv.org/abs/2410.24164},
+  author = {Kevin Black and Noah Brown and Danny Driess and Adnan Esmail and Michael Equi and Chelsea Finn and Niccolo Fusai and Lachy Groom and Karol Hausman and Brian Ichter and Szymon Jakubczak and Tim Jones and Liyiming Ke and Sergey Levine and Adrian Li-Bell and Mohith Mothukuri and Suraj Nair and Karl Pertsch and Lucy Xiaoyang Shi and James Tanner and Quan Vuong and Anna Walling and Haohuan Wang and Ury Zhilinsky},
+  doi = {10.48550/arXiv.2410.24164},
+  eprint = {2410.24164},
+  howpublished = {arXiv preprint},
+  pdf = {https://arxiv.org/pdf/2410.24164},
+  primaryclass = {cs.LG},
+  released = {2024-10-31},
+  title = {{$\pi_0$}: A Vision-Language-Action Flow Model for General Robot Control},
+  url = {https://arxiv.org/abs/2410.24164},
+  year = {2024}
+}
+
+@misc{li2024cogact,
+  archiveprefix = {arXiv},
+  arxiv = {https://arxiv.org/abs/2411.19650},
+  author = {Qixiu Li and Yaobo Liang and Zeyu Wang and Lin Luo and Xi Chen and Mozheng Liao and Fangyun Wei and Yu Deng and Sicheng Xu and Yizhong Zhang and Xiaofan Wang and Bei Liu and Jianlong Fu and Jianmin Bao and Dong Chen and Yuanchun Shi and Jiaolong Yang and Baining Guo},
+  doi = {10.48550/arXiv.2411.19650},
+  eprint = {2411.19650},
+  howpublished = {arXiv preprint},
+  pdf = {https://arxiv.org/pdf/2411.19650},
+  primaryclass = {cs.RO},
+  released = {2024-11-29},
+  title = {{CogACT}: A Foundational Vision-Language-Action Model for Synergizing Cognition and Action in Robotic Manipulation},
+  url = {https://arxiv.org/abs/2411.19650},
+  year = {2024}
+}
+
+@misc{li2024robovlms,
+  archiveprefix = {arXiv},
+  arxiv = {https://arxiv.org/abs/2412.14058},
+  author = {Xinghang Li and Peiyan Li and Long Qian and Minghuan Liu and Dong Wang and Jirong Liu and Bingyi Kang and Xiao Ma and Xinlong Wang and Di Guo and Tao Kong and Hanbo Zhang and Huaping Liu},
+  doi = {10.48550/arXiv.2412.14058},
+  eprint = {2412.14058},
+  howpublished = {arXiv preprint},
+  pdf = {https://arxiv.org/pdf/2412.14058},
+  primaryclass = {cs.RO},
+  released = {2024-12-18},
+  title = {What Matters in Building Vision-Language-Action Models for Generalist Robots},
+  url = {https://arxiv.org/abs/2412.14058},
+  year = {2024}
+}
+
+@misc{pertsch2025fast,
+  archiveprefix = {arXiv},
+  arxiv = {https://arxiv.org/abs/2501.09747},
+  author = {Karl Pertsch and Kyle Stachowicz and Brian Ichter and Danny Driess and Suraj Nair and Quan Vuong and Oier Mees and Chelsea Finn and Sergey Levine},
+  doi = {10.48550/arXiv.2501.09747},
+  eprint = {2501.09747},
+  howpublished = {arXiv preprint},
+  pdf = {https://arxiv.org/pdf/2501.09747},
+  primaryclass = {cs.RO},
+  released = {2025-01-16},
+  title = {{FAST}: Efficient Action Tokenization for Vision-Language-Action Models},
+  url = {https://arxiv.org/abs/2501.09747},
+  year = {2025}
+}
+
+@inproceedings{qu2025spatialvla,
+  archiveprefix = {arXiv},
+  arxiv = {https://arxiv.org/abs/2501.15830},
+  author = {Delin Qu and Haoming Song and Qizhi Chen and Yuanqi Yao and Xinyi Ye and Jiayuan Gu and Zhigang Wang and Yan Ding and Bin Zhao and Dong Wang and Xuelong Li},
+  booktitle = {Proceedings of Robotics: Science and Systems},
+  doi = {10.15607/RSS.2025.XXI.011},
+  eprint = {2501.15830},
+  month = {June},
+  pdf = {https://www.roboticsproceedings.org/rss21/p011.pdf},
+  primaryclass = {cs.RO},
+  released = {2025-01-27},
+  title = {{SpatialVLA}: Exploring Spatial Representations for Visual-Language-Action Models},
+  url = {https://www.roboticsproceedings.org/rss21/p011.html},
+  year = {2025}
+}
+
+@misc{kim2025oft,
+  archiveprefix = {arXiv},
+  arxiv = {https://arxiv.org/abs/2502.19645},
+  author = {Moo Jin Kim and Chelsea Finn and Percy Liang},
+  doi = {10.48550/arXiv.2502.19645},
+  eprint = {2502.19645},
+  howpublished = {arXiv preprint},
+  pdf = {https://arxiv.org/pdf/2502.19645},
+  primaryclass = {cs.RO},
+  released = {2025-02-27},
+  title = {Fine-Tuning Vision-Language-Action Models: Optimizing Speed and Success},
+  url = {https://arxiv.org/abs/2502.19645},
+  year = {2025}
+}
+
+@misc{bjorck2025grootn1,
+  archiveprefix = {arXiv},
+  arxiv = {https://arxiv.org/abs/2503.14734},
+  author = {NVIDIA and Johan Bjorck and Fernando Casta{\~n}eda and Nikita Cherniadev and Xingye Da and Runyu Ding and Linxi Fan and Yu Fang and Dieter Fox and Fengyuan Hu and Spencer Huang and Joel Jang and Zhenyu Jiang and Jan Kautz and Kaushil Kundalia and Lawrence Lao and Zhiqi Li and Zongyu Lin and Kevin Lin and Guilin Liu and Edith Llontop and Loic Magne and Ajay Mandlekar and Avnish Narayan and Soroush Nasiriany and Scott Reed and You Liang Tan and Guanzhi Wang and Zu Wang and Jing Wang and Qi Wang and Jiannan Xiang and Yuqi Xie and Yinzhen Xu and Zhenjia Xu and Seonghyeon Ye and Zhiding Yu and Ao Zhang and Hao Zhang and Yizhou Zhao and Ruijie Zheng and Yuke Zhu},
+  doi = {10.48550/arXiv.2503.14734},
+  eprint = {2503.14734},
+  howpublished = {arXiv preprint},
+  pdf = {https://arxiv.org/pdf/2503.14734},
+  primaryclass = {cs.RO},
+  released = {2025-03-18},
+  title = {{GR00T N1}: An Open Foundation Model for Generalist Humanoid Robots},
+  url = {https://arxiv.org/abs/2503.14734},
+  year = {2025}
+}
+
+@misc{geminiroboticsteam2025gemini,
+  archiveprefix = {arXiv},
+  arxiv = {https://arxiv.org/abs/2503.20020},
+  author = {{Gemini Robotics Team} and Saminda Abeyruwan and Joshua Ainslie and Jean-Baptiste Alayrac and Montserrat Gonzalez Arenas and Travis Armstrong and Ashwin Balakrishna and Robert Baruch and Maria Bauza and Michiel Blokzijl and Steven Bohez and Konstantinos Bousmalis and Anthony Brohan and Thomas Buschmann and Arunkumar Byravan and Serkan Cabi and Ken Caluwaerts and Federico Casarini and Oscar Chang and Jose Enrique Chen and Xi Chen and Hao-Tien Lewis Chiang and Krzysztof Choromanski and David D'Ambrosio and Sudeep Dasari and Todor Davchev and Coline Devin and Norman Di Palo and Tianli Ding and Adil Dostmohamed and Danny Driess and Yilun Du and Debidatta Dwibedi and Michael Elabd and Claudio Fantacci and Cody Fong and Erik Frey and Chuyuan Fu and Marissa Giustina and Keerthana Gopalakrishnan and Laura Graesser and Leonard Hasenclever and Nicolas Heess and Brandon Hernaez and Alexander Herzog and R. Alex Hofer and Jan Humplik and Atil Iscen and Mithun George Jacob and Deepali Jain and Ryan Julian and Dmitry Kalashnikov and M. Emre Karagozler and Stefani Karp and Chase Kew and Jerad Kirkland and Sean Kirmani and Yuheng Kuang and Thomas Lampe and Antoine Laurens and Isabel Leal and Alex X. Lee and Tsang-Wei Edward Lee and Jacky Liang and Yixin Lin and Sharath Maddineni and Anirudha Majumdar and Assaf Hurwitz Michaely and Robert Moreno and Michael Neunert and Francesco Nori and Carolina Parada and Emilio Parisotto and Peter Pastor and Acorn Pooley and Kanishka Rao and Krista Reymann and Dorsa Sadigh and Stefano Saliceti and Pannag Sanketi and Pierre Sermanet and Dhruv Shah and Mohit Sharma and Kathryn Shea and Charles Shu and Vikas Sindhwani and Sumeet Singh and Radu Soricut and Jost Tobias Springenberg and Rachel Sterneck and Razvan Surdulescu and Jie Tan and Jonathan Tompson and Vincent Vanhoucke and Jake Varley and Grace Vesom and Giulia Vezzani and Oriol Vinyals and Ayzaan Wahid and Stefan Welker and Paul Wohlhart and Fei Xia and Ted Xiao and Annie Xie and Jinyu Xie and Peng Xu and Sichun Xu and Ying Xu and Zhuo Xu and Yuxiang Yang and Rui Yao and Sergey Yaroshenko and Wenhao Yu and Wentao Yuan and Jingwei Zhang and Tingnan Zhang and Allan Zhou and Yuxiang Zhou},
+  doi = {10.48550/arXiv.2503.20020},
+  eprint = {2503.20020},
+  howpublished = {arXiv preprint},
+  pdf = {https://arxiv.org/pdf/2503.20020},
+  primaryclass = {cs.RO},
+  released = {2025-03-25},
+  title = {Gemini Robotics: Bringing {AI} into the Physical World},
+  url = {https://arxiv.org/abs/2503.20020},
+  year = {2025}
+}
+
+@misc{physicalintelligence2025pi05,
+  archiveprefix = {arXiv},
+  arxiv = {https://arxiv.org/abs/2504.16054},
+  author = {{Physical Intelligence} and Kevin Black and Noah Brown and James Darpinian and Karan Dhabalia and Danny Driess and Adnan Esmail and Michael Equi and Chelsea Finn and Niccolo Fusai and Manuel Y. Galliker and Dibya Ghosh and Lachy Groom and Karol Hausman and Brian Ichter and Szymon Jakubczak and Tim Jones and Liyiming Ke and Devin LeBlanc and Sergey Levine and Adrian Li-Bell and Mohith Mothukuri and Suraj Nair and Karl Pertsch and Allen Z. Ren and Lucy Xiaoyang Shi and Laura Smith and Jost Tobias Springenberg and Kyle Stachowicz and James Tanner and Quan Vuong and Homer Walke and Anna Walling and Haohuan Wang and Lili Yu and Ury Zhilinsky},
+  doi = {10.48550/arXiv.2504.16054},
+  eprint = {2504.16054},
+  howpublished = {arXiv preprint},
+  pdf = {https://arxiv.org/pdf/2504.16054},
+  primaryclass = {cs.LG},
+  released = {2025-04-22},
+  title = {{$\pi_{0.5}$}: a Vision-Language-Action Model with Open-World Generalization},
+  url = {https://arxiv.org/abs/2504.16054},
+  year = {2025}
+}
+
+@inproceedings{driess2025knowledge,
+  archiveprefix = {arXiv},
+  arxiv = {https://arxiv.org/abs/2505.23705},
+  author = {Danny Driess and Jost Tobias Springenberg and Brian Ichter and Lili Yu and Adrian Li-Bell and Karl Pertsch and Allen Z. Ren and Homer Walke and Quan Vuong and Lucy Xiaoyang Shi and Sergey Levine},
+  booktitle = {Advances in Neural Information Processing Systems},
+  eprint = {2505.23705},
+  pdf = {https://openreview.net/pdf/a125f5bc144a834ceef1946ec665a202b39c5b8c.pdf},
+  primaryclass = {cs.LG},
+  publisher = {OpenReview.net},
+  released = {2025-05-29},
+  title = {Knowledge Insulating Vision-Language-Action Models: Train Fast, Run Fast, Generalize Better},
+  url = {https://openreview.net/forum?id=cb0xbZ3APM},
+  year = {2025}
+}
+
+@misc{cheang2025gr3,
+  archiveprefix = {arXiv},
+  arxiv = {https://arxiv.org/abs/2507.15493},
+  author = {Chilam Cheang and Sijin Chen and Zhongren Cui and Yingdong Hu and Liqun Huang and Tao Kong and Hang Li and Yifeng Li and Yuxiao Liu and Xiao Ma and Hao Niu and Wenxuan Ou and Wanli Peng and Zeyu Ren and Haixin Shi and Jiawen Tian and Hongtao Wu and Xin Xiao and Yuyang Xiao and Jiafeng Xu and Yichu Yang},
+  doi = {10.48550/arXiv.2507.15493},
+  eprint = {2507.15493},
+  howpublished = {arXiv preprint},
+  pdf = {https://arxiv.org/pdf/2507.15493},
+  primaryclass = {cs.RO},
+  released = {2025-07-21},
+  title = {{GR-3} Technical Report},
+  url = {https://arxiv.org/abs/2507.15493},
+  year = {2025}
+}
+
+@misc{cai2026xiaomirobotics,
+  archiveprefix = {arXiv},
+  arxiv = {https://arxiv.org/abs/2602.12684},
+  author = {Rui Cai and Jun Guo and Xinze He and Piaopiao Jin and Jie Li and Bingxuan Lin and Futeng Liu and Wei Liu and Fei Ma and Kun Ma and Feng Qiu and Heng Qu and Yifei Su and Qiao Sun and Dong Wang and Donghao Wang and Yunhong Wang and Rujie Wu and Diyun Xiang and Yu Yang and Hangjun Ye and Yuan Zhang and Quanyun Zhou},
+  doi = {10.48550/arXiv.2602.12684},
+  eprint = {2602.12684},
+  howpublished = {arXiv preprint},
+  pdf = {https://arxiv.org/pdf/2602.12684},
+  primaryclass = {cs.RO},
+  released = {2026-02-13},
+  title = {Xiaomi-Robotics-0: An Open-Sourced Vision-Language-Action Model with Real-Time Execution},
+  url = {https://arxiv.org/abs/2602.12684},
+  year = {2026}
+}
+
+@misc{hu2026arvla,
+  archiveprefix = {arXiv},
+  arxiv = {https://arxiv.org/abs/2603.10126},
+  author = {Yutong Hu and Jan-Nico Zaech and Nikolay Nikolov and Yuanqi Yao and Sombit Dey and Giuliano Albanese and Renaud Detry and Luc Van Gool and Danda Paudel},
+  doi = {10.48550/arXiv.2603.10126},
+  eprint = {2603.10126},
+  howpublished = {arXiv preprint},
+  pdf = {https://arxiv.org/pdf/2603.10126},
+  primaryclass = {cs.RO},
+  released = {2026-03-10},
+  title = {{AR-VLA}: True Autoregressive Action Expert for Vision-Language-Action Models},
+  url = {https://arxiv.org/abs/2603.10126},
+  year = {2026}
+}
+
+@article{yi2026actionx,
+  author = {Tinghao Yi and Quantao Yang and Enhong Chen},
+  articleno = {1806605},
+  doi = {10.3389/fnbot.2026.1806605},
+  journal = {Frontiers in Neurorobotics},
+  released = {2026-04-14},
+  title = {{ActionX}: Pre-training Action Experts with Reinforcement Learning for Vision-Language Action Models},
+  url = {https://www.frontiersin.org/journals/neurorobotics/articles/10.3389/fnbot.2026.1806605/full},
+  volume = {20},
+  year = {2026}
+}
